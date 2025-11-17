@@ -30,30 +30,30 @@ using Android.Graphics;
 
 namespace KeePassLib.Utility
 {
-    public static class GfxUtil
+  public static class GfxUtil
+  {
+    public static Android.Graphics.Bitmap LoadImage(byte[] pb)
     {
-        public static Android.Graphics.Bitmap LoadImage(byte[] pb)
-        {
-            if (pb == null) throw new ArgumentNullException("pb");
+      if (pb == null) throw new ArgumentNullException("pb");
 
-            MemoryStream ms = new MemoryStream(pb, false);
-            try { return LoadImagePriv(ms); }
-            catch (Exception)
-            {
-                Android.Graphics.Bitmap imgIco = TryLoadIco(pb);
-                if (imgIco != null) return imgIco;
-                throw;
-            }
-            finally { ms.Close(); }
-        }
+      MemoryStream ms = new MemoryStream(pb, false);
+      try { return LoadImagePriv(ms); }
+      catch (Exception)
+      {
+        Android.Graphics.Bitmap imgIco = TryLoadIco(pb);
+        if (imgIco != null) return imgIco;
+        throw;
+      }
+      finally { ms.Close(); }
+    }
 
-        private static Android.Graphics.Bitmap LoadImagePriv(Stream s)
-        {
-            Android.Graphics.Bitmap img = null;
+    private static Android.Graphics.Bitmap LoadImagePriv(Stream s)
+    {
+      Android.Graphics.Bitmap img = null;
 
 #if !KeePassLibSD
 
-            img = BitmapFactory.DecodeStream(s);
+      img = BitmapFactory.DecodeStream(s);
 
 #else
 				imgSrc = new Bitmap(s);
@@ -61,22 +61,22 @@ namespace KeePassLib.Utility
 #endif
 
 
-            return img;
+      return img;
 
-        }
+    }
 
-        private static Android.Graphics.Bitmap TryLoadIco(byte[] pb)
-        {
+    private static Android.Graphics.Bitmap TryLoadIco(byte[] pb)
+    {
 #if !KeePassLibSD
-            throw new NotImplementedException();
-            /*
-			MemoryStream ms = new MemoryStream(pb, false);
-			try { return (new Icon(ms)).ToBitmap(); }
-			catch(Exception) { }
-			finally { ms.Close(); }*/
+      throw new NotImplementedException();
+      /*
+      MemoryStream ms = new MemoryStream(pb, false);
+      try { return (new Icon(ms)).ToBitmap(); }
+      catch(Exception) { }
+      finally { ms.Close(); }*/
 #endif
 
-            //return null;
-        }
+      //return null;
     }
+  }
 }

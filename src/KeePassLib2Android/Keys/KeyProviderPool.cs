@@ -25,81 +25,81 @@ using System.Diagnostics;
 
 namespace KeePassLib.Keys
 {
-    public sealed class KeyProviderPool : IEnumerable<KeyProvider>
+  public sealed class KeyProviderPool : IEnumerable<KeyProvider>
+  {
+    private List<KeyProvider> m_vProviders = new List<KeyProvider>();
+
+    public int Count
     {
-        private List<KeyProvider> m_vProviders = new List<KeyProvider>();
-
-        public int Count
-        {
-            get { return m_vProviders.Count; }
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return m_vProviders.GetEnumerator();
-        }
-
-        public IEnumerator<KeyProvider> GetEnumerator()
-        {
-            return m_vProviders.GetEnumerator();
-        }
-
-        public void Add(KeyProvider prov)
-        {
-            Debug.Assert(prov != null); if (prov == null) throw new ArgumentNullException("prov");
-
-            m_vProviders.Add(prov);
-        }
-
-        public bool Remove(KeyProvider prov)
-        {
-            Debug.Assert(prov != null); if (prov == null) throw new ArgumentNullException("prov");
-
-            return m_vProviders.Remove(prov);
-        }
-
-        public KeyProvider Get(string strProviderName)
-        {
-            if (strProviderName == null) throw new ArgumentNullException("strProviderName");
-
-            foreach (KeyProvider prov in m_vProviders)
-            {
-                if (prov.Name == strProviderName) return prov;
-            }
-
-            return null;
-        }
-
-        public bool IsKeyProvider(string strName)
-        {
-            Debug.Assert(strName != null); if (strName == null) throw new ArgumentNullException("strName");
-
-            foreach (KeyProvider prov in m_vProviders)
-            {
-                if (prov.Name == strName) return true;
-            }
-
-            return false;
-        }
-
-        internal byte[] GetKey(string strProviderName, KeyProviderQueryContext ctx,
-            out bool bPerformHash)
-        {
-            Debug.Assert(strProviderName != null); if (strProviderName == null) throw new ArgumentNullException("strProviderName");
-
-            bPerformHash = true;
-
-            foreach (KeyProvider prov in m_vProviders)
-            {
-                if (prov.Name == strProviderName)
-                {
-                    bPerformHash = !prov.DirectKey;
-                    return prov.GetKey(ctx);
-                }
-            }
-
-            Debug.Assert(false);
-            return null;
-        }
+      get { return m_vProviders.Count; }
     }
+
+    IEnumerator IEnumerable.GetEnumerator()
+    {
+      return m_vProviders.GetEnumerator();
+    }
+
+    public IEnumerator<KeyProvider> GetEnumerator()
+    {
+      return m_vProviders.GetEnumerator();
+    }
+
+    public void Add(KeyProvider prov)
+    {
+      Debug.Assert(prov != null); if (prov == null) throw new ArgumentNullException("prov");
+
+      m_vProviders.Add(prov);
+    }
+
+    public bool Remove(KeyProvider prov)
+    {
+      Debug.Assert(prov != null); if (prov == null) throw new ArgumentNullException("prov");
+
+      return m_vProviders.Remove(prov);
+    }
+
+    public KeyProvider Get(string strProviderName)
+    {
+      if (strProviderName == null) throw new ArgumentNullException("strProviderName");
+
+      foreach (KeyProvider prov in m_vProviders)
+      {
+        if (prov.Name == strProviderName) return prov;
+      }
+
+      return null;
+    }
+
+    public bool IsKeyProvider(string strName)
+    {
+      Debug.Assert(strName != null); if (strName == null) throw new ArgumentNullException("strName");
+
+      foreach (KeyProvider prov in m_vProviders)
+      {
+        if (prov.Name == strName) return true;
+      }
+
+      return false;
+    }
+
+    internal byte[] GetKey(string strProviderName, KeyProviderQueryContext ctx,
+        out bool bPerformHash)
+    {
+      Debug.Assert(strProviderName != null); if (strProviderName == null) throw new ArgumentNullException("strProviderName");
+
+      bPerformHash = true;
+
+      foreach (KeyProvider prov in m_vProviders)
+      {
+        if (prov.Name == strProviderName)
+        {
+          bPerformHash = !prov.DirectKey;
+          return prov.GetKey(ctx);
+        }
+      }
+
+      Debug.Assert(false);
+      return null;
+    }
+  }
 }

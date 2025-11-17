@@ -26,72 +26,72 @@ using KeePassLib.Utility;
 
 namespace KeePassLib.Cryptography.KeyDerivation
 {
-    public static class KdfPool
+  public static class KdfPool
+  {
+    private static List<KdfEngine> g_l = new List<KdfEngine>();
+
+    public static IEnumerable<KdfEngine> Engines
     {
-        private static List<KdfEngine> g_l = new List<KdfEngine>();
-
-        public static IEnumerable<KdfEngine> Engines
-        {
-            get
-            {
-                EnsureInitialized();
-                return g_l;
-            }
-        }
-
-        private static void EnsureInitialized()
-        {
-            if (g_l.Count != 0) return;
-
-            g_l.Add(new AesKdf());
-            g_l.Add(new Argon2Kdf(Argon2Type.D));
-            g_l.Add(new Argon2Kdf(Argon2Type.ID));
-        }
-
-        internal static KdfParameters GetDefaultParameters()
-        {
-            EnsureInitialized();
-            return g_l[0].GetDefaultParameters();
-        }
-
-        public static KdfEngine Get(PwUuid pu)
-        {
-            if (pu == null) { Debug.Assert(false); return null; }
-
-            EnsureInitialized();
-
-            foreach (KdfEngine kdf in g_l)
-            {
-                if (pu.Equals(kdf.Uuid)) return kdf;
-            }
-
-            return null;
-        }
-
-        public static KdfEngine Get(string strName)
-        {
-            if (string.IsNullOrEmpty(strName)) { Debug.Assert(false); return null; }
-
-            EnsureInitialized();
-
-            foreach (KdfEngine kdf in g_l)
-            {
-                if (strName.Equals(kdf.Name, StrUtil.CaseIgnoreCmp)) return kdf;
-            }
-
-            return null;
-        }
-
-        public static void Add(KdfEngine kdf)
-        {
-            if (kdf == null) { Debug.Assert(false); return; }
-
-            EnsureInitialized();
-
-            if (Get(kdf.Uuid) != null) { Debug.Assert(false); return; }
-            if (Get(kdf.Name) != null) { Debug.Assert(false); return; }
-
-            g_l.Add(kdf);
-        }
+      get
+      {
+        EnsureInitialized();
+        return g_l;
+      }
     }
+
+    private static void EnsureInitialized()
+    {
+      if (g_l.Count != 0) return;
+
+      g_l.Add(new AesKdf());
+      g_l.Add(new Argon2Kdf(Argon2Type.D));
+      g_l.Add(new Argon2Kdf(Argon2Type.ID));
+    }
+
+    internal static KdfParameters GetDefaultParameters()
+    {
+      EnsureInitialized();
+      return g_l[0].GetDefaultParameters();
+    }
+
+    public static KdfEngine Get(PwUuid pu)
+    {
+      if (pu == null) { Debug.Assert(false); return null; }
+
+      EnsureInitialized();
+
+      foreach (KdfEngine kdf in g_l)
+      {
+        if (pu.Equals(kdf.Uuid)) return kdf;
+      }
+
+      return null;
+    }
+
+    public static KdfEngine Get(string strName)
+    {
+      if (string.IsNullOrEmpty(strName)) { Debug.Assert(false); return null; }
+
+      EnsureInitialized();
+
+      foreach (KdfEngine kdf in g_l)
+      {
+        if (strName.Equals(kdf.Name, StrUtil.CaseIgnoreCmp)) return kdf;
+      }
+
+      return null;
+    }
+
+    public static void Add(KdfEngine kdf)
+    {
+      if (kdf == null) { Debug.Assert(false); return; }
+
+      EnsureInitialized();
+
+      if (Get(kdf.Uuid) != null) { Debug.Assert(false); return; }
+      if (Get(kdf.Name) != null) { Debug.Assert(false); return; }
+
+      g_l.Add(kdf);
+    }
+  }
 }

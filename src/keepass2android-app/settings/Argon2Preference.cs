@@ -19,98 +19,98 @@ using KeePassLib.Cryptography.KeyDerivation;
 
 namespace keepass2android.settings
 {
-    public class Argon2RoundsPreference : KdfNumberDialogPreference
+  public class Argon2RoundsPreference : KdfNumberDialogPreference
+  {
+    public Argon2RoundsPreference(Context context, IAttributeSet attrs) : base(context, attrs)
     {
-        public Argon2RoundsPreference(Context context, IAttributeSet attrs) : base(context, attrs)
-        {
-        }
-
-        public Argon2RoundsPreference(Context context, IAttributeSet attrs, int defStyle) : base(context, attrs, defStyle)
-        {
-        }
-
-        public override ulong ParamValue
-        {
-            get
-            {
-                var kdfparams = App.Kp2a.CurrentDb.KpDatabase.KdfParameters;
-                var kdf = KdfPool.Get(App.Kp2a.CurrentDb.KpDatabase.KdfParameters.KdfUuid);
-                if (!(kdf is Argon2Kdf))
-                {
-                    new Argon2Kdf().GetDefaultParameters();
-                }
-
-                return kdfparams.GetUInt64(Argon2Kdf.ParamIterations, 0);
-            }
-            set
-            {
-                App.Kp2a.CurrentDb.KpDatabase.KdfParameters.SetUInt64(Argon2Kdf.ParamIterations, value);
-            }
-        }
     }
 
-    public class Argon2ParallelismPreference : KdfNumberDialogPreference
+    public Argon2RoundsPreference(Context context, IAttributeSet attrs, int defStyle) : base(context, attrs, defStyle)
     {
-        public Argon2ParallelismPreference(Context context, IAttributeSet attrs)
-            : base(context, attrs)
-        {
-        }
-
-        public Argon2ParallelismPreference(Context context, IAttributeSet attrs, int defStyle)
-            : base(context, attrs, defStyle)
-        {
-        }
-
-        public override ulong ParamValue
-        {
-            get
-            {
-                var kdfparams = App.Kp2a.CurrentDb.KpDatabase.KdfParameters;
-                var kdf = KdfPool.Get(App.Kp2a.CurrentDb.KpDatabase.KdfParameters.KdfUuid);
-                if (!(kdf is Argon2Kdf))
-                {
-                    new Argon2Kdf().GetDefaultParameters();
-                }
-
-                return kdfparams.GetUInt32(Argon2Kdf.ParamParallelism, 0);
-            }
-            set
-            {
-                App.Kp2a.CurrentDb.KpDatabase.KdfParameters.SetUInt32(Argon2Kdf.ParamParallelism, (uint)value);
-            }
-        }
     }
 
-    public class Argon2MemoryPreference : KdfNumberDialogPreference
+    public override ulong ParamValue
     {
-        public Argon2MemoryPreference(Context context, IAttributeSet attrs)
-            : base(context, attrs)
+      get
+      {
+        var kdfparams = App.Kp2a.CurrentDb.KpDatabase.KdfParameters;
+        var kdf = KdfPool.Get(App.Kp2a.CurrentDb.KpDatabase.KdfParameters.KdfUuid);
+        if (!(kdf is Argon2Kdf))
         {
+          new Argon2Kdf().GetDefaultParameters();
         }
 
-        public Argon2MemoryPreference(Context context, IAttributeSet attrs, int defStyle)
-            : base(context, attrs, defStyle)
-        {
-        }
-
-        public override ulong ParamValue
-        {
-            get
-            {
-                var kdfparams = App.Kp2a.CurrentDb.KpDatabase.KdfParameters;
-                var kdf = KdfPool.Get(App.Kp2a.CurrentDb.KpDatabase.KdfParameters.KdfUuid);
-                if (!(kdf is Argon2Kdf))
-                {
-                    new Argon2Kdf().GetDefaultParameters();
-                }
-
-                return kdfparams.GetUInt64(Argon2Kdf.ParamMemory, 0);
-            }
-            set
-            {
-                App.Kp2a.CurrentDb.KpDatabase.KdfParameters.SetUInt64(Argon2Kdf.ParamMemory, value);
-            }
-        }
+        return kdfparams.GetUInt64(Argon2Kdf.ParamIterations, 0);
+      }
+      set
+      {
+        App.Kp2a.CurrentDb.KpDatabase.KdfParameters.SetUInt64(Argon2Kdf.ParamIterations, value);
+      }
     }
+  }
+
+  public class Argon2ParallelismPreference : KdfNumberDialogPreference
+  {
+    public Argon2ParallelismPreference(Context context, IAttributeSet attrs)
+        : base(context, attrs)
+    {
+    }
+
+    public Argon2ParallelismPreference(Context context, IAttributeSet attrs, int defStyle)
+        : base(context, attrs, defStyle)
+    {
+    }
+
+    public override ulong ParamValue
+    {
+      get
+      {
+        var kdfparams = App.Kp2a.CurrentDb.KpDatabase.KdfParameters;
+        var kdf = KdfPool.Get(App.Kp2a.CurrentDb.KpDatabase.KdfParameters.KdfUuid);
+        if (!(kdf is Argon2Kdf))
+        {
+          new Argon2Kdf().GetDefaultParameters();
+        }
+
+        return kdfparams.GetUInt32(Argon2Kdf.ParamParallelism, 0);
+      }
+      set
+      {
+        App.Kp2a.CurrentDb.KpDatabase.KdfParameters.SetUInt32(Argon2Kdf.ParamParallelism, (uint)value);
+      }
+    }
+  }
+
+  public class Argon2MemoryPreference : KdfNumberDialogPreference
+  {
+    public Argon2MemoryPreference(Context context, IAttributeSet attrs)
+        : base(context, attrs)
+    {
+    }
+
+    public Argon2MemoryPreference(Context context, IAttributeSet attrs, int defStyle)
+        : base(context, attrs, defStyle)
+    {
+    }
+
+    public override ulong ParamValue
+    {
+      get
+      {
+        var kdfparams = App.Kp2a.CurrentDb.KpDatabase.KdfParameters;
+        var kdf = KdfPool.Get(App.Kp2a.CurrentDb.KpDatabase.KdfParameters.KdfUuid);
+        if (!(kdf is Argon2Kdf))
+        {
+          new Argon2Kdf().GetDefaultParameters();
+        }
+
+        return kdfparams.GetUInt64(Argon2Kdf.ParamMemory, 0);
+      }
+      set
+      {
+        App.Kp2a.CurrentDb.KpDatabase.KdfParameters.SetUInt64(Argon2Kdf.ParamMemory, value);
+      }
+    }
+  }
 
 }

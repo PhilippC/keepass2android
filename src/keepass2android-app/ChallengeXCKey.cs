@@ -23,89 +23,89 @@ using Exception = System.Exception;
 
 namespace keepass2android
 {
-    public class ChallengeXCKey : IUserKey, ISeedBasedUserKey
+  public class ChallengeXCKey : IUserKey, ISeedBasedUserKey
+  {
+    private readonly int _requestCode;
+
+    public ProtectedBinary KeyData
     {
-        private readonly int _requestCode;
-
-        public ProtectedBinary KeyData
-        {
-            get
+      get
+      {
+        if (Activity == null)
+          throw new Exception("Need an active Keepass2Android activity to challenge Yubikey!");
+        Activity.RunOnUiThread(
+            () =>
             {
-                if (Activity == null)
-                    throw new Exception("Need an active Keepass2Android activity to challenge Yubikey!");
-                Activity.RunOnUiThread(
-                    () =>
-                    {
-                        byte[] challenge = _kdfSeed;
-                        byte[] challenge64 = new byte[64];
-                        for (int i = 0; i < 64; i++)
-                        {
-                            if (i < challenge.Length)
-                            {
-                                challenge64[i] = challenge[i];
-                            }
-                            else
-                            {
-                                challenge64[i] = (byte)(challenge64.Length - challenge.Length);
-                            }
-
-                        }
-                        var chalIntent = Activity.TryGetYubichallengeIntentOrPrompt(challenge64, true);
-
-                        if (chalIntent == null)
-                        {
-                            Error = Activity.GetString(Resource.String.NoChallengeApp);
-                        }
-                        else
-                        {
-                            Activity.StartActivityForResult(chalIntent, _requestCode);
-                        }
-
-                    });
-                while ((Response == null) && (Error == null))
+              byte[] challenge = _kdfSeed;
+              byte[] challenge64 = new byte[64];
+              for (int i = 0; i < 64; i++)
+              {
+                if (i < challenge.Length)
                 {
-                    System.Threading.Thread.Sleep(50);
+                  challenge64[i] = challenge[i];
                 }
-                if (Error != null)
+                else
                 {
-                    var error = Error;
-                    Error = null;
-                    throw new Exception("YubiChallenge failed: " + error);
+                  challenge64[i] = (byte)(challenge64.Length - challenge.Length);
                 }
 
-                var result = CryptoUtil.HashSha256(Response);
-                Response = null;
-                return new ProtectedBinary(true, result);
-            }
-        }
+              }
+              var chalIntent = Activity.TryGetYubichallengeIntentOrPrompt(challenge64, true);
 
-        public uint GetMinKdbxVersion()
+              if (chalIntent == null)
+              {
+                Error = Activity.GetString(Resource.String.NoChallengeApp);
+              }
+              else
+              {
+                Activity.StartActivityForResult(chalIntent, _requestCode);
+              }
+
+            });
+        while ((Response == null) && (Error == null))
         {
-            return KdbxFile.FileVersion32_4;
+          System.Threading.Thread.Sleep(50);
         }
-
-        private byte[] _kdfSeed;
-
-        public ChallengeXCKey(LockingActivity activity, int requestCode)
+        if (Error != null)
         {
-            this.Activity = activity;
-            _requestCode = requestCode;
-            Response = null;
+          var error = Error;
+          Error = null;
+          throw new Exception("YubiChallenge failed: " + error);
         }
 
-        public void SetParams(byte[] masterSeed, byte[] mPbKdfSeed)
-        {
-            _kdfSeed = mPbKdfSeed;
-        }
-
-        public byte[] Response { get; set; }
-
-        public string Error { get; set; }
-
-        public LockingActivity Activity
-        {
-            get;
-            set;
-        }
+        var result = CryptoUtil.HashSha256(Response);
+        Response = null;
+        return new ProtectedBinary(true, result);
+      }
     }
+
+    public uint GetMinKdbxVersion()
+    {
+      return KdbxFile.FileVersion32_4;
+    }
+
+    private byte[] _kdfSeed;
+
+    public ChallengeXCKey(LockingActivity activity, int requestCode)
+    {
+      this.Activity = activity;
+      _requestCode = requestCode;
+      Response = null;
+    }
+
+    public void SetParams(byte[] masterSeed, byte[] mPbKdfSeed)
+    {
+      _kdfSeed = mPbKdfSeed;
+    }
+
+    public byte[] Response { get; set; }
+
+    public string Error { get; set; }
+
+    public LockingActivity Activity
+    {
+      get;
+      set;
+    }
+  }
 }

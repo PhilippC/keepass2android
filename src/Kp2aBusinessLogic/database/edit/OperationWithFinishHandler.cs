@@ -22,54 +22,54 @@ using KeePassLib.Interfaces;
 namespace keepass2android
 {
 
-    public abstract class OperationWithFinishHandler
+  public abstract class OperationWithFinishHandler
+  {
+
+    protected OnOperationFinishedHandler _operationFinishedHandler;
+    public IKp2aStatusLogger StatusLogger = new Kp2aNullStatusLogger(); //default: empty but not null
+    private IActiveContextProvider _activeContextProvider;
+
+    protected OperationWithFinishHandler(IActiveContextProvider activeContextProvider, OnOperationFinishedHandler operationFinishedHandler)
     {
-
-        protected OnOperationFinishedHandler _operationFinishedHandler;
-        public IKp2aStatusLogger StatusLogger = new Kp2aNullStatusLogger(); //default: empty but not null
-        private IActiveContextProvider _activeContextProvider;
-
-        protected OperationWithFinishHandler(IActiveContextProvider activeContextProvider, OnOperationFinishedHandler operationFinishedHandler)
-        {
-            _activeContextProvider = activeContextProvider;
-            _operationFinishedHandler = operationFinishedHandler;
-        }
-
-        public OnOperationFinishedHandler operationFinishedHandler
-        {
-            get { return _operationFinishedHandler; }
-            set { _operationFinishedHandler = value; }
-        }
-
-
-        protected void Finish(bool result, String message, bool importantMessage = false, Exception exception = null)
-        {
-            if (operationFinishedHandler != null)
-            {
-                operationFinishedHandler.SetResult(result, message, importantMessage, exception);
-                operationFinishedHandler.Run();
-            }
-        }
-
-        protected void Finish(bool result)
-        {
-            if (operationFinishedHandler != null)
-            {
-                operationFinishedHandler.SetResult(result);
-                operationFinishedHandler.Run();
-            }
-        }
-
-        public void SetStatusLogger(IKp2aStatusLogger statusLogger)
-        {
-            if (operationFinishedHandler != null)
-            {
-                operationFinishedHandler.StatusLogger = statusLogger;
-            }
-            StatusLogger = statusLogger;
-        }
-
-        public abstract void Run();
+      _activeContextProvider = activeContextProvider;
+      _operationFinishedHandler = operationFinishedHandler;
     }
+
+    public OnOperationFinishedHandler operationFinishedHandler
+    {
+      get { return _operationFinishedHandler; }
+      set { _operationFinishedHandler = value; }
+    }
+
+
+    protected void Finish(bool result, String message, bool importantMessage = false, Exception exception = null)
+    {
+      if (operationFinishedHandler != null)
+      {
+        operationFinishedHandler.SetResult(result, message, importantMessage, exception);
+        operationFinishedHandler.Run();
+      }
+    }
+
+    protected void Finish(bool result)
+    {
+      if (operationFinishedHandler != null)
+      {
+        operationFinishedHandler.SetResult(result);
+        operationFinishedHandler.Run();
+      }
+    }
+
+    public void SetStatusLogger(IKp2aStatusLogger statusLogger)
+    {
+      if (operationFinishedHandler != null)
+      {
+        operationFinishedHandler.StatusLogger = statusLogger;
+      }
+      StatusLogger = statusLogger;
+    }
+
+    public abstract void Run();
+  }
 }
 

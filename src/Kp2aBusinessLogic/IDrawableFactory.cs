@@ -21,14 +21,14 @@ using Android.Graphics.Drawables;
 
 namespace keepass2android
 {
-    public interface IDrawableFactory
-    {
-        void AssignDrawableTo(ImageView iv, Context context, PwDatabase db, PwIcon icon, PwUuid customIconId, bool forGroup);
+  public interface IDrawableFactory
+  {
+    void AssignDrawableTo(ImageView iv, Context context, PwDatabase db, PwIcon icon, PwUuid customIconId, bool forGroup);
 
-        Drawable GetIconDrawable(Context context, PwDatabase db, PwIcon icon, PwUuid customIconId, bool forGroup);
+    Drawable GetIconDrawable(Context context, PwDatabase db, PwIcon icon, PwUuid customIconId, bool forGroup);
 
-        bool IsWhiteIconSet { get; }
+    bool IsWhiteIconSet { get; }
 
-        void Clear();
-    }
+    void Clear();
+  }
 }

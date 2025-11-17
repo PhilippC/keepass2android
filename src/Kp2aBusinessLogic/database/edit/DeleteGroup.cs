@@ -24,68 +24,68 @@ using KeePassLib;
 namespace keepass2android
 {
 
-    public class DeleteGroup : DeleteRunnable
+  public class DeleteGroup : DeleteRunnable
+  {
+
+    private PwGroup _group;
+    protected bool DontSave;
+
+    public DeleteGroup(Activity activity, IKp2aApp app, PwGroup group, OnOperationFinishedHandler operationFinishedHandler)
+        : base(operationFinishedHandler, app)
     {
-
-        private PwGroup _group;
-        protected bool DontSave;
-
-        public DeleteGroup(Activity activity, IKp2aApp app, PwGroup group, OnOperationFinishedHandler operationFinishedHandler)
-            : base(operationFinishedHandler, app)
-        {
-            SetMembers(app, group, false);
-        }
-        /*
-        public DeleteGroup(Context ctx, Database db, PwGroup group, Activity act, OnOperationFinishedHandler operationFinishedHandler, bool dontSave)
-            : base(operationFinishedHandler)
-        {
-			SetMembers(ctx, db, group, act, dontSave);
-		}
-        
-		public DeleteGroup(Context ctx, Database db, PwGroup group, OnOperationFinishedHandler operationFinishedHandler, bool dontSave):base(operationFinishedHandler) {
-			SetMembers(ctx, db, group, null, dontSave);
-		}
-        */
-        private void SetMembers(IKp2aApp app, PwGroup group, bool dontSave)
-        {
-            base.SetMembers(app.FindDatabaseForElement(group));
-
-            _group = group;
-            DontSave = dontSave;
-
-        }
-
-        public override bool CanRecycle
-        {
-            get
-            {
-                return Db.DatabaseFormat.CanRecycle && CanRecycleGroup(_group);
-            }
-        }
-
-        protected override UiStringKey QuestionRecycleResourceId
-        {
-            get
-            {
-                return UiStringKey.AskDeletePermanentlyGroup;
-            }
-        }
-
-        protected override UiStringKey QuestionNoRecycleResourceId
-        {
-            get { return UiStringKey.AskDeletePermanentlyGroupNoRecycle; }
-        }
-
-        protected override void PerformDelete(List<PwGroup> touchedGroups, List<PwGroup> permanentlyDeletedGroups)
-        {
-            DoDeleteGroup(_group, touchedGroups, permanentlyDeletedGroups);
-        }
-
-        public override UiStringKey StatusMessage
-        {
-            get { return UiStringKey.DeletingGroup; }
-        }
+      SetMembers(app, group, false);
     }
+    /*
+    public DeleteGroup(Context ctx, Database db, PwGroup group, Activity act, OnOperationFinishedHandler operationFinishedHandler, bool dontSave)
+        : base(operationFinishedHandler)
+    {
+        SetMembers(ctx, db, group, act, dontSave);
+    }
+
+    public DeleteGroup(Context ctx, Database db, PwGroup group, OnOperationFinishedHandler operationFinishedHandler, bool dontSave):base(operationFinishedHandler) {
+        SetMembers(ctx, db, group, null, dontSave);
+    }
+    */
+    private void SetMembers(IKp2aApp app, PwGroup group, bool dontSave)
+    {
+      base.SetMembers(app.FindDatabaseForElement(group));
+
+      _group = group;
+      DontSave = dontSave;
+
+    }
+
+    public override bool CanRecycle
+    {
+      get
+      {
+        return Db.DatabaseFormat.CanRecycle && CanRecycleGroup(_group);
+      }
+    }
+
+    protected override UiStringKey QuestionRecycleResourceId
+    {
+      get
+      {
+        return UiStringKey.AskDeletePermanentlyGroup;
+      }
+    }
+
+    protected override UiStringKey QuestionNoRecycleResourceId
+    {
+      get { return UiStringKey.AskDeletePermanentlyGroupNoRecycle; }
+    }
+
+    protected override void PerformDelete(List<PwGroup> touchedGroups, List<PwGroup> permanentlyDeletedGroups)
+    {
+      DoDeleteGroup(_group, touchedGroups, permanentlyDeletedGroups);
+    }
+
+    public override UiStringKey StatusMessage
+    {
+      get { return UiStringKey.DeletingGroup; }
+    }
+  }
 
 }
 

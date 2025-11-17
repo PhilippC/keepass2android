@@ -26,105 +26,105 @@ using KeePassLib.Serialization;
 
 namespace keepass2android
 {
-    /// <summary>
-    /// Base class for activities displaying sensitive information. 
-    /// </summary>
-    /// Checks in OnResume whether the timeout occured and the database must be locked/closed.
-    public class LockCloseActivity : LockingActivity, ILockCloseActivity
+  /// <summary>
+  /// Base class for activities displaying sensitive information. 
+  /// </summary>
+  /// Checks in OnResume whether the timeout occured and the database must be locked/closed.
+  public class LockCloseActivity : LockingActivity, ILockCloseActivity
+  {
+
+    //the check if the database was locked/closed can be disabled by the caller for activities
+    //which may be used "outside" the database (e.g. GeneratePassword for creating a master password)
+    protected const string NoLockCheck = "NO_LOCK_CHECK";
+
+    protected IOConnectionInfo _ioc;
+    private BroadcastReceiver _lockCloseIntentReceiver;
+    private ActivityDesign _design;
+
+    public LockCloseActivity()
     {
+      _design = new ActivityDesign(this);
+    }
 
-        //the check if the database was locked/closed can be disabled by the caller for activities
-        //which may be used "outside" the database (e.g. GeneratePassword for creating a master password)
-        protected const string NoLockCheck = "NO_LOCK_CHECK";
+    protected LockCloseActivity(IntPtr javaReference, JniHandleOwnership transfer)
+        : base(javaReference, transfer)
+    {
+      _design = new ActivityDesign(this);
+    }
 
-        protected IOConnectionInfo _ioc;
-        private BroadcastReceiver _lockCloseIntentReceiver;
-        private ActivityDesign _design;
+    protected override void OnCreate(Bundle savedInstanceState)
+    {
+      _design.ApplyTheme();
+      base.OnCreate(savedInstanceState);
 
-        public LockCloseActivity()
+
+      Util.MakeSecureDisplay(this);
+
+
+      _ioc = App.Kp2a.CurrentDb?.Ioc;
+
+      if (Intent.GetBooleanExtra(NoLockCheck, false))
+        return;
+
+      _lockCloseIntentReceiver = new LockCloseActivityBroadcastReceiver(this);
+      IntentFilter filter = new IntentFilter();
+      filter.AddAction(Intents.DatabaseLocked);
+      filter.AddAction(Intent.ActionScreenOff);
+      ContextCompat.RegisterReceiver(this, _lockCloseIntentReceiver, filter, (int)ReceiverFlags.Exported);
+    }
+
+    protected override void OnDestroy()
+    {
+      if (Intent.GetBooleanExtra(NoLockCheck, false) == false)
+      {
+        try
         {
-            _design = new ActivityDesign(this);
+          UnregisterReceiver(_lockCloseIntentReceiver);
+        }
+        catch (Exception ex)
+        {
+          Kp2aLog.LogUnexpectedError(ex);
         }
 
-        protected LockCloseActivity(IntPtr javaReference, JniHandleOwnership transfer)
-            : base(javaReference, transfer)
-        {
-            _design = new ActivityDesign(this);
-        }
-
-        protected override void OnCreate(Bundle savedInstanceState)
-        {
-            _design.ApplyTheme();
-            base.OnCreate(savedInstanceState);
-
-
-            Util.MakeSecureDisplay(this);
-
-
-            _ioc = App.Kp2a.CurrentDb?.Ioc;
-
-            if (Intent.GetBooleanExtra(NoLockCheck, false))
-                return;
-
-            _lockCloseIntentReceiver = new LockCloseActivityBroadcastReceiver(this);
-            IntentFilter filter = new IntentFilter();
-            filter.AddAction(Intents.DatabaseLocked);
-            filter.AddAction(Intent.ActionScreenOff);
-            ContextCompat.RegisterReceiver(this, _lockCloseIntentReceiver, filter, (int)ReceiverFlags.Exported);
-        }
-
-        protected override void OnDestroy()
-        {
-            if (Intent.GetBooleanExtra(NoLockCheck, false) == false)
-            {
-                try
-                {
-                    UnregisterReceiver(_lockCloseIntentReceiver);
-                }
-                catch (Exception ex)
-                {
-                    Kp2aLog.LogUnexpectedError(ex);
-                }
-
-            }
+      }
 
 
 
 
-            base.OnDestroy();
-        }
+      base.OnDestroy();
+    }
 
 
-        protected override void OnResume()
-        {
-            base.OnResume();
+    protected override void OnResume()
+    {
+      base.OnResume();
 
-            _design.ReapplyTheme();
+      _design.ReapplyTheme();
 
-            if (Intent.GetBooleanExtra(NoLockCheck, false))
-                return;
+      if (Intent.GetBooleanExtra(NoLockCheck, false))
+        return;
 
-            if (TimeoutHelper.CheckDbChanged(this, _ioc))
-            {
-                Finish();
-                return;
-            }
+      if (TimeoutHelper.CheckDbChanged(this, _ioc))
+      {
+        Finish();
+        return;
+      }
 
-            //todo: it seems like OnResume can be called after dismissing a dialog, e.g. the Delete-permanently-Dialog.
-            //in this case the following check might run in parallel with the check performed during the SaveDb check (triggered after the 
-            //aforementioned dialog is closed) which can cause odd behavior. However, this is a rare case and hard to resolve so this is currently
-            //accepted. (If the user clicks cancel on the reload-dialog, everything will work.)
-            App.Kp2a.CheckForOpenFileChanged(this);
-        }
+      //todo: it seems like OnResume can be called after dismissing a dialog, e.g. the Delete-permanently-Dialog.
+      //in this case the following check might run in parallel with the check performed during the SaveDb check (triggered after the 
+      //aforementioned dialog is closed) which can cause odd behavior. However, this is a rare case and hard to resolve so this is currently
+      //accepted. (If the user clicks cancel on the reload-dialog, everything will work.)
+      App.Kp2a.CheckForOpenFileChanged(this);
+    }
 
 
-        public void OnLockDatabase(bool lockedByTimeout)
-        {
-            TimeoutHelper.Lock(this, lockedByTimeout);
-
-        }
+    public void OnLockDatabase(bool lockedByTimeout)
+    {
+      TimeoutHelper.Lock(this, lockedByTimeout);
 
     }
+
+  }
 
 }
 

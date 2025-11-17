@@ -26,80 +26,80 @@ using KeePassLib.Serialization;
 
 namespace keepass2android
 {
-    /// <summary>
-    /// Base class for list activities displaying sensitive information. 
-    /// </summary>
-    /// Checks in OnResume whether the timeout occured and the database must be locked/closed.
-    public class LockCloseListActivity : LockingListActivity, ILockCloseActivity
+  /// <summary>
+  /// Base class for list activities displaying sensitive information. 
+  /// </summary>
+  /// Checks in OnResume whether the timeout occured and the database must be locked/closed.
+  public class LockCloseListActivity : LockingListActivity, ILockCloseActivity
+  {
+    public LockCloseListActivity()
     {
-        public LockCloseListActivity()
-        {
-            _design = new ActivityDesign(this);
-        }
-
-        IOConnectionInfo _ioc;
-        private BroadcastReceiver _intentReceiver;
-        private ActivityDesign _design;
-
-        protected override void OnCreate(Bundle savedInstanceState)
-        {
-            _design.ApplyTheme();
-            base.OnCreate(savedInstanceState);
-
-
-            Util.MakeSecureDisplay(this);
-
-            _ioc = App.Kp2a.CurrentDb.Ioc;
-
-            _intentReceiver = new LockCloseActivityBroadcastReceiver(this);
-            IntentFilter filter = new IntentFilter();
-
-            filter.AddAction(Intents.DatabaseLocked);
-            filter.AddAction(Intent.ActionScreenOff);
-            ContextCompat.RegisterReceiver(this, _intentReceiver, filter, (int)ReceiverFlags.Exported);
-
-        }
-
-        public LockCloseListActivity(IntPtr javaReference, JniHandleOwnership transfer)
-            : base(javaReference, transfer)
-        {
-            _design = new ActivityDesign(this);
-        }
-
-        protected override void OnResume()
-        {
-            base.OnResume();
-            _design.ReapplyTheme();
-
-            if (TimeoutHelper.CheckDbChanged(this, _ioc))
-            {
-                Finish();
-                return;
-            }
-
-            //todo: see LockCloseActivity.OnResume
-            App.Kp2a.CheckForOpenFileChanged(this);
-        }
-
-        protected override void OnDestroy()
-        {
-            try
-            {
-                UnregisterReceiver(_intentReceiver);
-            }
-            catch (Exception ex)
-            {
-                Kp2aLog.LogUnexpectedError(ex);
-            }
-
-            base.OnDestroy();
-        }
-
-
-        public void OnLockDatabase(bool lockedByTimeout)
-        {
-            TimeoutHelper.Lock(this, lockedByTimeout);
-        }
+      _design = new ActivityDesign(this);
     }
+
+    IOConnectionInfo _ioc;
+    private BroadcastReceiver _intentReceiver;
+    private ActivityDesign _design;
+
+    protected override void OnCreate(Bundle savedInstanceState)
+    {
+      _design.ApplyTheme();
+      base.OnCreate(savedInstanceState);
+
+
+      Util.MakeSecureDisplay(this);
+
+      _ioc = App.Kp2a.CurrentDb.Ioc;
+
+      _intentReceiver = new LockCloseActivityBroadcastReceiver(this);
+      IntentFilter filter = new IntentFilter();
+
+      filter.AddAction(Intents.DatabaseLocked);
+      filter.AddAction(Intent.ActionScreenOff);
+      ContextCompat.RegisterReceiver(this, _intentReceiver, filter, (int)ReceiverFlags.Exported);
+
+    }
+
+    public LockCloseListActivity(IntPtr javaReference, JniHandleOwnership transfer)
+        : base(javaReference, transfer)
+    {
+      _design = new ActivityDesign(this);
+    }
+
+    protected override void OnResume()
+    {
+      base.OnResume();
+      _design.ReapplyTheme();
+
+      if (TimeoutHelper.CheckDbChanged(this, _ioc))
+      {
+        Finish();
+        return;
+      }
+
+      //todo: see LockCloseActivity.OnResume
+      App.Kp2a.CheckForOpenFileChanged(this);
+    }
+
+    protected override void OnDestroy()
+    {
+      try
+      {
+        UnregisterReceiver(_intentReceiver);
+      }
+      catch (Exception ex)
+      {
+        Kp2aLog.LogUnexpectedError(ex);
+      }
+
+      base.OnDestroy();
+    }
+
+
+    public void OnLockDatabase(bool lockedByTimeout)
+    {
+      TimeoutHelper.Lock(this, lockedByTimeout);
+    }
+  }
 }
 

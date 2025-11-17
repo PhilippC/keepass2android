@@ -15,8 +15,8 @@
 
 namespace keepass2android
 {
-    internal interface IStringView
-    {
-        string Text { set; get; }
-    }
+  internal interface IStringView
+  {
+    string Text { set; get; }
+  }
 }

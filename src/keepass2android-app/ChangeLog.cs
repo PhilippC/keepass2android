@@ -39,13 +39,13 @@ using keepass2android;
 
 namespace keepass2android
 {
-    public static class ChangeLog
+  public static class ChangeLog
+  {
+    public static void ShowChangeLog(Context ctx, Action onDismiss)
     {
-        public static void ShowChangeLog(Context ctx, Action onDismiss)
-        {
-            MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(ctx);
-            builder.SetTitle(ctx.GetString(Resource.String.ChangeLog_title));
-            List<string> changeLog = new List<string>{
+      MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(ctx);
+      builder.SetTitle(ctx.GetString(Resource.String.ChangeLog_title));
+      List<string> changeLog = new List<string>{
                 BuildChangelogString(ctx, new List<int>{Resource.Array.ChangeLog_1_15,
 #if !NoNet
                     Resource.Array.ChangeLog_1_15_net
@@ -126,86 +126,86 @@ namespace keepass2android
                     ctx.GetString(Resource.String.ChangeLog)
                      };
 
-            String version;
-            try
-            {
-                PackageInfo packageInfo = ctx.PackageManager.GetPackageInfo(ctx.PackageName, 0);
-                version = packageInfo.VersionName;
+      String version;
+      try
+      {
+        PackageInfo packageInfo = ctx.PackageManager.GetPackageInfo(ctx.PackageName, 0);
+        version = packageInfo.VersionName;
 
-            }
-            catch (PackageManager.NameNotFoundException)
-            {
-                version = "";
-            }
+      }
+      catch (PackageManager.NameNotFoundException)
+      {
+        version = "";
+      }
 
-            string warning = "";
-            if (version.Contains("pre"))
-            {
-                warning = ctx.GetString(Resource.String.PreviewWarning);
-            }
+      string warning = "";
+      if (version.Contains("pre"))
+      {
+        warning = ctx.GetString(Resource.String.PreviewWarning);
+      }
 
-            builder.SetPositiveButton(Android.Resource.String.Ok, (dlgSender, dlgEvt) => { ((AndroidX.AppCompat.App.AlertDialog)dlgSender).Dismiss(); });
-            builder.SetCancelable(false);
+      builder.SetPositiveButton(Android.Resource.String.Ok, (dlgSender, dlgEvt) => { ((AndroidX.AppCompat.App.AlertDialog)dlgSender).Dismiss(); });
+      builder.SetCancelable(false);
 
-            WebView wv = new WebView(ctx);
-
-
+      WebView wv = new WebView(ctx);
 
 
 
-            builder.SetView(wv);
-            Dialog dialog = builder.Create();
-            dialog.DismissEvent += (sender, e) =>
-            {
-                onDismiss();
-            };
-            wv.SetBackgroundColor(Color.Transparent);
-            wv.LoadDataWithBaseURL(null, GetLog(changeLog, warning, dialog.Context), "text/html", "UTF-8", null);
 
-            dialog.Show();
-        }
 
-        private static string BuildChangelogString(Context ctx, int changeLogResId, string version)
+      builder.SetView(wv);
+      Dialog dialog = builder.Create();
+      dialog.DismissEvent += (sender, e) =>
+      {
+        onDismiss();
+      };
+      wv.SetBackgroundColor(Color.Transparent);
+      wv.LoadDataWithBaseURL(null, GetLog(changeLog, warning, dialog.Context), "text/html", "UTF-8", null);
+
+      dialog.Show();
+    }
+
+    private static string BuildChangelogString(Context ctx, int changeLogResId, string version)
+    {
+      return BuildChangelogString(ctx, new List<int>() { changeLogResId }, version);
+
+    }
+
+
+    private static string BuildChangelogString(Context ctx, List<int> changeLogResIds, string version)
+    {
+      string result = "Version " + version + "\n";
+      string previous = "";
+      foreach (var changeLogResId in changeLogResIds)
+      {
+        foreach (var item in ctx.Resources.GetStringArray(changeLogResId))
         {
-            return BuildChangelogString(ctx, new List<int>() { changeLogResId }, version);
-
+          if (item == previous) //there was some trouble with crowdin translations, remove duplicates
+            continue;
+          result += " * " + item + "\n";
+          previous = item;
         }
+      }
 
+      return result;
 
-        private static string BuildChangelogString(Context ctx, List<int> changeLogResIds, string version)
-        {
-            string result = "Version " + version + "\n";
-            string previous = "";
-            foreach (var changeLogResId in changeLogResIds)
-            {
-                foreach (var item in ctx.Resources.GetStringArray(changeLogResId))
-                {
-                    if (item == previous) //there was some trouble with crowdin translations, remove duplicates
-                        continue;
-                    result += " * " + item + "\n";
-                    previous = item;
-                }
-            }
+    }
 
-            return result;
-
-        }
-
-        private const string HtmlEnd = @"</body>
+    private const string HtmlEnd = @"</body>
 </html>";
 
-        private static string GetLog(List<string> changeLog, string warning, Context ctx)
-        {
-            string secondaryColor = "31628D";
-            string onSurfaceColor = "171D1E";
-            if (((int)ctx.Resources.Configuration.UiMode & (int)UiMode.NightMask) == (int)UiMode.NightYes)
-            {
-                secondaryColor = "99CBFF";
-                onSurfaceColor = "E1E4D6";
-            }
+    private static string GetLog(List<string> changeLog, string warning, Context ctx)
+    {
+      string secondaryColor = "31628D";
+      string onSurfaceColor = "171D1E";
+      if (((int)ctx.Resources.Configuration.UiMode & (int)UiMode.NightMask) == (int)UiMode.NightYes)
+      {
+        secondaryColor = "99CBFF";
+        onSurfaceColor = "E1E4D6";
+      }
 
 
-            string HtmlStart = @"<html>
+      string HtmlStart = @"<html>
   <head>
     <style type='text/css'>
       a            { color:#" + onSurfaceColor + @" }
@@ -228,91 +228,91 @@ namespace keepass2android
   <body>";
 
 
-            StringBuilder sb = new StringBuilder(HtmlStart);
-            if (!string.IsNullOrEmpty(warning))
-            {
-                sb.Append(warning);
-            }
-            bool inList = false;
-            bool isFirst = true;
-            foreach (string versionLog in changeLog)
-            {
-                string versionLog2 = versionLog;
-                bool title = true;
-                if (isFirst)
-                {
+      StringBuilder sb = new StringBuilder(HtmlStart);
+      if (!string.IsNullOrEmpty(warning))
+      {
+        sb.Append(warning);
+      }
+      bool inList = false;
+      bool isFirst = true;
+      foreach (string versionLog in changeLog)
+      {
+        string versionLog2 = versionLog;
+        bool title = true;
+        if (isFirst)
+        {
 
-                    bool showDonateOption = true;
-                    ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(ctx);
-                    if (prefs.GetBoolean(ctx.GetString(Resource.String.NoDonationReminder_key), false))
-                        showDonateOption = false;
+          bool showDonateOption = true;
+          ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(ctx);
+          if (prefs.GetBoolean(ctx.GetString(Resource.String.NoDonationReminder_key), false))
+            showDonateOption = false;
 
-                    long usageCount = prefs.GetLong(ctx.GetString(Resource.String.UsageCount_key), 0);
+          long usageCount = prefs.GetLong(ctx.GetString(Resource.String.UsageCount_key), 0);
 
-                    if (usageCount <= 5)
-                        showDonateOption = false;
+          if (usageCount <= 5)
+            showDonateOption = false;
 
-                    if (showDonateOption)
-                    {
-                        if (versionLog2.EndsWith("\n") == false)
-                            versionLog2 += "\n";
-                        string donateUrl = ctx.GetString(Resource.String.donate_url,
-                            new Java.Lang.Object[]{ctx.Resources.Configuration.Locale.Language,
+          if (showDonateOption)
+          {
+            if (versionLog2.EndsWith("\n") == false)
+              versionLog2 += "\n";
+            string donateUrl = ctx.GetString(Resource.String.donate_url,
+                new Java.Lang.Object[]{ctx.Resources.Configuration.Locale.Language,
                                 ctx.PackageName
-                            });
+                });
 
-                        versionLog2 += " * <a href=\"" + donateUrl
-                                       + "\">" +
-                                       ctx.GetString(Resource.String.ChangeLog_keptDonate)
-                                       + "<a/>";
-                    }
-                    isFirst = false;
-                }
-                foreach (string line in versionLog2.Split('\n'))
-                {
-                    string w = line.Trim();
-                    if (title)
-                    {
-                        if (inList)
-                        {
-                            sb.Append("</ul></div>\n");
-                            inList = false;
-                        }
-                        w = w.Replace("<b>", "");
-                        w = w.Replace("</b>", "");
-                        w = w.Replace("\\n", "");
-                        sb.Append("<div class='title'>"
-                                + w.Trim() + "</div>\n");
-                        title = false;
-                    }
-                    else
-                    {
-                        w = w.Replace("\\n", "<br />");
-                        if ((w.StartsWith("*") || (w.StartsWith("•"))))
-                        {
-                            if (!inList)
-                            {
-                                sb.Append("<div class='list'><ul>\n");
-                                inList = true;
-                            }
-                            sb.Append("<li>");
-                            sb.Append(w.Substring(1).Trim());
-                            sb.Append("</li>\n");
-                        }
-                        else
-                        {
-                            if (inList)
-                            {
-                                sb.Append("</ul></div>\n");
-                                inList = false;
-                            }
-                            sb.Append(w);
-                        }
-                    }
-                }
-            }
-            sb.Append(HtmlEnd);
-            return sb.ToString();
+            versionLog2 += " * <a href=\"" + donateUrl
+                           + "\">" +
+                           ctx.GetString(Resource.String.ChangeLog_keptDonate)
+                           + "<a/>";
+          }
+          isFirst = false;
         }
+        foreach (string line in versionLog2.Split('\n'))
+        {
+          string w = line.Trim();
+          if (title)
+          {
+            if (inList)
+            {
+              sb.Append("</ul></div>\n");
+              inList = false;
+            }
+            w = w.Replace("<b>", "");
+            w = w.Replace("</b>", "");
+            w = w.Replace("\\n", "");
+            sb.Append("<div class='title'>"
+                    + w.Trim() + "</div>\n");
+            title = false;
+          }
+          else
+          {
+            w = w.Replace("\\n", "<br />");
+            if ((w.StartsWith("*") || (w.StartsWith("•"))))
+            {
+              if (!inList)
+              {
+                sb.Append("<div class='list'><ul>\n");
+                inList = true;
+              }
+              sb.Append("<li>");
+              sb.Append(w.Substring(1).Trim());
+              sb.Append("</li>\n");
+            }
+            else
+            {
+              if (inList)
+              {
+                sb.Append("</ul></div>\n");
+                inList = false;
+              }
+              sb.Append(w);
+            }
+          }
+        }
+      }
+      sb.Append(HtmlEnd);
+      return sb.ToString();
     }
+  }
 }

@@ -24,28 +24,28 @@ using System.Xml.Serialization;
 
 namespace KeePassLib.Translation
 {
-    public sealed class KPStringTableItem
+  public sealed class KPStringTableItem
+  {
+    private string m_strName = string.Empty;
+    public string Name
     {
-        private string m_strName = string.Empty;
-        public string Name
-        {
-            get { return m_strName; }
-            set { m_strName = value; }
-        }
-
-        private string m_strValue = string.Empty;
-        public string Value
-        {
-            get { return m_strValue; }
-            set { m_strValue = value; }
-        }
-
-        private string m_strEnglish = string.Empty;
-        [XmlIgnore]
-        public string ValueEnglish
-        {
-            get { return m_strEnglish; }
-            set { m_strEnglish = value; }
-        }
+      get { return m_strName; }
+      set { m_strName = value; }
     }
+
+    private string m_strValue = string.Empty;
+    public string Value
+    {
+      get { return m_strValue; }
+      set { m_strValue = value; }
+    }
+
+    private string m_strEnglish = string.Empty;
+    [XmlIgnore]
+    public string ValueEnglish
+    {
+      get { return m_strEnglish; }
+      set { m_strEnglish = value; }
+    }
+  }
 }

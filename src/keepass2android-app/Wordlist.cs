@@ -18,9 +18,9 @@ using System.Collections.Generic;
 
 namespace keepass2android
 {
-    public class Wordlist
-    {
-        List<string> words = new List<string>{
+  public class Wordlist
+  {
+    List<string> words = new List<string>{
             "abacus",
             "abdomen",
             "abdominal",
@@ -7799,10 +7799,10 @@ namespace keepass2android
             "zoom"
         };
 
-        public string GetWord(Random random)
-        {
+    public string GetWord(Random random)
+    {
 
-            return words[random.Next(words.Count)];
-        }
+      return words[random.Next(words.Count)];
     }
+  }
 }

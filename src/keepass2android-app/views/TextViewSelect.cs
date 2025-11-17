@@ -25,65 +25,65 @@ using Java.Lang;
 namespace keepass2android.view
 {
 
-    public class TextViewSelect : TextView
+  public class TextViewSelect : TextView
+  {
+
+    public TextViewSelect(IntPtr javaReference, JniHandleOwnership transfer)
+        : base(javaReference, transfer)
+    {
+      Initialize();
+    }
+
+
+    public TextViewSelect(Context context) : base(context, null, Android.Resource.Attribute.TextViewStyle)
+    {
+      Initialize();
+    }
+
+    public TextViewSelect(Context context, IAttributeSet attrs) : base(context, attrs, Android.Resource.Attribute.TextViewStyle)
+    {
+      Initialize();
+    }
+
+    void Initialize()
+    {
+      Focusable = true;
+      FocusableInTouchMode = true;
+    }
+
+    public TextViewSelect(Context context, IAttributeSet attrs, int defStyle) : base(context, attrs, defStyle)
     {
 
-        public TextViewSelect(IntPtr javaReference, JniHandleOwnership transfer)
-            : base(javaReference, transfer)
-        {
-            Initialize();
-        }
-
-
-        public TextViewSelect(Context context) : base(context, null, Android.Resource.Attribute.TextViewStyle)
-        {
-            Initialize();
-        }
-
-        public TextViewSelect(Context context, IAttributeSet attrs) : base(context, attrs, Android.Resource.Attribute.TextViewStyle)
-        {
-            Initialize();
-        }
-
-        void Initialize()
-        {
-            Focusable = true;
-            FocusableInTouchMode = true;
-        }
-
-        public TextViewSelect(Context context, IAttributeSet attrs, int defStyle) : base(context, attrs, defStyle)
-        {
-
-            Initialize();
-        }
+      Initialize();
+    }
 
 
 
-        protected override IMovementMethod DefaultMovementMethod
-        {
-            get
-            {
-                return ArrowKeyMovementMethod.Instance;
-            }
-        }
+    protected override IMovementMethod DefaultMovementMethod
+    {
+      get
+      {
+        return ArrowKeyMovementMethod.Instance;
+      }
+    }
 
 
-        protected override bool DefaultEditable
-        {
-            get
-            {
-                return false;
-            }
-        }
+    protected override bool DefaultEditable
+    {
+      get
+      {
+        return false;
+      }
+    }
 
 
-        public override void SetText(ICharSequence text, BufferType type)
-        {
-            base.SetText(text, BufferType.Editable);
-
-        }
+    public override void SetText(ICharSequence text, BufferType type)
+    {
+      base.SetText(text, BufferType.Editable);
 
     }
+
+  }
 
 }
 

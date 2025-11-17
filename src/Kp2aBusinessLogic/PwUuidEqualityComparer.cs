@@ -20,22 +20,22 @@ using KeePassLib;
 
 namespace keepass2android
 {
-    /// <summary>
-    /// EqualityComparer for PwUuid based on their value (instead of reference)
-    /// </summary>
-    public class PwUuidEqualityComparer : IEqualityComparer<PwUuid>
+  /// <summary>
+  /// EqualityComparer for PwUuid based on their value (instead of reference)
+  /// </summary>
+  public class PwUuidEqualityComparer : IEqualityComparer<PwUuid>
+  {
+    #region IEqualityComparer implementation			
+    public bool Equals(PwUuid x, PwUuid y)
     {
-        #region IEqualityComparer implementation			
-        public bool Equals(PwUuid x, PwUuid y)
-        {
-            return x.Equals(y);
-        }
-        public int GetHashCode(PwUuid obj)
-        {
-            return obj.ToHexString().GetHashCode();
-        }
-        #endregion
+      return x.Equals(y);
     }
+    public int GetHashCode(PwUuid obj)
+    {
+      return obj.ToHexString().GetHashCode();
+    }
+    #endregion
+  }
 
 
 }

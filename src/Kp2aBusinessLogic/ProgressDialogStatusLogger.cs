@@ -22,150 +22,150 @@ using KeePassLib.Interfaces;
 
 namespace keepass2android
 {
-    public interface IKp2aStatusLogger : IStatusLogger
+  public interface IKp2aStatusLogger : IStatusLogger
+  {
+    void UpdateMessage(UiStringKey stringKey);
+    string LastMessage { get; }
+    string LastSubMessage { get; }
+  }
+
+  public interface IProgressUi
+  {
+    void Show();
+    void Hide();
+    void UpdateMessage(String message);
+    void UpdateSubMessage(String submessage);
+  }
+
+  public interface IProgressUiProvider
+  {
+    IProgressUi? ProgressUi { get; }
+  }
+
+
+  public class Kp2aNullStatusLogger : IKp2aStatusLogger
+  {
+    public void StartLogging(string strOperation, bool bWriteOperationToLog)
     {
-        void UpdateMessage(UiStringKey stringKey);
-        string LastMessage { get; }
-        string LastSubMessage { get; }
+
     }
 
-    public interface IProgressUi
+    public void EndLogging()
     {
-        void Show();
-        void Hide();
-        void UpdateMessage(String message);
-        void UpdateSubMessage(String submessage);
     }
 
-    public interface IProgressUiProvider
+    public bool SetProgress(uint uPercent)
     {
-        IProgressUi? ProgressUi { get; }
+      return true;
     }
 
-
-    public class Kp2aNullStatusLogger : IKp2aStatusLogger
+    public bool SetText(string strNewText, LogStatusType lsType)
     {
-        public void StartLogging(string strOperation, bool bWriteOperationToLog)
-        {
-
-        }
-
-        public void EndLogging()
-        {
-        }
-
-        public bool SetProgress(uint uPercent)
-        {
-            return true;
-        }
-
-        public bool SetText(string strNewText, LogStatusType lsType)
-        {
-            return true;
-        }
-
-        private string _lastMessage;
-        private string _lastSubMessage;
-        public void UpdateMessage(string message)
-        {
-            _lastMessage = message;
-        }
-
-        public void UpdateSubMessage(string submessage)
-        {
-            _lastSubMessage = submessage;
-        }
-
-        public bool ContinueWork()
-        {
-            return true;
-        }
-
-        public void UpdateMessage(UiStringKey stringKey)
-        {
-
-        }
-
-        public string LastMessage { get { return _lastMessage; } }
-        public string LastSubMessage { get { return _lastSubMessage; } }
+      return true;
     }
 
-    /// <summary>
-    /// StatusLogger implementation which shows the progress in a progress dialog
-    /// </summary>
-    public class ProgressDialogUi : IProgressUi
+    private string _lastMessage;
+    private string _lastSubMessage;
+    public void UpdateMessage(string message)
     {
-        private readonly IProgressDialog _progressDialog;
+      _lastMessage = message;
+    }
 
-        private readonly Handler _handler;
-        private string _message = "";
-        private string _submessage;
-        private readonly IKp2aApp _app;
+    public void UpdateSubMessage(string submessage)
+    {
+      _lastSubMessage = submessage;
+    }
 
-        public String LastSubMessage => _submessage;
-        public String LastMessage => _message;
+    public bool ContinueWork()
+    {
+      return true;
+    }
+
+    public void UpdateMessage(UiStringKey stringKey)
+    {
+
+    }
+
+    public string LastMessage { get { return _lastMessage; } }
+    public string LastSubMessage { get { return _lastSubMessage; } }
+  }
+
+  /// <summary>
+  /// StatusLogger implementation which shows the progress in a progress dialog
+  /// </summary>
+  public class ProgressDialogUi : IProgressUi
+  {
+    private readonly IProgressDialog _progressDialog;
+
+    private readonly Handler _handler;
+    private string _message = "";
+    private string _submessage;
+    private readonly IKp2aApp _app;
+
+    public String LastSubMessage => _submessage;
+    public String LastMessage => _message;
 
 
-        public ProgressDialogUi(IKp2aApp app, Handler handler, IProgressDialog pd)
-        {
-            _app = app;
-            _progressDialog = pd;
-            _handler = handler;
-        }
+    public ProgressDialogUi(IKp2aApp app, Handler handler, IProgressDialog pd)
+    {
+      _app = app;
+      _progressDialog = pd;
+      _handler = handler;
+    }
 
-        public void UpdateSubMessage(String submessage)
-        {
-            Kp2aLog.Log("status submessage: " + submessage);
-            _submessage = submessage;
-            if (_app != null && _progressDialog != null && _handler != null)
+    public void UpdateSubMessage(String submessage)
+    {
+      Kp2aLog.Log("status submessage: " + submessage);
+      _submessage = submessage;
+      if (_app != null && _progressDialog != null && _handler != null)
+      {
+        _handler.Post(() =>
             {
-                _handler.Post(() =>
-                    {
-                        if (!String.IsNullOrEmpty(submessage))
-                        {
-                            _progressDialog.SetMessage(_message + " (" + submessage + ")");
-                        }
-                        else
-                        {
-                            _progressDialog.SetMessage(_message);
-                        }
-                    }
-                );
+              if (!String.IsNullOrEmpty(submessage))
+              {
+                _progressDialog.SetMessage(_message + " (" + submessage + ")");
+              }
+              else
+              {
+                _progressDialog.SetMessage(_message);
+              }
             }
-        }
-
-        public void Show()
-        {
-            _handler.Post(() =>
-            {
-                _progressDialog?.Show();
-
-            });
-        }
-
-        public void Hide()
-        {
-            _handler.Post(() =>
-            {
-                _progressDialog?.Dismiss();
-
-            });
-        }
-
-        public void UpdateMessage(string message)
-        {
-            Kp2aLog.Log("status message: " + message);
-            _message = message;
-            if (_app != null && _progressDialog != null && _handler != null)
-            {
-                _handler.Post(() =>
-                {
-                    _progressDialog.SetMessage(message);
-                });
-            }
-        }
-
+        );
+      }
     }
+
+    public void Show()
+    {
+      _handler.Post(() =>
+      {
+        _progressDialog?.Show();
+
+      });
+    }
+
+    public void Hide()
+    {
+      _handler.Post(() =>
+      {
+        _progressDialog?.Dismiss();
+
+      });
+    }
+
+    public void UpdateMessage(string message)
+    {
+      Kp2aLog.Log("status message: " + message);
+      _message = message;
+      if (_app != null && _progressDialog != null && _handler != null)
+      {
+        _handler.Post(() =>
+        {
+          _progressDialog.SetMessage(message);
+        });
+      }
+    }
+
+  }
 
 
 

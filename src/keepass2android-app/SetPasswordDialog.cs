@@ -25,120 +25,120 @@ using keepass2android;
 namespace keepass2android
 {
 
-    public class SetPasswordDialog : CancelDialog
+  public class SetPasswordDialog : CancelDialog
+  {
+
+
+    internal String Keyfile;
+
+    public SetPasswordDialog(Activity activity) : base(activity)
     {
 
+    }
 
-        internal String Keyfile;
 
-        public SetPasswordDialog(Activity activity) : base(activity)
+
+    protected override void OnCreate(Bundle savedInstanceState)
+    {
+      base.OnCreate(savedInstanceState);
+      SetContentView(Resource.Layout.set_password);
+
+      SetTitle(Resource.String.password_title);
+
+      // Ok button
+      Button okButton = (Button)FindViewById(Resource.Id.ok);
+      okButton.Click += (sender, e) =>
+      {
+        TextView passView = (TextView)FindViewById(Resource.Id.pass_password);
+        String pass = passView.Text;
+        TextView passConfView = (TextView)FindViewById(Resource.Id.pass_conf_password);
+        String confpass = passConfView.Text;
+
+        // Verify that passwords match
+        if (!pass.Equals(confpass))
         {
+          // Passwords do not match
+          App.Kp2a.ShowMessage(Context, Resource.String.error_pass_match, MessageSeverity.Error);
+          return;
+        }
+
+        TextView keyfileView = (TextView)FindViewById(Resource.Id.pass_keyfile);
+        String keyfile = keyfileView.Text;
+        Keyfile = keyfile;
+
+        // Verify that a password or keyfile is set
+        if (pass.Length == 0 && keyfile.Length == 0)
+        {
+          App.Kp2a.ShowMessage(Context, Resource.String.error_nopass, MessageSeverity.Error);
+          return;
 
         }
 
+        SetPassword sp = new SetPassword(App.Kp2a, pass, keyfile, new AfterSave(_activity, this, null, new Handler()));
+        BlockingOperationStarter pt = new BlockingOperationStarter(App.Kp2a, sp);
+        pt.Run();
+      };
 
 
-        protected override void OnCreate(Bundle savedInstanceState)
+
+      // Cancel button
+      Button cancelButton = (Button)FindViewById(Resource.Id.cancel);
+      cancelButton.Click += (sender, e) =>
+      {
+        Cancel();
+      };
+    }
+
+
+
+    class AfterSave : OnOperationFinishedHandler
+    {
+      private readonly FileOnFinish _operationFinishedHandler;
+
+      readonly SetPasswordDialog _dlg;
+
+      public AfterSave(Activity activity, SetPasswordDialog dlg, FileOnFinish operationFinishedHandler, Handler handler) : base(App.Kp2a, operationFinishedHandler, handler)
+      {
+        _operationFinishedHandler = operationFinishedHandler;
+        _dlg = dlg;
+      }
+
+
+      public override void Run()
+      {
+        if (Success)
         {
-            base.OnCreate(savedInstanceState);
-            SetContentView(Resource.Layout.set_password);
+          if (_operationFinishedHandler != null)
+          {
+            _operationFinishedHandler.Filename = _dlg.Keyfile;
+          }
+          FingerprintUnlockMode um;
+          Enum.TryParse(PreferenceManager.GetDefaultSharedPreferences(_dlg.Context).GetString(App.Kp2a.CurrentDb.CurrentFingerprintModePrefKey, ""), out um);
 
-            SetTitle(Resource.String.password_title);
+          if (um == FingerprintUnlockMode.FullUnlock)
+          {
+            ISharedPreferencesEditor edit = PreferenceManager.GetDefaultSharedPreferences(_dlg.Context).Edit();
+            edit.PutString(App.Kp2a.CurrentDb.CurrentFingerprintPrefKey, "");
+            edit.PutString(App.Kp2a.CurrentDb.CurrentFingerprintModePrefKey, FingerprintUnlockMode.Disabled.ToString());
+            edit.Commit();
 
-            // Ok button
-            Button okButton = (Button)FindViewById(Resource.Id.ok);
-            okButton.Click += (sender, e) =>
-            {
-                TextView passView = (TextView)FindViewById(Resource.Id.pass_password);
-                String pass = passView.Text;
-                TextView passConfView = (TextView)FindViewById(Resource.Id.pass_conf_password);
-                String confpass = passConfView.Text;
+            App.Kp2a.ShowMessage(_dlg.Context, Resource.String.fingerprint_reenable, MessageSeverity.Warning);
+            _dlg.Context.StartActivity(typeof(BiometricSetupActivity));
+          }
 
-                // Verify that passwords match
-                if (!pass.Equals(confpass))
-                {
-                    // Passwords do not match
-                    App.Kp2a.ShowMessage(Context, Resource.String.error_pass_match, MessageSeverity.Error);
-                    return;
-                }
-
-                TextView keyfileView = (TextView)FindViewById(Resource.Id.pass_keyfile);
-                String keyfile = keyfileView.Text;
-                Keyfile = keyfile;
-
-                // Verify that a password or keyfile is set
-                if (pass.Length == 0 && keyfile.Length == 0)
-                {
-                    App.Kp2a.ShowMessage(Context, Resource.String.error_nopass, MessageSeverity.Error);
-                    return;
-
-                }
-
-                SetPassword sp = new SetPassword(App.Kp2a, pass, keyfile, new AfterSave(_activity, this, null, new Handler()));
-                BlockingOperationStarter pt = new BlockingOperationStarter(App.Kp2a, sp);
-                pt.Run();
-            };
-
-
-
-            // Cancel button
-            Button cancelButton = (Button)FindViewById(Resource.Id.cancel);
-            cancelButton.Click += (sender, e) =>
-            {
-                Cancel();
-            };
+          _dlg.Dismiss();
+        }
+        else
+        {
+          DisplayMessage(_dlg.Context);
         }
 
-
-
-        class AfterSave : OnOperationFinishedHandler
-        {
-            private readonly FileOnFinish _operationFinishedHandler;
-
-            readonly SetPasswordDialog _dlg;
-
-            public AfterSave(Activity activity, SetPasswordDialog dlg, FileOnFinish operationFinishedHandler, Handler handler) : base(App.Kp2a, operationFinishedHandler, handler)
-            {
-                _operationFinishedHandler = operationFinishedHandler;
-                _dlg = dlg;
-            }
-
-
-            public override void Run()
-            {
-                if (Success)
-                {
-                    if (_operationFinishedHandler != null)
-                    {
-                        _operationFinishedHandler.Filename = _dlg.Keyfile;
-                    }
-                    FingerprintUnlockMode um;
-                    Enum.TryParse(PreferenceManager.GetDefaultSharedPreferences(_dlg.Context).GetString(App.Kp2a.CurrentDb.CurrentFingerprintModePrefKey, ""), out um);
-
-                    if (um == FingerprintUnlockMode.FullUnlock)
-                    {
-                        ISharedPreferencesEditor edit = PreferenceManager.GetDefaultSharedPreferences(_dlg.Context).Edit();
-                        edit.PutString(App.Kp2a.CurrentDb.CurrentFingerprintPrefKey, "");
-                        edit.PutString(App.Kp2a.CurrentDb.CurrentFingerprintModePrefKey, FingerprintUnlockMode.Disabled.ToString());
-                        edit.Commit();
-
-                        App.Kp2a.ShowMessage(_dlg.Context, Resource.String.fingerprint_reenable, MessageSeverity.Warning);
-                        _dlg.Context.StartActivity(typeof(BiometricSetupActivity));
-                    }
-
-                    _dlg.Dismiss();
-                }
-                else
-                {
-                    DisplayMessage(_dlg.Context);
-                }
-
-                base.Run();
-            }
-
-        }
+        base.Run();
+      }
 
     }
+
+  }
 
 }
 

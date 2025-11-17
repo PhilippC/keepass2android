@@ -23,89 +23,89 @@ namespace keepass2android.views;
 
 public class BackgroundOperationContainer : LinearLayout, IProgressUi
 {
-    protected BackgroundOperationContainer(IntPtr javaReference, JniHandleOwnership transfer) : base(
-        javaReference, transfer)
+  protected BackgroundOperationContainer(IntPtr javaReference, JniHandleOwnership transfer) : base(
+      javaReference, transfer)
+  {
+  }
+
+  public BackgroundOperationContainer(Context context) : base(context)
+  {
+  }
+
+  public BackgroundOperationContainer(Context context, IAttributeSet attrs) : base(context, attrs)
+  {
+    Initialize(attrs);
+  }
+
+  public BackgroundOperationContainer(Context context, IAttributeSet attrs, int defStyle) : base(context,
+      attrs, defStyle)
+  {
+    Initialize(attrs);
+  }
+
+  private void Initialize(IAttributeSet attrs)
+  {
+
+    LayoutInflater inflater = (LayoutInflater)Context.GetSystemService(Context.LayoutInflaterService);
+    inflater.Inflate(Resource.Layout.background_operation_container, this);
+
+    FindViewById(Resource.Id.cancel_background).Click += (obj, args) =>
     {
-    }
+      App.Kp2a.CancelBackgroundOperations();
+    };
+  }
 
-    public BackgroundOperationContainer(Context context) : base(context)
+  public void Show()
+  {
+    App.Kp2a.UiThreadHandler.Post(() =>
     {
-    }
+      Visibility = ViewStates.Visible;
+      FindViewById<TextView>(Resource.Id.background_ops_message)!.Visibility = ViewStates.Gone;
+      FindViewById<TextView>(Resource.Id.background_ops_submessage)!.Visibility = ViewStates.Gone;
+    });
 
-    public BackgroundOperationContainer(Context context, IAttributeSet attrs) : base(context, attrs)
+  }
+
+  public void Hide()
+  {
+    App.Kp2a.UiThreadHandler.Post(() =>
     {
-        Initialize(attrs);
-    }
+      String activityType = Context.GetType().FullName;
+      Visibility = ViewStates.Gone;
+    });
+  }
 
-    public BackgroundOperationContainer(Context context, IAttributeSet attrs, int defStyle) : base(context,
-        attrs, defStyle)
+  public void UpdateMessage(string message)
+  {
+    App.Kp2a.UiThreadHandler.Post(() =>
     {
-        Initialize(attrs);
-    }
+      TextView messageTextView = FindViewById<TextView>(Resource.Id.background_ops_message)!;
+      if (string.IsNullOrEmpty(message))
+      {
+        messageTextView.Visibility = ViewStates.Gone;
+      }
+      else
+      {
+        messageTextView.Visibility = ViewStates.Visible;
+        messageTextView.Text = message;
+      }
+    });
+  }
 
-    private void Initialize(IAttributeSet attrs)
+  public void UpdateSubMessage(string submessage)
+  {
+    App.Kp2a.UiThreadHandler.Post(() =>
     {
-
-        LayoutInflater inflater = (LayoutInflater)Context.GetSystemService(Context.LayoutInflaterService);
-        inflater.Inflate(Resource.Layout.background_operation_container, this);
-
-        FindViewById(Resource.Id.cancel_background).Click += (obj, args) =>
-        {
-            App.Kp2a.CancelBackgroundOperations();
-        };
-    }
-
-    public void Show()
-    {
-        App.Kp2a.UiThreadHandler.Post(() =>
-        {
-            Visibility = ViewStates.Visible;
-            FindViewById<TextView>(Resource.Id.background_ops_message)!.Visibility = ViewStates.Gone;
-            FindViewById<TextView>(Resource.Id.background_ops_submessage)!.Visibility = ViewStates.Gone;
-        });
-
-    }
-
-    public void Hide()
-    {
-        App.Kp2a.UiThreadHandler.Post(() =>
-        {
-            String activityType = Context.GetType().FullName;
-            Visibility = ViewStates.Gone;
-        });
-    }
-
-    public void UpdateMessage(string message)
-    {
-        App.Kp2a.UiThreadHandler.Post(() =>
-        {
-            TextView messageTextView = FindViewById<TextView>(Resource.Id.background_ops_message)!;
-            if (string.IsNullOrEmpty(message))
-            {
-                messageTextView.Visibility = ViewStates.Gone;
-            }
-            else
-            {
-                messageTextView.Visibility = ViewStates.Visible;
-                messageTextView.Text = message;
-            }
-        });
-    }
-
-    public void UpdateSubMessage(string submessage)
-    {
-        App.Kp2a.UiThreadHandler.Post(() =>
-        {
-            TextView subMessageTextView = FindViewById<TextView>(Resource.Id.background_ops_submessage)!;
-            if (string.IsNullOrEmpty(submessage))
-            {
-                subMessageTextView.Visibility = ViewStates.Gone;
-            }
-            else
-            {
-                subMessageTextView.Visibility = ViewStates.Visible;
-                subMessageTextView.Text = submessage;
-            }
-        });
-    }
+      TextView subMessageTextView = FindViewById<TextView>(Resource.Id.background_ops_submessage)!;
+      if (string.IsNullOrEmpty(submessage))
+      {
+        subMessageTextView.Visibility = ViewStates.Gone;
+      }
+      else
+      {
+        subMessageTextView.Visibility = ViewStates.Visible;
+        subMessageTextView.Text = submessage;
+      }
+    });
+  }
 }

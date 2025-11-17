@@ -27,125 +27,125 @@ using KeePassLib.Serialization;
 
 namespace keepass2android
 {
-    public static class Kp2aLog
+  public static class Kp2aLog
+  {
+    private static bool? _logToFile;
+
+    private static object _fileLocker = new object();
+
+    public static void Log(string message)
     {
-        private static bool? _logToFile;
+      if (message != null)
+      {
+        message += Thread.CurrentThread.ManagedThreadId != 0
+            ? " (Thread ID: " + Thread.CurrentThread.ManagedThreadId + ")"
+            : "";
+        if (Looper.MainLooper == Looper.MyLooper())
+          message += " (Main Looper)";
+        Android.Util.Log.Debug("KP2A", message);
+      }
 
-        private static object _fileLocker = new object();
-
-        public static void Log(string message)
+      if (LogToFile)
+      {
+        lock (_fileLocker)
         {
-            if (message != null)
+          try
+          {
+            using (var streamWriter = File.AppendText(LogFilename))
             {
-                message += Thread.CurrentThread.ManagedThreadId != 0
-                    ? " (Thread ID: " + Thread.CurrentThread.ManagedThreadId + ")"
-                    : "";
-                if (Looper.MainLooper == Looper.MyLooper())
-                    message += " (Main Looper)";
-                Android.Util.Log.Debug("KP2A", message);
+              string stringToLog = DateTime.Now + ":" + DateTime.Now.Millisecond + " -- " + message;
+              streamWriter.WriteLine(stringToLog);
             }
-
-            if (LogToFile)
-            {
-                lock (_fileLocker)
-                {
-                    try
-                    {
-                        using (var streamWriter = File.AppendText(LogFilename))
-                        {
-                            string stringToLog = DateTime.Now + ":" + DateTime.Now.Millisecond + " -- " + message;
-                            streamWriter.WriteLine(stringToLog);
-                        }
-                    }
-                    catch (Exception e)
-                    {
-                        Android.Util.Log.Debug("KP2A", "Couldn't write to log file. " + e);
-                    }
-                }
-
-            }
-
+          }
+          catch (Exception e)
+          {
+            Android.Util.Log.Debug("KP2A", "Couldn't write to log file. " + e);
+          }
         }
 
-        public static string LogFilename
-        {
-            get { return Application.Context.FilesDir.CanonicalPath + "/keepass2android.log"; }
-        }
+      }
 
-        public static bool LogToFile
-        {
-            get
-            {
-                if (_logToFile == null)
-                    _logToFile = File.Exists(LogFilename);
-                return (bool)_logToFile;
-            }
-        }
-        public static event EventHandler<Exception> OnUnexpectedError;
-
-        public static void LogUnexpectedError(Exception exception)
-        {
-            Log(exception.ToString());
-            if (OnUnexpectedError != null)
-                OnUnexpectedError(null, exception);
-        }
-
-        public static void CreateLogFile()
-        {
-            if (!File.Exists(LogFilename))
-            {
-                File.Create(LogFilename).Dispose();
-                _logToFile = true;
-            }
-
-
-        }
-
-        public static void FinishLogFile()
-        {
-            if (File.Exists(LogFilename))
-            {
-                _logToFile = false;
-                int count = 0;
-                while (File.Exists(LogFilename + "." + count))
-                    count++;
-                File.Move(LogFilename, LogFilename + "." + count);
-
-            }
-
-        }
-
-        public static void SendLog(Context ctx)
-        {
-            if (!File.Exists(LogFilename))
-            {
-                Toast.MakeText(ctx, "Debug log is empty.", ToastLength.Long).Show();
-                return;
-            }
-
-            Intent sendIntent = new Intent();
-            sendIntent.SetAction(Intent.ActionSend);
-            string logText = File.ReadAllText(LogFilename);
-
-            sendIntent.PutExtra(Intent.ExtraText, logText);
-            sendIntent.PutExtra(Intent.ExtraEmail, "crocoapps@gmail.com");
-            sendIntent.PutExtra(Intent.ExtraSubject, "Keepass2Android log");
-            sendIntent.SetType("text/plain");
-            try
-            {
-                ctx.StartActivity(Intent.CreateChooser(sendIntent, "Send log to..."));
-            }
-            catch (Exception e)
-            {
-                Toast.MakeText(ctx, $"Error sending log of length {logText.Length} bytes: " + e.Message, ToastLength.Long)?.Show();
-
-            }
-
-        }
-
-        public static void LogTask(object task, string activityName)
-        {
-            Log($"Task in activity {activityName} changed to {task?.GetType()?.Name ?? "null"}");
-        }
     }
+
+    public static string LogFilename
+    {
+      get { return Application.Context.FilesDir.CanonicalPath + "/keepass2android.log"; }
+    }
+
+    public static bool LogToFile
+    {
+      get
+      {
+        if (_logToFile == null)
+          _logToFile = File.Exists(LogFilename);
+        return (bool)_logToFile;
+      }
+    }
+    public static event EventHandler<Exception> OnUnexpectedError;
+
+    public static void LogUnexpectedError(Exception exception)
+    {
+      Log(exception.ToString());
+      if (OnUnexpectedError != null)
+        OnUnexpectedError(null, exception);
+    }
+
+    public static void CreateLogFile()
+    {
+      if (!File.Exists(LogFilename))
+      {
+        File.Create(LogFilename).Dispose();
+        _logToFile = true;
+      }
+
+
+    }
+
+    public static void FinishLogFile()
+    {
+      if (File.Exists(LogFilename))
+      {
+        _logToFile = false;
+        int count = 0;
+        while (File.Exists(LogFilename + "." + count))
+          count++;
+        File.Move(LogFilename, LogFilename + "." + count);
+
+      }
+
+    }
+
+    public static void SendLog(Context ctx)
+    {
+      if (!File.Exists(LogFilename))
+      {
+        Toast.MakeText(ctx, "Debug log is empty.", ToastLength.Long).Show();
+        return;
+      }
+
+      Intent sendIntent = new Intent();
+      sendIntent.SetAction(Intent.ActionSend);
+      string logText = File.ReadAllText(LogFilename);
+
+      sendIntent.PutExtra(Intent.ExtraText, logText);
+      sendIntent.PutExtra(Intent.ExtraEmail, "crocoapps@gmail.com");
+      sendIntent.PutExtra(Intent.ExtraSubject, "Keepass2Android log");
+      sendIntent.SetType("text/plain");
+      try
+      {
+        ctx.StartActivity(Intent.CreateChooser(sendIntent, "Send log to..."));
+      }
+      catch (Exception e)
+      {
+        Toast.MakeText(ctx, $"Error sending log of length {logText.Length} bytes: " + e.Message, ToastLength.Long)?.Show();
+
+      }
+
+    }
+
+    public static void LogTask(object task, string activityName)
+    {
+      Log($"Task in activity {activityName} changed to {task?.GetType()?.Name ?? "null"}");
+    }
+  }
 }

@@ -26,121 +26,121 @@ using KeePassLib.Utility;
 
 namespace keepass2android
 {
-    public class AddTemplateEntries : OperationWithFinishHandler
+  public class AddTemplateEntries : OperationWithFinishHandler
+  {
+
+    public class TemplateEntry
     {
+      public UiStringKey Title { get; set; }
+      public PwIcon Icon { get; set; }
 
-        public class TemplateEntry
+      public PwUuid Uuid { get; set; }
+
+      public List<ITemplateField> Fields
+      {
+        get;
+        set;
+      }
+
+
+      public interface ITemplateField
+      {
+        void AddToEntry(IKp2aApp app, PwEntry entry, int position);
+      }
+
+      public enum FieldType
+      {
+        Inline, ProtectedInline
+      }
+
+      public enum SpecialFieldKey
+      {
+        ExpDate, OverrideUrl, Tags
+      }
+
+      public class CustomField : ITemplateField
+      {
+        public UiStringKey FieldName { get; set; }
+
+        public FieldType Type { get; set; }
+
+
+        public void AddToEntry(IKp2aApp app, PwEntry entry, int position)
         {
-            public UiStringKey Title { get; set; }
-            public PwIcon Icon { get; set; }
-
-            public PwUuid Uuid { get; set; }
-
-            public List<ITemplateField> Fields
-            {
-                get;
-                set;
-            }
-
-
-            public interface ITemplateField
-            {
-                void AddToEntry(IKp2aApp app, PwEntry entry, int position);
-            }
-
-            public enum FieldType
-            {
-                Inline, ProtectedInline
-            }
-
-            public enum SpecialFieldKey
-            {
-                ExpDate, OverrideUrl, Tags
-            }
-
-            public class CustomField : ITemplateField
-            {
-                public UiStringKey FieldName { get; set; }
-
-                public FieldType Type { get; set; }
-
-
-                public void AddToEntry(IKp2aApp app, PwEntry entry, int position)
-                {
-                    Dictionary<FieldType, string> fn = new Dictionary<FieldType, string>()
+          Dictionary<FieldType, string> fn = new Dictionary<FieldType, string>()
                     {
                         { FieldType.ProtectedInline, "Protected Inline"},
                         { FieldType.Inline, "Inline"}
                     };
 
-                    string fieldKey = app.GetResourceString(FieldName);
-                    entry.Strings.Set("_etm_position_" + fieldKey, new ProtectedString(false, position.ToString()));
-                    entry.Strings.Set("_etm_title_" + fieldKey, new ProtectedString(false, fieldKey));
-                    entry.Strings.Set("_etm_type_" + fieldKey, new ProtectedString(false, fn[Type]));
-                }
-            }
-
-            public class StandardField : ITemplateField
-            {
-                public string FieldName { get; set; }
-                public void AddToEntry(IKp2aApp app, PwEntry entry, int position)
-                {
-                    string fieldKey = FieldName;
-                    entry.Strings.Set("_etm_position_" + fieldKey, new ProtectedString(false, position.ToString()));
-                    entry.Strings.Set("_etm_title_" + fieldKey, new ProtectedString(false, fieldKey));
-                    entry.Strings.Set("_etm_type_" + fieldKey, new ProtectedString(false, FieldName == PwDefs.PasswordField ? "Protected Inline" : "Inline"));
-                }
-            }
-
-            public class SpecialField : ITemplateField
-            {
-                public SpecialFieldKey FieldName { get; set; }
-
-
-                public const string TagsKey = "@tags";
-                public const string OverrideUrlKey = "@override";
-                public const string ExpDateKey = "@exp_date";
-
-                public void AddToEntry(IKp2aApp app, PwEntry entry, int position)
-                {
-                    string fieldKey = "";
-                    string type = "Inline";
-                    switch (FieldName)
-                    {
-                        case SpecialFieldKey.ExpDate:
-                            fieldKey = ExpDateKey;
-                            type = "Date Time";
-                            break;
-                        case SpecialFieldKey.OverrideUrl:
-                            fieldKey = OverrideUrlKey;
-                            break;
-                        case SpecialFieldKey.Tags:
-                            fieldKey = TagsKey;
-                            break;
-                    }
-                    entry.Strings.Set("_etm_position_" + fieldKey, new ProtectedString(false, position.ToString()));
-                    entry.Strings.Set("_etm_title_" + fieldKey, new ProtectedString(false, fieldKey));
-                    entry.Strings.Set("_etm_type_" + fieldKey, new ProtectedString(false, type));
-                }
-            }
+          string fieldKey = app.GetResourceString(FieldName);
+          entry.Strings.Set("_etm_position_" + fieldKey, new ProtectedString(false, position.ToString()));
+          entry.Strings.Set("_etm_title_" + fieldKey, new ProtectedString(false, fieldKey));
+          entry.Strings.Set("_etm_type_" + fieldKey, new ProtectedString(false, fn[Type]));
         }
+      }
 
-        protected Database Db
+      public class StandardField : ITemplateField
+      {
+        public string FieldName { get; set; }
+        public void AddToEntry(IKp2aApp app, PwEntry entry, int position)
         {
-            get { return _app.CurrentDb; }
+          string fieldKey = FieldName;
+          entry.Strings.Set("_etm_position_" + fieldKey, new ProtectedString(false, position.ToString()));
+          entry.Strings.Set("_etm_title_" + fieldKey, new ProtectedString(false, fieldKey));
+          entry.Strings.Set("_etm_type_" + fieldKey, new ProtectedString(false, FieldName == PwDefs.PasswordField ? "Protected Inline" : "Inline"));
         }
+      }
 
-        private readonly IKp2aApp _app;
+      public class SpecialField : ITemplateField
+      {
+        public SpecialFieldKey FieldName { get; set; }
 
-        public AddTemplateEntries(IKp2aApp app, OnOperationFinishedHandler operationFinishedHandler)
-            : base(app, operationFinishedHandler)
+
+        public const string TagsKey = "@tags";
+        public const string OverrideUrlKey = "@override";
+        public const string ExpDateKey = "@exp_date";
+
+        public void AddToEntry(IKp2aApp app, PwEntry entry, int position)
         {
-            _app = app;
-
-            //_operationFinishedHandler = new AfterAdd(this, operationFinishedHandler);
+          string fieldKey = "";
+          string type = "Inline";
+          switch (FieldName)
+          {
+            case SpecialFieldKey.ExpDate:
+              fieldKey = ExpDateKey;
+              type = "Date Time";
+              break;
+            case SpecialFieldKey.OverrideUrl:
+              fieldKey = OverrideUrlKey;
+              break;
+            case SpecialFieldKey.Tags:
+              fieldKey = TagsKey;
+              break;
+          }
+          entry.Strings.Set("_etm_position_" + fieldKey, new ProtectedString(false, position.ToString()));
+          entry.Strings.Set("_etm_title_" + fieldKey, new ProtectedString(false, fieldKey));
+          entry.Strings.Set("_etm_type_" + fieldKey, new ProtectedString(false, type));
         }
+      }
+    }
 
-        public static readonly List<TemplateEntry> TemplateEntries = new List<TemplateEntry>()
+    protected Database Db
+    {
+      get { return _app.CurrentDb; }
+    }
+
+    private readonly IKp2aApp _app;
+
+    public AddTemplateEntries(IKp2aApp app, OnOperationFinishedHandler operationFinishedHandler)
+        : base(app, operationFinishedHandler)
+    {
+      _app = app;
+
+      //_operationFinishedHandler = new AfterAdd(this, operationFinishedHandler);
+    }
+
+    public static readonly List<TemplateEntry> TemplateEntries = new List<TemplateEntry>()
             {
                 new TemplateEntry()
                 {
@@ -285,117 +285,117 @@ namespace keepass2android
 
             };
 
-        public static bool ContainsAllTemplates(Database db)
-        {
-            return TemplateEntries.All(t =>
-            {
-                string hexId = t.Uuid.ToHexString();
+    public static bool ContainsAllTemplates(Database db)
+    {
+      return TemplateEntries.All(t =>
+      {
+        string hexId = t.Uuid.ToHexString();
 
-                return db.EntriesById.Any(kvp => kvp.Key.Equals(t.Uuid) ||
-                    kvp.Value.Strings.ReadSafe(TemplateIdStringKey) == hexId);
-            });
-        }
-
-        public static string TemplateIdStringKey
-        {
-            get { return "KP2A_TemplateId"; }
-        }
-
-        public override void Run()
-        {
-            StatusLogger.UpdateMessage(UiStringKey.AddingEntry);
-
-            List<PwEntry> addedEntries;
-            var templateGroup = AddTemplates(out addedEntries);
-
-            if (addedEntries.Any())
-            {
-                _app.DirtyGroups.Add(templateGroup);
-
-                // Commit to disk
-                SaveDb save = new SaveDb(_app, _app.CurrentDb, operationFinishedHandler);
-                save.SetStatusLogger(StatusLogger);
-                save.Run();
-            }
-        }
-
-        public PwGroup AddTemplates(out List<PwEntry> addedEntries)
-        {
-            if (TemplateEntries.GroupBy(e => e.Uuid).Any(g => g.Count() > 1))
-            {
-                throw new Exception("invalid UUIDs in template list!");
-            }
-
-            PwGroup templateGroup;
-            if (!_app.CurrentDb.GroupsById.TryGetValue(_app.CurrentDb.KpDatabase.EntryTemplatesGroup, out templateGroup))
-            {
-                //create template group
-                templateGroup = new PwGroup(true, true, _app.GetResourceString(UiStringKey.TemplateGroupName), PwIcon.Folder);
-                _app.CurrentDb.KpDatabase.RootGroup.AddGroup(templateGroup, true);
-                _app.CurrentDb.KpDatabase.EntryTemplatesGroup = templateGroup.Uuid;
-                _app.CurrentDb.KpDatabase.EntryTemplatesGroupChanged = DateTime.Now;
-                _app.DirtyGroups.Add(_app.CurrentDb.KpDatabase.RootGroup);
-                _app.CurrentDb.GroupsById[templateGroup.Uuid] = templateGroup;
-                _app.CurrentDb.Elements.Add(templateGroup);
-            }
-            addedEntries = new List<PwEntry>();
-
-            foreach (var template in TemplateEntries)
-            {
-                if (_app.CurrentDb.EntriesById.ContainsKey(template.Uuid))
-                    continue;
-                PwEntry entry = CreateEntry(template);
-                templateGroup.AddEntry(entry, true);
-                addedEntries.Add(entry);
-                _app.CurrentDb.EntriesById[entry.Uuid] = entry;
-            }
-            return templateGroup;
-        }
-
-        private PwEntry CreateEntry(TemplateEntry template)
-        {
-            PwEntry entry = new PwEntry(false, true);
-            entry.Uuid = template.Uuid;
-            entry.IconId = template.Icon;
-            entry.Strings.Set(PwDefs.TitleField, new ProtectedString(false, _app.GetResourceString(template.Title)));
-            entry.Strings.Set("_etm_template", new ProtectedString(false, "1"));
-            int position = 0;
-            foreach (var field in template.Fields)
-            {
-                field.AddToEntry(_app, entry, position);
-                position++;
-            }
-            return entry;
-        }
-
-        private class AfterAdd : OnOperationFinishedHandler
-        {
-            private readonly Database _db;
-            private readonly List<PwEntry> _entries;
-
-            public AfterAdd(IKp2aApp app, Database db, List<PwEntry> entries, OnOperationFinishedHandler operationFinishedHandler) : base(app, operationFinishedHandler)
-            {
-                _db = db;
-                _entries = entries;
-
-            }
-
-
-
-            public override void Run()
-            {
-
-
-                base.Run();
-            }
-        }
-
-
-        public static bool IsTemplateId(PwUuid pwUuid)
-        {
-            return TemplateEntries.Any(te => te.Uuid.Equals(pwUuid));
-        }
+        return db.EntriesById.Any(kvp => kvp.Key.Equals(t.Uuid) ||
+                  kvp.Value.Strings.ReadSafe(TemplateIdStringKey) == hexId);
+      });
     }
+
+    public static string TemplateIdStringKey
+    {
+      get { return "KP2A_TemplateId"; }
+    }
+
+    public override void Run()
+    {
+      StatusLogger.UpdateMessage(UiStringKey.AddingEntry);
+
+      List<PwEntry> addedEntries;
+      var templateGroup = AddTemplates(out addedEntries);
+
+      if (addedEntries.Any())
+      {
+        _app.DirtyGroups.Add(templateGroup);
+
+        // Commit to disk
+        SaveDb save = new SaveDb(_app, _app.CurrentDb, operationFinishedHandler);
+        save.SetStatusLogger(StatusLogger);
+        save.Run();
+      }
+    }
+
+    public PwGroup AddTemplates(out List<PwEntry> addedEntries)
+    {
+      if (TemplateEntries.GroupBy(e => e.Uuid).Any(g => g.Count() > 1))
+      {
+        throw new Exception("invalid UUIDs in template list!");
+      }
+
+      PwGroup templateGroup;
+      if (!_app.CurrentDb.GroupsById.TryGetValue(_app.CurrentDb.KpDatabase.EntryTemplatesGroup, out templateGroup))
+      {
+        //create template group
+        templateGroup = new PwGroup(true, true, _app.GetResourceString(UiStringKey.TemplateGroupName), PwIcon.Folder);
+        _app.CurrentDb.KpDatabase.RootGroup.AddGroup(templateGroup, true);
+        _app.CurrentDb.KpDatabase.EntryTemplatesGroup = templateGroup.Uuid;
+        _app.CurrentDb.KpDatabase.EntryTemplatesGroupChanged = DateTime.Now;
+        _app.DirtyGroups.Add(_app.CurrentDb.KpDatabase.RootGroup);
+        _app.CurrentDb.GroupsById[templateGroup.Uuid] = templateGroup;
+        _app.CurrentDb.Elements.Add(templateGroup);
+      }
+      addedEntries = new List<PwEntry>();
+
+      foreach (var template in TemplateEntries)
+      {
+        if (_app.CurrentDb.EntriesById.ContainsKey(template.Uuid))
+          continue;
+        PwEntry entry = CreateEntry(template);
+        templateGroup.AddEntry(entry, true);
+        addedEntries.Add(entry);
+        _app.CurrentDb.EntriesById[entry.Uuid] = entry;
+      }
+      return templateGroup;
+    }
+
+    private PwEntry CreateEntry(TemplateEntry template)
+    {
+      PwEntry entry = new PwEntry(false, true);
+      entry.Uuid = template.Uuid;
+      entry.IconId = template.Icon;
+      entry.Strings.Set(PwDefs.TitleField, new ProtectedString(false, _app.GetResourceString(template.Title)));
+      entry.Strings.Set("_etm_template", new ProtectedString(false, "1"));
+      int position = 0;
+      foreach (var field in template.Fields)
+      {
+        field.AddToEntry(_app, entry, position);
+        position++;
+      }
+      return entry;
+    }
+
+    private class AfterAdd : OnOperationFinishedHandler
+    {
+      private readonly Database _db;
+      private readonly List<PwEntry> _entries;
+
+      public AfterAdd(IKp2aApp app, Database db, List<PwEntry> entries, OnOperationFinishedHandler operationFinishedHandler) : base(app, operationFinishedHandler)
+      {
+        _db = db;
+        _entries = entries;
+
+      }
+
+
+
+      public override void Run()
+      {
+
+
+        base.Run();
+      }
+    }
+
+
+    public static bool IsTemplateId(PwUuid pwUuid)
+    {
+      return TemplateEntries.Any(te => te.Uuid.Equals(pwUuid));
+    }
+  }
 
 }
 

@@ -29,171 +29,171 @@ using keepass2android;
 namespace keepass2android
 {
 
-    public class AppCompatPreferenceActivity : PreferenceActivity
+  public class AppCompatPreferenceActivity : PreferenceActivity
+  {
+    public AppCompatPreferenceActivity(IntPtr javaReference, JniHandleOwnership transfer)
+        : base(javaReference, transfer)
     {
-        public AppCompatPreferenceActivity(IntPtr javaReference, JniHandleOwnership transfer)
-            : base(javaReference, transfer)
-        {
 
-        }
+    }
 
-        public AppCompatPreferenceActivity()
-        {
+    public AppCompatPreferenceActivity()
+    {
 
-        }
+    }
 
-        private AppCompatDelegate _appCompatDelegate;
+    private AppCompatDelegate _appCompatDelegate;
 
-        AppCompatDelegate Delegate
-        {
-            get
-            {
-                if (_appCompatDelegate == null)
-                    _appCompatDelegate = AppCompatDelegate.Create(this, null);
-                return _appCompatDelegate;
-            }
-        }
+    AppCompatDelegate Delegate
+    {
+      get
+      {
+        if (_appCompatDelegate == null)
+          _appCompatDelegate = AppCompatDelegate.Create(this, null);
+        return _appCompatDelegate;
+      }
+    }
 
-        protected override void OnCreate(Bundle savedInstanceState)
-        {
-            Delegate.InstallViewFactory();
-            Delegate.OnCreate(savedInstanceState);
-            base.OnCreate(savedInstanceState);
+    protected override void OnCreate(Bundle savedInstanceState)
+    {
+      Delegate.InstallViewFactory();
+      Delegate.OnCreate(savedInstanceState);
+      base.OnCreate(savedInstanceState);
 
-        }
-
-
-        public override MenuInflater MenuInflater
-        {
-            get { return Delegate.MenuInflater; }
-        }
-
-
-        public override void SetContentView(int layoutResId)
-        {
-            Delegate.SetContentView(layoutResId);
-
-        }
-
-
-        public override void SetContentView(View view)
-        {
-            Delegate.SetContentView(view);
-        }
-
-        public override void SetContentView(View view, ViewGroup.LayoutParams @params)
-        {
-            Delegate.SetContentView(view, @params);
-        }
-
-        public override void AddContentView(View view, ViewGroup.LayoutParams @params)
-        {
-            Delegate.AddContentView(view, @params);
-        }
-
-        protected override void OnPostResume()
-        {
-            base.OnPostResume();
-            Delegate.OnPostResume();
-        }
-
-        protected override void OnTitleChanged(ICharSequence title, Color color)
-        {
-            base.OnTitleChanged(title, color);
-            Delegate.SetTitle(title);
-        }
-
-
-        public override void OnConfigurationChanged(Configuration newConfig)
-        {
-            base.OnConfigurationChanged(newConfig);
-            Delegate.OnConfigurationChanged(newConfig);
-        }
-
-
-        protected override void OnStop()
-        {
-            base.OnStop();
-            Delegate.OnStop();
-        }
-
-
-        protected override void OnDestroy()
-        {
-            base.OnDestroy();
-            Delegate.OnDestroy();
-        }
-
-        public override void InvalidateOptionsMenu()
-        {
-            Delegate.InvalidateOptionsMenu();
-        }
     }
 
 
-    public class LockingPreferenceActivity : AppCompatPreferenceActivity
+    public override MenuInflater MenuInflater
+    {
+      get { return Delegate.MenuInflater; }
+    }
+
+
+    public override void SetContentView(int layoutResId)
+    {
+      Delegate.SetContentView(layoutResId);
+
+    }
+
+
+    public override void SetContentView(View view)
+    {
+      Delegate.SetContentView(view);
+    }
+
+    public override void SetContentView(View view, ViewGroup.LayoutParams @params)
+    {
+      Delegate.SetContentView(view, @params);
+    }
+
+    public override void AddContentView(View view, ViewGroup.LayoutParams @params)
+    {
+      Delegate.AddContentView(view, @params);
+    }
+
+    protected override void OnPostResume()
+    {
+      base.OnPostResume();
+      Delegate.OnPostResume();
+    }
+
+    protected override void OnTitleChanged(ICharSequence title, Color color)
+    {
+      base.OnTitleChanged(title, color);
+      Delegate.SetTitle(title);
+    }
+
+
+    public override void OnConfigurationChanged(Configuration newConfig)
+    {
+      base.OnConfigurationChanged(newConfig);
+      Delegate.OnConfigurationChanged(newConfig);
+    }
+
+
+    protected override void OnStop()
+    {
+      base.OnStop();
+      Delegate.OnStop();
+    }
+
+
+    protected override void OnDestroy()
+    {
+      base.OnDestroy();
+      Delegate.OnDestroy();
+    }
+
+    public override void InvalidateOptionsMenu()
+    {
+      Delegate.InvalidateOptionsMenu();
+    }
+  }
+
+
+  public class LockingPreferenceActivity : AppCompatPreferenceActivity
+  {
+
+    public LockingPreferenceActivity(IntPtr javaReference, JniHandleOwnership transfer)
+        : base(javaReference, transfer)
     {
 
-        public LockingPreferenceActivity(IntPtr javaReference, JniHandleOwnership transfer)
-            : base(javaReference, transfer)
-        {
-
-        }
-        public LockingPreferenceActivity()
-        {
-        }
-
-
-        string _className = null;
-        string ClassName
-        {
-            get
-            {
-                if (_className == null)
-                    _className = this.GetType().Name;
-                return _className;
-            }
-        }
-
-        protected override void OnResume()
-        {
-            base.OnResume();
-            TimeoutHelper.Resume(this);
-            Kp2aLog.Log(ClassName + ".OnResume");
-        }
-
-        protected override void OnStart()
-        {
-            base.OnStart();
-            Kp2aLog.Log(ClassName + ".OnStart");
-        }
-
-        protected override void OnCreate(Bundle bundle)
-        {
-            base.OnCreate(bundle);
-            Kp2aLog.Log(ClassName + ".OnCreate");
-        }
-
-        protected override void OnDestroy()
-        {
-            base.OnDestroy();
-            GC.Collect();
-            Kp2aLog.Log(ClassName + ".OnDestroy" + IsFinishing.ToString());
-        }
-
-        protected override void OnPause()
-        {
-            base.OnPause();
-            TimeoutHelper.Pause(this);
-            Kp2aLog.Log(ClassName + ".OnPause");
-        }
-
-        protected override void OnStop()
-        {
-            base.OnStop();
-            Kp2aLog.Log(ClassName + ".OnStop");
-        }
     }
+    public LockingPreferenceActivity()
+    {
+    }
+
+
+    string _className = null;
+    string ClassName
+    {
+      get
+      {
+        if (_className == null)
+          _className = this.GetType().Name;
+        return _className;
+      }
+    }
+
+    protected override void OnResume()
+    {
+      base.OnResume();
+      TimeoutHelper.Resume(this);
+      Kp2aLog.Log(ClassName + ".OnResume");
+    }
+
+    protected override void OnStart()
+    {
+      base.OnStart();
+      Kp2aLog.Log(ClassName + ".OnStart");
+    }
+
+    protected override void OnCreate(Bundle bundle)
+    {
+      base.OnCreate(bundle);
+      Kp2aLog.Log(ClassName + ".OnCreate");
+    }
+
+    protected override void OnDestroy()
+    {
+      base.OnDestroy();
+      GC.Collect();
+      Kp2aLog.Log(ClassName + ".OnDestroy" + IsFinishing.ToString());
+    }
+
+    protected override void OnPause()
+    {
+      base.OnPause();
+      TimeoutHelper.Pause(this);
+      Kp2aLog.Log(ClassName + ".OnPause");
+    }
+
+    protected override void OnStop()
+    {
+      base.OnStop();
+      Kp2aLog.Log(ClassName + ".OnStop");
+    }
+  }
 
 }
 

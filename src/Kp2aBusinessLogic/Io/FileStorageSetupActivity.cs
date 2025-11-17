@@ -28,11 +28,11 @@ using KeePassLib.Serialization;
 
 namespace keepass2android.Io
 {
-    public interface IFileStorageSetupActivity
-    {
-        IOConnectionInfo Ioc { get; }
-        String ProcessName { get; }
-        bool IsForSave { get; }
-        Bundle State { get; }
-    }
+  public interface IFileStorageSetupActivity
+  {
+    IOConnectionInfo Ioc { get; }
+    String ProcessName { get; }
+    bool IsForSave { get; }
+    Bundle State { get; }
+  }
 }

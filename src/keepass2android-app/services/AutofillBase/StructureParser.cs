@@ -27,197 +27,197 @@ using Newtonsoft.Json;
 
 namespace keepass2android.services.AutofillBase
 {
-    public class ViewNodeInputField : Kp2aAutofillParser.InputField
+  public class ViewNodeInputField : Kp2aAutofillParser.InputField
+  {
+    public ViewNodeInputField(AssistStructure.ViewNode viewNode)
     {
-        public ViewNodeInputField(AssistStructure.ViewNode viewNode)
-        {
-            ViewNode = viewNode;
-            IdEntry = viewNode.IdEntry;
-            Hint = viewNode.Hint;
-            ClassName = viewNode.ClassName;
-            AutofillHints = viewNode.GetAutofillHints();
-            IsFocused = viewNode.IsFocused;
-            InputType = (Kp2aAutofillParser.InputTypes)((int)viewNode.InputType);
-            HtmlInfoTag = viewNode.HtmlInfo?.Tag;
-            HtmlInfoTypeAttribute = viewNode.HtmlInfo?.Attributes?.FirstOrDefault(p => p.First?.ToString() == "type")?.Second?.ToString();
-        }
-
-        [JsonIgnore]
-        public AssistStructure.ViewNode ViewNode { get; set; }
-
-        public override void FillFilledAutofillValue(FilledAutofillField filledField)
-        {
-            AutofillValue autofillValue = ViewNode.AutofillValue;
-            if (autofillValue != null)
-            {
-                if (autofillValue.IsList)
-                {
-                    string[] autofillOptions = ViewNode.GetAutofillOptions();
-                    int index = autofillValue.ListValue;
-                    if (autofillOptions != null && autofillOptions.Length > 0)
-                    {
-                        filledField.TextValue = autofillOptions[index];
-                    }
-                }
-                else if (autofillValue.IsDate)
-                {
-                    filledField.DateValue = autofillValue.DateValue;
-                }
-                else if (autofillValue.IsText)
-                {
-                    filledField.TextValue = autofillValue.TextValue;
-                }
-            }
-        }
+      ViewNode = viewNode;
+      IdEntry = viewNode.IdEntry;
+      Hint = viewNode.Hint;
+      ClassName = viewNode.ClassName;
+      AutofillHints = viewNode.GetAutofillHints();
+      IsFocused = viewNode.IsFocused;
+      InputType = (Kp2aAutofillParser.InputTypes)((int)viewNode.InputType);
+      HtmlInfoTag = viewNode.HtmlInfo?.Tag;
+      HtmlInfoTypeAttribute = viewNode.HtmlInfo?.Attributes?.FirstOrDefault(p => p.First?.ToString() == "type")?.Second?.ToString();
     }
 
-    /// <summary>
-    /// Converts an AssistStructure into a list of InputFields
-    /// </summary>
-    class AutofillViewFromAssistStructureFinder
+    [JsonIgnore]
+    public AssistStructure.ViewNode ViewNode { get; set; }
+
+    public override void FillFilledAutofillValue(FilledAutofillField filledField)
     {
-        private readonly Context _context;
-        private readonly AssistStructure _structure;
-        private PublicSuffixRuleCache domainSuffixParserCache;
-
-        public AutofillViewFromAssistStructureFinder(Context context, AssistStructure structure)
+      AutofillValue autofillValue = ViewNode.AutofillValue;
+      if (autofillValue != null)
+      {
+        if (autofillValue.IsList)
         {
-            _context = context;
-            _structure = structure;
-            domainSuffixParserCache = new PublicSuffixRuleCache(context);
+          string[] autofillOptions = ViewNode.GetAutofillOptions();
+          int index = autofillValue.ListValue;
+          if (autofillOptions != null && autofillOptions.Length > 0)
+          {
+            filledField.TextValue = autofillOptions[index];
+          }
         }
-
-        public AutofillView<ViewNodeInputField> GetAutofillView()
+        else if (autofillValue.IsDate)
         {
-            AutofillView<ViewNodeInputField> autofillView = new AutofillView<ViewNodeInputField>();
-
-
-            int nodeCount = _structure.WindowNodeCount;
-            for (int i = 0; i < nodeCount; i++)
-            {
-                var node = _structure.GetWindowNodeAt(i);
-
-                var view = node.RootViewNode;
-                ParseRecursive(autofillView, view);
-            }
-
-            autofillView.PackageId = autofillView.PackageId ?? _structure.ActivityComponent.PackageName;
-
-            return autofillView;
-
+          filledField.DateValue = autofillValue.DateValue;
         }
-
-
-        void ParseRecursive(AutofillView<ViewNodeInputField> autofillView, AssistStructure.ViewNode viewNode)
+        else if (autofillValue.IsText)
         {
-            String webDomain = viewNode.WebDomain;
-            if ((autofillView.PackageId == null) && (!string.IsNullOrWhiteSpace(viewNode.IdPackage)) &&
-                (viewNode.IdPackage != "android"))
-            {
-                autofillView.PackageId = viewNode.IdPackage;
-            }
-
-            DomainName outDomain;
-            if (DomainName.TryParse(webDomain, domainSuffixParserCache, out outDomain))
-            {
-                webDomain = outDomain.RawDomainName;
-            }
-
-            if (webDomain != null)
-            {
-                if (!string.IsNullOrEmpty(autofillView.WebDomain))
-                {
-                    if (webDomain != autofillView.WebDomain)
-                    {
-                        throw new Java.Lang.SecurityException($"Found multiple web domains: valid= {autofillView.WebDomain}, child={webDomain}");
-                    }
-                }
-                else
-                {
-                    autofillView.WebDomain = webDomain;
-                }
-            }
-
-            autofillView.InputFields.Add(new ViewNodeInputField(viewNode));
-            var childrenSize = viewNode.ChildCount;
-            if (childrenSize > 0)
-            {
-                for (int i = 0; i < childrenSize; i++)
-                {
-                    ParseRecursive(autofillView, viewNode.GetChildAt(i));
-                }
-            }
+          filledField.TextValue = autofillValue.TextValue;
         }
+      }
+    }
+  }
+
+  /// <summary>
+  /// Converts an AssistStructure into a list of InputFields
+  /// </summary>
+  class AutofillViewFromAssistStructureFinder
+  {
+    private readonly Context _context;
+    private readonly AssistStructure _structure;
+    private PublicSuffixRuleCache domainSuffixParserCache;
+
+    public AutofillViewFromAssistStructureFinder(Context context, AssistStructure structure)
+    {
+      _context = context;
+      _structure = structure;
+      domainSuffixParserCache = new PublicSuffixRuleCache(context);
     }
 
-    /// <summary>
-    ///	Parser for an AssistStructure object. This is invoked when the Autofill Service receives an
-    /// AssistStructure from the client Activity, representing its View hierarchy. In this sample, it
-    /// parses the hierarchy and collects autofill metadata from {@link ViewNode}s along the way.
-    /// </summary>
-    public sealed class StructureParser : StructureParserBase<ViewNodeInputField>
+    public AutofillView<ViewNodeInputField> GetAutofillView()
     {
-        private readonly AssistStructure _structure;
-        public Context _context { get; }
-        public AutofillFieldMetadataCollection AutofillFields { get; set; }
-        public FilledAutofillFieldCollection<ViewNodeInputField> ClientFormData { get; set; }
-
-        public string PackageId { get; set; }
-
-        public StructureParser(Context context, AssistStructure structure)
-        : base(new Kp2aLogger(), new Kp2aDigitalAssetLinksDataSource(context))
-        {
-            _context = context;
-            _structure = structure;
-            AutofillFields = new AutofillFieldMetadataCollection();
-            LogAutofillView = PreferenceManager.GetDefaultSharedPreferences(context).GetBoolean(context.GetString(Resource.String.LogAutofillView_key), false);
-
-        }
-
-        protected override AutofillTargetId Parse(bool forFill, AutofillView<ViewNodeInputField> autofillView)
-        {
-            if (autofillView == null)
-                Kp2aLog.Log("Received null autofill view!");
-            var result = base.Parse(forFill, autofillView);
-
-            Kp2aLog.Log("Parsing done");
-
-            if (forFill)
-            {
-                foreach (var p in FieldsMappedToHints)
-                    AutofillFields.Add(new AutofillFieldMetadata(p.Key.ViewNode, p.Value));
-            }
-            else
-            {
-                ClientFormData = new FilledAutofillFieldCollection<ViewNodeInputField>();
-                foreach (var p in FieldsMappedToHints)
-                    ClientFormData.Add(new FilledAutofillField(p.Key, p.Value));
-            }
+      AutofillView<ViewNodeInputField> autofillView = new AutofillView<ViewNodeInputField>();
 
 
-            return result;
-        }
+      int nodeCount = _structure.WindowNodeCount;
+      for (int i = 0; i < nodeCount; i++)
+      {
+        var node = _structure.GetWindowNodeAt(i);
 
-        public AutofillTargetId ParseForSave()
-        {
-            var autofillView = new AutofillViewFromAssistStructureFinder(_context, _structure).GetAutofillView();
-            return Parse(false, autofillView);
-        }
+        var view = node.RootViewNode;
+        ParseRecursive(autofillView, view);
+      }
 
-        public StructureParserBase<ViewNodeInputField>.AutofillTargetId ParseForFill()
-        {
-            var autofillView = new AutofillViewFromAssistStructureFinder(_context, _structure).GetAutofillView();
-            return Parse(true, autofillView);
-        }
+      autofillView.PackageId = autofillView.PackageId ?? _structure.ActivityComponent.PackageName;
 
+      return autofillView;
 
     }
 
-    public class Kp2aLogger : ILogger
+
+    void ParseRecursive(AutofillView<ViewNodeInputField> autofillView, AssistStructure.ViewNode viewNode)
     {
-        public void Log(string x)
+      String webDomain = viewNode.WebDomain;
+      if ((autofillView.PackageId == null) && (!string.IsNullOrWhiteSpace(viewNode.IdPackage)) &&
+          (viewNode.IdPackage != "android"))
+      {
+        autofillView.PackageId = viewNode.IdPackage;
+      }
+
+      DomainName outDomain;
+      if (DomainName.TryParse(webDomain, domainSuffixParserCache, out outDomain))
+      {
+        webDomain = outDomain.RawDomainName;
+      }
+
+      if (webDomain != null)
+      {
+        if (!string.IsNullOrEmpty(autofillView.WebDomain))
         {
-            Kp2aLog.Log(x);
+          if (webDomain != autofillView.WebDomain)
+          {
+            throw new Java.Lang.SecurityException($"Found multiple web domains: valid= {autofillView.WebDomain}, child={webDomain}");
+          }
         }
+        else
+        {
+          autofillView.WebDomain = webDomain;
+        }
+      }
+
+      autofillView.InputFields.Add(new ViewNodeInputField(viewNode));
+      var childrenSize = viewNode.ChildCount;
+      if (childrenSize > 0)
+      {
+        for (int i = 0; i < childrenSize; i++)
+        {
+          ParseRecursive(autofillView, viewNode.GetChildAt(i));
+        }
+      }
     }
+  }
+
+  /// <summary>
+  ///	Parser for an AssistStructure object. This is invoked when the Autofill Service receives an
+  /// AssistStructure from the client Activity, representing its View hierarchy. In this sample, it
+  /// parses the hierarchy and collects autofill metadata from {@link ViewNode}s along the way.
+  /// </summary>
+  public sealed class StructureParser : StructureParserBase<ViewNodeInputField>
+  {
+    private readonly AssistStructure _structure;
+    public Context _context { get; }
+    public AutofillFieldMetadataCollection AutofillFields { get; set; }
+    public FilledAutofillFieldCollection<ViewNodeInputField> ClientFormData { get; set; }
+
+    public string PackageId { get; set; }
+
+    public StructureParser(Context context, AssistStructure structure)
+    : base(new Kp2aLogger(), new Kp2aDigitalAssetLinksDataSource(context))
+    {
+      _context = context;
+      _structure = structure;
+      AutofillFields = new AutofillFieldMetadataCollection();
+      LogAutofillView = PreferenceManager.GetDefaultSharedPreferences(context).GetBoolean(context.GetString(Resource.String.LogAutofillView_key), false);
+
+    }
+
+    protected override AutofillTargetId Parse(bool forFill, AutofillView<ViewNodeInputField> autofillView)
+    {
+      if (autofillView == null)
+        Kp2aLog.Log("Received null autofill view!");
+      var result = base.Parse(forFill, autofillView);
+
+      Kp2aLog.Log("Parsing done");
+
+      if (forFill)
+      {
+        foreach (var p in FieldsMappedToHints)
+          AutofillFields.Add(new AutofillFieldMetadata(p.Key.ViewNode, p.Value));
+      }
+      else
+      {
+        ClientFormData = new FilledAutofillFieldCollection<ViewNodeInputField>();
+        foreach (var p in FieldsMappedToHints)
+          ClientFormData.Add(new FilledAutofillField(p.Key, p.Value));
+      }
+
+
+      return result;
+    }
+
+    public AutofillTargetId ParseForSave()
+    {
+      var autofillView = new AutofillViewFromAssistStructureFinder(_context, _structure).GetAutofillView();
+      return Parse(false, autofillView);
+    }
+
+    public StructureParserBase<ViewNodeInputField>.AutofillTargetId ParseForFill()
+    {
+      var autofillView = new AutofillViewFromAssistStructureFinder(_context, _structure).GetAutofillView();
+      return Parse(true, autofillView);
+    }
+
+
+  }
+
+  public class Kp2aLogger : ILogger
+  {
+    public void Log(string x)
+    {
+      Kp2aLog.Log(x);
+    }
+  }
 }

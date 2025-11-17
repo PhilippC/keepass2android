@@ -29,32 +29,32 @@ using KeePassLib.Serialization;
 #if !EXCLUDE_JAVAFILESTORAGE
 namespace keepass2android.Io
 {
-    public class GoogleDriveFileStorage : JavaFileStorage
+  public class GoogleDriveFileStorage : JavaFileStorage
+  {
+    public GoogleDriveFileStorage(Context ctx, IKp2aApp app) :
+        base(new Keepass2android.Javafilestorage.GoogleDriveFullFileStorage(), app)
     {
-        public GoogleDriveFileStorage(Context ctx, IKp2aApp app) :
-            base(new Keepass2android.Javafilestorage.GoogleDriveFullFileStorage(), app)
-        {
-        }
-
-
-        public override bool UserShouldBackup
-        {
-            get { return false; }
-        }
     }
 
-    public class GoogleDriveAppDataFileStorage : JavaFileStorage
+
+    public override bool UserShouldBackup
     {
-        public GoogleDriveAppDataFileStorage(Context ctx, IKp2aApp app) :
-            base(new Keepass2android.Javafilestorage.GoogleDriveAppDataFileStorage(), app)
-        {
-        }
-
-
-        public override bool UserShouldBackup
-        {
-            get { return false; }
-        }
+      get { return false; }
     }
+  }
+
+  public class GoogleDriveAppDataFileStorage : JavaFileStorage
+  {
+    public GoogleDriveAppDataFileStorage(Context ctx, IKp2aApp app) :
+        base(new Keepass2android.Javafilestorage.GoogleDriveAppDataFileStorage(), app)
+    {
+    }
+
+
+    public override bool UserShouldBackup
+    {
+      get { return false; }
+    }
+  }
 }
 #endif

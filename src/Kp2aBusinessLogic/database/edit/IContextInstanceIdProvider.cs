@@ -22,7 +22,7 @@ namespace keepass2android;
 public interface IContextInstanceIdProvider
 {
 
-    int ContextInstanceId { get; }
+  int ContextInstanceId { get; }
 
 
 }

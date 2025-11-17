@@ -24,106 +24,106 @@ using KeePassLib.Serialization;
 
 namespace keepass2android
 {
-    [Activity(Theme = "@style/Kp2aTheme_ActionBar")]
-    public class ExportKeyfileActivity : LockCloseActivity
+  [Activity(Theme = "@style/Kp2aTheme_ActionBar")]
+  public class ExportKeyfileActivity : LockCloseActivity
+  {
+
+    public class ExportKeyfile : OperationWithFinishHandler
     {
+      private readonly IKp2aApp _app;
+      private IOConnectionInfo _targetIoc;
 
-        public class ExportKeyfile : OperationWithFinishHandler
+      public ExportKeyfile(IKp2aApp app, OnOperationFinishedHandler onOperationFinishedHandler, IOConnectionInfo targetIoc) : base(
+          App.Kp2a, onOperationFinishedHandler)
+      {
+        _app = app;
+        _targetIoc = targetIoc;
+      }
+
+      public override void Run()
+      {
+        StatusLogger.UpdateMessage(UiStringKey.exporting_database);
+
+        try
         {
-            private readonly IKp2aApp _app;
-            private IOConnectionInfo _targetIoc;
+          var fileStorage = _app.GetFileStorage(_targetIoc);
+          if (fileStorage is IOfflineSwitchable)
+          {
+            ((IOfflineSwitchable)fileStorage).IsOffline = false;
+          }
 
-            public ExportKeyfile(IKp2aApp app, OnOperationFinishedHandler onOperationFinishedHandler, IOConnectionInfo targetIoc) : base(
-                App.Kp2a, onOperationFinishedHandler)
-            {
-                _app = app;
-                _targetIoc = targetIoc;
-            }
+          CompositeKey masterKey = App.Kp2a.CurrentDb.KpDatabase.MasterKey;
+          var sourceIoc = ((KcpKeyFile)masterKey.GetUserKey(typeof(KcpKeyFile))).Ioc;
 
-            public override void Run()
-            {
-                StatusLogger.UpdateMessage(UiStringKey.exporting_database);
+          IoUtil.Copy(_targetIoc, sourceIoc, App.Kp2a);
 
-                try
-                {
-                    var fileStorage = _app.GetFileStorage(_targetIoc);
-                    if (fileStorage is IOfflineSwitchable)
-                    {
-                        ((IOfflineSwitchable)fileStorage).IsOffline = false;
-                    }
+          if (fileStorage is IOfflineSwitchable)
+          {
+            ((IOfflineSwitchable)fileStorage).IsOffline = App.Kp2a.OfflineMode;
+          }
 
-                    CompositeKey masterKey = App.Kp2a.CurrentDb.KpDatabase.MasterKey;
-                    var sourceIoc = ((KcpKeyFile)masterKey.GetUserKey(typeof(KcpKeyFile))).Ioc;
-
-                    IoUtil.Copy(_targetIoc, sourceIoc, App.Kp2a);
-
-                    if (fileStorage is IOfflineSwitchable)
-                    {
-                        ((IOfflineSwitchable)fileStorage).IsOffline = App.Kp2a.OfflineMode;
-                    }
-
-                    Finish(true);
+          Finish(true);
 
 
-                }
-                catch (Exception ex)
-                {
-                    Finish(false, Util.GetErrorMessage(ex));
-                }
-
-
-            }
+        }
+        catch (Exception ex)
+        {
+          Finish(false, Util.GetErrorMessage(ex));
         }
 
 
-        public class ExportKeyfileProcessManager : FileSaveProcessManager
-        {
-            public ExportKeyfileProcessManager(int requestCode, LifecycleAwareActivity activity) : base(requestCode, activity)
+      }
+    }
+
+
+    public class ExportKeyfileProcessManager : FileSaveProcessManager
+    {
+      public ExportKeyfileProcessManager(int requestCode, LifecycleAwareActivity activity) : base(requestCode, activity)
+      {
+
+      }
+
+      protected override void SaveFile(IOConnectionInfo ioc)
+      {
+        var exportKeyfile = new ExportKeyfile(App.Kp2a, new ActionInContextInstanceOnOperationFinished(_activity.ContextInstanceId, App.Kp2a,
+            (success, message, context) =>
             {
-
+              if (!success)
+                App.Kp2a.ShowMessage(context, message, MessageSeverity.Error);
+              else
+                App.Kp2a.ShowMessage(context, _activity.GetString(Resource.String.export_keyfile_successful),
+                             MessageSeverity.Info);
+              (context as Activity)?.Finish();
             }
+        ), ioc);
+        BlockingOperationStarter pt = new BlockingOperationStarter(App.Kp2a, exportKeyfile);
+        pt.Run();
 
-            protected override void SaveFile(IOConnectionInfo ioc)
-            {
-                var exportKeyfile = new ExportKeyfile(App.Kp2a, new ActionInContextInstanceOnOperationFinished(_activity.ContextInstanceId, App.Kp2a,
-                    (success, message, context) =>
-                    {
-                        if (!success)
-                            App.Kp2a.ShowMessage(context, message, MessageSeverity.Error);
-                        else
-                            App.Kp2a.ShowMessage(context, _activity.GetString(Resource.String.export_keyfile_successful),
-                                 MessageSeverity.Info);
-                        (context as Activity)?.Finish();
-                    }
-                ), ioc);
-                BlockingOperationStarter pt = new BlockingOperationStarter(App.Kp2a, exportKeyfile);
-                pt.Run();
+      }
+    }
 
-            }
-        }
-
-        private ExportKeyfileProcessManager _exportKeyfileProcessManager;
+    private ExportKeyfileProcessManager _exportKeyfileProcessManager;
 
 
-        protected override void OnCreate(Android.OS.Bundle savedInstanceState)
-        {
-            base.OnCreate(savedInstanceState);
-            _exportKeyfileProcessManager = new ExportKeyfileProcessManager(0, this);
-            _exportKeyfileProcessManager.StartProcess();
-
-        }
-
-        protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
-        {
-            base.OnActivityResult(requestCode, resultCode, data);
-
-            if (_exportKeyfileProcessManager?.OnActivityResult(requestCode, resultCode, data) == true)
-                return;
-
-            Finish();
-
-        }
-
+    protected override void OnCreate(Android.OS.Bundle savedInstanceState)
+    {
+      base.OnCreate(savedInstanceState);
+      _exportKeyfileProcessManager = new ExportKeyfileProcessManager(0, this);
+      _exportKeyfileProcessManager.StartProcess();
 
     }
+
+    protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
+    {
+      base.OnActivityResult(requestCode, resultCode, data);
+
+      if (_exportKeyfileProcessManager?.OnActivityResult(requestCode, resultCode, data) == true)
+        return;
+
+      Finish();
+
+    }
+
+
+  }
 }

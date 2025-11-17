@@ -31,32 +31,32 @@ using KeePassLib.Utility;
 
 namespace keepass2android
 {
-    public class ElementAndDatabaseId
+  public class ElementAndDatabaseId
+  {
+    private const char Separator = '+';
+
+    public ElementAndDatabaseId(Database db, IStructureItem element)
     {
-        private const char Separator = '+';
-
-        public ElementAndDatabaseId(Database db, IStructureItem element)
-        {
-            DatabaseId = db.IocAsHexString();
-            ElementIdString = element.Uuid.ToHexString();
-        }
-
-        public ElementAndDatabaseId(string fullId)
-        {
-            string[] parts = fullId.Split(Separator);
-            if (parts.Length != 2)
-                throw new Exception("Invalid full id " + fullId);
-            DatabaseId = parts[0];
-            ElementIdString = parts[1];
-        }
-
-        public string DatabaseId { get; set; }
-        public string ElementIdString { get; set; }
-        public PwUuid ElementId { get { return new PwUuid(MemUtil.HexStringToByteArray(ElementIdString)); } }
-
-        public string FullId
-        {
-            get { return DatabaseId + Separator + ElementIdString; }
-        }
+      DatabaseId = db.IocAsHexString();
+      ElementIdString = element.Uuid.ToHexString();
     }
+
+    public ElementAndDatabaseId(string fullId)
+    {
+      string[] parts = fullId.Split(Separator);
+      if (parts.Length != 2)
+        throw new Exception("Invalid full id " + fullId);
+      DatabaseId = parts[0];
+      ElementIdString = parts[1];
+    }
+
+    public string DatabaseId { get; set; }
+    public string ElementIdString { get; set; }
+    public PwUuid ElementId { get { return new PwUuid(MemUtil.HexStringToByteArray(ElementIdString)); } }
+
+    public string FullId
+    {
+      get { return DatabaseId + Separator + ElementIdString; }
+    }
+  }
 }

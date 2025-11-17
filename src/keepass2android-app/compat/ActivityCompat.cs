@@ -22,38 +22,38 @@ using System.Reflection;
 namespace keepass2android
 {
 
-    public class ActivityCompat
+  public class ActivityCompat
+  {
+    private static MethodInfo _invalidateOptMenuMethod;
+
+
+
+    public static void InvalidateOptionsMenu(Activity act)
     {
-        private static MethodInfo _invalidateOptMenuMethod;
 
+      try
+      {
+        _invalidateOptMenuMethod = act.GetType().GetMethod("InvalidateOptionsMenu", new Type[] { });
+      }
+      catch (Exception)
+      {
+        // Do nothing if method doesn't exist
+      }
 
-
-        public static void InvalidateOptionsMenu(Activity act)
+      if (_invalidateOptMenuMethod != null)
+      {
+        try
         {
-
-            try
-            {
-                _invalidateOptMenuMethod = act.GetType().GetMethod("InvalidateOptionsMenu", new Type[] { });
-            }
-            catch (Exception)
-            {
-                // Do nothing if method doesn't exist
-            }
-
-            if (_invalidateOptMenuMethod != null)
-            {
-                try
-                {
-                    _invalidateOptMenuMethod.Invoke(act, (new Object[] { }));
-                }
-                catch (Exception)
-                {
-                    // Do nothing
-                }
-            }
+          _invalidateOptMenuMethod.Invoke(act, (new Object[] { }));
         }
-
+        catch (Exception)
+        {
+          // Do nothing
+        }
+      }
     }
+
+  }
 
 }
 

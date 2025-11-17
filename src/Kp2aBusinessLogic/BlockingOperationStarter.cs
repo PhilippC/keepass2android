@@ -24,30 +24,30 @@ using System.Threading.Tasks;
 
 namespace keepass2android
 {
-    /// <summary>
-    /// Class to run a task while a progress dialog is shown
-    /// </summary>
-    public class BlockingOperationStarter
+  /// <summary>
+  /// Class to run a task while a progress dialog is shown
+  /// </summary>
+  public class BlockingOperationStarter
+  {
+
+    private readonly OperationWithFinishHandler _task;
+    private readonly IKp2aApp _app;
+
+    public BlockingOperationStarter(IKp2aApp app, OperationWithFinishHandler task)
     {
+      _task = task;
+      _app = app;
+    }
 
-        private readonly OperationWithFinishHandler _task;
-        private readonly IKp2aApp _app;
-
-        public BlockingOperationStarter(IKp2aApp app, OperationWithFinishHandler task)
-        {
-            _task = task;
-            _app = app;
-        }
-
-        public void Run()
-        {
-            _app.CancelBackgroundOperations();
-            OperationRunner.Instance.Run(_app, _task, true);
-
-
-        }
+    public void Run()
+    {
+      _app.CancelBackgroundOperations();
+      OperationRunner.Instance.Run(_app, _task, true);
 
 
     }
+
+
+  }
 }
 

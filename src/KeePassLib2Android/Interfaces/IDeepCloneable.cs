@@ -22,16 +22,16 @@ using System.Collections.Generic;
 
 namespace KeePassLib.Interfaces
 {
+  /// <summary>
+  /// Interface for objects that are deeply cloneable.
+  /// </summary>
+  /// <typeparam name="T">Reference type.</typeparam>
+  public interface IDeepCloneable<T> where T : class
+  {
     /// <summary>
-    /// Interface for objects that are deeply cloneable.
+    /// Deeply clone the object.
     /// </summary>
-    /// <typeparam name="T">Reference type.</typeparam>
-    public interface IDeepCloneable<T> where T : class
-    {
-        /// <summary>
-        /// Deeply clone the object.
-        /// </summary>
-        /// <returns>Cloned object.</returns>
-        T CloneDeep();
-    }
+    /// <returns>Cloned object.</returns>
+    T CloneDeep();
+  }
 }

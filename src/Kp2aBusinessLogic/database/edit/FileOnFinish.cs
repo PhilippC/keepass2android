@@ -21,19 +21,19 @@ using Android.App;
 namespace keepass2android
 {
 
-    public abstract class FileOnFinish : OnOperationFinishedHandler
+  public abstract class FileOnFinish : OnOperationFinishedHandler
+  {
+    private String _filename = "";
+
+    protected FileOnFinish(IKp2aApp app, FileOnFinish operationFinishedHandler) : base(app, operationFinishedHandler)
     {
-        private String _filename = "";
-
-        protected FileOnFinish(IKp2aApp app, FileOnFinish operationFinishedHandler) : base(app, operationFinishedHandler)
-        {
-        }
-
-        public string Filename
-        {
-            get { return _filename; }
-            set { _filename = value; }
-        }
     }
+
+    public string Filename
+    {
+      get { return _filename; }
+      set { _filename = value; }
+    }
+  }
 }
 

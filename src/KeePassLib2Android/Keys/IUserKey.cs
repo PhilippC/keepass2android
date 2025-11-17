@@ -23,26 +23,26 @@ using KeePassLib.Security;
 
 namespace KeePassLib.Keys
 {
+  /// <summary>
+  /// Interface to a user key, like a password, key file data, etc.
+  /// </summary>
+  public interface IUserKey
+  {
     /// <summary>
-    /// Interface to a user key, like a password, key file data, etc.
+    /// Get key data. Querying this property is fast (it returns a
+    /// reference to a cached <c>ProtectedBinary</c> object).
+    /// If no key data is available, <c>null</c> is returned.
     /// </summary>
-    public interface IUserKey
+    ProtectedBinary KeyData
     {
-        /// <summary>
-        /// Get key data. Querying this property is fast (it returns a
-        /// reference to a cached <c>ProtectedBinary</c> object).
-        /// If no key data is available, <c>null</c> is returned.
-        /// </summary>
-        ProtectedBinary KeyData
-        {
-            get;
-        }
-
-        // /// <summary>
-        // /// Clear the key and securely erase all security-critical information.
-        // /// </summary>
-        // void Clear();
-
-        uint GetMinKdbxVersion();
+      get;
     }
+
+    // /// <summary>
+    // /// Clear the key and securely erase all security-critical information.
+    // /// </summary>
+    // void Clear();
+
+    uint GetMinKdbxVersion();
+  }
 }

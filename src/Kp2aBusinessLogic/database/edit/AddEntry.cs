@@ -21,103 +21,103 @@ using KeePassLib;
 
 namespace keepass2android
 {
-    public class AddEntry : OperationWithFinishHandler
+  public class AddEntry : OperationWithFinishHandler
+  {
+    protected Database Db
     {
-        protected Database Db
-        {
-            get { return _app.CurrentDb; }
-        }
-
-        private readonly IKp2aApp _app;
-        private readonly PwEntry _entry;
-        private readonly PwGroup _parentGroup;
-        private readonly Database _db;
-
-        public static AddEntry GetInstance(IKp2aApp app, PwEntry entry, PwGroup parentGroup, OnOperationFinishedHandler operationFinishedHandler, Database db)
-        {
-
-            return new AddEntry(db, app, entry, parentGroup, operationFinishedHandler);
-        }
-
-        public AddEntry(Database db, IKp2aApp app, PwEntry entry, PwGroup parentGroup, OnOperationFinishedHandler operationFinishedHandler) : base(app, operationFinishedHandler)
-        {
-            _db = db;
-            _parentGroup = parentGroup;
-            _app = app;
-            _entry = entry;
-
-            _operationFinishedHandler = new AfterAdd(app.CurrentDb, entry, app, operationFinishedHandler);
-        }
-
-
-        public override void Run()
-        {
-            StatusLogger.UpdateMessage(UiStringKey.AddingEntry);
-
-            //make sure we're not adding the entry if it was added before.
-            //(this might occur in very rare cases where the user dismissis the save dialog 
-            //by rotating the screen while saving and then presses save again)
-            if (_parentGroup.FindEntry(_entry.Uuid, false) == null)
-            {
-                _parentGroup.AddEntry(_entry, true);
-            }
-
-            // Add entry to global
-            _db.EntriesById[_entry.Uuid] = _entry;
-            _db.Elements.Add(_entry);
-
-            // Commit to disk
-            SaveDb save = new SaveDb(_app, _app.CurrentDb, operationFinishedHandler);
-            save.SetStatusLogger(StatusLogger);
-            save.Run();
-        }
-
-        private class AfterAdd : OnOperationFinishedHandler
-        {
-            private readonly Database _db;
-            private readonly PwEntry _entry;
-            private readonly IKp2aApp _app;
-
-            public AfterAdd(Database db, PwEntry entry, IKp2aApp app, OnOperationFinishedHandler operationFinishedHandler) : base(app, operationFinishedHandler)
-            {
-                _db = db;
-                _entry = entry;
-                _app = app;
-            }
-
-
-
-            public override void Run()
-            {
-                if (Success)
-                {
-
-                    PwGroup parent = _entry.ParentGroup;
-
-                    // Mark parent group dirty
-                    _app.DirtyGroups.Add(parent);
-                    // even mark the parent of the parent dirty to update the views showing the number of child entries
-                    if (parent?.ParentGroup != null)
-                    {
-                        _app.DirtyGroups.Add(parent.ParentGroup);
-                    }
-
-
-
-                }
-                else
-                {
-                    StatusLogger.UpdateMessage(UiStringKey.UndoingChanges);
-                    //TODO test fail
-                    _entry.ParentGroup.Entries.Remove(_entry);
-                }
-
-                base.Run();
-            }
-        }
-
-
+      get { return _app.CurrentDb; }
     }
+
+    private readonly IKp2aApp _app;
+    private readonly PwEntry _entry;
+    private readonly PwGroup _parentGroup;
+    private readonly Database _db;
+
+    public static AddEntry GetInstance(IKp2aApp app, PwEntry entry, PwGroup parentGroup, OnOperationFinishedHandler operationFinishedHandler, Database db)
+    {
+
+      return new AddEntry(db, app, entry, parentGroup, operationFinishedHandler);
+    }
+
+    public AddEntry(Database db, IKp2aApp app, PwEntry entry, PwGroup parentGroup, OnOperationFinishedHandler operationFinishedHandler) : base(app, operationFinishedHandler)
+    {
+      _db = db;
+      _parentGroup = parentGroup;
+      _app = app;
+      _entry = entry;
+
+      _operationFinishedHandler = new AfterAdd(app.CurrentDb, entry, app, operationFinishedHandler);
+    }
+
+
+    public override void Run()
+    {
+      StatusLogger.UpdateMessage(UiStringKey.AddingEntry);
+
+      //make sure we're not adding the entry if it was added before.
+      //(this might occur in very rare cases where the user dismissis the save dialog 
+      //by rotating the screen while saving and then presses save again)
+      if (_parentGroup.FindEntry(_entry.Uuid, false) == null)
+      {
+        _parentGroup.AddEntry(_entry, true);
+      }
+
+      // Add entry to global
+      _db.EntriesById[_entry.Uuid] = _entry;
+      _db.Elements.Add(_entry);
+
+      // Commit to disk
+      SaveDb save = new SaveDb(_app, _app.CurrentDb, operationFinishedHandler);
+      save.SetStatusLogger(StatusLogger);
+      save.Run();
+    }
+
+    private class AfterAdd : OnOperationFinishedHandler
+    {
+      private readonly Database _db;
+      private readonly PwEntry _entry;
+      private readonly IKp2aApp _app;
+
+      public AfterAdd(Database db, PwEntry entry, IKp2aApp app, OnOperationFinishedHandler operationFinishedHandler) : base(app, operationFinishedHandler)
+      {
+        _db = db;
+        _entry = entry;
+        _app = app;
+      }
+
+
+
+      public override void Run()
+      {
+        if (Success)
+        {
+
+          PwGroup parent = _entry.ParentGroup;
+
+          // Mark parent group dirty
+          _app.DirtyGroups.Add(parent);
+          // even mark the parent of the parent dirty to update the views showing the number of child entries
+          if (parent?.ParentGroup != null)
+          {
+            _app.DirtyGroups.Add(parent.ParentGroup);
+          }
+
+
+
+        }
+        else
+        {
+          StatusLogger.UpdateMessage(UiStringKey.UndoingChanges);
+          //TODO test fail
+          _entry.ParentGroup.Entries.Remove(_entry);
+        }
+
+        base.Run();
+      }
+    }
+
+
+  }
 
 }
 

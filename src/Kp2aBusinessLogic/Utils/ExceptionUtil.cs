@@ -23,27 +23,27 @@ using System.Threading.Tasks;
 
 namespace KeePass.Util
 {
-    public class ExceptionUtil
+  public class ExceptionUtil
+  {
+
+    public static string GetErrorMessage(Exception e)
     {
 
-        public static string GetErrorMessage(Exception e)
+      try
+      {
+        string errorMessage = e.Message;
+        if (e is Java.Lang.Exception javaException)
         {
-
-            try
-            {
-                string errorMessage = e.Message;
-                if (e is Java.Lang.Exception javaException)
-                {
-                    errorMessage = javaException.Message ?? errorMessage;
-                }
-
-                return errorMessage;
-            }
-            catch
-            {
-                return "";
-            }
+          errorMessage = javaException.Message ?? errorMessage;
         }
 
+        return errorMessage;
+      }
+      catch
+      {
+        return "";
+      }
     }
+
+  }
 }

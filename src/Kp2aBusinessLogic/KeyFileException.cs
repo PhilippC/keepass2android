@@ -19,45 +19,45 @@ using System;
 
 namespace keepass2android
 {
+  /// <summary>
+  /// Thrown when there is an error adding the keyfie to the user key
+  /// </summary>
+  [Serializable]
+  public class KeyFileException : Exception
+  {
     /// <summary>
-    /// Thrown when there is an error adding the keyfie to the user key
+    /// Initializes a new instance of the <see cref="T:KeyFileException"/> class
     /// </summary>
-    [Serializable]
-    public class KeyFileException : Exception
+    public KeyFileException()
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="T:KeyFileException"/> class
-        /// </summary>
-        public KeyFileException()
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="T:KeyFileException"/> class
-        /// </summary>
-        /// <param name="message">A <see cref="T:System.String"/> that describes the exception. </param>
-        public KeyFileException(string message) : base(message)
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="T:KeyFileException"/> class
-        /// </summary>
-        /// <param name="message">A <see cref="T:System.String"/> that describes the exception. </param>
-        /// <param name="inner">The exception that is the cause of the current exception. </param>
-        public KeyFileException(string message, Exception inner) : base(message, inner)
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="T:KeyFileException"/> class
-        /// </summary>
-        /// <param name="context">The contextual information about the source or destination.</param>
-        /// <param name="info">The object that holds the serialized object data.</param>
-        protected KeyFileException(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) : base(info, context)
-        {
-        }
     }
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="T:KeyFileException"/> class
+    /// </summary>
+    /// <param name="message">A <see cref="T:System.String"/> that describes the exception. </param>
+    public KeyFileException(string message) : base(message)
+    {
+    }
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="T:KeyFileException"/> class
+    /// </summary>
+    /// <param name="message">A <see cref="T:System.String"/> that describes the exception. </param>
+    /// <param name="inner">The exception that is the cause of the current exception. </param>
+    public KeyFileException(string message, Exception inner) : base(message, inner)
+    {
+    }
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="T:KeyFileException"/> class
+    /// </summary>
+    /// <param name="context">The contextual information about the source or destination.</param>
+    /// <param name="info">The object that holds the serialized object data.</param>
+    protected KeyFileException(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) : base(info, context)
+    {
+    }
+  }
 
 }
 

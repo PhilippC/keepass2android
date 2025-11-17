@@ -36,358 +36,358 @@ using KeePassLib.Utility;
 
 namespace KeePassLib.Cryptography
 {
-    /// <summary>
-    /// Cryptographically secure pseudo-random number generator.
-    /// The returned values are unpredictable and cannot be reproduced.
-    /// <c>CryptoRandom</c> is a singleton class.
-    /// </summary>
-    public sealed class CryptoRandom
+  /// <summary>
+  /// Cryptographically secure pseudo-random number generator.
+  /// The returned values are unpredictable and cannot be reproduced.
+  /// <c>CryptoRandom</c> is a singleton class.
+  /// </summary>
+  public sealed class CryptoRandom
+  {
+    private byte[] m_pbEntropyPool = new byte[64];
+    private ulong m_uCounter;
+    private RNGCryptoServiceProvider m_rng = new RNGCryptoServiceProvider();
+    private ulong m_uGeneratedBytesCount = 0;
+
+    private static object g_oSyncRoot = new object();
+    private object m_oSyncRoot = new object();
+
+    private static CryptoRandom g_pInstance = null;
+    public static CryptoRandom Instance
     {
-        private byte[] m_pbEntropyPool = new byte[64];
-        private ulong m_uCounter;
-        private RNGCryptoServiceProvider m_rng = new RNGCryptoServiceProvider();
-        private ulong m_uGeneratedBytesCount = 0;
-
-        private static object g_oSyncRoot = new object();
-        private object m_oSyncRoot = new object();
-
-        private static CryptoRandom g_pInstance = null;
-        public static CryptoRandom Instance
+      get
+      {
+        CryptoRandom cr;
+        lock (g_oSyncRoot)
         {
-            get
-            {
-                CryptoRandom cr;
-                lock (g_oSyncRoot)
-                {
-                    cr = g_pInstance;
-                    if (cr == null)
-                    {
-                        cr = new CryptoRandom();
-                        g_pInstance = cr;
-                    }
-                }
-
-                return cr;
-            }
+          cr = g_pInstance;
+          if (cr == null)
+          {
+            cr = new CryptoRandom();
+            g_pInstance = cr;
+          }
         }
 
-        /// <summary>
-        /// Get the number of random bytes that this instance generated so far.
-        /// Note that this number can be higher than the number of random bytes
-        /// actually requested using the <c>GetRandomBytes</c> method.
-        /// </summary>
-        public ulong GeneratedBytesCount
-        {
-            get
-            {
-                ulong u;
-                lock (m_oSyncRoot) { u = m_uGeneratedBytesCount; }
-                return u;
-            }
-        }
+        return cr;
+      }
+    }
 
-        /// <summary>
-        /// Event that is triggered whenever the internal <c>GenerateRandom256</c>
-        /// method is called to generate random bytes.
-        /// </summary>
-        public event EventHandler GenerateRandom256Pre;
+    /// <summary>
+    /// Get the number of random bytes that this instance generated so far.
+    /// Note that this number can be higher than the number of random bytes
+    /// actually requested using the <c>GetRandomBytes</c> method.
+    /// </summary>
+    public ulong GeneratedBytesCount
+    {
+      get
+      {
+        ulong u;
+        lock (m_oSyncRoot) { u = m_uGeneratedBytesCount; }
+        return u;
+      }
+    }
 
-        private CryptoRandom()
-        {
+    /// <summary>
+    /// Event that is triggered whenever the internal <c>GenerateRandom256</c>
+    /// method is called to generate random bytes.
+    /// </summary>
+    public event EventHandler GenerateRandom256Pre;
 
-            // byte[] pb = new byte[8];
-            // rWeak.NextBytes(pb);
-            // m_uCounter = MemUtil.BytesToUInt64(pb);
-            m_uCounter = (ulong)DateTime.UtcNow.ToBinary();
+    private CryptoRandom()
+    {
 
-            AddEntropy(GetSystemData());
-            AddEntropy(GetCspData());
-        }
+      // byte[] pb = new byte[8];
+      // rWeak.NextBytes(pb);
+      // m_uCounter = MemUtil.BytesToUInt64(pb);
+      m_uCounter = (ulong)DateTime.UtcNow.ToBinary();
 
-        /// <summary>
-        /// Update the internal seed of the random number generator based
-        /// on entropy data.
-        /// This method is thread-safe.
-        /// </summary>
-        /// <param name="pbEntropy">Entropy bytes.</param>
-        public void AddEntropy(byte[] pbEntropy)
-        {
-            if (pbEntropy == null) { Debug.Assert(false); return; }
-            if (pbEntropy.Length == 0) { Debug.Assert(false); return; }
+      AddEntropy(GetSystemData());
+      AddEntropy(GetCspData());
+    }
 
-            byte[] pbNewData = pbEntropy;
-            if (pbEntropy.Length > 64)
-            {
+    /// <summary>
+    /// Update the internal seed of the random number generator based
+    /// on entropy data.
+    /// This method is thread-safe.
+    /// </summary>
+    /// <param name="pbEntropy">Entropy bytes.</param>
+    public void AddEntropy(byte[] pbEntropy)
+    {
+      if (pbEntropy == null) { Debug.Assert(false); return; }
+      if (pbEntropy.Length == 0) { Debug.Assert(false); return; }
+
+      byte[] pbNewData = pbEntropy;
+      if (pbEntropy.Length > 64)
+      {
 #if KeePassLibSD
 				using(SHA256Managed shaNew = new SHA256Managed())
 #else
-                using (SHA512Managed shaNew = new SHA512Managed())
+        using (SHA512Managed shaNew = new SHA512Managed())
 #endif
-                {
-                    pbNewData = shaNew.ComputeHash(pbEntropy);
-                }
-            }
+        {
+          pbNewData = shaNew.ComputeHash(pbEntropy);
+        }
+      }
 
-            lock (m_oSyncRoot)
-            {
-                int cbPool = m_pbEntropyPool.Length;
-                int cbNew = pbNewData.Length;
+      lock (m_oSyncRoot)
+      {
+        int cbPool = m_pbEntropyPool.Length;
+        int cbNew = pbNewData.Length;
 
-                byte[] pbCmp = new byte[cbPool + cbNew];
-                Array.Copy(m_pbEntropyPool, pbCmp, cbPool);
-                Array.Copy(pbNewData, 0, pbCmp, cbPool, cbNew);
+        byte[] pbCmp = new byte[cbPool + cbNew];
+        Array.Copy(m_pbEntropyPool, pbCmp, cbPool);
+        Array.Copy(pbNewData, 0, pbCmp, cbPool, cbNew);
 
-                MemUtil.ZeroByteArray(m_pbEntropyPool);
+        MemUtil.ZeroByteArray(m_pbEntropyPool);
 
 #if KeePassLibSD
 				using(SHA256Managed shaPool = new SHA256Managed())
 #else
-                using (SHA512Managed shaPool = new SHA512Managed())
+        using (SHA512Managed shaPool = new SHA512Managed())
 #endif
-                {
-                    m_pbEntropyPool = shaPool.ComputeHash(pbCmp);
-                }
-
-                MemUtil.ZeroByteArray(pbCmp);
-            }
+        {
+          m_pbEntropyPool = shaPool.ComputeHash(pbCmp);
         }
 
-        private static byte[] GetSystemData()
-        {
-            MemoryStream ms = new MemoryStream();
-            byte[] pb;
+        MemUtil.ZeroByteArray(pbCmp);
+      }
+    }
 
-            pb = MemUtil.Int32ToBytes(Environment.TickCount);
-            MemUtil.Write(ms, pb);
+    private static byte[] GetSystemData()
+    {
+      MemoryStream ms = new MemoryStream();
+      byte[] pb;
 
-            pb = MemUtil.Int64ToBytes(DateTime.UtcNow.ToBinary());
-            MemUtil.Write(ms, pb);
+      pb = MemUtil.Int32ToBytes(Environment.TickCount);
+      MemUtil.Write(ms, pb);
+
+      pb = MemUtil.Int64ToBytes(DateTime.UtcNow.ToBinary());
+      MemUtil.Write(ms, pb);
 
 #if !KeePassLibSD
-            /*Not supported on Android
-			// In try-catch for systems without GUI;
-			// https://sourceforge.net/p/keepass/discussion/329221/thread/20335b73/
-			try
-			{
-				Point pt = Cursor.Position;
-				pb = MemUtil.Int32ToBytes(pt.X);
-				MemUtil.Write(ms, pb);
-				pb = MemUtil.Int32ToBytes(pt.Y);
-				MemUtil.Write(ms, pb);
-			}
-			catch(Exception) { }
-			 */
+      /*Not supported on Android
+      // In try-catch for systems without GUI;
+      // https://sourceforge.net/p/keepass/discussion/329221/thread/20335b73/
+      try
+      {
+          Point pt = Cursor.Position;
+          pb = MemUtil.Int32ToBytes(pt.X);
+          MemUtil.Write(ms, pb);
+          pb = MemUtil.Int32ToBytes(pt.Y);
+          MemUtil.Write(ms, pb);
+      }
+      catch(Exception) { }
+       */
 #endif
 
-            pb = MemUtil.UInt32ToBytes((uint)NativeLib.GetPlatformID());
-            MemUtil.Write(ms, pb);
+      pb = MemUtil.UInt32ToBytes((uint)NativeLib.GetPlatformID());
+      MemUtil.Write(ms, pb);
 
-            try
-            {
+      try
+      {
 #if KeePassUAP
 				string strOS = EnvironmentExt.OSVersion.VersionString;
 #else
-                string strOS = Environment.OSVersion.VersionString;
+        string strOS = Environment.OSVersion.VersionString;
 #endif
-                AddStrHash(ms, strOS);
+        AddStrHash(ms, strOS);
 
-                pb = MemUtil.Int32ToBytes(Environment.ProcessorCount);
-                MemUtil.Write(ms, pb);
+        pb = MemUtil.Int32ToBytes(Environment.ProcessorCount);
+        MemUtil.Write(ms, pb);
 
 #if !KeePassUAP
-                AddStrHash(ms, Environment.CommandLine);
+        AddStrHash(ms, Environment.CommandLine);
 
-                pb = MemUtil.Int64ToBytes(Environment.WorkingSet);
-                MemUtil.Write(ms, pb);
+        pb = MemUtil.Int64ToBytes(Environment.WorkingSet);
+        MemUtil.Write(ms, pb);
 #endif
-            }
-            catch (Exception) { Debug.Assert(false); }
+      }
+      catch (Exception) { Debug.Assert(false); }
 
-            try
-            {
-                foreach (DictionaryEntry de in Environment.GetEnvironmentVariables())
-                {
-                    AddStrHash(ms, (de.Key as string));
-                    AddStrHash(ms, (de.Value as string));
-                }
-            }
-            catch (Exception) { Debug.Assert(false); }
+      try
+      {
+        foreach (DictionaryEntry de in Environment.GetEnvironmentVariables())
+        {
+          AddStrHash(ms, (de.Key as string));
+          AddStrHash(ms, (de.Value as string));
+        }
+      }
+      catch (Exception) { Debug.Assert(false); }
 
 #if KeePassUAP
 			pb = DiagnosticsExt.GetProcessEntropy();
 			MemUtil.Write(ms, pb);
 #elif !KeePassLibSD
-            Process p = null;
-            try
-            {
-                p = Process.GetCurrentProcess();
-                // Not supported in Mono 1.2.6:
-                pb = MemUtil.Int64ToBytes(p.Handle.ToInt64());
-                MemUtil.Write(ms, pb);
-                pb = MemUtil.Int32ToBytes(p.HandleCount);
-                MemUtil.Write(ms, pb);
-                pb = MemUtil.Int32ToBytes(p.Id);
-                MemUtil.Write(ms, pb);
-                pb = MemUtil.Int64ToBytes(p.NonpagedSystemMemorySize64);
-                MemUtil.Write(ms, pb);
-                pb = MemUtil.Int64ToBytes(p.PagedMemorySize64);
-                MemUtil.Write(ms, pb);
-                pb = MemUtil.Int64ToBytes(p.PagedSystemMemorySize64);
-                MemUtil.Write(ms, pb);
-                pb = MemUtil.Int64ToBytes(p.PeakPagedMemorySize64);
-                MemUtil.Write(ms, pb);
-                pb = MemUtil.Int64ToBytes(p.PeakVirtualMemorySize64);
-                MemUtil.Write(ms, pb);
-                pb = MemUtil.Int64ToBytes(p.PeakWorkingSet64);
-                MemUtil.Write(ms, pb);
-                pb = MemUtil.Int64ToBytes(p.PrivateMemorySize64);
-                MemUtil.Write(ms, pb);
-                pb = MemUtil.Int64ToBytes(p.StartTime.ToBinary());
-                MemUtil.Write(ms, pb);
-                pb = MemUtil.Int64ToBytes(p.VirtualMemorySize64);
-                MemUtil.Write(ms, pb);
-                pb = MemUtil.Int64ToBytes(p.WorkingSet64);
-                MemUtil.Write(ms, pb);
-                // pb = MemUtil.UInt32ToBytes((uint)p.SessionId);
-                // ms.Write(pb, 0, pb.Length);
-                // pb = MemUtil.UInt32ToBytes((uint)p.SessionId);
-                // MemUtil.Write(ms, pb);
-            }
-            catch (Exception) { Debug.Assert(NativeLib.IsUnix()); }
-            finally
-            {
-                try { if (p != null) p.Dispose(); }
-                catch (Exception) { Debug.Assert(false); }
-            }
+      Process p = null;
+      try
+      {
+        p = Process.GetCurrentProcess();
+        // Not supported in Mono 1.2.6:
+        pb = MemUtil.Int64ToBytes(p.Handle.ToInt64());
+        MemUtil.Write(ms, pb);
+        pb = MemUtil.Int32ToBytes(p.HandleCount);
+        MemUtil.Write(ms, pb);
+        pb = MemUtil.Int32ToBytes(p.Id);
+        MemUtil.Write(ms, pb);
+        pb = MemUtil.Int64ToBytes(p.NonpagedSystemMemorySize64);
+        MemUtil.Write(ms, pb);
+        pb = MemUtil.Int64ToBytes(p.PagedMemorySize64);
+        MemUtil.Write(ms, pb);
+        pb = MemUtil.Int64ToBytes(p.PagedSystemMemorySize64);
+        MemUtil.Write(ms, pb);
+        pb = MemUtil.Int64ToBytes(p.PeakPagedMemorySize64);
+        MemUtil.Write(ms, pb);
+        pb = MemUtil.Int64ToBytes(p.PeakVirtualMemorySize64);
+        MemUtil.Write(ms, pb);
+        pb = MemUtil.Int64ToBytes(p.PeakWorkingSet64);
+        MemUtil.Write(ms, pb);
+        pb = MemUtil.Int64ToBytes(p.PrivateMemorySize64);
+        MemUtil.Write(ms, pb);
+        pb = MemUtil.Int64ToBytes(p.StartTime.ToBinary());
+        MemUtil.Write(ms, pb);
+        pb = MemUtil.Int64ToBytes(p.VirtualMemorySize64);
+        MemUtil.Write(ms, pb);
+        pb = MemUtil.Int64ToBytes(p.WorkingSet64);
+        MemUtil.Write(ms, pb);
+        // pb = MemUtil.UInt32ToBytes((uint)p.SessionId);
+        // ms.Write(pb, 0, pb.Length);
+        // pb = MemUtil.UInt32ToBytes((uint)p.SessionId);
+        // MemUtil.Write(ms, pb);
+      }
+      catch (Exception) { Debug.Assert(NativeLib.IsUnix()); }
+      finally
+      {
+        try { if (p != null) p.Dispose(); }
+        catch (Exception) { Debug.Assert(false); }
+      }
 #endif
 
-            try
-            {
-                CultureInfo ci = CultureInfo.CurrentCulture;
-                if (ci != null)
-                {
-                    pb = MemUtil.Int32ToBytes(ci.GetHashCode());
-                    MemUtil.Write(ms, pb);
-                }
-                else { Debug.Assert(false); }
-            }
-            catch (Exception) { Debug.Assert(false); }
-
-            pb = Guid.NewGuid().ToByteArray();
-            MemUtil.Write(ms, pb);
-
-            byte[] pbAll = ms.ToArray();
-            ms.Close();
-            return pbAll;
-        }
-
-        private static void AddStrHash(Stream s, string str)
+      try
+      {
+        CultureInfo ci = CultureInfo.CurrentCulture;
+        if (ci != null)
         {
-            if (s == null) { Debug.Assert(false); return; }
-            if (string.IsNullOrEmpty(str)) return;
-
-            byte[] pbUtf8 = StrUtil.Utf8.GetBytes(str);
-            byte[] pbHash = CryptoUtil.HashSha256(pbUtf8);
-            MemUtil.Write(s, pbHash);
+          pb = MemUtil.Int32ToBytes(ci.GetHashCode());
+          MemUtil.Write(ms, pb);
         }
+        else { Debug.Assert(false); }
+      }
+      catch (Exception) { Debug.Assert(false); }
 
-        private byte[] GetCspData()
-        {
-            byte[] pbCspRandom = new byte[32];
-            m_rng.GetBytes(pbCspRandom);
-            return pbCspRandom;
-        }
+      pb = Guid.NewGuid().ToByteArray();
+      MemUtil.Write(ms, pb);
 
-        private byte[] GenerateRandom256()
-        {
-            if (this.GenerateRandom256Pre != null)
-                this.GenerateRandom256Pre(this, EventArgs.Empty);
-
-            byte[] pbCmp;
-            lock (m_oSyncRoot)
-            {
-                m_uCounter += 0x74D8B29E4D38E161UL; // Prime number
-                byte[] pbCounter = MemUtil.UInt64ToBytes(m_uCounter);
-
-                byte[] pbCspRandom = GetCspData();
-
-                int cbPool = m_pbEntropyPool.Length;
-                int cbCtr = pbCounter.Length;
-                int cbCsp = pbCspRandom.Length;
-
-                pbCmp = new byte[cbPool + cbCtr + cbCsp];
-                Array.Copy(m_pbEntropyPool, pbCmp, cbPool);
-                Array.Copy(pbCounter, 0, pbCmp, cbPool, cbCtr);
-                Array.Copy(pbCspRandom, 0, pbCmp, cbPool + cbCtr, cbCsp);
-
-                MemUtil.ZeroByteArray(pbCspRandom);
-
-                m_uGeneratedBytesCount += 32;
-            }
-
-            byte[] pbRet = CryptoUtil.HashSha256(pbCmp);
-            MemUtil.ZeroByteArray(pbCmp);
-            return pbRet;
-        }
-
-        /// <summary>
-        /// Get a number of cryptographically strong random bytes.
-        /// This method is thread-safe.
-        /// </summary>
-        /// <param name="uRequestedBytes">Number of requested random bytes.</param>
-        /// <returns>A byte array consisting of <paramref name="uRequestedBytes" />
-        /// random bytes.</returns>
-        public byte[] GetRandomBytes(uint uRequestedBytes)
-        {
-            if (uRequestedBytes == 0) return MemUtil.EmptyByteArray;
-            if (uRequestedBytes > (uint)int.MaxValue)
-            {
-                Debug.Assert(false);
-                throw new ArgumentOutOfRangeException("uRequestedBytes");
-            }
-
-            int cbRem = (int)uRequestedBytes;
-            byte[] pbRes = new byte[cbRem];
-            int iPos = 0;
-
-            while (cbRem != 0)
-            {
-                byte[] pbRandom256 = GenerateRandom256();
-                Debug.Assert(pbRandom256.Length == 32);
-
-                int cbCopy = Math.Min(cbRem, pbRandom256.Length);
-                Array.Copy(pbRandom256, 0, pbRes, iPos, cbCopy);
-
-                MemUtil.ZeroByteArray(pbRandom256);
-
-                iPos += cbCopy;
-                cbRem -= cbCopy;
-            }
-
-            Debug.Assert(iPos == pbRes.Length);
-            return pbRes;
-        }
-
-
-        private static int g_iWeakSeed = 0;
-        public static Random NewWeakRandom()
-        {
-            long s64 = DateTime.UtcNow.ToBinary();
-            int s32 = (int)((s64 >> 32) ^ s64);
-
-            lock (g_oSyncRoot)
-            {
-                unchecked
-                {
-                    g_iWeakSeed += 0x78A8C4B7; // Prime number
-                    s32 ^= g_iWeakSeed;
-                }
-            }
-
-            // Prevent overflow in the Random constructor of .NET 2.0
-            if (s32 == int.MinValue) s32 = int.MaxValue;
-
-            return new Random(s32);
-        }
+      byte[] pbAll = ms.ToArray();
+      ms.Close();
+      return pbAll;
     }
+
+    private static void AddStrHash(Stream s, string str)
+    {
+      if (s == null) { Debug.Assert(false); return; }
+      if (string.IsNullOrEmpty(str)) return;
+
+      byte[] pbUtf8 = StrUtil.Utf8.GetBytes(str);
+      byte[] pbHash = CryptoUtil.HashSha256(pbUtf8);
+      MemUtil.Write(s, pbHash);
+    }
+
+    private byte[] GetCspData()
+    {
+      byte[] pbCspRandom = new byte[32];
+      m_rng.GetBytes(pbCspRandom);
+      return pbCspRandom;
+    }
+
+    private byte[] GenerateRandom256()
+    {
+      if (this.GenerateRandom256Pre != null)
+        this.GenerateRandom256Pre(this, EventArgs.Empty);
+
+      byte[] pbCmp;
+      lock (m_oSyncRoot)
+      {
+        m_uCounter += 0x74D8B29E4D38E161UL; // Prime number
+        byte[] pbCounter = MemUtil.UInt64ToBytes(m_uCounter);
+
+        byte[] pbCspRandom = GetCspData();
+
+        int cbPool = m_pbEntropyPool.Length;
+        int cbCtr = pbCounter.Length;
+        int cbCsp = pbCspRandom.Length;
+
+        pbCmp = new byte[cbPool + cbCtr + cbCsp];
+        Array.Copy(m_pbEntropyPool, pbCmp, cbPool);
+        Array.Copy(pbCounter, 0, pbCmp, cbPool, cbCtr);
+        Array.Copy(pbCspRandom, 0, pbCmp, cbPool + cbCtr, cbCsp);
+
+        MemUtil.ZeroByteArray(pbCspRandom);
+
+        m_uGeneratedBytesCount += 32;
+      }
+
+      byte[] pbRet = CryptoUtil.HashSha256(pbCmp);
+      MemUtil.ZeroByteArray(pbCmp);
+      return pbRet;
+    }
+
+    /// <summary>
+    /// Get a number of cryptographically strong random bytes.
+    /// This method is thread-safe.
+    /// </summary>
+    /// <param name="uRequestedBytes">Number of requested random bytes.</param>
+    /// <returns>A byte array consisting of <paramref name="uRequestedBytes" />
+    /// random bytes.</returns>
+    public byte[] GetRandomBytes(uint uRequestedBytes)
+    {
+      if (uRequestedBytes == 0) return MemUtil.EmptyByteArray;
+      if (uRequestedBytes > (uint)int.MaxValue)
+      {
+        Debug.Assert(false);
+        throw new ArgumentOutOfRangeException("uRequestedBytes");
+      }
+
+      int cbRem = (int)uRequestedBytes;
+      byte[] pbRes = new byte[cbRem];
+      int iPos = 0;
+
+      while (cbRem != 0)
+      {
+        byte[] pbRandom256 = GenerateRandom256();
+        Debug.Assert(pbRandom256.Length == 32);
+
+        int cbCopy = Math.Min(cbRem, pbRandom256.Length);
+        Array.Copy(pbRandom256, 0, pbRes, iPos, cbCopy);
+
+        MemUtil.ZeroByteArray(pbRandom256);
+
+        iPos += cbCopy;
+        cbRem -= cbCopy;
+      }
+
+      Debug.Assert(iPos == pbRes.Length);
+      return pbRes;
+    }
+
+
+    private static int g_iWeakSeed = 0;
+    public static Random NewWeakRandom()
+    {
+      long s64 = DateTime.UtcNow.ToBinary();
+      int s32 = (int)((s64 >> 32) ^ s64);
+
+      lock (g_oSyncRoot)
+      {
+        unchecked
+        {
+          g_iWeakSeed += 0x78A8C4B7; // Prime number
+          s32 ^= g_iWeakSeed;
+        }
+      }
+
+      // Prevent overflow in the Random constructor of .NET 2.0
+      if (s32 == int.MinValue) s32 = int.MaxValue;
+
+      return new Random(s32);
+    }
+  }
 }

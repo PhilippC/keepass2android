@@ -21,24 +21,24 @@ using Android.Content;
 namespace keepass2android
 {
 
-    public class CancelDialog : Dialog
+  public class CancelDialog : Dialog
+  {
+    protected readonly Activity _activity;
+
+    public CancelDialog(Activity activity) : base(activity)
     {
-        protected readonly Activity _activity;
-
-        public CancelDialog(Activity activity) : base(activity)
-        {
-            _activity = activity;
-        }
-
-        public bool Canceled { get; private set; }
-
-
-        public override void Cancel()
-        {
-            base.Cancel();
-            Canceled = true;
-        }
+      _activity = activity;
     }
+
+    public bool Canceled { get; private set; }
+
+
+    public override void Cancel()
+    {
+      base.Cancel();
+      Canceled = true;
+    }
+  }
 
 }
 

@@ -38,25 +38,25 @@ using OtpKeyProv;
 
 namespace keepass2android
 {
-    [Activity(Label = "@string/app_name", Theme = "@style/Kp2aTheme_ActionBar", WindowSoftInputMode = SoftInput.StateHidden, ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden)]
-    public class GeneratePasswordActivity :
+  [Activity(Label = "@string/app_name", Theme = "@style/Kp2aTheme_ActionBar", WindowSoftInputMode = SoftInput.StateHidden, ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden)]
+  public class GeneratePasswordActivity :
 #if DEBUG
-        LifecycleAwareActivity
+      LifecycleAwareActivity
 #else
 		LockCloseActivity 
 #endif
 
-    {
-        public const string GeneratedPasswordKey = "keepass2android.password.generated_password";
+  {
+    public const string GeneratedPasswordKey = "keepass2android.password.generated_password";
 
-        private readonly int[] _buttonLengthButtonIds = new[]  {Resource.Id.btn_length6,
+    private readonly int[] _buttonLengthButtonIds = new[]  {Resource.Id.btn_length6,
             Resource.Id.btn_length8,
             Resource.Id.btn_length12,
             Resource.Id.btn_length16,
             Resource.Id.btn_length24,
             Resource.Id.btn_length32};
 
-        private readonly int[] _checkboxIds = new[]  {Resource.Id.cb_uppercase,
+    private readonly int[] _checkboxIds = new[]  {Resource.Id.cb_uppercase,
             Resource.Id.cb_lowercase,
             Resource.Id.cb_digits,
             Resource.Id.cb_minus,
@@ -71,283 +71,283 @@ namespace keepass2android
 
 
 
-        PasswordFont _passwordFont = new PasswordFont();
+    PasswordFont _passwordFont = new PasswordFont();
 
-        private static object _popularPasswordsLock = new object();
-        private static bool _popularPasswordsInitialized = false;
+    private static object _popularPasswordsLock = new object();
+    private static bool _popularPasswordsInitialized = false;
 
 
-        private ActivityDesign _design;
-        public GeneratePasswordActivity()
-        {
-            _design = new ActivityDesign(this);
-        }
+    private ActivityDesign _design;
+    public GeneratePasswordActivity()
+    {
+      _design = new ActivityDesign(this);
+    }
 
-        public static void Launch(Activity act)
-        {
-            Intent i = new Intent(act, typeof(GeneratePasswordActivity));
+    public static void Launch(Activity act)
+    {
+      Intent i = new Intent(act, typeof(GeneratePasswordActivity));
 
-            act.StartActivityForResult(i, 0);
-        }
+      act.StartActivityForResult(i, 0);
+    }
 
-        public static void LaunchWithoutLockCheck(Activity act)
-        {
-            Intent i = new Intent(act, typeof(GeneratePasswordActivity));
+    public static void LaunchWithoutLockCheck(Activity act)
+    {
+      Intent i = new Intent(act, typeof(GeneratePasswordActivity));
 
 #if DEBUG
 #else
 			i.PutExtra(NoLockCheck, true);
 #endif
 
-            act.StartActivityForResult(i, 0);
+      act.StartActivityForResult(i, 0);
+    }
+
+    private PasswordProfiles _profiles;
+
+    private bool _updateDisabled = false;
+
+    class PasswordProfiles
+    {
+      public List<KeyValuePair<string, PasswordGenerator.CombinedKeyOptions>> Profiles { get; set; }
+
+      public PasswordGenerator.CombinedKeyOptions LastUsedSettings { get; set; }
+
+      public int? TryFindLastUsedProfileIndex()
+      {
+        for (int i = 0; i < Profiles.Count; i++)
+        {
+          var kvp = Profiles[i];
+          if (kvp.Value.Equals(LastUsedSettings))
+            return i;
         }
 
-        private PasswordProfiles _profiles;
+        return null;
+      }
 
-        private bool _updateDisabled = false;
-
-        class PasswordProfiles
+      public void Add(string key, PasswordGenerator.CombinedKeyOptions options)
+      {
+        for (var index = 0; index < Profiles.Count; index++)
         {
-            public List<KeyValuePair<string, PasswordGenerator.CombinedKeyOptions>> Profiles { get; set; }
-
-            public PasswordGenerator.CombinedKeyOptions LastUsedSettings { get; set; }
-
-            public int? TryFindLastUsedProfileIndex()
-            {
-                for (int i = 0; i < Profiles.Count; i++)
-                {
-                    var kvp = Profiles[i];
-                    if (kvp.Value.Equals(LastUsedSettings))
-                        return i;
-                }
-
-                return null;
-            }
-
-            public void Add(string key, PasswordGenerator.CombinedKeyOptions options)
-            {
-                for (var index = 0; index < Profiles.Count; index++)
-                {
-                    var kvp = Profiles[index];
-                    if (kvp.Key == key)
-                    {
-                        Profiles[index] = new KeyValuePair<string, PasswordGenerator.CombinedKeyOptions>(key, options);
-                        return;
-                    }
-                }
-
-                Profiles.Add(new KeyValuePair<string, PasswordGenerator.CombinedKeyOptions>(key, options));
-            }
-
-            public void Remove(in int profileIndex)
-            {
-                Profiles.RemoveAt(profileIndex);
-            }
+          var kvp = Profiles[index];
+          if (kvp.Key == key)
+          {
+            Profiles[index] = new KeyValuePair<string, PasswordGenerator.CombinedKeyOptions>(key, options);
+            return;
+          }
         }
 
-        protected override void OnCreate(Bundle savedInstanceState)
+        Profiles.Add(new KeyValuePair<string, PasswordGenerator.CombinedKeyOptions>(key, options));
+      }
+
+      public void Remove(in int profileIndex)
+      {
+        Profiles.RemoveAt(profileIndex);
+      }
+    }
+
+    protected override void OnCreate(Bundle savedInstanceState)
+    {
+      _design.ApplyTheme();
+      base.OnCreate(savedInstanceState);
+
+      SetContentView(Resource.Layout.generate_password);
+      SetResult(KeePass.ExitNormal);
+
+      new Util.InsetListener(FindViewById(Resource.Id.main_container)).Apply();
+
+
+      var prefs = GetPreferences(FileCreationMode.Private);
+
+
+
+      string jsonOptions = prefs.GetString("password_generator_profiles", null);
+      if (jsonOptions != null)
+      {
+        try
         {
-            _design.ApplyTheme();
-            base.OnCreate(savedInstanceState);
+          _profiles = JsonConvert.DeserializeObject<PasswordProfiles>(jsonOptions);
+        }
+        catch (Exception e)
+        {
+          Kp2aLog.LogUnexpectedError(e);
+        }
+      }
+      else
+      {
+        PasswordGenerator.CombinedKeyOptions options = new PasswordGenerator.CombinedKeyOptions()
+        {
+          PasswordGenerationOptions = new PasswordGenerator.PasswordGenerationOptions()
+          {
+            Length = prefs.GetInt("length", 12),
+            UpperCase = prefs.GetBoolean("cb_uppercase", true),
+            LowerCase = prefs.GetBoolean("cb_lowercase", true),
+            Digits = prefs.GetBoolean("cb_digits", true),
+            Minus = prefs.GetBoolean("cb_minus", false),
+            Underline = prefs.GetBoolean("cb_underline", false),
+            Space = prefs.GetBoolean("cb_space", false),
+            Specials = prefs.GetBoolean("cb_specials", false),
+            SpecialsExtended = false,
+            Brackets = prefs.GetBoolean("cb_brackets", false)
+          }
+        };
+        _profiles = new PasswordProfiles()
+        {
+          LastUsedSettings = options,
+          Profiles = GetDefaultProfiles()
+        };
 
-            SetContentView(Resource.Layout.generate_password);
-            SetResult(KeePass.ExitNormal);
+      }
 
-            new Util.InsetListener(FindViewById(Resource.Id.main_container)).Apply();
+      _profiles ??= new PasswordProfiles();
+      _profiles.LastUsedSettings ??= new PasswordGenerator.CombinedKeyOptions()
+      {
+        PasswordGenerationOptions = new PasswordGenerator.PasswordGenerationOptions()
+        { Length = 7, UpperCase = true, LowerCase = true, Digits = true }
+      };
+      _profiles.Profiles ??= new List<KeyValuePair<string, PasswordGenerator.CombinedKeyOptions>>();
 
-
-            var prefs = GetPreferences(FileCreationMode.Private);
-
-
-
-            string jsonOptions = prefs.GetString("password_generator_profiles", null);
-            if (jsonOptions != null)
-            {
-                try
-                {
-                    _profiles = JsonConvert.DeserializeObject<PasswordProfiles>(jsonOptions);
-                }
-                catch (Exception e)
-                {
-                    Kp2aLog.LogUnexpectedError(e);
-                }
-            }
-            else
-            {
-                PasswordGenerator.CombinedKeyOptions options = new PasswordGenerator.CombinedKeyOptions()
-                {
-                    PasswordGenerationOptions = new PasswordGenerator.PasswordGenerationOptions()
-                    {
-                        Length = prefs.GetInt("length", 12),
-                        UpperCase = prefs.GetBoolean("cb_uppercase", true),
-                        LowerCase = prefs.GetBoolean("cb_lowercase", true),
-                        Digits = prefs.GetBoolean("cb_digits", true),
-                        Minus = prefs.GetBoolean("cb_minus", false),
-                        Underline = prefs.GetBoolean("cb_underline", false),
-                        Space = prefs.GetBoolean("cb_space", false),
-                        Specials = prefs.GetBoolean("cb_specials", false),
-                        SpecialsExtended = false,
-                        Brackets = prefs.GetBoolean("cb_brackets", false)
-                    }
-                };
-                _profiles = new PasswordProfiles()
-                {
-                    LastUsedSettings = options,
-                    Profiles = GetDefaultProfiles()
-                };
-
-            }
-
-            _profiles ??= new PasswordProfiles();
-            _profiles.LastUsedSettings ??= new PasswordGenerator.CombinedKeyOptions()
-            {
-                PasswordGenerationOptions = new PasswordGenerator.PasswordGenerationOptions()
-                { Length = 7, UpperCase = true, LowerCase = true, Digits = true }
-            };
-            _profiles.Profiles ??= new List<KeyValuePair<string, PasswordGenerator.CombinedKeyOptions>>();
-
-            _updateDisabled = true;
-            PopulateFieldsFromOptions(_profiles.LastUsedSettings);
-            _updateDisabled = false;
+      _updateDisabled = true;
+      PopulateFieldsFromOptions(_profiles.LastUsedSettings);
+      _updateDisabled = false;
 
 
-            var profileSpinner = UpdateProfileSpinner();
+      var profileSpinner = UpdateProfileSpinner();
 
-            profileSpinner.ItemSelected += (sender, args) =>
-            {
-                if (profileSpinner.SelectedItemPosition > 0)
-                {
-                    _profiles.LastUsedSettings = _profiles.Profiles[profileSpinner.SelectedItemPosition - 1].Value;
-                    _updateDisabled = true;
-                    PopulateFieldsFromOptions(_profiles.LastUsedSettings);
-                    _updateDisabled = false;
-                    UpdatePassword();
-                }
-            };
+      profileSpinner.ItemSelected += (sender, args) =>
+      {
+        if (profileSpinner.SelectedItemPosition > 0)
+        {
+          _profiles.LastUsedSettings = _profiles.Profiles[profileSpinner.SelectedItemPosition - 1].Value;
+          _updateDisabled = true;
+          PopulateFieldsFromOptions(_profiles.LastUsedSettings);
+          _updateDisabled = false;
+          UpdatePassword();
+        }
+      };
 
-            foreach (int id in _buttonLengthButtonIds)
-            {
-                Button button = (Button)FindViewById(id);
-                button.Click += (sender, e) =>
-                {
-                    Button b = (Button)sender;
+      foreach (int id in _buttonLengthButtonIds)
+      {
+        Button button = (Button)FindViewById(id);
+        button.Click += (sender, e) =>
+        {
+          Button b = (Button)sender;
 
-                    EditText editText = (EditText)FindViewById(Resource.Id.length);
-                    editText.Text = b.Text;
-                };
-            }
+          EditText editText = (EditText)FindViewById(Resource.Id.length);
+          editText.Text = b.Text;
+        };
+      }
 
-            FindViewById<EditText>(Resource.Id.length).TextChanged += (sender, args) => UpdatePassword();
-            FindViewById<EditText>(Resource.Id.wordcount).TextChanged += (sender, args) => UpdatePassword();
-            FindViewById<EditText>(Resource.Id.wordseparator).TextChanged += (sender, args) => UpdatePassword();
+      FindViewById<EditText>(Resource.Id.length).TextChanged += (sender, args) => UpdatePassword();
+      FindViewById<EditText>(Resource.Id.wordcount).TextChanged += (sender, args) => UpdatePassword();
+      FindViewById<EditText>(Resource.Id.wordseparator).TextChanged += (sender, args) => UpdatePassword();
 
-            foreach (int id in _checkboxIds)
-            {
-                FindViewById<CheckBox>(id).CheckedChange += (sender, args) => UpdatePassword();
-            }
+      foreach (int id in _checkboxIds)
+      {
+        FindViewById<CheckBox>(id).CheckedChange += (sender, args) => UpdatePassword();
+      }
 
-            var mode_spinner = FindViewById<Spinner>(Resource.Id.spinner_password_generator_mode);
-            mode_spinner.ItemSelected += (sender, args) =>
-            {
-                FindViewById(Resource.Id.passphraseOptions).Visibility =
-                    mode_spinner.SelectedItemPosition == 0 ? ViewStates.Gone : ViewStates.Visible;
-                FindViewById(Resource.Id.passwordOptions).Visibility =
-                    mode_spinner.SelectedItemPosition == 1 ? ViewStates.Gone : ViewStates.Visible;
+      var mode_spinner = FindViewById<Spinner>(Resource.Id.spinner_password_generator_mode);
+      mode_spinner.ItemSelected += (sender, args) =>
+      {
+        FindViewById(Resource.Id.passphraseOptions).Visibility =
+                  mode_spinner.SelectedItemPosition == 0 ? ViewStates.Gone : ViewStates.Visible;
+        FindViewById(Resource.Id.passwordOptions).Visibility =
+                  mode_spinner.SelectedItemPosition == 1 ? ViewStates.Gone : ViewStates.Visible;
 
-                UpdatePassword();
-            };
+        UpdatePassword();
+      };
 
-            FindViewById<Spinner>(Resource.Id.spinner_password_generator_case_mode).ItemSelected += (sender, args) =>
-            {
-                UpdatePassword();
-            };
+      FindViewById<Spinner>(Resource.Id.spinner_password_generator_case_mode).ItemSelected += (sender, args) =>
+      {
+        UpdatePassword();
+      };
 
-            Button genPassButton = (Button)FindViewById(Resource.Id.generate_password_button);
-            genPassButton.Click += (sender, e) => { UpdatePassword(); };
+      Button genPassButton = (Button)FindViewById(Resource.Id.generate_password_button);
+      genPassButton.Click += (sender, e) => { UpdatePassword(); };
 
 
 
-            View acceptButton = FindViewById(Resource.Id.accept_button);
-            acceptButton.Click += (sender, e) =>
-            {
-                EditText password = (EditText)FindViewById(Resource.Id.password_edit);
+      View acceptButton = FindViewById(Resource.Id.accept_button);
+      acceptButton.Click += (sender, e) =>
+      {
+        EditText password = (EditText)FindViewById(Resource.Id.password_edit);
 
-                Intent intent = new Intent();
-                intent.PutExtra(GeneratedPasswordKey, password.Text);
+        Intent intent = new Intent();
+        intent.PutExtra(GeneratedPasswordKey, password.Text);
 
-                SetResult(KeePass.ResultOkPasswordGenerator, intent);
+        SetResult(KeePass.ResultOkPasswordGenerator, intent);
 
-                Finish();
-            };
+        Finish();
+      };
 
 
-            View cancelButton = FindViewById(Resource.Id.cancel_button);
-            cancelButton.Click += (sender, e) =>
-            {
-                SetResult(Result.Canceled);
+      View cancelButton = FindViewById(Resource.Id.cancel_button);
+      cancelButton.Click += (sender, e) =>
+      {
+        SetResult(Result.Canceled);
 
-                Finish();
-            };
+        Finish();
+      };
 
-            FindViewById(Resource.Id.btn_password_generator_profile_save)
-                .Click += (sender, args) =>
-            {
-                var editText = new EditText(this);
-                new MaterialAlertDialogBuilder(this)
-                    .SetMessage(Resource.String.save_password_generation_profile_text)
-                    .SetView(editText)
-                    .SetPositiveButton(Android.Resource.String.Ok, (o, eventArgs) =>
-                    {
-                        _profiles.Add(editText.Text, GetOptions());
-                        UpdateProfileSpinner();
-                    })
-                    .Show();
-            };
-
-            FindViewById(Resource.Id.btn_password_generator_profile_delete)
-                .Click += (sender, args) =>
-            {
-                if (profileSpinner.SelectedItemPosition > 0)
-                {
-                    _profiles.Remove(profileSpinner.SelectedItemPosition - 1);
+      FindViewById(Resource.Id.btn_password_generator_profile_save)
+          .Click += (sender, args) =>
+      {
+        var editText = new EditText(this);
+        new MaterialAlertDialogBuilder(this)
+                  .SetMessage(Resource.String.save_password_generation_profile_text)
+                  .SetView(editText)
+                  .SetPositiveButton(Android.Resource.String.Ok, (o, eventArgs) =>
+                  {
+                    _profiles.Add(editText.Text, GetOptions());
                     UpdateProfileSpinner();
-                }
-            };
+                  })
+                  .Show();
+      };
 
-
-            EditText txtPasswordToSet = (EditText)FindViewById(Resource.Id.password_edit);
-            txtPasswordToSet.TextChanged += (sender, args) =>
-            {
-                Task.Run(() => UpdatePasswordStrengthEstimate(txtPasswordToSet.Text));
-            };
-
-            _passwordFont.ApplyTo(txtPasswordToSet);
-
-            UpdatePassword();
-
-            SupportActionBar.SetDisplayHomeAsUpEnabled(true);
-            SupportActionBar.SetHomeButtonEnabled(true);
-
-        }
-
-        private Spinner UpdateProfileSpinner()
+      FindViewById(Resource.Id.btn_password_generator_profile_delete)
+          .Click += (sender, args) =>
+      {
+        if (profileSpinner.SelectedItemPosition > 0)
         {
-            string[] profileNames = new List<string> { GetString(Resource.String.custom_settings) }
-                .Concat(_profiles.Profiles.Select(p => p.Key))
-                .ToArray();
-            ArrayAdapter<String> profileArrayAdapter = new ArrayAdapter<String>(this,
-                Android.Resource.Layout.SimpleSpinnerDropDownItem,
-                profileNames);
-            var profileSpinner = FindViewById<Spinner>(Resource.Id.spinner_password_generator_profile);
-            profileSpinner.Adapter = profileArrayAdapter;
-
-            UpdateProfileSpinnerSelection();
-            return profileSpinner;
+          _profiles.Remove(profileSpinner.SelectedItemPosition - 1);
+          UpdateProfileSpinner();
         }
+      };
 
-        private static List<KeyValuePair<string, PasswordGenerator.CombinedKeyOptions>> GetDefaultProfiles()
-        {
-            return new List<KeyValuePair<string, PasswordGenerator.CombinedKeyOptions>>()
+
+      EditText txtPasswordToSet = (EditText)FindViewById(Resource.Id.password_edit);
+      txtPasswordToSet.TextChanged += (sender, args) =>
+      {
+        Task.Run(() => UpdatePasswordStrengthEstimate(txtPasswordToSet.Text));
+      };
+
+      _passwordFont.ApplyTo(txtPasswordToSet);
+
+      UpdatePassword();
+
+      SupportActionBar.SetDisplayHomeAsUpEnabled(true);
+      SupportActionBar.SetHomeButtonEnabled(true);
+
+    }
+
+    private Spinner UpdateProfileSpinner()
+    {
+      string[] profileNames = new List<string> { GetString(Resource.String.custom_settings) }
+          .Concat(_profiles.Profiles.Select(p => p.Key))
+          .ToArray();
+      ArrayAdapter<String> profileArrayAdapter = new ArrayAdapter<String>(this,
+          Android.Resource.Layout.SimpleSpinnerDropDownItem,
+          profileNames);
+      var profileSpinner = FindViewById<Spinner>(Resource.Id.spinner_password_generator_profile);
+      profileSpinner.Adapter = profileArrayAdapter;
+
+      UpdateProfileSpinnerSelection();
+      return profileSpinner;
+    }
+
+    private static List<KeyValuePair<string, PasswordGenerator.CombinedKeyOptions>> GetDefaultProfiles()
+    {
+      return new List<KeyValuePair<string, PasswordGenerator.CombinedKeyOptions>>()
             {
                 new KeyValuePair<string, PasswordGenerator.CombinedKeyOptions>(
                     "Simple12", new PasswordGenerator.CombinedKeyOptions()
@@ -420,249 +420,249 @@ namespace keepass2android
                 )
 
             };
-        }
-
-        private void PopulateFieldsFromOptions(PasswordGenerator.CombinedKeyOptions combinedOptions)
-        {
-            PasswordGenerator.PasswordGenerationOptions passwordOptions = combinedOptions.PasswordGenerationOptions;
-            if (passwordOptions != null)
-            {
-                ((CheckBox)FindViewById(Resource.Id.cb_uppercase)).Checked = passwordOptions.UpperCase;
-                ((CheckBox)FindViewById(Resource.Id.cb_lowercase)).Checked = passwordOptions.LowerCase;
-                ((CheckBox)FindViewById(Resource.Id.cb_digits)).Checked = passwordOptions.Digits;
-                ((CheckBox)FindViewById(Resource.Id.cb_minus)).Checked = passwordOptions.Minus;
-                ((CheckBox)FindViewById(Resource.Id.cb_underline)).Checked = passwordOptions.Underline;
-                ((CheckBox)FindViewById(Resource.Id.cb_space)).Checked = passwordOptions.Space;
-                ((CheckBox)FindViewById(Resource.Id.cb_specials)).Checked = passwordOptions.Specials;
-                ((CheckBox)FindViewById(Resource.Id.cb_specials_extended)).Checked = passwordOptions.SpecialsExtended;
-                ((CheckBox)FindViewById(Resource.Id.cb_brackets)).Checked = passwordOptions.Brackets;
-                ((CheckBox)FindViewById(Resource.Id.cb_exclude_lookalike)).Checked = passwordOptions.ExcludeLookAlike;
-                ((CheckBox)FindViewById(Resource.Id.cb_at_least_one_from_each_group)).Checked = passwordOptions.AtLeastOneFromEachGroup;
-
-                ((EditText)FindViewById(Resource.Id.length)).Text = passwordOptions.Length.ToString(CultureInfo.InvariantCulture);
-
-                FindViewById(Resource.Id.passwordOptions).Visibility = ViewStates.Visible;
-            }
-            else
-            {
-                FindViewById(Resource.Id.passwordOptions).Visibility = ViewStates.Gone;
-            }
-
-            var passphraseOptions = combinedOptions.PassphraseGenerationOptions;
-
-            if (passphraseOptions != null)
-            {
-                FindViewById<EditText>(Resource.Id.wordcount).Text = passphraseOptions.WordCount.ToString(CultureInfo.InvariantCulture);
-                FindViewById<EditText>(Resource.Id.wordseparator).Text = passphraseOptions.Separator;
-                FindViewById<Spinner>(Resource.Id.spinner_password_generator_case_mode)
-                    .SetSelection((int)passphraseOptions.CaseMode);
-
-                FindViewById(Resource.Id.passphraseOptions).Visibility = ViewStates.Visible;
-            }
-            else
-            {
-                FindViewById(Resource.Id.passphraseOptions).Visibility = ViewStates.Gone;
-            }
-
-
-            int mode;
-            if (combinedOptions.PasswordGenerationOptions != null &&
-                combinedOptions.PassphraseGenerationOptions != null)
-                mode = 2;
-            else if (combinedOptions.PasswordGenerationOptions == null &&
-                     combinedOptions.PassphraseGenerationOptions != null)
-                mode = 1;
-            else mode = 0;
-
-            FindViewById<Spinner>(Resource.Id.spinner_password_generator_mode)
-                .SetSelection(mode);
-
-        }
-
-        private void UpdatePassword()
-        {
-            if (_updateDisabled)
-                return;
-
-            String password = "";
-
-
-            Task.Run(() =>
-            {
-                password = GeneratePassword();
-                RunOnUiThread(() =>
-                {
-                    EditText txtPassword = (EditText)FindViewById(Resource.Id.password_edit);
-                    txtPassword.Text = password;
-                    UpdateProfileSpinnerSelection();
-                });
-            });
-
-        }
-
-        private void UpdatePasswordStrengthEstimate(string password)
-        {
-            lock (_popularPasswordsLock)
-            {
-                if (!_popularPasswordsInitialized)
-                {
-
-                    using (StreamReader sr = new StreamReader(Assets.Open("MostPopularPasswords.txt")))
-                    {
-                        var bytes = default(byte[]);
-                        using (var memstream = new MemoryStream())
-                        {
-                            sr.BaseStream.CopyTo(memstream);
-                            bytes = memstream.ToArray();
-                        }
-                        PopularPasswords.Add(bytes, false);
-                    }
-                }
-
-            }
-            uint passwordBits = QualityEstimation.EstimatePasswordBits(password.ToCharArray());
-
-
-
-
-            RunOnUiThread(() =>
-            {
-                var progressBar = FindViewById<ProgressBar>(Resource.Id.pb_password_strength);
-
-                progressBar.Progress = (int)passwordBits;
-                progressBar.Max = 128;
-
-                Color color = new Color(196, 63, 49);
-                if (passwordBits > 40)
-                {
-                    color = new Color(219, 152, 55);
-                }
-
-                if (passwordBits > 64)
-                {
-                    color = new Color(96, 138, 38);
-                }
-
-                if (passwordBits > 100)
-                {
-                    color = new Color(31, 128, 31);
-                }
-
-                progressBar.ProgressDrawable.SetColorFilter(new PorterDuffColorFilter(color,
-                    PorterDuff.Mode.SrcIn));
-
-                FindViewById<TextView>(Resource.Id.tv_password_strength).Text = " " + passwordBits + " bits";
-            });
-        }
-
-        private void UpdateProfileSpinnerSelection()
-        {
-            int? lastUsedIndex = _profiles.TryFindLastUsedProfileIndex();
-            FindViewById<Spinner>(Resource.Id.spinner_password_generator_profile)
-                .SetSelection(lastUsedIndex != null ? lastUsedIndex.Value + 1 : 0);
-        }
-
-        public String GeneratePassword()
-        {
-            String password = "";
-
-            try
-            {
-                PasswordGenerator generator = new PasswordGenerator(this);
-
-                var options = GetOptions();
-
-                try
-                {
-                    password = generator.GeneratePassword(options);
-                }
-                catch (Exception e)
-                {
-                    throw new ArgumentException(GetString(Resource.String.error_pass_gen_type));
-                }
-
-                _profiles.LastUsedSettings = options;
-
-                SaveProfiles();
-            }
-            catch (Exception e)
-            {
-                App.Kp2a.ShowMessage(this, Util.GetErrorMessage(e), MessageSeverity.Error);
-            }
-
-            return password;
-        }
-
-        private void SaveProfiles()
-        {
-            var prefs = GetPreferences(FileCreationMode.Private);
-            prefs.Edit()
-                .PutString("password_generator_profiles", JsonConvert.SerializeObject(_profiles))
-                .Commit();
-        }
-
-        private PasswordGenerator.CombinedKeyOptions GetOptions()
-        {
-            PasswordGenerator.CombinedKeyOptions options = new PasswordGenerator.CombinedKeyOptions();
-            if (FindViewById(Resource.Id.passphraseOptions).Visibility == ViewStates.Visible)
-            {
-                int wordCount;
-                if (!int.TryParse(((EditText)FindViewById(Resource.Id.wordcount)).Text, out wordCount))
-                {
-                    throw new Exception(GetString(Resource.String.error_wrong_length));
-                }
-
-                options.PassphraseGenerationOptions =
-                    new PasswordGenerator.PassphraseGenerationOptions()
-                    {
-                        WordCount = wordCount,
-                        Separator = FindViewById<EditText>(Resource.Id.wordseparator).Text,
-                        CaseMode = (PasswordGenerator.PassphraseGenerationOptions.PassphraseCaseMode)FindViewById<Spinner>(Resource.Id.spinner_password_generator_case_mode).SelectedItemPosition
-                    };
-            }
-
-            if (FindViewById(Resource.Id.passwordOptions).Visibility == ViewStates.Visible)
-            {
-                int length;
-                if (!int.TryParse(((EditText)FindViewById(Resource.Id.length)).Text, out length))
-                {
-                    throw new Exception(GetString(Resource.String.error_wrong_length));
-                }
-
-                options.PasswordGenerationOptions =
-                    new PasswordGenerator.PasswordGenerationOptions()
-                    {
-                        Length = length,
-                        UpperCase = ((CheckBox)FindViewById(Resource.Id.cb_uppercase)).Checked,
-                        LowerCase = ((CheckBox)FindViewById(Resource.Id.cb_lowercase)).Checked,
-                        Digits = ((CheckBox)FindViewById(Resource.Id.cb_digits)).Checked,
-                        Minus = ((CheckBox)FindViewById(Resource.Id.cb_minus)).Checked,
-                        Underline = ((CheckBox)FindViewById(Resource.Id.cb_underline)).Checked,
-                        Space = ((CheckBox)FindViewById(Resource.Id.cb_space)).Checked,
-                        Specials = ((CheckBox)FindViewById(Resource.Id.cb_specials)).Checked,
-                        SpecialsExtended = ((CheckBox)FindViewById(Resource.Id.cb_specials_extended)).Checked,
-                        Brackets = ((CheckBox)FindViewById(Resource.Id.cb_brackets)).Checked,
-                        ExcludeLookAlike = ((CheckBox)FindViewById(Resource.Id.cb_exclude_lookalike)).Checked,
-                        AtLeastOneFromEachGroup = ((CheckBox)FindViewById(Resource.Id.cb_at_least_one_from_each_group))
-                            .Checked
-                    };
-            }
-
-            return options;
-        }
-
-
-        public override bool OnOptionsItemSelected(IMenuItem item)
-        {
-            switch (item.ItemId)
-            {
-                case Android.Resource.Id.Home:
-                    OnBackPressed();
-                    return true;
-            }
-            return false;
-        }
     }
+
+    private void PopulateFieldsFromOptions(PasswordGenerator.CombinedKeyOptions combinedOptions)
+    {
+      PasswordGenerator.PasswordGenerationOptions passwordOptions = combinedOptions.PasswordGenerationOptions;
+      if (passwordOptions != null)
+      {
+        ((CheckBox)FindViewById(Resource.Id.cb_uppercase)).Checked = passwordOptions.UpperCase;
+        ((CheckBox)FindViewById(Resource.Id.cb_lowercase)).Checked = passwordOptions.LowerCase;
+        ((CheckBox)FindViewById(Resource.Id.cb_digits)).Checked = passwordOptions.Digits;
+        ((CheckBox)FindViewById(Resource.Id.cb_minus)).Checked = passwordOptions.Minus;
+        ((CheckBox)FindViewById(Resource.Id.cb_underline)).Checked = passwordOptions.Underline;
+        ((CheckBox)FindViewById(Resource.Id.cb_space)).Checked = passwordOptions.Space;
+        ((CheckBox)FindViewById(Resource.Id.cb_specials)).Checked = passwordOptions.Specials;
+        ((CheckBox)FindViewById(Resource.Id.cb_specials_extended)).Checked = passwordOptions.SpecialsExtended;
+        ((CheckBox)FindViewById(Resource.Id.cb_brackets)).Checked = passwordOptions.Brackets;
+        ((CheckBox)FindViewById(Resource.Id.cb_exclude_lookalike)).Checked = passwordOptions.ExcludeLookAlike;
+        ((CheckBox)FindViewById(Resource.Id.cb_at_least_one_from_each_group)).Checked = passwordOptions.AtLeastOneFromEachGroup;
+
+        ((EditText)FindViewById(Resource.Id.length)).Text = passwordOptions.Length.ToString(CultureInfo.InvariantCulture);
+
+        FindViewById(Resource.Id.passwordOptions).Visibility = ViewStates.Visible;
+      }
+      else
+      {
+        FindViewById(Resource.Id.passwordOptions).Visibility = ViewStates.Gone;
+      }
+
+      var passphraseOptions = combinedOptions.PassphraseGenerationOptions;
+
+      if (passphraseOptions != null)
+      {
+        FindViewById<EditText>(Resource.Id.wordcount).Text = passphraseOptions.WordCount.ToString(CultureInfo.InvariantCulture);
+        FindViewById<EditText>(Resource.Id.wordseparator).Text = passphraseOptions.Separator;
+        FindViewById<Spinner>(Resource.Id.spinner_password_generator_case_mode)
+            .SetSelection((int)passphraseOptions.CaseMode);
+
+        FindViewById(Resource.Id.passphraseOptions).Visibility = ViewStates.Visible;
+      }
+      else
+      {
+        FindViewById(Resource.Id.passphraseOptions).Visibility = ViewStates.Gone;
+      }
+
+
+      int mode;
+      if (combinedOptions.PasswordGenerationOptions != null &&
+          combinedOptions.PassphraseGenerationOptions != null)
+        mode = 2;
+      else if (combinedOptions.PasswordGenerationOptions == null &&
+               combinedOptions.PassphraseGenerationOptions != null)
+        mode = 1;
+      else mode = 0;
+
+      FindViewById<Spinner>(Resource.Id.spinner_password_generator_mode)
+          .SetSelection(mode);
+
+    }
+
+    private void UpdatePassword()
+    {
+      if (_updateDisabled)
+        return;
+
+      String password = "";
+
+
+      Task.Run(() =>
+      {
+        password = GeneratePassword();
+        RunOnUiThread(() =>
+              {
+                EditText txtPassword = (EditText)FindViewById(Resource.Id.password_edit);
+                txtPassword.Text = password;
+                UpdateProfileSpinnerSelection();
+              });
+      });
+
+    }
+
+    private void UpdatePasswordStrengthEstimate(string password)
+    {
+      lock (_popularPasswordsLock)
+      {
+        if (!_popularPasswordsInitialized)
+        {
+
+          using (StreamReader sr = new StreamReader(Assets.Open("MostPopularPasswords.txt")))
+          {
+            var bytes = default(byte[]);
+            using (var memstream = new MemoryStream())
+            {
+              sr.BaseStream.CopyTo(memstream);
+              bytes = memstream.ToArray();
+            }
+            PopularPasswords.Add(bytes, false);
+          }
+        }
+
+      }
+      uint passwordBits = QualityEstimation.EstimatePasswordBits(password.ToCharArray());
+
+
+
+
+      RunOnUiThread(() =>
+      {
+        var progressBar = FindViewById<ProgressBar>(Resource.Id.pb_password_strength);
+
+        progressBar.Progress = (int)passwordBits;
+        progressBar.Max = 128;
+
+        Color color = new Color(196, 63, 49);
+        if (passwordBits > 40)
+        {
+          color = new Color(219, 152, 55);
+        }
+
+        if (passwordBits > 64)
+        {
+          color = new Color(96, 138, 38);
+        }
+
+        if (passwordBits > 100)
+        {
+          color = new Color(31, 128, 31);
+        }
+
+        progressBar.ProgressDrawable.SetColorFilter(new PorterDuffColorFilter(color,
+                  PorterDuff.Mode.SrcIn));
+
+        FindViewById<TextView>(Resource.Id.tv_password_strength).Text = " " + passwordBits + " bits";
+      });
+    }
+
+    private void UpdateProfileSpinnerSelection()
+    {
+      int? lastUsedIndex = _profiles.TryFindLastUsedProfileIndex();
+      FindViewById<Spinner>(Resource.Id.spinner_password_generator_profile)
+          .SetSelection(lastUsedIndex != null ? lastUsedIndex.Value + 1 : 0);
+    }
+
+    public String GeneratePassword()
+    {
+      String password = "";
+
+      try
+      {
+        PasswordGenerator generator = new PasswordGenerator(this);
+
+        var options = GetOptions();
+
+        try
+        {
+          password = generator.GeneratePassword(options);
+        }
+        catch (Exception e)
+        {
+          throw new ArgumentException(GetString(Resource.String.error_pass_gen_type));
+        }
+
+        _profiles.LastUsedSettings = options;
+
+        SaveProfiles();
+      }
+      catch (Exception e)
+      {
+        App.Kp2a.ShowMessage(this, Util.GetErrorMessage(e), MessageSeverity.Error);
+      }
+
+      return password;
+    }
+
+    private void SaveProfiles()
+    {
+      var prefs = GetPreferences(FileCreationMode.Private);
+      prefs.Edit()
+          .PutString("password_generator_profiles", JsonConvert.SerializeObject(_profiles))
+          .Commit();
+    }
+
+    private PasswordGenerator.CombinedKeyOptions GetOptions()
+    {
+      PasswordGenerator.CombinedKeyOptions options = new PasswordGenerator.CombinedKeyOptions();
+      if (FindViewById(Resource.Id.passphraseOptions).Visibility == ViewStates.Visible)
+      {
+        int wordCount;
+        if (!int.TryParse(((EditText)FindViewById(Resource.Id.wordcount)).Text, out wordCount))
+        {
+          throw new Exception(GetString(Resource.String.error_wrong_length));
+        }
+
+        options.PassphraseGenerationOptions =
+            new PasswordGenerator.PassphraseGenerationOptions()
+            {
+              WordCount = wordCount,
+              Separator = FindViewById<EditText>(Resource.Id.wordseparator).Text,
+              CaseMode = (PasswordGenerator.PassphraseGenerationOptions.PassphraseCaseMode)FindViewById<Spinner>(Resource.Id.spinner_password_generator_case_mode).SelectedItemPosition
+            };
+      }
+
+      if (FindViewById(Resource.Id.passwordOptions).Visibility == ViewStates.Visible)
+      {
+        int length;
+        if (!int.TryParse(((EditText)FindViewById(Resource.Id.length)).Text, out length))
+        {
+          throw new Exception(GetString(Resource.String.error_wrong_length));
+        }
+
+        options.PasswordGenerationOptions =
+            new PasswordGenerator.PasswordGenerationOptions()
+            {
+              Length = length,
+              UpperCase = ((CheckBox)FindViewById(Resource.Id.cb_uppercase)).Checked,
+              LowerCase = ((CheckBox)FindViewById(Resource.Id.cb_lowercase)).Checked,
+              Digits = ((CheckBox)FindViewById(Resource.Id.cb_digits)).Checked,
+              Minus = ((CheckBox)FindViewById(Resource.Id.cb_minus)).Checked,
+              Underline = ((CheckBox)FindViewById(Resource.Id.cb_underline)).Checked,
+              Space = ((CheckBox)FindViewById(Resource.Id.cb_space)).Checked,
+              Specials = ((CheckBox)FindViewById(Resource.Id.cb_specials)).Checked,
+              SpecialsExtended = ((CheckBox)FindViewById(Resource.Id.cb_specials_extended)).Checked,
+              Brackets = ((CheckBox)FindViewById(Resource.Id.cb_brackets)).Checked,
+              ExcludeLookAlike = ((CheckBox)FindViewById(Resource.Id.cb_exclude_lookalike)).Checked,
+              AtLeastOneFromEachGroup = ((CheckBox)FindViewById(Resource.Id.cb_at_least_one_from_each_group))
+                    .Checked
+            };
+      }
+
+      return options;
+    }
+
+
+    public override bool OnOptionsItemSelected(IMenuItem item)
+    {
+      switch (item.ItemId)
+      {
+        case Android.Resource.Id.Home:
+          OnBackPressed();
+          return true;
+      }
+      return false;
+    }
+  }
 
 }
 

@@ -22,69 +22,69 @@ using KeePassLib;
 namespace keepass2android
 {
 
-    public class UpdateEntry : OperationWithFinishHandler
+  public class UpdateEntry : OperationWithFinishHandler
+  {
+    private readonly IKp2aApp _app;
+
+    public UpdateEntry(IKp2aApp app, PwEntry oldE, PwEntry newE, OnOperationFinishedHandler operationFinishedHandler) : base(app, operationFinishedHandler)
     {
-        private readonly IKp2aApp _app;
+      _app = app;
 
-        public UpdateEntry(IKp2aApp app, PwEntry oldE, PwEntry newE, OnOperationFinishedHandler operationFinishedHandler) : base(app, operationFinishedHandler)
+      _operationFinishedHandler = new AfterUpdate(oldE, newE, app, operationFinishedHandler);
+    }
+
+
+    public override void Run()
+    {
+      // Commit to disk
+      SaveDb save = new SaveDb(_app, _app.CurrentDb, operationFinishedHandler);
+      save.SetStatusLogger(StatusLogger);
+      save.Run();
+    }
+
+    private class AfterUpdate : OnOperationFinishedHandler
+    {
+      private readonly PwEntry _backup;
+      private readonly PwEntry _updatedEntry;
+      private readonly IKp2aApp _app;
+
+      public AfterUpdate(PwEntry backup, PwEntry updatedEntry, IKp2aApp app, OnOperationFinishedHandler operationFinishedHandler) : base(app, operationFinishedHandler)
+      {
+        _backup = backup;
+        _updatedEntry = updatedEntry;
+        _app = app;
+      }
+
+      public override void Run()
+      {
+        if (Success)
         {
-            _app = app;
+          // Mark parent group dirty. Even only the last modification date changed, this might affect sort order
+          PwGroup parent = _updatedEntry.ParentGroup;
+          if (parent != null)
+          {
 
-            _operationFinishedHandler = new AfterUpdate(oldE, newE, app, operationFinishedHandler);
-        }
+            // Mark parent group dirty
+            _app.DirtyGroups.Add(parent);
 
-
-        public override void Run()
-        {
-            // Commit to disk
-            SaveDb save = new SaveDb(_app, _app.CurrentDb, operationFinishedHandler);
-            save.SetStatusLogger(StatusLogger);
-            save.Run();
-        }
-
-        private class AfterUpdate : OnOperationFinishedHandler
-        {
-            private readonly PwEntry _backup;
-            private readonly PwEntry _updatedEntry;
-            private readonly IKp2aApp _app;
-
-            public AfterUpdate(PwEntry backup, PwEntry updatedEntry, IKp2aApp app, OnOperationFinishedHandler operationFinishedHandler) : base(app, operationFinishedHandler)
-            {
-                _backup = backup;
-                _updatedEntry = updatedEntry;
-                _app = app;
-            }
-
-            public override void Run()
-            {
-                if (Success)
-                {
-                    // Mark parent group dirty. Even only the last modification date changed, this might affect sort order
-                    PwGroup parent = _updatedEntry.ParentGroup;
-                    if (parent != null)
-                    {
-
-                        // Mark parent group dirty
-                        _app.DirtyGroups.Add(parent);
-
-                    }
-
-                }
-                else
-                {
-                    StatusLogger.UpdateMessage(UiStringKey.UndoingChanges);
-                    // If we fail to save, back out changes to global structure
-                    //TODO test fail
-                    _updatedEntry.AssignProperties(_backup, false, true, false);
-                }
-
-                base.Run();
-            }
+          }
 
         }
+        else
+        {
+          StatusLogger.UpdateMessage(UiStringKey.UndoingChanges);
+          // If we fail to save, back out changes to global structure
+          //TODO test fail
+          _updatedEntry.AssignProperties(_backup, false, true, false);
+        }
 
+        base.Run();
+      }
 
     }
+
+
+  }
 
 }
 

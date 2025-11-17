@@ -26,67 +26,67 @@ using KeePassLib.Utility;
 
 namespace KeePassLib.Serialization
 {
-    public sealed class BinaryReaderEx
+  public sealed class BinaryReaderEx
+  {
+    private Stream m_s;
+    // private Encoding m_enc; // See constructor
+
+    private string m_strReadExcp; // May be null
+    public string ReadExceptionText
     {
-        private Stream m_s;
-        // private Encoding m_enc; // See constructor
-
-        private string m_strReadExcp; // May be null
-        public string ReadExceptionText
-        {
-            get { return m_strReadExcp; }
-            set { m_strReadExcp = value; }
-        }
-
-        private Stream m_sCopyTo = null;
-        /// <summary>
-        /// If this property is set to a non-null stream, all data that
-        /// is read from the input stream is automatically written to
-        /// the copy stream (before returning the read data).
-        /// </summary>
-        public Stream CopyDataTo
-        {
-            get { return m_sCopyTo; }
-            set { m_sCopyTo = value; }
-        }
-
-        public BinaryReaderEx(Stream input, Encoding encoding,
-            string strReadExceptionText)
-        {
-            if (input == null) throw new ArgumentNullException("input");
-
-            m_s = input;
-            // m_enc = encoding; // Not used yet
-            m_strReadExcp = strReadExceptionText;
-        }
-
-        public byte[] ReadBytes(int nCount)
-        {
-            try
-            {
-                byte[] pb = MemUtil.Read(m_s, nCount);
-                if ((pb == null) || (pb.Length != nCount))
-                {
-                    if (!string.IsNullOrEmpty(m_strReadExcp))
-                        throw new EndOfStreamException(m_strReadExcp);
-                    else throw new EndOfStreamException();
-                }
-
-                if (m_sCopyTo != null) m_sCopyTo.Write(pb, 0, pb.Length);
-                return pb;
-            }
-            catch (Exception)
-            {
-                if (!string.IsNullOrEmpty(m_strReadExcp))
-                    throw new IOException(m_strReadExcp);
-                else throw;
-            }
-        }
-
-        public byte ReadByte()
-        {
-            byte[] pb = ReadBytes(1);
-            return pb[0];
-        }
+      get { return m_strReadExcp; }
+      set { m_strReadExcp = value; }
     }
+
+    private Stream m_sCopyTo = null;
+    /// <summary>
+    /// If this property is set to a non-null stream, all data that
+    /// is read from the input stream is automatically written to
+    /// the copy stream (before returning the read data).
+    /// </summary>
+    public Stream CopyDataTo
+    {
+      get { return m_sCopyTo; }
+      set { m_sCopyTo = value; }
+    }
+
+    public BinaryReaderEx(Stream input, Encoding encoding,
+        string strReadExceptionText)
+    {
+      if (input == null) throw new ArgumentNullException("input");
+
+      m_s = input;
+      // m_enc = encoding; // Not used yet
+      m_strReadExcp = strReadExceptionText;
+    }
+
+    public byte[] ReadBytes(int nCount)
+    {
+      try
+      {
+        byte[] pb = MemUtil.Read(m_s, nCount);
+        if ((pb == null) || (pb.Length != nCount))
+        {
+          if (!string.IsNullOrEmpty(m_strReadExcp))
+            throw new EndOfStreamException(m_strReadExcp);
+          else throw new EndOfStreamException();
+        }
+
+        if (m_sCopyTo != null) m_sCopyTo.Write(pb, 0, pb.Length);
+        return pb;
+      }
+      catch (Exception)
+      {
+        if (!string.IsNullOrEmpty(m_strReadExcp))
+          throw new IOException(m_strReadExcp);
+        else throw;
+      }
+    }
+
+    public byte ReadByte()
+    {
+      byte[] pb = ReadBytes(1);
+      return pb[0];
+    }
+  }
 }

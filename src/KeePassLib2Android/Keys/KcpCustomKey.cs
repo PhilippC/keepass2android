@@ -27,47 +27,47 @@ using KeePassLib.Security;
 
 namespace KeePassLib.Keys
 {
-    public sealed class KcpCustomKey : IUserKey
+  public sealed class KcpCustomKey : IUserKey
+  {
+    private readonly string m_strName;
+    private ProtectedBinary m_pbKey;
+
+    /// <summary>
+    /// Name of the provider that generated the custom key.
+    /// </summary>
+    public string Name
     {
-        private readonly string m_strName;
-        private ProtectedBinary m_pbKey;
-
-        /// <summary>
-        /// Name of the provider that generated the custom key.
-        /// </summary>
-        public string Name
-        {
-            get { return m_strName; }
-        }
-
-        public ProtectedBinary KeyData
-        {
-            get { return m_pbKey; }
-        }
-
-        public uint GetMinKdbxVersion()
-        {
-            return 0;
-        }
-
-        public KcpCustomKey(string strName, byte[] pbKeyData, bool bPerformHash)
-        {
-            Debug.Assert(strName != null); if (strName == null) throw new ArgumentNullException("strName");
-            Debug.Assert(pbKeyData != null); if (pbKeyData == null) throw new ArgumentNullException("pbKeyData");
-
-            m_strName = strName;
-
-            if (bPerformHash)
-            {
-                byte[] pbRaw = CryptoUtil.HashSha256(pbKeyData);
-                m_pbKey = new ProtectedBinary(true, pbRaw);
-            }
-            else m_pbKey = new ProtectedBinary(true, pbKeyData);
-        }
-
-        // public void Clear()
-        // {
-        //	m_pbKey = null;
-        // }
+      get { return m_strName; }
     }
+
+    public ProtectedBinary KeyData
+    {
+      get { return m_pbKey; }
+    }
+
+    public uint GetMinKdbxVersion()
+    {
+      return 0;
+    }
+
+    public KcpCustomKey(string strName, byte[] pbKeyData, bool bPerformHash)
+    {
+      Debug.Assert(strName != null); if (strName == null) throw new ArgumentNullException("strName");
+      Debug.Assert(pbKeyData != null); if (pbKeyData == null) throw new ArgumentNullException("pbKeyData");
+
+      m_strName = strName;
+
+      if (bPerformHash)
+      {
+        byte[] pbRaw = CryptoUtil.HashSha256(pbKeyData);
+        m_pbKey = new ProtectedBinary(true, pbRaw);
+      }
+      else m_pbKey = new ProtectedBinary(true, pbKeyData);
+    }
+
+    // public void Clear()
+    // {
+    //	m_pbKey = null;
+    // }
+  }
 }

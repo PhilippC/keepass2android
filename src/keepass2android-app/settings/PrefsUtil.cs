@@ -22,24 +22,24 @@ using keepass2android;
 
 namespace keepass2android
 {
-    /// <summary>
-    /// Utility class to simplify access to the app preferences
-    /// </summary>
-    public class PrefsUtil
+  /// <summary>
+  /// Utility class to simplify access to the app preferences
+  /// </summary>
+  public class PrefsUtil
+  {
+    public static float GetListTextSize(Context ctx)
     {
-        public static float GetListTextSize(Context ctx)
-        {
-            ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(ctx);
+      ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(ctx);
 
-            return float.Parse(prefs.GetString(ctx.GetString(Resource.String.list_size_key), ctx.GetString(Resource.String.list_size_default)));
+      return float.Parse(prefs.GetString(ctx.GetString(Resource.String.list_size_key), ctx.GetString(Resource.String.list_size_default)));
 
-        }
-        public static float GetListDetailTextSize(Context ctx)
-        {
-            return (float)Math.Round(GetListTextSize(ctx) * 3.0f / 4.0f);
-
-        }
     }
+    public static float GetListDetailTextSize(Context ctx)
+    {
+      return (float)Math.Round(GetListTextSize(ctx) * 3.0f / 4.0f);
+
+    }
+  }
 
 }
 

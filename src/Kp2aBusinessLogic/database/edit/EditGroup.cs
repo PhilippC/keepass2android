@@ -23,79 +23,79 @@ using KeePassLib;
 namespace keepass2android
 {
 
-    public class EditGroup : OperationWithFinishHandler
+  public class EditGroup : OperationWithFinishHandler
+  {
+    internal Database Db
     {
-        internal Database Db
+      get { return _app.FindDatabaseForElement(Group); }
+    }
+
+    public IKp2aApp App { get => _app; }
+
+    private IKp2aApp _app;
+    private readonly String _name;
+    private readonly PwIcon _iconId;
+    private readonly PwUuid _customIconId;
+    internal PwGroup Group;
+
+    public EditGroup(IKp2aApp app, String name, PwIcon iconid, PwUuid customIconId, PwGroup group, OnOperationFinishedHandler operationFinishedHandler)
+        : base(app, operationFinishedHandler)
+    {
+      _name = name;
+      _iconId = iconid;
+      Group = group;
+      _customIconId = customIconId;
+      _app = app;
+
+      _operationFinishedHandler = new AfterEdit(app, this, operationFinishedHandler);
+    }
+
+
+    public override void Run()
+    {
+      // modify group:
+      Group.Name = _name;
+      Group.IconId = _iconId;
+      Group.CustomIconUuid = _customIconId;
+      Group.Touch(true);
+
+      // Commit to disk
+      SaveDb save = new SaveDb(_app, Db, operationFinishedHandler);
+      save.SetStatusLogger(StatusLogger);
+      save.Run();
+    }
+
+    private class AfterEdit : OnOperationFinishedHandler
+    {
+      readonly EditGroup _editGroup;
+
+      public AfterEdit(IKp2aApp app, EditGroup editGroup, OnOperationFinishedHandler operationFinishedHandler)
+          : base(app, operationFinishedHandler)
+      {
+        _editGroup = editGroup;
+      }
+
+
+      public override void Run()
+      {
+
+        if (Success)
         {
-            get { return _app.FindDatabaseForElement(Group); }
+          // Mark parent group dirty
+          _editGroup.App.DirtyGroups.Add(_editGroup.Group.ParentGroup);
+        }
+        else
+        {
+          _editGroup._app.Lock(false, false);
         }
 
-        public IKp2aApp App { get => _app; }
-
-        private IKp2aApp _app;
-        private readonly String _name;
-        private readonly PwIcon _iconId;
-        private readonly PwUuid _customIconId;
-        internal PwGroup Group;
-
-        public EditGroup(IKp2aApp app, String name, PwIcon iconid, PwUuid customIconId, PwGroup group, OnOperationFinishedHandler operationFinishedHandler)
-            : base(app, operationFinishedHandler)
-        {
-            _name = name;
-            _iconId = iconid;
-            Group = group;
-            _customIconId = customIconId;
-            _app = app;
-
-            _operationFinishedHandler = new AfterEdit(app, this, operationFinishedHandler);
-        }
-
-
-        public override void Run()
-        {
-            // modify group:
-            Group.Name = _name;
-            Group.IconId = _iconId;
-            Group.CustomIconUuid = _customIconId;
-            Group.Touch(true);
-
-            // Commit to disk
-            SaveDb save = new SaveDb(_app, Db, operationFinishedHandler);
-            save.SetStatusLogger(StatusLogger);
-            save.Run();
-        }
-
-        private class AfterEdit : OnOperationFinishedHandler
-        {
-            readonly EditGroup _editGroup;
-
-            public AfterEdit(IKp2aApp app, EditGroup editGroup, OnOperationFinishedHandler operationFinishedHandler)
-                : base(app, operationFinishedHandler)
-            {
-                _editGroup = editGroup;
-            }
-
-
-            public override void Run()
-            {
-
-                if (Success)
-                {
-                    // Mark parent group dirty
-                    _editGroup.App.DirtyGroups.Add(_editGroup.Group.ParentGroup);
-                }
-                else
-                {
-                    _editGroup._app.Lock(false, false);
-                }
-
-                base.Run();
-            }
-
-        }
-
+        base.Run();
+      }
 
     }
+
+
+  }
 
 }
 
