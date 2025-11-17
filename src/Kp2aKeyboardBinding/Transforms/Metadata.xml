@@ -15,7 +15,7 @@
    along with Keepass2Android.  If not, see <http://www.gnu.org/licenses/>.
 -->
 
-﻿<metadata>
+<metadata>
   <remove-node path="/api/package[@name='keepass2android.softkeyboard']/class[@name='KP2AKeyboard']" />
   <remove-node path="/api/package[@name='keepass2android.softkeyboard']" />
 </metadata>

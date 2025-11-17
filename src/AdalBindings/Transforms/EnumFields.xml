@@ -15,7 +15,7 @@
    along with Keepass2Android.  If not, see <http://www.gnu.org/licenses/>.
 -->
 
-﻿<enum-field-mappings>
+<enum-field-mappings>
   <!--
   This example converts the constants Fragment_id, Fragment_name,
   and Fragment_tag from android.support.v4.app.FragmentActivity.FragmentTag
