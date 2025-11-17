@@ -387,6 +387,8 @@
   <string name="NoDonationReminder_summary">我不打算捐赠或已经捐赠过。即使是在作者生日当天，也不要再向我请求捐赠。</string>
   <string name="UseOfflineCache_title">数据库缓存</string>
   <string name="UseOfflineCache_summary">将数据库文件的副本保留在应用的缓存目录中。这允许在无法访问数据库文件的情况下使用数据库。</string>
+  <string name="SyncOfflineCacheInBackground_summary">保存或加载时使用内部缓存。之后用后台进程与远程存储同步。</string>
+  <string name="SyncOfflineCacheInBackground_title">后台同步</string>
   <string name="CreateBackups_title">本地备份</string>
   <string name="CreateBackups_summary">在成功进入数据库后创建本地备份。</string>
   <string name="UpdatingBackup">正在更新本地备份...</string>
@@ -728,6 +730,8 @@
   <string name="DbQuicklockedChannel_desc">数据库以快速解锁方式锁定通知</string>
   <string name="EntryChannel_name">密码条目通知</string>
   <string name="EntryChannel_desc">选定条目快速进入通知</string>
+  <string name="BackgroundSyncChannel_name">同步操作</string>
+  <string name="BackgroundSyncChannel_desc">表明在后台执行同步的通知</string>
   <string name="CloseDbAfterFailedAttempts">三次失败的生物识别解锁后关闭数据库。</string>
   <string name="hint_smb_credentials">如果要从个人 Windows 计算机访问文件，请将计算机名或本地 IP 地址用作主机 URL；输入计算机名作为域名，Windows 登录名（经常和微软账户名相同）作为用户名和密码。</string>
   <string name="WarnFingerprintInvalidated">警告!生物识别认证可能会被Android系统作废，例如在你的设备设置中添加一个新的指纹后。确保你总是知道如何用你的主密码解锁！</string>
@@ -737,6 +741,13 @@
   <string name="webdav_chunked_upload_size_summary">上传到 WebDav 服务器的分块大小，单位为字节。</string>
   <string name="cleartextTrafficPermitted_title">允许 WebDAV 中的明文网络流量</string>
   <string name="cleartextTrafficPermitted_summary">HTTP 连接不安全。只有当您有其他安全措施时才启用它。</string>
+  <string-array name="ChangeLog_1_15_net">
+    <item>改进针对带有非 ASCII 字符的 WebDav 的 URL 处理</item>
+  </string-array>
+  <string-array name="ChangeLog_1_15">
+    <item>添加了后台同步：Keepass2Android 现在使用数据库的内部缓存副本进行加载和保存，以使这些操作更快。操作完成后，将启动与远程数据库的同步。</item>
+    <item>添加了用户首选项以控制后台同步的行为。您可以启用定期后台同步并控制是否应始终执行同步或仅在 Wi-Fi 网络中执行同步。</item>
+  </string-array>
   <string-array name="ChangeLog_1_14">
     <item>更新至 .net 9 和 Target SDK 版本 35。这在 Android 15 上带有透明状态栏，因为以无边框方式显示现在是默认设置。</item>
     <item>较小的用户界面改进</item>
@@ -1210,4 +1221,28 @@ Initial public release
   <string name="switch_keyboard_for_totp_enabled">注意：您已启用应用 - 密码访问-自动填充服务 - TOTP 条目自动填充。 当您打开一条有TOTP的条目时，这会导致此窗口显示。</string>
   <string name="switch_keyboard_inside_kp2a_enabled">注意：您已经启用了应用 - 安全性 - 使用 Keepass2Android 中的内置键盘。 当您打开应用或编辑条目时，这会导致此窗口显示。</string>
   <string name="switch_keyboard_on_search_enabled">注意: 您已经启用了应用-安全性-密码访问-键盘切换-切换键盘。当您从浏览器搜索条目时，这会导致此窗口显示。</string>
+  <string name="user_interaction_required">需要用户互动。请打开应用</string>
+  <string name="failed_to_access_database">数据库正在使用，无法访问</string>
+  <string name="configure_ssids">配置 SSIDs</string>
+  <string name="add_current_ssid">添加当前 SSID</string>
+  <string name="enter_ssid_hint">输入 SSID</string>
+  <string name="add_ssid">添加新的 SSID</string>
+  <string name="no_ssids">未添加 SSID。将在任意 Wi-Fi 下执行自动后台同步</string>
+  <string name="ssid_empty_or_exists">SSID 为空或已经在列表中</string>
+  <string name="location_permission_required">需要位置权限才能读取当前 SSID</string>
+  <string name="permission_granted">已授予位置权限</string>
+  <string name="permission_denied">权限被拒。无法读取当前 SSID。请通过安卓系统设置启用该权限。</string>
+  <string name="remove_ssid_title">删除 SSID</string>
+  <string name="ssid_explanation">定义 SSID 列表。如果连上这些 SSID 中的任何一个会执行自动后台同步。</string>
+  <string name="remove_ssid_message">确定要删除 SSID 吗？</string>
+  <string name="permission_needed">需要权限</string>
+  <string name="permission_location_rationale">    需要位置权限来读取当前 Wi-Fi SSID.如果希望只在某些 SSID 下进行后台同步，这个权限是必需的。
+  </string>
+  <string name="BackgroundSyncWifiSsids_title">基于 Wi-Fi SSID 的后台同步</string>
+  <string name="BackgroundSyncWifiOnly_title">只在 Wi-Fi 连接时进行后台同步</string>
+  <string name="BackgroundSyncWifiOnly_summary">如选中，后台同步只在你连接到 Wi-Fi 时启动</string>
+  <string name="pref_enable_periodic_background_sync_title">定期后台同步</string>
+  <string name="pref_enable_periodic_background_sync_summary">如启用，应用会定期同步解锁的数据库。这遵守上面的网络连接设置。</string>
+  <string name="pref_periodic_background_sync_interval_title">定期后台同步间隔</string>
+  <string name="pref_periodic_background_sync_interval_summary">设置分钟为单位的后台同步间隔</string>
 </resources>

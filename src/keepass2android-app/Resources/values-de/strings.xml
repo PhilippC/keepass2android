@@ -389,6 +389,8 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="NoDonationReminder_summary">Ich werde keinen Cent spenden oder habe bereits gespendet. Bitte niemals um eine Spende, nicht einmal am Geburtstag des Autors.</string>
   <string name="UseOfflineCache_title">Datenbank-Caching</string>
   <string name="UseOfflineCache_summary">Bewahrt eine Kopie der Datenbankdateien im Cache-Ordner der App auf. Dies ermöglicht die Verwendung von Datenbanken, auch wenn die Datenbankdatei nicht zugänglich ist.</string>
+  <string name="SyncOfflineCacheInBackground_summary">Beim Speichern oder Laden den internen Cache verwenden. Dann, im Hintergrund mit dem entfernten Speicher synchronisieren.</string>
+  <string name="SyncOfflineCacheInBackground_title">Synchronisiere im Hintergrund</string>
   <string name="CreateBackups_title">Lokale Backups</string>
   <string name="CreateBackups_summary">Eine lokale Sicherungskopie der Datenbank erstellen, nachdem diese erfolgreich geladen wurde.</string>
   <string name="UpdatingBackup">Lokale Sicherung wird aktualisiert …</string>
@@ -726,10 +728,13 @@ Anbei einige Tipps, die bei der Diagnose des Problems helfen können:\n
   <string name="DbQuicklockedChannel_desc">Benachrichtigung über das Sperren der Datenbank mit QuickUnlock</string>
   <string name="EntryChannel_name">Eintrag-Benachrichtigungen</string>
   <string name="EntryChannel_desc">Benachrichtigung zum schnellen Zugriff auf den aktuell gewählten Eintrag.</string>
+  <string name="BackgroundSyncChannel_name">Synchronisierungsaufgabe</string>
+  <string name="BackgroundSyncChannel_desc">Benachrichtigung, um anzugeben, dass eine Synchronisation im Hintergrund durchgeführt wird.</string>
   <string name="CloseDbAfterFailedAttempts">Datenbank nach drei fehlgeschlagenen biometrischen Entsperrversuchen schließen.</string>
   <string name="hint_smb_credentials">Wenn Sie auf Dateien von Ihrem persönlichen Windows-Computer aus zugreifen möchten, verwenden Sie den Computernamen oder die lokale IP-Adresse als Host-URL; geben Sie den Computernamen als Domäne und das Windows-Login (oft identisch mit Ihrem Microsoft-Konto) als Benutzername und Passwort ein.</string>
   <string name="WarnFingerprintInvalidated">Achtung! Die biometrische Authentifizierung kann von Android ungültig gemacht werden, z. B. nach dem Hinzufügen eines neuen Fingerabdrucks in den Geräteeinstellungen. Bitte sicherstellen, dass jederzeit klar ist, wie mit dem eigenen Hauptpasswort entsperrt werden kann!</string>
   <string name="webdav_chunked_upload_size_title">Chunk-Größe für den WebDav-Upload</string>
+  <string name="webdav_chunked_upload_enabled_title">Aktiviere chunked Upload für WebDav</string>
   <string name="cleartextTrafficPermitted_title">Klartext-Netzwerkverkehr in WebDav erlauben</string>
   <string name="cleartextTrafficPermitted_summary">HTTP-Verbindungen sind nicht sicher. Diese Option nur aktivieren, wenn weitere Sicherheitsmaßnahmen vorhanden sind.</string>
   <string-array name="ChangeLog_1_14">
