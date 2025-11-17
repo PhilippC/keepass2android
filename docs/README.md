@@ -19,5 +19,19 @@ Beta-releases can be obtained by opting in to the [Beta testing channel](https:/
 # How do I learn more?
 Please see the [wiki](https://github.com/PhilippC/keepass2android/wiki/Documentation) for further information.
 
+# Disclaimer
+
+This software is distributed under the terms of the GNU General Public License v3.0 (GPLv3).  
+It is provided **"as is"**, without warranties or conditions of any kind, either express or implied.  
+The author(s) do not accept any liability for damages of any kind resulting from the use of this software,  
+except as required by applicable law (e.g. liability for intent, gross negligence, or injury to life, body, or health).
+
+Use of this software is entirely at your own risk.
+
+# Donations
+
+Payments made to support this project are **voluntary contributions**.  
+They do not constitute a purchase, contract, or entitlement to specific features, services, or support.  
+All contributions are gratefully received as a way to sustain ongoing development.
 
 <img src="https://github.com/PhilippC/keepass2android/actions/workflows/build.yml/badge.svg" alt="build status" /> [Build status](https://github.com/PhilippC/keepass2android/actions)
