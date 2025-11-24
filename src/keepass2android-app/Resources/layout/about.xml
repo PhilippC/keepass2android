@@ -93,7 +93,7 @@
 			android:id="@+id/divider3"
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content"
-			android:layout_below="@id/donate"
+			android:layout_below="@id/translate"
 			android:scaleType="fitXY"
 			android:src="@android:drawable/divider_horizontal_dark" />
 		<TextView
