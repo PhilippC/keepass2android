@@ -748,6 +748,7 @@
   <string-array name="ChangeLog_1_14">
     <item>Update to .net 9 and Target SDK version 35. This comes with transparent status bar on Android 15 because edge-to-edge is now the default.</item>
     <item>Minor UI improvements</item>
+    <item>Removed buttons for donate and find plugins, in order to comply with Google Play policies</item>
   </string-array>
 
   <string-array name="ChangeLog_1_14_net">

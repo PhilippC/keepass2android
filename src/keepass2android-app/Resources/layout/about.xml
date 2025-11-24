@@ -89,15 +89,6 @@
 			android:text="@string/translate_app"
          />
 
-		<Button
-			android:id="@+id/donate"
-			android:layout_width="fill_parent"
-			android:layout_height="wrap_content"
-			android:layout_below="@id/translate"
-			android:text="@string/menu_donate"
-         />
-
-
 		<ImageView
 			android:id="@+id/divider3"
 			android:layout_width="fill_parent"
