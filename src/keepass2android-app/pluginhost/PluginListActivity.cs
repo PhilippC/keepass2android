@@ -37,10 +37,6 @@ namespace keepass2android
 					StartActivity(i);
 				};
 
-			FindViewById<Button>(Resource.Id.btnPluginsOnline).Click += delegate
-				{
-					Util.GotoUrl(this, "https://github.com/PhilippC/keepass2android/blob/master/docs/Available-Plug-ins.md");
-				};
 
 		}
 		protected override void OnResume()
