@@ -87,9 +87,6 @@ namespace keepass2android
         {
           App.Kp2a.ShowMessage(Context, Resource.String.no_url_handler, MessageSeverity.Error);
         }
-      }; FindViewById(Resource.Id.donate).Click += delegate
-      {
-        Util.GotoDonateUrl(Context);
       };
     }
 
