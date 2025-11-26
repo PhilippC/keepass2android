@@ -176,6 +176,15 @@ namespace keepass2android
 						}
 					}
 				},
+				/*
+				On 2025-11-25, Google refused to accept app updates because it claims the app collects e-mail addresses 
+				but does not declare so in the data security declaration.
+				I sent an appeal but that was no accepted. There are now two bad choices: 
+				1.) Declare that we are collecting PII 
+				    (which is visible to everybody on the Play page and leads to a bunch of follow up questions which are all non-sense,
+				    e.g. can the user have this info deleted)
+				2.) or remove the e-mail template, because the screenshot they sent as "proof" showed creating a new entry there.
+				Let's go with 2.
 				new TemplateEntry()
 				{
 					Title = UiStringKey.TemplateTitle_EMail,
@@ -197,8 +206,9 @@ namespace keepass2android
 							FieldName = PwDefs.PasswordField
 						}
 
-					}
+				    }
 				},
+                */
 				new TemplateEntry()
 				{
 					Title = UiStringKey.TemplateTitle_WLan,
