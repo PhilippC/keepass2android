@@ -767,7 +767,7 @@
   <string-array name="ChangeLog_1_14">
     <item>更新至 .net 9 和 Target SDK 版本 35。这在 Android 15 上带有透明状态栏，因为以无边框方式显示现在是默认设置。</item>
     <item>较小的用户界面改进</item>
-    <item>Removed buttons for donate and find plugins, in order to comply with Google Play policies</item>
+    <item>为了遵守 Google Play 政策，移除了捐赠和查找插件的按钮</item>
   </string-array>
   <string-array name="ChangeLog_1_14_net">
     <item>WebDav 改进：修复列出文件夹的错误；支持分块上传和事务</item>
