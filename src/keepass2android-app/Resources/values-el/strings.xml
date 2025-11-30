@@ -403,6 +403,8 @@
   <string name="NoDonationReminder_summary">Δε δίνω δυάρα ή έχω ήδη κάνει προσφορά. Μη ζητάς προσφορά, ούτε καν στα γενέθλια του κατασκευαστή.</string>
   <string name="UseOfflineCache_title">Προσωρινή αποθήκευση βάσης δεδομένων</string>
   <string name="UseOfflineCache_summary">Διατηρεί ένα αντίγραφο των αρχείων βάσεων δεδομένων στο φάκελο cache της εφαρμογής. Αυτό επιτρέπει να χρησιμοποιούνται οι βάσεις δεδομένων ακόμη και όταν τα αρχεία τους δεν είναι διαθέσιμα.</string>
+  <string name="SyncOfflineCacheInBackground_summary">Κατά την αποθήκευση ή τη φόρτωση, χρησιμοποιήστε την εσωτερική προσωρινή μνήμη. Στη συνέχεια, συγχρονίστε με την απομακρυσμένη αποθήκευση σε μια διεργασία στο παρασκήνιο.</string>
+  <string name="SyncOfflineCacheInBackground_title">Συγχρονισμός στο παρασκήνιο</string>
   <string name="CreateBackups_title">Τοπικά αντίγραφα</string>
   <string name="CreateBackups_summary">Δημιουργία τοπικού αντιγράφου μετά την επιτυχή φόρτωση της βάσης δεδομένων</string>
   <string name="UpdatingBackup">Ενημέρωση τοπικού αντιγράφου...</string>
@@ -739,13 +741,27 @@
   <string name="DbQuicklockedChannel_desc">Ειδοποίηση για τη βάση δεδομένων που κλειδώνεται με QuickUnlock</string>
   <string name="EntryChannel_name">Ειδοποιήσεις</string>
   <string name="EntryChannel_desc">Ειδοποίηση για απλοποιημένη πρόσβαση στην τρέχουσα καταχώριση.</string>
+  <string name="BackgroundSyncChannel_name">Λειτουργία συγχρονισμού</string>
+  <string name="BackgroundSyncChannel_desc">Ειδοποίηση που υποδεικνύει ότι εκτελείται συγχρονισμός στο παρασκήνιο</string>
   <string name="CloseDbAfterFailedAttempts">Κλείσιμο της βάσης δεδομένων μετά από 3 ανεπιτυχείς προσπάθειες βιομετρικού ξεκλειδώματος.</string>
   <string name="hint_smb_credentials">Αν θέλετε να αποκτήσετε πρόσβαση σε αρχεία από τον προσωπικό σας υπολογιστή με Windows, χρησιμοποιήστε το όνομα του υπολογιστή ή την τοπική διεύθυνση IP ως URL υποδοχής. Εισάγετε το όνομα υπολογιστή ως domain και τα στοιχεία του Windows login (συχνά ίδια με το λογαριασμό Microsoft) ως όνομα χρήστη και  συνθηματικό.</string>
   <string name="WarnFingerprintInvalidated">Προσοχή! Ο βιομετρικός έλεγχος ταυτότητας μπορεί να ακυρωθεί από το Android, π.χ. μετά την προσθήκη ενός νέου δακτυλικού αποτυπώματος στις ρυθμίσεις της συσκευής σας. Βεβαιωθείτε ότι ξέρετε πάντα πώς να ξεκλειδώσετε με το κύριο συνθηματικό!</string>
   <string name="webdav_chunked_upload_size_title">Μέγεθος ομάδας για μεταφόρτωση WebDav</string>
+  <string name="webdav_chunked_upload_enabled_title">Ενεργοποίηση κομματιασμένης μεταφόρτωσης για WebDav</string>
+  <string name="webdav_chunked_upload_enabled_summary">Για διακομιστές WebDav που δεν υποστηρίζουν μεταφόρτωση μεγάλων αρχείων με ένα μόνο αίτημα. Όταν είναι ενεργοποιημένο, το Keepass2Android χρησιμοποιεί τυπικό κομμάτιασμα WebDav, όχι τη μέθοδο του Nextcloud.</string>
+  <string name="webdav_chunked_upload_size_summary">Μέγεθος κομματιών κατά τη μεταφόρτωση σε διακομιστές WebDav σε bytes.</string>
+  <string name="cleartextTrafficPermitted_title">Να επιτρέπεται η διακίνηση μη κρυπτογραφημένου κειμένου στο WebDav</string>
+  <string name="cleartextTrafficPermitted_summary">Οι συνδέσεις HTTP δεν είναι ασφαλείς. Ενεργοποιήστε αυτήν την επιλογή μόνο αν έχετε άλλα μέτρα ασφαλείας.</string>
+  <string-array name="ChangeLog_1_15_net">
+    <item>Βελτιώσεις στο χειρισμό URL για WebDav με μη-ASCII χαρακτήρες</item>
+  </string-array>
+  <string-array name="ChangeLog_1_15">
+    <item>Προστέθηκε συγχρονισμός στο παρασκήνιο: το Keepass2Android χρησιμοποιεί τώρα το εσωτερικό αντίγραφο cache για φόρτωση και αποθήκευση της βάσης δεδομένων για να κάνει αυτές τις λειτουργίες πιο γρήγορα. Κατόπιν, ξεκινά ο συγχρονισμός με την απομακρυσμένη βάση δεδομένων. </item>
+    <item>Προστέθηκαν προτιμήσεις χρήστη για τον έλεγχο της συμπεριφοράς του συγχρονισμού στο παρασκήνιο. Μπορείτε να ενεργοποιήσετε τον περιοδικό συγχρονισμό στο παρασκήνιο και τον έλεγχο εάν ο συγχρονισμός πρέπει να εκτελείται πάντα ή μόνο σε δίκτυα Wi-Fi.</item>
+  </string-array>
   <string-array name="ChangeLog_1_14">
     <item></item>
-    <item>Minor UI improvements</item>
+    <item>Μικρές βελτιώσεις στη διεπαφή χρήστη</item>
     <item>Removed buttons for donate and find plugins, in order to comply with Google Play policies</item>
   </string-array>
   <string-array name="ChangeLog_1_14_net">
