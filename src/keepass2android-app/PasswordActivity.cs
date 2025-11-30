@@ -1450,7 +1450,19 @@ namespace keepass2android
         MakePasswordMaskedOrVisible();
 
         Handler handler = new Handler();
-        OnOperationFinishedHandler onOperationFinishedHandler = new AfterLoad(handler, this, _ioConnection);
+        OnOperationFinishedHandler afterLoadHandler = new AfterLoad(handler, this, _ioConnection);
+        OnOperationFinishedHandler onOperationFinishedHandler = new ActionOnOperationFinished(App.Kp2a, (success, message, activity) =>
+        {
+          if (success)
+          {
+            KeeShare.Check(App.Kp2a, afterLoadHandler);
+          }
+          else
+          {
+            afterLoadHandler.SetResult(success, message, false, null);
+            afterLoadHandler.Run();
+          }
+        });
         LoadDb loadOperation = (KeyProviderTypes.Contains(KeyProviders.Otp))
             ? new SaveOtpAuxFileAndLoadDb(App.Kp2a, _ioConnection, _loadDbFileTask, compositeKey, GetKeyProviderString(),
                 onOperationFinishedHandler, this, true, _makeCurrent)
