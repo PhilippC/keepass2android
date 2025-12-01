@@ -11,6 +11,8 @@ using keepass2android.Io;
 using KeePassLib.Utility;
 using System.IO.Compression;
 using Android.Content;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace keepass2android
 {
@@ -87,13 +89,8 @@ namespace keepass2android
                 }
             }
 
-            // We must iterate over a copy of the groups list because ProcessKeeShare (Import) might modify subgroups
-            // However, Import usually modifies the *content* of the group, replacing subgroups.
-            // If we replace subgroups, we shouldn't recurse into the *old* subgroups?
-            // Or should we recurse into the *new* subgroups?
-            // KeeShare groups are usually leaf nodes in terms of configuration (you don't have nested KeeShare groups usually).
-            // But just in case, let's recurse first? No, if I import, I overwrite.
-            
+            // Process subgroups AFTER processing KeeShare, so we recurse into the newly imported groups
+            // We must iterate over a copy of the groups list to avoid issues if ProcessGroup modifies the collection
             foreach (var sub in group.Groups.ToList())
             {
                 ProcessGroup(sub);
@@ -130,72 +127,156 @@ namespace keepass2android
                     // But KdbxFile loads from stream. ZipArchive needs seekable stream usually.
                     
                     MemoryStream ms = new MemoryStream();
-                    s.CopyTo(ms);
-                    ms.Position = 0;
-
-                    Stream kdbxStream = ms;
-                    bool isZip = false;
-                    
-                    // Check for PK header (Zip)
-                    if (ms.Length > 4)
+                    try
                     {
-                        byte[] header = new byte[4];
-                        ms.Read(header, 0, 4);
+                        s.CopyTo(ms);
                         ms.Position = 0;
-                        if (header[0] == 0x50 && header[1] == 0x4b && header[2] == 0x03 && header[3] == 0x04)
-                        {
-                            isZip = true;
-                        }
-                    }
 
-                    if (isZip)
-                    {
-                        try 
+                        Stream kdbxStream = ms;
+                        MemoryStream kdbxMem = null;
+                        bool isZip = false;
+                        
+                        // Check for PK header (Zip)
+                        if (ms.Length > 4)
                         {
-                            using (ZipArchive archive = new ZipArchive(ms, ZipArchiveMode.Read, true))
+                            byte[] header = new byte[4];
+                            ms.Read(header, 0, 4);
+                            ms.Position = 0;
+                            if (header[0] == 0x50 && header[1] == 0x4b && header[2] == 0x03 && header[3] == 0x04)
                             {
-                                // Find .kdbx file
-                                var kdbxEntry = archive.Entries.FirstOrDefault(e => e.Name.EndsWith(".kdbx", StringComparison.OrdinalIgnoreCase));
-                                if (kdbxEntry != null)
+                                isZip = true;
+                            }
+                        }
+
+                        if (isZip)
+                        {
+                            try 
+                            {
+                                using (ZipArchive archive = new ZipArchive(ms, ZipArchiveMode.Read, true))
                                 {
+                                    // Find .kdbx file
+                                    var kdbxEntry = archive.Entries.FirstOrDefault(e => e.Name.EndsWith(".kdbx", StringComparison.OrdinalIgnoreCase));
+                                    if (kdbxEntry == null)
+                                    {
+                                        Kp2aLog.Log("KeeShare: No .kdbx file found in ZIP archive");
+                                        return;
+                                    }
+
                                     // Extract to a new memory stream because KdbxFile might close it or we need a clean stream
-                                    MemoryStream kdbxMem = new MemoryStream();
+                                    kdbxMem = new MemoryStream();
                                     using (var es = kdbxEntry.Open())
                                     {
                                         es.CopyTo(kdbxMem);
                                     }
+                                    
+                                    // Store kdbx data for signature verification
+                                    byte[] kdbxData = kdbxMem.ToArray();
+                                    
+                                    // Check for signature file (.sig) and verify if certificate is trusted
+                                    var sigEntry = archive.Entries.FirstOrDefault(e => 
+                                        e.Name.EndsWith(".sig", StringComparison.OrdinalIgnoreCase) ||
+                                        e.Name.EndsWith(".signature", StringComparison.OrdinalIgnoreCase));
+                                    
+                                    // Check if a trusted certificate is configured
+                                    string trustedCert = targetGroup.CustomData.Get("KeeShare.TrustedCertificate");
+                                    bool hasTrustedCert = !string.IsNullOrEmpty(trustedCert);
+                                    
+                                    if (sigEntry != null)
+                                    {
+                                        // Only verify signature if a trusted certificate is configured
+                                        if (hasTrustedCert)
+                                        {
+                                            // Extract signature for verification
+                                            byte[] signatureData;
+                                            using (var sigStream = sigEntry.Open())
+                                            using (var sigMem = new MemoryStream())
+                                            {
+                                                sigStream.CopyTo(sigMem);
+                                                signatureData = sigMem.ToArray();
+                                            }
+
+                                            // Verify signature - only import if certificate is trusted and signature is valid
+                                            if (!VerifySignature(targetGroup, kdbxData, signatureData))
+                                            {
+                                                Kp2aLog.Log("KeeShare: Signature verification failed or certificate not trusted for " + path + ". Skipping import.");
+                                                return;
+                                            }
+                                            else
+                                            {
+                                                Kp2aLog.Log("KeeShare: Signature verified successfully for " + path);
+                                            }
+                                        }
+                                        else
+                                        {
+                                            // Signature file exists but no certificate configured - skip verification for backward compatibility
+                                            Kp2aLog.Log("KeeShare: Signature file found but no trusted certificate configured for " + path + ". Continuing without signature verification (backward compatibility).");
+                                        }
+                                    }
+                                    else
+                                    {
+                                        // If a trusted certificate is configured, we MUST have a signature file for security
+                                        if (hasTrustedCert)
+                                        {
+                                            Kp2aLog.Log("KeeShare: Trusted certificate is configured but no signature file found in ZIP archive for " + path + ". Skipping import for security.");
+                                            return;
+                                        }
+                                        else
+                                        {
+                                            Kp2aLog.Log("KeeShare: No signature file found in ZIP archive for " + path + ". Continuing without signature verification (backward compatibility).");
+                                        }
+                                    }
+                                    
+                                    // Reset stream position for KDBX loading
                                     kdbxMem.Position = 0;
                                     kdbxStream = kdbxMem;
                                 }
                             }
+                            catch (Exception ex)
+                            {
+                                Kp2aLog.Log("Failed to treat file as zip: " + ex.Message);
+                                ms.Position = 0; // Rewind and try as KDBX directly
+                                kdbxStream = ms;
+                                // kdbxMem will be disposed in finally block if it was created
+                            }
                         }
-                        catch (Exception ex)
+
+                        // Load the KDBX
+                        try
                         {
-                            Kp2aLog.Log("Failed to treat file as zip: " + ex.Message);
-                            ms.Position = 0; // Rewind and try as KDBX directly
-                            kdbxStream = ms;
+                            PwDatabase shareDb = new PwDatabase();
+                            CompositeKey key = new CompositeKey();
+                            if (!string.IsNullOrEmpty(password))
+                            {
+                                key.AddUserKey(new KcpPassword(password));
+                            }
+                            // If password is empty, KcpPassword("") is added? or just empty composite key?
+                            // KeeShare without password implies empty password or no master key? 
+                            // Usually shares have passwords. If empty, try empty password.
+                            if (key.UserKeys.Count() == 0)
+                                 key.AddUserKey(new KcpPassword(""));
+
+                            KdbxFile kdbx = new KdbxFile(shareDb);
+                            kdbx.Load(kdbxStream, KdbxFormat.Default, key);
+
+                            // Now copy content from shareDb.RootGroup to targetGroup
+                            SyncGroups(shareDb.RootGroup, targetGroup);
+                        }
+                        finally
+                        {
+                            // Dispose kdbxMem if it was created (for ZIP files)
+                            if (kdbxMem != null && kdbxMem != ms)
+                            {
+                                kdbxMem.Dispose();
+                            }
                         }
                     }
-
-                    // Load the KDBX
-                    PwDatabase shareDb = new PwDatabase();
-                    CompositeKey key = new CompositeKey();
-                    if (!string.IsNullOrEmpty(password))
+                    finally
                     {
-                        key.AddUserKey(new KcpPassword(password));
+                        // Dispose ms if it's not being used as kdbxStream (i.e., if kdbxMem was used instead)
+                        // Note: If ms is used as kdbxStream, KdbxFile.Load will handle it, but we should still dispose
+                        // Actually, ms is always used either directly or indirectly, so we dispose it here
+                        ms.Dispose();
                     }
-                    // If password is empty, KcpPassword("") is added? or just empty composite key?
-                    // KeeShare without password implies empty password or no master key? 
-                    // Usually shares have passwords. If empty, try empty password.
-                    if (key.UserKeys.Count() == 0)
-                         key.AddUserKey(new KcpPassword(""));
-
-                    KdbxFile kdbx = new KdbxFile(shareDb);
-                    // We need a null status logger or similar
-                    kdbx.Load(kdbxStream, KdbxFormat.Default, key);
-
-                    // Now copy content from shareDb.RootGroup to targetGroup
-                    SyncGroups(shareDb.RootGroup, targetGroup);
                 }
             }
             catch (Exception ex)
@@ -282,6 +363,147 @@ namespace keepass2android
             {
                 Kp2aLog.Log("Failed to open stream for " + ioc.Path + ": " + ex.Message);
                 return null;
+            }
+        }
+
+        /// <summary>
+        /// Verifies the signature of a KeeShare file.
+        /// Returns true if signature is valid and certificate is trusted, false otherwise.
+        /// </summary>
+        private bool VerifySignature(PwGroup group, byte[] kdbxData, byte[] signatureData)
+        {
+            try
+            {
+                // Get trusted certificate (public key) from group CustomData
+                string trustedCert = group.CustomData.Get("KeeShare.TrustedCertificate");
+                
+                if (string.IsNullOrEmpty(trustedCert))
+                {
+                    Kp2aLog.Log("KeeShare: No trusted certificate configured for group " + group.Name);
+                    return false;
+                }
+
+                if (signatureData == null || signatureData.Length == 0)
+                {
+                    Kp2aLog.Log("KeeShare: Signature file is empty");
+                    return false;
+                }
+
+                if (kdbxData == null || kdbxData.Length == 0)
+                {
+                    Kp2aLog.Log("KeeShare: KDBX data is empty");
+                    return false;
+                }
+
+                // KeeShare signature format: base64-encoded RSA signature
+                // The signature is computed over the kdbx file data using SHA-256
+                string signatureText = Encoding.UTF8.GetString(signatureData).Trim();
+                
+                // Remove any whitespace/newlines
+                signatureText = signatureText.Replace("\r", "").Replace("\n", "").Replace(" ", "");
+                
+                byte[] signatureBytes;
+                try
+                {
+                    signatureBytes = Convert.FromBase64String(signatureText);
+                }
+                catch (Exception ex)
+                {
+                    Kp2aLog.Log("KeeShare: Failed to decode base64 signature: " + ex.Message);
+                    return false;
+                }
+
+                // Parse the trusted certificate (public key)
+                // Format: PEM-encoded public key or base64-encoded DER
+                byte[] publicKeyBytes;
+                try
+                {
+                    // Try to decode as base64 first
+                    if (trustedCert.Contains("-----BEGIN"))
+                    {
+                        // PEM format - extract base64 content
+                        var lines = trustedCert.Split('\n');
+                        var base64Lines = lines.Where(l => !l.Contains("BEGIN") && !l.Contains("END") && !string.IsNullOrWhiteSpace(l));
+                        string base64Content = string.Join("", base64Lines).Trim();
+                        publicKeyBytes = Convert.FromBase64String(base64Content);
+                    }
+                    else
+                    {
+                        // Assume it's already base64-encoded DER
+                        publicKeyBytes = Convert.FromBase64String(trustedCert);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Kp2aLog.Log("KeeShare: Failed to parse trusted certificate: " + ex.Message);
+                    return false;
+                }
+
+                // Create RSA object from public key
+                RSA rsa = RSA.Create();
+                try
+                {
+                    // Try importing as SubjectPublicKeyInfo (standard format)
+                    rsa.ImportSubjectPublicKeyInfo(publicKeyBytes, out int bytesRead);
+                    if (bytesRead == 0)
+                    {
+                        throw new CryptographicException("No bytes read from public key");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Kp2aLog.Log("KeeShare: Failed to import public key as SubjectPublicKeyInfo: " + ex.Message);
+                    try
+                    {
+                        // Try importing as RSAPublicKey (PKCS#1 format)
+                        rsa.ImportRSAPublicKey(publicKeyBytes, out int bytesRead);
+                        if (bytesRead == 0)
+                        {
+                            throw new CryptographicException("No bytes read from public key");
+                        }
+                    }
+                    catch (Exception ex2)
+                    {
+                        Kp2aLog.Log("KeeShare: Failed to import public key as RSAPublicKey: " + ex2.Message);
+                        rsa.Dispose();
+                        return false;
+                    }
+                }
+
+                // Compute hash of kdbx data
+                byte[] hash;
+                using (SHA256 sha256 = SHA256.Create())
+                {
+                    hash = sha256.ComputeHash(kdbxData);
+                }
+
+                // Verify signature
+                bool isValid = false;
+                try
+                {
+                    isValid = rsa.VerifyHash(hash, signatureBytes, HashAlgorithmName.SHA256, RSASignaturePadding.Pkcs1);
+                    
+                    if (isValid)
+                    {
+                        Kp2aLog.Log("KeeShare: Signature verified successfully for group " + group.Name);
+                    }
+                    else
+                    {
+                        Kp2aLog.Log("KeeShare: Signature verification failed for group " + group.Name);
+                    }
+                }
+                finally
+                {
+                    rsa.Dispose();
+                }
+
+                return isValid;
+            }
+            catch (Exception ex)
+            {
+                Kp2aLog.Log("KeeShare: Error verifying signature: " + ex.Message);
+                Kp2aLog.Log("KeeShare: Stack trace: " + ex.StackTrace);
+                return false;
             }
         }
     }
