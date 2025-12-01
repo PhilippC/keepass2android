@@ -422,7 +422,7 @@ namespace keepass2android
         /// </summary>
         /// <param name="trustedCertificate">The trusted certificate (public key) as base64-encoded DER or PEM format</param>
         /// <param name="kdbxData">The KDBX file data that was signed</param>
-        /// <param name="signatureData">The signature data (base64-encoded)</param>
+        /// <param name="signatureData">The signature data in KeeShare format ("rsa|&lt;hex&gt;")</param>
         /// <returns>True if signature is valid, false otherwise</returns>
         internal static bool VerifySignatureCore(string trustedCertificate, byte[]? kdbxData, byte[]? signatureData)
         {
@@ -443,19 +443,32 @@ namespace keepass2android
                     return false;
                 }
 
-                // KeeShare signature format: base64-encoded RSA signature
+                // KeeShare signature format: "rsa|<hex>" where hex is the RSA signature
                 // The signature is computed over the kdbx file data using SHA-256
                 string signatureText = Encoding.UTF8.GetString(signatureData).Trim();
                 
                 // Remove any whitespace/newlines
                 signatureText = signatureText.Replace("\r", "").Replace("\n", "").Replace(" ", "");
                 
+                // Strip "rsa|" prefix if present
+                const string rsaPrefix = "rsa|";
+                if (signatureText.StartsWith(rsaPrefix, StringComparison.OrdinalIgnoreCase))
+                {
+                    signatureText = signatureText.Substring(rsaPrefix.Length);
+                }
+                
+                // Hex-decode the signature
                 byte[] signatureBytes;
                 try
                 {
-                    signatureBytes = Convert.FromBase64String(signatureText);
+                    signatureBytes = HexStringToBytes(signatureText);
                 }
                 catch (Exception)
+                {
+                    return false;
+                }
+                
+                if (signatureBytes == null || signatureBytes.Length == 0)
                 {
                     return false;
                 }
@@ -541,6 +554,37 @@ namespace keepass2android
             {
                 return false;
             }
+        }
+
+        /// <summary>
+        /// Converts a hexadecimal string to a byte array.
+        /// </summary>
+        /// <param name="hex">The hexadecimal string (case-insensitive, no separators)</param>
+        /// <returns>The decoded byte array, or null if the input is invalid</returns>
+        private static byte[]? HexStringToBytes(string hex)
+        {
+            if (string.IsNullOrEmpty(hex))
+            {
+                return null;
+            }
+
+            // Hex string must have even length
+            if (hex.Length % 2 != 0)
+            {
+                return null;
+            }
+
+            byte[] bytes = new byte[hex.Length / 2];
+            for (int i = 0; i < bytes.Length; i++)
+            {
+                string byteStr = hex.Substring(i * 2, 2);
+                if (!byte.TryParse(byteStr, System.Globalization.NumberStyles.HexNumber, null, out bytes[i]))
+                {
+                    return null;
+                }
+            }
+
+            return bytes;
         }
     }
 }
