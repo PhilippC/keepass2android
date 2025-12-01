@@ -241,9 +241,10 @@ namespace keepass2android
                         }
 
                         // Load the KDBX
+                        PwDatabase? shareDb = null;
                         try
                         {
-                            PwDatabase shareDb = new PwDatabase();
+                            shareDb = new PwDatabase();
                             CompositeKey key = new CompositeKey();
                             if (!string.IsNullOrEmpty(password))
                             {
@@ -263,6 +264,9 @@ namespace keepass2android
                         }
                         finally
                         {
+                            // Close/dispose the shared database to release resources
+                            shareDb?.Close();
+                            
                             // Dispose kdbxMem if it was created (for ZIP files)
                             if (kdbxMem != null && kdbxMem != ms)
                             {
