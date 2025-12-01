@@ -18,6 +18,13 @@ namespace keepass2android
 {
     public class KeeShare
     {
+        /// <summary>
+        /// Checks for KeeShare groups and processes them. This is called after database load
+        /// and can also be triggered by "Synchronize Database" action.
+        /// Uses non-blocking background operations for fast database loading (similar to database sync in 1.15+).
+        /// </summary>
+        /// <param name="app">The application instance</param>
+        /// <param name="nextHandler">Handler to call when operation completes</param>
         public static void Check(IKp2aApp app, OnOperationFinishedHandler nextHandler)
         {
             var db = app.CurrentDb;
@@ -34,7 +41,16 @@ namespace keepass2android
             }
 
             var op = new KeeShareCheckOperation(app, nextHandler);
-            new BlockingOperationStarter(app, op).Run();
+            OperationRunner.Instance.Run(app, op);
+        }
+
+        /// <summary>
+        /// Triggers KeeShare synchronization in the background. 
+        /// Called when user selects "Synchronize Database".
+        /// </summary>
+        public static void SyncInBackground(IKp2aApp app, OnOperationFinishedHandler onFinished)
+        {
+            Check(app, onFinished);
         }
 
         internal static bool HasKeeShareGroups(PwGroup group)
@@ -85,12 +101,9 @@ namespace keepass2android
                 catch (Exception ex)
                 {
                     Kp2aLog.Log("Error processing KeeShare for group " + group.Name + ": " + ex.ToString());
-                    // Continue with other groups even if one fails
                 }
             }
 
-            // Process subgroups AFTER processing KeeShare, so we recurse into the newly imported groups
-            // We must iterate over a copy of the groups list to avoid issues if ProcessGroup modifies the collection
             foreach (var sub in group.Groups.ToList())
             {
                 ProcessGroup(sub);
@@ -121,10 +134,6 @@ namespace keepass2android
                 using (Stream s = OpenStream(ioc))
                 {
                     if (s == null) return;
-
-                    // Check if it's a Zip (KeeShare signed file)
-                    // We can't seek on some streams, so we might need to copy to memory if we need random access
-                    // But KdbxFile loads from stream. ZipArchive needs seekable stream usually.
                     
                     MemoryStream ms = new MemoryStream();
                     try
@@ -136,7 +145,6 @@ namespace keepass2android
                         MemoryStream kdbxMem = null;
                         bool isZip = false;
                         
-                        // Check for PK header (Zip)
                         if (ms.Length > 4)
                         {
                             byte[] header = new byte[4];
@@ -154,7 +162,6 @@ namespace keepass2android
                             {
                                 using (ZipArchive archive = new ZipArchive(ms, ZipArchiveMode.Read, true))
                                 {
-                                    // Find .kdbx file
                                     var kdbxEntry = archive.Entries.FirstOrDefault(e => e.Name.EndsWith(".kdbx", StringComparison.OrdinalIgnoreCase));
                                     if (kdbxEntry == null)
                                     {
@@ -162,31 +169,25 @@ namespace keepass2android
                                         return;
                                     }
 
-                                    // Extract to a new memory stream because KdbxFile might close it or we need a clean stream
                                     kdbxMem = new MemoryStream();
                                     using (var es = kdbxEntry.Open())
                                     {
                                         es.CopyTo(kdbxMem);
                                     }
                                     
-                                    // Store kdbx data for signature verification
                                     byte[] kdbxData = kdbxMem.ToArray();
                                     
-                                    // Check for signature file (.sig) and verify if certificate is trusted
                                     var sigEntry = archive.Entries.FirstOrDefault(e => 
                                         e.Name.EndsWith(".sig", StringComparison.OrdinalIgnoreCase) ||
                                         e.Name.EndsWith(".signature", StringComparison.OrdinalIgnoreCase));
                                     
-                                    // Check if a trusted certificate is configured
                                     string trustedCert = targetGroup.CustomData.Get("KeeShare.TrustedCertificate");
                                     bool hasTrustedCert = !string.IsNullOrEmpty(trustedCert);
                                     
                                     if (sigEntry != null)
                                     {
-                                        // Only verify signature if a trusted certificate is configured
                                         if (hasTrustedCert)
                                         {
-                                            // Extract signature for verification
                                             byte[] signatureData;
                                             using (var sigStream = sigEntry.Open())
                                             using (var sigMem = new MemoryStream())
@@ -195,38 +196,34 @@ namespace keepass2android
                                                 signatureData = sigMem.ToArray();
                                             }
 
-                                            // Verify signature - only import if certificate is trusted and signature is valid
                                             if (!VerifySignature(targetGroup, kdbxData, signatureData))
                                             {
-                                                Kp2aLog.Log("KeeShare: Signature verification failed or certificate not trusted for " + path + ". Skipping import.");
+                                                Kp2aLog.Log("KeeShare: Signature verification failed or certificate not trusted for group " + targetGroup.Name + ". Skipping import.");
                                                 return;
                                             }
                                             else
                                             {
-                                                Kp2aLog.Log("KeeShare: Signature verified successfully for " + path);
+                                                Kp2aLog.Log("KeeShare: Signature verified successfully for group " + targetGroup.Name);
                                             }
                                         }
                                         else
                                         {
-                                            // Signature file exists but no certificate configured - skip verification for backward compatibility
-                                            Kp2aLog.Log("KeeShare: Signature file found but no trusted certificate configured for " + path + ". Continuing without signature verification (backward compatibility).");
+                                            Kp2aLog.Log("KeeShare: Signature file found but no trusted certificate configured for group " + targetGroup.Name + ". Continuing without signature verification (backward compatibility).");
                                         }
                                     }
                                     else
                                     {
-                                        // If a trusted certificate is configured, we MUST have a signature file for security
                                         if (hasTrustedCert)
                                         {
-                                            Kp2aLog.Log("KeeShare: Trusted certificate is configured but no signature file found in ZIP archive for " + path + ". Skipping import for security.");
+                                            Kp2aLog.Log("KeeShare: Trusted certificate is configured but no signature file found in ZIP archive for group " + targetGroup.Name + ". Skipping import for security.");
                                             return;
                                         }
                                         else
                                         {
-                                            Kp2aLog.Log("KeeShare: No signature file found in ZIP archive for " + path + ". Continuing without signature verification (backward compatibility).");
+                                            Kp2aLog.Log("KeeShare: No signature file found in ZIP archive for group " + targetGroup.Name + ". Continuing without signature verification (backward compatibility).");
                                         }
                                     }
                                     
-                                    // Reset stream position for KDBX loading
                                     kdbxMem.Position = 0;
                                     kdbxStream = kdbxMem;
                                 }
@@ -234,14 +231,12 @@ namespace keepass2android
                             catch (Exception ex)
                             {
                                 Kp2aLog.Log("Failed to treat file as zip: " + ex.Message);
-                                ms.Position = 0; // Rewind and try as KDBX directly
+                                ms.Position = 0;
                                 kdbxStream = ms;
-                                // kdbxMem will be disposed in finally block if it was created
                             }
                         }
 
-                        // Load the KDBX
-                        PwDatabase? shareDb = null;
+                        PwDatabase shareDb = null;
                         try
                         {
                             shareDb = new PwDatabase();
@@ -250,24 +245,18 @@ namespace keepass2android
                             {
                                 key.AddUserKey(new KcpPassword(password));
                             }
-                            // If password is empty, KcpPassword("") is added? or just empty composite key?
-                            // KeeShare without password implies empty password or no master key? 
-                            // Usually shares have passwords. If empty, try empty password.
                             if (key.UserKeys.Count() == 0)
                                  key.AddUserKey(new KcpPassword(""));
 
                             KdbxFile kdbx = new KdbxFile(shareDb);
                             kdbx.Load(kdbxStream, KdbxFormat.Default, key);
 
-                            // Now copy content from shareDb.RootGroup to targetGroup
-                            SyncGroups(shareDb.RootGroup, targetGroup, type);
+                            SyncGroups(shareDb, targetGroup, type);
                         }
                         finally
                         {
-                            // Close/dispose the shared database to release resources
                             shareDb?.Close();
                             
-                            // Dispose kdbxMem if it was created (for ZIP files)
                             if (kdbxMem != null && kdbxMem != ms)
                             {
                                 kdbxMem.Dispose();
@@ -276,152 +265,146 @@ namespace keepass2android
                     }
                     finally
                     {
-                        // Dispose ms if it's not being used as kdbxStream (i.e., if kdbxMem was used instead)
-                        // Note: If ms is used as kdbxStream, KdbxFile.Load will handle it, but we should still dispose
-                        // Actually, ms is always used either directly or indirectly, so we dispose it here
                         ms.Dispose();
                     }
                 }
             }
             catch (Exception ex)
             {
-                Kp2aLog.Log("KeeShare import failed for " + path + ": " + ex.Message);
-                // Don't fail the whole operation, just log
+                Kp2aLog.Log("KeeShare import failed for group " + targetGroup.Name + ": " + ex.Message);
             }
         }
 
         /// <summary>
-        /// Synchronizes the target group with the source group from the shared database.
+        /// Synchronizes the target group with the source database using PwDatabase.MergeIn.
         /// 
-        /// For "Import" mode: Performs a destructive replace - clears target and copies all
-        /// content from source. Any local modifications will be lost.
+        /// For "Import" mode: Performs a destructive replace - clears target group first,
+        /// then merges with OverwriteExisting. Any local modifications will be lost.
         /// 
-        /// For "Synchronize" mode: Performs a non-destructive merge - adds new entries/groups
-        /// from source, and updates existing entries/groups if the source version is newer
-        /// (based on LastModificationTime). Local entries not in source are preserved.
+        /// For "Synchronize" mode: Uses MergeIn with Synchronize method - adds new entries/groups
+        /// from source, updates existing if source is newer. Handles entry history, deletions,
+        /// and relocations properly.
         /// 
-        /// The following properties of the target group are always preserved:
-        /// - UUID (group identity)
-        /// - Parent (group hierarchy)
-        /// - Name (local group name)
-        /// - Icon (local group icon)
-        /// - CustomData (KeeShare configuration)
+        /// Implementation note: MergeIn uses reference comparison for the source root group
+        /// (pgSourceParent == pdSource.m_pgRootGroup), so we can't just swap UUIDs. Instead,
+        /// we restructure the source database by creating a wrapper group with the target
+        /// group's UUID and moving all content into it. This ensures MergeIn's FindGroup()
+        /// call will find the correct local container.
         /// </summary>
-        /// <param name="source">Source group from the shared database</param>
-        /// <param name="target">Target group in the local database</param>
-        /// <param name="type">KeeShare type: "Import" or "Synchronize"</param>
-        private void SyncGroups(PwGroup source, PwGroup target, string type)
+        private void SyncGroups(PwDatabase shareDb, PwGroup targetGroup, string type)
         {
-            if (type == "Synchronize")
+            PwDatabase mainDb = _app.CurrentDb.KpDatabase;
+            
+            // Save target group's CustomData before MergeIn - MergeIn will overwrite group
+            // properties with the wrapper group's (empty) CustomData, losing KeeShare config.
+            var savedCustomData = new Dictionary<string, string>();
+            foreach (var kvp in targetGroup.CustomData)
             {
-                // Non-destructive merge: add new items, update existing if newer
-                MergeGroupContents(source, target);
+                savedCustomData[kvp.Key] = kvp.Value;
+            }
+            
+            // Create a wrapper group with the target group's UUID.
+            // MergeIn uses FindGroup(parentUuid) for non-root parents, so this ensures
+            // content is placed in the target KeeShare group, not the database root.
+            PwGroup wrapperGroup = new PwGroup(false, false);
+            wrapperGroup.Uuid = targetGroup.Uuid;
+            wrapperGroup.Name = targetGroup.Name;
+            
+            // Copy all important properties from target group to wrapper group.
+            // When MergeIn processes the wrapper group, it will call AssignProperties
+            // which copies properties from wrapper to target. By copying target's properties
+            // to wrapper first, we ensure MergeIn preserves the target group's properties
+            // (Icon, IconUuid, Notes, Tags, etc.) instead of overwriting them with defaults.
+            wrapperGroup.Notes = targetGroup.Notes;
+            wrapperGroup.IconId = targetGroup.IconId;
+            wrapperGroup.CustomIconUuid = targetGroup.CustomIconUuid;
+            wrapperGroup.DefaultAutoTypeSequence = targetGroup.DefaultAutoTypeSequence;
+            wrapperGroup.EnableAutoType = targetGroup.EnableAutoType;
+            wrapperGroup.EnableSearching = targetGroup.EnableSearching;
+            wrapperGroup.Expires = targetGroup.Expires;
+            wrapperGroup.ExpiryTime = targetGroup.ExpiryTime;
+            wrapperGroup.LastTopVisibleEntry = targetGroup.LastTopVisibleEntry;
+            foreach (string tag in targetGroup.Tags)
+            {
+                wrapperGroup.Tags.Add(tag);
+            }
+            
+            // Move all entries from source root to wrapper group.
+            // Use bTakeOwnership=true so entry.ParentGroup points to wrapperGroup,
+            // otherwise MergeIn's check (pgSourceParent == pdSource.m_pgRootGroup) will
+            // match and place entries in the database root instead of targetGroup.
+            while (shareDb.RootGroup.Entries.UCount > 0)
+            {
+                PwEntry entry = shareDb.RootGroup.Entries.GetAt(0);
+                shareDb.RootGroup.Entries.RemoveAt(0);
+                wrapperGroup.AddEntry(entry, true);
+            }
+            
+            // Move all subgroups from source root to wrapper group (bTakeOwnership=true)
+            while (shareDb.RootGroup.Groups.UCount > 0)
+            {
+                PwGroup group = shareDb.RootGroup.Groups.GetAt(0);
+                shareDb.RootGroup.Groups.RemoveAt(0);
+                wrapperGroup.AddGroup(group, true);
+            }
+            
+            // Add wrapper group as child of source root (bTakeOwnership=true)
+            shareDb.RootGroup.AddGroup(wrapperGroup, true);
+            
+            if (type == "Import")
+            {
+                // For Import mode: clear target first, then merge with OverwriteExisting
+                ClearGroupContents(targetGroup);
+                mainDb.MergeIn(shareDb, PwMergeMethod.OverwriteExisting);
             }
             else
             {
-                // Import mode: destructive replace
-                ImportGroupContents(source, target);
+                // For Synchronize mode: use MergeIn with Synchronize
+                // This handles: update if newer, add new items, handle history, handle deletions
+                mainDb.MergeIn(shareDb, PwMergeMethod.Synchronize);
             }
             
-            target.Touch(true, false);
+            // Restore target group's CustomData (KeeShare configuration)
+            // MergeIn would have overwritten it with the wrapper's empty CustomData
+            foreach (var kvp in savedCustomData)
+            {
+                targetGroup.CustomData.Set(kvp.Key, kvp.Value);
+            }
+            
+            targetGroup.Touch(true, false);
         }
 
         /// <summary>
-        /// Performs a destructive import: clears target and copies all content from source.
+        /// Clears all entries and subgroups from a group (for Import mode).
         /// </summary>
-        private void ImportGroupContents(PwGroup source, PwGroup target)
+        private void ClearGroupContents(PwGroup group)
         {
-            // Clear entries and subgroups
-            target.Entries.Clear();
-            target.Groups.Clear();
-            
-            // Copy entries from source
-            foreach (var entry in source.Entries)
-            {
-                target.AddEntry(entry.CloneDeep(), true);
-            }
-            
-            // Copy subgroups from source
-            foreach (var group in source.Groups)
-            {
-                target.AddGroup(group.CloneDeep(), true);
-            }
-        }
-
-        /// <summary>
-        /// Performs a non-destructive merge: adds new entries/groups from source,
-        /// updates existing if source is newer. Local items not in source are preserved.
-        /// </summary>
-        private void MergeGroupContents(PwGroup source, PwGroup target)
-        {
-            // Merge entries
-            foreach (var sourceEntry in source.Entries)
-            {
-                var targetEntry = target.FindEntry(sourceEntry.Uuid, false);
-                if (targetEntry == null)
-                {
-                    // Entry doesn't exist in target - add it
-                    target.AddEntry(sourceEntry.CloneDeep(), true);
-                }
-                else
-                {
-                    // Entry exists - update if source is newer
-                    // AssignProperties with bOnlyIfNewer=true will only update if source.LastMod > target.LastMod
-                    targetEntry.AssignProperties(sourceEntry, true, false, false);
-                }
-            }
-            
-            // Merge subgroups recursively
-            foreach (var sourceGroup in source.Groups)
-            {
-                var targetGroup = target.FindGroup(sourceGroup.Uuid, false);
-                if (targetGroup == null)
-                {
-                    // Group doesn't exist in target - add it
-                    target.AddGroup(sourceGroup.CloneDeep(), true);
-                }
-                else
-                {
-                    // Group exists - update properties if source is newer, then merge contents
-                    targetGroup.AssignProperties(sourceGroup, true, false);
-                    MergeGroupContents(sourceGroup, targetGroup);
-                }
-            }
+            group.Entries.Clear();
+            group.Groups.Clear();
         }
 
         private IOConnectionInfo ResolvePath(string path)
         {
-            // Check if absolute
             if (path.Contains("://") || path.StartsWith("/"))
             {
                 return IOConnectionInfo.FromPath(path);
             }
 
-            // Try relative to current DB
             try 
             {
                 var currentIoc = _app.CurrentDb.Ioc;
                 var storage = _app.GetFileStorage(currentIoc);
                 
-                // This is a bit hacky as GetParentPath is not always supported or returns something valid
-                // But let's try.
-                
-                // If it's a local file, we can use Path.Combine
                 if (currentIoc.IsLocalFile())
                 {
                     string dir = Path.GetDirectoryName(currentIoc.Path);
                     string fullPath = Path.Combine(dir, path);
                     return IOConnectionInfo.FromPath(fullPath);
                 }
-                
-                // For other storages, it depends.
-                // Assume path is relative to same storage
-                // Many storages don't support relative paths easily without full URL manipulation
-                // For now, return as is if not local, or try to reconstruct
             }
             catch (Exception ex)
             {
-                Kp2aLog.Log("KeeShare: Error resolving relative path for " + path + ": " + ex.ToString());
+                Kp2aLog.Log("KeeShare: Error resolving relative path: " + ex.GetType().Name);
             }
             
             return IOConnectionInfo.FromPath(path);
@@ -436,18 +419,13 @@ namespace keepass2android
             }
             catch (Exception ex)
             {
-                Kp2aLog.Log("Failed to open stream for " + ioc.Path + ": " + ex.Message);
+                Kp2aLog.Log("Failed to open KeeShare stream: " + ex.GetType().Name + " - " + ex.Message);
                 return null;
             }
         }
 
-        /// <summary>
-        /// Verifies the signature of a KeeShare file.
-        /// Returns true if signature is valid and certificate is trusted, false otherwise.
-        /// </summary>
         private bool VerifySignature(PwGroup group, byte[] kdbxData, byte[] signatureData)
         {
-            // Get trusted certificate (public key) from group CustomData
             string trustedCert = group.CustomData.Get("KeeShare.TrustedCertificate");
             
             if (string.IsNullOrEmpty(trustedCert))
@@ -470,15 +448,7 @@ namespace keepass2android
             return result;
         }
 
-        /// <summary>
-        /// Core signature verification logic that can be used by both production code and tests.
-        /// Verifies a signature using the provided trusted certificate, KDBX data, and signature data.
-        /// </summary>
-        /// <param name="trustedCertificate">The trusted certificate (public key) as base64-encoded DER or PEM format</param>
-        /// <param name="kdbxData">The KDBX file data that was signed</param>
-        /// <param name="signatureData">The signature data in KeeShare format ("rsa|&lt;hex&gt;")</param>
-        /// <returns>True if signature is valid, false otherwise</returns>
-        internal static bool VerifySignatureCore(string trustedCertificate, byte[]? kdbxData, byte[]? signatureData)
+        internal static bool VerifySignatureCore(string trustedCertificate, byte[] kdbxData, byte[] signatureData)
         {
             try
             {
@@ -497,25 +467,20 @@ namespace keepass2android
                     return false;
                 }
 
-                // KeeShare signature format: "rsa|<hex>" where hex is the RSA signature
-                // The signature is computed over the kdbx file data using SHA-256
                 string signatureText = Encoding.UTF8.GetString(signatureData).Trim();
                 
-                // Remove any whitespace/newlines
                 signatureText = signatureText.Replace("\r", "").Replace("\n", "").Replace(" ", "");
                 
-                // Strip "rsa|" prefix if present
                 const string rsaPrefix = "rsa|";
                 if (signatureText.StartsWith(rsaPrefix, StringComparison.OrdinalIgnoreCase))
                 {
                     signatureText = signatureText.Substring(rsaPrefix.Length);
                 }
                 
-                // Hex-decode the signature
                 byte[] signatureBytes;
                 try
                 {
-                    signatureBytes = HexStringToBytes(signatureText);
+                    signatureBytes = MemUtil.HexStringToByteArray(signatureText);
                 }
                 catch (Exception)
                 {
@@ -527,15 +492,11 @@ namespace keepass2android
                     return false;
                 }
 
-                // Parse the trusted certificate (public key)
-                // Format: PEM-encoded public key or base64-encoded DER
                 byte[] publicKeyBytes;
                 try
                 {
-                    // Try to decode as base64 first
                     if (trustedCertificate.Contains("-----BEGIN"))
                     {
-                        // PEM format - extract base64 content
                         var lines = trustedCertificate.Split('\n');
                         var base64Lines = lines.Where(l => !l.Contains("BEGIN") && !l.Contains("END") && !string.IsNullOrWhiteSpace(l));
                         string base64Content = string.Join("", base64Lines).Trim();
@@ -543,7 +504,6 @@ namespace keepass2android
                     }
                     else
                     {
-                        // Assume it's already base64-encoded DER
                         publicKeyBytes = Convert.FromBase64String(trustedCertificate);
                     }
                 }
@@ -552,13 +512,10 @@ namespace keepass2android
                     return false;
                 }
 
-                // Create RSA object from public key
-                // Use using block to ensure deterministic disposal even if exceptions occur
                 bool isValid = false;
                 bool importFailed = false;
                 using (RSA rsa = RSA.Create())
                 {
-                    // Try importing as SubjectPublicKeyInfo (standard format)
                     bool importSucceeded = false;
                     try
                     {
@@ -573,7 +530,6 @@ namespace keepass2android
                     {
                         try
                         {
-                            // Try importing as RSAPublicKey (PKCS#1 format)
                             rsa.ImportRSAPublicKey(publicKeyBytes, out int bytesRead);
                             if (bytesRead == 0)
                             {
@@ -589,56 +545,22 @@ namespace keepass2android
 
                     if (!importFailed && importSucceeded)
                     {
-                        // Compute hash of kdbx data
                         byte[] hash;
                         using (SHA256 sha256 = SHA256.Create())
                         {
                             hash = sha256.ComputeHash(kdbxData);
                         }
 
-                        // Verify signature
                         isValid = rsa.VerifyHash(hash, signatureBytes, HashAlgorithmName.SHA256, RSASignaturePadding.Pkcs1);
                     }
                 }
 
-                // Return false if import failed, otherwise return verification result
                 return !importFailed && isValid;
             }
             catch (Exception)
             {
                 return false;
             }
-        }
-
-        /// <summary>
-        /// Converts a hexadecimal string to a byte array.
-        /// </summary>
-        /// <param name="hex">The hexadecimal string (case-insensitive, no separators)</param>
-        /// <returns>The decoded byte array, or null if the input is invalid</returns>
-        private static byte[]? HexStringToBytes(string hex)
-        {
-            if (string.IsNullOrEmpty(hex))
-            {
-                return null;
-            }
-
-            // Hex string must have even length
-            if (hex.Length % 2 != 0)
-            {
-                return null;
-            }
-
-            byte[] bytes = new byte[hex.Length / 2];
-            for (int i = 0; i < bytes.Length; i++)
-            {
-                string byteStr = hex.Substring(i * 2, 2);
-                if (!byte.TryParse(byteStr, System.Globalization.NumberStyles.HexNumber, null, out bytes[i]))
-                {
-                    return null;
-                }
-            }
-
-            return bytes;
         }
     }
 }

@@ -116,11 +116,21 @@ namespace keepass2android
                 adapter?.NotifyDataSetChanged();
               });
 
-        if (database?.OtpAuxFileIoc != null)
+        // Sync KeeShare groups if present
+        if (success && KeeShare.HasKeeShareGroups(database.KpDatabase.RootGroup))
         {
-          var task2 = new SyncOtpAuxFile(_activity, database.OtpAuxFileIoc);
-
-          OperationRunner.Instance.Run(App.Kp2a, task2);
+          KeeShare.SyncInBackground(App.Kp2a, new ActionOnOperationFinished(App.Kp2a, (keeShareSuccess, keeShareMessage, ctx) =>
+          {
+            if (!String.IsNullOrEmpty(keeShareMessage))
+              App.Kp2a.ShowMessage(ctx, keeShareMessage, keeShareSuccess ? MessageSeverity.Info : MessageSeverity.Error);
+            
+            // Continue with OTP aux file sync after KeeShare completes
+            SyncOtpAuxFileIfNeeded(database);
+          }));
+        }
+        else
+        {
+          SyncOtpAuxFileIfNeeded(database);
         }
 
       });
@@ -137,6 +147,15 @@ namespace keepass2android
 
       OperationRunner.Instance.Run(App.Kp2a, task);
 
+    }
+
+    private void SyncOtpAuxFileIfNeeded(Database database)
+    {
+      if (database?.OtpAuxFileIoc != null)
+      {
+        var task = new SyncOtpAuxFile(_activity, database.OtpAuxFileIoc);
+        OperationRunner.Instance.Run(App.Kp2a, task);
+      }
     }
 
     public void TryStartPendingSyncs()
