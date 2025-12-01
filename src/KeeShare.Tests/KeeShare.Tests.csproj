@@ -33,4 +33,9 @@
     <Using Include="Xunit" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\keepass2android-app\keepass2android-app.csproj" />
+    <ProjectReference Include="..\KeePassLib2Android\KeePassLib2Android.csproj" />
+  </ItemGroup>
+
 </Project>

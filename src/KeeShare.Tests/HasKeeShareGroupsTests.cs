@@ -1,3 +1,6 @@
+using KeePassLib;
+using keepass2android;
+
 namespace KeeShare.Tests
 {
     public class HasKeeShareGroupsTests
@@ -5,88 +8,66 @@ namespace KeeShare.Tests
         [Fact]
         public void HasKeeShareGroups_WithNoGroups_ReturnsFalse()
         {
-            var root = new MockPwGroup();
-            bool result = KeeShareHelpers.HasKeeShareGroups(root);
+            var root = new PwGroup();
+            bool result = keepass2android.KeeShare.HasKeeShareGroups(root);
             Assert.False(result);
         }
 
         [Fact]
         public void HasKeeShareGroups_WithKeeShareActiveTrue_ReturnsTrue()
         {
-            var root = new MockPwGroup();
-            root.CustomData["KeeShare.Active"] = "true";
-            bool result = KeeShareHelpers.HasKeeShareGroups(root);
+            var root = new PwGroup();
+            root.CustomData.Set("KeeShare.Active", "true");
+            bool result = keepass2android.KeeShare.HasKeeShareGroups(root);
             Assert.True(result);
         }
 
         [Fact]
         public void HasKeeShareGroups_WithKeeShareActiveFalse_ReturnsFalse()
         {
-            var root = new MockPwGroup();
-            root.CustomData["KeeShare.Active"] = "false";
-            bool result = KeeShareHelpers.HasKeeShareGroups(root);
+            var root = new PwGroup();
+            root.CustomData.Set("KeeShare.Active", "false");
+            bool result = keepass2android.KeeShare.HasKeeShareGroups(root);
             Assert.False(result);
         }
 
         [Fact]
         public void HasKeeShareGroups_WithNestedKeeShareGroup_ReturnsTrue()
         {
-            var root = new MockPwGroup();
-            var child1 = new MockPwGroup();
-            var child2 = new MockPwGroup();
-            child2.CustomData["KeeShare.Active"] = "true";
-            child1.Groups.Add(child2);
-            root.Groups.Add(child1);
-            bool result = KeeShareHelpers.HasKeeShareGroups(root);
+            var root = new PwGroup();
+            var child1 = new PwGroup();
+            var child2 = new PwGroup();
+            child2.CustomData.Set("KeeShare.Active", "true");
+            child1.AddGroup(child2, true);
+            root.AddGroup(child1, true);
+            bool result = keepass2android.KeeShare.HasKeeShareGroups(root);
             Assert.True(result);
         }
 
         [Fact]
         public void HasKeeShareGroups_WithMultipleNonKeeShareGroups_ReturnsFalse()
         {
-            var root = new MockPwGroup();
-            root.Groups.Add(new MockPwGroup());
-            root.Groups.Add(new MockPwGroup());
-            root.Groups.Add(new MockPwGroup());
-            bool result = KeeShareHelpers.HasKeeShareGroups(root);
+            var root = new PwGroup();
+            root.AddGroup(new PwGroup(), true);
+            root.AddGroup(new PwGroup(), true);
+            root.AddGroup(new PwGroup(), true);
+            bool result = keepass2android.KeeShare.HasKeeShareGroups(root);
             Assert.False(result);
         }
 
         [Fact]
         public void HasKeeShareGroups_WithDeeplyNestedKeeShareGroup_ReturnsTrue()
         {
-            var root = new MockPwGroup();
-            var level1 = new MockPwGroup();
-            var level2 = new MockPwGroup();
-            var level3 = new MockPwGroup();
-            level3.CustomData["KeeShare.Active"] = "true";
-            level2.Groups.Add(level3);
-            level1.Groups.Add(level2);
-            root.Groups.Add(level1);
-            bool result = KeeShareHelpers.HasKeeShareGroups(root);
+            var root = new PwGroup();
+            var level1 = new PwGroup();
+            var level2 = new PwGroup();
+            var level3 = new PwGroup();
+            level3.CustomData.Set("KeeShare.Active", "true");
+            level2.AddGroup(level3, true);
+            level1.AddGroup(level2, true);
+            root.AddGroup(level1, true);
+            bool result = keepass2android.KeeShare.HasKeeShareGroups(root);
             Assert.True(result);
-        }
-    }
-
-    public class MockPwGroup
-    {
-        public Dictionary<string, string> CustomData { get; set; } = new Dictionary<string, string>();
-        public List<MockPwGroup> Groups { get; set; } = new List<MockPwGroup>();
-    }
-
-    public static class KeeShareHelpers
-    {
-        public static bool HasKeeShareGroups(MockPwGroup group)
-        {
-            if (group.CustomData.ContainsKey("KeeShare.Active") &&
-                group.CustomData["KeeShare.Active"] == "true")
-                return true;
-
-            foreach (var sub in group.Groups)
-            {
-                if (HasKeeShareGroups(sub)) return true;
-            }
-            return false;
         }
     }
 }

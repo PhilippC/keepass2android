@@ -37,7 +37,7 @@ namespace keepass2android
             new BlockingOperationStarter(app, op).Run();
         }
 
-        private static bool HasKeeShareGroups(PwGroup group)
+        internal static bool HasKeeShareGroups(PwGroup group)
         {
             if (group.CustomData.Get("KeeShare.Active") == "true")
                 return true;
@@ -108,11 +108,11 @@ namespace keepass2android
             if (type == "Import" || type == "Synchronize")
             {
                 StatusLogger.UpdateMessage(_app.GetResourceString(UiStringKey.OpeningDatabase) + ": " + group.Name);
-                Import(group, path, password);
+                Import(group, path, password, type);
             }
         }
 
-        private void Import(PwGroup targetGroup, string path, string password)
+        private void Import(PwGroup targetGroup, string path, string password, string type)
         {
             IOConnectionInfo ioc = ResolvePath(path);
             
@@ -259,7 +259,7 @@ namespace keepass2android
                             kdbx.Load(kdbxStream, KdbxFormat.Default, key);
 
                             // Now copy content from shareDb.RootGroup to targetGroup
-                            SyncGroups(shareDb.RootGroup, targetGroup);
+                            SyncGroups(shareDb.RootGroup, targetGroup, type);
                         }
                         finally
                         {
@@ -286,33 +286,51 @@ namespace keepass2android
             }
         }
 
-        private void SyncGroups(PwGroup source, PwGroup target)
+        /// <summary>
+        /// Synchronizes the target group with the source group from the shared database.
+        /// 
+        /// WARNING: This is a destructive operation that will overwrite all entries and subgroups
+        /// in the target group with content from the source. Any local modifications to entries
+        /// within a KeeShare group will be lost on each sync.
+        /// 
+        /// This behavior is intentional for "Import" mode (one-time import), but for "Synchronize"
+        /// mode, a proper merge implementation would be preferable to preserve local modifications
+        /// that haven't been synced back to the shared database.
+        /// 
+        /// The following properties of the target group are preserved:
+        /// - UUID (group identity)
+        /// - Parent (group hierarchy)
+        /// - Name (local group name)
+        /// - Icon (local group icon)
+        /// - CustomData (KeeShare configuration)
+        /// </summary>
+        /// <param name="source">Source group from the shared database</param>
+        /// <param name="target">Target group in the local database</param>
+        /// <param name="type">KeeShare type: "Import" or "Synchronize"</param>
+        private void SyncGroups(PwGroup source, PwGroup target, string type)
         {
-            // For minimal implementation: clear target and copy source
-            // But we must preserve the CustomData of the target group (KeeShare config)!
-            // And Name/Icon/Uuid of the target group should probably stay?
-            // KeeShare says: "The group in your database is synchronized with the Shared Database"
+            // TODO: For "Synchronize" mode, consider implementing proper merge logic using
+            // KeePassLib's merge functionality (e.g., PwDatabase.MergeIn) to preserve local
+            // modifications and handle conflicts appropriately.
             
-            // We should keep: UUID, Parent, Name, Icon (maybe?), CustomData
-            
-            // Clear entries and subgroups
+            // Clear entries and subgroups (destructive operation)
             target.Entries.Clear();
             target.Groups.Clear();
             
-            // Copy entries
+            // Copy entries from source
             foreach (var entry in source.Entries)
             {
                 target.AddEntry(entry.CloneDeep(), true);
             }
             
-            // Copy subgroups
+            // Copy subgroups from source
             foreach (var group in source.Groups)
             {
                 target.AddGroup(group.CloneDeep(), true);
             }
             
-            // We might want to update Name/Icon/Notes from source if they changed?
-            // For now, keeping it simple (only content).
+            // Note: We preserve Name/Icon/Notes of the target group to maintain local identity
+            // Only the content (entries and subgroups) is synchronized from the shared database.
             
             target.Touch(true, false);
         }
@@ -347,7 +365,10 @@ namespace keepass2android
                 // Many storages don't support relative paths easily without full URL manipulation
                 // For now, return as is if not local, or try to reconstruct
             }
-            catch {}
+            catch (Exception ex)
+            {
+                Kp2aLog.Log("KeeShare: Error resolving relative path for " + path + ": " + ex.ToString());
+            }
             
             return IOConnectionInfo.FromPath(path);
         }
@@ -372,26 +393,53 @@ namespace keepass2android
         /// </summary>
         private bool VerifySignature(PwGroup group, byte[] kdbxData, byte[] signatureData)
         {
+            // Get trusted certificate (public key) from group CustomData
+            string trustedCert = group.CustomData.Get("KeeShare.TrustedCertificate");
+            
+            if (string.IsNullOrEmpty(trustedCert))
+            {
+                Kp2aLog.Log("KeeShare: No trusted certificate configured for group " + group.Name);
+                return false;
+            }
+
+            bool result = VerifySignatureCore(trustedCert, kdbxData, signatureData);
+            
+            if (result)
+            {
+                Kp2aLog.Log("KeeShare: Signature verified successfully for group " + group.Name);
+            }
+            else
+            {
+                Kp2aLog.Log("KeeShare: Signature verification failed for group " + group.Name);
+            }
+            
+            return result;
+        }
+
+        /// <summary>
+        /// Core signature verification logic that can be used by both production code and tests.
+        /// Verifies a signature using the provided trusted certificate, KDBX data, and signature data.
+        /// </summary>
+        /// <param name="trustedCertificate">The trusted certificate (public key) as base64-encoded DER or PEM format</param>
+        /// <param name="kdbxData">The KDBX file data that was signed</param>
+        /// <param name="signatureData">The signature data (base64-encoded)</param>
+        /// <returns>True if signature is valid, false otherwise</returns>
+        internal static bool VerifySignatureCore(string trustedCertificate, byte[]? kdbxData, byte[]? signatureData)
+        {
             try
             {
-                // Get trusted certificate (public key) from group CustomData
-                string trustedCert = group.CustomData.Get("KeeShare.TrustedCertificate");
-                
-                if (string.IsNullOrEmpty(trustedCert))
+                if (string.IsNullOrEmpty(trustedCertificate))
                 {
-                    Kp2aLog.Log("KeeShare: No trusted certificate configured for group " + group.Name);
                     return false;
                 }
 
                 if (signatureData == null || signatureData.Length == 0)
                 {
-                    Kp2aLog.Log("KeeShare: Signature file is empty");
                     return false;
                 }
 
                 if (kdbxData == null || kdbxData.Length == 0)
                 {
-                    Kp2aLog.Log("KeeShare: KDBX data is empty");
                     return false;
                 }
 
@@ -407,9 +455,8 @@ namespace keepass2android
                 {
                     signatureBytes = Convert.FromBase64String(signatureText);
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
-                    Kp2aLog.Log("KeeShare: Failed to decode base64 signature: " + ex.Message);
                     return false;
                 }
 
@@ -419,10 +466,10 @@ namespace keepass2android
                 try
                 {
                     // Try to decode as base64 first
-                    if (trustedCert.Contains("-----BEGIN"))
+                    if (trustedCertificate.Contains("-----BEGIN"))
                     {
                         // PEM format - extract base64 content
-                        var lines = trustedCert.Split('\n');
+                        var lines = trustedCertificate.Split('\n');
                         var base64Lines = lines.Where(l => !l.Contains("BEGIN") && !l.Contains("END") && !string.IsNullOrWhiteSpace(l));
                         string base64Content = string.Join("", base64Lines).Trim();
                         publicKeyBytes = Convert.FromBase64String(base64Content);
@@ -430,79 +477,68 @@ namespace keepass2android
                     else
                     {
                         // Assume it's already base64-encoded DER
-                        publicKeyBytes = Convert.FromBase64String(trustedCert);
+                        publicKeyBytes = Convert.FromBase64String(trustedCertificate);
                     }
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
-                    Kp2aLog.Log("KeeShare: Failed to parse trusted certificate: " + ex.Message);
                     return false;
                 }
 
                 // Create RSA object from public key
-                RSA rsa = RSA.Create();
-                try
+                // Use using block to ensure deterministic disposal even if exceptions occur
+                bool isValid = false;
+                bool importFailed = false;
+                using (RSA rsa = RSA.Create())
                 {
                     // Try importing as SubjectPublicKeyInfo (standard format)
-                    rsa.ImportSubjectPublicKeyInfo(publicKeyBytes, out int bytesRead);
-                    if (bytesRead == 0)
-                    {
-                        throw new CryptographicException("No bytes read from public key");
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Kp2aLog.Log("KeeShare: Failed to import public key as SubjectPublicKeyInfo: " + ex.Message);
+                    bool importSucceeded = false;
                     try
                     {
-                        // Try importing as RSAPublicKey (PKCS#1 format)
-                        rsa.ImportRSAPublicKey(publicKeyBytes, out int bytesRead);
+                        rsa.ImportSubjectPublicKeyInfo(publicKeyBytes, out int bytesRead);
                         if (bytesRead == 0)
                         {
                             throw new CryptographicException("No bytes read from public key");
                         }
+                        importSucceeded = true;
                     }
-                    catch (Exception ex2)
+                    catch (Exception)
                     {
-                        Kp2aLog.Log("KeeShare: Failed to import public key as RSAPublicKey: " + ex2.Message);
-                        rsa.Dispose();
-                        return false;
+                        try
+                        {
+                            // Try importing as RSAPublicKey (PKCS#1 format)
+                            rsa.ImportRSAPublicKey(publicKeyBytes, out int bytesRead);
+                            if (bytesRead == 0)
+                            {
+                                throw new CryptographicException("No bytes read from public key");
+                            }
+                            importSucceeded = true;
+                        }
+                        catch (Exception)
+                        {
+                            importFailed = true;
+                        }
+                    }
+
+                    if (!importFailed && importSucceeded)
+                    {
+                        // Compute hash of kdbx data
+                        byte[] hash;
+                        using (SHA256 sha256 = SHA256.Create())
+                        {
+                            hash = sha256.ComputeHash(kdbxData);
+                        }
+
+                        // Verify signature
+                        isValid = rsa.VerifyHash(hash, signatureBytes, HashAlgorithmName.SHA256, RSASignaturePadding.Pkcs1);
                     }
                 }
 
-                // Compute hash of kdbx data
-                byte[] hash;
-                using (SHA256 sha256 = SHA256.Create())
-                {
-                    hash = sha256.ComputeHash(kdbxData);
-                }
-
-                // Verify signature
-                bool isValid = false;
-                try
-                {
-                    isValid = rsa.VerifyHash(hash, signatureBytes, HashAlgorithmName.SHA256, RSASignaturePadding.Pkcs1);
-                    
-                    if (isValid)
-                    {
-                        Kp2aLog.Log("KeeShare: Signature verified successfully for group " + group.Name);
-                    }
-                    else
-                    {
-                        Kp2aLog.Log("KeeShare: Signature verification failed for group " + group.Name);
-                    }
-                }
-                finally
-                {
-                    rsa.Dispose();
-                }
-
-                return isValid;
+                // Return false if import failed, otherwise return verification result
+                return !importFailed && isValid;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                Kp2aLog.Log("KeeShare: Error verifying signature: " + ex.Message);
-                Kp2aLog.Log("KeeShare: Stack trace: " + ex.StackTrace);
                 return false;
             }
         }
