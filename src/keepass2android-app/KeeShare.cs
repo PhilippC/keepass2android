@@ -289,15 +289,14 @@ namespace keepass2android
         /// <summary>
         /// Synchronizes the target group with the source group from the shared database.
         /// 
-        /// WARNING: This is a destructive operation that will overwrite all entries and subgroups
-        /// in the target group with content from the source. Any local modifications to entries
-        /// within a KeeShare group will be lost on each sync.
+        /// For "Import" mode: Performs a destructive replace - clears target and copies all
+        /// content from source. Any local modifications will be lost.
         /// 
-        /// This behavior is intentional for "Import" mode (one-time import), but for "Synchronize"
-        /// mode, a proper merge implementation would be preferable to preserve local modifications
-        /// that haven't been synced back to the shared database.
+        /// For "Synchronize" mode: Performs a non-destructive merge - adds new entries/groups
+        /// from source, and updates existing entries/groups if the source version is newer
+        /// (based on LastModificationTime). Local entries not in source are preserved.
         /// 
-        /// The following properties of the target group are preserved:
+        /// The following properties of the target group are always preserved:
         /// - UUID (group identity)
         /// - Parent (group hierarchy)
         /// - Name (local group name)
@@ -309,11 +308,26 @@ namespace keepass2android
         /// <param name="type">KeeShare type: "Import" or "Synchronize"</param>
         private void SyncGroups(PwGroup source, PwGroup target, string type)
         {
-            // TODO: For "Synchronize" mode, consider implementing proper merge logic using
-            // KeePassLib's merge functionality (e.g., PwDatabase.MergeIn) to preserve local
-            // modifications and handle conflicts appropriately.
+            if (type == "Synchronize")
+            {
+                // Non-destructive merge: add new items, update existing if newer
+                MergeGroupContents(source, target);
+            }
+            else
+            {
+                // Import mode: destructive replace
+                ImportGroupContents(source, target);
+            }
             
-            // Clear entries and subgroups (destructive operation)
+            target.Touch(true, false);
+        }
+
+        /// <summary>
+        /// Performs a destructive import: clears target and copies all content from source.
+        /// </summary>
+        private void ImportGroupContents(PwGroup source, PwGroup target)
+        {
+            // Clear entries and subgroups
             target.Entries.Clear();
             target.Groups.Clear();
             
@@ -328,11 +342,47 @@ namespace keepass2android
             {
                 target.AddGroup(group.CloneDeep(), true);
             }
+        }
+
+        /// <summary>
+        /// Performs a non-destructive merge: adds new entries/groups from source,
+        /// updates existing if source is newer. Local items not in source are preserved.
+        /// </summary>
+        private void MergeGroupContents(PwGroup source, PwGroup target)
+        {
+            // Merge entries
+            foreach (var sourceEntry in source.Entries)
+            {
+                var targetEntry = target.FindEntry(sourceEntry.Uuid, false);
+                if (targetEntry == null)
+                {
+                    // Entry doesn't exist in target - add it
+                    target.AddEntry(sourceEntry.CloneDeep(), true);
+                }
+                else
+                {
+                    // Entry exists - update if source is newer
+                    // AssignProperties with bOnlyIfNewer=true will only update if source.LastMod > target.LastMod
+                    targetEntry.AssignProperties(sourceEntry, true, false, false);
+                }
+            }
             
-            // Note: We preserve Name/Icon/Notes of the target group to maintain local identity
-            // Only the content (entries and subgroups) is synchronized from the shared database.
-            
-            target.Touch(true, false);
+            // Merge subgroups recursively
+            foreach (var sourceGroup in source.Groups)
+            {
+                var targetGroup = target.FindGroup(sourceGroup.Uuid, false);
+                if (targetGroup == null)
+                {
+                    // Group doesn't exist in target - add it
+                    target.AddGroup(sourceGroup.CloneDeep(), true);
+                }
+                else
+                {
+                    // Group exists - update properties if source is newer, then merge contents
+                    targetGroup.AssignProperties(sourceGroup, true, false);
+                    MergeGroupContents(sourceGroup, targetGroup);
+                }
+            }
         }
 
         private IOConnectionInfo ResolvePath(string path)
