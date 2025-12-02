@@ -72,8 +72,10 @@ namespace KeeShare.Tests.TestHelpers
                     else if (pemText.StartsWith("-----BEGIN PUBLIC KEY-----"))
                     {
                         var lines = pemText.Split('\n');
-                        var base64Lines = lines.Where(l => !string.IsNullOrWhiteSpace(l) && !l.Trim().StartsWith("-----"));
-                        string base64Content = string.Join("", base64Lines).Trim();
+                        var base64Lines = lines
+                            .Select(l => l.Trim())
+                            .Where(l => !string.IsNullOrEmpty(l) && !l.StartsWith("-----"));
+                        string base64Content = string.Join("", base64Lines);
                         publicKeyBytes = Convert.FromBase64String(base64Content);
                     }
                     else

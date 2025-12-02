@@ -255,14 +255,17 @@ namespace keepass2android
         {
             base.OnActivityResult(requestCode, resultCode, data);
 
-            if (requestCode == ReqCodeSelectFile && resultCode == Result.Ok && _pendingConfigItem != null)
+            if (requestCode == ReqCodeSelectFile && _pendingConfigItem != null)
             {
-                string iocString = data?.GetStringExtra("ioc");
-                if (!string.IsNullOrEmpty(iocString))
+                if (resultCode == Result.Ok)
                 {
-                    IOConnectionInfo ioc = IOConnectionInfo.UnserializeFromString(iocString);
-                    KeeShare.SetDeviceFilePath(_pendingConfigItem.Group, ioc.Path);
-                    Save(_pendingConfigItem);
+                    string iocString = data?.GetStringExtra("ioc");
+                    if (!string.IsNullOrEmpty(iocString))
+                    {
+                        IOConnectionInfo ioc = IOConnectionInfo.UnserializeFromString(iocString);
+                        KeeShare.SetDeviceFilePath(_pendingConfigItem.Group, ioc.Path);
+                        Save(_pendingConfigItem);
+                    }
                 }
                 _pendingConfigItem = null;
             }

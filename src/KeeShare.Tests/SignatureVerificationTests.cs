@@ -88,7 +88,7 @@ namespace KeeShare.Tests
         {
             using var rsa = RSA.Create(2048);
             var publicKeyBytes = rsa.ExportSubjectPublicKeyInfo();
-            var publicKeyCertBase64 = Convert.ToBase64String(publicKeyBytes);
+            var publicKeyCertBase64 = Convert.ToBase64String(publicKeyBytes, Base64FormattingOptions.InsertLineBreaks);
             string publicKeyPem = $"-----BEGIN PUBLIC KEY-----\n{publicKeyCertBase64}\n-----END PUBLIC KEY-----";
             byte[] testData = Encoding.UTF8.GetBytes("Test KDBX data content");
             byte[] hash = SHA256.HashData(testData);

@@ -9,7 +9,7 @@
     <RelativeLayout
         android:id="@+id/title_container"
         android:layout_height="wrap_content"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:orientation="horizontal">
 
       <ImageView
@@ -18,19 +18,19 @@
           android:layout_height="40dp"
           android:layout_alignParentEnd="true"
           android:layout_centerVertical="true"
-          android:paddingBottom="4sp"
-          android:paddingTop="4sp" />
+          android:paddingBottom="4dp"
+          android:paddingTop="4dp" />
 
       <TextView
           android:id="@+id/keeshare_group_name"
-          android:layout_width="fill_parent"
+          android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:layout_toLeftOf="@id/keeshare_icon"
+          android:layout_toStartOf="@id/keeshare_icon"
           android:textSize="16sp"
           android:textStyle="bold"
-          android:gravity="left|center"
-          android:paddingBottom="8sp"
-          android:paddingTop="8sp" />
+          android:gravity="start|center"
+          android:paddingBottom="8dp"
+          android:paddingTop="8dp" />
     </RelativeLayout>
 
     <LinearLayout

@@ -101,24 +101,39 @@ namespace keepass2android
                 return IOConnectionInfo.FromPath(path);
             }
 
-            try
+            if (app == null)
             {
-                var currentIoc = app.CurrentDb.Ioc;
-
-                if (currentIoc.IsLocalFile())
-                {
-                    string dir = Path.GetDirectoryName(currentIoc.Path);
-                    string fullPath = Path.Combine(dir, path);
-                    return IOConnectionInfo.FromPath(fullPath);
-                }
-                else
-                {
-                    Kp2aLog.Log("KeeShare: Relative path used with non-local database. Path will be treated as-is: " + path);
-                }
+                Kp2aLog.Log("KeeShare: Cannot resolve relative path - app is null. Using path as-is: " + path);
+                return IOConnectionInfo.FromPath(path);
             }
-            catch (Exception ex)
+
+            if (app.CurrentDb == null)
             {
-                Kp2aLog.Log("KeeShare: Error resolving relative path: " + ex.GetType().Name);
+                Kp2aLog.Log("KeeShare: Cannot resolve relative path - CurrentDb is null. Using path as-is: " + path);
+                return IOConnectionInfo.FromPath(path);
+            }
+
+            var currentIoc = app.CurrentDb.Ioc;
+            if (currentIoc == null)
+            {
+                Kp2aLog.Log("KeeShare: Cannot resolve relative path - CurrentDb.Ioc is null. Using path as-is: " + path);
+                return IOConnectionInfo.FromPath(path);
+            }
+
+            if (currentIoc.IsLocalFile())
+            {
+                string dir = Path.GetDirectoryName(currentIoc.Path);
+                if (string.IsNullOrEmpty(dir))
+                {
+                    Kp2aLog.Log("KeeShare: Cannot resolve relative path - database directory is empty. Using path as-is: " + path);
+                    return IOConnectionInfo.FromPath(path);
+                }
+                string fullPath = Path.Combine(dir, path);
+                return IOConnectionInfo.FromPath(fullPath);
+            }
+            else
+            {
+                Kp2aLog.Log("KeeShare: Relative path used with non-local database. Path will be treated as-is: " + path);
             }
 
             return IOConnectionInfo.FromPath(path);
@@ -862,8 +877,10 @@ namespace keepass2android
                     else if (pemText.StartsWith("-----BEGIN PUBLIC KEY-----"))
                     {
                         var lines = pemText.Split('\n');
-                        var base64Lines = lines.Where(l => !string.IsNullOrWhiteSpace(l) && !l.Trim().StartsWith("-----"));
-                        string base64Content = string.Join("", base64Lines).Trim();
+                        var base64Lines = lines
+                            .Select(l => l.Trim())
+                            .Where(l => !string.IsNullOrEmpty(l) && !l.StartsWith("-----"));
+                        string base64Content = string.Join("", base64Lines);
                         publicKeyBytes = Convert.FromBase64String(base64Content);
                     }
                     else
