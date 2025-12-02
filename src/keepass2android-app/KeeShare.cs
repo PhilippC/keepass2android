@@ -90,6 +90,41 @@ namespace keepass2android
         }
 
         /// <summary>
+        /// Resolves a file path, handling relative paths for local files.
+        /// Relative paths are resolved relative to the current database's directory.
+        /// For remote databases, relative paths are treated as-is (a warning is logged).
+        /// </summary>
+        internal static IOConnectionInfo ResolvePath(IKp2aApp app, string path)
+        {
+            if (path.Contains("://") || path.StartsWith("/"))
+            {
+                return IOConnectionInfo.FromPath(path);
+            }
+
+            try
+            {
+                var currentIoc = app.CurrentDb.Ioc;
+
+                if (currentIoc.IsLocalFile())
+                {
+                    string dir = Path.GetDirectoryName(currentIoc.Path);
+                    string fullPath = Path.Combine(dir, path);
+                    return IOConnectionInfo.FromPath(fullPath);
+                }
+                else
+                {
+                    Kp2aLog.Log("KeeShare: Relative path used with non-local database. Path will be treated as-is: " + path);
+                }
+            }
+            catch (Exception ex)
+            {
+                Kp2aLog.Log("KeeShare: Error resolving relative path: " + ex.GetType().Name);
+            }
+
+            return IOConnectionInfo.FromPath(path);
+        }
+
+        /// <summary>
         /// Checks if this device has a configured path for the KeeShare group.
         /// </summary>
         public static bool HasDeviceFilePath(PwGroup group)
@@ -162,6 +197,8 @@ namespace keepass2android
         /// <summary>
         /// Triggers KeeShare synchronization in the background. 
         /// Called when user selects "Synchronize Database".
+        /// Currently delegates to Check for consistency. If future differentiation is needed
+        /// (e.g., full sync vs. incremental check), this method can be updated accordingly.
         /// </summary>
         public static void SyncInBackground(IKp2aApp app, OnOperationFinishedHandler onFinished)
         {
@@ -262,6 +299,69 @@ namespace keepass2android
             var op = new KeeShareExportOperation(app, nextHandler);
             OperationRunner.Instance.Run(app, op);
         }
+
+        /// <summary>
+        /// Exports a KeeShare group to a file. Creates a new database containing only
+        /// the entries and subgroups from the source group, then saves it to the specified path.
+        /// </summary>
+        internal static void ExportGroupToFile(IKp2aApp app, PwGroup sourceGroup, string path, string password)
+        {
+            if (string.IsNullOrEmpty(path))
+            {
+                Kp2aLog.Log("KeeShare: No file path configured for export group " + sourceGroup.Name + ". Skipping.");
+                return;
+            }
+
+            IOConnectionInfo ioc = ResolvePath(app, path);
+
+            PwDatabase exportDb = null;
+            try
+            {
+                exportDb = new PwDatabase();
+                exportDb.New(new IOConnectionInfo(), new CompositeKey(), sourceGroup.Name);
+
+                CompositeKey key = new CompositeKey();
+                if (!string.IsNullOrEmpty(password))
+                {
+                    key.AddUserKey(new KcpPassword(password));
+                }
+                else
+                {
+                    key.AddUserKey(new KcpPassword(""));
+                }
+                exportDb.MasterKey = key;
+
+                foreach (var entry in sourceGroup.Entries)
+                {
+                    PwEntry clonedEntry = entry.CloneDeep();
+                    exportDb.RootGroup.AddEntry(clonedEntry, true);
+                }
+
+                foreach (var subGroup in sourceGroup.Groups)
+                {
+                    PwGroup clonedGroup = subGroup.CloneDeep();
+                    exportDb.RootGroup.AddGroup(clonedGroup, true);
+                }
+
+                var fileStorage = app.GetFileStorage(ioc);
+                using (var writeTransaction = fileStorage.OpenWriteTransaction(ioc, app.GetBooleanPreference(PreferenceKey.UseFileTransactions)))
+                {
+                    KdbxFile kdbx = new KdbxFile(exportDb);
+                    kdbx.Save(writeTransaction.OpenFile(), null, KdbxFormat.Default, null);
+                    writeTransaction.CommitWrite();
+                }
+
+                Kp2aLog.Log("KeeShare: Exported group " + sourceGroup.Name + " to " + path);
+            }
+            catch (Exception ex)
+            {
+                Kp2aLog.Log("KeeShare export failed for group " + sourceGroup.Name + ": " + ex.Message);
+            }
+            finally
+            {
+                exportDb?.Close();
+            }
+        }
     }
 
     /// <summary>
@@ -320,89 +420,14 @@ namespace keepass2android
             string path = KeeShare.GetEffectiveFilePath(sourceGroup);
             string password = sourceGroup.CustomData.Get("KeeShare.Password") ?? "";
 
-            if (string.IsNullOrEmpty(path))
-            {
-                Kp2aLog.Log("KeeShare: No file path configured for export group " + sourceGroup.Name + ". Skipping.");
-                return;
-            }
-
             StatusLogger.UpdateMessage(_app.GetResourceString(UiStringKey.saving_database) + ": " + sourceGroup.Name);
 
-            IOConnectionInfo ioc = ResolvePath(path);
-
-            PwDatabase exportDb = null;
-            try
-            {
-                exportDb = new PwDatabase();
-                exportDb.New(new IOConnectionInfo(), new CompositeKey(), sourceGroup.Name);
-
-                CompositeKey key = new CompositeKey();
-                if (!string.IsNullOrEmpty(password))
-                {
-                    key.AddUserKey(new KcpPassword(password));
-                }
-                else
-                {
-                    key.AddUserKey(new KcpPassword(""));
-                }
-                exportDb.MasterKey = key;
-
-                foreach (var entry in sourceGroup.Entries)
-                {
-                    PwEntry clonedEntry = entry.CloneDeep();
-                    exportDb.RootGroup.AddEntry(clonedEntry, true);
-                }
-
-                foreach (var subGroup in sourceGroup.Groups)
-                {
-                    PwGroup clonedGroup = subGroup.CloneDeep();
-                    exportDb.RootGroup.AddGroup(clonedGroup, true);
-                }
-
-                var fileStorage = _app.GetFileStorage(ioc);
-                using (var writeTransaction = fileStorage.OpenWriteTransaction(ioc, _app.GetBooleanPreference(PreferenceKey.UseFileTransactions)))
-                {
-                    KdbxFile kdbx = new KdbxFile(exportDb);
-                    kdbx.Save(writeTransaction.OpenFile(), null, KdbxFormat.Default, null);
-                    writeTransaction.CommitWrite();
-                }
-
-                Kp2aLog.Log("KeeShare: Exported group " + sourceGroup.Name + " to " + path);
-            }
-            catch (Exception ex)
-            {
-                Kp2aLog.Log("KeeShare export failed for group " + sourceGroup.Name + ": " + ex.Message);
-            }
-            finally
-            {
-                exportDb?.Close();
-            }
+            KeeShare.ExportGroupToFile(_app, sourceGroup, path, password);
         }
 
         private IOConnectionInfo ResolvePath(string path)
         {
-            if (path.Contains("://") || path.StartsWith("/"))
-            {
-                return IOConnectionInfo.FromPath(path);
-            }
-
-            try
-            {
-                var currentIoc = _app.CurrentDb.Ioc;
-
-                if (currentIoc.IsLocalFile())
-                {
-                    string dir = Path.GetDirectoryName(currentIoc.Path);
-                    string fullPath = Path.Combine(dir, path);
-                    return IOConnectionInfo.FromPath(fullPath);
-                }
-            }
-            catch (Exception ex)
-            {
-                Kp2aLog.Log("KeeShare: Error resolving relative path: " + ex.GetType().Name);
-            }
-
-            return IOConnectionInfo.FromPath(path);
+            return KeeShare.ResolvePath(_app, path);
         }
     }
 
@@ -476,55 +501,7 @@ namespace keepass2android
 
         private void Export(PwGroup sourceGroup, string path, string password)
         {
-            IOConnectionInfo ioc = ResolvePath(path);
-            
-            PwDatabase exportDb = null;
-            try
-            {
-                exportDb = new PwDatabase();
-                exportDb.New(new IOConnectionInfo(), new CompositeKey(), sourceGroup.Name);
-                
-                CompositeKey key = new CompositeKey();
-                if (!string.IsNullOrEmpty(password))
-                {
-                    key.AddUserKey(new KcpPassword(password));
-                }
-                else
-                {
-                    key.AddUserKey(new KcpPassword(""));
-                }
-                exportDb.MasterKey = key;
-
-                foreach (var entry in sourceGroup.Entries)
-                {
-                    PwEntry clonedEntry = entry.CloneDeep();
-                    exportDb.RootGroup.AddEntry(clonedEntry, true);
-                }
-
-                foreach (var subGroup in sourceGroup.Groups)
-                {
-                    PwGroup clonedGroup = subGroup.CloneDeep();
-                    exportDb.RootGroup.AddGroup(clonedGroup, true);
-                }
-
-                var fileStorage = _app.GetFileStorage(ioc);
-                using (var writeTransaction = fileStorage.OpenWriteTransaction(ioc, _app.GetBooleanPreference(PreferenceKey.UseFileTransactions)))
-                {
-                    KdbxFile kdbx = new KdbxFile(exportDb);
-                    kdbx.Save(writeTransaction.OpenFile(), null, KdbxFormat.Default, null);
-                    writeTransaction.CommitWrite();
-                }
-                
-                Kp2aLog.Log("KeeShare: Exported group " + sourceGroup.Name + " to " + path);
-            }
-            catch (Exception ex)
-            {
-                Kp2aLog.Log("KeeShare export failed for group " + sourceGroup.Name + ": " + ex.Message);
-            }
-            finally
-            {
-                exportDb?.Close();
-            }
+            KeeShare.ExportGroupToFile(_app, sourceGroup, path, password);
         }
 
         private void Import(PwGroup targetGroup, string path, string password, string type)
@@ -787,29 +764,7 @@ namespace keepass2android
 
         private IOConnectionInfo ResolvePath(string path)
         {
-            if (path.Contains("://") || path.StartsWith("/"))
-            {
-                return IOConnectionInfo.FromPath(path);
-            }
-
-            try 
-            {
-                var currentIoc = _app.CurrentDb.Ioc;
-                var storage = _app.GetFileStorage(currentIoc);
-                
-                if (currentIoc.IsLocalFile())
-                {
-                    string dir = Path.GetDirectoryName(currentIoc.Path);
-                    string fullPath = Path.Combine(dir, path);
-                    return IOConnectionInfo.FromPath(fullPath);
-                }
-            }
-            catch (Exception ex)
-            {
-                Kp2aLog.Log("KeeShare: Error resolving relative path: " + ex.GetType().Name);
-            }
-            
-            return IOConnectionInfo.FromPath(path);
+            return KeeShare.ResolvePath(_app, path);
         }
 
         private Stream OpenStream(IOConnectionInfo ioc)

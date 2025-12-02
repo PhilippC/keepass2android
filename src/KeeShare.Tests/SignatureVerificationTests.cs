@@ -1,6 +1,7 @@
 using System.Security.Cryptography;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
-using keepass2android;
+using KeeShare.Tests.TestHelpers;
 
 namespace KeeShare.Tests
 {
@@ -33,7 +34,7 @@ namespace KeeShare.Tests
             byte[] hash = SHA256.HashData(testData);
             byte[] signature = rsa.SignHash(hash, HashAlgorithmName.SHA256, RSASignaturePadding.Pkcs1);
             byte[] signatureData = FormatKeeShareSignature(signature);
-            bool result = KeeShare.VerifySignatureCore(publicKeyCert, testData, signatureData);
+            bool result = KeeShareTestHelpers.VerifySignatureCore(publicKeyCert, testData, signatureData);
             Assert.True(result, "Signature verification should succeed with valid signature");
         }
 
@@ -49,7 +50,7 @@ namespace KeeShare.Tests
             // Hex without "rsa|" prefix should also work
             string signatureHex = BytesToHex(signature);
             byte[] signatureData = Encoding.UTF8.GetBytes(signatureHex);
-            bool result = KeeShare.VerifySignatureCore(publicKeyCert, testData, signatureData);
+            bool result = KeeShareTestHelpers.VerifySignatureCore(publicKeyCert, testData, signatureData);
             Assert.True(result, "Signature verification should succeed with hex signature without prefix");
         }
 
@@ -63,7 +64,7 @@ namespace KeeShare.Tests
             byte[] invalidSignature = new byte[256];
             new Random().NextBytes(invalidSignature);
             byte[] signatureData = FormatKeeShareSignature(invalidSignature);
-            bool result = KeeShare.VerifySignatureCore(publicKeyCert, testData, signatureData);
+            bool result = KeeShareTestHelpers.VerifySignatureCore(publicKeyCert, testData, signatureData);
             Assert.False(result, "Signature verification should fail with invalid signature");
         }
 
@@ -78,23 +79,23 @@ namespace KeeShare.Tests
             byte[] signature = rsa.SignHash(hash, HashAlgorithmName.SHA256, RSASignaturePadding.Pkcs1);
             byte[] signatureData = FormatKeeShareSignature(signature);
             byte[] tamperedData = Encoding.UTF8.GetBytes("Tampered KDBX data");
-            bool result = KeeShare.VerifySignatureCore(publicKeyCert, tamperedData, signatureData);
+            bool result = KeeShareTestHelpers.VerifySignatureCore(publicKeyCert, tamperedData, signatureData);
             Assert.False(result, "Signature verification should fail when data is tampered");
         }
 
         [Fact]
-        public void VerifySignature_WithPemFormattedCertificate_ReturnsTrue()
+        public void VerifySignature_WithPemFormattedPublicKey_ReturnsTrue()
         {
             using var rsa = RSA.Create(2048);
             var publicKeyBytes = rsa.ExportSubjectPublicKeyInfo();
             var publicKeyCertBase64 = Convert.ToBase64String(publicKeyBytes);
-            string publicKeyCertPem = $"-----BEGIN PUBLIC KEY-----\n{publicKeyCertBase64}\n-----END PUBLIC KEY-----";
+            string publicKeyPem = $"-----BEGIN PUBLIC KEY-----\n{publicKeyCertBase64}\n-----END PUBLIC KEY-----";
             byte[] testData = Encoding.UTF8.GetBytes("Test KDBX data content");
             byte[] hash = SHA256.HashData(testData);
             byte[] signature = rsa.SignHash(hash, HashAlgorithmName.SHA256, RSASignaturePadding.Pkcs1);
             byte[] signatureData = FormatKeeShareSignature(signature);
-            bool result = KeeShare.VerifySignatureCore(publicKeyCertPem, testData, signatureData);
-            Assert.True(result, "Signature verification should work with PEM formatted certificate");
+            bool result = KeeShareTestHelpers.VerifySignatureCore(publicKeyPem, testData, signatureData);
+            Assert.True(result, "Signature verification should work with PEM formatted public key");
         }
 
         [Fact]
@@ -102,7 +103,7 @@ namespace KeeShare.Tests
         {
             byte[] testData = Encoding.UTF8.GetBytes("Test data");
             byte[] signatureData = Encoding.UTF8.GetBytes("rsa|abcd1234");
-            bool result = KeeShare.VerifySignatureCore("", testData, signatureData);
+            bool result = KeeShareTestHelpers.VerifySignatureCore("", testData, signatureData);
             Assert.False(result, "Signature verification should fail with empty certificate");
         }
 
@@ -113,7 +114,7 @@ namespace KeeShare.Tests
             var publicKeyBytes = rsa.ExportSubjectPublicKeyInfo();
             var publicKeyCert = Convert.ToBase64String(publicKeyBytes);
             byte[] signatureData = Encoding.UTF8.GetBytes("rsa|abcd1234");
-            bool result = KeeShare.VerifySignatureCore(publicKeyCert, null, signatureData);
+            bool result = KeeShareTestHelpers.VerifySignatureCore(publicKeyCert, null!, signatureData);
             Assert.False(result, "Signature verification should fail with null data");
         }
 
@@ -124,7 +125,7 @@ namespace KeeShare.Tests
             var publicKeyBytes = rsa.ExportSubjectPublicKeyInfo();
             var publicKeyCert = Convert.ToBase64String(publicKeyBytes);
             byte[] signatureData = Encoding.UTF8.GetBytes("rsa|abcd1234");
-            bool result = KeeShare.VerifySignatureCore(publicKeyCert, new byte[0], signatureData);
+            bool result = KeeShareTestHelpers.VerifySignatureCore(publicKeyCert, Array.Empty<byte>(), signatureData);
             Assert.False(result, "Signature verification should fail with empty data");
         }
 
@@ -137,7 +138,7 @@ namespace KeeShare.Tests
             byte[] testData = Encoding.UTF8.GetBytes("Test data");
             // Invalid hex characters
             byte[] signatureData = Encoding.UTF8.GetBytes("rsa|not-valid-hex!@#$GHIJ");
-            bool result = KeeShare.VerifySignatureCore(publicKeyCert, testData, signatureData);
+            bool result = KeeShareTestHelpers.VerifySignatureCore(publicKeyCert, testData, signatureData);
             Assert.False(result, "Signature verification should fail with malformed hex");
         }
 
@@ -150,7 +151,7 @@ namespace KeeShare.Tests
             byte[] testData = Encoding.UTF8.GetBytes("Test data");
             // Odd-length hex string (invalid)
             byte[] signatureData = Encoding.UTF8.GetBytes("rsa|abc");
-            bool result = KeeShare.VerifySignatureCore(publicKeyCert, testData, signatureData);
+            bool result = KeeShareTestHelpers.VerifySignatureCore(publicKeyCert, testData, signatureData);
             Assert.False(result, "Signature verification should fail with odd-length hex");
         }
 
@@ -167,7 +168,7 @@ namespace KeeShare.Tests
             // Add whitespace around the signature
             string signatureWithWhitespace = $"\r\n  rsa|{signatureHex}  \r\n";
             byte[] signatureData = Encoding.UTF8.GetBytes(signatureWithWhitespace);
-            bool result = KeeShare.VerifySignatureCore(publicKeyCert, testData, signatureData);
+            bool result = KeeShareTestHelpers.VerifySignatureCore(publicKeyCert, testData, signatureData);
             Assert.True(result, "Signature verification should handle whitespace in signature");
         }
 
@@ -183,7 +184,7 @@ namespace KeeShare.Tests
             // Use uppercase hex
             string signatureHex = BitConverter.ToString(signature).Replace("-", "").ToUpperInvariant();
             byte[] signatureData = Encoding.UTF8.GetBytes($"rsa|{signatureHex}");
-            bool result = KeeShare.VerifySignatureCore(publicKeyCert, testData, signatureData);
+            bool result = KeeShareTestHelpers.VerifySignatureCore(publicKeyCert, testData, signatureData);
             Assert.True(result, "Signature verification should handle uppercase hex");
         }
 
@@ -199,8 +200,23 @@ namespace KeeShare.Tests
             string signatureHex = BytesToHex(signature);
             // Use uppercase "RSA|" prefix
             byte[] signatureData = Encoding.UTF8.GetBytes($"RSA|{signatureHex}");
-            bool result = KeeShare.VerifySignatureCore(publicKeyCert, testData, signatureData);
+            bool result = KeeShareTestHelpers.VerifySignatureCore(publicKeyCert, testData, signatureData);
             Assert.True(result, "Signature verification should handle uppercase RSA prefix");
+        }
+
+        [Fact]
+        public void VerifySignature_WithX509Certificate_ReturnsTrue()
+        {
+            using var rsa = RSA.Create(2048);
+            var request = new CertificateRequest("CN=Test", rsa, HashAlgorithmName.SHA256, RSASignaturePadding.Pkcs1);
+            var certificate = request.CreateSelfSigned(DateTimeOffset.Now, DateTimeOffset.Now.AddYears(1));
+            string certificatePem = certificate.ExportCertificatePem();
+            byte[] testData = Encoding.UTF8.GetBytes("Test KDBX data content");
+            byte[] hash = SHA256.HashData(testData);
+            byte[] signature = rsa.SignHash(hash, HashAlgorithmName.SHA256, RSASignaturePadding.Pkcs1);
+            byte[] signatureData = FormatKeeShareSignature(signature);
+            bool result = KeeShareTestHelpers.VerifySignatureCore(certificatePem, testData, signatureData);
+            Assert.True(result, "Signature verification should work with X.509 certificate format");
         }
     }
 }

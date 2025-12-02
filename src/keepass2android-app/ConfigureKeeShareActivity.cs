@@ -20,6 +20,7 @@ namespace keepass2android
     {
         private KeeShareAdapter _adapter;
         private const int ReqCodeSelectFile = 1;
+        private const string PendingConfigItemUuidKey = "PendingConfigItemUuid";
         private KeeShareItem _pendingConfigItem;
 
         public class KeeShareAdapter : BaseAdapter
@@ -119,7 +120,7 @@ namespace keepass2android
                 view.FindViewById<Button>(Resource.Id.keeshare_sync_now).Visibility = 
                     !string.IsNullOrEmpty(effectivePath) ? ViewStates.Visible : ViewStates.Gone;
 
-                Database db = App.Kp2a.FindDatabaseForElement(group);
+                Database db = App.Kp2a.TryFindDatabaseForElement(group);
                 var iv = view.FindViewById<ImageView>(Resource.Id.keeshare_icon);
                 if (db != null)
                 {
@@ -229,6 +230,25 @@ namespace keepass2android
             listView.Adapter = _adapter;
 
             SetSupportActionBar(FindViewById<AndroidX.AppCompat.Widget.Toolbar>(Resource.Id.mytoolbar));
+
+            if (savedInstanceState != null)
+            {
+                string uuidString = savedInstanceState.GetString(PendingConfigItemUuidKey);
+                if (!string.IsNullOrEmpty(uuidString))
+                {
+                    var uuid = new PwUuid(Convert.FromBase64String(uuidString));
+                    _pendingConfigItem = _adapter._displayedItems.FirstOrDefault(i => i.Group.Uuid.Equals(uuid));
+                }
+            }
+        }
+
+        protected override void OnSaveInstanceState(Bundle outState)
+        {
+            base.OnSaveInstanceState(outState);
+            if (_pendingConfigItem != null)
+            {
+                outState.PutString(PendingConfigItemUuidKey, Convert.ToBase64String(_pendingConfigItem.Group.Uuid.UuidBytes));
+            }
         }
 
         protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
