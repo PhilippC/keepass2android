@@ -527,8 +527,23 @@ namespace keepass2android
                 try
                 {
                     string pemText = trustedCertificate.Trim();
-                    var cert = X509Certificate2.CreateFromPem(pemText);
-                    publicKeyBytes = cert.GetPublicKey();
+                    
+                    if (pemText.Contains("-----BEGIN CERTIFICATE-----"))
+                    {
+                        var cert = X509Certificate2.CreateFromPem(pemText);
+                        publicKeyBytes = cert.GetPublicKey();
+                    }
+                    else if (pemText.Contains("-----BEGIN PUBLIC KEY-----"))
+                    {
+                        var lines = pemText.Split('\n');
+                        var base64Lines = lines.Where(l => !string.IsNullOrWhiteSpace(l) && !l.Trim().StartsWith("-----"));
+                        string base64Content = string.Join("", base64Lines).Trim();
+                        publicKeyBytes = Convert.FromBase64String(base64Content);
+                    }
+                    else
+                    {
+                        publicKeyBytes = Convert.FromBase64String(pemText);
+                    }
                 }
                 catch (Exception)
                 {
