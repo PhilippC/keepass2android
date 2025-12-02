@@ -593,6 +593,7 @@ namespace keepass2android
                                             if (!VerifySignature(targetGroup, kdbxData, signatureData))
                                             {
                                                 Kp2aLog.Log("KeeShare: Signature verification failed or certificate not trusted for group " + targetGroup.Name + ". Skipping import.");
+                                                kdbxMem.Dispose();
                                                 return;
                                             }
                                             else
@@ -610,6 +611,7 @@ namespace keepass2android
                                         if (hasTrustedCert)
                                         {
                                             Kp2aLog.Log("KeeShare: Trusted certificate is configured but no signature file found in ZIP archive for group " + targetGroup.Name + ". Skipping import for security.");
+                                            kdbxMem.Dispose();
                                             return;
                                         }
                                         else
