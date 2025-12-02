@@ -46,7 +46,7 @@ namespace keepass2android
 
     public LoadDb(IKp2aApp app, IOConnectionInfo ioc, Task<MemoryStream> databaseData, CompositeKey compositeKey,
         string keyfileOrProvider, OnOperationFinishedHandler operationFinishedHandler,
-        bool updateLastUsageTimestamp, bool makeCurrent, IDatabaseModificationWatcher modificationWatcher = null) : base(app, operationFinishedHandler)
+        bool updateLastUsageTimestamp, bool makeCurrent, IDatabaseModificationWatcher modificationWatcher = null) : base(app, WrapHandlerForKeeShare(app, operationFinishedHandler))
     {
       _modificationWatcher = modificationWatcher ?? new NullDatabaseModificationWatcher();
       _app = app;
@@ -57,6 +57,26 @@ namespace keepass2android
       _updateLastUsageTimestamp = updateLastUsageTimestamp;
       _makeCurrent = makeCurrent;
       _rememberKeyfile = app.GetBooleanPreference(PreferenceKey.remember_keyfile);
+    }
+
+    private static OnOperationFinishedHandler WrapHandlerForKeeShare(IKp2aApp app, OnOperationFinishedHandler originalHandler)
+    {
+      if (originalHandler == null)
+        return null;
+
+      return new ActionOnOperationFinished(app, (success, message, context) =>
+      {
+        originalHandler.SetResult(success, message, false, null);
+        if (success && app.CurrentDb?.KpDatabase?.IsOpen == true && 
+            KeeShare.HasKeeShareGroups(app.CurrentDb.KpDatabase.RootGroup))
+        {
+          KeeShare.Check(app, originalHandler);
+        }
+        else
+        {
+          originalHandler.Run();
+        }
+      });
     }
 
     protected bool success = false;
