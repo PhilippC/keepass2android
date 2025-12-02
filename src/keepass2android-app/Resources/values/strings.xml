@@ -731,8 +731,8 @@
   </string>
   <string name="open_other_db">Open another database…</string>
   <string name="select_database">Select database</string>
-  <string name="configure_child_dbs">Configure child databases…</string>
-  <string name="child_dbs_title">Child databases</string>
+  <string name="configure_child_dbs">Configure child databases (KeeAutoExec)…</string>
+  <string name="child_dbs_title">Child databases (KeeAutoExec)</string>
   <string name="unspecified">unspecified</string>
   <string name="child_db_explanation">Child databases are other databases which can be opened automatically when you open the parent database. Therefore, the child\'s master password and file location are stored in the parent. This feature allows to share some of your passwords with another person. The implementation is compatible with KeeAutoExec for PC.</string>
   <string name="child_db_enabled_on_this_device">Enabled on this device</string>
@@ -744,6 +744,25 @@
   <string name="EnableCopyForThisDevice_Info">This will create and enable a copy of the child database settings. These copied settings can then be adjusted specifically for this device.</string>
   <string name="Visible_title">Visible</string>
   <string name="child_db_Enabled_title">Open automatically</string>
+  
+  <!-- KeeShare strings -->
+  <string name="configure_keeshare">Configure KeeShare groups…</string>
+  <string name="keeshare_title">KeeShare</string>
+  <string name="keeshare_explanation">KeeShare groups allow you to synchronize entries with shared database files. Groups created in KeePassXC may need a device-specific file path configured here.</string>
+  <string name="keeshare_type">Type</string>
+  <string name="keeshare_original_path">Original path (from KeePassXC)</string>
+  <string name="keeshare_configure_path">Configure path</string>
+  <string name="keeshare_clear_path">Clear</string>
+  <string name="keeshare_sync_now">Sync now</string>
+  <string name="keeshare_path_configured">Path for this device</string>
+  <string name="keeshare_using_original_path">Using original path</string>
+  <string name="keeshare_path_not_configured">No path configured for this device</string>
+  <string name="keeshare_clear_path_title">Clear device path?</string>
+  <string name="keeshare_clear_path_message">This will remove the device-specific path. The original path from KeePassXC will be used if available.</string>
+  <string name="keeshare_sync_complete">KeeShare sync complete</string>
+  <string name="keeshare_sync_failed">KeeShare sync failed</string>
+  <string name="not_set">Not set</string>
+  
   <string name="database_file_heading">Database file</string>
   <string name="if_device_text">Enable for %1$s</string>
   <string name="restore_history">Restore this version</string>

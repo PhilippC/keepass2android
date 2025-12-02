@@ -17,8 +17,122 @@ using System.Text;
 
 namespace keepass2android
 {
+    /// <summary>
+    /// Represents a KeeShare group item for UI display and configuration.
+    /// </summary>
+    public sealed class KeeShareItem
+    {
+        public PwGroup Group { get; }
+        public PwDatabase Database { get; }
+
+        public KeeShareItem(PwGroup group, PwDatabase database)
+        {
+            Group = group ?? throw new ArgumentNullException(nameof(group));
+            Database = database ?? throw new ArgumentNullException(nameof(database));
+        }
+
+        public string Type => Group.CustomData.Get("KeeShare.Type") ?? "";
+        public string OriginalPath => Group.CustomData.Get("KeeShare.FilePath") ?? "";
+        public string Password => Group.CustomData.Get("KeeShare.Password") ?? "";
+        public bool IsActive => Group.CustomData.Get("KeeShare.Active") == "true";
+    }
+
     public class KeeShare
     {
+        /// <summary>
+        /// Custom data key prefix for device-specific file paths.
+        /// Format: KeeShare.FilePath.{DeviceId}
+        /// </summary>
+        public const string DeviceFilePathKeyPrefix = "KeeShare.FilePath.";
+
+        /// <summary>
+        /// Gets the device-specific custom data key for storing file paths.
+        /// </summary>
+        public static string GetDeviceFilePathKey()
+        {
+            return DeviceFilePathKeyPrefix + KeeAutoExecExt.ThisDeviceId;
+        }
+
+        /// <summary>
+        /// Gets the effective file path for a KeeShare group on this device.
+        /// First checks for a device-specific path, then falls back to the original path.
+        /// </summary>
+        public static string GetEffectiveFilePath(PwGroup group)
+        {
+            if (group == null) return null;
+
+            string deviceKey = GetDeviceFilePathKey();
+            string devicePath = group.CustomData.Get(deviceKey);
+            
+            if (!string.IsNullOrEmpty(devicePath))
+                return devicePath;
+
+            return group.CustomData.Get("KeeShare.FilePath");
+        }
+
+        /// <summary>
+        /// Sets the device-specific file path for a KeeShare group.
+        /// </summary>
+        public static void SetDeviceFilePath(PwGroup group, string path)
+        {
+            if (group == null) return;
+
+            string deviceKey = GetDeviceFilePathKey();
+            if (string.IsNullOrEmpty(path))
+            {
+                group.CustomData.Remove(deviceKey);
+            }
+            else
+            {
+                group.CustomData.Set(deviceKey, path);
+            }
+            group.Touch(true, false);
+        }
+
+        /// <summary>
+        /// Checks if this device has a configured path for the KeeShare group.
+        /// </summary>
+        public static bool HasDeviceFilePath(PwGroup group)
+        {
+            if (group == null) return false;
+            string deviceKey = GetDeviceFilePathKey();
+            return !string.IsNullOrEmpty(group.CustomData.Get(deviceKey));
+        }
+
+        /// <summary>
+        /// Gets whether the KeeShare group is enabled on this device.
+        /// A group is considered enabled if it has either a device-specific path or an original path.
+        /// </summary>
+        public static bool IsEnabledOnThisDevice(PwGroup group)
+        {
+            return !string.IsNullOrEmpty(GetEffectiveFilePath(group));
+        }
+
+        /// <summary>
+        /// Gets all KeeShare groups from the database.
+        /// </summary>
+        public static List<KeeShareItem> GetKeeShareItems(PwDatabase db)
+        {
+            var items = new List<KeeShareItem>();
+            if (db == null || !db.IsOpen) return items;
+
+            CollectKeeShareGroups(db.RootGroup, db, items);
+            return items;
+        }
+
+        private static void CollectKeeShareGroups(PwGroup group, PwDatabase db, List<KeeShareItem> items)
+        {
+            if (group.CustomData.Get("KeeShare.Active") == "true")
+            {
+                items.Add(new KeeShareItem(group, db));
+            }
+
+            foreach (var sub in group.Groups)
+            {
+                CollectKeeShareGroups(sub, db, items);
+            }
+        }
+
         /// <summary>
         /// Checks for KeeShare groups and processes them. This is called after database load
         /// and can also be triggered by "Synchronize Database" action.
@@ -95,6 +209,201 @@ namespace keepass2android
         {
             return entry?.ParentGroup != null && IsReadOnlyBecauseKeeShareImport(entry.ParentGroup);
         }
+
+        /// <summary>
+        /// Checks if the database has any KeeShare groups that need to be exported on save.
+        /// (Export or Synchronize type groups)
+        /// </summary>
+        public static bool HasExportableKeeShareGroups(PwDatabase db)
+        {
+            if (db == null || !db.IsOpen) return false;
+            return HasExportableKeeShareGroups(db.RootGroup);
+        }
+
+        private static bool HasExportableKeeShareGroups(PwGroup group)
+        {
+            if (group.CustomData.Get("KeeShare.Active") == "true")
+            {
+                string type = group.CustomData.Get("KeeShare.Type");
+                if (type == "Export" || type == "Synchronize")
+                {
+                    string path = GetEffectiveFilePath(group);
+                    if (!string.IsNullOrEmpty(path))
+                        return true;
+                }
+            }
+            
+            foreach (var sub in group.Groups)
+            {
+                if (HasExportableKeeShareGroups(sub)) return true;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Exports all KeeShare "Export" and "Synchronize" type groups to their shared files.
+        /// Called after SaveDb completes successfully.
+        /// </summary>
+        public static void ExportOnSave(IKp2aApp app, OnOperationFinishedHandler nextHandler)
+        {
+            var db = app.CurrentDb;
+            if (db == null || !db.KpDatabase.IsOpen)
+            {
+                nextHandler?.Run();
+                return;
+            }
+
+            if (!HasExportableKeeShareGroups(db.KpDatabase))
+            {
+                nextHandler?.Run();
+                return;
+            }
+
+            var op = new KeeShareExportOperation(app, nextHandler);
+            OperationRunner.Instance.Run(app, op);
+        }
+    }
+
+    /// <summary>
+    /// Operation to export KeeShare groups to their shared files.
+    /// </summary>
+    public class KeeShareExportOperation : OperationWithFinishHandler
+    {
+        private readonly IKp2aApp _app;
+
+        public KeeShareExportOperation(IKp2aApp app, OnOperationFinishedHandler handler)
+            : base(app, handler)
+        {
+            _app = app;
+        }
+
+        public override void Run()
+        {
+            try
+            {
+                ProcessGroup(_app.CurrentDb.KpDatabase.RootGroup);
+                Finish(true);
+            }
+            catch (Exception ex)
+            {
+                Kp2aLog.LogUnexpectedError(ex);
+                Finish(false, "KeeShare export error: " + ex.Message);
+            }
+        }
+
+        private void ProcessGroup(PwGroup group)
+        {
+            if (group.CustomData.Get("KeeShare.Active") == "true")
+            {
+                string type = group.CustomData.Get("KeeShare.Type");
+                if (type == "Export" || type == "Synchronize")
+                {
+                    try
+                    {
+                        ExportGroup(group);
+                    }
+                    catch (Exception ex)
+                    {
+                        Kp2aLog.Log("Error exporting KeeShare for group " + group.Name + ": " + ex.ToString());
+                    }
+                }
+            }
+
+            foreach (var sub in group.Groups.ToList())
+            {
+                ProcessGroup(sub);
+            }
+        }
+
+        private void ExportGroup(PwGroup sourceGroup)
+        {
+            string path = KeeShare.GetEffectiveFilePath(sourceGroup);
+            string password = sourceGroup.CustomData.Get("KeeShare.Password") ?? "";
+
+            if (string.IsNullOrEmpty(path))
+            {
+                Kp2aLog.Log("KeeShare: No file path configured for export group " + sourceGroup.Name + ". Skipping.");
+                return;
+            }
+
+            StatusLogger.UpdateMessage(_app.GetResourceString(UiStringKey.saving_database) + ": " + sourceGroup.Name);
+
+            IOConnectionInfo ioc = ResolvePath(path);
+
+            PwDatabase exportDb = null;
+            try
+            {
+                exportDb = new PwDatabase();
+                exportDb.New(new IOConnectionInfo(), new CompositeKey(), sourceGroup.Name);
+
+                CompositeKey key = new CompositeKey();
+                if (!string.IsNullOrEmpty(password))
+                {
+                    key.AddUserKey(new KcpPassword(password));
+                }
+                else
+                {
+                    key.AddUserKey(new KcpPassword(""));
+                }
+                exportDb.MasterKey = key;
+
+                foreach (var entry in sourceGroup.Entries)
+                {
+                    PwEntry clonedEntry = entry.CloneDeep();
+                    exportDb.RootGroup.AddEntry(clonedEntry, true);
+                }
+
+                foreach (var subGroup in sourceGroup.Groups)
+                {
+                    PwGroup clonedGroup = subGroup.CloneDeep();
+                    exportDb.RootGroup.AddGroup(clonedGroup, true);
+                }
+
+                var fileStorage = _app.GetFileStorage(ioc);
+                using (var writeTransaction = fileStorage.OpenWriteTransaction(ioc, _app.GetBooleanPreference(PreferenceKey.UseFileTransactions)))
+                {
+                    KdbxFile kdbx = new KdbxFile(exportDb);
+                    kdbx.Save(writeTransaction.OpenFile(), null, KdbxFormat.Default, null);
+                    writeTransaction.CommitWrite();
+                }
+
+                Kp2aLog.Log("KeeShare: Exported group " + sourceGroup.Name + " to " + path);
+            }
+            catch (Exception ex)
+            {
+                Kp2aLog.Log("KeeShare export failed for group " + sourceGroup.Name + ": " + ex.Message);
+            }
+            finally
+            {
+                exportDb?.Close();
+            }
+        }
+
+        private IOConnectionInfo ResolvePath(string path)
+        {
+            if (path.Contains("://") || path.StartsWith("/"))
+            {
+                return IOConnectionInfo.FromPath(path);
+            }
+
+            try
+            {
+                var currentIoc = _app.CurrentDb.Ioc;
+
+                if (currentIoc.IsLocalFile())
+                {
+                    string dir = Path.GetDirectoryName(currentIoc.Path);
+                    string fullPath = Path.Combine(dir, path);
+                    return IOConnectionInfo.FromPath(fullPath);
+                }
+            }
+            catch (Exception ex)
+            {
+                Kp2aLog.Log("KeeShare: Error resolving relative path: " + ex.GetType().Name);
+            }
+
+            return IOConnectionInfo.FromPath(path);
+        }
     }
 
     public class KeeShareCheckOperation : OperationWithFinishHandler
@@ -144,15 +453,77 @@ namespace keepass2android
         private void ProcessKeeShare(PwGroup group)
         {
             string type = group.CustomData.Get("KeeShare.Type");
-            string path = group.CustomData.Get("KeeShare.FilePath");
+            string path = KeeShare.GetEffectiveFilePath(group);
             string password = group.CustomData.Get("KeeShare.Password");
 
-            if (string.IsNullOrEmpty(path)) return;
+            if (string.IsNullOrEmpty(path))
+            {
+                Kp2aLog.Log("KeeShare: No file path configured for group " + group.Name + " on this device. Skipping.");
+                return;
+            }
 
             if (type == "Import" || type == "Synchronize")
             {
                 StatusLogger.UpdateMessage(_app.GetResourceString(UiStringKey.OpeningDatabase) + ": " + group.Name);
                 Import(group, path, password, type);
+            }
+            else if (type == "Export")
+            {
+                StatusLogger.UpdateMessage(_app.GetResourceString(UiStringKey.saving_database) + ": " + group.Name);
+                Export(group, path, password);
+            }
+        }
+
+        private void Export(PwGroup sourceGroup, string path, string password)
+        {
+            IOConnectionInfo ioc = ResolvePath(path);
+            
+            PwDatabase exportDb = null;
+            try
+            {
+                exportDb = new PwDatabase();
+                exportDb.New(new IOConnectionInfo(), new CompositeKey(), sourceGroup.Name);
+                
+                CompositeKey key = new CompositeKey();
+                if (!string.IsNullOrEmpty(password))
+                {
+                    key.AddUserKey(new KcpPassword(password));
+                }
+                else
+                {
+                    key.AddUserKey(new KcpPassword(""));
+                }
+                exportDb.MasterKey = key;
+
+                foreach (var entry in sourceGroup.Entries)
+                {
+                    PwEntry clonedEntry = entry.CloneDeep();
+                    exportDb.RootGroup.AddEntry(clonedEntry, true);
+                }
+
+                foreach (var subGroup in sourceGroup.Groups)
+                {
+                    PwGroup clonedGroup = subGroup.CloneDeep();
+                    exportDb.RootGroup.AddGroup(clonedGroup, true);
+                }
+
+                var fileStorage = _app.GetFileStorage(ioc);
+                using (var writeTransaction = fileStorage.OpenWriteTransaction(ioc, _app.GetBooleanPreference(PreferenceKey.UseFileTransactions)))
+                {
+                    KdbxFile kdbx = new KdbxFile(exportDb);
+                    kdbx.Save(writeTransaction.OpenFile(), null, KdbxFormat.Default, null);
+                    writeTransaction.CommitWrite();
+                }
+                
+                Kp2aLog.Log("KeeShare: Exported group " + sourceGroup.Name + " to " + path);
+            }
+            catch (Exception ex)
+            {
+                Kp2aLog.Log("KeeShare export failed for group " + sourceGroup.Name + ": " + ex.Message);
+            }
+            finally
+            {
+                exportDb?.Close();
             }
         }
 

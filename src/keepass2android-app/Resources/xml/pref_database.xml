@@ -68,6 +68,13 @@
 		<intent android:action="kp2a.action.ConfigureChildDatabasesActivity" />
 	</Preference>
 
+	<Preference
+		android:key="configure_keeshare_prefs"
+		android:title="@string/configure_keeshare"
+	>
+		<intent android:action="kp2a.action.ConfigureKeeShareActivity" />
+	</Preference>
+
 	<PreferenceCategory
     android:title="Import and export" />
 	
