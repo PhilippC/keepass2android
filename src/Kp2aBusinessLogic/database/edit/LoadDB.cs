@@ -43,6 +43,13 @@ namespace keepass2android
 
     public bool DoNotSetStatusLoggerMessage = false;
 
+    /// <summary>
+    /// Static callback that can be registered by the app to handle KeeShare check after database load.
+    /// Called with (IKp2aApp app, OnOperationFinishedHandler handler).
+    /// The callback should check if KeeShare groups exist and process them, then call handler.Run().
+    /// </summary>
+    public static Action<IKp2aApp, OnOperationFinishedHandler> OnLoadCompleteKeeShareCheck { get; set; }
+
 
     public LoadDb(IKp2aApp app, IOConnectionInfo ioc, Task<MemoryStream> databaseData, CompositeKey compositeKey,
         string keyfileOrProvider, OnOperationFinishedHandler operationFinishedHandler,
@@ -67,10 +74,17 @@ namespace keepass2android
       return new ActionOnOperationFinished(app, (success, message, context) =>
       {
         originalHandler.SetResult(success, message, false, null);
-        if (success && app.CurrentDb?.KpDatabase?.IsOpen == true && 
-            KeeShare.HasKeeShareGroups(app.CurrentDb.KpDatabase.RootGroup))
+        if (success && app.CurrentDb?.KpDatabase?.IsOpen == true && OnLoadCompleteKeeShareCheck != null)
         {
-          KeeShare.Check(app, originalHandler);
+          try
+          {
+            OnLoadCompleteKeeShareCheck(app, originalHandler);
+          }
+          catch (Exception ex)
+          {
+            Kp2aLog.Log("KeeShare check after load failed: " + ex.Message);
+            originalHandler.Run();
+          }
         }
         else
         {

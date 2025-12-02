@@ -1190,6 +1190,19 @@ namespace keepass2android
           handler?.Run();
         }
       };
+
+      LoadDb.OnLoadCompleteKeeShareCheck = (kp2aApp, handler) =>
+      {
+        if (kp2aApp.CurrentDb?.KpDatabase?.RootGroup != null && 
+            KeeShare.HasKeeShareGroups(kp2aApp.CurrentDb.KpDatabase.RootGroup))
+        {
+          KeeShare.Check(kp2aApp, handler);
+        }
+        else
+        {
+          handler?.Run();
+        }
+      };
     }
 
 
