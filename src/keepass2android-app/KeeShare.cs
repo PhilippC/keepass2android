@@ -528,12 +528,12 @@ namespace keepass2android
                 {
                     string pemText = trustedCertificate.Trim();
                     
-                    if (pemText.Contains("-----BEGIN CERTIFICATE-----"))
+                    if (pemText.StartsWith("-----BEGIN CERTIFICATE-----"))
                     {
                         var cert = X509Certificate2.CreateFromPem(pemText);
                         publicKeyBytes = cert.GetPublicKey();
                     }
-                    else if (pemText.Contains("-----BEGIN PUBLIC KEY-----"))
+                    else if (pemText.StartsWith("-----BEGIN PUBLIC KEY-----"))
                     {
                         var lines = pemText.Split('\n');
                         var base64Lines = lines.Where(l => !string.IsNullOrWhiteSpace(l) && !l.Trim().StartsWith("-----"));
