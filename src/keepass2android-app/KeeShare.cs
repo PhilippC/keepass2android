@@ -64,6 +64,36 @@ namespace keepass2android
             }
             return false;
         }
+
+        /// <summary>
+        /// Checks if a group is read-only because it's a KeeShare Import group
+        /// or is contained within one. Import groups replace their contents on sync,
+        /// so local modifications would be lost.
+        /// </summary>
+        public static bool IsReadOnlyBecauseKeeShareImport(PwGroup group)
+        {
+            if (group == null) return false;
+
+            PwGroup current = group;
+            while (current != null)
+            {
+                if (current.CustomData.Get("KeeShare.Active") == "true" &&
+                    current.CustomData.Get("KeeShare.Type") == "Import")
+                {
+                    return true;
+                }
+                current = current.ParentGroup;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Checks if an entry is read-only because it's in a KeeShare Import group.
+        /// </summary>
+        public static bool IsReadOnlyBecauseKeeShareImport(PwEntry entry)
+        {
+            return entry?.ParentGroup != null && IsReadOnlyBecauseKeeShareImport(entry.ParentGroup);
+        }
     }
 
     public class KeeShareCheckOperation : OperationWithFinishHandler

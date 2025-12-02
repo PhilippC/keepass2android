@@ -238,7 +238,7 @@ namespace keepass2android
     protected void SetupEditButtons()
     {
       View edit = FindViewById(Resource.Id.entry_edit);
-      if (App.Kp2a.CurrentDb.CanWrite && _historyIndex < 0)
+      if (App.Kp2a.CurrentDb.CanWrite && _historyIndex < 0 && !KeeShare.IsReadOnlyBecauseKeeShareImport(Entry))
       {
         edit.Visibility = ViewStates.Visible;
         edit.Click += (sender, e) =>
