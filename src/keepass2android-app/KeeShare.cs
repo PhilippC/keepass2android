@@ -12,6 +12,7 @@ using KeePassLib.Utility;
 using System.IO.Compression;
 using Android.Content;
 using System.Security.Cryptography;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 
 namespace keepass2android
@@ -525,17 +526,9 @@ namespace keepass2android
                 byte[] publicKeyBytes;
                 try
                 {
-                    if (trustedCertificate.Contains("-----BEGIN"))
-                    {
-                        var lines = trustedCertificate.Split('\n');
-                        var base64Lines = lines.Where(l => !l.Contains("BEGIN") && !l.Contains("END") && !string.IsNullOrWhiteSpace(l));
-                        string base64Content = string.Join("", base64Lines).Trim();
-                        publicKeyBytes = Convert.FromBase64String(base64Content);
-                    }
-                    else
-                    {
-                        publicKeyBytes = Convert.FromBase64String(trustedCertificate);
-                    }
+                    string pemText = trustedCertificate.Trim();
+                    var cert = X509Certificate2.CreateFromPem(pemText);
+                    publicKeyBytes = cert.GetPublicKey();
                 }
                 catch (Exception)
                 {
