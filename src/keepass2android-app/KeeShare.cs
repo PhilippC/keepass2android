@@ -192,8 +192,26 @@ namespace keepass2android
         /// <param name="nextHandler">Handler to call when operation completes</param>
         public static void Check(IKp2aApp app, OnOperationFinishedHandler nextHandler)
         {
+            if (app == null)
+            {
+                nextHandler?.Run();
+                return;
+            }
+
             var db = app.CurrentDb;
-            if (db == null || !db.KpDatabase.IsOpen)
+            if (db == null)
+            {
+                nextHandler?.Run();
+                return;
+            }
+
+            if (db.KpDatabase == null || !db.KpDatabase.IsOpen)
+            {
+                nextHandler?.Run();
+                return;
+            }
+
+            if (db.KpDatabase.RootGroup == null)
             {
                 nextHandler?.Run();
                 return;
@@ -217,6 +235,11 @@ namespace keepass2android
         /// </summary>
         public static void SyncInBackground(IKp2aApp app, OnOperationFinishedHandler onFinished)
         {
+            if (app == null)
+            {
+                onFinished?.Run();
+                return;
+            }
             Check(app, onFinished);
         }
 
@@ -269,6 +292,7 @@ namespace keepass2android
         public static bool HasExportableKeeShareGroups(PwDatabase db)
         {
             if (db == null || !db.IsOpen) return false;
+            if (db.RootGroup == null) return false;
             return HasExportableKeeShareGroups(db.RootGroup);
         }
 
@@ -298,8 +322,20 @@ namespace keepass2android
         /// </summary>
         public static void ExportOnSave(IKp2aApp app, OnOperationFinishedHandler nextHandler)
         {
+            if (app == null)
+            {
+                nextHandler?.Run();
+                return;
+            }
+
             var db = app.CurrentDb;
-            if (db == null || !db.KpDatabase.IsOpen)
+            if (db == null)
+            {
+                nextHandler?.Run();
+                return;
+            }
+
+            if (db.KpDatabase == null || !db.KpDatabase.IsOpen)
             {
                 nextHandler?.Run();
                 return;
