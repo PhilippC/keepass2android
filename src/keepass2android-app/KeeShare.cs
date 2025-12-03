@@ -396,6 +396,30 @@ namespace keepass2android
         {
             try
             {
+                if (_app == null)
+                {
+                    Kp2aLog.LogUnexpectedError(new InvalidOperationException("KeeShare export: _app is null"));
+                    Finish(false, "KeeShare export error: database unavailable");
+                    return;
+                }
+                if (_app.CurrentDb == null)
+                {
+                    Kp2aLog.LogUnexpectedError(new InvalidOperationException("KeeShare export: CurrentDb is null"));
+                    Finish(false, "KeeShare export error: database unavailable");
+                    return;
+                }
+                if (_app.CurrentDb.KpDatabase == null)
+                {
+                    Kp2aLog.LogUnexpectedError(new InvalidOperationException("KeeShare export: KpDatabase is null"));
+                    Finish(false, "KeeShare export error: database unavailable");
+                    return;
+                }
+                if (_app.CurrentDb.KpDatabase.RootGroup == null)
+                {
+                    Kp2aLog.LogUnexpectedError(new InvalidOperationException("KeeShare export: RootGroup is null"));
+                    Finish(false, "KeeShare export error: database unavailable");
+                    return;
+                }
                 ProcessGroup(_app.CurrentDb.KpDatabase.RootGroup);
                 Finish(true);
             }
@@ -439,11 +463,6 @@ namespace keepass2android
 
             KeeShare.ExportGroupToFile(_app, sourceGroup, path, password);
         }
-
-        private IOConnectionInfo ResolvePath(string path)
-        {
-            return KeeShare.ResolvePath(_app, path);
-        }
     }
 
     public class KeeShareCheckOperation : OperationWithFinishHandler
@@ -460,6 +479,30 @@ namespace keepass2android
         {
             try
             {
+                if (_app == null)
+                {
+                    Kp2aLog.LogUnexpectedError(new InvalidOperationException("KeeShare check: _app is null"));
+                    Finish(false, "KeeShare error: database is null");
+                    return;
+                }
+                if (_app.CurrentDb == null)
+                {
+                    Kp2aLog.LogUnexpectedError(new InvalidOperationException("KeeShare check: CurrentDb is null"));
+                    Finish(false, "KeeShare error: database is null");
+                    return;
+                }
+                if (_app.CurrentDb.KpDatabase == null)
+                {
+                    Kp2aLog.LogUnexpectedError(new InvalidOperationException("KeeShare check: KpDatabase is null"));
+                    Finish(false, "KeeShare error: database is null");
+                    return;
+                }
+                if (_app.CurrentDb.KpDatabase.RootGroup == null)
+                {
+                    Kp2aLog.LogUnexpectedError(new InvalidOperationException("KeeShare check: RootGroup is null"));
+                    Finish(false, "KeeShare error: database is null");
+                    return;
+                }
                 ProcessGroup(_app.CurrentDb.KpDatabase.RootGroup);
                 Finish(true);
             }
@@ -772,6 +815,11 @@ namespace keepass2android
 
         /// <summary>
         /// Clears all entries and subgroups from a group (for Import mode).
+        /// Note: Deletions are not added to the database's DeletedObjects collection.
+        /// This is intentional for Import mode since we're performing a complete replacement
+        /// of the group's contents - the old entries/groups will be replaced by the imported
+        /// content via MergeIn, so tracking deletions would be unnecessary and could cause
+        /// synchronization issues.
         /// </summary>
         private void ClearGroupContents(PwGroup group)
         {
