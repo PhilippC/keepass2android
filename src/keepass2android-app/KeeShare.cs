@@ -96,6 +96,9 @@ namespace keepass2android
         /// </summary>
         internal static IOConnectionInfo ResolvePath(IKp2aApp app, string path)
         {
+            if (path == null)
+                throw new ArgumentNullException(nameof(path));
+
             if (path.Contains("://") || path.StartsWith("/"))
             {
                 return IOConnectionInfo.FromPath(path);
