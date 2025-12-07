@@ -751,6 +751,7 @@ Anbei einige Tipps, die bei der Diagnose des Problems helfen können:\n
   <string name="WarnFingerprintInvalidated">Achtung! Die biometrische Authentifizierung kann von Android ungültig gemacht werden, z. B. nach dem Hinzufügen eines neuen Fingerabdrucks in den Geräteeinstellungen. Bitte sicherstellen, dass jederzeit klar ist, wie mit dem eigenen Hauptpasswort entsperrt werden kann!</string>
   <string name="webdav_chunked_upload_size_title">Chunk-Größe für den WebDav-Upload</string>
   <string name="webdav_chunked_upload_enabled_title">Aktiviere chunked Upload für WebDav</string>
+  <string name="webdav_chunked_upload_enabled_summary"></string>
   <string name="cleartextTrafficPermitted_title">Klartext-Netzwerkverkehr in WebDav erlauben</string>
   <string name="cleartextTrafficPermitted_summary">HTTP-Verbindungen sind nicht sicher. Diese Option nur aktivieren, wenn weitere Sicherheitsmaßnahmen vorhanden sind.</string>
   <string-array name="ChangeLog_1_14">
