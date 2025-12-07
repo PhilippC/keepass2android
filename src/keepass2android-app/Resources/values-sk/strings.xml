@@ -767,7 +767,7 @@
   <string-array name="ChangeLog_1_14">
     <item>Aktualizácia na .net 9 a Target SDK verzie 35. Pribudol priehľadný stavový riadok v systéme Android 15, pretože predvolený režim je edge-to-edge.</item>
     <item>Menšie vylepšenia používateľského rozhrania</item>
-    <item>Removed buttons for donate and find plugins, in order to comply with Google Play policies</item>
+    <item>Odstránené tlačidlá pre podporu a nájdenie prídavných modulov, kvôli súladu s politikou Google Play</item>
   </string-array>
   <string-array name="ChangeLog_1_14_net">
     <item>Vylepšenia WebDav: oprava chyby pre zoznamy priečinkov: podpora pre blokové odosielanie a transakcie</item>
