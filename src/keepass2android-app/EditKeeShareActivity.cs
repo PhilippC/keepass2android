@@ -88,17 +88,17 @@ namespace keepass2android
 
         private void LoadCurrentSettings()
         {
-            bool isActive = _group.CustomData.Get("KeeShare.Active") == "true";
+            bool isActive = _group.CustomData.Get(KeeShare.ActiveKey) == "true";
             _enableCheckbox.Checked = isActive;
 
-            string type = _group.CustomData.Get("KeeShare.Type") ?? "Export";
+            string type = _group.CustomData.Get(KeeShare.TypeKey) ?? "Export";
             int typeIndex = type == "Import" ? 1 : type == "Synchronize" ? 2 : 0;
             _typeSpinner.SetSelection(typeIndex);
 
-            string filePath = _group.CustomData.Get("KeeShare.FilePath") ?? "";
+            string filePath = _group.CustomData.Get(KeeShare.FilePathKey) ?? "";
             _filePathEditText.Text = filePath;
 
-            string password = _group.CustomData.Get("KeeShare.Password") ?? "";
+            string password = _group.CustomData.Get(KeeShare.PasswordKey) ?? "";
             _passwordEditText.Text = password;
 
             UpdateFieldsEnabled();
@@ -160,7 +160,8 @@ namespace keepass2android
                         }
                         else
                         {
-                            App.Kp2a.ShowMessage(this, message ?? GetString(Resource.String.error_save_failed), MessageSeverity.Error);
+                            if (context != null)
+                                App.Kp2a.ShowMessage(context, message ?? GetString(Resource.String.error_save_failed), MessageSeverity.Error);
                         }
                     }));
 

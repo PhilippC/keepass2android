@@ -36,7 +36,7 @@ namespace keepass2android
 
             public override Java.Lang.Object GetItem(int position)
             {
-                return position;
+                return _displayedItems[position];
             }
 
             public override long GetItemId(int position)
@@ -135,8 +135,12 @@ namespace keepass2android
             private static int GetClickedPos(View sendingView)
             {
                 View viewWithTag = sendingView;
-                while (viewWithTag.Tag == null)
+                while (viewWithTag?.Tag == null)
+                {
+                    if (viewWithTag?.Parent == null)
+                        throw new InvalidOperationException("Could not find position tag in view hierarchy");
                     viewWithTag = (View)viewWithTag.Parent;
+                }
                 int clickedPos = int.Parse((string)viewWithTag.Tag);
                 return clickedPos;
             }
@@ -263,7 +267,8 @@ namespace keepass2android
                     if (!string.IsNullOrEmpty(iocString))
                     {
                         IOConnectionInfo ioc = IOConnectionInfo.UnserializeFromString(iocString);
-                        KeeShare.SetDeviceFilePath(_pendingConfigItem.Group, ioc.Path);
+                        string serializedIoc = IOConnectionInfo.SerializeToString(ioc);
+                        KeeShare.SetDeviceFilePath(_pendingConfigItem.Group, serializedIoc);
                         Save(_pendingConfigItem);
                     }
                 }

@@ -275,6 +275,7 @@ namespace keepass2android
       {
         Kp2aLog.Log("KeeShare export after save failed: " + ex.Message);
         _app.ShowMessage(_app.ActiveContext, "KeeShare export after save failed: " + ex.Message, MessageSeverity.Error);
+        // Database save succeeded; KeeShare export failure is non-blocking
         Finish(true);
       }
     }

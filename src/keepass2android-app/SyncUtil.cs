@@ -119,7 +119,7 @@ namespace keepass2android
         // Sync KeeShare groups if present
         if (success && database.KpDatabase?.IsOpen == true && KeeShare.HasKeeShareGroups(database.KpDatabase.RootGroup))
         {
-          KeeShare.SyncInBackground(App.Kp2a, new ActionOnOperationFinished(App.Kp2a, (keeShareSuccess, keeShareMessage, importantMessage, exception, ctx) =>
+          KeeShare.SyncInBackground(App.Kp2a, new ActionOnOperationFinished(App.Kp2a, (keeShareSuccess, keeShareMessage, _, _, ctx) =>
           {
             App.Kp2a.UiThreadHandler.Post(() =>
             {
