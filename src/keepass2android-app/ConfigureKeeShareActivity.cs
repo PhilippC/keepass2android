@@ -36,7 +36,7 @@ namespace keepass2android
 
             public override Java.Lang.Object GetItem(int position)
             {
-                return _displayedItems[position];
+                return position;
             }
 
             public override long GetItemId(int position)
@@ -185,15 +185,16 @@ namespace keepass2android
             var syncOp = new KeeShareCheckOperation(App.Kp2a, new ActionOnOperationFinished(App.Kp2a,
                 (success, message, importantMessage, exception, context) =>
                 {
+                    var activity = context as ConfigureKeeShareActivity ?? this;
                     if (success)
                     {
-                        App.Kp2a.ShowMessage(this, GetString(Resource.String.keeshare_sync_complete), MessageSeverity.Info);
+                        App.Kp2a.ShowMessage(activity, GetString(Resource.String.keeshare_sync_complete), MessageSeverity.Info);
                     }
                     else
                     {
-                        App.Kp2a.ShowMessage(this, message ?? GetString(Resource.String.keeshare_sync_failed), MessageSeverity.Error);
+                        App.Kp2a.ShowMessage(activity, message ?? GetString(Resource.String.keeshare_sync_failed), MessageSeverity.Error);
                     }
-                    Update();
+                    activity?.Update();
                 }));
             
             BlockingOperationStarter pt = new BlockingOperationStarter(App.Kp2a, syncOp);

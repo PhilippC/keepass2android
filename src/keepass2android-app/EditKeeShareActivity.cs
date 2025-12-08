@@ -46,7 +46,7 @@ namespace keepass2android
             {
                 groupUuid = new PwUuid(Convert.FromBase64String(groupUuidString));
             }
-            catch (FormatException)
+            catch (Exception)
             {
                 App.Kp2a.ShowMessage(this, "Invalid group identifier", MessageSeverity.Error);
                 Finish();
