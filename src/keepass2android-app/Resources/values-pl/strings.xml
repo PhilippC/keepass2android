@@ -335,6 +335,7 @@
   <string name="QuickUnlock_label_secure">Wpisz kod SzybkieOdblokowanie:</string>
   <string name="QuickUnlock_button">Szybkie Odblokowanie!</string>
   <string name="QuickUnlock_lockButton">Zamknij bazę danych</string>
+  <string name="enable_screen_lock">Włącz blokadę ekranu</string>
   <string name="QuickUnlockDefaultEnabled_title">Domyślnie włącz Szybkie Odblokowanie</string>
   <string name="QuickUnlockDefaultEnabled_summary">Określ czy Szybkie Odblokowanie jest włączone domyślnie czy nie.</string>
   <string name="ViewDatabaseSecure_title">Chroń wyświetlenia bazy danych</string>
@@ -398,6 +399,7 @@
   <string name="NoDonationReminder_summary">Nie chcę dać Ci kasy albo już to zrobiłem. Nie pytaj o darowiznę, nawet na urodziny autora.</string>
   <string name="UseOfflineCache_title">Pamięć podręczna baz danych</string>
   <string name="UseOfflineCache_summary">Trzymaj kopię plików bazy danych w pamięci podręcznej aplikacji. Dzięki temu można korzystać z baz danych gdy ich pliki nie są dostępne.</string>
+  <string name="SyncOfflineCacheInBackground_title">Synchronizuj w tle</string>
   <string name="CreateBackups_title">Lokalne kopie zapasowe</string>
   <string name="CreateBackups_summary">Twórz lokalną kopię zapasową po pomyślnym załadowaniu bazy danych.</string>
   <string name="UpdatingBackup">Aktualizacja lokalnej kopii zapasowej...</string>
@@ -518,7 +520,11 @@
   <string name="ok_donate">Wyślij mi wiadomość!</string>
   <string name="no_thanks">Nie, nie podoba mi się na tyle</string>
   <string name="enter_http_login_title">Wpisz dane do logowania WebDav:</string>
+  <string name="enter_smb_login_title">Wprowadź dane logowania do Samba:</string>
   <string name="hint_http_url">Adres URL folderu lub pliku (np.: mycloud.me.com/webdav/)</string>
+  <string name="hint_smb_url">Adres URL folderu lub pliku (np.: 192.168.1.10/share/folder/)</string>
+  <string name="hint_smb_domain">Domena użytkownika Samba</string>
+  <string name="hint_smb_username">Nazwa użytkownika Samba</string>
   <string name="enter_owncloud_login_title">Wpisz dane do logowania OwnCloud:</string>
   <string name="hint_owncloud_url">Adres URL OwnCloud (np: owncloud.me.com)</string>
   <string name="enter_nextcloud_login_title">Wpisz login Nextcloud:</string>
@@ -556,6 +562,7 @@
   <string name="filestoragename_ftp">FTP</string>
   <string name="filestoragename_http">HTTP (WebDav)</string>
   <string name="filestoragename_https">HTTP (WebDav)</string>
+  <string name="filestoragename_smb">Samba (Windows Share)</string>
   <string name="filestoragename_owncloud">OwnCloud</string>
   <string name="filestoragename_nextcloud">Nextcloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
@@ -733,6 +740,7 @@
   <string name="DbQuicklockedChannel_desc">Powiadomienie o odblokowaniu bazy danych przy pomocy Szybkiego Odblokowania</string>
   <string name="EntryChannel_name">Powiadomienia wpisów</string>
   <string name="EntryChannel_desc">Powiadomienie ułatwiające dostęp do aktualnie wybranego wpisu.</string>
+  <string name="BackgroundSyncChannel_name">Operacja synchronizacji</string>
   <string name="CloseDbAfterFailedAttempts">Zamknij bazę danych po trzech nieudanych próbach odblokowania biometrycznego.</string>
   <string name="WarnFingerprintInvalidated">Uwaga! Uwierzytelnienie biometryczne może zostać unieważnione przez Androida, np. po dodaniu nowego odcisku palca w ustawieniach urządzenia. Upewnij się, że zawsze wiesz, jak odblokować przy użyciu hasła głównego!</string>
   <string-array name="ChangeLog_1_12">
@@ -1121,4 +1129,9 @@
   <string name="qr_scanning_error_no_google_play_services">Skanowanie kodów QR wymaga usług Google Play. Zainstaluj lub zaktualizuj usługi Google Play na swoim urządzeniu.</string>
   <string name="english_ime_settings">Ustawienia klawiatury Keepass2Android</string>
   <string name="switch_keyboard_inside_kp2a_enabled">Uwaga: Włączono w ustawieniach Aplikacja -> Bezpieczeństwo, opcję „Używaj wbudowanej klawiatury w Keepass2Android”. Może to powodować pojawianie się tego okna przy otwieraniu aplikacji lub edycji wpisu.</string>
+  <string name="user_interaction_required">Wymagana interakcja. Proszę otworzyć aplikację.</string>
+  <string name="failed_to_access_database">Baza danych nie jest obecnie dostępna, ponieważ jest w użyciu. </string>
+  <string name="configure_ssids">Konfiguruj SSID</string>
+  <string name="add_current_ssid">Dodaj bieżące SSID</string>
+  <string name="enter_ssid_hint">Wprowadź SSID</string>
 </resources>
