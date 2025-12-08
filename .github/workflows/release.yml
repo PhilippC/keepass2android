@@ -102,7 +102,7 @@ jobs:
 
     - name: Install NuGet dependencies
       run: |
-        dotnet workload restore
+        dotnet workload restore --project src/KeePass.sln
         make nuget Flavor=${{ matrix.flavor }}
 
     - name: List apks

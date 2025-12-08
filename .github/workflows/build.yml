@@ -319,7 +319,7 @@ jobs:
 
     - name: Install NuGet dependencies (net)
       run: |
-        dotnet workload restore
+        dotnet workload restore --project src/KeePass.sln
         make nuget Flavor=NoNet
 
     - name: Build keepass2android (net)
@@ -349,7 +349,7 @@ jobs:
 
     - name: Install NuGet dependencies (nonet)
       run: |
-        dotnet workload restore
+        dotnet workload restore --project src/KeePass.sln
         make nuget Flavor=NoNet
 
     - name: Build keepass2android (nonet)
