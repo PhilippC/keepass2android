@@ -762,6 +762,20 @@
   <string name="keeshare_sync_complete">KeeShare sync complete</string>
   <string name="keeshare_sync_failed">KeeShare sync failed</string>
   <string name="not_set">Not set</string>
+  <string name="keeshare_enable">Enable KeeShare for this group</string>
+  <string name="keeshare_enable_title">KeeShare Configuration</string>
+  <string name="keeshare_edit_title">Edit KeeShare</string>
+  <string name="keeshare_type_label">Share Type</string>
+  <string name="keeshare_filepath_label">Shared File Path</string>
+  <string name="keeshare_filepath_hint">Path to the shared .kdbx file</string>
+  <string name="keeshare_filepath_required">File path is required</string>
+  <string name="keeshare_password_label">Password (optional)</string>
+  <string name="keeshare_password_hint">Leave empty for no password</string>
+  <string name="keeshare_description">Export: Share entries from this group to a file. Import: Replace this group\'s contents with entries from a file. Synchronize: Two-way sync with a file.</string>
+  <string name="select_file">Select…</string>
+  <string name="error_group_not_found">Group not found</string>
+  <string name="error_save_failed">Save failed</string>
+  <string name="edit_keeshare">Edit KeeShare…</string>
   
   <string name="database_file_heading">Database file</string>
   <string name="if_device_text">Enable for %1$s</string>

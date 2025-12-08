@@ -1573,6 +1573,10 @@ namespace keepass2android
         case Resource.Id.menu_edit:
           GroupEditActivity.Launch(Activity, checkedItems.First().ParentGroup, (PwGroup)checkedItems.First());
           break;
+        case Resource.Id.menu_edit_keeshare:
+          var intent = EditKeeShareActivity.CreateIntent(Activity, (PwGroup)checkedItems.First());
+          Activity.StartActivity(intent);
+          break;
         default:
           return false;
 
@@ -1647,6 +1651,12 @@ namespace keepass2android
       if (menuItem != null)
       {
         menuItem.SetVisible(IsOnlyOneEntryChecked());
+      }
+
+      menuItem = mode.Menu.FindItem(Resource.Id.menu_edit_keeshare);
+      if (menuItem != null)
+      {
+        menuItem.SetVisible(IsOnlyOneGroupChecked());
       }
     }
 

@@ -90,6 +90,93 @@ namespace keepass2android
         }
 
         /// <summary>
+        /// Enables KeeShare on a group with the specified configuration.
+        /// </summary>
+        /// <param name="group">The group to enable KeeShare on</param>
+        /// <param name="type">The KeeShare type: "Export", "Import", or "Synchronize"</param>
+        /// <param name="filePath">The file path for the shared container</param>
+        /// <param name="password">Optional password for the shared container</param>
+        public static void EnableKeeShare(PwGroup group, string type, string filePath, string password = null)
+        {
+            if (group == null)
+                throw new ArgumentNullException(nameof(group));
+            if (string.IsNullOrEmpty(type))
+                throw new ArgumentException("Type cannot be null or empty", nameof(type));
+            if (type != "Export" && type != "Import" && type != "Synchronize")
+                throw new ArgumentException("Type must be 'Export', 'Import', or 'Synchronize'", nameof(type));
+
+            group.CustomData.Set("KeeShare.Active", "true");
+            group.CustomData.Set("KeeShare.Type", type);
+            
+            if (!string.IsNullOrEmpty(filePath))
+            {
+                group.CustomData.Set("KeeShare.FilePath", filePath);
+            }
+            
+            if (!string.IsNullOrEmpty(password))
+            {
+                group.CustomData.Set("KeeShare.Password", password);
+            }
+            else
+            {
+                group.CustomData.Remove("KeeShare.Password");
+            }
+            
+            group.Touch(true, false);
+        }
+
+        /// <summary>
+        /// Updates KeeShare configuration on a group.
+        /// </summary>
+        public static void UpdateKeeShareConfig(PwGroup group, string type, string filePath, string password)
+        {
+            if (group == null)
+                throw new ArgumentNullException(nameof(group));
+            
+            if (!string.IsNullOrEmpty(type))
+            {
+                if (type != "Export" && type != "Import" && type != "Synchronize")
+                    throw new ArgumentException("Type must be 'Export', 'Import', or 'Synchronize'", nameof(type));
+                group.CustomData.Set("KeeShare.Type", type);
+            }
+            
+            if (!string.IsNullOrEmpty(filePath))
+            {
+                group.CustomData.Set("KeeShare.FilePath", filePath);
+            }
+            
+            if (!string.IsNullOrEmpty(password))
+            {
+                group.CustomData.Set("KeeShare.Password", password);
+            }
+            else
+            {
+                group.CustomData.Remove("KeeShare.Password");
+            }
+            
+            group.Touch(true, false);
+        }
+
+        /// <summary>
+        /// Disables KeeShare on a group, removing all KeeShare-related CustomData.
+        /// </summary>
+        public static void DisableKeeShare(PwGroup group)
+        {
+            if (group == null) return;
+
+            group.CustomData.Remove("KeeShare.Active");
+            group.CustomData.Remove("KeeShare.Type");
+            group.CustomData.Remove("KeeShare.FilePath");
+            group.CustomData.Remove("KeeShare.Password");
+            group.CustomData.Remove("KeeShare.TrustedCertificate");
+            
+            string deviceKey = GetDeviceFilePathKey();
+            group.CustomData.Remove(deviceKey);
+            
+            group.Touch(true, false);
+        }
+
+        /// <summary>
         /// Resolves a file path, handling relative paths for local files.
         /// Relative paths are resolved relative to the current database's directory.
         /// For remote databases, relative paths are treated as-is (a warning is logged).
@@ -482,7 +569,15 @@ namespace keepass2android
                 string type = group.CustomData.Get("KeeShare.Type");
                 if (type == "Export" || type == "Synchronize")
                 {
-                    ExportGroup(group);
+                    try
+                    {
+                        ExportGroup(group);
+                    }
+                    catch (Exception ex)
+                    {
+                        Kp2aLog.Log("Error exporting KeeShare for group " + group.Name + ": " + ex.ToString());
+                        _app.ShowMessage(_app.ActiveContext, "KeeShare export failed for group '" + group.Name + "': " + ex.Message, MessageSeverity.Warning);
+                    }
                 }
             }
 
@@ -555,7 +650,15 @@ namespace keepass2android
         {
             if (group.CustomData.Get("KeeShare.Active") == "true")
             {
-                ProcessKeeShare(group);
+                try
+                {
+                    ProcessKeeShare(group);
+                }
+                catch (Exception ex)
+                {
+                    Kp2aLog.Log("Error processing KeeShare for group " + group.Name + ": " + ex.ToString());
+                    _app.ShowMessage(_app.ActiveContext, "KeeShare sync failed for group '" + group.Name + "': " + ex.Message, MessageSeverity.Warning);
+                }
             }
 
             foreach (var sub in group.Groups.ToList())
