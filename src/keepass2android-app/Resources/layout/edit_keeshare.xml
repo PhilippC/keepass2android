@@ -102,7 +102,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@android:string/cancel"
-                android:minWidth="100sp"
+                android:minWidth="100dp"
                 android:layout_marginRight="8dp" />
 
             <Button
@@ -110,7 +110,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@android:string/ok"
-                android:minWidth="100sp" />
+                android:minWidth="100dp" />
         </LinearLayout>
     </LinearLayout>
 </ScrollView>

@@ -1036,7 +1036,14 @@ namespace keepass2android
                 byte[] signatureBytes;
                 try
                 {
-                    signatureBytes = MemUtil.HexStringToByteArray(signatureText);
+                    try
+                    {
+                        signatureBytes = Convert.FromBase64String(signatureText);
+                    }
+                    catch (FormatException)
+                    {
+                        signatureBytes = MemUtil.HexStringToByteArray(signatureText);
+                    }
                 }
                 catch (Exception)
                 {
@@ -1056,7 +1063,12 @@ namespace keepass2android
                     if (pemText.StartsWith("-----BEGIN CERTIFICATE-----"))
                     {
                         var cert = X509Certificate2.CreateFromPem(pemText);
-                        publicKeyBytes = cert.GetPublicKey();
+                        using (var rsaKey = cert.GetRSAPublicKey())
+                        {
+                            if (rsaKey == null)
+                                return false;
+                            publicKeyBytes = rsaKey.ExportSubjectPublicKeyInfo();
+                        }
                     }
                     else if (pemText.StartsWith("-----BEGIN PUBLIC KEY-----"))
                     {

@@ -76,7 +76,8 @@ namespace keepass2android
           {
             try
             {
-              OnLoadCompleteKeeShareCheck(app, null);
+              var noOpHandler = new ActionOnOperationFinished(app, (_, _, _) => { });
+              OnLoadCompleteKeeShareCheck(app, noOpHandler);
             }
             catch (Exception ex)
             {

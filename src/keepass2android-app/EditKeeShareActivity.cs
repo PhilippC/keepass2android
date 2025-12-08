@@ -16,6 +16,8 @@ namespace keepass2android
     {
         private const int ReqCodeSelectFile = 1;
         private const string GroupUuidKey = "GroupUuid";
+        private const string MakeCurrentKey = "MakeCurrent";
+        private const string IocExtraKey = "ioc";
         
         private PwGroup _group;
         private CheckBox _enableCheckbox;
@@ -39,7 +41,18 @@ namespace keepass2android
                 return;
             }
 
-            PwUuid groupUuid = new PwUuid(Convert.FromBase64String(groupUuidString));
+            PwUuid groupUuid;
+            try
+            {
+                groupUuid = new PwUuid(Convert.FromBase64String(groupUuidString));
+            }
+            catch (FormatException)
+            {
+                App.Kp2a.ShowMessage(this, "Invalid group identifier", MessageSeverity.Error);
+                Finish();
+                return;
+            }
+            
             _group = App.Kp2a.CurrentDb?.KpDatabase?.RootGroup?.FindGroup(groupUuid, true);
             
             if (_group == null)
@@ -104,7 +117,7 @@ namespace keepass2android
         {
             Intent intent = new Intent(this, typeof(FileSelectActivity));
             intent.PutExtra(FileSelectActivity.NoForwardToPasswordActivity, true);
-            intent.PutExtra("MakeCurrent", false);
+            intent.PutExtra(MakeCurrentKey, false);
             StartActivityForResult(intent, ReqCodeSelectFile);
         }
 
@@ -161,7 +174,7 @@ namespace keepass2android
 
             if (requestCode == ReqCodeSelectFile && resultCode == Result.Ok)
             {
-                string iocString = data?.GetStringExtra("ioc");
+                string iocString = data?.GetStringExtra(IocExtraKey);
                 if (!string.IsNullOrEmpty(iocString))
                 {
                     IOConnectionInfo ioc = IOConnectionInfo.UnserializeFromString(iocString);
