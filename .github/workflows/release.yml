@@ -101,7 +101,9 @@ jobs:
 
 
     - name: Install NuGet dependencies
-      run: make nuget Flavor=${{ matrix.flavor }}
+      run: |
+        dotnet workload restore
+        make nuget Flavor=${{ matrix.flavor }}
 
     - name: List apks
       run:  find . -type f -name "*.apk"

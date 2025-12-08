@@ -318,7 +318,9 @@ jobs:
         make manifestlink Flavor=Net
 
     - name: Install NuGet dependencies (net)
-      run: make nuget Flavor=Net
+      run: |
+        dotnet workload restore
+        make nuget Flavor=NoNet
 
     - name: Build keepass2android (net)
       run: |
@@ -346,7 +348,9 @@ jobs:
         make manifestlink Flavor=NoNet
 
     - name: Install NuGet dependencies (nonet)
-      run: make nuget Flavor=NoNet
+      run: |
+        dotnet workload restore
+        make nuget Flavor=NoNet
 
     - name: Build keepass2android (nonet)
       run: |
