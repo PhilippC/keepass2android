@@ -69,7 +69,22 @@ namespace keepass2android
     private static OnOperationFinishedHandler WrapHandlerForKeeShare(IKp2aApp app, OnOperationFinishedHandler originalHandler)
     {
       if (originalHandler == null)
-        return null;
+      {
+        return new ActionOnOperationFinished(app, (success, message, context) =>
+        {
+          if (success && app.CurrentDb?.KpDatabase?.IsOpen == true && OnLoadCompleteKeeShareCheck != null)
+          {
+            try
+            {
+              OnLoadCompleteKeeShareCheck(app, null);
+            }
+            catch (Exception ex)
+            {
+              Kp2aLog.Log("KeeShare check after load failed: " + ex.Message);
+            }
+          }
+        });
+      }
 
       return new ActionOnOperationFinished(app, (success, message, context) =>
       {

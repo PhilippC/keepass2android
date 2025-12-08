@@ -136,10 +136,18 @@ namespace keepass2android
             }
             else
             {
-                Kp2aLog.Log("KeeShare: Relative path used with non-local database. Path will be treated as-is: " + path);
+                try
+                {
+                    var fileStorage = app.GetFileStorage(currentIoc);
+                    IOConnectionInfo parentPath = fileStorage.GetParentPath(currentIoc);
+                    return fileStorage.GetFilePath(parentPath, path);
+                }
+                catch (Exception ex)
+                {
+                    Kp2aLog.Log("KeeShare: Failed to resolve relative path using IFileStorage methods: " + ex.Message + ". Using path as-is: " + path);
+                    return IOConnectionInfo.FromPath(path);
+                }
             }
-
-            return IOConnectionInfo.FromPath(path);
         }
 
         /// <summary>
@@ -358,13 +366,15 @@ namespace keepass2android
         /// Exports a KeeShare group to a file. Creates a new database containing only
         /// the entries and subgroups from the source group, then saves it to the specified path.
         /// </summary>
-        internal static void ExportGroupToFile(IKp2aApp app, PwGroup sourceGroup, string path, string password)
+        internal static void ExportGroupToFile(IKp2aApp app, PwGroup sourceGroup, string path, string password, IKp2aStatusLogger statusLogger = null)
         {
             if (string.IsNullOrEmpty(path))
             {
                 Kp2aLog.Log("KeeShare: No file path configured for export group " + sourceGroup.Name + ". Skipping.");
                 return;
             }
+
+            statusLogger?.UpdateMessage("Exporting KeeShare database group " + sourceGroup.Name);
 
             IOConnectionInfo ioc = ResolvePath(app, path);
 
@@ -406,10 +416,6 @@ namespace keepass2android
                 }
 
                 Kp2aLog.Log("KeeShare: Exported group " + sourceGroup.Name + " to " + path);
-            }
-            catch (Exception ex)
-            {
-                Kp2aLog.Log("KeeShare export failed for group " + sourceGroup.Name + ": " + ex.Message);
             }
             finally
             {
@@ -476,14 +482,7 @@ namespace keepass2android
                 string type = group.CustomData.Get("KeeShare.Type");
                 if (type == "Export" || type == "Synchronize")
                 {
-                    try
-                    {
-                        ExportGroup(group);
-                    }
-                    catch (Exception ex)
-                    {
-                        Kp2aLog.Log("Error exporting KeeShare for group " + group.Name + ": " + ex.ToString());
-                    }
+                    ExportGroup(group);
                 }
             }
 
@@ -500,7 +499,7 @@ namespace keepass2android
 
             StatusLogger.UpdateMessage(_app.GetResourceString(UiStringKey.saving_database) + ": " + sourceGroup.Name);
 
-            KeeShare.ExportGroupToFile(_app, sourceGroup, path, password);
+            KeeShare.ExportGroupToFile(_app, sourceGroup, path, password, StatusLogger);
         }
     }
 
@@ -556,14 +555,7 @@ namespace keepass2android
         {
             if (group.CustomData.Get("KeeShare.Active") == "true")
             {
-                try 
-                {
-                    ProcessKeeShare(group);
-                }
-                catch (Exception ex)
-                {
-                    Kp2aLog.Log("Error processing KeeShare for group " + group.Name + ": " + ex.ToString());
-                }
+                ProcessKeeShare(group);
             }
 
             foreach (var sub in group.Groups.ToList())
@@ -598,7 +590,7 @@ namespace keepass2android
 
         private void Export(PwGroup sourceGroup, string path, string password)
         {
-            KeeShare.ExportGroupToFile(_app, sourceGroup, path, password);
+            KeeShare.ExportGroupToFile(_app, sourceGroup, path, password, StatusLogger);
         }
 
         private void Import(PwGroup targetGroup, string path, string password, string type)
