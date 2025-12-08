@@ -577,6 +577,7 @@ namespace keepass2android
                     {
                         Kp2aLog.Log("Error exporting KeeShare for group " + group.Name + ": " + ex.ToString());
                         _app.ShowMessage(_app.ActiveContext, "KeeShare export failed for group '" + group.Name + "': " + ex.Message, MessageSeverity.Warning);
+                        throw;
                     }
                 }
             }
@@ -658,6 +659,7 @@ namespace keepass2android
                 {
                     Kp2aLog.Log("Error processing KeeShare for group " + group.Name + ": " + ex.ToString());
                     _app.ShowMessage(_app.ActiveContext, "KeeShare sync failed for group '" + group.Name + "': " + ex.Message, MessageSeverity.Warning);
+                    throw;
                 }
             }
 

@@ -237,7 +237,7 @@ namespace keepass2android
       if (requiresSubsequentSync)
       {
         var syncTask = new SynchronizeCachedDatabase(_app, _db, new ActionOnOperationFinished(_app,
-            (success, message, context) =>
+            (success, message, importantMessage, exception, context) =>
             {
               if (!System.String.IsNullOrEmpty(message))
                 _app.ShowMessage(context, message, success ? MessageSeverity.Info : MessageSeverity.Error);
@@ -261,7 +261,7 @@ namespace keepass2android
         if (OnSaveCompleteKeeShareExport != null)
         {
           OnSaveCompleteKeeShareExport.Invoke(_app, _db, new ActionOnOperationFinished(_app,
-              (success, message, context) =>
+              (success, message, importantMessage, exception, context) =>
               {
                 Finish(true);
               }));

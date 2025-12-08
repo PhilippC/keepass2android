@@ -179,7 +179,7 @@ namespace keepass2android
         private void OnSyncNow(KeeShareItem item)
         {
             var syncOp = new KeeShareCheckOperation(App.Kp2a, new ActionOnOperationFinished(App.Kp2a,
-                (success, message, context) =>
+                (success, message, importantMessage, exception, context) =>
                 {
                     if (success)
                     {
@@ -206,7 +206,7 @@ namespace keepass2android
         {
             var saveTask = new SaveDb(App.Kp2a, App.Kp2a.FindDatabaseForElement(item.Group), 
                 new ActionInContextInstanceOnOperationFinished(ContextInstanceId, App.Kp2a, 
-                    (success, message, context) => (context as ConfigureKeeShareActivity)?.Update()));
+                    (success, message, importantMessage, exception, context) => (context as ConfigureKeeShareActivity)?.Update()));
 
             BlockingOperationStarter pt = new BlockingOperationStarter(App.Kp2a, saveTask);
             pt.Run();

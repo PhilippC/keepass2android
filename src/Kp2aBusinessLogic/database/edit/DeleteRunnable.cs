@@ -229,7 +229,7 @@ namespace keepass2android
       Android.Util.Log.Debug("KP2A", "Calling PerformDelete..");
       PerformDelete(touchedGroups, permanentlyDeletedGroups);
 
-      _operationFinishedHandler = new ActionOnOperationFinished(App, (success, message, context) =>
+      _operationFinishedHandler = new ActionOnOperationFinished(App, (success, message, importantMessage, exception, context) =>
       {
         if (success)
         {

@@ -103,7 +103,7 @@ namespace keepass2android
 
 
       OperationWithFinishHandler task;
-      OnOperationFinishedHandler onOperationFinishedHandler = new ActionInContextInstanceOnOperationFinished(_activity.ContextInstanceId, App.Kp2a, (success, message, context) =>
+      OnOperationFinishedHandler onOperationFinishedHandler = new ActionInContextInstanceOnOperationFinished(_activity.ContextInstanceId, App.Kp2a, (success, message, importantMessage, exception, context) =>
       {
         App.Kp2a.UiThreadHandler.Post(() =>
               {
@@ -119,7 +119,7 @@ namespace keepass2android
         // Sync KeeShare groups if present
         if (success && database.KpDatabase?.IsOpen == true && KeeShare.HasKeeShareGroups(database.KpDatabase.RootGroup))
         {
-          KeeShare.SyncInBackground(App.Kp2a, new ActionOnOperationFinished(App.Kp2a, (keeShareSuccess, keeShareMessage, ctx) =>
+          KeeShare.SyncInBackground(App.Kp2a, new ActionOnOperationFinished(App.Kp2a, (keeShareSuccess, keeShareMessage, importantMessage, exception, ctx) =>
           {
             App.Kp2a.UiThreadHandler.Post(() =>
             {

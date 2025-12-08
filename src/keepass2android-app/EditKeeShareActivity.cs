@@ -152,7 +152,7 @@ namespace keepass2android
         {
             var saveTask = new SaveDb(App.Kp2a, App.Kp2a.FindDatabaseForElement(_group), 
                 new ActionOnOperationFinished(App.Kp2a, 
-                    (success, message, context) =>
+                    (success, message, importantMessage, exception, context) =>
                     {
                         if (success)
                         {

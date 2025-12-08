@@ -76,7 +76,7 @@ namespace keepass2android
 
     protected override void SaveFile(IOConnectionInfo ioc)
     {
-      var task = new EntryActivity.WriteBinaryTask(App.Kp2a, new ActionOnOperationFinished(App.Kp2a, (success, message, context) =>
+      var task = new EntryActivity.WriteBinaryTask(App.Kp2a, new ActionOnOperationFinished(App.Kp2a, (success, message, importantMessage, exception, context) =>
           {
             if (!success)
               App.Kp2a.ShowMessage(context, message, MessageSeverity.Error);
@@ -573,7 +573,7 @@ namespace keepass2android
         App.Kp2a.DirtyGroups.Add(parent);
       }
 
-      var saveTask = new SaveDb(App.Kp2a, App.Kp2a.FindDatabaseForElement(Entry), new ActionInContextInstanceOnOperationFinished(ContextInstanceId, App.Kp2a, (success, message, context) =>
+      var saveTask = new SaveDb(App.Kp2a, App.Kp2a.FindDatabaseForElement(Entry), new ActionInContextInstanceOnOperationFinished(ContextInstanceId, App.Kp2a, (success, message, importantMessage, exception, context) =>
       {
         if (context is Activity activity)
         {
@@ -1508,7 +1508,7 @@ namespace keepass2android
           return true;
         case Resource.Id.menu_delete:
           DeleteEntry task = new DeleteEntry(App.Kp2a, Entry,
-              new ActionOnOperationFinished(App.Kp2a, (success, message, context) => { if (success) { RequiresRefresh(); Finish(); } }));
+              new ActionOnOperationFinished(App.Kp2a, (success, message, importantMessage, exception, context) => { if (success) { RequiresRefresh(); Finish(); } }));
           task.Start();
           break;
         case Resource.Id.menu_toggle_pass:
@@ -1571,7 +1571,7 @@ namespace keepass2android
 
       //save the entry:
 
-      ActionOnOperationFinished closeOrShowError = new ActionInContextInstanceOnOperationFinished(ContextInstanceId, App.Kp2a, (success, message, context) =>
+      ActionOnOperationFinished closeOrShowError = new ActionInContextInstanceOnOperationFinished(ContextInstanceId, App.Kp2a, (success, message, importantMessage, exception, context) =>
       {
         OnOperationFinishedHandler.DisplayMessage(this, message, true);
         finishAction(context as EntryActivity);

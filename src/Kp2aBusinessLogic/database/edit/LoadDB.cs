@@ -70,13 +70,13 @@ namespace keepass2android
     {
       if (originalHandler == null)
       {
-        return new ActionOnOperationFinished(app, (success, message, context) =>
+        return new ActionOnOperationFinished(app, (success, message, importantMessage, exception, context) =>
         {
           if (success && app.CurrentDb?.KpDatabase?.IsOpen == true && OnLoadCompleteKeeShareCheck != null)
           {
             try
             {
-              var noOpHandler = new ActionOnOperationFinished(app, (_, _, _) => { });
+              var noOpHandler = new ActionOnOperationFinished(app, (_, _, _, _, _) => { });
               OnLoadCompleteKeeShareCheck(app, noOpHandler);
             }
             catch (Exception ex)
@@ -87,9 +87,9 @@ namespace keepass2android
         });
       }
 
-      return new ActionOnOperationFinished(app, (success, message, context) =>
+      return new ActionOnOperationFinished(app, (success, message, importantMessage, exception, context) =>
       {
-        originalHandler.SetResult(success, message, false, null);
+        originalHandler.SetResult(success, message, importantMessage, exception);
         if (success && app.CurrentDb?.KpDatabase?.IsOpen == true && OnLoadCompleteKeeShareCheck != null)
         {
           try

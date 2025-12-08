@@ -1,4 +1,4 @@
-﻿/*
+/*
 This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file is based on Keepassdroid, Copyright Brian Pellin.
 
   Keepass2Android is free software: you can redistribute it and/or modify
@@ -1065,7 +1065,7 @@ namespace keepass2android
 
       OperationWithFinishHandler runnable;
 
-      ActionOnOperationFinished closeOrShowError = new ActionInContextInstanceOnOperationFinished(ContextInstanceId, App.Kp2a, (success, message, context) =>
+      ActionOnOperationFinished closeOrShowError = new ActionInContextInstanceOnOperationFinished(ContextInstanceId, App.Kp2a, (success, message, importantMessage, exception, context) =>
       {
         if (success)
         {
@@ -1081,7 +1081,7 @@ namespace keepass2android
       //make sure we can close the EntryEditActivity activity even if the app went to background till we get to the OnOperationFinishedHandler Action
 
 
-      ActionOnOperationFinished afterAddEntry = new ActionInContextInstanceOnOperationFinished(ContextInstanceId, App.Kp2a, (success, message, context) =>
+      ActionOnOperationFinished afterAddEntry = new ActionInContextInstanceOnOperationFinished(ContextInstanceId, App.Kp2a, (success, message, importantMessage, exception, context) =>
       {
         if (success && context is EntryEditActivity entryEditActivity)
           AppTask.AfterAddNewEntry(entryEditActivity, newEntry);
