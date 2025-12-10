@@ -5,6 +5,7 @@ using Android.App;
 using Android.Content;
 using Android.Content.PM;
 using Android.OS;
+using Android.Util;
 using Android.Views;
 using Android.Widget;
 using Google.Android.Material.Dialog;
@@ -36,7 +37,7 @@ namespace keepass2android
 
             public override Java.Lang.Object GetItem(int position)
             {
-                return position;
+                return _displayedItems[position];
             }
 
             public override long GetItemId(int position)
@@ -241,8 +242,16 @@ namespace keepass2android
                 string uuidString = savedInstanceState.GetString(PendingConfigItemUuidKey);
                 if (!string.IsNullOrEmpty(uuidString))
                 {
-                    var uuid = new PwUuid(Convert.FromBase64String(uuidString));
-                    _pendingConfigItem = _adapter._displayedItems.FirstOrDefault(i => i.Group.Uuid.Equals(uuid));
+                    try
+                    {
+                        var uuid = new PwUuid(Convert.FromBase64String(uuidString));
+                        _pendingConfigItem = _adapter._displayedItems.FirstOrDefault(i => i.Group.Uuid.Equals(uuid));
+                    }
+                    catch (Exception ex) when (ex is FormatException || ex is ArgumentException)
+                    {
+                        Log.Error("ConfigureKeeShareActivity", "Failed to reconstruct PwUuid from saved state", ex);
+                        _pendingConfigItem = null;
+                    }
                 }
             }
         }
