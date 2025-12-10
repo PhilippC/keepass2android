@@ -188,11 +188,11 @@ namespace keepass2android
                     var activity = context as ConfigureKeeShareActivity ?? this;
                     if (success)
                     {
-                        App.Kp2a.ShowMessage(activity, GetString(Resource.String.keeshare_sync_complete), MessageSeverity.Info);
+                        App.Kp2a.ShowMessage(activity, activity.GetString(Resource.String.keeshare_sync_complete), MessageSeverity.Info);
                     }
                     else
                     {
-                        App.Kp2a.ShowMessage(activity, message ?? GetString(Resource.String.keeshare_sync_failed), MessageSeverity.Error);
+                        App.Kp2a.ShowMessage(activity, message ?? activity.GetString(Resource.String.keeshare_sync_failed), MessageSeverity.Error);
                     }
                     activity?.Update();
                 }));
