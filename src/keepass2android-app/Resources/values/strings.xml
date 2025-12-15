@@ -1350,5 +1350,8 @@
 
   <string name="pref_periodic_background_sync_interval_title">Periodic background synchronization time interval</string>
   <string name="pref_periodic_background_sync_interval_summary">Set the interval for background synchronization in minutes.</string>
+
+  <string name="credential_provider_service_subtitle">Password credential provider</string>
+  <string name="credential_provider_password_creation_description">Save Password in new entry</string>
     
 </resources>

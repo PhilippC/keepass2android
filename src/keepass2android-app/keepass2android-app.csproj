@@ -745,6 +745,7 @@
     <PackageReference Include="Xamarin.AndroidX.AutoFill" Version="1.1.0.30" />
     <PackageReference Include="Xamarin.AndroidX.Biometric" Version="1.1.0.27" />
     <PackageReference Include="Xamarin.AndroidX.CoordinatorLayout" Version="1.3.0" />
+    <PackageReference Include="Xamarin.AndroidX.Credentials" Version="1.5.0" />
     <PackageReference Include="Xamarin.AndroidX.CursorAdapter" Version="1.0.0.31" />
     <PackageReference Include="Xamarin.AndroidX.Lifecycle.Common" Version="2.8.7.2" />
     <PackageReference Include="Xamarin.AndroidX.Lifecycle.Runtime" Version="2.8.7.2" />
