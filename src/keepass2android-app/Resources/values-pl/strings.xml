@@ -345,6 +345,7 @@
   <string name="QuickUnlockIconHidden_summary">SzybkieOdblokowanie niestety nie może działać bez wyświetlania ikony w obszarze powiadomień. Wybierz tę opcję, aby użyć ikony przeźroczystej.</string>
   <string name="QuickUnlockIconHidden16_title">Ukryj ikonę SzybkiegoOdblokowania</string>
   <string name="QuickUnlockIconHidden16_summary">Dla poprawnego działania, Szybkie Odblokowanie wyświetla trwałe powiadomienie. Wybierz tę opcję, aby ukryć ikonę powiadomienia.</string>
+  <string name="QuickUnlockBlockedWhenDeviceNotSecure_title">Blokowanie QuickUnlock kiedy użądzenie nie jest bezpieczne</string>
   <string name="QuickUnlockLength_title">Długość klucza SzybkiegoOdblokowania</string>
   <string name="QuickUnlockLength_summary">Maksymalna liczba znaków używanych jako hasło SzybkiegoOdblokowania.</string>
   <string name="QuickUnlockHideLength_title">Ukryj długość SzybkieOdblokowanie</string>
