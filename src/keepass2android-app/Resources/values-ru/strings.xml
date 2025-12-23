@@ -36,7 +36,7 @@
   <string name="app_name_nonet">Keepass2Android в автономном режиме</string>
   <string name="short_app_name_nonet">KP2A в автономном режиме</string>
   <string name="app_timeout">Тайм-аут приложения</string>
-  <string name="app_timeout_summary">Время до блокировки базы данных при неактивности.</string>
+  <string name="app_timeout_summary">Время до блокировки базы данных при неактивном приложении.</string>
   <string name="show_kill_app">Кнопка закрытия</string>
   <string name="kill_app_label">Принудительное завершение</string>
   <string name="show_kill_app_summary">На экране пароля разместить кнопку \"остановить приложение\" (для мнительных пользователей)</string>
@@ -65,7 +65,7 @@
   <string name="fingerprint_prefs">Разблокирование при помощи биометрии</string>
   <string name="import_db_prefs">Импорт базы данных во внутреннюю папку</string>
   <string name="import_keyfile_prefs">Импорт файла-ключа во внутреннюю папку</string>
-  <string name="export_keyfile_prefs">Экспорт файла-ключа из внутренней папки</string>
+  <string name="export_keyfile_prefs">Экспорт файла с ключом из внутренней папки</string>
   <string name="keyboardswitch_prefs">Переключение клавиатуры</string>
   <string name="OnlyAvailableForLocalFiles">Доступно только для локальных файлов.</string>
   <string name="FileIsInInternalDirectory">Файл сохранен во внутренний каталог.</string>
@@ -224,7 +224,7 @@
   <string name="no_keys">Нет записей в базе данных или группе.</string>
   <string name="no_results">Нет результатов поиска</string>
   <string name="no_url_handler">Не удалось открыть ссылку.</string>
-  <string name="open_recent">Открыть последнюю базу данных (тапните, чтобы открыть)</string>
+  <string name="open_recent">Открыть последнюю базу данных (нажмите, чтобы открыть)</string>
   <string name="omitbackup_title">Не искать в зарезервированных записях и корзине</string>
   <string name="omitbackup_summary">Пропускать \"Зарезервированные\" и \"Корзина\" в результатах поиска</string>
   <string name="pass_filename">Имя файла базы данных KeePass</string>
@@ -252,7 +252,7 @@
   <string name="saving_database">Сохранение базы данных…</string>
   <string name="exporting_database">Экспорт базы данных…</string>
   <string name="export_database_successful">База данных успешно экспортирована!</string>
-  <string name="export_keyfile_successful">Файл-ключ экспортирован успешно!</string>
+  <string name="export_keyfile_successful">Файл с ключом экспортирован успешно!</string>
   <string name="space">Пробел</string>
   <string name="search_label">Поиск</string>
   <string name="show_password">Показать пароль</string>
@@ -342,7 +342,7 @@
   <string name="QuickUnlockIconHidden_title">Скрыть значок БыстройРазблокировки</string>
   <string name="QuickUnlockIconHidden_summary">К сожалению, \"Быстрая разблокировка\" не работает без отображения значка уведомлений. Включите этот параметр для использования прозрачного значка.</string>
   <string name="QuickUnlockIconHidden16_title">Скрыть значок БыстройРазблокировки</string>
-  <string name="QuickUnlockIconHidden16_summary">Быстрая разблокировка требует уведомления для своей работы. Выберите этот параметр чтобы отображать уведомление без иконки.</string>
+  <string name="QuickUnlockIconHidden16_summary">Быстрая разблокировка требует уведомления для своей работы. Выберите этот параметр, чтобы отображать уведомление без иконки.</string>
   <string name="QuickUnlockLength_title">Длина ключа</string>
   <string name="QuickUnlockLength_summary">Максимальное количество символов, используемых как пароль БыстройРазблокировки.</string>
   <string name="QuickUnlockHideLength_title">Скрывать длину ключа</string>
