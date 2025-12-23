@@ -397,7 +397,7 @@
   <string name="NoDonationReminder_title">Никогда не спрашивать о пожертвовании</string>
   <string name="NoDonationReminder_summary">Я не дам вам ни копейки, или я уже пожертвовал. Не спрашивать о пожертвовании даже в день рождения автора.</string>
   <string name="UseOfflineCache_title">Кэширование базы данных</string>
-  <string name="UseOfflineCache_summary">Сохранять копию базы данных в кэш-директории приложения. Это позволит использовать базы данных даже тогда, когда сам файл базы данных недоступен.</string>
+  <string name="UseOfflineCache_summary">Сохранять копию базы данных в кэш приложения. Это позволит использовать базы данных даже тогда, когда сам файл базы данных недоступен.</string>
   <string name="CreateBackups_title">Локальные резервные копии</string>
   <string name="CreateBackups_summary">Создать локальную резервную копию после успешной загрузки БД.</string>
   <string name="UpdatingBackup">Обновление локальной резервной копии...</string>
@@ -429,7 +429,7 @@
   <string name="ShowKp2aKeyboardNotification_summary">Сделать всю запись доступной через клавиатуру KP2A (рекомендуется).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Переключить клавиатуру</string>
   <string name="OpenKp2aKeyboardAutomatically_summary">Открыть диалог выбора клавиатуры, когда запись доступна через клавиатуру KP2A после поиска из браузера или с помощью клавиатуры.</string>
-  <string name="kp2a_switch_rooted">Авто-переключение клавиатуры</string>
+  <string name="kp2a_switch_rooted">Автоматическое переключение клавиатуры</string>
   <string name="kp2a_switch_rooted_summary">Автоматическое переключение на клавиатуру KP2A, когда запись открыта. Требуется правильно настроенный плагин KeyboardSwap или устройство с root-правами и приложение Secure Settings с System+. </string>
   <string name="get_keyboardswap">Установить плагин KeyboardSwap</string>
   <string name="get_keyboardswap_summary">Этот плагин позволяет переключиться на клавиатуру KP2A без root-прав. Требуется ADB. </string>
@@ -636,7 +636,7 @@
   <string name="query_credentials">%1$s запрашивает учетные данные. Пожалуйста, выберите запись.</string>
   <string name="plugin_enabled_checkbox">Включено</string>
   <string name="SCOPE_DATABASE_ACTIONS_title">Уведомления при действиях с базой</string>
-  <string name="SCOPE_DATABASE_ACTIONS_explanation">Плагин будет уведомлять при открытии, закрытии и сохранении базы данных.</string>
+  <string name="SCOPE_DATABASE_ACTIONS_explanation">Плагин будет уведомлять при открытии, закрытии или сохранении базы данных.</string>
   <string name="SCOPE_CURRENT_ENTRY_title">Текущая запись данных</string>
   <string name="SCOPE_CURRENT_ENTRY_explanation">Плагин будет получать всю информацию о текущей записи базы данных и получит разрешение на предложение операций и модификацию внешнего вида этой записи.</string>
   <string name="SCOPE_QUERY_CREDENTIALS_FOR_OWN_PACKAGE_title">Запрос собственных учетных данных</string>
@@ -864,7 +864,7 @@
   <string name="autofill_enable">Включить</string>
   <string name="autofill_enable_failed">Извините, похоже, что Ваше устройство не поддерживает открытие настроек внутри приложения. Перейдите в системные настройки и вручную включите службу АвтоЗаполнения.</string>
   <string name="show_autofill_help">Помощь</string>
-  <string name="autofill_sign_in_prompt">Автозаполнить при помощи Keepass2Android</string>
+  <string name="autofill_sign_in_prompt">Заполнить при помощи Keepass2Android</string>
   <string name="autofill_disable">Не использовать для %1$s</string>
   <string name="autofill_enable_for">Включить автозаполнение для %1$s</string>
   <string name="invalid_link_association">Не получается ассоциировать домен %1$s с приложением %2$s</string>
