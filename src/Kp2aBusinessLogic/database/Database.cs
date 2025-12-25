@@ -28,6 +28,7 @@ using KeePassLib.Serialization;
 using keepass2android.Io;
 using KeePassLib.Interfaces;
 using KeePassLib.Utility;
+using keepass2android.KeeShare;
 using Exception = System.Exception;
 using String = System.String;
 
@@ -136,6 +137,9 @@ namespace keepass2android
       _hasTotpEntries = null;
 
       CanWrite = databaseFormat.CanWrite && !fileStorage.IsReadOnly(iocInfo);
+
+      Kp2aLog.Log("LoadData: Checking for KeeShare references");
+      KeeShareImporter.CheckAndImport(this, app);
     }
 
     /// <summary>
