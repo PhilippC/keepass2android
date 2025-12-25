@@ -752,8 +752,16 @@ Anbei einige Tipps, die bei der Diagnose des Problems helfen können:\n
   <string name="webdav_chunked_upload_size_title">Chunk-Größe für den WebDav-Upload</string>
   <string name="webdav_chunked_upload_enabled_title">Aktiviere chunked Upload für WebDav</string>
   <string name="webdav_chunked_upload_enabled_summary"></string>
+  <string name="webdav_chunked_upload_size_summary"></string>
   <string name="cleartextTrafficPermitted_title">Klartext-Netzwerkverkehr in WebDav erlauben</string>
   <string name="cleartextTrafficPermitted_summary">HTTP-Verbindungen sind nicht sicher. Diese Option nur aktivieren, wenn weitere Sicherheitsmaßnahmen vorhanden sind.</string>
+  <string-array name="ChangeLog_1_15_net">
+    <item></item>
+  </string-array>
+  <string-array name="ChangeLog_1_15">
+    <item></item>
+    <item></item>
+  </string-array>
   <string-array name="ChangeLog_1_14">
     <item>Aktualisierung auf .NET 9 und Target SDK Version 35. Dies umfasst eine transparente Statusleiste in Android 15, da nun „Edge-to-Edge” die Standardeinstellung ist.</item>
     <item>Kleinere UI-Verbesserungen</item>
@@ -1219,4 +1227,27 @@ Erstes öffentliches Release</string>
   <string name="switch_keyboard_for_totp_enabled">Hinweis: Du hast App - Passwortzugriff - Autofill-Service - Autofill für TOTP-Einträge aktiviert. Dies kann dazu führen, dass dieses Fenster angezeigt wird, wenn du einen Eintrag mit einem TOTP öffnest.</string>
   <string name="switch_keyboard_inside_kp2a_enabled">Hinweis: Du hast App - Sicherheit - Verwenden der eingebauten Tastatur in Keepass2Android aktiviert. Dies kann dazu führen, dass dieses Fenster angezeigt wird, wenn du die App öffnest oder einen Eintrag bearbeitest.</string>
   <string name="switch_keyboard_on_search_enabled">Hinweis: Du hast App - Sicherheit - Passwortzugriff - Tastaturwechsel - Tastatur wechseln aktiviert. Dies kann dazu führen, dass dieses Fenster angezeigt wird, wenn du aus dem Browser nach einem Eintrag suchst.</string>
+  <string name="user_interaction_required"></string>
+  <string name="failed_to_access_database"></string>
+  <string name="configure_ssids"></string>
+  <string name="add_current_ssid"></string>
+  <string name="enter_ssid_hint"></string>
+  <string name="add_ssid"></string>
+  <string name="no_ssids"></string>
+  <string name="ssid_empty_or_exists"></string>
+  <string name="permission_granted">Standortberechtigung gewährt</string>
+  <string name="permission_denied">Zugriff verweigert. Aktuelle SSID kann nicht gelesen werden. Bitte aktivieren Sie die Berechtigung über Android-Einstellungen.</string>
+  <string name="remove_ssid_title">SSID entfernen</string>
+  <string name="ssid_explanation">Definieren Sie eine Liste von SSIDs. Automatische Hintergrundsynchronisation wird durchgeführt, wenn Sie bei einer dieser SSIDs angemeldet sind.</string>
+  <string name="remove_ssid_message">Sind Sie sicher, dass Sie diese SSID entfernen möchten?</string>
+  <string name="permission_needed">Berechtigung erforderlich</string>
+  <string name="permission_location_rationale">    Standortberechtigung wird benötigt, um Ihre aktuelle Wi-Fi SSID zu lesen. Dies ist erforderlich, wenn Sie die Hintergrundsynchronisierung auf bestimmte SSIDs beschränken möchten.
+  </string>
+  <string name="BackgroundSyncWifiSsids_title">Hintergrundsynchronisation basierend auf Wi-Fi-SSID</string>
+  <string name="BackgroundSyncWifiOnly_title">Hintergrundsynchronisierung nur in Wi-Fi</string>
+  <string name="BackgroundSyncWifiOnly_summary">Wenn ausgewählt, wird die Hintergrundsynchronisation nur gestartet, wenn Sie mit WLAN verbunden sind.</string>
+  <string name="pref_enable_periodic_background_sync_title">Periodische Hintergrundsynchronisierung</string>
+  <string name="pref_enable_periodic_background_sync_summary">Wenn aktiviert, wird die App regelmäßig freigeschaltete Datenbanken synchronisieren. Dies respektiert die Netzwerkverbindungseinstellungen von oben.</string>
+  <string name="pref_periodic_background_sync_interval_title">Periodische Synchronisationsintervall im Hintergrund</string>
+  <string name="pref_periodic_background_sync_interval_summary">Stellen Sie das Intervall für die Hintergrundsynchronisierung in Minuten ein.</string>
 </resources>
