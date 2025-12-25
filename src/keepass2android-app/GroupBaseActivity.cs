@@ -721,7 +721,7 @@ namespace keepass2android
 
       if (FindViewById(Resource.Id.show_autofill_info) != null)
       {
-        FindViewById(Resource.Id.show_autofill_info).Click += (sender, args) => Util.GotoUrl(this, "https://philippc.github.io/keepass2android/OreoAutoFill.html");
+        FindViewById(Resource.Id.show_autofill_info).Click += (sender, args) => Util.GotoUrl(this, "https://github.com/PhilippC/keepass2android/wiki/AutoFill");
         Util.MoveBottomBarButtons(Resource.Id.show_autofill_info, Resource.Id.enable_autofill, Resource.Id.autofill_buttons, this);
       }
 
