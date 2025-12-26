@@ -86,7 +86,7 @@ namespace keepass2android
       protected override void SaveFile(IOConnectionInfo ioc)
       {
         var exportKeyfile = new ExportKeyfile(App.Kp2a, new ActionInContextInstanceOnOperationFinished(_activity.ContextInstanceId, App.Kp2a,
-            (success, message, context) =>
+            (success, message, importantMessage, exception, context) =>
             {
               if (!success)
                 App.Kp2a.ShowMessage(context, message, MessageSeverity.Error);

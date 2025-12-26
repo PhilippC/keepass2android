@@ -117,7 +117,7 @@ namespace keepass2android
             var previousUsername = db.KpDatabase.DefaultUserName;
             db.KpDatabase.DefaultUserName = e.NewValue.ToString();
 
-            SaveDb save = new SaveDb(App.Kp2a, App.Kp2a.CurrentDb, new ActionOnOperationFinished(App.Kp2a, (success, message, context) =>
+            SaveDb save = new SaveDb(App.Kp2a, App.Kp2a.CurrentDb, new ActionOnOperationFinished(App.Kp2a, (success, message, importantMessage, exception, context) =>
                       {
                         if (!success)
                         {
@@ -146,7 +146,7 @@ namespace keepass2android
           {
             BlockingOperationStarter pt = new BlockingOperationStarter(App.Kp2a,
                                       new AddTemplateEntries(App.Kp2a, new ActionOnOperationFinished(App.Kp2a,
-                                          delegate
+                                          delegate (bool success, string message, bool importantMessage, Exception exception, Context context)
                                           {
                                             pref.Enabled = false;
                                           })));
@@ -183,7 +183,7 @@ namespace keepass2android
             String previousName = db.KpDatabase.Name;
             db.KpDatabase.Name = e.NewValue.ToString();
 
-            SaveDb save = new SaveDb(App.Kp2a, App.Kp2a.CurrentDb, new ActionOnOperationFinished(App.Kp2a, (success, message, context) =>
+            SaveDb save = new SaveDb(App.Kp2a, App.Kp2a.CurrentDb, new ActionOnOperationFinished(App.Kp2a, (success, message, importantMessage, exception, context) =>
                       {
                         if (!success)
                         {
@@ -410,7 +410,7 @@ namespace keepass2android
         var previousCipher = db.KpDatabase.DataCipherUuid;
         db.KpDatabase.DataCipherUuid = new PwUuid(MemUtil.HexStringToByteArray((string)preferenceChangeEventArgs.NewValue));
 
-        SaveDb save = new SaveDb(App.Kp2a, App.Kp2a.CurrentDb, new ActionOnOperationFinished(App.Kp2a, (success, message, context) =>
+        SaveDb save = new SaveDb(App.Kp2a, App.Kp2a.CurrentDb, new ActionOnOperationFinished(App.Kp2a, (success, message, importantMessage, exception, context) =>
         {
           if (!success)
           {
@@ -1087,7 +1087,7 @@ namespace keepass2android
 
         Kp2aLog.Log("--new    kdf: " + KdfPool.Get(db.KpDatabase.KdfParameters.KdfUuid) + " " + db.KpDatabase.KdfParameters.KdfUuid.ToHexString());
 
-        SaveDb save = new SaveDb(App.Kp2a, App.Kp2a.CurrentDb, new ActionOnOperationFinished(App.Kp2a, (success, message, context) =>
+        SaveDb save = new SaveDb(App.Kp2a, App.Kp2a.CurrentDb, new ActionOnOperationFinished(App.Kp2a, (success, message, importantMessage, exception, context) =>
         {
           if (!success)
           {
