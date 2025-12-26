@@ -342,7 +342,9 @@
   <string name="QuickUnlockDefaultEnabled_title">Enable QuickUnlock by default</string>
   <string name="QuickUnlockDefaultEnabled_summary">Defines whether QuickUnlock is enabled by default or not.</string>
   <string name="ViewDatabaseSecure_title">Protect database display</string>
+  <string name="DisableSecureDisplayCheck_title">Skip check for secure display</string>
   <string name="ViewDatabaseSecure_summary">If enabled, no screenshots are allowed and no thumbnail of the app is displayed in the Recent Apps list.</string>
+  <string name="DisableSecureDisplayCheck_summary">Allow to show sensitive information even if the current screen is not flagged "secure" by Android.</string>
   <string name="QuickUnlockIconHidden_title">Hide QuickUnlock icon</string>
   <string name="QuickUnlockIconHidden_summary">QuickUnlock unfortunately does not work without displaying a notification icon. Select this option to use a transparent icon.</string>
   <string name="QuickUnlockIconHidden16_title">Hide QuickUnlock icon</string>
