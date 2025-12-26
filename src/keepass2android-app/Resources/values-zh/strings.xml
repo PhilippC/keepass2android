@@ -341,7 +341,9 @@
   <string name="QuickUnlockDefaultEnabled_title">默认启用快速解锁</string>
   <string name="QuickUnlockDefaultEnabled_summary">设定是否在默认情况下启用快速解锁</string>
   <string name="ViewDatabaseSecure_title">数据库保护显示</string>
+  <string name="DisableSecureDisplayCheck_title">跳过安全显示屏检查</string>
   <string name="ViewDatabaseSecure_summary">如果启用，截图和应用程序缩略图将不会展示在最近的应用程序列表中。</string>
+  <string name="DisableSecureDisplayCheck_summary">允许显示敏感信息，即使当前屏幕未被Android标记为“安全”。</string>
   <string name="QuickUnlockIconHidden_title">隐藏快速锁定图标</string>
   <string name="QuickUnlockIconHidden_summary">不幸无法显示快速解锁的通知图标。选择此选项可使用一个透明的图标。</string>
   <string name="QuickUnlockIconHidden16_title">隐藏快速锁定图标</string>
