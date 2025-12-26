@@ -343,7 +343,9 @@
   <string name="QuickUnlockDefaultEnabled_title">Habilitar Desbloqueio Rápido por padrão</string>
   <string name="QuickUnlockDefaultEnabled_summary">Define se o Desbloqueio Rápido está habilitado por padrão ou não.</string>
   <string name="ViewDatabaseSecure_title">Proteger a exibição da base de dados</string>
+  <string name="DisableSecureDisplayCheck_title">Ignorar verificação de exibição segura</string>
   <string name="ViewDatabaseSecure_summary">Se habilitado, as capturas de tela são bloqueadas e a miniatura do app não é exibida na lista de apps recentes.</string>
+  <string name="DisableSecureDisplayCheck_summary">Permitir mostrar informações confidenciais mesmo que a tela atual não esteja sinalizada como \"segura\" pelo Android.</string>
   <string name="QuickUnlockIconHidden_title">Ocultar o ícone do QuickUnlock</string>
   <string name="QuickUnlockIconHidden_summary">O QuickUnlock infelizmente não funciona sem exibir um ícone de notificação. Selecione esta opção para usar um ícone transparente.</string>
   <string name="QuickUnlockIconHidden16_title">Ocultar o ícone do QuickUnlock</string>
