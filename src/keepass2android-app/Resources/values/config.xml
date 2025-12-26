@@ -40,7 +40,7 @@
     <string name="donate_url"><![CDATA[https://philipp.crocoll.net/donate.php?lang=%1$s&app=%2$s]]></string>
     <string name="homepage">https://github.com/PhilippC/keepass2android</string>
 	<string name="further_author_names">Alex Vallat, Ben Rush, Matthieu, Wiktor Ławski, gilbsgilbs, Chih-Hsuan Yen, DDoSolitary, marcoDallas, Rick Brown</string>
-	<string name="designer_names">Niki Hüttner (http://www.close-cut.de), Stefano Pignataro (http://www.spstudio.at)</string>
+	<string name="designer_names">Niki Hüttner (https://www.close-cut.de), Stefano Pignataro</string>
   <string name="supporter_names">Arno Welzel, Sebastián Ramírez, A. Finkhäuser, Makoto Mizukami</string>
     <string name="issues">https://github.com/PhilippC/keepass2android/issues</string>
     <string name="oi_filemanager_market">market://details?id=org.openintents.filemanager</string>
@@ -152,7 +152,7 @@
 
 	<string name="MarketURL">market://details?id=</string>
 	<string name="SuggestionsURL">https://github.com/PhilippC/keepass2android/issues</string>
-	<string name="TranslationURL">http://crowdin.net/project/keepass2android</string>
+	<string name="TranslationURL">https://crowdin.net/project/keepass2android</string>
 	
 	<string name="CopyToClipboardNotification_key">ShowCopyToClipboardNotification</string>
 	<bool name="CopyToClipboardNotification_default">true</bool>
