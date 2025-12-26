@@ -311,7 +311,8 @@ jobs:
 
     - name: Update dotnet workloads
       run: |
-        dotnet workload update        
+        dotnet workload update
+        dotnet workload restore
 
     - name: Select the manifest
       run: |
