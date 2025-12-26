@@ -46,6 +46,7 @@ namespace keepass2android
       _design.ApplyTheme();
       base.OnCreate(savedInstanceState);
       SetContentView(Resource.Layout.no_secure_display_layout);
+      new Util.InsetListener(FindViewById(Resource.Id.no_secure_display_text)).Apply();
       FindViewById<Button>(Resource.Id.btn_goto_settings).Click += (sender, args) =>
       {
         AppSettingsActivity.Launch(this);

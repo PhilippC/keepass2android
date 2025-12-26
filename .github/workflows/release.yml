@@ -84,7 +84,10 @@ jobs:
 
     - name: Update dotnet workloads
       run: |
-        dotnet workload update        
+        dotnet workload update
+        cd src/keepass2android-app
+        dotnet workload restore
+        cd ../..
 
     - name: List apks
       run:  find . -type f -name "*.apk"

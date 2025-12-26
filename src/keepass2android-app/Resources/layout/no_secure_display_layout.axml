@@ -15,7 +15,7 @@
       android:background="#00000000" />
 
 	<TextView android:text="@string/no_secure_display" android:layout_width="match_parent"
-    android:layout_height="wrap_content" />
+    android:layout_height="wrap_content"  android:id="@+id/no_secure_display_text" />
 	<Button android:id="@+id/btn_goto_settings" android:text="@string/IconVisibilityInfo_Android8_btnSettings" android:layout_width="match_parent"
     android:layout_height="wrap_content" />
   <Button android:id="@+id/disable_secure_screen_check" android:text="@string/disable_secure_screen_check" android:layout_width="match_parent"

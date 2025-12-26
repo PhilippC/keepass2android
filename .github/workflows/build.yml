@@ -311,7 +311,10 @@ jobs:
 
     - name: Update dotnet workloads
       run: |
-        dotnet workload update        
+        dotnet workload update
+        cd src/keepass2android-app
+        dotnet workload restore
+        cd ../..
 
     - name: Select the manifest
       run: |
