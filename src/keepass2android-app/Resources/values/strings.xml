@@ -1348,5 +1348,48 @@
 
   <string name="pref_periodic_background_sync_interval_title">Periodic background synchronization time interval</string>
   <string name="pref_periodic_background_sync_interval_summary">Set the interval for background synchronization in minutes.</string>
+  
+  <!-- KeeShare strings -->
+  <string name="keeshare_title">KeeShare</string>
+  <string name="keeshare_edit_title">Configure KeeShare</string>
+  <string name="keeshare_explanation">KeeShare allows you to share password groups between databases. Configure groups below to import from or export to shared files.</string>
+  <string name="keeshare_no_shares">No KeeShare configurations. Tap + to add one.</string>
+  <string name="keeshare_add">Add KeeShare</string>
+  <string name="keeshare_select_group">Select group to share</string>
+  <string name="keeshare_no_groups_available">No groups available for KeeShare</string>
+  <string name="keeshare_mode_import">Import</string>
+  <string name="keeshare_mode_export">Export</string>
+  <string name="keeshare_mode_sync">Synchronize</string>
+  <string name="keeshare_sync_now">Sync Now</string>
+  <string name="keeshare_group_label">Group</string>
+  <string name="keeshare_mode_label">Mode</string>
+  <string name="keeshare_path_label">Share File Path</string>
+  <string name="keeshare_path_hint">Path to .kdbx or .share file</string>
+  <string name="keeshare_password_label">Share Password</string>
+  <string name="keeshare_password_hint">Password for shared file</string>
+  <string name="keeshare_fingerprint_label">Signer Fingerprint</string>
+  <string name="keeshare_path_required">Share file path is required</string>
+  <string name="keeshare_saved">KeeShare configuration saved</string>
+  <string name="keeshare_select_file">Select share file</string>
+  <string name="keeshare_remove_title">Remove KeeShare</string>
+  <string name="keeshare_remove_message">Remove KeeShare configuration from group \"%1$s\"?</string>
+  <string name="remove">Remove</string>
+  <string name="save">Save</string>
+  <string name="browse">Browse...</string>
+  
+  <!-- KeeShare Trust Dialog (KEY DIFFERENTIATOR) -->
+  <string name="keeshare_trust_title">Unknown Signer</string>
+  <string name="keeshare_trust_warning">This share file is signed by an unknown key. Verify the fingerprint matches the expected signer before trusting.</string>
+  <string name="keeshare_signer_label">Signer Name</string>
+  <string name="keeshare_share_path_label">Share File</string>
+  <string name="keeshare_fingerprint_verify_label">SHA-256 Key Fingerprint</string>
+  <string name="keeshare_fingerprint_verify_hint">Compare this fingerprint with the signer to verify authenticity</string>
+  <string name="keeshare_trust_permanently">Trust Permanently</string>
+  <string name="keeshare_trust_once">Trust Once</string>
+  <string name="keeshare_reject">Reject</string>
+  <string name="keeshare_import_success">Imported %1$d entries from %2$d shares</string>
+  <string name="keeshare_import_failed">Import failed for %1$d shares</string>
+  <string name="keeshare_import_partial">Imported from %1$d shares, %2$d failed</string>
+  <string name="configure_keeshare">Configure KeeShare...</string>
     
 </resources>

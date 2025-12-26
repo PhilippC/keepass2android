@@ -1279,6 +1279,9 @@ namespace keepass2android
         case Resource.Id.menu_sort:
           ChangeSort();
           return true;
+        case Resource.Id.menu_configure_keeshare:
+          StartActivity(typeof(ConfigureKeeShareActivity));
+          return true;
         case Android.Resource.Id.Home:
           //Currently the action bar only displays the home button when we come from a previous activity.
           //So we can simply Finish. See this page for information on how to do this in more general (future?) cases:

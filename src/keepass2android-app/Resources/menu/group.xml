@@ -71,7 +71,11 @@
         android:title="@string/open_other_db"
         app:showAsAction="never"
   />
-
+  <item android:id="@+id/menu_configure_keeshare"
+        android:title="@string/configure_keeshare"
+        app:showAsAction="never"
+  />
 
 
 </menu>
+
