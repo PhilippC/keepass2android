@@ -895,7 +895,7 @@ namespace keepass2android
             noAutofillDisablingPref.Enabled = true;
             autofillPref.Summary = Activity.GetString(Resource.String.plugin_enabled);
             autofillPref.Intent = new Intent(Intent.ActionView);
-            autofillPref.Intent.SetData(Android.Net.Uri.Parse("https://philippc.github.io/keepass2android/OreoAutoFill.html"));
+            autofillPref.Intent.SetData(Android.Net.Uri.Parse("https://github.com/PhilippC/keepass2android/wiki/AutoFill"));
           }
           else
           {
