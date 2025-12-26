@@ -81,6 +81,15 @@ namespace keepass2android.KeeShare
                 string.Equals(k.KeyFingerprint, keyFingerprint, StringComparison.OrdinalIgnoreCase));
             SaveTrustedKeys();
         }
+
+        /// <summary>
+        /// Clears all trusted keys
+        /// </summary>
+        public void ClearAllTrustedKeys()
+        {
+            _trustedKeys.Clear();
+            SaveTrustedKeys();
+        }
         
         /// <summary>
         /// Gets all trusted keys

@@ -400,6 +400,36 @@ namespace keepass2android
                 .Show();
         }
 
+        public override bool OnCreateOptionsMenu(IMenu menu)
+        {
+            menu.Add(0, 1001, 0, "Clear Trusted Signers");
+            return base.OnCreateOptionsMenu(menu);
+        }
+
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {
+            if (item.ItemId == 1001)
+            {
+                new Google.Android.Material.Dialog.MaterialAlertDialogBuilder(this)
+                    .SetTitle("Clear Trusted Signers")
+                    .SetMessage("Are you sure you want to remove all trusted signing keys? You will be prompted to trust them again upon next import.")
+                    .SetPositiveButton(Android.Resource.String.Ok, (s, e) =>
+                    {
+                        var settings = new KeeShareTrustSettings(App.Kp2a.CurrentDb.KpDatabase);
+                        settings.ClearAllTrustedKeys();
+                        Toast.MakeText(this, "Trusted signers cleared", ToastLength.Short).Show();
+                        
+                        // Save DB to persist change
+                        var saveTask = new database.edit.SaveDb(App.Kp2a, App.Kp2a.CurrentDb, null);
+                        new BlockingOperationStarter(App.Kp2a, saveTask).Run();
+                    })
+                    .SetNegativeButton(Android.Resource.String.Cancel, (s, e) => { })
+                    .Show();
+                return true;
+            }
+            return base.OnOptionsItemSelected(item);
+        }
+
         protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
         {
             base.OnActivityResult(requestCode, resultCode, data);
