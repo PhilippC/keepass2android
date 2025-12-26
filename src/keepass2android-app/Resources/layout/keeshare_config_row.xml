@@ -31,7 +31,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_toEndOf="@id/keeshare_icon"
+                android:layout_toStartOf="@+id/keeshare_status_icon"
                 android:layout_marginStart="12dp"
+                android:layout_marginEnd="8dp"
                 android:orientation="vertical">
                 
                 <TextView
@@ -39,7 +41,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold"
+                    android:ellipsize="end"
+                    android:maxLines="1"/>
                 
                 <TextView
                     android:id="@+id/keeshare_mode"
@@ -49,6 +53,17 @@
                     android:textColor="?attr/colorPrimary"/>
                     
             </LinearLayout>
+
+            <!-- Status Indicator Icon (Green/Yellow/Red) -->
+            <ImageView
+                android:id="@+id/keeshare_status_icon"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/baseline_schedule_24"
+                android:contentDescription="Status"/>
+
         </RelativeLayout>
         
         <!-- Path info -->

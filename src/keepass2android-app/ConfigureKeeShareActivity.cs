@@ -152,6 +152,22 @@ namespace keepass2android
                 if (statusView != null)
                     statusView.Text = info.LastSyncStatus;
                 
+                // Status Icon
+                var statusIcon = view.FindViewById<ImageView>(Resource.Id.keeshare_status_icon);
+                if (statusIcon != null)
+                {
+                    if (info.LastSyncStatus == "Configured")
+                    {
+                        statusIcon.SetImageResource(Resource.Drawable.baseline_link_24);
+                        statusIcon.SetColorFilter(Android.Graphics.Color.ParseColor("#4CAF50")); // Green
+                    }
+                    else
+                    {
+                        statusIcon.SetImageResource(Resource.Drawable.baseline_schedule_24);
+                        statusIcon.SetColorFilter(Android.Graphics.Color.Gray);
+                    }
+                }
+
                 // Icon
                 var iconView = view.FindViewById<ImageView>(Resource.Id.keeshare_icon);
                 if (iconView != null)

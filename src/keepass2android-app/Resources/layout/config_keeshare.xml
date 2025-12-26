@@ -1,72 +1,87 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!-- Main layout for ConfigureKeeShareActivity - dashboard for KeeShare groups -->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
-              android:orientation="vertical"
-              android:layout_width="fill_parent"
-              android:fitsSystemWindows="true"
-              android:layout_height="fill_parent">
-    
-    <!-- Toolbar -->
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/mytoolbar"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
-    
-    <!-- Info text -->
-    <TextView 
-        android:id="@+id/keeshare_info_text" 
-        android:text="@string/keeshare_explanation"
+        android:layout_height="wrap_content"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/mytoolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            app:layout_scrollFlags="scroll|enterAlways"/>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <!-- Info Card -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="12dp"
+            app:cardElevation="2dp"
+            app:cardCornerRadius="8dp">
+            
+            <TextView 
+                android:id="@+id/keeshare_info_text" 
+                android:text="@string/keeshare_explanation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:textSize="14sp"/>
+        </androidx.cardview.widget.CardView>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            
+            <!-- Empty state text -->
+            <TextView
+                android:id="@+id/keeshare_empty_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="@string/keeshare_no_shares"
+                android:textSize="16sp"
+                android:textColor="?android:attr/textColorSecondary"
+                android:visibility="gone"/>
+            
+            <!-- List of KeeShare groups -->
+            <ListView
+                android:id="@android:id/list"
+                android:padding="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipToPadding="false"
+                android:divider="@android:color/transparent"
+                android:dividerHeight="8dp"/>
+                
+        </RelativeLayout>
+    </LinearLayout>
+
+    <!-- FAB for adding new KeeShare -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_add_keeshare"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="14sp"
-        android:layout_margin="12dp"/>
-    
-    <RelativeLayout
-        android:layout_width="fill_parent"
-        android:background="?android:attr/colorBackground"
-        android:layout_height="fill_parent">
-        
-        <!-- Empty state text -->
-        <TextView
-            android:id="@+id/keeshare_empty_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="@string/keeshare_no_shares"
-            android:textSize="16sp"
-            android:textColor="?android:attr/textColorSecondary"
-            android:visibility="gone"/>
-        
-        <!-- List of KeeShare groups -->
-        <ListView
-            android:id="@android:id/list"
-            android:padding="8dp"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_above="@+id/bottom_bar"
-            android:layout_marginBottom="12dip"
-            android:layout_marginLeft="12dip"
-            android:layout_marginRight="12dip"
-            android:layout_marginTop="12dip"
-            android:layout_alignParentTop="true"
-            android:divider="@android:color/transparent"
-            android:dividerHeight="8dp"/>
-        
-        <!-- FAB for adding new KeeShare -->
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab_add_keeshare"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentEnd="true"
-            android:layout_margin="16dp"
-            android:src="@drawable/baseline_add_24"
-            android:contentDescription="@string/keeshare_add"
-            app:fabSize="normal"/>
-            
-    </RelativeLayout>
-</LinearLayout>
+        android:layout_gravity="bottom|end"
+        android:layout_margin="16dp"
+        android:src="@drawable/baseline_add_24"
+        android:contentDescription="@string/keeshare_add"
+        app:fabSize="normal"/>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -79,12 +79,14 @@ namespace keepass2android.KeeShare
                 
                 result.IsSuccess = true;
                 Kp2aLog.Log($"KeeShare: Exported {result.EntriesExported} entries to {targetPath}");
+                KeeShareAuditLog.Log(KeeShareAuditLog.AuditAction.ExportSuccess, targetPath, $"Exported {result.EntriesExported} entries");
             }
             catch (Exception ex)
             {
                 result.IsSuccess = false;
                 result.ErrorMessage = ex.Message;
                 Kp2aLog.Log($"KeeShare: Export failed: {ex.Message}");
+                KeeShareAuditLog.Log(KeeShareAuditLog.AuditAction.ExportFailure, targetPath, ex.Message);
             }
 
             return result;
@@ -137,12 +139,14 @@ namespace keepass2android.KeeShare
 
                 result.IsSuccess = true;
                 Kp2aLog.Log($"KeeShare: Exported {result.EntriesExported} entries to container {targetPath}");
+                KeeShareAuditLog.Log(KeeShareAuditLog.AuditAction.ExportSuccess, targetPath, $"Exported {result.EntriesExported} entries");
             }
             catch (Exception ex)
             {
                 result.IsSuccess = false;
                 result.ErrorMessage = ex.Message;
                 Kp2aLog.Log($"KeeShare: Container export failed: {ex.Message}");
+                KeeShareAuditLog.Log(KeeShareAuditLog.AuditAction.ExportFailure, targetPath, ex.Message);
             }
 
             return result;
@@ -339,6 +343,7 @@ namespace keepass2android.KeeShare
                     catch (Exception ex)
                     {
                         Kp2aLog.Log("KeeShare: Auto-export failed for group " + group.Name + ": " + ex.Message);
+                        KeeShareAuditLog.Log(KeeShareAuditLog.AuditAction.ExportFailure, keeShareRef.Path, "Auto-export error: " + ex.Message);
                     }
                 }
             }

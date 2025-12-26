@@ -1678,7 +1678,11 @@ namespace keepass2android
       base.OnCreate();
       ProcessLifecycleOwner.Get().Lifecycle.AddObserver(this);
       
-      keepass2android.KeeShare.KeeShareSettings.DeviceIdProvider = () => KeeAutoExecExt.ThisDeviceId;
+                // Initialize KeeShare Device ID provider
+                keepass2android.KeeShare.KeeShareSettings.DeviceIdProvider = () => KeeAutoExecExt.ThisDeviceId;
+
+                // Schedule KeeShare Background Sync
+                KeeShareSyncJobService.ScheduleJob(this);
 
       Kp2aLog.Log("Creating application " + PackageName + ". Version=" + PackageManager.GetPackageInfo(PackageName, 0).VersionCode);
 

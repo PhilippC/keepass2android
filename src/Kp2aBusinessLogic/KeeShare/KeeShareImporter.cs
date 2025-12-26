@@ -206,7 +206,19 @@ namespace keepass2android.KeeShare
                 result.Message = ex.Message;
             }
             
+            LogAudit(result);
             return result;
+        }
+
+        private static void LogAudit(KeeShareImportResult result)
+        {
+            var action = result.IsSuccess 
+                ? KeeShareAuditLog.AuditAction.ImportSuccess 
+                : KeeShareAuditLog.AuditAction.ImportFailure;
+            
+            KeeShareAuditLog.Log(action, result.SharePath, 
+                result.IsSuccess ? $"Imported {result.EntriesImported} entries" : result.Message, 
+                result.KeyFingerprint);
         }
         
         private static int CountEntries(PwGroup group)
@@ -323,6 +335,8 @@ namespace keepass2android.KeeShare
                         ? keyFingerprint.Substring(0, 16) + "..." 
                         : keyFingerprint;
                     Kp2aLog.Log($"KeeShare: Rejected untrusted signer '{sig.Signer}' with fingerprint {shortFingerprint}");
+                    KeeShareAuditLog.Log(KeeShareAuditLog.AuditAction.TrustDecision, "Unknown", 
+                        $"Rejected untrusted signer '{sig.Signer}'", keyFingerprint);
                     
                     return Tuple.Create(false, KeeShareImportResult.StatusCode.SignerNotTrusted,
                         $"Signer '{sig.Signer}' is not trusted. Fingerprint: {shortFingerprint}. " +
