@@ -245,6 +245,18 @@ namespace keepass2android
         _db.LastSyncTime = DateTime.Now;
 
       }
+      }
+
+      // KeeShare: Check for auto-exports
+      try
+      {
+         keepass2android.KeeShare.KeeShareExporter.CheckAndExport(_db.KpDatabase, null);
+      }
+      catch (Exception ex)
+      {
+         Kp2aLog.Log("KeeShare: Export check failed: " + ex.Message);
+      }
+
       Finish(true);
     }
 

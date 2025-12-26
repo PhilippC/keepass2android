@@ -310,5 +310,38 @@ namespace keepass2android.KeeShare
                 return BitConverter.ToString(hash).Replace("-", "").ToLowerInvariant();
             }
         }
+        /// <summary>
+        /// Checks all groups in the database and performs export for any with Export/Sync mode
+        /// </summary>
+        public static void CheckAndExport(PwDatabase db, IStatusLogger logger = null)
+        {
+            foreach (var group in db.RootGroup.GetGroups(true)) 
+            {
+                var keeShareRef = KeeShareSettings.GetReference(group);
+                if (keeShareRef == null) continue;
+
+                if ((keeShareRef.Type & KeeShareSettings.TypeFlag.ExportTo) != 0)
+                {
+                    // It's an export or sync group
+                    if (string.IsNullOrEmpty(keeShareRef.Path)) continue;
+
+                    try
+                    {
+                        var key = new CompositeKey();
+                        if (!string.IsNullOrEmpty(keeShareRef.Password))
+                        {
+                            key.AddUserKey(new KcpPassword(keeShareRef.Password));
+                        }
+                        
+                        // We use KDBX export for compatibility and simplicity for now
+                        ExportToKdbx(db, group, keeShareRef.Path, key, logger);
+                    }
+                    catch (Exception ex)
+                    {
+                        Kp2aLog.Log("KeeShare: Auto-export failed for group " + group.Name + ": " + ex.Message);
+                    }
+                }
+            }
+        }
     }
 }

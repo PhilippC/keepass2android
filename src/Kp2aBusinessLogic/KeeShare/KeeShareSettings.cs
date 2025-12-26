@@ -10,6 +10,11 @@ namespace keepass2android.KeeShare
     public class KeeShareSettings
     {
         public const string KeeShareReferenceKey = "KeeShare/Reference";
+        
+        /// <summary>
+        /// Delegate to retrieve the current device ID. Must be initialized by the app.
+        /// </summary>
+        public static Func<string> DeviceIdProvider { get; set; }
 
         [Flags]
         public enum TypeFlag
@@ -38,17 +43,36 @@ namespace keepass2android.KeeShare
             var encoded = group.CustomData.Get(KeeShareReferenceKey);
             if (string.IsNullOrEmpty(encoded)) return null;
 
+            Reference refObj = null;
             try
             {
                 var bytes = Convert.FromBase64String(encoded);
                 var xml = Encoding.UTF8.GetString(bytes);
-                return ParseReference(xml);
+                refObj = ParseReference(xml);
             }
             catch (Exception ex)
             {
                 Kp2aLog.Log("KeeShare: Failed to parse reference: " + ex.Message);
                 return null;
             }
+
+            if (refObj != null)
+            {
+                // Check for device-specific path override
+                string deviceId = DeviceIdProvider?.Invoke();
+                if (!string.IsNullOrEmpty(deviceId))
+                {
+                    string deviceKey = "KeeShare.FilePath." + deviceId;
+                    string devicePath = group.CustomData.Get(deviceKey);
+                    if (!string.IsNullOrEmpty(devicePath))
+                    {
+                        refObj.Path = devicePath;
+                        Kp2aLog.Log("KeeShare: Using device-specific path for " + deviceId);
+                    }
+                }
+            }
+
+            return refObj;
         }
 
         private static Reference ParseReference(string xml)
