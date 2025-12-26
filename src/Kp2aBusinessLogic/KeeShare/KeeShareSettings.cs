@@ -127,5 +127,39 @@ namespace keepass2android.KeeShare
 
             return refObj;
         }
+        /// <summary>
+        /// Checks if the group is read-only because it is part of an incoming KeeShare (Import mode).
+        /// Recursively checks parent groups.
+        /// </summary>
+        public static bool IsReadOnlyBecauseKeeShareImport(PwGroup group)
+        {
+            var current = group;
+            while (current != null)
+            {
+                var reference = GetReference(current);
+                if (reference != null)
+                {
+                    // If we find a reference:
+                    // 1. If it's Import-only (ImportFrom set, ExportTo NOT set), then it's read-only.
+                    // 2. If it's Synchronize (ImportFrom AND ExportTo), it's NOT read-only (bidirectional).
+                    // 3. If it's Export-only, it's NOT read-only (we can add to it).
+                    
+                    if ((reference.Type & TypeFlag.ImportFrom) != 0 && (reference.Type & TypeFlag.ExportTo) == 0)
+                    {
+                        return true;
+                    }
+                }
+                current = current.ParentGroup;
+            }
+            return false;
+        }
+
+        public static void RemoveReference(PwGroup group)
+        {
+            if (group != null && group.CustomData != null)
+            {
+                group.CustomData.Remove(KeeShareReferenceKey);
+            }
+        }
     }
 }

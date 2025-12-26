@@ -58,5 +58,21 @@ namespace keepass2android.KeeShare
                 return new List<AuditEntry>(_entries);
             }
         }
+
+        public static AuditEntry GetLastEntryForPath(string path)
+        {
+            if (string.IsNullOrEmpty(path)) return null;
+            
+            lock (_entries)
+            {
+                // Traverse backwards to find latest
+                for (int i = _entries.Count - 1; i >= 0; i--)
+                {
+                    if (_entries[i].SourcePath == path)
+                        return _entries[i];
+                }
+            }
+            return null;
+        }
     }
 }

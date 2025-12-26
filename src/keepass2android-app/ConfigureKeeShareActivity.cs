@@ -99,8 +99,21 @@ namespace keepass2android
 
             private string GetLastSyncStatus(KeeShareSettings.Reference reference)
             {
-                // TODO: Track last sync time in settings
-                return reference.Path != null ? "Configured" : "Not configured";
+                if (reference.Path == null) return "Not configured";
+                
+                var entry = KeeShareAuditLog.GetLastEntryForPath(reference.Path);
+                if (entry != null)
+                {
+                    bool success = entry.Action == KeeShareAuditLog.AuditAction.ImportSuccess || 
+                                   entry.Action == KeeShareAuditLog.AuditAction.ExportSuccess;
+                    
+                    if (success)
+                        return $"Synced: {entry.Timestamp.ToLocalTime():g}";
+                    else
+                        return $"Failed: {entry.Timestamp.ToLocalTime():g} - {entry.Details}";
+                }
+                
+                return "Configured (Waiting for sync)";
             }
 
             public override int Count => _keeShareGroups.Count;
@@ -156,10 +169,15 @@ namespace keepass2android
                 var statusIcon = view.FindViewById<ImageView>(Resource.Id.keeshare_status_icon);
                 if (statusIcon != null)
                 {
-                    if (info.LastSyncStatus == "Configured")
+                    if (info.LastSyncStatus.StartsWith("Synced"))
                     {
-                        statusIcon.SetImageResource(Resource.Drawable.baseline_link_24);
+                        statusIcon.SetImageResource(Resource.Drawable.baseline_check_24);
                         statusIcon.SetColorFilter(Android.Graphics.Color.ParseColor("#4CAF50")); // Green
+                    }
+                    else if (info.LastSyncStatus.StartsWith("Failed"))
+                    {
+                        statusIcon.SetImageResource(Resource.Drawable.baseline_info_24);
+                        statusIcon.SetColorFilter(Android.Graphics.Color.ParseColor("#F44336")); // Red
                     }
                     else
                     {
