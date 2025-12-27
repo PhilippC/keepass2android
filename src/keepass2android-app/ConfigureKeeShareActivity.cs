@@ -101,7 +101,7 @@ namespace keepass2android
             {
                 if (reference.Path == null) return "Not configured";
                 
-                var entry = KeeShareAuditLog.GetLastEntryForPath(reference.Path);
+                var ioc = KeePassLib.Serialization.IOConnectionInfo.FromPath(reference.Path);\n                var entry = KeeShareAuditLog.GetLastEntryForPath(ioc);
                 if (entry != null)
                 {
                     bool success = entry.Action == KeeShareAuditLog.AuditAction.ImportSuccess || 
