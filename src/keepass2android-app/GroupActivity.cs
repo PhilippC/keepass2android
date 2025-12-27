@@ -100,12 +100,21 @@ namespace keepass2android
 
     protected override bool AddEntryEnabled
     {
-      get { return App.Kp2a.CurrentDb.CanWrite && ((this.Group.ParentGroup != null) || App.Kp2a.CurrentDb.DatabaseFormat.CanHaveEntriesInRootGroup); }
+      get 
+      { 
+        return App.Kp2a.CurrentDb.CanWrite 
+               && ((this.Group.ParentGroup != null) || App.Kp2a.CurrentDb.DatabaseFormat.CanHaveEntriesInRootGroup)
+               && !keepass2android.KeeShare.KeeShareSettings.IsReadOnlyBecauseKeeShareImport(this.Group);
+      }
     }
 
     protected override bool AddGroupEnabled
     {
-      get { return App.Kp2a.CurrentDb.CanWrite; }
+      get 
+      { 
+        return App.Kp2a.CurrentDb.CanWrite
+               && !keepass2android.KeeShare.KeeShareSettings.IsReadOnlyBecauseKeeShareImport(this.Group);
+      }
     }
 
     private class TemplateListAdapter : ArrayAdapter<PwEntry>

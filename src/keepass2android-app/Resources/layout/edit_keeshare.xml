@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Layout for EditKeeShareActivity - configure KeeShare for a specific group -->
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true">
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        
+        <!-- Toolbar -->
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/mytoolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+        
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+            
+            <!-- Group name (read-only) -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/keeshare_group_label"
+                android:textSize="12sp"
+                android:textColor="?android:attr/textColorSecondary"/>
+            
+            <TextView
+                android:id="@+id/keeshare_group_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="16dp"/>
+            
+            <!-- Mode selection -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/keeshare_mode_label"
+                android:textSize="12sp"
+                android:textColor="?android:attr/textColorSecondary"/>
+            
+            <Spinner
+                android:id="@+id/keeshare_mode_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"/>
+            
+            <!-- File path -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/keeshare_path_label"
+                android:textSize="12sp"
+                android:textColor="?android:attr/textColorSecondary"/>
+            
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                
+                <EditText
+                    android:id="@+id/keeshare_path_edit"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="@string/keeshare_path_hint"
+                    android:inputType="text"/>
+                
+                <Button
+                    android:id="@+id/keeshare_browse_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/browse"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
+                    
+            </LinearLayout>
+            
+            <!-- Password -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/keeshare_password_label"
+                android:textSize="12sp"
+                android:textColor="?android:attr/textColorSecondary"
+                android:layout_marginTop="16dp"/>
+            
+            <EditText
+                android:id="@+id/keeshare_password_edit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/keeshare_password_hint"
+                android:inputType="textPassword"/>
+            
+            <!-- Fingerprint section (for signed containers) -->
+            <LinearLayout
+                android:id="@+id/keeshare_fingerprint_section"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="16dp"
+                android:visibility="gone">
+                
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/keeshare_fingerprint_label"
+                    android:textSize="12sp"
+                    android:textColor="?android:attr/textColorSecondary"/>
+                
+                <TextView
+                    android:id="@+id/keeshare_fingerprint_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="monospace"
+                    android:textSize="14sp"
+                    android:padding="8dp"
+                    android:background="@android:color/darker_gray"/>
+                    
+            </LinearLayout>
+            
+            <!-- Action buttons -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="end"
+                android:layout_marginTop="24dp">
+                
+                <Button
+                    android:id="@+id/keeshare_cancel_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@android:string/cancel"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"/>
+                
+                <Button
+                    android:id="@+id/keeshare_save_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/save"
+                    style="@style/Widget.MaterialComponents.Button"/>
+                    
+            </LinearLayout>
+            
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

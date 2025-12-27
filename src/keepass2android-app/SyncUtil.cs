@@ -18,6 +18,7 @@ using Android.Content;
 using Android.OS;
 using Android.Widget;
 using keepass2android.Io;
+using keepass2android.KeeShare;
 using KeePassLib.Serialization;
 using System;
 using AndroidX.Preference;
@@ -121,6 +122,21 @@ namespace keepass2android
           var task2 = new SyncOtpAuxFile(_activity, database.OtpAuxFileIoc);
 
           OperationRunner.Instance.Run(App.Kp2a, task2);
+        }
+        
+        // KeeShare integration: Trigger import for all configured groups after sync
+        if (success && database?.KpDatabase != null)
+        {
+          try
+          {
+            // Import KeeShare files for groups with KeeShare configured
+            KeeShare.KeeShareImporter.CheckAndImport(database.KpDatabase, App.Kp2a);
+            Kp2aLog.Log("KeeShare: Triggered import check after database sync");
+          }
+          catch (Exception ex)
+          {
+            Kp2aLog.Log("KeeShare: Error during post-sync import: " + ex.Message);
+          }
         }
 
       });
