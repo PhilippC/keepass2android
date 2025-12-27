@@ -41,6 +41,9 @@ namespace keepass2android.KeeShare
     /// </summary>
     public class KeeShareExporter
     {
+        private const string KeeShareSettingsGroupName = "KeeShare";
+        private const string KeeShareSettingsMarker = "KeeShare.Settings";
+        
         /// <summary>
         /// Exports a group to a .kdbx file (uncontainerized)
         /// </summary>
@@ -264,7 +267,7 @@ namespace keepass2android.KeeShare
             foreach (var subGroup in source.Groups)
             {
                 // Skip KeeShare settings group
-                if (subGroup.Name == "KeeShare" && subGroup.Notes.Contains("KeeShare.Settings"))
+                if (subGroup.Name == KeeShareSettingsGroupName && subGroup.Notes.Contains(KeeShareSettingsMarker))
                     continue;
 
                 var newSubGroup = new PwGroup(true, true, subGroup.Name, subGroup.IconId);

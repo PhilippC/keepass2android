@@ -10,6 +10,7 @@ namespace keepass2android.KeeShare
     public class KeeShareSettings
     {
         public const string KeeShareReferenceKey = "KeeShare/Reference";
+        private const string DeviceFilePathPrefix = "KeeShare.FilePath.";
         
         /// <summary>
         /// Delegate to retrieve the current device ID. Must be initialized by the app.
@@ -62,7 +63,7 @@ namespace keepass2android.KeeShare
                 string deviceId = DeviceIdProvider?.Invoke();
                 if (!string.IsNullOrEmpty(deviceId))
                 {
-                    string deviceKey = "KeeShare.FilePath." + deviceId;
+                    string deviceKey = DeviceFilePathPrefix + deviceId;
                     string devicePath = group.CustomData.Get(deviceKey);
                     if (!string.IsNullOrEmpty(devicePath))
                     {
