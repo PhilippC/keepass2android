@@ -192,23 +192,21 @@ namespace keepass2android
 
         private void StartFilePicker()
         {
-            // Use Android file picker
-            Intent intent = new Intent(Intent.ActionOpenDocument);
-            intent.AddCategory(Intent.CategoryOpenable);
-            intent.SetType("*/*");
-            intent.PutExtra(Intent.ExtraMimeTypes, new string[] { 
-                "application/octet-stream", 
-                "application/x-keepass2",
-                "*/*" 
-            });
+            // Use KP2A's built-in storage selection (per maintainer feedback)
+            Intent intent = new Intent(this, typeof(SelectStorageLocationActivity));
+            intent.PutExtra(FileStorageSelectionActivity.AllowThirdPartyAppGet, true);
+            intent.PutExtra(FileStorageSelectionActivity.AllowThirdPartyAppSend, false);
+            intent.PutExtra(FileStorageSetupDefs.ExtraIsForSave, false);
+            intent.PutExtra(SelectStorageLocationActivity.ExtraKeyWritableRequirements, 
+                (int)SelectStorageLocationActivityBase.WritableRequirements.WriteDesired);
             
             try
             {
-                StartActivityForResult(Intent.CreateChooser(intent, GetString(Resource.String.keeshare_select_file)), RequestCodeSelectFile);
+                StartActivityForResult(intent, RequestCodeSelectFile);
             }
             catch (Exception ex)
             {
-                Toast.MakeText(this, $"Cannot open file picker: {ex.Message}", ToastLength.Long).Show();
+                Toast.MakeText(this, $"Cannot open storage picker: {ex.Message}", ToastLength.Long).Show();
             }
         }
 
@@ -216,20 +214,14 @@ namespace keepass2android
         {
             base.OnActivityResult(requestCode, resultCode, data);
             
-            if (requestCode == RequestCodeSelectFile && resultCode == Result.Ok && data?.Data != null)
+            if (requestCode == RequestCodeSelectFile && resultCode == Result.Ok && data != null)
             {
-                var uri = data.Data;
-                
-                // Take persistent permission
-                try
-                {
-                    ContentResolver.TakePersistableUriPermission(uri, 
-                        ActivityFlags.GrantReadUriPermission | ActivityFlags.GrantWriteUriPermission);
-                }
-                catch { }
+                // Get IOConnectionInfo from SelectStorageLocationActivity
+                IOConnectionInfo ioc = new IOConnectionInfo();
+                Util.SetIoConnectionFromIntent(ioc, data);
                 
                 if (_pathEditText != null)
-                    _pathEditText.Text = uri.ToString();
+                    _pathEditText.Text = ioc.Path;
                 
                 UpdateFingerprintVisibility();
             }

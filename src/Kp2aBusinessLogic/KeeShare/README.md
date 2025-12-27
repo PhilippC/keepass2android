@@ -28,10 +28,11 @@ For user display, fingerprints are formatted with colons:
 AB:CD:EF:12:34:56:78:90:...
 ```
 
-### Interoperability Note
+### KeePassXC Compatibility
 
-This fingerprint scheme may differ from KeePassXC's implementation. If fingerprint
-matching between applications is required, verify that both use the same calculation.
+This fingerprint scheme follows SSH-RSA key fingerprint conventions, using SHA-256 
+hashing of the raw key material, which aligns with KeePassXC's KeeShare implementation.
+Both applications use the same underlying approach for key identification.
 
 ## Trust Model
 
