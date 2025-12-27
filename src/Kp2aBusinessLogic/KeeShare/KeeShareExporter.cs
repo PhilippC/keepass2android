@@ -278,11 +278,12 @@ namespace keepass2android.KeeShare
         /// </summary>
         private static int CountEntries(PwGroup group)
         {
-            int count = group.Entries.UCount;
+            int count = (int)group.Entries.UCount;
             foreach (var subGroup in group.Groups)
             {
                 count += CountEntries(subGroup);
             }
+            return count;
         }
 
         /// <summary>
