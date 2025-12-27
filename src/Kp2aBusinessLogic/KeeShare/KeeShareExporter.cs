@@ -31,7 +31,7 @@ namespace keepass2android.KeeShare
     {
         public bool IsSuccess { get; set; }
         public string ErrorMessage { get; set; }
-        public string SharePath { get; set; }
+        public IOConnectionInfo ShareLocation { get; set; }
         public int EntriesExported { get; set; }
         public DateTime ExportTime { get; set; }
     }
@@ -47,13 +47,13 @@ namespace keepass2android.KeeShare
         public static KeeShareExportResult ExportToKdbx(
             PwDatabase sourceDb,
             PwGroup groupToExport,
-            string targetPath,
+            IOConnectionInfo targetIoc,
             CompositeKey targetKey,
             IStatusLogger logger = null)
         {
             var result = new KeeShareExportResult
             {
-                SharePath = targetPath,
+                ShareLocation = targetIoc,
                 ExportTime = DateTime.UtcNow
             };
 
@@ -74,19 +74,18 @@ namespace keepass2android.KeeShare
                 result.EntriesExported = CountEntries(exportDb.RootGroup);
 
                 // Save the database
-                var ioc = IOConnectionInfo.FromPath(targetPath);
-                exportDb.SaveAs(ioc, false, logger);
+                exportDb.SaveAs(targetIoc, false, logger);
                 
                 result.IsSuccess = true;
-                Kp2aLog.Log($"KeeShare: Exported {result.EntriesExported} entries to {targetPath}");
-                KeeShareAuditLog.Log(KeeShareAuditLog.AuditAction.ExportSuccess, targetPath, $"Exported {result.EntriesExported} entries");
+                Kp2aLog.Log($"KeeShare: Exported {result.EntriesExported} entries to {targetIoc.GetDisplayName()}");
+                KeeShareAuditLog.Log(KeeShareAuditLog.AuditAction.ExportSuccess, targetIoc, $"Exported {result.EntriesExported} entries");
             }
             catch (Exception ex)
             {
                 result.IsSuccess = false;
                 result.ErrorMessage = ex.Message;
                 Kp2aLog.Log($"KeeShare: Export failed: {ex.Message}");
-                KeeShareAuditLog.Log(KeeShareAuditLog.AuditAction.ExportFailure, targetPath, ex.Message);
+                KeeShareAuditLog.Log(KeeShareAuditLog.AuditAction.ExportFailure, targetIoc, ex.Message);
             }
 
             return result;
@@ -98,7 +97,7 @@ namespace keepass2android.KeeShare
         public static KeeShareExportResult ExportToContainer(
             PwDatabase sourceDb,
             PwGroup groupToExport,
-            string targetPath,
+            IOConnectionInfo targetIoc,
             CompositeKey innerKey,
             RSAParameters privateKey,
             string signerName,
@@ -106,7 +105,7 @@ namespace keepass2android.KeeShare
         {
             var result = new KeeShareExportResult
             {
-                SharePath = targetPath,
+                ShareLocation = targetIoc,
                 ExportTime = DateTime.UtcNow
             };
 
@@ -134,19 +133,19 @@ namespace keepass2android.KeeShare
                     var signatureXml = CreateSignatureXml(signature, signerName, privateKey);
 
                     // Create the .share container (ZIP with signature.xml and db.kdbx)
-                    CreateShareContainer(targetPath, kdbxData, signatureXml);
+                    CreateShareContainer(targetIoc, kdbxData, signatureXml);
                 }
 
                 result.IsSuccess = true;
-                Kp2aLog.Log($"KeeShare: Exported {result.EntriesExported} entries to container {targetPath}");
-                KeeShareAuditLog.Log(KeeShareAuditLog.AuditAction.ExportSuccess, targetPath, $"Exported {result.EntriesExported} entries");
+                Kp2aLog.Log($"KeeShare: Exported {result.EntriesExported} entries to container {targetIoc.GetDisplayName()}");
+                KeeShareAuditLog.Log(KeeShareAuditLog.AuditAction.ExportSuccess, targetIoc, $"Exported {result.EntriesExported} entries");
             }
             catch (Exception ex)
             {
                 result.IsSuccess = false;
                 result.ErrorMessage = ex.Message;
                 Kp2aLog.Log($"KeeShare: Container export failed: {ex.Message}");
-                KeeShareAuditLog.Log(KeeShareAuditLog.AuditAction.ExportFailure, targetPath, ex.Message);
+                KeeShareAuditLog.Log(KeeShareAuditLog.AuditAction.ExportFailure, targetIoc, ex.Message);
             }
 
             return result;
@@ -220,9 +219,9 @@ namespace keepass2android.KeeShare
         /// <summary>
         /// Creates a .share ZIP container with signature and database
         /// </summary>
-        private static void CreateShareContainer(string path, byte[] kdbxData, string signatureXml)
+        private static void CreateShareContainer(IOConnectionInfo ioc, byte[] kdbxData, string signatureXml)
         {
-            using (var fs = new FileStream(path, FileMode.Create))
+            using (var fs = ioc.OpenWrite())
             using (var archive = new ZipArchive(fs, ZipArchiveMode.Create))
             {
                 // Add signature.xml
@@ -337,13 +336,17 @@ namespace keepass2android.KeeShare
                             key.AddUserKey(new KcpPassword(keeShareRef.Password));
                         }
                         
+                        // Resolve path to IOConnectionInfo
+                        IOConnectionInfo ioc = IOConnectionInfo.FromPath(keeShareRef.Path);
+                        
                         // We use KDBX export for compatibility and simplicity for now
-                        ExportToKdbx(db, group, keeShareRef.Path, key, logger);
+                        ExportToKdbx(db, group, ioc, key, logger);
                     }
                     catch (Exception ex)
                     {
                         Kp2aLog.Log("KeeShare: Auto-export failed for group " + group.Name + ": " + ex.Message);
-                        KeeShareAuditLog.Log(KeeShareAuditLog.AuditAction.ExportFailure, keeShareRef.Path, "Auto-export error: " + ex.Message);
+                        var ioc = IOConnectionInfo.FromPath(keeShareRef.Path);
+                        KeeShareAuditLog.Log(KeeShareAuditLog.AuditAction.ExportFailure, ioc, "Auto-export error: " + ex.Message);
                     }
                 }
             }

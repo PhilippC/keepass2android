@@ -30,7 +30,7 @@ namespace keepass2android.KeeShare
         public string KeyFingerprint { get; set; }
         
         /// <summary>Path to the share file</summary>
-        public string SharePath { get; set; }
+        public IOConnectionInfo ShareLocation { get; set; }
         
         /// <summary>
         /// Get a formatted fingerprint for display (e.g., "AB:CD:EF:12:...")
@@ -102,7 +102,7 @@ namespace keepass2android.KeeShare
             foreach (var result in results)
             {
                 if (result.IsSuccess)
-                    Kp2aLog.Log($"KeeShare: Imported {result.EntriesImported} entries from {result.SharePath}");
+                    Kp2aLog.Log($"KeeShare: Imported {result.EntriesImported} entries from {result.ShareLocation?.GetDisplayName()}");
             }
         }
         

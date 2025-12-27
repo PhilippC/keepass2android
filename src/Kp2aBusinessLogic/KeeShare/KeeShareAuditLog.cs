@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using KeePassLib;
+using KeePassLib.Serialization;
 using keepass2android.KeeShare;
 
 namespace keepass2android.KeeShare
@@ -22,20 +23,21 @@ namespace keepass2android.KeeShare
         {
             public DateTime Timestamp { get; set; }
             public AuditAction Action { get; set; }
-            public string SourcePath { get; set; }
+            public string SourceDisplayName { get; set; }
             public string Details { get; set; }
             public string Fingerprint { get; set; }
         }
 
         private static List<AuditEntry> _entries = new List<AuditEntry>();
 
-        public static void Log(AuditAction action, string path, string details, string fingerprint = null)
+        public static void Log(AuditAction action, IOConnectionInfo ioc, string details, string fingerprint = null)
         {
+            var displayName = ioc?.GetDisplayName() ?? "Unknown";
             var entry = new AuditEntry
             {
                 Timestamp = DateTime.UtcNow,
                 Action = action,
-                SourcePath = path,
+                SourceDisplayName = displayName,
                 Details = details,
                 Fingerprint = fingerprint
             };
@@ -48,7 +50,7 @@ namespace keepass2android.KeeShare
             }
 
             // Also log to system log for now
-            Kp2aLog.Log($"[KeeShare Audit] {action}: {path} - {details}");
+            Kp2aLog.Log($"[KeeShare Audit] {action}: {displayName} - {details}");
         }
 
         public static List<AuditEntry> GetEntries()
@@ -59,16 +61,17 @@ namespace keepass2android.KeeShare
             }
         }
 
-        public static AuditEntry GetLastEntryForPath(string path)
+        public static AuditEntry GetLastEntryForPath(IOConnectionInfo ioc)
         {
-            if (string.IsNullOrEmpty(path)) return null;
+            if (ioc == null) return null;
+            var displayName = ioc.GetDisplayName();
             
             lock (_entries)
             {
                 // Traverse backwards to find latest
                 for (int i = _entries.Count - 1; i >= 0; i--)
                 {
-                    if (_entries[i].SourcePath == path)
+                    if (_entries[i].SourceDisplayName == displayName)
                         return _entries[i];
                 }
             }

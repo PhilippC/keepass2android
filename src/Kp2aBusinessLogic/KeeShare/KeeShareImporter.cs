@@ -30,7 +30,7 @@ namespace keepass2android.KeeShare
         
         public StatusCode Status { get; set; }
         public string Message { get; set; }
-        public string SharePath { get; set; }
+        public IOConnectionInfo ShareLocation { get; set; }
         public string SignerName { get; set; }
         public string KeyFingerprint { get; set; }
         public int EntriesImported { get; set; }
@@ -99,11 +99,11 @@ namespace keepass2android.KeeShare
                 // Log result
                 if (result.IsSuccess)
                 {
-                    Kp2aLog.Log($"KeeShare: Successfully imported from {result.SharePath}");
+                    Kp2aLog.Log($"KeeShare: Successfully imported from {result.ShareLocation?.GetDisplayName()}");
                 }
                 else
                 {
-                    Kp2aLog.Log($"KeeShare: Import failed for {result.SharePath}: {result.Message}");
+                    Kp2aLog.Log($"KeeShare: Import failed for {result.ShareLocation?.GetDisplayName()}: {result.Message}");
                 }
             }
             
@@ -114,7 +114,6 @@ namespace keepass2android.KeeShare
         {
             var result = new KeeShareImportResult
             {
-                SharePath = reference.Path,
                 Status = KeeShareImportResult.StatusCode.Error
             };
             
@@ -124,6 +123,8 @@ namespace keepass2android.KeeShare
                 string path = reference.Path;
 
                 IOConnectionInfo ioc = ResolvePath(db.Ioc, path, app);
+                result.ShareLocation = ioc;
+                
                 if (ioc == null)
                 {
                     result.Status = KeeShareImportResult.StatusCode.FileNotFound;
@@ -216,7 +217,7 @@ namespace keepass2android.KeeShare
                 ? KeeShareAuditLog.AuditAction.ImportSuccess 
                 : KeeShareAuditLog.AuditAction.ImportFailure;
             
-            KeeShareAuditLog.Log(action, result.SharePath, 
+            KeeShareAuditLog.Log(action, result.ShareLocation, 
                 result.IsSuccess ? $"Imported {result.EntriesImported} entries" : result.Message, 
                 result.KeyFingerprint);
         }

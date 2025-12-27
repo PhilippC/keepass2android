@@ -98,7 +98,7 @@ namespace keepass2android
             }
             
             if (sharePathText != null)
-                sharePathText.Text = signerInfo?.SharePath ?? "";
+                sharePathText.Text = signerInfo?.ShareLocation?.GetDisplayName() ?? "";
             
             if (warningText != null)
             {
