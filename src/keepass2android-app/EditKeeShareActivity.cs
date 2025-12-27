@@ -20,8 +20,10 @@ using Android.Content.PM;
 using Android.OS;
 using Android.Views;
 using Android.Widget;
+using keepass2android.fileselect;
 using keepass2android.KeeShare;
 using KeePassLib;
+using KeePassLib.Serialization;
 using KeePassLib.Utility;
 
 namespace keepass2android

@@ -25,6 +25,7 @@ using Android.Widget;
 using Google.Android.Material.FloatingActionButton;
 using keepass2android.KeeShare;
 using KeePassLib;
+using KeePassLib.Serialization;
 
 namespace keepass2android
 {
@@ -101,7 +102,8 @@ namespace keepass2android
             {
                 if (reference.Path == null) return "Not configured";
                 
-                var ioc = KeePassLib.Serialization.IOConnectionInfo.FromPath(reference.Path);\n                var entry = KeeShareAuditLog.GetLastEntryForPath(ioc);
+                var ioc = KeePassLib.Serialization.IOConnectionInfo.FromPath(reference.Path);
+                var entry = KeeShareAuditLog.GetLastEntryForPath(ioc);
                 if (entry != null)
                 {
                     bool success = entry.Action == KeeShareAuditLog.AuditAction.ImportSuccess || 
@@ -364,7 +366,7 @@ namespace keepass2android
                     
                     RunOnUiThread(() =>
                     {
-                        var groupResult = results.FirstOrDefault(r => r.SharePath == info.Reference?.Path);
+                        var groupResult = results.FirstOrDefault(r => r.ShareLocation?.Path == info.Reference?.Path);
                         if (groupResult != null)
                         {
                             string message = groupResult.IsSuccess
