@@ -247,15 +247,18 @@ namespace keepass2android
       }
       }
 
-      // KeeShare: Check for auto-exports
-      try
+      // KeeShare: Schedule export in background to avoid blocking save (per maintainer feedback)
+      System.Threading.Tasks.Task.Run(() =>
       {
-         keepass2android.KeeShare.KeeShareExporter.CheckAndExport(_db.KpDatabase, null);
-      }
-      catch (Exception ex)
-      {
-         Kp2aLog.Log("KeeShare: Export check failed: " + ex.Message);
-      }
+         try
+         {
+            keepass2android.KeeShare.KeeShareExporter.CheckAndExport(_db.KpDatabase, null);
+         }
+         catch (Exception ex)
+         {
+            Kp2aLog.Log("KeeShare: Background export failed: " + ex.Message);
+         }
+      });
 
       Finish(true);
     }
