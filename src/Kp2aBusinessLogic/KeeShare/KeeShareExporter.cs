@@ -283,36 +283,8 @@ namespace keepass2android.KeeShare
             {
                 count += CountEntries(subGroup);
             }
-            return (int)count;
         }
 
-        /// <summary>
-        /// Generates a new RSA key pair for signing
-        /// </summary>
-        public static RSAParameters GenerateKeyPair(out RSAParameters privateKey)
-        {
-            using (var rsa = RSA.Create(2048))
-            {
-                privateKey = rsa.ExportParameters(true);
-                return rsa.ExportParameters(false); // Public key only
-            }
-        }
-
-        /// <summary>
-        /// Computes SHA-256 fingerprint of a public key
-        /// </summary>
-        public static string ComputeKeyFingerprint(RSAParameters publicKey)
-        {
-            var keyBytes = Encoding.UTF8.GetBytes(
-                Convert.ToBase64String(publicKey.Modulus) + 
-                Convert.ToBase64String(publicKey.Exponent));
-            
-            using (var sha256 = SHA256.Create())
-            {
-                var hash = sha256.ComputeHash(keyBytes);
-                return BitConverter.ToString(hash).Replace("-", "").ToLowerInvariant();
-            }
-        }
         /// <summary>
         /// Checks all groups in the database and performs export for any with Export/Sync mode
         /// </summary>
