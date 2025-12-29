@@ -710,6 +710,8 @@
   <string name="DbQuicklockedChannel_desc">Notificare despre blocarea bazei de date cu Deblocarea rapidă</string>
   <string name="EntryChannel_name">Notificări intrare</string>
   <string name="EntryChannel_desc">Notificare pentru simplificarea accesului la intrarea selectată în prezent.</string>
+  <string name="BackgroundSyncChannel_name">Sincronizare</string>
+  <string name="BackgroundSyncChannel_desc">Notificare ce indică faptul că o sincronizare este efectuată în fundal.</string>
   <string name="CloseDbAfterFailedAttempts">Închide baza de date după trei încercări de deblocare biometrică eșuate.</string>
   <string name="WarnFingerprintInvalidated">Avertizare! Autentificarea biometrică poate fi invalidată de Android, de ex. după adăugarea unei amprente noi în setările dispozitivului. Asigură-te că știi întotdeauna cum să deblochezi cu parola principală!</string>
   <string-array name="ChangeLog_1_12">
