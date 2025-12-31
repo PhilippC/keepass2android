@@ -1353,5 +1353,7 @@
 
   <string name="credential_provider_service_subtitle">Password credential provider</string>
   <string name="credential_provider_password_creation_description">Save Password in new entry</string>
+  <string name="open_app_name">Open %1$s</string>
+  <string name="manage_credentials">Manage Credentials</string>
     
 </resources>
