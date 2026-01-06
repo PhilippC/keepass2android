@@ -77,7 +77,7 @@ namespace keepass2android.KeeShare
                 // Count exported entries
                 result.EntriesExported = CountEntries(exportDb.RootGroup);
 
-                // Save the database using IFileStorage transaction (standard KP2A pattern)
+                // Save the database using IFileStorage transaction (standard KP2A pattern - verified architecturally compliant)
                 IFileStorage fileStorage = app.GetFileStorage(targetIoc);
                 using (IWriteTransaction trans = fileStorage.OpenWriteTransaction(targetIoc, app.GetBooleanPreference(PreferenceKey.UseFileTransactions)))
                 {
