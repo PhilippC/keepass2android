@@ -357,40 +357,25 @@ namespace keepass2android
             // Trigger sync for this specific group
             Toast.MakeText(this, $"Syncing {info.Group.Name}...", ToastLength.Short).Show();
             
-            // Run sync in background
-            System.Threading.Tasks.Task.Run(() =>
-            {
-                try
+            // Perform synchronization using the preferred OperationRunner pattern
+            OperationRunner.Instance.Run(App.Kp2a, new KeeShareSyncOperation(App.Kp2a, App.Kp2a.CurrentDb.KpDatabase, true, true,
+                new ActionOnOperationFinished(this, (success, message, context) =>
                 {
-                    var results = KeeShareImporter.CheckAndImport(App.Kp2a.CurrentDb, App.Kp2a, null);
-                    
                     RunOnUiThread(() =>
                     {
-                        var groupResult = results.FirstOrDefault(r => r.ShareLocation?.Path == info.Reference?.Path);
-                        if (groupResult != null)
+                        if (success)
                         {
-                            string message = groupResult.IsSuccess
-                                ? $"Synced {groupResult.EntriesImported} entries"
-                                : $"Sync failed: {groupResult.Message}";
-                            Toast.MakeText(this, message, ToastLength.Long).Show();
+                            Toast.MakeText(this, "KeeShare Sync completed", ToastLength.Short).Show();
                         }
                         else
                         {
-                            Toast.MakeText(this, "Sync completed", ToastLength.Short).Show();
+                            Toast.MakeText(this, $"KeeShare Sync failed: {message}", ToastLength.Long).Show();
                         }
                         
                         _adapter.Update();
                         _adapter.NotifyDataSetChanged();
                     });
-                }
-                catch (Exception ex)
-                {
-                    RunOnUiThread(() =>
-                    {
-                        Toast.MakeText(this, $"Sync error: {ex.Message}", ToastLength.Long).Show();
-                    });
-                }
-            });
+                })));
         }
 
         private void OnRemoveKeeShare(KeeShareAdapter.KeeShareGroupInfo info)
@@ -405,9 +390,9 @@ namespace keepass2android
                     
                     // Save database
                     var saveTask = new database.edit.SaveDb(App.Kp2a, App.Kp2a.CurrentDb, 
-                        new ActionOnFinish(this, (success, message, activity) =>
+                        new ActionOnOperationFinished(App.Kp2a, (success, message, context) =>
                         {
-                            if (activity is ConfigureKeeShareActivity configActivity)
+                            if (context is ConfigureKeeShareActivity configActivity)
                             {
                                 configActivity._adapter.Update();
                                 configActivity._adapter.NotifyDataSetChanged();

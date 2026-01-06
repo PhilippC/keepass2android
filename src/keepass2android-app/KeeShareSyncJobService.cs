@@ -15,41 +15,14 @@ namespace keepass2android
 
         public override bool OnStartJob(JobParameters @params)
         {
-            // Run sync in background thread
-            Task.Run(async () =>
-            {
-                bool success = false;
-                try
+            // Perform synchronization using the preferred OperationRunner pattern
+            OperationRunner.Instance.Run(App.Kp2a, new KeeShareSyncOperation(App.Kp2a, App.Kp2a.CurrentDb.KpDatabase, true, true,
+                new ActionOnOperationFinished(App.Kp2a, (success, message, context) =>
                 {
-                    if (App.Kp2a.CurrentDb != null && App.Kp2a.CurrentDb.KpDatabase != null)
-                    {
-                        Kp2aLog.Log("KeeShareSyncJob: Starting background sync...");
-                        
-                        // We need to disable UI interactions for background sync
-                        var results = KeeShareImporter.CheckAndImport(App.Kp2a.CurrentDb, null, null);
-                        
-                        // Also trigger export if needed (though export is usually on-save)
-                        KeeShareExporter.CheckAndExport(App.Kp2a.CurrentDb.KpDatabase, null);
+                    JobFinished(@params, !success);
+                })));
 
-                        Kp2aLog.Log($"KeeShareSyncJob: Completed. Processed {results.Count} groups.");
-                        success = true;
-                    }
-                    else
-                    {
-                        Kp2aLog.Log("KeeShareSyncJob: Database not open, skipping sync.");
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Kp2aLog.Log("KeeShareSyncJob: Error during sync: " + ex.Message);
-                }
-                finally
-                {
-                    JobFinished(@params, !success); // Reschedule if failed
-                }
-            });
-
-            return true; // Work is ongoing
+            return true; // Operation is running in background
         }
 
         public override bool OnStopJob(JobParameters @params)

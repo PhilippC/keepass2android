@@ -124,19 +124,10 @@ namespace keepass2android
           OperationRunner.Instance.Run(App.Kp2a, task2);
         }
         
-        // KeeShare integration: Trigger import for all configured groups after sync
+        // KeeShare integration: Trigger import for all configured groups after sync using the preferred OperationRunner pattern
         if (success && database?.KpDatabase != null)
         {
-          try
-          {
-            // Import KeeShare files for groups with KeeShare configured
-            KeeShare.KeeShareImporter.CheckAndImport(database.KpDatabase, App.Kp2a);
-            Kp2aLog.Log("KeeShare: Triggered import check after database sync");
-          }
-          catch (Exception ex)
-          {
-            Kp2aLog.Log("KeeShare: Error during post-sync import: " + ex.Message);
-          }
+          OperationRunner.Instance.Run(App.Kp2a, new KeeShareSyncOperation(App.Kp2a, database.KpDatabase, true, false));
         }
 
       });

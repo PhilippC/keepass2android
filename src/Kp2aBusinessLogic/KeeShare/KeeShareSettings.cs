@@ -34,7 +34,58 @@ namespace keepass2android.KeeShare
             public string Password { get; set; }
             public bool KeepGroups { get; set; } = true;
 
-            public bool IsImporting => (Type & TypeFlag.ImportFrom) == TypeFlag.ImportFrom && !string.IsNullOrEmpty(Path);
+            public bool IsImporting
+            {
+                get => (Type & TypeFlag.ImportFrom) != 0 && !string.IsNullOrEmpty(Path);
+                set
+                {
+                    if (value) Type |= TypeFlag.ImportFrom;
+                    else Type &= ~TypeFlag.ImportFrom;
+                }
+            }
+
+            public bool IsExporting
+            {
+                get => (Type & TypeFlag.ExportTo) != 0;
+                set
+                {
+                    if (value) Type |= TypeFlag.ExportTo;
+                    else Type &= ~TypeFlag.ExportTo;
+                }
+            }
+        }
+
+        public static void SetReference(PwGroup group, Reference reference)
+        {
+            if (group == null || reference == null) return;
+
+            try
+            {
+                var xml = SerializeReference(reference);
+                var bytes = Encoding.UTF8.GetBytes(xml);
+                var encoded = Convert.ToBase64String(bytes);
+                group.CustomData.Set(KeeShareReferenceKey, encoded);
+            }
+            catch (Exception ex)
+            {
+                Kp2aLog.Log("KeeShare: Failed to set reference: " + ex.Message);
+            }
+        }
+
+        private static string SerializeReference(Reference reference)
+        {
+            var root = new XElement("KeeShare",
+                new XElement("Type",
+                    (reference.Type & TypeFlag.ImportFrom) != 0 ? new XElement("Import") : null,
+                    (reference.Type & TypeFlag.ExportTo) != 0 ? new XElement("Export") : null
+                ),
+                reference.Uuid != null ? new XElement("Group", Convert.ToBase64String(reference.Uuid.UuidBytes)) : null,
+                !string.IsNullOrEmpty(reference.Path) ? new XElement("Path", Convert.ToBase64String(Encoding.UTF8.GetBytes(reference.Path))) : null,
+                !string.IsNullOrEmpty(reference.Password) ? new XElement("Password", Convert.ToBase64String(Encoding.UTF8.GetBytes(reference.Password))) : null,
+                new XElement("KeepGroups", reference.KeepGroups ? "True" : "False")
+            );
+
+            return root.ToString();
         }
 
         public static Reference GetReference(PwGroup group)
@@ -160,6 +211,41 @@ namespace keepass2android.KeeShare
             if (group != null && group.CustomData != null)
             {
                 group.CustomData.Remove(KeeShareReferenceKey);
+            }
+        }
+
+        public static IOConnectionInfo ResolvePath(IOConnectionInfo baseIoc, string path)
+        {
+            var ioc = new IOConnectionInfo();
+            ioc.Path = path;
+
+            // Check if absolute
+            if (path.StartsWith("/") || path.Contains("://"))
+            {
+                if (!path.Contains("://"))
+                {
+                    ioc.Path = path;
+                    ioc.Plugin = "file";
+                }
+                return ioc;
+            }
+
+            // Relative path.
+            try
+            {
+                string basePath = baseIoc.Path;
+                string dir = Path.GetDirectoryName(basePath);
+                string fullPath = Path.Combine(dir, path);
+                ioc.Path = fullPath;
+                ioc.Plugin = baseIoc.Plugin;
+                ioc.UserName = baseIoc.UserName;
+                ioc.Password = baseIoc.Password;
+                return ioc;
+            }
+            catch (Exception ex)
+            {
+                Kp2aLog.Log("KeeShare: Failed to resolve path: " + ex.Message);
+                return null;
             }
         }
     }

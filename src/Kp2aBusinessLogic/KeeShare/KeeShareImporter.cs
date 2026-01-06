@@ -122,7 +122,7 @@ namespace keepass2android.KeeShare
                 // Resolve Path
                 string path = reference.Path;
 
-                IOConnectionInfo ioc = ResolvePath(db.Ioc, path, app);
+                IOConnectionInfo ioc = KeeShareSettings.ResolvePath(db.Ioc, path);
                 result.ShareLocation = ioc;
                 
                 if (ioc == null)
@@ -577,39 +577,5 @@ namespace keepass2android.KeeShare
             }
         }
 
-        private static IOConnectionInfo ResolvePath(IOConnectionInfo baseIoc, string path, IKp2aApp app)
-        {
-            var ioc = new IOConnectionInfo();
-            ioc.Path = path;
-
-            // Check if absolute
-            if (path.StartsWith("/") || path.Contains("://"))
-            {
-                 if (!path.Contains("://"))
-                 {
-                     ioc.Path = path;
-                     ioc.Plugin = "file";
-                 }
-                 return ioc;
-            }
-
-            // Relative path.
-            try
-            {
-                string basePath = baseIoc.Path;
-                string dir = Path.GetDirectoryName(basePath);
-                string fullPath = Path.Combine(dir, path);
-                ioc.Path = fullPath;
-                ioc.Plugin = baseIoc.Plugin;
-                ioc.UserName = baseIoc.UserName;
-                ioc.Password = baseIoc.Password;
-                return ioc;
-            }
-            catch (Exception ex)
-            {
-                Kp2aLog.Log("KeeShare: Failed to resolve path: " + ex.Message);
-                return null;
-            }
-        }
     }
 }

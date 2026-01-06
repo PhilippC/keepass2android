@@ -254,17 +254,20 @@ namespace keepass2android
             
             // Save database
             var saveTask = new database.edit.SaveDb(App.Kp2a, App.Kp2a.CurrentDb,
-                new ActionOnFinish(this, (success, message, activity) =>
+                new ActionOnOperationFinished(App.Kp2a, (success, message, context) =>
                 {
                     if (success)
                     {
-                        Toast.MakeText(activity, Resource.String.keeshare_saved, ToastLength.Short).Show();
-                        activity.SetResult(Result.Ok);
-                        activity.Finish();
+                        Toast.MakeText(context, Resource.String.keeshare_saved, ToastLength.Short).Show();
+                        if (context is Activity activity)
+                        {
+                            activity.SetResult(Result.Ok);
+                            activity.Finish();
+                        }
                     }
                     else
                     {
-                        Toast.MakeText(activity, $"Save failed: {message}", ToastLength.Long).Show();
+                        Toast.MakeText(context, $"Save failed: {message}", ToastLength.Long).Show();
                     }
                 }));
             

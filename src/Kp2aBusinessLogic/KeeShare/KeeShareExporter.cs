@@ -313,7 +313,7 @@ namespace keepass2android.KeeShare
                         }
                         
                         // Resolve path to IOConnectionInfo
-                        IOConnectionInfo ioc = IOConnectionInfo.FromPath(keeShareRef.Path);
+                        IOConnectionInfo ioc = KeeShareSettings.ResolvePath(db.IOConnectionInfo, keeShareRef.Path);
                         
                         // We use KDBX export for compatibility and simplicity for now
                         ExportToKdbx(db, group, ioc, key, logger);
@@ -321,7 +321,7 @@ namespace keepass2android.KeeShare
                     catch (Exception ex)
                     {
                         Kp2aLog.Log("KeeShare: Auto-export failed for group " + group.Name + ": " + ex.Message);
-                        var ioc = IOConnectionInfo.FromPath(keeShareRef.Path);
+                        var ioc = KeeShareSettings.ResolvePath(db.IOConnectionInfo, keeShareRef.Path);
                         KeeShareAuditLog.Log(KeeShareAuditLog.AuditAction.ExportFailure, ioc, "Auto-export error: " + ex.Message);
                     }
                 }
