@@ -39,13 +39,13 @@ namespace keepass2android.KeeShare
                 if (_import)
                 {
                     StatusLogger.UpdateMessage("Performing KeeShare Import...");
-                    KeeShareImporter.CheckAndImport(new Database(null, _app) { KpDatabase = _db }, _app);
+                    KeeShareImporter.CheckAndImport(new Database(null, _app) { KpDatabase = _db }, _app, StatusLogger);
                 }
 
                 if (_export)
                 {
                     StatusLogger.UpdateMessage("Performing KeeShare Export...");
-                    KeeShareExporter.CheckAndExport(_db, StatusLogger);
+                    KeeShareExporter.CheckAndExport(_app, _db, StatusLogger);
                 }
 
                 Finish(true);

@@ -47,31 +47,11 @@ namespace keepass2android.KeeShare
         /// Checks all groups for KeeShare references and imports them.
         /// Uses default behavior (rejects untrusted signers, no UI).
         /// </summary>
-        public static List<KeeShareImportResult> CheckAndImport(Database db, IKp2aApp app)
-        {
-            return CheckAndImport(db, app, null);
-        }
-        
-        /// <summary>
-        /// Checks all groups for KeeShare references and imports them.
-        /// Returns a list of import results for each share that was processed.
-        /// </summary>
-        /// <param name="db">The database to check for KeeShare references</param>
-        /// <param name="app">The app context for file access</param>
-        /// <param name="userInteraction">Optional UI handler for trust prompts. If null, untrusted signers are rejected.</param>
-        public static List<KeeShareImportResult> CheckAndImport(Database db, IKp2aApp app, IKeeShareUserInteraction userInteraction)
+        public static List<KeeShareImportResult> CheckAndImport(Database db, IKp2aApp app, IStatusLogger logger = null)
         {
             var results = new List<KeeShareImportResult>();
-            var handler = userInteraction ?? new DefaultKeeShareUserInteraction();
             
-            // Check if auto-import is enabled
-            if (!handler.IsAutoImportEnabled)
-            {
-                Kp2aLog.Log("KeeShare: Auto-import disabled by user preference");
-                return results;
-            }
-            
-            if (db == null || db.Root == null) return results;
+            if (db == null || db.KpDatabase == null) return results;
 
             // Iterate over all groups to find share references
             var groupsToProcess = new List<Tuple<PwGroup, KeeShareSettings.Reference>>();
@@ -93,7 +73,7 @@ namespace keepass2android.KeeShare
             {
                 var group = tuple.Item1;
                 var reference = tuple.Item2;
-                var result = ImportShare(db, app, group, reference);
+                var result = ImportShare(db, app, group, reference, logger);
                 results.Add(result);
                 
                 // Log result
@@ -110,7 +90,7 @@ namespace keepass2android.KeeShare
             return results;
         }
 
-        private static KeeShareImportResult ImportShare(Database db, IKp2aApp app, PwGroup targetGroup, KeeShareSettings.Reference reference)
+        private static KeeShareImportResult ImportShare(Database db, IKp2aApp app, PwGroup targetGroup, KeeShareSettings.Reference reference, IStatusLogger logger = null)
         {
             var result = new KeeShareImportResult
             {
@@ -152,40 +132,40 @@ namespace keepass2android.KeeShare
                         stream.CopyTo(ms);
                         ms.Position = 0;
 
-                        if (IsZipFile(ms))
+                    if (IsZipFile(ms))
+                    {
+                        var containerResult = ReadFromContainer(ms, reference, db.KpDatabase);
+                        dbData = containerResult.Item1;
+                        signature = containerResult.Item2;
+                        
+                        if (containerResult.Item3 != null) // Error status
                         {
-                            var containerResult = ReadFromContainer(ms, reference, db.KpDatabase);
-                            dbData = containerResult.Item1;
-                            signature = containerResult.Item2;
-                            
-                            if (containerResult.Item3 != null) // Error status
-                            {
-                                result.Status = containerResult.Item3.Value;
-                                result.Message = containerResult.Item4;
-                                result.SignerName = signature?.Signer;
-                                result.KeyFingerprint = containerResult.Item5;
-                                return result;
-                            }
+                            result.Status = containerResult.Item3.Value;
+                            result.Message = containerResult.Item4;
+                            result.SignerName = signature?.Signer;
+                            result.KeyFingerprint = containerResult.Item5;
+                            return result;
                         }
-                        else
-                        {
-                            // Assume plain KDBX (no signature verification for non-container files)
-                            dbData = ms.ToArray();
-                        }
+                    }
+                    else
+                    {
+                        // Assume plain KDBX (no signature verification for non-container files)
+                        dbData = ms.ToArray();
                     }
                 }
+            }
 
-                if (dbData != null)
+            if (dbData != null)
+            {
+                int entriesBeforeMerge = CountEntries(targetGroup);
+                
+                var mergeResult = MergeDatabase(db, targetGroup, dbData, reference.Password, logger);
+                if (!mergeResult.Item1)
                 {
-                    int entriesBeforeMerge = CountEntries(targetGroup);
-                    
-                    var mergeResult = MergeDatabase(db, targetGroup, dbData, reference.Password);
-                    if (!mergeResult.Item1)
-                    {
-                        result.Status = mergeResult.Item2;
-                        result.Message = mergeResult.Item3;
-                        return result;
-                    }
+                    result.Status = mergeResult.Item2;
+                    result.Message = mergeResult.Item3;
+                    return result;
+                }
                     
                     int entriesAfterMerge = CountEntries(targetGroup);
                     
@@ -398,7 +378,7 @@ namespace keepass2android.KeeShare
         /// Returns: (success, errorStatus, errorMessage)
         /// </summary>
         private static Tuple<bool, KeeShareImportResult.StatusCode, string> 
-            MergeDatabase(Database mainDb, PwGroup targetGroup, byte[] dbData, string password)
+            MergeDatabase(Database mainDb, PwGroup targetGroup, byte[] dbData, string password, IStatusLogger logger = null)
         {
             var pwDatabase = new PwDatabase();
             var compKey = new CompositeKey();
@@ -411,7 +391,7 @@ namespace keepass2android.KeeShare
             {
                 using (var ms = new MemoryStream(dbData))
                 {
-                    pwDatabase.Open(ms, compKey, null);
+                    mainDb.DatabaseFormat.PopulateDatabaseFromStream(pwDatabase, ms, compKey, logger);
                 }
             }
             catch (KeePassLib.Keys.InvalidCompositeKeyException)

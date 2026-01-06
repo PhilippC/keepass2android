@@ -48,6 +48,7 @@ namespace keepass2android.KeeShare
         /// Exports a group to a .kdbx file (uncontainerized)
         /// </summary>
         public static KeeShareExportResult ExportToKdbx(
+            IKp2aApp app,
             PwDatabase sourceDb,
             PwGroup groupToExport,
             IOConnectionInfo targetIoc,
@@ -76,8 +77,14 @@ namespace keepass2android.KeeShare
                 // Count exported entries
                 result.EntriesExported = CountEntries(exportDb.RootGroup);
 
-                // Save the database
-                exportDb.SaveAs(targetIoc, false, logger);
+                // Save the database using IFileStorage transaction (standard KP2A pattern)
+                IFileStorage fileStorage = app.GetFileStorage(targetIoc);
+                using (IWriteTransaction trans = fileStorage.OpenWriteTransaction(targetIoc, app.GetBooleanPreference(PreferenceKey.UseFileTransactions)))
+                {
+                    var format = new KdbxFile(exportDb);
+                    format.Save(trans.OpenFile(), null, KdbxFormat.Default, logger);
+                    trans.CommitWrite();
+                }
                 
                 result.IsSuccess = true;
                 Kp2aLog.Log($"KeeShare: Exported {result.EntriesExported} entries to {targetIoc.GetDisplayName()}");
@@ -98,6 +105,7 @@ namespace keepass2android.KeeShare
         /// Exports a group to a signed .share container
         /// </summary>
         public static KeeShareExportResult ExportToContainer(
+            IKp2aApp app,
             PwDatabase sourceDb,
             PwGroup groupToExport,
             IOConnectionInfo targetIoc,
@@ -135,8 +143,8 @@ namespace keepass2android.KeeShare
                     var signature = SignData(kdbxData, privateKey);
                     var signatureXml = CreateSignatureXml(signature, signerName, privateKey);
 
-                    // Create the .share container (ZIP with signature.xml and db.kdbx)
-                    CreateShareContainer(targetIoc, kdbxData, signatureXml);
+                    // Create the .share container (ZIP with signature.xml and db.kdbx) using IFileStorage
+                    CreateShareContainer(app, targetIoc, kdbxData, signatureXml);
                 }
 
                 result.IsSuccess = true;
@@ -222,9 +230,11 @@ namespace keepass2android.KeeShare
         /// <summary>
         /// Creates a .share ZIP container with signature and database
         /// </summary>
-        private static void CreateShareContainer(IOConnectionInfo ioc, byte[] kdbxData, string signatureXml)
+        private static void CreateShareContainer(IKp2aApp app, IOConnectionInfo ioc, byte[] kdbxData, string signatureXml)
         {
-            using (var fs = ioc.OpenWrite())
+            IFileStorage fileStorage = app.GetFileStorage(ioc);
+            using (IWriteTransaction trans = fileStorage.OpenWriteTransaction(ioc, app.GetBooleanPreference(PreferenceKey.UseFileTransactions)))
+            using (var fs = trans.OpenFile())
             using (var archive = new ZipArchive(fs, ZipArchiveMode.Create))
             {
                 // Add signature.xml
@@ -241,6 +251,8 @@ namespace keepass2android.KeeShare
                 {
                     dbStream.Write(kdbxData, 0, kdbxData.Length);
                 }
+                
+                trans.CommitWrite();
             }
         }
 
@@ -292,7 +304,7 @@ namespace keepass2android.KeeShare
         /// <summary>
         /// Checks all groups in the database and performs export for any with Export/Sync mode
         /// </summary>
-        public static void CheckAndExport(PwDatabase db, IStatusLogger logger = null)
+        public static void CheckAndExport(IKp2aApp app, PwDatabase db, IStatusLogger logger = null)
         {
             foreach (var group in db.RootGroup.GetGroups(true)) 
             {
@@ -316,7 +328,7 @@ namespace keepass2android.KeeShare
                         IOConnectionInfo ioc = KeeShareSettings.ResolvePath(db.IOConnectionInfo, keeShareRef.Path);
                         
                         // We use KDBX export for compatibility and simplicity for now
-                        ExportToKdbx(db, group, ioc, key, logger);
+                        ExportToKdbx(app, db, group, ioc, key, logger);
                     }
                     catch (Exception ex)
                     {
