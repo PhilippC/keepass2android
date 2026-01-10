@@ -335,6 +335,7 @@
   <string name="QuickUnlock_label_secure">Ввести код для БыстройРазблокировки:</string>
   <string name="QuickUnlock_button">Быстрая разблокировка!</string>
   <string name="QuickUnlock_lockButton">Закрыть БД</string>
+  <string name="enable_screen_lock">Включить блокировку экрана</string>
   <string name="QuickUnlockDefaultEnabled_title">Включить по умолчанию</string>
   <string name="QuickUnlockDefaultEnabled_summary">Определяет, включена ли \"Быстрая разблокировка\" по умолчанию или нет.</string>
   <string name="ViewDatabaseSecure_title">Защита отображения базы данных</string>
@@ -343,6 +344,7 @@
   <string name="QuickUnlockIconHidden_summary">К сожалению, \"Быстрая разблокировка\" не работает без отображения значка уведомлений. Включите этот параметр для использования прозрачного значка.</string>
   <string name="QuickUnlockIconHidden16_title">Скрыть значок БыстройРазблокировки</string>
   <string name="QuickUnlockIconHidden16_summary">Быстрая разблокировка требует уведомления для своей работы. Выберите этот параметр, чтобы отображать уведомление без иконки.</string>
+  <string name="QuickUnlockBlockedWhenDeviceNotSecure_summary">Блокировать ввод ключа быстрой разблокировки, если не включена блокировка экрана с помощью пин кода или пароля. Это предотвращает атаки типа «подглядывание через плечо». Отключайте эту опцию только в том случае, если вы понимаете риск. Обратите внимание, что быструю разблокирку по-прежнему можно использовать с биометрическими данными.</string>
   <string name="QuickUnlockLength_title">Длина ключа</string>
   <string name="QuickUnlockLength_summary">Максимальное количество символов, используемых как пароль БыстройРазблокировки.</string>
   <string name="QuickUnlockHideLength_title">Скрывать длину ключа</string>
