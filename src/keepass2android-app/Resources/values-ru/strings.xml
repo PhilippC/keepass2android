@@ -271,8 +271,8 @@
   <string name="hint_wordseparator">Разделитель слов</string>
   <string-array name="PasswordGeneratorModes">
     <item>Пароль</item>
-    <item>Ключевая фраза</item>
-    <item>Ключевая фраза + пароль</item>
+    <item>Парольная фраза</item>
+    <item>Парольная фраза + пароль</item>
   </string-array>
   <string-array name="PasswordGeneratorCaseModes">
     <item>в нижнем регистре</item>
@@ -544,7 +544,7 @@
   <string name="delete_key">Удалить закрытый ключ</string>
   <string name="private_key_select">Выберите закрытый ключ ...</string>
   <string name="private_key_create_new">[Добавить новый...]</string>
-  <string name="hint_sftp_key_passphrase">Ключевая фраза (опционально)</string>
+  <string name="hint_sftp_key_passphrase">Парольная фраза (опционально)</string>
   <string name="sftp_kex_title">Обмен ключами (KEX) Алгоритм(ы) (опционально)</string>
   <string name="hint_sftp_kex">Названия/спецификации через запятую</string>
   <string name="sftp_shk_title">Алгоритм(ы) ключа хоста сервера (опционально)</string>
