@@ -169,9 +169,9 @@
   <string name="hint_pass">пароль</string>
   <string name="hint_keyfile_path">SSH путь к закрытому ключу</string>
   <string name="hint_login_pass">Пароль</string>
-  <string name="hint_title">имя</string>
+  <string name="hint_title">Имя</string>
   <string name="hint_url">Ссылка</string>
-  <string name="hint_override_url">переопределить URL</string>
+  <string name="hint_override_url">Переопределить URL</string>
   <string name="hint_tags">тег1, тег2</string>
   <string name="hint_username">логин</string>
   <string name="InvalidPassword">Неверный пароль или файл-ключ.</string>
@@ -366,7 +366,7 @@
   <string name="field_value">Значение поля</string>
   <string name="protection">Защищённое поле</string>
   <string name="add_binary">Добавить вложение</string>
-  <string name="add_extra_string">Добавить дополнительную строку</string>
+  <string name="add_extra_string">Добавить доп строку</string>
   <string name="configure_totp">Настроить TOTP</string>
   <string name="totp_secret_key">Секретный ключ</string>
   <string name="totp_encoding_rfc6238">Настройки токена RFC6238 по умолчанию</string>
