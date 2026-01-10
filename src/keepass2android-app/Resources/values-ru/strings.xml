@@ -866,7 +866,7 @@
   <string name="autofill_enable">Включить</string>
   <string name="autofill_enable_failed">Извините, похоже, что Ваше устройство не поддерживает открытие настроек внутри приложения. Перейдите в системные настройки и вручную включите службу АвтоЗаполнения.</string>
   <string name="show_autofill_help">Помощь</string>
-  <string name="autofill_sign_in_prompt">Заполнить при помощи Keepass2Android</string>
+  <string name="autofill_sign_in_prompt">Использовать Keepass2Android</string>
   <string name="autofill_disable">Не использовать для %1$s</string>
   <string name="autofill_enable_for">Включить автозаполнение для %1$s</string>
   <string name="invalid_link_association">Не получается ассоциировать домен %1$s с приложением %2$s</string>
