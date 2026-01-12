@@ -1,4 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+ This file is part of Keepass2Android, Copyright 2025 Philipp Crocoll.
+
+   Keepass2Android is free software: you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation, either version 3 of the License, or
+   (at your option) any later version.
+
+   Keepass2Android is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with Keepass2Android.  If not, see <http://www.gnu.org/licenses/>.
+-->
 <resources>
   <string name="about_feedback">Commentaires </string>
   <string name="AboutText">Keepass2Android est un gestionnaire de mot de passe pour Android permettant de lire et écrire des bases de données KeePass 2.x.</string>
@@ -325,7 +341,9 @@
   <string name="QuickUnlockDefaultEnabled_title">Activer QuickUnlock par défaut</string>
   <string name="QuickUnlockDefaultEnabled_summary">Définit si QuickUnlock est activé par défaut ou non.</string>
   <string name="ViewDatabaseSecure_title">Protéger affichage base de données</string>
+  <string name="DisableSecureDisplayCheck_title">Ne pas vérifier si l\'écran est sécurisé</string>
   <string name="ViewDatabaseSecure_summary">Si activé, aucune copie d\'écran ne sera autorisée et aucune miniature de l\'application ne s\'affichera dans la liste des applications récentes.</string>
+  <string name="DisableSecureDisplayCheck_summary">Permet d\'afficher des informations sensibles même si l\'écran actuel n\'est pas marqué \"sécurisé\" par Android.</string>
   <string name="QuickUnlockIconHidden_title">Masquer l\'icône QuickUnlock</string>
   <string name="QuickUnlockIconHidden_summary">QuickUnlock ne fonctionne malheureusement pas sans afficher une icône de notification. Sélectionnez cette option pour utiliser une icône transparente.</string>
   <string name="QuickUnlockIconHidden16_title">Masquer l\'icône QuickUnlock</string>
@@ -741,6 +759,9 @@
   <string name="webdav_chunked_upload_size_summary">Taille des morceaux lors du téléchargement vers des serveurs WebDAV, en octets.</string>
   <string name="cleartextTrafficPermitted_title">Autoriser le trafic réseau en clair dans WebDAV</string>
   <string name="cleartextTrafficPermitted_summary">Les connexions HTTP ne sont pas sécurisées. N\'activez ceci que si vous avez d\'autres mesures de sécurité en place.</string>
+  <string-array name="ChangeLog_1_15_net">
+    <item>Améliorations de la gestion des URL pour WebDav avec des caractères non-ASCII</item>
+  </string-array>
   <string-array name="ChangeLog_1_15">
     <item></item>
     <item>Ajout de préférences utilisateur pour contrôler le comportement de la synchronisation en arrière-plan. Vous pouvez activer la synchronisation périodique en arrière-plan et contrôler si la synchronisation doit être effectuée en permanence ou uniquement sur les réseaux Wi-Fi.</item>
@@ -748,6 +769,7 @@
   <string-array name="ChangeLog_1_14">
     <item>Mise à jour vers .net 9 et Target SDK version 35. Ceci est livré avec une barre d\'état transparente sur Android 15 car le bord à bord est maintenant la valeur par défaut.</item>
     <item>Améliorations mineures de l\'interface</item>
+    <item>Suppression des boutons pour faire un don et trouver des plugins, afin de se conformer aux politiques de Google Play</item>
   </string-array>
   <string-array name="ChangeLog_1_14_net">
     <item>Améliorations de WebDav : Correction d\'un bogue pour l\'énumération des dossiers ; prise en charge des téléchargements et des transactions par morceaux.</item>

@@ -1,7 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+ This file is part of Keepass2Android, Copyright 2025 Philipp Crocoll.
+
+   Keepass2Android is free software: you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation, either version 3 of the License, or
+   (at your option) any later version.
+
+   Keepass2Android is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with Keepass2Android.  If not, see <http://www.gnu.org/licenses/>.
+-->
 <resources>
   <string name="about_feedback">Σχόλια</string>
-  <string name="AboutText">Το KP2A είναι ένας διαχειριστής συνθηματικών, που παρέχει δυνατότητα ανάγνωσης / εγγραφής σε βάσεις δεδομένων του KeePass 2.x στο Android.</string>
+  <string name="AboutText">Το KP2A είναι ένας διαχειριστής συνθηματικών, που παρέχει δυνατότητα ανάγνωσης και εγγραφής σε βάσεις δεδομένων του KeePass 2.x στο Android.</string>
   <string name="CreditsText">Το περιβάλλον εργασίας χρήστη βασίζεται σε μια έκδοση του KeepassDroid που αναπτύχθηκε από τον Brian Pellin. Ο κώδικας για τις λειτουργίες της βάσης δεδομένων βασίζεται στο KeePass του Dominik Reichl. Το ρομπότ Android αναπαράγεται ή τροποποιείται από εργασία που δημιουργήθηκε και διαμοιράστηκε από την Google και χρησιμοποιείται σύμφωνα με τους όρους που περιγράφονται στο το Creative Commons 3.0 Attribution License.</string>
   <string name="CreditsTextSFTP">Το SFTP υποστηρίζεται με χρήση της βιβλιοθήκης JSch με άδεια BSD που δημιουργήθηκε από τη JCraft, Inc.</string>
   <string name="CreditsIcons">Το εικονίδιο Σφυρί δημιουργήθηκε από τον John Caserta, το εικονίδιο Πιγκουίνος δημιουργήθηκε από τον Adriano Emerick, το εικονίδιο Φτερό δημιουργήθηκε από τον Jon Testa και το εικονίδιο της Apple δημιουργήθηκε από την Ava Rowell. Όλα τα προηγούμενα εικονίδια είναι από το Noun Project. Το εικονίδιο της Εικόνας είναι από το https://icons8.com/icon/5570/Picture.</string>
@@ -63,7 +79,7 @@
   <string name="Ok">Ok</string>
   <string name="disable_sensor">Απενεργοποίηση αισθητήρα</string>
   <string name="enable_sensor">Ενεργοποίηση αισθητήρα</string>
-  <string name="ClearClipboard">Το πρόχειρο ξκαθαρίστηκε.</string>
+  <string name="ClearClipboard">Το πρόχειρο καθαρίστηκε.</string>
   <string name="clipboard_timeout">Υπέρβαση χρονικού ορίου πρόχειρου</string>
   <string name="clipboard_timeout_summary">Χρόνος πριν την εκκαθάριση του πρόχειρου μετά την αντιγραφή ονόματος χρήστη ή συνθηματικού</string>
   <string name="copy_username">Επιλέξτε για αντιγραφή ονόματος χρήστη στο πρόχειρο</string>
@@ -85,7 +101,7 @@
   <string name="SystemLanguage">Γλώσσα συστήματος</string>
   <string name="fingerprint_description">Χρειάζεται αυθεντικοποίηση για να συνεχίσετε</string>
   <string name="fingerprint_fatal">Αποτυχία βιομετρικού ξεκειδώματος:</string>
-  <string name="fingerprint_not_recognized">Η βιομετρική αυθεντικοποίηση απέτυχε. Δοκιμάστε ξανά</string>
+  <string name="fingerprint_not_recognized">Η βιομετρική αυθεντικοποίηση απέτυχε. Δοκιμάστε ξανά.</string>
   <string name="fingerprint_success">Επιτυχής βιομετρική αυθεντικοποίηση</string>
   <string name="fingerprint_os_error">Η βιομετρική αυθεντικοποίηση απαιτεί Android 6.0 τουλάχιστον.</string>
   <string name="fingerprint_hardware_error">Δεν ανιχνεύτηκε βιομετρική συσκευή.</string>
@@ -102,7 +118,7 @@
   <string name="FingerprintInitFailed">Αποτυχία αρχικοποίησης βιομετρικής αυθεντικοποίησης. </string>
   <string name="FingerprintSetupFailed">Αποτυχία κρυπτογράφησης δεδομένων. Μπορεί να συμβεί αν προσθέσεις ή αφαιρέσεις δακτυλικά αποτυπώματα στις ρυθμίσεις συστήματος ενώ το Keypass2Android περιμένει το δακτυλικό σου αποτύπωμα.</string>
   <string name="enable_fingerprint_unlock_Info">Το πρωτεύον συνθηματικό θα αποθηκευτεί σε αυτή τη συσκευή, κρυπτογραφημένο στο Android Keystore και θα προστατεύεται με βιομετρική αυθεντικοποίηση. Επιτρέπει το ξεκλείδωμα της βάσης δεδομένων με χρήση βιομετρίας.</string>
-  <string name="enable_fingerprint_quickunlock_Info">Επιτρέπει τη χρήση βιομετρικής αυθεντικοποίησης αντί του κώδικού QuickUnlock. Δεν αποθηκεύει πληροφορία σχετική με το πρωτεύον συνθηματικό.</string>
+  <string name="enable_fingerprint_quickunlock_Info">Επιτρέπει τη χρήση βιομετρικής αυθεντικοποίησης αντί του κωδικού QuickUnlock. Δεν αποθηκεύει πληροφορία σχετική με το πρωτεύον συνθηματικό.</string>
   <string name="enter_filename">Δώστε όνομα αρχείου της βάσης δεδομένων:</string>
   <string name="entry_accessed">Προσπελάστηκε</string>
   <string name="entry_cancel">Ακύρωση</string>
@@ -248,7 +264,7 @@
   <string name="sort_moddate">Ταξινόμηση κατά ημερομηνία τροποποίησης</string>
   <string name="sort_default">Διατήρηση προεπιλεγμένης ταξινόμησης</string>
   <string name="special">Ειδικοί χαρακτήρες</string>
-  <string name="special_extended">Εκτεταμένοι Ειδικοί</string>
+  <string name="special_extended">Εκτεταμένοι ειδικοί χαρακτήρες</string>
   <string name="at_least_one_from_each_group">Τουλάχιστον ένα από κάθε ομάδα</string>
   <string name="exclude_lookalike">Εξαίρεση παρόμοιων χαρακτήρων</string>
   <string name="password_generation_profile">Προφίλ</string>
@@ -387,6 +403,8 @@
   <string name="NoDonationReminder_summary">Δε δίνω δυάρα ή έχω ήδη κάνει προσφορά. Μη ζητάς προσφορά, ούτε καν στα γενέθλια του κατασκευαστή.</string>
   <string name="UseOfflineCache_title">Προσωρινή αποθήκευση βάσης δεδομένων</string>
   <string name="UseOfflineCache_summary">Διατηρεί ένα αντίγραφο των αρχείων βάσεων δεδομένων στο φάκελο cache της εφαρμογής. Αυτό επιτρέπει να χρησιμοποιούνται οι βάσεις δεδομένων ακόμη και όταν τα αρχεία τους δεν είναι διαθέσιμα.</string>
+  <string name="SyncOfflineCacheInBackground_summary">Κατά την αποθήκευση ή τη φόρτωση, χρησιμοποιήστε την εσωτερική προσωρινή μνήμη. Στη συνέχεια, συγχρονίστε με την απομακρυσμένη αποθήκευση σε μια διεργασία στο παρασκήνιο.</string>
+  <string name="SyncOfflineCacheInBackground_title">Συγχρονισμός στο παρασκήνιο</string>
   <string name="CreateBackups_title">Τοπικά αντίγραφα</string>
   <string name="CreateBackups_summary">Δημιουργία τοπικού αντιγράφου μετά την επιτυχή φόρτωση της βάσης δεδομένων</string>
   <string name="UpdatingBackup">Ενημέρωση τοπικού αντιγράφου...</string>
@@ -723,13 +741,28 @@
   <string name="DbQuicklockedChannel_desc">Ειδοποίηση για τη βάση δεδομένων που κλειδώνεται με QuickUnlock</string>
   <string name="EntryChannel_name">Ειδοποιήσεις</string>
   <string name="EntryChannel_desc">Ειδοποίηση για απλοποιημένη πρόσβαση στην τρέχουσα καταχώριση.</string>
+  <string name="BackgroundSyncChannel_name">Λειτουργία συγχρονισμού</string>
+  <string name="BackgroundSyncChannel_desc">Ειδοποίηση που υποδεικνύει ότι εκτελείται συγχρονισμός στο παρασκήνιο</string>
   <string name="CloseDbAfterFailedAttempts">Κλείσιμο της βάσης δεδομένων μετά από 3 ανεπιτυχείς προσπάθειες βιομετρικού ξεκλειδώματος.</string>
   <string name="hint_smb_credentials">Αν θέλετε να αποκτήσετε πρόσβαση σε αρχεία από τον προσωπικό σας υπολογιστή με Windows, χρησιμοποιήστε το όνομα του υπολογιστή ή την τοπική διεύθυνση IP ως URL υποδοχής. Εισάγετε το όνομα υπολογιστή ως domain και τα στοιχεία του Windows login (συχνά ίδια με το λογαριασμό Microsoft) ως όνομα χρήστη και  συνθηματικό.</string>
   <string name="WarnFingerprintInvalidated">Προσοχή! Ο βιομετρικός έλεγχος ταυτότητας μπορεί να ακυρωθεί από το Android, π.χ. μετά την προσθήκη ενός νέου δακτυλικού αποτυπώματος στις ρυθμίσεις της συσκευής σας. Βεβαιωθείτε ότι ξέρετε πάντα πώς να ξεκλειδώσετε με το κύριο συνθηματικό!</string>
   <string name="webdav_chunked_upload_size_title">Μέγεθος ομάδας για μεταφόρτωση WebDav</string>
+  <string name="webdav_chunked_upload_enabled_title">Ενεργοποίηση κομματιασμένης μεταφόρτωσης για WebDav</string>
+  <string name="webdav_chunked_upload_enabled_summary">Για διακομιστές WebDav που δεν υποστηρίζουν μεταφόρτωση μεγάλων αρχείων με ένα μόνο αίτημα. Όταν είναι ενεργοποιημένο, το Keepass2Android χρησιμοποιεί τυπικό κομμάτιασμα WebDav, όχι τη μέθοδο του Nextcloud.</string>
+  <string name="webdav_chunked_upload_size_summary">Μέγεθος κομματιών κατά τη μεταφόρτωση σε διακομιστές WebDav σε bytes.</string>
+  <string name="cleartextTrafficPermitted_title">Να επιτρέπεται η διακίνηση μη κρυπτογραφημένου κειμένου στο WebDav</string>
+  <string name="cleartextTrafficPermitted_summary">Οι συνδέσεις HTTP δεν είναι ασφαλείς. Ενεργοποιήστε αυτήν την επιλογή μόνο αν έχετε άλλα μέτρα ασφαλείας.</string>
+  <string-array name="ChangeLog_1_15_net">
+    <item>Βελτιώσεις στο χειρισμό URL για WebDav με μη-ASCII χαρακτήρες</item>
+  </string-array>
+  <string-array name="ChangeLog_1_15">
+    <item>Προστέθηκε συγχρονισμός στο παρασκήνιο: το Keepass2Android χρησιμοποιεί τώρα το εσωτερικό αντίγραφο cache για φόρτωση και αποθήκευση της βάσης δεδομένων για να κάνει αυτές τις λειτουργίες πιο γρήγορα. Κατόπιν, ξεκινά ο συγχρονισμός με την απομακρυσμένη βάση δεδομένων. </item>
+    <item>Προστέθηκαν προτιμήσεις χρήστη για τον έλεγχο της συμπεριφοράς του συγχρονισμού στο παρασκήνιο. Μπορείτε να ενεργοποιήσετε τον περιοδικό συγχρονισμό στο παρασκήνιο και τον έλεγχο εάν ο συγχρονισμός πρέπει να εκτελείται πάντα ή μόνο σε δίκτυα Wi-Fi.</item>
+  </string-array>
   <string-array name="ChangeLog_1_14">
     <item></item>
-    <item>Minor UI improvements</item>
+    <item>Μικρές βελτιώσεις στη διεπαφή χρήστη</item>
+    <item>Αφαιρέθηκαν τα κουμπιά για δωρεά και εύρεση plugins, σε συμμόρφωση με τις πολιτικές του Google Play</item>
   </string-array>
   <string-array name="ChangeLog_1_14_net">
     <item>Βελτιώσεις στο WebDav: Διόρθωση σφάλματος στη λίστα φακέλων, υποστήριξη για ομαδικές μεταφορτώσεις και δοσοληψίες</item>
@@ -840,7 +873,267 @@
     <item>Διορθώσεις σφαλμάτων</item>
     <item>Διορθώσεις σφαλμάτων</item>
   </string-array>
+  <string name="ChangeLog_1_07b">Έκδοση 1.07b\n
+* Βελτίωση επιδόσεων Argon2 με χρήση εγγενούς υλοποίησης (ευχαριστώ Chih-Hsuan Yen!)\n
+* Επιτρέπει απενεργοποίηση του δακτυλικού αποτυπώματος με κλικ στο εικονίδιο (λύνει το ζήτημα με τους αναγνώστες δακτυλικού αποτυπώματος κάτω από την οθόνη, ευχαριστώ marcoDallas!)\n
+* Επαναφέρει τη θέση του δρομέα όταν αλλάζει η ορατότητα του συνθηματικού (ευχαριστώ DDoSolitary!)\n
+* Βελτιώσεις στην υλοποίηση PCloud (ευχαριστώ gilbsgilbs πάλι!)\n
+* Υποστήριξη AutoFill για πολλούς browsers \n
+* Νέα υλοποίηση για OneDrive: περιλαμβάνει υποστήριξη OneDrive for Business, κοινόχρηστα αρχεία, επιλεγόμενα επίπεδα πρόσβασης, πολλαπλούς λογαριασμούς και διορθώνει ζητήματαμε offline πρόσβαση\n
+* Διόρθωση σφαλμάτων  </string>
+  <string name="ChangeLog_1_07">Εκδοση 1.07\n
+* Διορθώνει κρασαρίσματα στο Samsung\'s Android 9\n
+* Επιτρέπει άνοιγμα περισσότερων από μιας βάσεων δεδομένων, συμβατό με KeeAutoExec\n
+* SFTP: Επιτρέπει αυθεντικοποίηση δημόσιου κλειδιού, ελέγχει για αλλαγή host key\n
+* Εισάγει υποστήριξη pCloud - ευχαριστώ gilbsgilbs!\n
+ * Προβάλει την υποστήριξη Nextcloud\n
+* Βελτιώνει την αποθήκευση και ενημέρωση συνημμένων\n
+* Περισσότερες επιλογές διαμόρφωσης συμπεριφοράς στις προσωπικές προτιμήσεις\n
+* SSL: Πιστοποιητικά έμπιστου χρήστη\n
+* Βελτίωση autofill (λειτουργεί με Firefox, επιτρέπει μείωση αναδυόμενων)\n
+* Διόρθωση σφαλμάτων\n  </string>
+  <string name="ChangeLog_1_06">Έκδοση 1.06\n
+* Χρήση του ykDroid αντί του YubiChallenge ως εφαρμογή για Yubikey Πρόκληση-Απόκριση.\n
+* Υλοποίηση υποστήριξης για KeepassXC-style Challenge-Response. Σημείωση: Το φορμάτ της βάσης δεδομένων πρέπει να είναι KDBX4!\n     * Άρνηση φόρτωσης πεταμένων αρχείων από το Google Drive\n
+ * Αλλαγή της υλοποίησης TLS για το FTPS, προσθήκη λύσης του σφάλματος JSch για εξυπηρετητές που υποστηρίζουν gssapi-with-mic\n
+* Διορθώσεις σφαλμάτων\n</string>
+  <string name="ChangeLog_1_05"></string>
+  <string name="ChangeLog_1_04b">    Έκδοση 1.04b\n
+    * Αποφυγή κρασαρίσματος κατά την ενεργοποίηση Autofill σε συσκευές Huawei.\n
+  </string>
+  <string name="ChangeLog_1_04">    Έκδοση 1.04\n
+    * Προσθήκη υπηρεσίας Autofill για Android 8.0 και επόμενα.\n
+    * Αναβαθμισμένες βιβλιοθήκες, εργαλεία ανάπτυξης και έκδοση Target SDK.\n
+  </string>
+  <string name="ChangeLog_1_03">Έκδοση 1.03\n
+    * Αφαιρέθηκε η υπηρεσία προσβασιμότητας έπειτα από απαίτηση της Google. Δείτε τις ρυθμίσεις κωδικών προσβασιμότητας για να βρείτε ένα πρόσθετο που να αντικαθιστά την λειτουργικότητα.\n
+    * Προστέθηκαν ξανά εφαρμογές τρίτων σαν επιλογές αποθήκευσης\n
+    * Ενσωματωμένο πρόγραμμα προβολής εικόνων για την προβολή συνημμένων εικόνων χωρίς να χρειάζεται η μεταφορά τους σε άλλη εφαρμογή\n
+    * Αναβάθμιση του OkHttp για διόρθωση λαθών σε κάποιες συνδέσεις\n
+    * Υποστήριξη για καταχωρήσεις KeeTrayTOTP, με υποστήριξη καταχωρήσεων Steam\n
+  </string>
+  <string name="ChangeLog_1_02">Έκδοση 1.02\n
+* Αρκετές βελτιώσεις ασφαλείας. Ευχαριστώ πολύ για την έκθεση ασφάλειας των jean-baptiste.cayrou@thalesgroup.com και vincent.fargues@thalesgroup.com και για τη συνεργασία τους! \n 
+* Υποστήριξη του πρόσθετου KeyboardSwap (δείτε επιλογές κωδικού πρόσβασης): επιτρέπει την αυτόματη αλλαγή μεθόδου εισαγωγής για συσκευές που δεν είναι root. Ευχαριστώ τον Mishaal Rahman από τους XDA-Developers. \n 
+* Διόρθωση στην υπηρεσία προσβασιμότητας με πρόσφατες εκδόσεις του Chrome\n 
+* Διόρθωση για περιττές εκκαθαρίσεις δεδομένων των δακτυλικών αποτυπωμάτων\n 
+* Διόρθωση ήσσονος σημασίας καταρρεύσεων\n 
+* Ενημέρωση του Dropbox SDK για να εξασφαλιστεί μελλοντική συμβατότητα \n 
+* Αφαίρεση αναφοράς σφαλμάτων μέσω Xamarin Insights\n 
+* Ενημερωμένα εργαλεία ανάπτυξης\n   </string>
+  <string name="ChangeLog_1_01g">Έκδοση 1.01-g\n 
+* Διόρθωση για αιφνίδια διακοπή λειτουργίας κατά την λειτουργία offline\n
+* Διόρθωση για εσφαλμένη κωδικοποίηση των πιστοποιητικών FTP (S)\n 
+* Διόρθωση για καταρρεύσεις κατά τη χτήση του OneDrive και σε παλιότερες εκδόσεις Android\n 
+* Προβολή της τοπικής ώρας στην οθόνη εισόδου\n   </string>
+  <string name="ChangeLog_1_01d">Έκδοση 1.01-d\n 
+* Διόρθωση για λίστα αρχείων στο OneDrive\n 
+* Επιτρέπεται η αγνόηση σφαλμάτων πιστοποιητικών όταν αποτυγχάνει η επαλήθευση του host name (δεν συνιστάται για κανονική χρήση)\n 
+* Διόρθωση για QuickUnlock που μερικές φορές αποτυγχάνει παρά το σωστό κωδικό ξεκλειδώματος\n   </string>
+  <string name="ChangeLog_0_9_8c">    Έκδοση 0.9. c\n
+    * Διόρθωση για ευπάθεια SSL στο Microsoft Live SDK (που χρησιμοποιείται κατά την πρόσβαση σε αρχεία μέσω OneDrive)\n
+    * Διόρθωση σφάλματος: Προηγούμενη έκδοση περιείχε δύο μεθόδους εισόδου (μία συντριβή)\n
+  </string>
+  <string name="ChangeLog_1_01">Έκδοση 1.01\n 
+* Προστέθηκε υποστήριξη για τη νέα μορφή KDBX-4 (συμβατή με Keepass 2.35) που  συμπεριλαμβάνει παραγωγή κλειδιού Argon2 και κρυπτογράφηση ChaCha20. \n
+* Νέα υλοποίηση αποθήκευσης αρχείων WebDav, που επιτρέπει περιήγηση αρχείων και υποστηρίζει σύγχρονη κρυπτογράφηση. \n
+* Νέα υλοποίηση αποθήκευσης αρχείων FTP, που επιτρέπει περιήγηση αρχείων και υποστηρίζει κρυπτογράφηση (FTPS). \n 
+* Ενημέρωση στο OneDrive SDK (προηγουμένως χρησιμοποιούσε το Live SDK που δεν ενημερώνεται πλέον) \n
+* Ενημέρωση στο Dropbox SDK έκδοση 2 (προηγουμένως χρησιμοποιούσε την έκδοση 1 του SDK που έχει καταργηθεί). \n 
+* Προστέθηκε υποστήριξη για OwnCloud.\n 
+* Ερωτά για άδεια αποθήκευσης πριν από το άνοιγμα τοπικών αρχείων.</string>
+  <string name="ChangeLog_1_0_0e">    Έκδοση 1.0. e\n
+    * Διόρθωση για ξεκλείδωμα δακτυλικών αποτυπωμάτων σε παλαιότερες συσκευές Samsung με Android 6\n
+    * προσθέστε εγγενή υποστήριξη για συσκευές x86\n
+    * επιτρέψτε να κρύψετε το πληκτρολόγιο κατά τη σάρωση δακτυλικών αποτυπωμάτων\n
+    * δημιουργία ενημέρωσης συστήματος
+  </string>
+  <string name="ChangeLog_1_0_0">Έκδοση 1.0.0\n
+* Ξεκλείδωμα με δακτυλικό αποτύπωμα (απαιτεί Android 6.0+ ή συσκευή Samsung)\n
+* Υπηρεσία αυτόματης συμπλήρωσης (απαιτεί Android 5.0+)\n
+* Υποστήριξη προτύπων για καταχωρίσεις\n
+* Προσθήκη λειτουργίας \"Εκτός σύνδεσης\"\n
+* Επιτρέπει αντιγραφή καταχωρίσεων\n
+* Αυτόματη συμπλήρωση για τα ονόματα πεδίων\n
+* Επιτρέπει διαγραφές από τη λίστα πρόσφατων αρχείων\n
+* Ζητά άδειες κατά την εκτέλεσης στο Android 6.0\n
+* Διορθώνει σφάλματα (στο ενσωματωμένο πληκτρολόγιο, κατά την επιλογή εικονιδίων)\n
+* Προσθέτει επιλογή για αποστολή αναφοράς σφαλμάτων\n
+* Προσθέτει μηνύματα βοήθειας σε πολλά σημεία\n</string>
+  <string name="ChangeLog_0_9_9">Έκδοση 0.9.9\n
+* Πλήρης επανασχεδίαση του παρουσιαστικού. Ευχαριστώ Stefano Pignataro (http://www.spstudio.at) για την υποστήριξη!\n
+* Επιτρέπει προσθήκη προσαρμοσμένων εικονιδίων\n
+* Επιτρέπει πολλαπλά παράθυρα σε συσκευές Samsung\n
+* Αυξημένο εξ ορισμού πλήθος κύκλων κρυπτογράφησης για νέες βάσεις δεδομένων\n
+* Έλεγχος για διπλότυπα κλειδιά στα πρόσθετα πεδία ώστε να αποφεύγεται απώλεια δεδομένων\n</string>
+  <string name="ChangeLog_0_9_9c">Έκδοση 0.9.9c\n
+* Το σκοτεινό θέμα είναι πίσω\n
+* Μπορείς να εγκαταστήσεις άλλα πακέτα εικονιδίων (τα αρχαία εικονίδια είνια διαθέσιμα στο Play store)\n
+* Πρόσθετη επιβεβαίωση κατά τη διαγραφή καταχωρίσεων χωρίς κάδο ανακύκλωσης\n
+* Διορθώσεις σφαλμάτων (wrong display of OTP secret encoding, wrong app icon in some places)\n  </string>
+  <string name="ChangeLog_0_9_8b">    Έκδοση 0.9. b\n
+    * Διόρθωση σφαλμάτων (Η αποθήκευση απέτυχε για κάποιες βάσεις δεδομένων, η εξαγωγή σε τοπική συσκευή δεν λειτουργεί, επιλέγοντας μερικές επιλογές προτίμησης συνετρίβη την εφαρμογή)\n
+  </string>
+  <string name="ChangeLog_0_9_8">Έκδοση0.9.8\n
+* Υποστήριξη Storage Access Framework (επιτρέπει εγγραφή στην κάρτα SD και στο Google Drive στην KP2A Offline)\n 
+* Προσπαθεί να ανιχνεύσει σφάλματα όταν ο χρήστης εισάγει WebDAV URLs (φάκελο αντί αρχείου)\n 
+* Αλλαγή γραμματοσειράς συνθηματικού\n 
+* Επιτρέπει αλλαγή λογαριασμού Dropbox\n 
+* Διόρθωση σφαλμάτων: τώρα απομνημονεύει το συνθηματικό OTP</string>
+  <string name="ChangeLog_0_9_7b">    Έκδοση 0.9. b\n
+    * ενημέρωση των μεταφράσεων\n
+    * διορθώσεις σφαλμάτων: Η γραμματοσειρά του κωδικού πρόσβασης λείπει στο 0.9.7, ταξινόμηση με όνομα δεν ταξινομούσε τις ομάδες\n
+  </string>
+  <string name="ChangeLog_0_9_7">Έκδοση 0.9.7\n
+* Υποστήριξη εγγραφής για βάσεις δεδομένων Keepass 1 (kdb) (σε beta!)\n
+* Καλύτερη εναλλαγή πληκτρολογίου (λειτουργεί σε μη root συσκευές)\n
+* υποστήριξη του KeeChallenge με αποκρίσεις μεταβλητού μήκους\n
+* απαγορεύει τη λήψη screenshots των οθονών QuickUnlock και συνθηματικού\n 
+* ανάστροφη ταξινόμηση κατά ημερομηνία τροποποίησης (τώρα φθίνουσα)\n
+* διορθώσεις σφαλμάτων: προβολή σημειώσεων ενημερώνεται σωστά μετά από αλλαγές, προβολή συνθηματικού αποκρύπτει το συνθηματικό σε όλες τις συσκευές, απαγορεύει τη διπλή εισαγωγή καταχώρισης, διόρθωση στην προειδοποίηση διπλότυπων αναγνωριστικών ακόμα και μετά την επιδιόρθωση της βάσης δεδομένων\n </string>
+  <string name="ChangeLog_0_9_6">Έκδοση 0.9.6\n
+* επιτρέπει την εισαγωγή αρχείου κλειδιού και /ή αρχείου τοπικής βάσης δεδομένων σε εσωτερικό φάκελο (δείτε ρυθμίσεις)\n
+* επιτρέπει διάφορες επιλογές ταξινόμησης\n 
+* βελτιωμένες επιλογές για αυτόματη εναλλαγή πληκτρολογίου\n 
+* ενημερωμένο λογότυπο εφαρμογής και σχεδίαση ειδοποιήσεων, από τον Stefano Pignataro (http://www.spstudio.at)\n
+* η γεννήτρια συνθηματικών απομνημονεύει τις τελευταίες ρυθμίσεις\n 
+* ρύθμιση ορατότητας ειδοποιήσεων για την οθόνη κλειδώματος του Android 5\n
+* καθαρισμός του πεδίου για το κύριο συνθηματικό όταν φεύγεις από την εφαρμογή χωρίς να πατήσεις OK\n
+* διόρθωση ζητήματος που λείπουν γλώσσες εισαγωγής στις ρυθμίσεις πληκτρολογίου σε μερικές συσκευές\n
+* διόρθωση στην αυτόματη εναλλαγή πληκτρολογίου σε συσκευές root\n
+* πρόσθετος έλεγχος για κατεστραμμένες βάσεις δεδομένων (διπλότυπα αναγνωριστικά)\n
+* αυτόματη επαναφόρτωση της βάσης δεδομένων όταν εντοπιστεί αλλαγή, για να μην υπάρχουν αμφιβολίες για διαρροή του συνθηματικού\n 
+* βελτιωμένο πολωνικό μικρό πληκτρολόγιο και διόρθωση του θέματος ρυθμίσεων πληκτρολογίου (Wiktor Ławski)\n</string>
+  <string name="ChangeLog_0_9_5">    <b>Έκδοση 0.9.</b>\n
+    * Σταθερά ζητήματα με την περιήγηση αρχείων (ειδικά στο Android 4. )\n
+    * Σταθερό πρόβλημα με τη φόρτωση . db αρχεία (Keepass 1) στο Nexus 5 με Android Lollipop\n
+    * Προστέθηκε η επιλογή να αποφευχθεί η λήψη στιγμιότυπα/εμφάνιση εφαρμογής σε πρόσφατες εφαρμογές λίστα\n
+    * Σταθερό ζήτημα με τον αποθηκευτικό χώρο του Google Drive (κανονική έκδοση)\n
+    * Επιτρέψτε τα αρχεία κλειδιών σε σκόπιμους τύπους αποθήκευσης (κανονική έκδοση)\n
+    * Ενημερώθηκε Dropbox SDK για να συμπεριλάβει ένα επίσημο patch ασφαλείας (τακτική έκδοση)\n
+    * Ενημερωμένα εργαλεία κατασκευής --&gt; apk μέγεθος αυξήθηκε :-(\n
+    Έχω υποσχεθεί μερικές περισσότερες αλλαγές. Θα έρθουν με την επόμενη κυκλοφορία - συγνώμη. Ήθελα να δημοσιεύσω αυτές τις καυτές διορθώσεις το συντομότερο δυνατό.
+  </string>
+  <string name="ChangeLog_0_9_4">Έκδοση 0.9.4\n
+* added plug-in support: See settings for how to get plug-ins!\n
+*  published QR plug-in (scan passwords, display passwords as QR code, transfer entries to other KP2A devices)\n
+*  published InputStick plugin (transfer credentials to your PC via bluetooth - requires InputStick USB stick)\n
+*  Third party apps can now simply implement querying KP2A for credentials. Are you a developer? Please add this to your app if suitable!\n
+* added TOTP support (compatible with KeeOTP and TrayTotp)\n
+* app should no longer be killed by Android when database is open\n
+* database is no longer locked when leaving the app with the back button (see settings)\n
+* display group names in search results view (*)\n
+* added context menu in search results view including \"Navigate to parent\" option (*)\n
+* added option to display group name in entry view (*)\n
+* (*) thanks to Matthieu for implementing these features!\n
+* support KeeChallenge (with Yubikey NEO). Thanks to Ben Rush for implementing the connector!\n
+* improved user interface\n
+* fixed a bug in Google Drive interface\n
+* added option to disable the \"donate\" option\n
+* QuickUnlock icon now hidden on Android 4.2+ devices by default\n</string>
+  <string name="ChangeLog_0_9_3_r5">    <b>Έκδοση 0.9. r5</b>\n
+    * Ενσωματωμένες διορθώσεις από Xamarin: Το Keepass2Android είναι πλέον συμβατό με το ART στο Android 4. .2. Τελικά!\n
+    * Διορθώσεις σφαλμάτων: σφάλματα συγχρονισμού (ανανέωση οθόνης, σωστός έλεγχος για αλλαγές στο http), σφάλματα στο Android 2. συσκευές, σφάλματα στο Google Drive και OneDrive εφαρμογές αποθήκευσης, σαφή πρόχειρο σε κοντινή βάση δεδομένων, συνημμένα ανοίγματος σφαλμάτων, προβλήματα εμφάνισης με το πληκτρολόγιο\n
+  </string>
+  <string name="ChangeLog_0_9_3">    <b>Έκδοση 0.9.3</b>\n
+    * Νέο πληκτρολόγιο με πολλές βελτιώσεις. Δείτε τις ρυθμίσεις για προσαρμογή.\n
+    * Υποστήριξη μόνο για το kdb (Keepass 1 αρχεία). Πειραματικό!\n
+    * Προστέθηκε η υποστήριξη SFTP\n
+    * Προστέθηκε εργασία για bug στο ART (Android 4. .2)\n
+    * Διορθώσεις σφαλμάτων\n
+  </string>
+  <string name="ChangeLog_0_9_2">    <b>Έκδοση 0.9.</b>\n
+    * Προσθήκη υποστήριξης OTP (συμβατή με plugin OtpKeyProv)\n
+    * Ολοκληρωμένη υποστήριξη NFC για OTP από YubiKey NEO \n
+    * Πολλές βελτιώσεις UI\n
+    * Ολοκληρωμένη Keepass 2. 4 βιβλιοθήκη\n
+    * Προστέθηκε η επιλογή να τερματιστεί η διαδικασία εφαρμογής (δείτε τις ρυθμίσεις)\n
+    * Βελτιωμένη επικύρωση πιστοποιητικού SSL\n
+    * Διορθώσεις σφαλμάτων\n
+  </string>
+  <string name="ChangeLog_0_9_1">    <b>Έκδοση 0.9.</b>\n
+    * Ενσωματωμένη υποστήριξη SkyDrive (μόνο κανονική έκδοση Keepass2Android)\n
+    * Σταθερά προβλήματα με την ενσωμάτωση του Google Drive\n
+    * Προσθήκη υποστήριξης NTLM
+  </string>
+  <string name="ChangeLog_0_9">Έκδοση 
+
+    .&lt;/b&gt;\n
+    * Ενσωματωμένη υποστήριξη Dropbox και Google Drive (βάσεις δεδομένων ανάγνωσης/εγγραφής; Κανονική έκδοση Keepass2Android μόνο)\n
+    * Ολοκληρωμένο πρόγραμμα περιήγησης προσαρμοσμένων αρχείων (με βάση το android-filechooser από HBA)\n
+    * Βελτιωμένη διεπαφή χρήστη για τη δημιουργία νέων βάσεων δεδομένων\n
+ * Συμπεριλαμβάνεται προσαρμοσμένη γραμματοσειρά DejaVu Sans Mono για την εμφάνιση κωδικών πρόσβασης\n
+    * Διορθώσεις σφαλμάτων
+  </string>
+  <string name="ChangeLog_0_8_6">    <b>Έκδοση 0.8.</b>\n
+    * Υποστήριξη για Twofish cipher\n
+    * Επιτρέπεται η επεξεργασία των ομάδων\n
+    * Επιτρέπεται η μετακίνηση των καταχωρήσεων και των ομάδων\n
+    * Εικονίδιο QuickUnlock μπορεί να γίνει διαφανής (βλ. ρυθμίσεις)\n
+    * Διορθώσεις σφαλμάτων
+  </string>
+  <string name="ChangeLog_0_8_5">Έκδοση 0.8.5\n
+* Remote files are stored in the local application cache to allow offline usage (including editing and later synchronization). See settings. \n
+* Notification icon to visualize the lock-state of the database (see settings)\n
+* Improved determination of lock-state in some situations\n
+* Database files are loaded to memory while you are typing your password for increased loading speed (see settings)\n
+* Entries can be added to root group\n
+* Bug fixes (resolving reference fields, problems with keyboard on Italian an Chinese devices)</string>
+  <string name="ChangeLog_0_8_4">    <b>Έκδοση 0.8.</b>\n
+    * Οι αλλαγές στην εξωτερική βάση δεδομένων ανιχνεύονται και συγχωνεύονται κατά την αποθήκευση\n
+    * Βελτιωμένη απόδοση φόρτωσης\n
+    * Βελτιωμένη γραμμή εργαλείων αναζήτησης με προτάσεις\n
+    * Νέο λογότυπο εφαρμογής!\n
+    * Προστέθηκε υποστήριξη για . dbp μορφή για ταχύτερη φόρτωση/αποθήκευση\n
+    * Βελτιωμένη επεξεργασία επιπλέον συμβολοσειρών και κρυφή οθόνη όταν προστατεύεται\n
+    Χάρη στον Alex Vallat για τις συμβολές κώδικα του!\n
+    Χάρη στον Niki Huèttner (www. lose-cut.de) για το νέο λογότυπο!\n
+  </string>
+  <string name="ChangeLog_0_8_3">    <b>Έκδοση 0.8.</b>\n
+    * Όνομα χρήστη/ευρετήριο TAN εμφανίζεται στη λίστα καταχώρησης (δείτε τις ρυθμίσεις)\n
+    * Ενδείξεις μπορούν να δημιουργηθούν αν η αναζήτηση από τον περιηγητή δεν επιστρέφει τα αποτελέσματα\n
+    * Το πληκτρολόγιο KP2A παρέχει τη δυνατότητα αναζήτησης διαπιστευτηρίων για την τρέχουσα εφαρμογή\n
+    * Η εφαρμογή κλείνει αυτόματα μετά την επιλογή μιας καταχώρησης για χρήση στο πληκτρολόγιο\n
+    * Ο διάλογος επιλογής πληκτρολογίου ανοίγει αυτόματα μετά την αναζήτηση για URL (δείτε τις ρυθμίσεις)\n
+    * Οι κάτοχοι τοποθεσιών στα πεδία καταχωρήσεων αντικαθίστανται πριν την αντιγραφή (υποστηρίζονται οι περισσότεροι κάτοχοι θέσεων)\n
+    * μικρές διορθώσεις σφαλμάτων
+  </string>
+  <string name="ChangeLog_0_8_2">    <b>Έκδοση 0.8.2</b>\n
+    * Υποστήριξη για Ταυτοποίηση Digest σε WebDAV\n
+    * Διορθώσεις σφαλμάτων (OI File manager, Open URL)
+  </string>
+  <string name="ChangeLog_0_8_1">    <b>Έκδοση 0.8.</b>\n
+    * KP2A Offline και \"Online\" μπορεί να εγκατασταθεί και πάλι\n
+    * Προστέθηκε νέες μεταφράσεις (χάρη σε όλους τους συνεισφέροντες!
+  </string>
+  <string name="ChangeLog_0_8">Έκδοση 
+
+    .&lt;/b&gt;\n
+    * Βελτιωμένη διεπαφή χρήστη, ειδικά για το Android 4. συσκευές\n
+    * Να επιτρέπεται η χρήση σκόπιμων διαχειριστών αρχείων για την επιλογή των υφιστάμενων αρχείων\n
+    * Προστέθηκε ασφαλέστερος τρόπος για το άνοιγμα των συνημμένων (μέσω του καταλόγου cache)\n
+ * σταθερά σφάλματα στην Επεξεργασία δραστηριότητα\n
+    * πιθανώς εισήγαγε νέα σφάλματα :-)
+  </string>
   <string name="ChangeLog_keptDonate">Εκτεταμένη δυνατότητα προσφοράς μπύρας ή κάτι άλλου</string>
+  <string name="ChangeLog_0_7">Έκδοση 0.7\n
+* Increased loading speed: key transformations now 10x faster!\n
+* Added Keepass2Android soft-keyboard: Switch to this keyboard for entering credentials. Shields you from clipboard-based password sniffers (disable old clipboard notifications in the options)\n
+* Added option to donate a beer or something else (see menu)</string>
+  <string name="ChangeLog">Έκδοση 0.6.2\n
+* Google Drive/Dropbox/... integration: Use the official Google Drive or Dropbox App and open any .kdbx-file. This will now bring up KP2A.\n
+* Improved Search Dialog \n
+* Improved search results for Share URL with subdomains\n
+* Added options to give feedback, and rate and translate the app in the menu\n
+\n
+<b>Version 0.6.1</b>\n
+* Detect when database changes in the background (i.e. due to activity of a sync app)\n
+* Improved searching for URLs from the browser\n
+* Confirm dialog when discarding changes\n
+\n
+<b>Version 0.6</b>\n
+Initial public release
+  </string>
   <string-array name="clipboard_timeout_options">
     <item>30 δευτερόλεπτα</item>
     <item>1 λεπτό</item>
@@ -866,7 +1159,7 @@
     <item>Σκοτεινό</item>
     <item>Ρυθμίσεις συστήματος</item>
   </string-array>
-  <string name="design_title">Σχεδιασμός</string>
+  <string name="design_title">Θέμα</string>
   <string-array name="ftp_encryption_modes">
     <item>Χωρίς κρυπτογράφηση (FTP)</item>
     <item>Έμμεση κρυπρογράφηση (FTP πάνω από TLS, FTPS)</item>
@@ -939,4 +1232,28 @@
   <string name="switch_keyboard_for_totp_enabled">Σημείωση: Έχετε ενεργοποιήσει στις Ρυθμίσεις - Εφαρμογή - Πρόσβαση στα συνθηματικά - Λειτουργία αυτόματης συμπλήρωσης - Αυτόματη συμπλήρωση για καταχωρίσεις TOTP. Αυτό μπορεί να προκαλέσει την εμφάνιση αυτού του παραθύρου όταν ανοίγετε μια καταχώριση με TOTP.</string>
   <string name="switch_keyboard_inside_kp2a_enabled">Σημείωση: Έχετε ενεργοποιήσει στις Ρυθμίσεις - Εφαρμογή - Ασφάλεια - Χρήση του ενσωματωμένου στο Keepass2Android πληκτρολογίου. Αυτό μπορεί να προκαλέσει την εμφάνιση αυτού του παραθύρου όταν ανοίγετε την εφαρμογή ή επεξεργάζεστε μια καταχώριση.</string>
   <string name="switch_keyboard_on_search_enabled">Σημείωση: Έχετε ενεργοποιήσει στις Ρυθμίσεις - Εφαρμογή -  Πρόσβαση στα συνθηματικά - Εναλλαγή πληκτρολογίου - Εναλλαγή πληκτρολογίου. Αυτό μπορεί να προκαλέσει την εμφάνιση αυτού του παραθύρου κατά την αναζήτηση μιας καταχώρισης από το πρόγραμμα περιήγησης.</string>
+  <string name="user_interaction_required">Απαιτείται αλληλεπίδραση χρήστη. Παρακαλώ ανοίξτε την εφαρμογή.</string>
+  <string name="failed_to_access_database">Η βάση δεδομένων χρησιμοποιείται αυτή τη στιγμή και δεν είναι δυνατή η πρόσβαση.</string>
+  <string name="configure_ssids">Ρυθμίσεις SSID</string>
+  <string name="add_current_ssid">Προσθήκη τρέχοντος SSID</string>
+  <string name="enter_ssid_hint">Εισαγωγή SSID</string>
+  <string name="add_ssid">Προσθήκη άλλου SSID</string>
+  <string name="no_ssids">Δεν προστέθηκαν SSID. Ο αυτόματος συγχρονισμός στο παρασκήνιο θα πραγματοποιηθεί σε οποιοδήποτε Wi-Fi.</string>
+  <string name="ssid_empty_or_exists">Το SSID είναι κενό ή ήδη στη λίστα.</string>
+  <string name="location_permission_required">Απαιτείται άδεια τοποθεσίας για την ανάγνωση του τρέχοντος SSID.</string>
+  <string name="permission_granted">Χορηγήθηκε η άδεια τοποθεσίας</string>
+  <string name="permission_denied">Δεν επιτρέπεται η πρόσβαση. Δεν είναι δυνατή η ανάγνωση του τρέχοντος SSID. Παρακαλώ ενεργοποιήστε την άδεια μέσω των ρυθμίσεων Android.</string>
+  <string name="remove_ssid_title">Αφαίρεση SSID</string>
+  <string name="ssid_explanation">Ορίστε μια λίστα SSID. Ο αυτόματος συγχρονισμός στο παρασκήνιο θα πραγματοποιηθεί αν είστε συνδεδεμένοι σε οποιαδήποτε από αυτά.</string>
+  <string name="remove_ssid_message">Είστε βέβαιοι ότι θέλετε να καταργήσετε αυτό το SSID?</string>
+  <string name="permission_needed">Απαιτούνται δικαιώματα</string>
+  <string name="permission_location_rationale">    Η άδεια τοποθεσίας είναι απαραίτητη για την ανάγνωση του τρέχοντος Wi-Fi SSID. Αυτό απαιτείται αν θέλετε να περιορίσετε τον συγχρονισμό παρασκηνίου σε ορισμένα SSID.
+  </string>
+  <string name="BackgroundSyncWifiSsids_title">Συγχρονισμός στο παρασκήνιο με βάση το Wi-Fi SSID</string>
+  <string name="BackgroundSyncWifiOnly_title">Συγχρονισμός στο παρασκήνιο σε Wi-Fi μόνον</string>
+  <string name="BackgroundSyncWifiOnly_summary">Αν επιλεχθεί, ο συγχρονισμός στο παρασκήνιο ξεκινά μόνο όσο είστε συνδεδεμένοι σε Wi-Fi.</string>
+  <string name="pref_enable_periodic_background_sync_title">Περιοδικός συγχρονισμός στο παρασκήνιο</string>
+  <string name="pref_enable_periodic_background_sync_summary">Αν ενεργοποιηθεί, η εφαρμογή θα συγχρονίζει περιοδικά τις ξεκλείδωτες βάσεις δεδομένων. Αυτό σέβεται τις ρυθμίσεις σύνδεσης δικτύου από πάνω.</string>
+  <string name="pref_periodic_background_sync_interval_title">Χρονικό διάστημα για περιοδικό συγχρονισμό στο παρασκήνιο</string>
+  <string name="pref_periodic_background_sync_interval_summary">Ορίστε το διάστημα για συγχρονισμό στο παρασκήνιο σε λεπτά.</string>
 </resources>

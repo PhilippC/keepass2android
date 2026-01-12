@@ -1,4 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+ This file is part of Keepass2Android, Copyright 2025 Philipp Crocoll.
+
+   Keepass2Android is free software: you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation, either version 3 of the License, or
+   (at your option) any later version.
+
+   Keepass2Android is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with Keepass2Android.  If not, see <http://www.gnu.org/licenses/>.
+-->
 <resources>
   <string name="about_feedback">Feedback</string>
   <string name="AboutText">Keepass2Android este un manager de parole ce oferă citire/scriere la baze de date KeePass 2.x pe Android.</string>
@@ -323,7 +339,9 @@
   <string name="QuickUnlockDefaultEnabled_title">Activează Deblocarea rapidă în mod implicit</string>
   <string name="QuickUnlockDefaultEnabled_summary">Defineşte dacă QuickUnlock este activat implicit sau nu.</string>
   <string name="ViewDatabaseSecure_title">Protejează afișajul bazei de date</string>
+  <string name="DisableSecureDisplayCheck_title">Omite verificarea pentru afișare sigură</string>
   <string name="ViewDatabaseSecure_summary">Dacă este activat, captura ecranului nu este permisă și nici o pictogramă a aplicației nu va fi afișată în lista cu Aplicații Recente.</string>
+  <string name="DisableSecureDisplayCheck_summary">Permite afișarea informațiilor sensibile chiar dacă ecranul curent nu este marcat ca \"securizat\" de către Android.</string>
   <string name="QuickUnlockIconHidden_title">Ascunde icoana QuickUnlock</string>
   <string name="QuickUnlockIconHidden_summary">QuickUnlock nu funcţionează din păcate fără a afişa o icoană de notificare. Selectaţi această opţiune pentru a utiliza o icoană transparentă.</string>
   <string name="QuickUnlockIconHidden16_title">Ascunde icoana QuickUnlock</string>
@@ -568,16 +586,19 @@
   <string name="filestoragename_onedrive2_appfolder">Directorul Keepass2Android App</string>
   <string name="filestoragename_sftp">SFTP (SSH File Transfer)</string>
   <string name="filestoragename_mega">MEGA</string>
+  <string name="filestoragehelp_mega">Reține: Keepass2Android trebuie să descarce lista tuturor fișierelor din contul Mega pentru a funcționa corect. Din acest motiv, accesarea conturilor cu multe fișiere ar putea fi lentă.</string>
   <string name="filestoragename_content">Selector de fisiere sistem</string>
   <string name="filestorage_setup_title">Iniţializare acces fişier</string>
   <string name="database_location">Locaţie bază de date</string>
   <string name="help_database_location">Puteţi stoca baza de date local pe aparatul dvs. sau în cloud (versiunea non-Offline). Keepass2Android face baza de date disponibilă şi dacă sunteţi offline. Deoarece baza de date este criptată AES 256 bit nimeni nu va putea accesa parolele dvs. Vă recomandăm Dropbox: este accesibil pe toate aparatele dvs. şi oferă chiar copii de siguranţă a versiunilor anterioare ale unui fişier.</string>
   <string name="hint_database_location">Selectaţi unde doriţi să stocaţi baza de date:</string>
   <string name="button_change_location">Modifică locaţia</string>
+  <string name="help_quickunlock">Dacă este activat, Keepass2Android rulează în fundal chiar și atunci când baza de date este blocată. Acest lucru permite deblocarea bazei de date mai târziu, cu doar o scurtă parte din parola principală.</string>
   <string name="master_password">Parola principală</string>
   <string name="help_master_password">Baza de date este criptata cu parola ce o introduceţi aici. Alegeţi o parolă puternică pentru a păstra datele în siguranţă! Sfat: Inventaţi o propoziţie sau două si folosiţi prima literă a cuvintelor. Includeţi şi semnele de punctuaţie.</string>
   <string name="hint_master_password">Alegeţi o parolă principală pentru a proteja baza de date:</string>
   <string name="key_file">Fişier cheie</string>
+  <string name="help_key_file">Un fişier cheie este practic o parolă stocată într-un fişier. Fișierele cheie sunt de obicei mai puternice decât parolele principale, deoarece cheia poate fi mult mai complexă; cu toate acestea, este mai greu să le păstrăm secrete. Dacă îți păstrezi baza de date în nor, nu stoca și fișierul cheie acolo! Acest lucru ar fi complet inutil! Important: Nu schimba continutul fișierului cheie dupa crearea bazei de date!</string>
   <string name="hint_key_file">Alegeţi dacă doriţi să utilizaţi un fişier cheie pe lângă parola principală:</string>
   <string name="use_key_file">Foloseşte fişier cheie</string>
   <string name="error_adding_keyfile">Eroare la adăugarea fişierului cheie!</string>
@@ -594,6 +615,7 @@
   <string name="OtpKeyError">Imposibil de creat cheia OTP! Asigură-te că ai introdus OTP-urile corecte.</string>
   <string name="ErrorUpdatingOtpAuxFile">Eroare în actualizare fișier auxiliar OTP!</string>
   <string name="SavingOtpAuxFile">Se salvează fișierul auxiliar OTP…</string>
+  <string name="NoChallengeApp">Nu s-a găsit nicio aplicație.</string>
   <string name="PleaseInstallApp">Instalează %1$s de pe Google Play.</string>
   <string name="AppOutdated">%1$s nu mai este suportat.</string>
   <string name="bad_resp">Răspunsul la provocare este incorect.</string>
@@ -634,11 +656,13 @@
   <string name="FileIsReadOnlyOnKitkat">Fișierul selectat este read-only pentru Keepass2Android din cauza restricțiilor pe Android 4.4+.</string>
   <string name="CopyFileRequired">Pentru a-l folosi, trebuie copiat într-o altă locație.</string>
   <string name="CopyFileRequiredForEditing">Pentru a-l edita, trebuie copiat fișierul într-o altă locație.</string>
+  <string name="ClickOkToSelectLocation">Apasă pe OK pentru a selecta locația în care se va copia fișierul.</string>
   <string name="FileReadOnlyTitle">Baza de date permite doar citirea</string>
   <string name="FileReadOnlyMessagePre">Keepass2Android a deschis baza de date curentă în modul doar pentru citire.</string>
   <string name="ReadOnlyReason_PreKitKat">Se pare ca ai deschis fişierul dintr-o aplicaţie externă. În acest fel nu se acceptă modificări. Dacă doriţi să faceţi modificări în baza de date, închideţi baza de date şi selectaţi Schimbare bază de date. Apoi deschide fisierul folosind una dintre opţiunile disponibile.</string>
   <string name="ReadOnlyReason_ReadOnlyFlag">Steagul doar-în-citire este setat. Elimină-l dacă dorești să faci modificări în baza de date.</string>
   <string name="ReadOnlyReason_ReadOnlyKitKat">Modificarea nu este posibilă din cauza restricţiilor introduse în Android KitKat. Dacă doriţi să faceţi modificări în baza de date, închideți baza de date şi selectaţi Schimbare bază de date. Apoi deschide fisierul folosind selectorul de fisiere al sistemului.</string>
+  <string name="ReadOnlyReason_LocalBackup">Copiile de rezervă locale nu pot fi modificate. Poți utiliza Setările bazei de date - Exportă baza de date pentru a exporta această copie de rezervă într-o altă locație din care o poți redeschide. Apoi va putea fi scrisă din nou.</string>
   <string name="AddCustomIcon">Adaugă pictogramă din file...</string>
   <string name="CopyingFile">Se copiază fișierul...</string>
   <string name="DuplicateTitle">Copiază</string>
@@ -686,6 +710,8 @@
   <string name="DbQuicklockedChannel_desc">Notificare despre blocarea bazei de date cu Deblocarea rapidă</string>
   <string name="EntryChannel_name">Notificări intrare</string>
   <string name="EntryChannel_desc">Notificare pentru simplificarea accesului la intrarea selectată în prezent.</string>
+  <string name="BackgroundSyncChannel_name">Sincronizare</string>
+  <string name="BackgroundSyncChannel_desc">Notificare ce indică faptul că o sincronizare este efectuată în fundal.</string>
   <string name="CloseDbAfterFailedAttempts">Închide baza de date după trei încercări de deblocare biometrică eșuate.</string>
   <string name="WarnFingerprintInvalidated">Avertizare! Autentificarea biometrică poate fi invalidată de Android, de ex. după adăugarea unei amprente noi în setările dispozitivului. Asigură-te că știi întotdeauna cum să deblochezi cu parola principală!</string>
   <string-array name="ChangeLog_1_12">
