@@ -1,0 +1,20 @@
+repos:
+
+  # --- License header check ---
+  - repo: local
+    hooks:
+      - id: addlicense-check
+        name: Check for license headers
+        language: system
+        entry: powershell -ExecutionPolicy Bypass -File .\\add-license-hook.ps1
+        pass_filenames: true
+
+  - repo: local
+    hooks:
+      - id: dotnet-format
+        name: Format C# code
+        entry: dotnet format src/KeePass.sln
+        language: system
+        pass_filenames: false
+        types: [file]
+        

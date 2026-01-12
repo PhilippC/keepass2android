@@ -18,6 +18,7 @@ using Android.Content;
 using Android.OS;
 using Android.Widget;
 using keepass2android.Io;
+using keepass2android.KeeShare;
 using KeePassLib.Serialization;
 using System;
 using AndroidX.Preference;
@@ -121,6 +122,12 @@ namespace keepass2android
           var task2 = new SyncOtpAuxFile(_activity, database.OtpAuxFileIoc);
 
           OperationRunner.Instance.Run(App.Kp2a, task2);
+        }
+        
+        // KeeShare integration: Trigger import for all configured groups after sync using the preferred OperationRunner pattern
+        if (success && database?.KpDatabase != null)
+        {
+          OperationRunner.Instance.Run(App.Kp2a, new KeeShareSyncOperation(App.Kp2a, database.KpDatabase, true, false));
         }
 
       });

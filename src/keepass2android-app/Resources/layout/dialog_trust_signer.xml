@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Dialog layout for TrustSignerDialog - our KEY DIFFERENTIATOR -->
+<!-- Shows signer info and SHA-256 fingerprint for security verification -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical"
+              android:padding="24dp">
+    
+    <!-- Warning icon and text -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="16dp">
+        
+        <ImageView
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@android:drawable/ic_dialog_alert"
+            android:layout_marginEnd="12dp"/>
+        
+        <TextView
+            android:id="@+id/trust_warning"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/keeshare_trust_warning"
+            android:textColor="@android:color/holo_orange_dark"
+            android:textSize="14sp"/>
+            
+    </LinearLayout>
+    
+    <!-- Signer name -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/keeshare_signer_label"
+        android:textSize="12sp"
+        android:textColor="?android:attr/textColorSecondary"/>
+    
+    <TextView
+        android:id="@+id/trust_signer_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="16dp"/>
+    
+    <!-- Share path -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/keeshare_share_path_label"
+        android:textSize="12sp"
+        android:textColor="?android:attr/textColorSecondary"/>
+    
+    <TextView
+        android:id="@+id/trust_share_path"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:ellipsize="middle"
+        android:singleLine="true"
+        android:layout_marginBottom="16dp"/>
+    
+    <!-- Fingerprint (KEY SECURITY FEATURE) -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/keeshare_fingerprint_verify_label"
+        android:textSize="12sp"
+        android:textColor="?android:attr/textColorSecondary"/>
+    
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/keeshare_fingerprint_verify_hint"
+        android:textSize="11sp"
+        android:textColor="?android:attr/textColorSecondary"
+        android:textStyle="italic"
+        android:layout_marginBottom="8dp"/>
+    
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp">
+        
+        <TextView
+            android:id="@+id/trust_fingerprint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="monospace"
+            android:textSize="12sp"
+            android:padding="12dp"
+            android:background="#f5f5f5"
+            android:textColor="#333333"
+            android:lineSpacingExtra="4dp"/>
+            
+    </androidx.cardview.widget.CardView>
+    
+</LinearLayout>

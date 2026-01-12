@@ -290,6 +290,11 @@ The scheme=file is still there for old OS devices. It's also queried by apps lik
     <meta-data android:name="com.sec.android.multiwindow.DEFAULT_SIZE_H" android:value="598.0dip" />
     <meta-data android:name="com.sec.android.multiwindow.MINIMUM_SIZE_W" android:value="426.0dip" />
     <meta-data android:name="com.sec.android.multiwindow.MINIMUM_SIZE_H" android:value="360.0dip" />
+    
+    <!-- KeeShare Background Sync Service -->
+    <service android:name="keepass2android.KeeShareSyncJobService" 
+             android:permission="android.permission.BIND_JOB_SERVICE"
+             android:exported="false" />
   </application>
   <uses-permission android:name="android.permission.VIBRATE" />
   <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />

@@ -245,6 +245,11 @@ namespace keepass2android
         _db.LastSyncTime = DateTime.Now;
 
       }
+      }
+
+      // KeeShare: Schedule export in background using property OperationRunner (per maintainer feedback)
+      OperationRunner.Instance.Run(_app, new KeeShareSyncOperation(_app, _db.KpDatabase, false, true));
+
       Finish(true);
     }
 
