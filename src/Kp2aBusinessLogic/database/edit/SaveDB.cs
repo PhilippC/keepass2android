@@ -47,6 +47,12 @@ namespace keepass2android
     private readonly IDatabaseModificationWatcher _modificationWatcher;
     private bool requiresSubsequentSync = false; //if true, we need to sync the file after saving.
 
+    /// <summary>
+    /// Static callback that can be registered by the app to handle KeeShare export after save.
+    /// Called with (IKp2aApp app, Database db, OnOperationFinishedHandler handler).
+    /// </summary>
+    public static Action<IKp2aApp, Database, OnOperationFinishedHandler> OnSaveCompleteKeeShareExport { get; set; }
+
     public bool DoNotSetStatusLoggerMessage = false;
 
     /// <summary>
@@ -231,11 +237,12 @@ namespace keepass2android
       if (requiresSubsequentSync)
       {
         var syncTask = new SynchronizeCachedDatabase(_app, _db, new ActionOnOperationFinished(_app,
-            (success, message, context) =>
+            (success, message, importantMessage, exception, context) =>
             {
               if (!System.String.IsNullOrEmpty(message))
                 _app.ShowMessage(context, message, success ? MessageSeverity.Info : MessageSeverity.Error);
 
+              TriggerKeeShareExportThenFinish();
             }), new BackgroundDatabaseModificationLocker(_app)
         );
         OperationRunner.Instance.Run(_app, syncTask);
@@ -243,9 +250,34 @@ namespace keepass2android
       else
       {
         _db.LastSyncTime = DateTime.Now;
-
+        TriggerKeeShareExportThenFinish();
       }
-      Finish(true);
+    }
+
+    private void TriggerKeeShareExportThenFinish()
+    {
+      try
+      {
+        if (OnSaveCompleteKeeShareExport != null)
+        {
+          OnSaveCompleteKeeShareExport.Invoke(_app, _db, new ActionOnOperationFinished(_app,
+              (success, message, importantMessage, exception, context) =>
+              {
+                Finish(true);
+              }));
+        }
+        else
+        {
+          Finish(true);
+        }
+      }
+      catch (Exception ex)
+      {
+        Kp2aLog.Log("KeeShare export after save failed: " + ex.Message);
+        _app.ShowMessage(_app.ActiveContext, "KeeShare export after save failed: " + ex.Message, MessageSeverity.Error);
+        // Database save succeeded; KeeShare export failure is non-blocking
+        Finish(true);
+      }
     }
 
     private void MergeAndFinish(IFileStorage fileStorage, IOConnectionInfo ioc)

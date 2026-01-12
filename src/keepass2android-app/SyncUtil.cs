@@ -37,7 +37,7 @@ namespace keepass2android
     {
       private readonly IOConnectionInfo _ioc;
 
-      public SyncOtpAuxFile(Activity activity, IOConnectionInfo ioc)
+      public SyncOtpAuxFile(IOConnectionInfo ioc)
           : base(App.Kp2a, null)
       {
         _ioc = ioc;
@@ -103,7 +103,7 @@ namespace keepass2android
 
 
       OperationWithFinishHandler task;
-      OnOperationFinishedHandler onOperationFinishedHandler = new ActionInContextInstanceOnOperationFinished(_activity.ContextInstanceId, App.Kp2a, (success, message, context) =>
+      OnOperationFinishedHandler onOperationFinishedHandler = new ActionInContextInstanceOnOperationFinished(_activity.ContextInstanceId, App.Kp2a, (success, message, importantMessage, exception, context) =>
       {
         App.Kp2a.UiThreadHandler.Post(() =>
               {
@@ -116,11 +116,24 @@ namespace keepass2android
                 adapter?.NotifyDataSetChanged();
               });
 
-        if (database?.OtpAuxFileIoc != null)
+        // Sync KeeShare groups if present
+        if (success && database.KpDatabase?.IsOpen == true && KeeShare.HasKeeShareGroups(database.KpDatabase.RootGroup))
         {
-          var task2 = new SyncOtpAuxFile(_activity, database.OtpAuxFileIoc);
-
-          OperationRunner.Instance.Run(App.Kp2a, task2);
+          KeeShare.SyncInBackground(App.Kp2a, new ActionOnOperationFinished(App.Kp2a, (keeShareSuccess, keeShareMessage, _, _, ctx) =>
+          {
+            App.Kp2a.UiThreadHandler.Post(() =>
+            {
+              if (!String.IsNullOrEmpty(keeShareMessage))
+                App.Kp2a.ShowMessage(ctx, keeShareMessage, keeShareSuccess ? MessageSeverity.Info : MessageSeverity.Error);
+            });
+            
+            // Continue with OTP aux file sync after KeeShare completes
+            SyncOtpAuxFileIfNeeded(database);
+          }));
+        }
+        else
+        {
+          SyncOtpAuxFileIfNeeded(database);
         }
 
       });
@@ -137,6 +150,15 @@ namespace keepass2android
 
       OperationRunner.Instance.Run(App.Kp2a, task);
 
+    }
+
+    private void SyncOtpAuxFileIfNeeded(Database database)
+    {
+      if (database?.OtpAuxFileIoc != null)
+      {
+        var task = new SyncOtpAuxFile(database.OtpAuxFileIoc);
+        OperationRunner.Instance.Run(App.Kp2a, task);
+      }
     }
 
     public void TryStartPendingSyncs()
