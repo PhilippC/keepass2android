@@ -751,16 +751,16 @@ Anbei einige Tipps, die bei der Diagnose des Problems helfen können:\n
   <string name="WarnFingerprintInvalidated">Achtung! Die biometrische Authentifizierung kann von Android ungültig gemacht werden, z. B. nach dem Hinzufügen eines neuen Fingerabdrucks in den Geräteeinstellungen. Bitte sicherstellen, dass jederzeit klar ist, wie mit dem eigenen Hauptpasswort entsperrt werden kann!</string>
   <string name="webdav_chunked_upload_size_title">Chunk-Größe für den WebDav-Upload</string>
   <string name="webdav_chunked_upload_enabled_title">Aktiviere chunked Upload für WebDav</string>
-  <string name="webdav_chunked_upload_enabled_summary"></string>
-  <string name="webdav_chunked_upload_size_summary"></string>
+  <string name="webdav_chunked_upload_enabled_summary">Für WebDav-Server, die das Hochladen großer Dateien in einer einzigen Anfrage nicht unterstützen. Wenn aktiviert, verwendet Keepass2Android das Standard WebDav-Chunking, nicht die Nextcloud Chunking-Methode.</string>
+  <string name="webdav_chunked_upload_size_summary">Größe der Chunks beim Hochladen auf WebDav-Server in Bytes.</string>
   <string name="cleartextTrafficPermitted_title">Klartext-Netzwerkverkehr in WebDav erlauben</string>
   <string name="cleartextTrafficPermitted_summary">HTTP-Verbindungen sind nicht sicher. Diese Option nur aktivieren, wenn weitere Sicherheitsmaßnahmen vorhanden sind.</string>
   <string-array name="ChangeLog_1_15_net">
-    <item></item>
+    <item>Verbesserungen im Umgang mit WebDav-URLs mit Nicht-ASCII-Zeichen</item>
   </string-array>
   <string-array name="ChangeLog_1_15">
-    <item></item>
-    <item></item>
+    <item>Hintergrundsynchronisierung hinzugefügt: Keepass2Android verwendet nun die interne Cache-Kopie der Datenbank zum Laden und Speichern um diese Operationen zu beschleunigen. Danach wird die Synchronisation mit der Remote-Datenbank gestartet. </item>
+    <item>Benutzereinstellungen zur Steuerung des Verhaltens der Hintergrundsynchronisierung hinzugefügt. Du kannst nun eine regelmäßige Hintergrundsynchronisierung aktivieren und einstellen, ob die Synchronisation immer oder nur in Wi-Fi-Netzwerken durchgeführt werden soll.</item>
   </string-array>
   <string-array name="ChangeLog_1_14">
     <item>Aktualisierung auf .NET 9 und Target SDK Version 35. Dies umfasst eine transparente Statusleiste in Android 15, da nun „Edge-to-Edge” die Standardeinstellung ist.</item>
@@ -1227,27 +1227,26 @@ Erstes öffentliches Release</string>
   <string name="switch_keyboard_for_totp_enabled">Hinweis: Du hast App - Passwortzugriff - Autofill-Service - Autofill für TOTP-Einträge aktiviert. Dies kann dazu führen, dass dieses Fenster angezeigt wird, wenn du einen Eintrag mit einem TOTP öffnest.</string>
   <string name="switch_keyboard_inside_kp2a_enabled">Hinweis: Du hast App - Sicherheit - Verwenden der eingebauten Tastatur in Keepass2Android aktiviert. Dies kann dazu führen, dass dieses Fenster angezeigt wird, wenn du die App öffnest oder einen Eintrag bearbeitest.</string>
   <string name="switch_keyboard_on_search_enabled">Hinweis: Du hast App - Sicherheit - Passwortzugriff - Tastaturwechsel - Tastatur wechseln aktiviert. Dies kann dazu führen, dass dieses Fenster angezeigt wird, wenn du aus dem Browser nach einem Eintrag suchst.</string>
-  <string name="user_interaction_required"></string>
-  <string name="failed_to_access_database"></string>
-  <string name="configure_ssids"></string>
-  <string name="add_current_ssid"></string>
-  <string name="enter_ssid_hint"></string>
-  <string name="add_ssid"></string>
-  <string name="no_ssids"></string>
-  <string name="ssid_empty_or_exists"></string>
+  <string name="user_interaction_required">Benutzerinteraktion erforderlich. Bitte öffne die App.</string>
+  <string name="failed_to_access_database">Auf die Datenbank kann nicht zugegriffen werden, die sie gerade verwendet wird.</string>
+  <string name="configure_ssids">SSIDs konfigurieren</string>
+  <string name="add_current_ssid">Aktuelle SSID hinzufügen</string>
+  <string name="enter_ssid_hint">SSID eingeben</string>
+  <string name="add_ssid">Andere SSID hinzufügen</string>
+  <string name="no_ssids">Keine SSIDs hinzugefügt. Automatische Hintergrundsynchronisierung wird bei jeder WLAN-Verbindung durchgeführt.</string>
+  <string name="ssid_empty_or_exists">SSID ist leer oder bereits in der Liste</string>
   <string name="permission_granted">Standortberechtigung gewährt</string>
-  <string name="permission_denied">Zugriff verweigert. Aktuelle SSID kann nicht gelesen werden. Bitte aktivieren Sie die Berechtigung über Android-Einstellungen.</string>
+  <string name="permission_denied">Zugriff verweigert. Aktuelle SSID kann nicht gelesen werden. Bitte aktiviere die Berechtigung in den Android-Einstellungen.</string>
   <string name="remove_ssid_title">SSID entfernen</string>
-  <string name="ssid_explanation">Definieren Sie eine Liste von SSIDs. Automatische Hintergrundsynchronisation wird durchgeführt, wenn Sie bei einer dieser SSIDs angemeldet sind.</string>
-  <string name="remove_ssid_message">Sind Sie sicher, dass Sie diese SSID entfernen möchten?</string>
+  <string name="ssid_explanation">Erstelle eine Liste von SSIDs. Automatische Hintergrundsynchronisation wird durchgeführt, wenn das Gerät bei einer dieser SSIDs angemeldet ist.</string>
+  <string name="remove_ssid_message">Bist du sicher, dass du diese SSID entfernen möchtest?</string>
   <string name="permission_needed">Berechtigung erforderlich</string>
-  <string name="permission_location_rationale">    Standortberechtigung wird benötigt, um Ihre aktuelle Wi-Fi SSID zu lesen. Dies ist erforderlich, wenn Sie die Hintergrundsynchronisierung auf bestimmte SSIDs beschränken möchten.
-  </string>
+  <string name="permission_location_rationale">Standortberechtigung wird benötigt, um die aktuelle Wi-Fi-SSID zu lesen. Dies ist erforderlich, wenn du die Hintergrundsynchronisierung auf bestimmte SSIDs beschränken möchtest. </string>
   <string name="BackgroundSyncWifiSsids_title">Hintergrundsynchronisation basierend auf Wi-Fi-SSID</string>
   <string name="BackgroundSyncWifiOnly_title">Hintergrundsynchronisierung nur in Wi-Fi</string>
-  <string name="BackgroundSyncWifiOnly_summary">Wenn ausgewählt, wird die Hintergrundsynchronisation nur gestartet, wenn Sie mit WLAN verbunden sind.</string>
+  <string name="BackgroundSyncWifiOnly_summary">Wenn ausgewählt, wird die Hintergrundsynchronisation nur durchgeführt, wenn du mit WLAN verbunden bist.</string>
   <string name="pref_enable_periodic_background_sync_title">Periodische Hintergrundsynchronisierung</string>
-  <string name="pref_enable_periodic_background_sync_summary">Wenn aktiviert, wird die App regelmäßig freigeschaltete Datenbanken synchronisieren. Dies respektiert die Netzwerkverbindungseinstellungen von oben.</string>
-  <string name="pref_periodic_background_sync_interval_title">Periodische Synchronisationsintervall im Hintergrund</string>
-  <string name="pref_periodic_background_sync_interval_summary">Stellen Sie das Intervall für die Hintergrundsynchronisierung in Minuten ein.</string>
+  <string name="pref_enable_periodic_background_sync_summary">Wenn aktiviert, wird die App regelmäßig die geöffneten Datenbanken synchronisieren. Dies berücksichtigt die Netzwerkverbindungseinstellungen von oben.</string>
+  <string name="pref_periodic_background_sync_interval_title">Zeitintervall für die periodische Hintergrundsynchronisation</string>
+  <string name="pref_periodic_background_sync_interval_summary">Gib das Intervall für die Hintergrundsynchronisierung in Minuten ein.</string>
 </resources>
