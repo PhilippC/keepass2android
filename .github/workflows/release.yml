@@ -74,7 +74,10 @@ jobs:
     - name: Setup Android SDK & NDK
       uses: android-actions/setup-android@v3
       with:
-        ndk-version: 28.2.13676358
+        packages: |
+          platforms;android-35
+          build-tools;35.0.0
+          ndk;28.2.13676358
 
     - name: Export NDK environment
       shell: bash
@@ -82,11 +85,12 @@ jobs:
         echo "ANDROID_NDK_ROOT=$ANDROID_SDK_ROOT/ndk/28.2.13676358" >> $GITHUB_ENV
         echo "ANDROID_NDK_HOME=$ANDROID_SDK_ROOT/ndk/28.2.13676358" >> $GITHUB_ENV
 
-    - name: Verify NDK version
+    - name: Verify NDK
       shell: bash
       run: |
+        echo "NDK root: $ANDROID_NDK_ROOT"
         ls "$ANDROID_NDK_ROOT"
-        "$ANDROID_NDK_ROOT/ndk-build.cmd" --version || true
+        "$ANDROID_NDK_ROOT/ndk-build.cmd" --version
 
     # ------------------------------------------------------------------
     # Native / Java build
