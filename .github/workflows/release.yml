@@ -68,6 +68,33 @@ jobs:
     - name: Display java version
       run: java -version
 
+    # ------------------------------------------------------------------
+    # Android SDK + NDK (Set NDK to at least 28 to support 16kb page size)
+    # ------------------------------------------------------------------
+    - name: Setup Android SDK & NDK
+      uses: android-actions/setup-android@v3
+      with:
+        packages: |
+          platforms;android-35
+          build-tools;35.0.0
+          ndk;28.2.13676358
+
+    - name: Export NDK environment
+      shell: bash
+      run: |
+        echo "ANDROID_NDK_ROOT=$ANDROID_SDK_ROOT/ndk/28.2.13676358" >> $GITHUB_ENV
+        echo "ANDROID_NDK_HOME=$ANDROID_SDK_ROOT/ndk/28.2.13676358" >> $GITHUB_ENV
+
+    - name: Verify NDK
+      shell: bash
+      run: |
+        echo "NDK root: $ANDROID_NDK_ROOT"
+        ls "$ANDROID_NDK_ROOT"
+        "$ANDROID_NDK_ROOT/ndk-build.cmd" --version
+
+    # ------------------------------------------------------------------
+    # Native / Java build
+    # ------------------------------------------------------------------
     - name: Build native dependencies
       shell: cmd
       run: |
@@ -89,26 +116,12 @@ jobs:
         dotnet workload restore
         cd ../..
 
-    - name: List apks
-      run:  find . -type f -name "*.apk"
-      shell: bash
-
-
     - name: Select the manifest
       run: |
         make manifestlink Flavor=${{ matrix.flavor }}
-    
-    - name: List apks
-      run:  find . -type f -name "*.apk"
-      shell: bash
-
 
     - name: Install NuGet dependencies
       run: make nuget Flavor=${{ matrix.flavor }}
-
-    - name: List apks
-      run:  find . -type f -name "*.apk"
-      shell: bash
 
     - name: Build APK (net)
       env:
@@ -119,14 +132,9 @@ jobs:
         DropboxAppSecret: ${{ secrets.DROPBOX_APP_SECRET }}
         DropboxAppFolderAppKey: ${{ secrets.DROPBOX_APP_FOLDER_APP_KEY }}
         DropboxAppFolderAppSecret: ${{ secrets.DROPBOX_APP_FOLDER_APP_SECRET }}
-
       run: |
         make ${{ matrix.target }} Configuration=Release Flavor=${{ matrix.flavor }}
-    
-    - name: List apks
-      run:  find . -type f -name "*.apk"
-      shell: bash
-    
+
     - name: Archive production artifacts
       uses: actions/upload-artifact@v4
       with:
@@ -135,10 +143,6 @@ jobs:
         path: |
           src/keepass2android-app/bin/Release/net9.0-android/publish/*.apk
           src/keepass2android-app/bin/Release/net9.0-android/*/publish/*.apk
-    
-    - name: List apks
-      run:  find . -type f -name "*.apk"
-      shell: bash
 
     - name: Rename apks
       # after updating to .net9, the naming scheme of the output apks has changed. rename them to the old scheme
@@ -151,10 +155,6 @@ jobs:
           mv "$apk" "$(dirname "$apk")/${base}-${arch#android-}.apk"
         done
       shell: bash
-
-    - name: List apks
-      run:  find . -type f -name "*.apk"
-      shell: bash        
         
     - name: Upload APK to GitHub Release
       uses: softprops/action-gh-release@v2
