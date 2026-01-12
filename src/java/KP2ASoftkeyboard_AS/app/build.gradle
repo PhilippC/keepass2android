@@ -3,7 +3,7 @@ android {
 
     namespace 'keepass2android.softkeyboard'
 
-
+    ndkVersion "28.2.13676358"
 
     defaultConfig {
         minSdkVersion 21
