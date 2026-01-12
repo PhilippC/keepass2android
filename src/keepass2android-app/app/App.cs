@@ -66,6 +66,7 @@ using static Android.Provider.Telephony.MmsSms;
 using Java.Interop;
 using AndroidX.Lifecycle;
 using keepass2android.services;
+using Java.Util.Concurrent.Atomic;
 
 
 namespace keepass2android
@@ -1628,6 +1629,13 @@ namespace keepass2android
         }
       }
     }
+
+    private readonly AtomicInteger requestCodeForCredentialProvider = new();
+    public int RequestCodeForCredentialProvider
+    {
+      get => requestCodeForCredentialProvider.IncrementAndGet();
+    }
+
   }
 
 

@@ -178,3 +178,4 @@ src/java/Keepass2AndroidPluginSDK2/build/generated/mockable-Google-Inc.-Google-A
 /src/MegaTest
 *.dtbcache.json
 /src/keepass2android-app/AndroidManifest.xml
+*.DS_Store

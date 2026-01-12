@@ -167,5 +167,11 @@ namespace keepass2android
     /// Registers an action that should be executed when the context instance with the given id has been resumed.
     /// </summary>
     void RegisterPendingActionForContextInstance(int contextInstanceId, ActionOnOperationFinished actionToPerformWhenContextIsResumed);
+
+    /// <summary>
+    /// Use an App level (singletone) AtomicInteger 
+    /// for the request code of pending intent in the credential provider service.
+    /// </summary>
+    int RequestCodeForCredentialProvider { get; }
   }
 }
