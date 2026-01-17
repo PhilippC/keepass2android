@@ -45,7 +45,7 @@
   <string name="ShowGroupnameInSearchResult_title">Mostrar nombre del grupo en resultado de búsqueda</string>
   <string name="ShowGroupnameInSearchResult_resume">Mostrar nombre del grupo por debajo de los títulos en resultados de búsqueda. Útil si múltiples entradas tienen el mismo nombre.</string>
   <string name="NavigationToGroupCompleted_message">Grupo de visualización es ahora: %1$s</string>
-  <string name="AutofillDisabledQueriesPreference_title">Objetivos de autorelleno deshabilitados</string>
+  <string name="AutofillDisabledQueriesPreference_title">Objetivos de autorrelleno deshabilitados</string>
   <string name="AutofillDisabledQueriesPreference_summary">Visualiza una lista de aplicaciones y sitios web para los que el autocompletado ha sido desactivado</string>
   <string name="OfferSaveCredentials_summary">Si está habilitado, Android preguntará si desea guardar las credenciales después de que haya introducido manualmente datos en campos autorellenables.</string>
   <string name="OfferSaveCredentials_title">Ofrecer guardado de credenciales</string>
@@ -576,6 +576,7 @@
   <string name="filestoragename_dropboxKP2A">Dropbox (carpeta KP2A)</string>
   <string name="filestoragehelp_dropboxKP2A">Si no quieres darle a KP2A acceso completo a tu Dropbox, deberías seleccionar esta opción. Sólo se pedirá acceso a la carpeta Apps/Keepass2Android. Esto es especialmente adecuado cuando creas una nueva base de datos. Si ya tienes una base de datos, slecciona esta opción para crear la carpeta, luego pon el archivo dentro de esta carpeta (desde tu PC) y después selecciona otra vez esta opción para abrir el archivo.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
+  <string name="filestoragehelp_gdrive">Nota: Google está restringiendo el acceso a Google Drive desde aplicaciones para más y más usuarios. Si la implementación integrada de Google Drive no funciona, por favor utiliza el selector de archivos del sistema en su lugar y allí selecciona Google Drive</string>
   <string name="filestoragename_gdriveKP2A">Google Drive (archivos KP2A)</string>
   <string name="filestoragehelp_gdriveKP2A">Si no deseas brindarle acceso completo a KP2A para acceder a todos los archivos en Google Drive, debes seleccionar esta opción. Recuerda que primero debes crear una base de datos y los archivos existentes no son visibles para la aplicación. Selecciona esta opción desde la pantalla de \"Crear una base de datos\" o, si ya abriste una base de datos, puedes exportarla seleccionando esta opción.</string>
   <string name="filestoragename_pcloud">PCloud (carpeta de KP2A)</string>
@@ -748,15 +749,45 @@
   <string name="EntryChannel_name">Notificaciones de entrada</string>
   <string name="EntryChannel_desc">Notificación para simplificar el acceso a la entrada seleccionada actualmente.</string>
   <string name="BackgroundSyncChannel_name">Operación de sincronización</string>
+  <string name="BackgroundSyncChannel_desc">Notificación para indicar que una sincronización se realiza en segundo plano.</string>
   <string name="CloseDbAfterFailedAttempts">Cierre la base de datos después de tres intentos fallidos de desbloqueo biométrico.</string>
+  <string name="hint_smb_credentials">Si deseas acceder a archivos desde tu equipo Windows personal, utiliza el nombre del equipo o la dirección IP local como URL del host; introduce el nombre del equipo como dominio y el inicio de sesión de Windows (a menudo igual que tu cuenta de Microsoft) como nombre de usuario y contraseña.</string>
   <string name="WarnFingerprintInvalidated">¡Atención! La autenticación biométrica puede ser invalidada por Android, p. ej. después de añadir una nueva huella dactilar en los ajustes de su dispositivo. ¡Esté seguro de conocer siempre cómo desbloquear con su contraseña maestra!</string>
+  <string name="webdav_chunked_upload_size_title">Tamaño de Chunk para subir a WebDav</string>
+  <string name="webdav_chunked_upload_enabled_title">Habilitar la carga chunked para WebDav</string>
+  <string name="webdav_chunked_upload_enabled_summary">Para servidores WebDav que no soportan la subida de archivos grandes en una sola petición. Cuando está activado, Keepass2Android utiliza el chunking WebDav estándar, no el método de chunking Nextcloud.</string>
+  <string name="webdav_chunked_upload_size_summary">Tamaño de los chunks al subir a servidores WebDav en bytes.</string>
+  <string name="cleartextTrafficPermitted_title">Permitir tráfico de red de texto sin formato en WebDav</string>
+  <string name="cleartextTrafficPermitted_summary">Las conexiones HTTP no son seguras. Habilita esta opción únicamente si tiene otras medidas de seguridad en su lugar.</string>
+  <string-array name="ChangeLog_1_15_net">
+    <item>Mejoras en el manejo de URL para WebDav con caracteres no ASCII</item>
+  </string-array>
+  <string-array name="ChangeLog_1_15">
+    <item>Sincronización en segundo plano añadida: Keepass2Android ahora utiliza la copia en caché interna de la base de datos para cargar y guardar para hacer estas operaciones más rápidas. Después de esto, se inicia la sincronización con la base de datos remota. </item>
+    <item>Se añadieron preferencias de usuario para controlar el comportamiento de la sincronización en segundo plano. Puedes habilitar la sincronización en segundo plano y controlar si la sincronización debe realizarse siempre o sólo en redes Wi-Fi.</item>
+  </string-array>
+  <string-array name="ChangeLog_1_14">
+    <item>Actualización de .net 9 y Target SDK versión 35. Esto viene con barra de estado transparente en Android 15 porque ahora es el valor predeterminado.</item>
+    <item>Pequeñas mejoras</item>
+    <item>Botones eliminados para donar y encontrar plugins, para cumplir con las políticas de Google Play</item>
+  </string-array>
+  <string-array name="ChangeLog_1_14_net">
+    <item>Mejoras WebDav: Corrección de errores para listar carpetas; soporte para subidas chunked y transacciones</item>
+    <item>Añadido soporte para compartir redes Samba/Windows</item>
+    <item>JSch actualizado para soportar algoritmos más modernos en SFTP</item>
+  </string-array>
+  <string-array name="ChangeLog_1_13">
+    <item>Estimación de la calidad de las contraseñas mejorada teniendo en cuenta las contraseñas más populares.</item>
+    <item>Bloquear QuickUnlock basado en contraseña (por razones de seguridad) si el dispositivo no tiene un bloqueo de pantalla activado.</item>
+    <item>Actualiza la configuración de seguridad de red para desactivar la transferencia de texto sin formato.</item>
+  </string-array>
   <string-array name="ChangeLog_1_12">
     <item>Actualizado desde Xamarin Android a .net 8</item>
     <item>Actualizado a Target SDK 34</item>
     <item>Actualizado a la interfaz de usuario de Material 3</item>
     <item>Mejorar el autorrelleno para trabajar con aplicaciones de composición</item>
-    <item>Fix hostname matching in autofill and search</item>
-    <item>Fix issue with password generator</item>
+    <item>Corregir la coincidencia del nombre de host en el autorrelleno y búsqueda</item>
+    <item>Corregir problema con el generador de contraseñas</item>
   </string-array>
   <string-array name="ChangeLog_1_12_net">
     <item>Actualizado OneDrive SDK a la versión 5.68</item>
@@ -896,8 +927,8 @@
     * Evitar cierre erróneo cuando el usuario intenta activar Autorrellenado en dispositivos Huawei.\n
   </string>
   <string name="ChangeLog_1_04">    Versión 1.04\n
-    *Agregado servicio de Autorellenado para Android 8.0 y superiores.\n
-    *Liberías actualizadas, herramientas de construcción y versión de SDK objetivo.\n
+    * Agregado servicio de Autorrellenado para Android 8.0 y posteriores.\n
+    * Librerías actualizadas, herramientas de construcción y versión de Target SDK.\n
   </string>
   <string name="ChangeLog_1_03">Version 1.03\n
      * Eliminado servicio de accesibilidad por Autorellenado, tal y como solicitó Google. Por favor, comprueba la configuración de acceso por clave para encontrasr un plugin que replique la funcionalidad anterior.\n
@@ -1222,12 +1253,33 @@
   <string name="AutofillWarning_trustAsBrowser">Aceptar siempre en \"%1$s\"</string>
   <string name="kp2a_switch_on_sendgodone">Volver cuando termine</string>
   <string name="kp2a_switch_on_sendgodone_summary">Volver cuando se presione enviar/ir/finalizado</string>
+  <string name="qr_scanning_error_no_google_play_services">La exploración de código QR requiere servicios de Google Play. Por favor, instala o actualiza los Servicios de Google Play en tu dispositivo.</string>
   <string name="english_ime_settings">Ajustes del teclado de Keepass2Android</string>
+  <string name="autoswitch_enabled_but_not_setup">Nota: Has activado la aplicación - Configuración - Acceso a la contraseña - Cambio de teclado - Cambio de teclado automático, pero no parece estar configurado correctamente.</string>
+  <string name="switch_keyboard_for_totp_enabled">Nota: Has habilitado App - Acceso con contraseña - Servicio de Autorrelleno - Autorrelleno para entradas TOTP. Esto puede causar que esta ventana se muestre cuando se abre una entrada con un TOTP.</string>
+  <string name="switch_keyboard_inside_kp2a_enabled">Nota: Ha habilitado la aplicación - Seguridad - Usar teclado integrado dentro de Keepass2Android. Esto puede causar que esta ventana se muestre al abrir la aplicación o editar una entrada.</string>
   <string name="switch_keyboard_on_search_enabled">Nota: Ha habilitado la aplicación - Seguridad - Acceso a la contraseña - Interruptor de teclado - Cambiar teclado. Esto puede causar que esta ventana se muestre cuando busque una entrada desde el navegador.</string>
+  <string name="user_interaction_required">Se requiere interacción con el usuario. Por favor, abre la aplicación.</string>
+  <string name="failed_to_access_database">La base de datos está actualmente en uso y no se puede acceder.</string>
   <string name="configure_ssids">Configurar SSIDs</string>
   <string name="add_current_ssid">Añadir SSID actual</string>
   <string name="enter_ssid_hint">Introducir SSID</string>
   <string name="add_ssid">Añadir otro SSID</string>
+  <string name="no_ssids">No se añadieron SSIDs. La sincronización automática en segundo plano se realizará en cualquier Wi-Fi.</string>
+  <string name="ssid_empty_or_exists">SSID está vacío o ya está en la lista</string>
+  <string name="location_permission_required">Se requiere permiso de ubicación para leer el SSID actual</string>
+  <string name="permission_granted">Permiso de ubicación concedido</string>
+  <string name="permission_denied">Permiso denegado. No se puede leer el SSID actual. Por favor, habilita el permiso a través de la configuración de Android.</string>
   <string name="remove_ssid_title">Eliminar SSID</string>
+  <string name="ssid_explanation">Define una lista de SSIDs. La sincronización automática en segundo plano se realizará si ha iniciado sesión en alguno de estos.</string>
+  <string name="remove_ssid_message">¿Estás seguro de que deseas eliminar este SSID?</string>
   <string name="permission_needed">Se requiere permiso</string>
+  <string name="permission_location_rationale">El permiso de ubicación es necesario para leer tu Wi-Fi SSID actual. Esto es necesario si quieres restringir la sincronización  en segundo plano a ciertos SSIDs.</string>
+  <string name="BackgroundSyncWifiSsids_title">Sincronización en segundo plano basada en Wi-Fi SSID</string>
+  <string name="BackgroundSyncWifiOnly_title">Sincronización en segundo plano sólo por Wi-Fi</string>
+  <string name="BackgroundSyncWifiOnly_summary">Si se selecciona, la sincronización en segundo plano sólo se inicia cuando estás conectado a Wi-Fi.</string>
+  <string name="pref_enable_periodic_background_sync_title">Sincronización en segundo plano periódica</string>
+  <string name="pref_enable_periodic_background_sync_summary">Si se activa, la aplicación sincronizará periódicamente las bases de datos desbloqueadas. Esto respeta los ajustes de conexión de red desde arriba.</string>
+  <string name="pref_periodic_background_sync_interval_title">Intervalo de tiempo de sincronización periódica en segundo plano</string>
+  <string name="pref_periodic_background_sync_interval_summary">Establece el intervalo para la sincronización en segundo plano en minutos.</string>
 </resources>
