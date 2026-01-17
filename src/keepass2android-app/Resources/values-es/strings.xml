@@ -109,6 +109,7 @@
   <string name="disable_fingerprint_unlock">Deshabilitar desbloqueo biométrico</string>
   <string name="enable_fingerprint_unlock">Habilitar desbloqueo biométrico completo</string>
   <string name="enable_fingerprint_quickunlock">Activar desbloqueo biométrico para QuickUnlock</string>
+  <string name="password_based_quick_unlock_not_available">QuickUnlock basado en contraseña no está disponible</string>
   <string name="password_based_quick_unlock_not_available_text">El Desbloqueo Rápido usando una parte de su contraseña está bloqueado porque el bloqueo de pantalla no está activado en su dispositivo. Este comportamiento es para protegerte en caso de que alguien te observara introduciendo tu clave de Desbloqueo Rápido.</string>
   <string name="fingerprint_unlock_failed">Desbloqueo biométrico fallido. La clave de descifrado fue invalidada por el SO Android. Esto suele suceder si se ha modificado una configuración de autenticación o seguridad biométrica. </string>
   <string name="fingerprint_disabled_wrong_masterkey">Error al desbloquear la base de datos: clave compuesta no válida. El desbloqueo biométrico se deshabilitó porque aparentemente la contraseña maestra almacenada ya no es válida. </string>
@@ -340,7 +341,9 @@
   <string name="QuickUnlockDefaultEnabled_title">Habilitar QuickUnlock por defecto</string>
   <string name="QuickUnlockDefaultEnabled_summary">Determina si QuickUnlock está habilitado de forma predeterminada o no.</string>
   <string name="ViewDatabaseSecure_title">Evitar visualización de la base de datos</string>
+  <string name="DisableSecureDisplayCheck_title">Omitir comprobación de pantalla segura</string>
   <string name="ViewDatabaseSecure_summary">Si se encuentra activado, no se permiten realizar capturas de pantalla y no se muestra la miniatura de la app en la lista de aplicaciones recientes.</string>
+  <string name="DisableSecureDisplayCheck_summary"></string>
   <string name="QuickUnlockIconHidden_title">Ocultar el icono de QuickUnlock</string>
   <string name="QuickUnlockIconHidden_summary">QuickUnlock lamentablemente no funciona sin mostrar un icono de notificación. Seleccione esta opción para utilizar un icono transparente.</string>
   <string name="QuickUnlockIconHidden16_title">Ocultar el icono de QuickUnlock</string>
@@ -402,6 +405,8 @@
   <string name="NoDonationReminder_summary">No le voy a dar un céntimo o ya he donado. No solicitar una donación, ni en el cumpleaños del autor.</string>
   <string name="UseOfflineCache_title">Caché de base de datos</string>
   <string name="UseOfflineCache_summary">Mantener una copia de los archivos de base de datos en el directorio caché de la aplicación. Esto permite usar las bases de datos incluso cuando el archivo no esté accesible.</string>
+  <string name="SyncOfflineCacheInBackground_summary">Al guardar o cargar, utiliza la caché interna. Luego sincroniza con el almacenamiento remoto en segundo plano.</string>
+  <string name="SyncOfflineCacheInBackground_title">Sincronizar en segundo plano</string>
   <string name="CreateBackups_title">Copias de seguridad locales</string>
   <string name="CreateBackups_summary">Crear una copia de local después de cargar con éxito una base de datos.</string>
   <string name="UpdatingBackup">Actualizando copia de seguridad local...</string>
@@ -522,7 +527,11 @@
   <string name="ok_donate">¡Cuéntame más!</string>
   <string name="no_thanks">No, no me gusta mucho</string>
   <string name="enter_http_login_title">Introducir datos de acceso WebDav:</string>
+  <string name="enter_smb_login_title">Introduzca los datos de acceso Samba:</string>
   <string name="hint_http_url">URL de la carpeta o del archivo (ex: mycloud.me.com/webdav/)</string>
+  <string name="hint_smb_url">URL de la carpeta o archivo (ej: 192.168.1.10/share/folder/)</string>
+  <string name="hint_smb_domain">Dominio del usuario Samba</string>
+  <string name="hint_smb_username">Usuario de Samba</string>
   <string name="enter_owncloud_login_title">Introduzca datos de usuario de OwnCloud:</string>
   <string name="hint_owncloud_url">OwnCloud URL (ej: owncloud.me.com)</string>
   <string name="enter_nextcloud_login_title">Introducir datos de inicio de sesión de Nextcloud:</string>
@@ -560,6 +569,7 @@
   <string name="filestoragename_ftp">FTP</string>
   <string name="filestoragename_http">HTTP (WebDav)</string>
   <string name="filestoragename_https">HTTPS (WebDav)</string>
+  <string name="filestoragename_smb">Samba (Windows Share)</string>
   <string name="filestoragename_owncloud">OwnCloud</string>
   <string name="filestoragename_nextcloud">Nextcloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
@@ -737,15 +747,22 @@
   <string name="DbQuicklockedChannel_desc">Notificación acerca de que la base de datos está siendo bloqueada con QuickUnlock</string>
   <string name="EntryChannel_name">Notificaciones de entrada</string>
   <string name="EntryChannel_desc">Notificación para simplificar el acceso a la entrada seleccionada actualmente.</string>
+  <string name="BackgroundSyncChannel_name">Operación de sincronización</string>
   <string name="CloseDbAfterFailedAttempts">Cierre la base de datos después de tres intentos fallidos de desbloqueo biométrico.</string>
   <string name="WarnFingerprintInvalidated">¡Atención! La autenticación biométrica puede ser invalidada por Android, p. ej. después de añadir una nueva huella dactilar en los ajustes de su dispositivo. ¡Esté seguro de conocer siempre cómo desbloquear con su contraseña maestra!</string>
   <string-array name="ChangeLog_1_12">
     <item>Actualizado desde Xamarin Android a .net 8</item>
-    <item>Upgraded to Target SDK 34</item>
-    <item>Upgraded to Material 3 user interface</item>
-    <item>Improve autofill to work with Compose apps</item>
+    <item>Actualizado a Target SDK 34</item>
+    <item>Actualizado a la interfaz de usuario de Material 3</item>
+    <item>Mejorar el autorrelleno para trabajar con aplicaciones de composición</item>
     <item>Fix hostname matching in autofill and search</item>
     <item>Fix issue with password generator</item>
+  </string-array>
+  <string-array name="ChangeLog_1_12_net">
+    <item>Actualizado OneDrive SDK a la versión 5.68</item>
+    <item>Actualizado Dropbox SDK a la versión 7.0.0</item>
+    <item>Gradle actualizado, NewtonsoftJson, FluentFTP, MegaApiClient y okhttp</item>
+    <item>Bugfix en selección de archivo WebDav</item>
   </string-array>
   <string-array name="ChangeLog_1_11">
     <item>Añadidos botones de acción flotante para la búsqueda y vista general de TOTP (si las entradas TOTP están presentes).</item>
@@ -1207,4 +1224,10 @@
   <string name="kp2a_switch_on_sendgodone_summary">Volver cuando se presione enviar/ir/finalizado</string>
   <string name="english_ime_settings">Ajustes del teclado de Keepass2Android</string>
   <string name="switch_keyboard_on_search_enabled">Nota: Ha habilitado la aplicación - Seguridad - Acceso a la contraseña - Interruptor de teclado - Cambiar teclado. Esto puede causar que esta ventana se muestre cuando busque una entrada desde el navegador.</string>
+  <string name="configure_ssids">Configurar SSIDs</string>
+  <string name="add_current_ssid">Añadir SSID actual</string>
+  <string name="enter_ssid_hint">Introducir SSID</string>
+  <string name="add_ssid">Añadir otro SSID</string>
+  <string name="remove_ssid_title">Eliminar SSID</string>
+  <string name="permission_needed">Se requiere permiso</string>
 </resources>
