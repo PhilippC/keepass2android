@@ -97,7 +97,7 @@
   <string name="digits">Dígits</string>
   <string name="disclaimer_formal">Keepass2Android ve SENSE CAP MENA DE GARANTIA; Això és programari lliure, i pots redistribuïr-lo sota els termes de la llicència GPL versió 2 o posterior.</string>
   <string name="ellipsis">\u2026</string>
-  <string name="copy_to_clipboard">Copiar al portapapers</string>
+  <string name="copy_to_clipboard">Copiar al porta-retalls</string>
   <string name="SystemLanguage">Idioma del sistema</string>
   <string name="fingerprint_description">Si us plau autentiquis per continuar</string>
   <string name="fingerprint_fatal">No es pot configurar Desblocatge Biomètric:</string>
@@ -320,6 +320,7 @@
   <string name="InlineSuggestions_title">Integra amb el teclat</string>
   <string name="InlineSuggestions_summary">Mostra els suggeriments d\'autocompletar com a opcions en línia al teclat (si el mètode d\'entrada ho admet)</string>
   <string name="LogAutofillView_title">Vista d\'autocompletar del registre</string>
+  <string name="LogAutofillView_summary">Escriu detalls sobre la visualització d\'autocompletar al registre de depuració (si el registre de depuració està activat). Aquests detalls es poden enviar al desenvolupador si l\'autocompletar no funciona com s\'esperava.</string>
   <string name="requires_android11">Requereix Android 11 o superior</string>
   <string name="kp2a_findUrl">Trobar contrasenya</string>
   <string name="excludeExpiredEntries">Excloure les entrades caducats</string>
@@ -347,10 +348,14 @@
   <string name="QuickUnlockIconHidden_summary">Malauradament DesbloqueigRàpid no funciona sense mostrar una icona de notificació. Seleccioneu aquesta opció per utilitzar una icona transparent.</string>
   <string name="QuickUnlockIconHidden16_title">Amagar icona de DesbloqueigRàpid</string>
   <string name="QuickUnlockIconHidden16_summary">DesbloqueigRàpid requereix una notificació per treballar pròpiament. Seleccioneu aquesta opció per mostrar una notificació sense una icona.</string>
+  <string name="QuickUnlockBlockedWhenDeviceNotSecure_summary">Bloqueja l\'entrada a la tecla de desbloqueig ràpid si el dispositiu no està assegurat per bloqueig de pantalla. Això evita atacs de shoulder surfing. Desactiva aquesta opció només si entès el risc. Tingues en compte que Desbloqueig Ràpid encara pot ser usat amb biometria.</string>
+  <string name="QuickUnlockBlockedWhenDeviceNotSecure_title">Bloquejar Desbloqueig Ràpid quan el dispositiu no és segur</string>
   <string name="QuickUnlockLength_title">Longitud de clau DesbloqueigRàpid</string>
   <string name="QuickUnlockLength_summary">Nombre màxim de caràcters utilitzats com a contrasenya de DesbloqueigRàpid.</string>
   <string name="QuickUnlockHideLength_title">Amagar longitud de DesbloqueigRàpid</string>
   <string name="QuickUnlockHideLength_summary">Si està activat, la longitud del codi de DesbloqueigRàpid no apareix a la pantalla de DesbloqueigRàpid.</string>
+  <string name="QuickUnlockKeyFromDatabase_title">Clau de Desbloqueig Ràpid des de l\'entrada de la base de dades</string>
+  <string name="QuickUnlockKeyFromDatabase_summary">Si la base de dades en ús conté una entrada amb el títol de Desbloqueig Ràpid al grup arrel, la contrasenya d\'aquesta entrada s\'utilitzarà com a codi de Desbloqueig Ràpid.</string>
   <string name="QuickUnlock_fail">DesbloqueigRàpid ha fallat: Contrasenya incorrecta!</string>
   <string name="SaveAttachmentDialog_title">Deseu el fitxer adjunt</string>
   <string name="SaveAttachmentDialog_text">Si us plau seleccioneu on voleu desar el fitxer adjunt.</string>
@@ -400,6 +405,7 @@
   <string name="NoDonationReminder_summary">Jo no li donaria un cèntim o ja he fet donació. No demanar donació, ni tan sols a l\'aniversari de l\'autor.</string>
   <string name="UseOfflineCache_title">Posant en memòria cau la base de dades</string>
   <string name="UseOfflineCache_summary">Manteniu una còpia dels fitxers de la base de dades al directori de la memòria cau de l\'aplicació. Això permet utilitzar les bases de dades encara que el fitxer de base de dades no sigui accessible.</string>
+  <string name="SyncOfflineCacheInBackground_summary">En desar o carregar, utilitza la memòria cau interna. Després sincronitza amb l\'emmagatzematge remot en segon pla.</string>
   <string name="SyncOfflineCacheInBackground_title">Sincronitzar en segon pla</string>
   <string name="CreateBackups_title">Còpia de seguretat local</string>
   <string name="CreateBackups_summary">Crea una còpia local després de carregar correctament una base de dades.</string>
@@ -420,11 +426,14 @@
   <string name="ShowSeparateNotifications_summary">Mostrar les notificacions separades per copiar el nom d\'usuari i contrasenya al porta-retalls i activant el teclat.</string>
   <string name="AccServiceAutoFill_prefs">Servei d\'accessibilitat d\'emplenament automàtic</string>
   <string name="AutoFill_prefs">Servei d\'emplenament automàtic</string>
+  <string name="AutoFillTotp_prefs_ShowNotification_summary">Quan completes automàticament una entrada amb TOTP, mostra la notificació d\'entrada amb un botó \"Copiar TOTP\"</string>
   <string name="AutoFillTotp_prefs_ShowNotification_title">Mostrar notificació d\'entrada</string>
   <string name="AutoFillTotp_prefs_title">Autocompletar per a entrades TOTP</string>
-  <string name="AutoFillTotp_prefs_CopyTotpToClipboard_title">Copiar el TOTP al portapapers</string>
+  <string name="AutoFillTotp_prefs_CopyTotpToClipboard_title">Copiar el TOTP al porta-retalls</string>
+  <string name="AutoFillTotp_prefs_CopyTotpToClipboard_summary">En emplenar una entrada amb TOTP, copia el TOTP al porta-retalls</string>
+  <string name="AutoFillTotp_prefs_ActivateKeyboard_summary">En emplenar una entrada amb TOTP, activa el teclat incorporat. El teclat té un botó TOTP.</string>
   <string name="AutoFillTotp_prefs_ActivateKeyboard_title">Activar el teclat incorporat</string>
-  <string name="TotpCopiedToClipboard">S\' ha copiat el TOTP al portapapers</string>
+  <string name="TotpCopiedToClipboard">S\'ha copiat el TOTP al porta-retalls</string>
   <string name="ShowKp2aKeyboardNotification_title">Notificació de teclat KP2A</string>
   <string name="ShowKp2aKeyboardNotification_summary">Fes entrada totalment accessible a través del teclat KP2A (recomanat).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Canvi de teclat</string>
@@ -447,6 +456,7 @@
   <string name="PreloadDatabaseEnabled_title">Pre-carregar el fitxer de base de dades</string>
   <string name="PreloadDatabaseEnabled_summary">Comença carregant de fons o descàrrega de l\'arxiu de base de dades durant l\'entrada de contrasenya d\'inici.</string>
   <string name="SyncAfterQuickUnlock_title">Sincronitzar darrera el QuickUnlock</string>
+  <string name="SyncAfterQuickUnlock_summary">Sincronitzar la base de dades amb el fitxer remot després de desbloquejar amb Desbloqueig Ràpid.</string>
   <string name="AskOverwriteBinary">Voleu sobreescriure el binari existent amb el mateix nom?</string>
   <string name="AskOverwriteBinary_title">Voleu sobreescriure binari existent?</string>
   <string name="AskOverwriteBinary_yes">Sobreescriure</string>
@@ -566,8 +576,11 @@
   <string name="filestoragename_dropboxKP2A">Dropbox (carpeta de KP2A)</string>
   <string name="filestoragehelp_dropboxKP2A">Si no voleu donar accés KP2A al seu Dropbox complet, heu de seleccionar aquesta opció. Es sol·licitarà només l\'accés a la carpeta Apps/Keepass2Android. Això és especialment adequat quan es crea una nova base de dades. Si ja teniu una base de dades, feu clic a aquesta opció per crear la carpeta, a continuació, posar el seu arxiu dins la carpeta (des del seu PC) i llavors seleccioni aquesta opció de nou per obrir l\'arxiu.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
+  <string name="filestoragehelp_gdrive">Nota: Google restringeix l\'accés a Google Drive des d\'aplicacions per a més i més usuaris. Si la implementació integrada de Google Drive no funciona, si us plau utilitza el selector de fitxers del sistema al seu lloc i allà selecciona Google Drive</string>
   <string name="filestoragename_gdriveKP2A">Google Drive (Fitxers KP2A)</string>
+  <string name="filestoragehelp_gdriveKP2A">Si no vols donar accés KP2A total al vostre Google Drive, pots seleccionar aquesta opció. Tingues en compte que primer has de crear un fitxer de base de dades, els fitxers existents no són visibles per a l\'aplicació. Tria aquesta opció des de la pantalla Crear una base de dades o, si ja has obert una base de dades, exportant-la seleccionant aquesta opció.</string>
   <string name="filestoragename_pcloud">PCloud (Carpeta KP2A)</string>
+  <string name="filestoragehelp_pcloud">Aquest tipus d’emmagatzematge només sol·licitarà accés a la carpeta \"Applications/Keepass2Android\". Si vols utilitzar una base de dades existent del vostre compte de pCloud, assegura\'t que el fitxer es col·loca en aquesta carpeta.</string>
   <string name="filestoragename_pcloudall">PCloud (Accés complet)</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_onedrive2">OneDrive</string>
@@ -690,6 +703,9 @@
   <string name="Continue">Continuar</string>
   <string name="NoFilenameWarning">L\'URI que heu introduït no sembla un nom de fitxer. Esteu segurs que és un fitxer vàlid?</string>
   <string name="FirstInvalidCompositeKeyError">Token invàlid! Intenta-ho de nou.</string>
+  <string name="HintLocalBackupOtherError">    \n
+    • Suggeriment: Keepass2Android ha desat l\'última versió del fitxer obert correctament a l\'emmagatzematge intern. Pots obrir-lo tocant \"%1$s\" i sel.leccionant la còpia de seguretat local.
+  </string>
   <string name="open_other_db">Obrir una altra base de dades…</string>
   <string name="select_database">Seleccioneu la base de dades</string>
   <string name="configure_child_dbs">Configura bases de dades fills…</string>
@@ -718,8 +734,11 @@
   <string name="BackgroundSyncChannel_name">Operació de sincronització</string>
   <string name="BackgroundSyncChannel_desc">Notificació per indicar que una sincronització es fa en segon pla.</string>
   <string name="CloseDbAfterFailedAttempts">Tanca la base de dades després de tres intents fallits de desbloqueig biomètric.</string>
+  <string name="hint_smb_credentials">Si vols accedir a fitxers des del teu equip Windows personal, utilitza el nom de l\'equip o l\'adreça IP local com a URL del host; introdueix el nom de l\'equip com a domini i l\'inici de sessió de Windows (sovint igual que el teu compte de Microsoft) com a nom d\'usuari i contrasenya.</string>
+  <string name="WarnFingerprintInvalidated">Atenció! L\'autenticació biomètrica pot ser invalidada per Android, p. ex. després d\'afegir una nova empremta dactilar en la configuració del dispositiu. Esteu segur de conèixer sempre com desbloquejar amb la contrasenya mestra!</string>
   <string name="webdav_chunked_upload_size_title">Mida de fragment per transferir a WebDav</string>
   <string name="webdav_chunked_upload_enabled_title">Habilitar la càrrega fragmentada per a WebDav</string>
+  <string name="webdav_chunked_upload_enabled_summary">Per a servidors WebDav que no suporten la transferència de fitxers grans en una sola petició. Quan està activat, Keepass2Android utilitza la fragmentació WebDav estàndard, no el mètode de fragmentació Nextcloud.</string>
   <string name="webdav_chunked_upload_size_summary">Grandària dels fragments en transferir a servidors WebDav en bytes.</string>
   <string name="cleartextTrafficPermitted_title">Permetre trànsit de xarxa de text sense format a WebDav</string>
   <string name="cleartextTrafficPermitted_summary">Les connexions HTTP no són segures. Només activa-ho si tens altres mesures de seguretat implementades.</string>
@@ -845,6 +864,7 @@
   <string name="invalid_link_association">No es pot associar amb el domini web %1$s amb l\'app %2$s</string>
   <string name="enable_fingerprint_hint">Keepass2Android ha detectat maquinari biomètric. Voleu activar el Desbloqueig biomètric per a aquesta base de dades?</string>
   <string name="post_notifications_dialog_title">Permetre notificacions</string>
+  <string name="post_notifications_dialog_message">Keepass2Android pot mostrar notificacions amb botons per copiar valors com contrasenyes i TOTPs al porta-retalls, o per obrir el teclat integrat. Això és útil per transferir valors a altres aplicacions sense canviar a Keepass2Android repetidament. Vols activar aquestes notificacions?</string>
   <string name="post_notifications_dialog_allow">Permetre notificacions</string>
   <string name="post_notifications_dialog_disable">Desactivar aquesta funció</string>
   <string name="post_notifications_dialog_notnow">Ara no</string>
@@ -862,10 +882,18 @@
   <string name="disable_secure_screen_check">Desactivar aquesta missatge</string>
   <string name="switch_ime_text">Si us plau, activa el teclat Keepass2Android.</string>
   <string name="switch_ime_reopen">Reintenta</string>
+  <string name="AutofillWarning_title">Alerta de seguretat: enllaç de domini/app no ​​reconegut</string>
+  <string name="AutofillWarning_Intro">Estàs a punt d\'inserir credencials per al domini \"%1$s\" a l\'aplicació \"%2$s\".</string>
+  <string name="AutofillWarning_FillDomainInUntrustedApp">Si confies que \"%2$s\" pertany a \"%1$s\", o confies que l\'aplicació \"%2$s\" no utilitzarà malament les credencials (per exemple, perquè és una aplicació de navegador de confiança), està bé continuar. Si no, si us plau cancel·la.</string>
   <string name="AutofillWarning_trustAsBrowser">Acceptar sempre en \"%1$s\"</string>
   <string name="kp2a_switch_on_sendgodone">Tornar quan acabir</string>
   <string name="kp2a_switch_on_sendgodone_summary">Tornar quan es premi enviar/anar/finalitzat</string>
+  <string name="qr_scanning_error_no_google_play_services">L\'exploració de codi QR requereix serveis de Google Play. Si us plau, instal·la o actualitza els Serveis de Google Play al dispositiu.</string>
   <string name="english_ime_settings">Configuració del teclat d\'Keepass2Android</string>
+  <string name="autoswitch_enabled_but_not_setup">Nota: Has activat l\'aplicació - Configuració - Accés a la contrasenya - Canvi de teclat - Canvi de teclat automàtic, però no sembla estar configurat correctament.</string>
+  <string name="switch_keyboard_for_totp_enabled">Nota: Has habilitat App - Accés amb contrasenya - Servei d\'Autocompletar - Autocompletar per a entrades TOTP. Això pot fer que aquesta finestra es mostri quan s\'obre una entrada amb un TOTP.</string>
+  <string name="switch_keyboard_inside_kp2a_enabled">Nota: Has habilitat l\'aplicació - Seguretat - Usar teclat integrat dins de Keepass2Android. Això pot provocar que aquesta finestra es mostri en obrir l\'aplicació o editar una entrada.</string>
+  <string name="switch_keyboard_on_search_enabled">Nota: Has habilitat l\'aplicació - Seguretat - Accés a la contrasenya - Intercanvi de teclat - Canviar teclat. Això pot causar que aquesta finestra es mostri quan cerqueu una entrada des del navegador.</string>
   <string name="user_interaction_required">Cal interacció de l\'usuari. Obre l\'aplicació.</string>
   <string name="failed_to_access_database">La base de dades està actualment en ús i no s\'hi pot accedir.</string>
   <string name="configure_ssids">Configurar SSIDs</string>
