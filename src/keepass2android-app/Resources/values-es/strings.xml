@@ -578,7 +578,7 @@
   <string name="filestoragename_gdrive">Google Drive</string>
   <string name="filestoragehelp_gdrive">Nota: Google está restringiendo el acceso a Google Drive desde aplicaciones para más y más usuarios. Si la implementación integrada de Google Drive no funciona, por favor utiliza el selector de archivos del sistema en su lugar y allí selecciona Google Drive</string>
   <string name="filestoragename_gdriveKP2A">Google Drive (archivos KP2A)</string>
-  <string name="filestoragehelp_gdriveKP2A">Si no deseas brindarle acceso completo a KP2A para acceder a todos los archivos en Google Drive, debes seleccionar esta opción. Recuerda que primero debes crear una base de datos y los archivos existentes no son visibles para la aplicación. Selecciona esta opción desde la pantalla de \"Crear una base de datos\" o, si ya abriste una base de datos, puedes exportarla seleccionando esta opción.</string>
+  <string name="filestoragehelp_gdriveKP2A">Si no deseas dar acceso KP2A completo a todos los archivos en Google Drive, debes seleccionar esta opción. Recuerda que primero debes crear una base de datos y los archivos existentes no son visibles para la aplicación. Selecciona esta opción desde la pantalla de \"Crear una base de datos\" o, si ya abriste una base de datos, puedes exportarla seleccionando esta opción.</string>
   <string name="filestoragename_pcloud">PCloud (carpeta de KP2A)</string>
   <string name="filestoragehelp_pcloud">Este tipo de almacenamiento sólo solicitará acceso a la carpeta de pCloud \"Aplicaciones/Keepass2Android\". Si desea utilizar una base de datos existente de su cuenta pCloud, asegúrese de que el archivo se coloca en dicha carpeta de pCloud.</string>
   <string name="filestoragename_pcloudall">PCloud (acceso sin restricciones)</string>
@@ -1258,7 +1258,7 @@
   <string name="autoswitch_enabled_but_not_setup">Nota: Has activado la aplicación - Configuración - Acceso a la contraseña - Cambio de teclado - Cambio de teclado automático, pero no parece estar configurado correctamente.</string>
   <string name="switch_keyboard_for_totp_enabled">Nota: Has habilitado App - Acceso con contraseña - Servicio de Autorrelleno - Autorrelleno para entradas TOTP. Esto puede causar que esta ventana se muestre cuando se abre una entrada con un TOTP.</string>
   <string name="switch_keyboard_inside_kp2a_enabled">Nota: Ha habilitado la aplicación - Seguridad - Usar teclado integrado dentro de Keepass2Android. Esto puede causar que esta ventana se muestre al abrir la aplicación o editar una entrada.</string>
-  <string name="switch_keyboard_on_search_enabled">Nota: Ha habilitado la aplicación - Seguridad - Acceso a la contraseña - Interruptor de teclado - Cambiar teclado. Esto puede causar que esta ventana se muestre cuando busque una entrada desde el navegador.</string>
+  <string name="switch_keyboard_on_search_enabled">Nota: Ha habilitado la aplicación - Seguridad - Acceso a la contraseña - Intercambio de teclado - Cambiar teclado. Esto puede causar que esta ventana se muestre cuando busque una entrada desde el navegador.</string>
   <string name="user_interaction_required">Se requiere interacción con el usuario. Por favor, abre la aplicación.</string>
   <string name="failed_to_access_database">La base de datos está actualmente en uso y no se puede acceder.</string>
   <string name="configure_ssids">Configurar SSIDs</string>
