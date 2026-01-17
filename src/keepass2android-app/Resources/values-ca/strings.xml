@@ -109,6 +109,8 @@
   <string name="disable_fingerprint_unlock">Deshabilitar Desbloqueig Biomètric</string>
   <string name="enable_fingerprint_unlock">Habilitar Desbloqueig total Biomètric</string>
   <string name="enable_fingerprint_quickunlock">Habilitar Desbloqueig Biomètric  per DesbloqueigRàpid</string>
+  <string name="password_based_quick_unlock_not_available">QuickUnlock basat en contrasenya no està disponible</string>
+  <string name="password_based_quick_unlock_not_available_text">El Desbloqueig Ràpid fent servir una part de la teva contrasenya està bloquejat perquè el bloqueig de pantalla no està activat al teu dispositiu. Aquest comportament és per protegir-te en cas de que algú et vegi introduint la teva clau de Desbloqueig Ràpid.</string>
   <string name="fingerprint_unlock_failed">Ha fallat el Desbloqueig Biomètric. La clau de desxifratge ha estat invalidada per Android OS. Això sol passar si l\'autenticació biomètrica o un paràmetre de seguretat ha canviat.  </string>
   <string name="fingerprint_disabled_wrong_masterkey">Ha fallat el desbloqueig de la base de dades: clau composta invàlida. El desbloqueig biomètric s\'ha deshabilitat perquè aparentment la contrasenya mestra emmagatzemada ja no és vàlida. </string>
   <string name="fingerprint_reenable">Si us plau, torneu a activar Desblocatge Biomètric per la nova contrasenya mestra.</string>
@@ -280,6 +282,7 @@
     <item>Primer caràcter en majúscules</item>
   </string-array>
   <string name="custom_settings">Configuració personalitzada</string>
+  <string name="passphrase_capitalization">Frase de pas en majúscules</string>
   <string name="search_hint">Trobar el que</string>
   <string name="search_results">Resultats de cerca</string>
   <string name="search_in">Cerca a</string>
@@ -312,7 +315,10 @@
   <string name="ShowUsernameInList_summary">Mostrar noms d\'usuari sota títols d\'entrada. Útil per a comptes múltiples o TANs.</string>
   <string name="RememberRecentFiles_title">Recordeu les bases de dades</string>
   <string name="RememberRecentFiles_summary">Recordeu les bases de dades recentment obertes i mostrar-les en la pantalla de d\'obrir base de dades.</string>
+  <string name="NoDalVerification_title">Sense verificació DAL</string>
+  <string name="NoDalVerification_summary">Deshabilita comprovar si el domini i el paquet de l\'aplicació coincideixen</string>
   <string name="InlineSuggestions_title">Integra amb el teclat</string>
+  <string name="LogAutofillView_title">Vista d\'autocompletar del registre</string>
   <string name="requires_android11">Requereix Android 11 o superior</string>
   <string name="kp2a_findUrl">Trobar contrasenya</string>
   <string name="excludeExpiredEntries">Excloure les entrades caducats</string>
@@ -362,6 +368,7 @@
   <string name="configure_totp">Configura TOTP</string>
   <string name="totp_secret_key">Clau secreta</string>
   <string name="totp_encoding_custom">Configuració personalitzada del testimoni</string>
+  <string name="totp_time_step">Interval de temps</string>
   <string name="totp_length">Longitud del codi</string>
   <string name="totp_scan">Escaneja un codi QR</string>
   <string name="delete_extra_string">Suprimir la corda addicional</string>
@@ -406,6 +413,7 @@
   <string name="ShowSeparateNotifications_summary">Mostrar les notificacions separades per copiar el nom d\'usuari i contrasenya al porta-retalls i activant el teclat.</string>
   <string name="AccServiceAutoFill_prefs">Servei d\'accessibilitat d\'emplenament automàtic</string>
   <string name="AutoFill_prefs">Servei d\'emplenament automàtic</string>
+  <string name="AutoFillTotp_prefs_ShowNotification_title">Mostrar notificació d\'entrada</string>
   <string name="ShowKp2aKeyboardNotification_title">Notificació de teclat KP2A</string>
   <string name="ShowKp2aKeyboardNotification_summary">Fes entrada totalment accessible a través del teclat KP2A (recomanat).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Canvi de teclat</string>
@@ -498,6 +506,7 @@
   <string name="no_thanks">No, no m\'agrada tant</string>
   <string name="enter_http_login_title">Introduir dades de connexió WebDav:</string>
   <string name="hint_http_url">URL de la carpeta o arxiu (ex: mycloud.me.com/webdav/)</string>
+  <string name="hint_smb_username">Usuari de Samba</string>
   <string name="enter_owncloud_login_title">Introduir dades de connexió de OwnCloud:</string>
   <string name="hint_owncloud_url">OwnCloud URL (ex: owncloud.me.com)</string>
   <string name="enter_nextcloud_login_title">Introduir dades de connexió de Nextcloud:</string>
@@ -508,10 +517,16 @@
   <string name="enter_sftp_login_title">Introduir dades de connexió SFTP:</string>
   <string name="sftp_auth_mode">Mode d\'autenticació</string>
   <string name="send_public_key">Enviar clau pública...</string>
+  <string name="select_private_keyfile">Selecciona la clau privada</string>
+  <string name="hint_sftp_key_name">Nou nom de clau</string>
+  <string name="hint_sftp_key_content">Nou contingut de clau</string>
+  <string name="private_key_saved">Clau privada guardada</string>
+  <string name="private_key_delete_failed">ERROR a l\'esborrar la clau privada: %1$s</string>
   <string name="save_key">Desa la clau privada</string>
   <string name="delete_key">Elimina la clau privada</string>
   <string name="private_key_select">Seleccioneu la clau privada</string>
   <string name="private_key_create_new">[Afegeix nova...]</string>
+  <string name="hint_sftp_key_passphrase">Frase clau (opcional)</string>
   <string name="hint_sftp_kex">Noms/Especificacions separats per comes</string>
   <string name="hint_sftp_shk">Noms/Especificacions separats per comes</string>
   <string name="enter_ftp_login_title">Introduir dades de connexió FTP:</string>
@@ -522,6 +537,7 @@
   <string name="filestoragename_ftp">FTP</string>
   <string name="filestoragename_http">HTTP (WebDav)</string>
   <string name="filestoragename_https">HTTP (WebDav)</string>
+  <string name="filestoragename_smb">Samba (Windows Share)</string>
   <string name="filestoragename_owncloud">OwnCloud</string>
   <string name="filestoragename_nextcloud">Nextcloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
@@ -575,12 +591,14 @@
   <string name="CouldntLoadChalAuxFile_Hint">Utilitzeu el connector KeeChallenge de KeePass 2. x (PC) per configurar la base de dades per al seu ús amb repte-resposta!</string>
   <string name="ErrorUpdatingChalAuxFile">Error actualitzant fitxer OTP auxiliar!</string>
   <string name="TrayTotp_SeedField_title">Nom del camp TOTP llavor</string>
+  <string name="TOTP">TOTP</string>
   <string name="TrayTotp_SeedField_summary">Si està utilitzant el connector de Keepass 2 \"TrayTotp\" amb la configuració de modificada introduïu el nom de camp per al camp llavor aquí segons la configuració en el PC.</string>
   <string name="TrayTotp_SettingsField_title">Ajustaments del nom del camp TOTP</string>
   <string name="TrayTotp_SettingsField_summary">Introduïu aquí el nom del camp dels ajustaments del camp TrayTotp.</string>
   <string name="TrayTotp_prefs">TrayTotp</string>
   <string name="DebugLog_prefs_prefs">Fitxer de registre per depuració</string>
   <string name="DebugLog_title">Fitxer de registre d\'ús</string>
+  <string name="FtpDebug_title">Registre de depuració FTP/SFTP</string>
   <string name="DebugLog_summary">Escriure sortida de la app a un arxiu de registre local</string>
   <string name="DebugLog_send">Envia els registres de depuració...</string>
   <string name="loading">Carregant…</string>
@@ -666,13 +684,39 @@
   <string name="child_db_Enabled_title">Obrir automàticament</string>
   <string name="database_file_heading">L\'arxiu de base de dades</string>
   <string name="if_device_text">Habilita per a %1$s</string>
+  <string name="restore_history">Restaura aquesta versió</string>
+  <string name="remove_history">Elimina aquesta versió</string>
   <string name="DbUnlockedChannel_name">Base de dades desbloquejada</string>
   <string name="DbUnlockedChannel_desc">Notificació sobre la base de dades que s\'està desbloquejant</string>
   <string name="DbQuicklockedChannel_name">Desbloqueig ràpid</string>
   <string name="DbQuicklockedChannel_desc">Notificació sobre la base de dades bloquejada amb DesbloqueigRàpid</string>
   <string name="EntryChannel_name">Notificacions de les entrades</string>
   <string name="EntryChannel_desc">Notificació per simplificar l\'accés a l\'entrada seleccionada actualment.</string>
+  <string name="BackgroundSyncChannel_name">Operació de sincronització</string>
   <string name="CloseDbAfterFailedAttempts">Tanca la base de dades després de tres intents fallits de desbloqueig biomètric.</string>
+  <string-array name="ChangeLog_1_14">
+    <item>Update to .net 9 and Target SDK version 35. This comes with transparent status bar on Android 15 because edge-to-edge is now the default.</item>
+    <item>Petites millores</item>
+    <item>Removed buttons for donate and find plugins, in order to comply with Google Play policies</item>
+  </string-array>
+  <string-array name="ChangeLog_1_12">
+    <item>Upgraded from Xamarin Android to .net 8</item>
+    <item>Actualitzat a Target SDK 34</item>
+    <item>Actualitzat a la interfície d\'usuari de Material 3</item>
+    <item>Improve autofill to work with Compose apps</item>
+    <item>Fix hostname matching in autofill and search</item>
+    <item>Fix issue with password generator</item>
+  </string-array>
+  <string-array name="ChangeLog_1_11">
+    <item>Added floating action buttons for search and TOTP overview (if TOTP entries are present).</item>
+    <item>Improved display of TOTP fields by adding a timeout indicator and showing it more prominently.</item>
+    <item>TOTP can now be seen from the group view.</item>
+    <item>Copy text value to clipboard on long-press in entry view.</item>
+    <item>Make TOTP more easily accessible on the built-in keyboard.</item>
+    <item>Show entry notification when autofilling a TOTP entry. This allows to copy the TOTP to clipboard. See preferences to configure the behavior.</item>
+    <item>Updated TOTP implementation to resolve compatibility issues with KeePass2 and TrayTOTP</item>
+    <item>Petites millores</item>
+  </string-array>
   <string-array name="ChangeLog_1_08b">
     <item>Força HTTP/1.1 degut a un problema amb l\'implementació de HTTP/2 de OkHttp</item>
     <item>Millora el menú del teclat a Android 9+</item>
@@ -713,7 +757,7 @@
   <string-array name="design_options">
     <item>Clar</item>
     <item>Fosc</item>
-    <item>System settings</item>
+    <item>Configuració del sistema</item>
   </string-array>
   <string name="design_title">Disseny</string>
   <string-array name="ftp_encryption_modes">
