@@ -108,8 +108,8 @@
   <string name="fingerprint_no_enrolled">No ha configurado la autenticación biométrica en este dispositivo. Diríjase primero a la configuración del sistema.</string>
   <string name="disable_fingerprint_unlock">Deshabilitar desbloqueo biométrico</string>
   <string name="enable_fingerprint_unlock">Habilitar desbloqueo biométrico completo</string>
-  <string name="enable_fingerprint_quickunlock">Activar desbloqueo biométrico para QuickUnlock</string>
-  <string name="password_based_quick_unlock_not_available">QuickUnlock basado en contraseña no está disponible</string>
+  <string name="enable_fingerprint_quickunlock">Activar desbloqueo biométrico para Desbloqueo Rápido</string>
+  <string name="password_based_quick_unlock_not_available">Desbloqueo Rápido basado en contraseña no está disponible</string>
   <string name="password_based_quick_unlock_not_available_text">El Desbloqueo Rápido usando una parte de su contraseña está bloqueado porque el bloqueo de pantalla no está activado en su dispositivo. Este comportamiento es para protegerte en caso de que alguien te observara introduciendo tu clave de Desbloqueo Rápido.</string>
   <string name="fingerprint_unlock_failed">Desbloqueo biométrico fallido. La clave de descifrado fue invalidada por el SO Android. Esto suele suceder si se ha modificado una configuración de autenticación o seguridad biométrica. </string>
   <string name="fingerprint_disabled_wrong_masterkey">Error al desbloquear la base de datos: clave compuesta no válida. El desbloqueo biométrico se deshabilitó porque aparentemente la contraseña maestra almacenada ya no es válida. </string>
@@ -118,7 +118,7 @@
   <string name="FingerprintInitFailed">Error al inicializar la autenticación biométrica. </string>
   <string name="FingerprintSetupFailed">No se pudo cifrar los datos. Esto puede suceder si se añaden o eliminan huellas dactilares en la configuración del sistema mientras Keepass2Android está esperando su huella digital.</string>
   <string name="enable_fingerprint_unlock_Info">Esto almacenará su contraseña maestra en este dispositivo, cifrada con el almacén de claves de Android y protegida mediante autenticación biométrica. Permite desbloquear su base de datos solo usando biometría.</string>
-  <string name="enable_fingerprint_quickunlock_Info">Permite utilizar la autenticación biométrica en lugar del código QuickUnlock. No almacena ninguna información relacionada con su contraseña maestra.</string>
+  <string name="enable_fingerprint_quickunlock_Info">Permite utilizar la autenticación biométrica en lugar del código de Desbloqueo Rápido. No almacena ninguna información relacionada con su contraseña maestra.</string>
   <string name="enter_filename">Introduzca el nombre del archivo de base de datos</string>
   <string name="entry_accessed">Accedido</string>
   <string name="entry_cancel">Cancelar</string>
@@ -332,31 +332,31 @@
   <string name="start_create_import">Importar archivo a una nueva base de datos...</string>
   <string name="enter_filename_details_url">Debe especificar la dirección URL completa incluyendo el protocolo, como http://.</string>
   <string name="enter_filename_details_create_import">El archivo que va a importar será seleccionado en el paso siguiente.</string>
-  <string name="enable_quickunlock">Habilitar QuickUnlock</string>
+  <string name="enable_quickunlock">Habilitar Desbloqueo Rápido</string>
   <string name="QuickUnlock_label">Escribe los últimos %1$d caracteres de tu contraseña:</string>
-  <string name="QuickUnlock_label_secure">Introduzca el código de QuickUnlock:</string>
-  <string name="QuickUnlock_button">QuickUnlock!</string>
+  <string name="QuickUnlock_label_secure">Introduzca el código de Desbloqueo Rápido:</string>
+  <string name="QuickUnlock_button">Desbloqueo Rápido!</string>
   <string name="QuickUnlock_lockButton">Cerrar la base de datos</string>
   <string name="enable_screen_lock">Activar bloqueo de pantalla</string>
-  <string name="QuickUnlockDefaultEnabled_title">Habilitar QuickUnlock por defecto</string>
-  <string name="QuickUnlockDefaultEnabled_summary">Determina si QuickUnlock está habilitado de forma predeterminada o no.</string>
+  <string name="QuickUnlockDefaultEnabled_title">Habilitar Desbloqueo Rápido por defecto</string>
+  <string name="QuickUnlockDefaultEnabled_summary">Determina si Desbloqueo Rápido está habilitado de forma predeterminada o no.</string>
   <string name="ViewDatabaseSecure_title">Evitar visualización de la base de datos</string>
   <string name="DisableSecureDisplayCheck_title">Omitir comprobación de pantalla segura</string>
   <string name="ViewDatabaseSecure_summary">Si se encuentra activado, no se permiten realizar capturas de pantalla y no se muestra la miniatura de la app en la lista de aplicaciones recientes.</string>
-  <string name="DisableSecureDisplayCheck_summary"></string>
+  <string name="DisableSecureDisplayCheck_summary">Permite mostrar información sensible incluso si la pantalla actual no está marcada como \"segura\" por Android.</string>
   <string name="QuickUnlockIconHidden_title">Ocultar el icono de QuickUnlock</string>
   <string name="QuickUnlockIconHidden_summary">QuickUnlock lamentablemente no funciona sin mostrar un icono de notificación. Seleccione esta opción para utilizar un icono transparente.</string>
   <string name="QuickUnlockIconHidden16_title">Ocultar el icono de QuickUnlock</string>
-  <string name="QuickUnlockIconHidden16_summary">QuickUnlock requiere una notificación para funcionar correctamente. Seleccione esta opción para mostrar la notificación sin icono.</string>
+  <string name="QuickUnlockIconHidden16_summary">Desbloqueo Rápido requiere una notificación para funcionar correctamente. Seleccione esta opción para mostrar la notificación sin icono.</string>
   <string name="QuickUnlockBlockedWhenDeviceNotSecure_summary">Bloquea el ingreso en la tecla de Desbloqueo Rápido si el dispositivo no está asegurado por bloqueo de pantalla. Esto evita ataques de shoulder surfing. Desactive esta opción solo si entiende el riesgo. Tenga en cuenta que Desbloqueo Rápido todavía puede ser usado con biometría.</string>
   <string name="QuickUnlockBlockedWhenDeviceNotSecure_title">Bloquear Desbloqueo Rápido cuando el dispositivo no es seguro</string>
   <string name="QuickUnlockLength_title">Longitud de la clave QuickUnlock</string>
   <string name="QuickUnlockLength_summary">Número máximo de caracteres que se utiliza para la contraseña QuickUnlock.</string>
-  <string name="QuickUnlockHideLength_title">Ocultar longitud de QuickUnlock</string>
-  <string name="QuickUnlockHideLength_summary">Si está habilitado, la longitud del código de QuickUnlock no aparece en la pantalla de QuickUnlock.</string>
-  <string name="QuickUnlockKeyFromDatabase_title">Clave de QuickUnlock desde la entrada de la base de datos</string>
-  <string name="QuickUnlockKeyFromDatabase_summary">Si la base de datos en uso contiene una entrada con el título de QuickUnlock en el grupo raíz, la contraseña de esta entrada se utilizará como el código de QuickUnlock.</string>
-  <string name="QuickUnlock_fail">¡Error de QuickUnlock: contraseña incorrecta!</string>
+  <string name="QuickUnlockHideLength_title">Ocultar longitud de Desbloqueo Rápido</string>
+  <string name="QuickUnlockHideLength_summary">Si está habilitado, la longitud del código de Desbloqueo Rápido no aparece en la pantalla de Desbloqueo Rápido.</string>
+  <string name="QuickUnlockKeyFromDatabase_title">Clave de Desbloqueo Rápido desde la entrada de la base de datos</string>
+  <string name="QuickUnlockKeyFromDatabase_summary">Si la base de datos en uso contiene una entrada con el título de Desbloqueo Rápido en el grupo raíz, la contraseña de esta entrada se utilizará como el código de Desbloqueo Rápido.</string>
+  <string name="QuickUnlock_fail">¡Error de Desbloqueo Rápido: contraseña incorrecta!</string>
   <string name="SaveAttachmentDialog_title">Guardar datos adjuntos</string>
   <string name="SaveAttachmentDialog_text">Por favor, seleccione dónde guardar el archivo adjunto.</string>
   <string name="SaveAttachmentDialog_save">Exportar a archivo...</string>
@@ -455,8 +455,8 @@
   <string name="DocumentAccessRevoked">El archivo ya no es accesible a Keepass2Android. Ha sido eliminado o han sido revocados los permisos de acceso. Por favor use re-abrir el archivo, por ejemplo, con Cambiar base de datos.</string>
   <string name="PreloadDatabaseEnabled_title">Pre-cargar archivo de base de datos</string>
   <string name="PreloadDatabaseEnabled_summary">Empezar a descargar del archivo de base de datos durante la entrada de contraseña.</string>
-  <string name="SyncAfterQuickUnlock_title">Sincronizar tras QuickUnlock</string>
-  <string name="SyncAfterQuickUnlock_summary">Sincronizar la base de datos con el archivo remoto después de desbloquear con QuickUnlock.</string>
+  <string name="SyncAfterQuickUnlock_title">Sincronizar tras Desbloqueo Rápido</string>
+  <string name="SyncAfterQuickUnlock_summary">Sincronizar la base de datos con el archivo remoto después de desbloquear con Desbloqueo Rápido.</string>
   <string name="AskOverwriteBinary">¿Desea sobrescribir el binario existente con el mismo nombre?</string>
   <string name="AskOverwriteBinary_title">¿Sobrescribir binario existente?</string>
   <string name="AskOverwriteBinary_yes">Sobrescribir</string>
@@ -561,7 +561,7 @@
   <string name="sftp_shk_title">Algoritmo(s) de clave de host del servidor (opcional)</string>
   <string name="hint_sftp_shk">\"Nombres/especificaciones separadas por comas</string>
   <string name="enter_ftp_login_title">Introducir datos de acceso FTP:</string>
-  <string name="enter_mega_login_title">Digite las credenciales de su cuenta en MEGA:</string>
+  <string name="enter_mega_login_title">Introduce las credenciales de tu cuenta MEGA:</string>
   <string name="select_storage_type">Seleccione el tipo de almacenamiento:</string>
   <string name="filestoragename_file">Archivo local</string>
   <string name="filestoragename_androidget">Coger de una aplicación de terceros</string>
@@ -596,7 +596,7 @@
   <string name="help_database_location">Puede almacenar su base de datos localmente en su dispositivo Android o en la nube(solo en la versión non-Offline). Keepass2Android permite acceder a la base de datos aun cuando estas sin conexión a Internet. Como la base de datos es encriptada de forma segura con una encriptación AES de 256 bit, nadie podrá acceder a sus contraseñas a excepción de usted. Recomendamos el uso de Dropbox ya que es se puede utilizar desde todos los dispositivos y también proporciona copias de seguridad de las versiones anteriores de las bases de datos.</string>
   <string name="hint_database_location">Seleccione dónde desea almacenar la base de datos:</string>
   <string name="button_change_location">Cambiar ubicación</string>
-  <string name="help_quickunlock">Si está habilitado, Keepass2Android se queda funcionando en segundo plano incluso cuando la base de datos está bloqueada. Esto permite abrir la base de datos más adelante con sólo una pequeña parte de la contraseña maestra.</string>
+  <string name="help_quickunlock">Si está habilitado, Keepass2Android se queda funcionando en segundo plano incluso cuando la base de datos está bloqueada. Esto permite abrir la base de datos más adelante con solo una pequeña parte de la contraseña maestra.</string>
   <string name="master_password">Contraseña maestra</string>
   <string name="help_master_password">Su base de datos está encriptada con la contraseña que introduzca aquí. ¡Elija una contraseña fuerte para mantener la base de datos segura!. Consejos: Hacer una frase o dos y utilizar las primeras letras de las palabras como contraseña. Incluir signos de puntuación.</string>
   <string name="hint_master_password">Seleccione una contraseña maestra para proteger su base de datos:</string>
@@ -745,7 +745,7 @@
   <string name="DbUnlockedChannel_name">Base de datos desbloqueada</string>
   <string name="DbUnlockedChannel_desc">Notificación acerca de que la base de datos está siendo desbloqueada</string>
   <string name="DbQuicklockedChannel_name">QuickUnlock</string>
-  <string name="DbQuicklockedChannel_desc">Notificación acerca de que la base de datos está siendo bloqueada con QuickUnlock</string>
+  <string name="DbQuicklockedChannel_desc">Notificación acerca de que la base de datos está siendo bloqueada con Desbloqueo Rápido</string>
   <string name="EntryChannel_name">Notificaciones de entrada</string>
   <string name="EntryChannel_desc">Notificación para simplificar el acceso a la entrada seleccionada actualmente.</string>
   <string name="BackgroundSyncChannel_name">Operación de sincronización</string>
@@ -778,7 +778,7 @@
   </string-array>
   <string-array name="ChangeLog_1_13">
     <item>Estimación de la calidad de las contraseñas mejorada teniendo en cuenta las contraseñas más populares.</item>
-    <item>Bloquear QuickUnlock basado en contraseña (por razones de seguridad) si el dispositivo no tiene un bloqueo de pantalla activado.</item>
+    <item>Bloquear Desbloqueo Rápido basado en contraseña (por razones de seguridad) si el dispositivo no tiene un bloqueo de pantalla activado.</item>
     <item>Actualiza la configuración de seguridad de red para desactivar la transferencia de texto sin formato.</item>
   </string-array>
   <string-array name="ChangeLog_1_12">
@@ -833,7 +833,7 @@
     <item>Corregir la desaparición del aviso de autocompletado en Firefox</item>
     <item>Integrar sugerencias de autocompletar con el teclado (requiere Android 11+)</item>
     <item>Permitir cambiar el idioma de la aplicación en los ajustes</item>
-    <item>Añadir la opción de sincronizar la base de datos después de QuickUnlock</item>
+    <item>Añadir la opción de sincronizar la base de datos después de Desbloqueo Rápido</item>
     <item>Corrección de errores: No poner los nombres de los archivos en minúsculas al guardar en Dropbox</item>
   </string-array>
   <string-array name="ChangeLog_1_09a">
