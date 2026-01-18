@@ -703,8 +703,23 @@
   <string name="Continue">Continuar</string>
   <string name="NoFilenameWarning">L\'URI que heu introduït no sembla un nom de fitxer. Esteu segurs que és un fitxer vàlid?</string>
   <string name="FirstInvalidCompositeKeyError">Token invàlid! Intenta-ho de nou.</string>
+  <string name="RepeatedInvalidCompositeKeyHelp">Token invàlid! Si us plau, prova els passos següents per obrir la base de dades: \n
+  
+   • Assegura\'t que has introduït la contrasenya correcta. Utilitzar la icona d\'ull per mostrar la contrasenya introduïda.\n
+   • Assegura\'t que has seleccionat el tipus de contrasenya correcta. Assegureu-vos que correspongui el tipus utilitzada en la creació de la base de dades.\n
+   • Assegura\'t que has seleccionat l\'arxiu de base de dades correcte.</string>
+  <string name="HintLocalBackupInvalidCompositeKey">    \n 
+ • Suggeriment: si penses que la base de dades podria estar corrupte o no recordes la clau mestra després de modificar-lo, pot provar amb l\'última versió d\'arxiu obert satisfactòriament fent clic \"%1$s\" i seleccionant la còpia de seguretat local.</string>
   <string name="HintLocalBackupOtherError">    \n
     • Suggeriment: Keepass2Android ha desat l\'última versió del fitxer obert correctament a l\'emmagatzematge intern. Pots obrir-lo tocant \"%1$s\" i sel.leccionant la còpia de seguretat local.
+  </string>
+  <string name="CorruptDatabaseHelp">L\'arxiu està corrupte. \n 
+    Aquí hi ha alguns consells que poden ajudar a diagnosticar el problema: \n
+    
+     • Si vas copiar l\'arxiu mitjançant USB (MTP Mode), intenta-ho novament amb eines com MyPhoneExplorer. MTP trenca arxius en certs casos. \n
+    • Si no es pot obrir el fitxer des del mateix emplaçament en el teu PC, és molt probable que l\'arxiu estigui corrupte. Si us plau utilitza una còpia de seguretat de la base de dades. Si creus que Keepass2Android ha malmès el fitxer, si us plau contacta amb suport. \n
+    • Si encara pots obrir l\'arxiu en el seu PC, contacta amb suport. Podries intentar guardar-lo amb diferents configuracions (ex. descomprimit) en el PC i provar a obrir-lo de nou en Keepass2Android. 
+
   </string>
   <string name="open_other_db">Obrir una altra base de dades…</string>
   <string name="select_database">Seleccioneu la base de dades</string>
@@ -744,6 +759,10 @@
   <string name="cleartextTrafficPermitted_summary">Les connexions HTTP no són segures. Només activa-ho si tens altres mesures de seguretat implementades.</string>
   <string-array name="ChangeLog_1_15_net">
     <item></item>
+  </string-array>
+  <string-array name="ChangeLog_1_15">
+    <item>Sincronització en segon pla afegida: Keepass2Android ara utilitza la còpia en memòria cau interna de la base de dades per carregar i desar per fer aquestes operacions més ràpides. Després d\'això, s\'inicia la sincronització amb la base de dades remota.</item>
+    <item>S\'han afegit preferències d\'usuari per controlar el comportament de la sincronització en segon pla. Pots habilitar la sincronització en segon pla i controlar si la sincronització s\'ha de fer sempre o només amb les xarxes Wi-Fi.</item>
   </string-array>
   <string-array name="ChangeLog_1_14">
     <item>Update to .net 9 and Target SDK version 35. This comes with transparent status bar on Android 15 because edge-to-edge is now the default.</item>
