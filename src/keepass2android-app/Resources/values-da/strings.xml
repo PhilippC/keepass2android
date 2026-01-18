@@ -20,15 +20,15 @@
   <string name="AboutText">Keepass2Android er en adgangskodehåndterings-app, der giver læse-/skriveadgang til KeePass 2.x-databaser på Android.</string>
   <string name="CreditsText">Brugerfladen er baseret på en portering af KeePassDroid, udviklet af Brian Pellin. Koden til databaseoperationerne baserer sig på KeePass af Dominik Reichl. Android-robotten er reproduceret eller ændret fra arbejde skabt og delt af Google og anvendt jf. betingelserne beskrevet i \"Creative Commons 3.0 Attribution License\".</string>
   <string name="CreditsTextSFTP">SFTP-understøttelse er implementeret vha. JSch-biblioteket under BSD-licensen, skabt af JCraft, Inc.</string>
-  <string name="CreditsIcons">Hammerikonet er lavet af John Caserta fra Noun Project. Pingvinikonet er lavet af Adriano Emerick fra Noun Project. Fjerikonet er lavet af Jon Testa fra Noun Project. Æbleikonet er lavet af Ava Rowell fra Noun Project. Billedikonet er fra https://icons8.com/icon/5570/Picture.</string>
+  <string name="CreditsIcons">Hammerikonet er kreéret af John Caserta fra Noun Project. Pingvinikonet er kreéret af Adriano Emerick fra Noun Project. Fjerikonet er kreéret af Jon Testa fra Noun Project. Æbleikonet er kreéret af Ava Rowell fra Noun Project. Billedikonet stammer fra https://icons8.com/icon/5570/Picture.</string>
   <string name="accept">Acceptér</string>
   <string name="deny">Afvis</string>
   <string name="add_entry">Tilføj post</string>
   <string name="edit_entry">Redigér post</string>
-  <string name="add_url_entry">Opret post for webadresse</string>
+  <string name="add_url_entry">Opret post for URL</string>
   <string name="add_group">Tilføj gruppe</string>
   <string name="add_group_title">Tilføj Gruppe</string>
-  <string name="edit_group_title">Rediger gruppe</string>
+  <string name="edit_group_title">Redigér gruppe</string>
   <string name="algorithm">Algoritme</string>
   <string name="algorithm_colon">Algoritme</string>
   <string name="app_name">Keepass2Android</string>
@@ -36,7 +36,7 @@
   <string name="app_name_nonet">Keepass2Android Offline</string>
   <string name="short_app_name_nonet">KP2A Offline</string>
   <string name="app_timeout">App-timeuot</string>
-  <string name="app_timeout_summary">Tidsforløb inden databasen låses, når app\'en er inaktiv.</string>
+  <string name="app_timeout_summary">Tidsforløb inden databasen låses, når appen er inaktiv.</string>
   <string name="show_kill_app">Luk-knap</string>
   <string name="kill_app_label">Stands app-proces</string>
   <string name="show_kill_app_summary">Vis en knap på adgangskodeskærmen til standsning af app-processen (til paranoide brugere)</string>
