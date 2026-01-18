@@ -765,33 +765,59 @@
     <item>S\'han afegit preferències d\'usuari per controlar el comportament de la sincronització en segon pla. Pots habilitar la sincronització en segon pla i controlar si la sincronització s\'ha de fer sempre o només amb les xarxes Wi-Fi.</item>
   </string-array>
   <string-array name="ChangeLog_1_14">
-    <item>Update to .net 9 and Target SDK version 35. This comes with transparent status bar on Android 15 because edge-to-edge is now the default.</item>
+    <item>Actualització a .NET 9 i Target SDK versió 35. Ara Android 15 mostra la barra d’estat transparent de manera predeterminada, amb una experiència de pantalla completa més fluida.</item>
     <item>Petites millores</item>
-    <item>Removed buttons for donate and find plugins, in order to comply with Google Play policies</item>
+    <item>Eliminats els botons de donació i de cerca de complements per complir les polítiques de Google Play.</item>
+  </string-array>
+  <string-array name="ChangeLog_1_14_net">
+    <item>Millores a WebDAV. Correcció en el llistat de carpetes i millor suport per a pujades per parts i transaccions.</item>
+    <item>Afegit suport per a recursos compartits de xarxa Samba i Windows.</item>
+    <item>JSch actualitzat per oferir compatibilitat amb algoritmes SFTP més moderns i segurs.</item>
+  </string-array>
+  <string-array name="ChangeLog_1_13">
+    <item>Estimació de la qualitat de les contrasenyes millorada tenint en compte les més habituals.</item>
+    <item>El Desbloqueig Ràpid amb contrasenya es desactiva per seguretat si el dispositiu no té el bloqueig de pantalla activat.</item>
+    <item>Configuració de seguretat de xarxa actualitzada per evitar la transmissió de text sense xifrar.</item>
   </string-array>
   <string-array name="ChangeLog_1_12">
     <item>Actualitzat des de Xamarin Android a .net 8</item>
     <item>Actualitzat a Target SDK 34</item>
     <item>Actualitzat a la interfície d\'usuari de Material 3</item>
-    <item>Improve autofill to work with Compose apps</item>
-    <item>Fix hostname matching in autofill and search</item>
-    <item>Fix issue with password generator</item>
+    <item>Autocompletar millorat per funcionar millor amb apps fetes amb Compose.</item>
+    <item>Millora en la coincidència del nom del servidor a l’autorcompletar i a la cerca.</item>
+    <item>Correcció en el generador de contrasenyes.</item>
   </string-array>
   <string-array name="ChangeLog_1_12_net">
     <item>Actualitzat OneDrive SDK a la versió 5.68</item>
     <item>Actualitzat Dropbox SDK a la versió 7.0.0</item>
     <item>Gradle actualitzat, NewtonsoftJson, FluentFTP, MegaApiClient i okhttp</item>
-    <item>Bugfix in WebDav file selection</item>
+    <item>Millora en la selecció de fitxers a WebDAV.</item>
   </string-array>
   <string-array name="ChangeLog_1_11">
-    <item>Added floating action buttons for search and TOTP overview (if TOTP entries are present).</item>
-    <item>Improved display of TOTP fields by adding a timeout indicator and showing it more prominently.</item>
-    <item>TOTP can now be seen from the group view.</item>
-    <item>Copy text value to clipboard on long-press in entry view.</item>
-    <item>Make TOTP more easily accessible on the built-in keyboard.</item>
-    <item>Show entry notification when autofilling a TOTP entry. This allows to copy the TOTP to clipboard. See preferences to configure the behavior.</item>
-    <item>Updated TOTP implementation to resolve compatibility issues with KeePass2 and TrayTOTP</item>
+    <item>Afegits botons d’acció flotants per a la cerca i la vista general de TOTP quan hi ha entrades disponibles.</item>
+    <item>Visualització dels camps TOTP millorada amb un indicador de temps més visible.</item>
+    <item>Ara el TOTP també es pot veure des de la vista de grup.</item>
+    <item>Copia el valor del text al porta-retalls amb una pulsació llarga a la vista de l’entrada.</item>
+    <item>El TOTP ara és més fàcil d’utilitzar des del teclat integrat del dispositiu.</item>
+    <item>Mostra una notificació de l’entrada en autocompletar un TOTP. Això permet copiar el TOTP al porta-retalls. Pots ajustar aquest comportament a les preferències.</item>
+    <item>Implementació de TOTP actualitzada per millorar la compatibilitat amb KeePass2 i TrayTOTP.</item>
     <item>Petites millores</item>
+  </string-array>
+  <string-array name="ChangeLog_1_11_net">
+    <item>Actualització del SDK de pCloud per oferir accés a carpetes compartides.</item>
+  </string-array>
+  <string-array name="ChangeLog_1_10">
+    <item>S’afegeix suport per als permisos de notificacions a Android 13 o superior.</item>
+    <item>Millora de la implementació de FTP i SFTP.</item>
+    <item>Accés complet a pCloud disponible.</item>
+    <item>Ara es pot seleccionar l’idioma del sistema des del diàleg d’idioma.</item>
+    <item>Correcció en el recordatori del tipus de contrasenya Keyfile + frase de desafiament.</item>
+  </string-array>
+  <string-array name="ChangeLog_1_09e">
+    <item>Correcció de comportaments inesperats i tancaments de sessió.</item>
+    <item>Switch to new SFTP implementation, supporting modern public key algorithms such as rsa-sha2-256</item>
+    <item>Mark passwords as sensitive when copying to clipboard (Android 13)</item>
+    <item>Autofill improvements</item>
   </string-array>
   <string-array name="ChangeLog_1_09d">
     <item>Added support for viewing, removing and restoring of entry backups</item>
