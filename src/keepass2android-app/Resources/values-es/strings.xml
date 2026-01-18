@@ -45,7 +45,7 @@
   <string name="ShowGroupnameInSearchResult_title">Mostrar nombre del grupo en resultado de búsqueda</string>
   <string name="ShowGroupnameInSearchResult_resume">Mostrar nombre del grupo por debajo de los títulos en resultados de búsqueda. Útil si múltiples entradas tienen el mismo nombre.</string>
   <string name="NavigationToGroupCompleted_message">Grupo de visualización es ahora: %1$s</string>
-  <string name="AutofillDisabledQueriesPreference_title">Objetivos de autorelleno deshabilitados</string>
+  <string name="AutofillDisabledQueriesPreference_title">Objetivos de autorrelleno deshabilitados</string>
   <string name="AutofillDisabledQueriesPreference_summary">Visualiza una lista de aplicaciones y sitios web para los que el autocompletado ha sido desactivado</string>
   <string name="OfferSaveCredentials_summary">Si está habilitado, Android preguntará si desea guardar las credenciales después de que haya introducido manualmente datos en campos autorellenables.</string>
   <string name="OfferSaveCredentials_title">Ofrecer guardado de credenciales</string>
@@ -108,7 +108,8 @@
   <string name="fingerprint_no_enrolled">No ha configurado la autenticación biométrica en este dispositivo. Diríjase primero a la configuración del sistema.</string>
   <string name="disable_fingerprint_unlock">Deshabilitar desbloqueo biométrico</string>
   <string name="enable_fingerprint_unlock">Habilitar desbloqueo biométrico completo</string>
-  <string name="enable_fingerprint_quickunlock">Activar desbloqueo biométrico para QuickUnlock</string>
+  <string name="enable_fingerprint_quickunlock">Activar desbloqueo biométrico para Desbloqueo Rápido</string>
+  <string name="password_based_quick_unlock_not_available">Desbloqueo Rápido basado en contraseña no está disponible</string>
   <string name="password_based_quick_unlock_not_available_text">El Desbloqueo Rápido usando una parte de su contraseña está bloqueado porque el bloqueo de pantalla no está activado en su dispositivo. Este comportamiento es para protegerte en caso de que alguien te observara introduciendo tu clave de Desbloqueo Rápido.</string>
   <string name="fingerprint_unlock_failed">Desbloqueo biométrico fallido. La clave de descifrado fue invalidada por el SO Android. Esto suele suceder si se ha modificado una configuración de autenticación o seguridad biométrica. </string>
   <string name="fingerprint_disabled_wrong_masterkey">Error al desbloquear la base de datos: clave compuesta no válida. El desbloqueo biométrico se deshabilitó porque aparentemente la contraseña maestra almacenada ya no es válida. </string>
@@ -117,7 +118,7 @@
   <string name="FingerprintInitFailed">Error al inicializar la autenticación biométrica. </string>
   <string name="FingerprintSetupFailed">No se pudo cifrar los datos. Esto puede suceder si se añaden o eliminan huellas dactilares en la configuración del sistema mientras Keepass2Android está esperando su huella digital.</string>
   <string name="enable_fingerprint_unlock_Info">Esto almacenará su contraseña maestra en este dispositivo, cifrada con el almacén de claves de Android y protegida mediante autenticación biométrica. Permite desbloquear su base de datos solo usando biometría.</string>
-  <string name="enable_fingerprint_quickunlock_Info">Permite utilizar la autenticación biométrica en lugar del código QuickUnlock. No almacena ninguna información relacionada con su contraseña maestra.</string>
+  <string name="enable_fingerprint_quickunlock_Info">Permite utilizar la autenticación biométrica en lugar del código de Desbloqueo Rápido. No almacena ninguna información relacionada con su contraseña maestra.</string>
   <string name="enter_filename">Introduzca el nombre del archivo de base de datos</string>
   <string name="entry_accessed">Accedido</string>
   <string name="entry_cancel">Cancelar</string>
@@ -331,29 +332,31 @@
   <string name="start_create_import">Importar archivo a una nueva base de datos...</string>
   <string name="enter_filename_details_url">Debe especificar la dirección URL completa incluyendo el protocolo, como http://.</string>
   <string name="enter_filename_details_create_import">El archivo que va a importar será seleccionado en el paso siguiente.</string>
-  <string name="enable_quickunlock">Habilitar QuickUnlock</string>
+  <string name="enable_quickunlock">Habilitar Desbloqueo Rápido</string>
   <string name="QuickUnlock_label">Escribe los últimos %1$d caracteres de tu contraseña:</string>
-  <string name="QuickUnlock_label_secure">Introduzca el código de QuickUnlock:</string>
-  <string name="QuickUnlock_button">QuickUnlock!</string>
+  <string name="QuickUnlock_label_secure">Introduzca el código de Desbloqueo Rápido:</string>
+  <string name="QuickUnlock_button">Desbloqueo Rápido!</string>
   <string name="QuickUnlock_lockButton">Cerrar la base de datos</string>
   <string name="enable_screen_lock">Activar bloqueo de pantalla</string>
-  <string name="QuickUnlockDefaultEnabled_title">Habilitar QuickUnlock por defecto</string>
-  <string name="QuickUnlockDefaultEnabled_summary">Determina si QuickUnlock está habilitado de forma predeterminada o no.</string>
+  <string name="QuickUnlockDefaultEnabled_title">Habilitar Desbloqueo Rápido por defecto</string>
+  <string name="QuickUnlockDefaultEnabled_summary">Determina si Desbloqueo Rápido está habilitado de forma predeterminada o no.</string>
   <string name="ViewDatabaseSecure_title">Evitar visualización de la base de datos</string>
+  <string name="DisableSecureDisplayCheck_title">Omitir comprobación de pantalla segura</string>
   <string name="ViewDatabaseSecure_summary">Si se encuentra activado, no se permiten realizar capturas de pantalla y no se muestra la miniatura de la app en la lista de aplicaciones recientes.</string>
+  <string name="DisableSecureDisplayCheck_summary">Permite mostrar información sensible incluso si la pantalla actual no está marcada como \"segura\" por Android.</string>
   <string name="QuickUnlockIconHidden_title">Ocultar el icono de QuickUnlock</string>
   <string name="QuickUnlockIconHidden_summary">QuickUnlock lamentablemente no funciona sin mostrar un icono de notificación. Seleccione esta opción para utilizar un icono transparente.</string>
   <string name="QuickUnlockIconHidden16_title">Ocultar el icono de QuickUnlock</string>
-  <string name="QuickUnlockIconHidden16_summary">QuickUnlock requiere una notificación para funcionar correctamente. Seleccione esta opción para mostrar la notificación sin icono.</string>
+  <string name="QuickUnlockIconHidden16_summary">Desbloqueo Rápido requiere una notificación para funcionar correctamente. Seleccione esta opción para mostrar la notificación sin icono.</string>
   <string name="QuickUnlockBlockedWhenDeviceNotSecure_summary">Bloquea el ingreso en la tecla de Desbloqueo Rápido si el dispositivo no está asegurado por bloqueo de pantalla. Esto evita ataques de shoulder surfing. Desactive esta opción solo si entiende el riesgo. Tenga en cuenta que Desbloqueo Rápido todavía puede ser usado con biometría.</string>
   <string name="QuickUnlockBlockedWhenDeviceNotSecure_title">Bloquear Desbloqueo Rápido cuando el dispositivo no es seguro</string>
   <string name="QuickUnlockLength_title">Longitud de la clave QuickUnlock</string>
   <string name="QuickUnlockLength_summary">Número máximo de caracteres que se utiliza para la contraseña QuickUnlock.</string>
-  <string name="QuickUnlockHideLength_title">Ocultar longitud de QuickUnlock</string>
-  <string name="QuickUnlockHideLength_summary">Si está habilitado, la longitud del código de QuickUnlock no aparece en la pantalla de QuickUnlock.</string>
-  <string name="QuickUnlockKeyFromDatabase_title">Clave de QuickUnlock desde la entrada de la base de datos</string>
-  <string name="QuickUnlockKeyFromDatabase_summary">Si la base de datos en uso contiene una entrada con el título de QuickUnlock en el grupo raíz, la contraseña de esta entrada se utilizará como el código de QuickUnlock.</string>
-  <string name="QuickUnlock_fail">¡Error de QuickUnlock: contraseña incorrecta!</string>
+  <string name="QuickUnlockHideLength_title">Ocultar longitud de Desbloqueo Rápido</string>
+  <string name="QuickUnlockHideLength_summary">Si está habilitado, la longitud del código de Desbloqueo Rápido no aparece en la pantalla de Desbloqueo Rápido.</string>
+  <string name="QuickUnlockKeyFromDatabase_title">Clave de Desbloqueo Rápido desde la entrada de la base de datos</string>
+  <string name="QuickUnlockKeyFromDatabase_summary">Si la base de datos en uso contiene una entrada con el título de Desbloqueo Rápido en el grupo raíz, la contraseña de esta entrada se utilizará como el código de Desbloqueo Rápido.</string>
+  <string name="QuickUnlock_fail">¡Error de Desbloqueo Rápido: contraseña incorrecta!</string>
   <string name="SaveAttachmentDialog_title">Guardar datos adjuntos</string>
   <string name="SaveAttachmentDialog_text">Por favor, seleccione dónde guardar el archivo adjunto.</string>
   <string name="SaveAttachmentDialog_save">Exportar a archivo...</string>
@@ -402,6 +405,8 @@
   <string name="NoDonationReminder_summary">No le voy a dar un céntimo o ya he donado. No solicitar una donación, ni en el cumpleaños del autor.</string>
   <string name="UseOfflineCache_title">Caché de base de datos</string>
   <string name="UseOfflineCache_summary">Mantener una copia de los archivos de base de datos en el directorio caché de la aplicación. Esto permite usar las bases de datos incluso cuando el archivo no esté accesible.</string>
+  <string name="SyncOfflineCacheInBackground_summary">Al guardar o cargar, utiliza la caché interna. Luego sincroniza con el almacenamiento remoto en segundo plano.</string>
+  <string name="SyncOfflineCacheInBackground_title">Sincronizar en segundo plano</string>
   <string name="CreateBackups_title">Copias de seguridad locales</string>
   <string name="CreateBackups_summary">Crear una copia de local después de cargar con éxito una base de datos.</string>
   <string name="UpdatingBackup">Actualizando copia de seguridad local...</string>
@@ -450,8 +455,8 @@
   <string name="DocumentAccessRevoked">El archivo ya no es accesible a Keepass2Android. Ha sido eliminado o han sido revocados los permisos de acceso. Por favor use re-abrir el archivo, por ejemplo, con Cambiar base de datos.</string>
   <string name="PreloadDatabaseEnabled_title">Pre-cargar archivo de base de datos</string>
   <string name="PreloadDatabaseEnabled_summary">Empezar a descargar del archivo de base de datos durante la entrada de contraseña.</string>
-  <string name="SyncAfterQuickUnlock_title">Sincronizar tras QuickUnlock</string>
-  <string name="SyncAfterQuickUnlock_summary">Sincronizar la base de datos con el archivo remoto después de desbloquear con QuickUnlock.</string>
+  <string name="SyncAfterQuickUnlock_title">Sincronizar tras Desbloqueo Rápido</string>
+  <string name="SyncAfterQuickUnlock_summary">Sincronizar la base de datos con el archivo remoto después de desbloquear con Desbloqueo Rápido.</string>
   <string name="AskOverwriteBinary">¿Desea sobrescribir el binario existente con el mismo nombre?</string>
   <string name="AskOverwriteBinary_title">¿Sobrescribir binario existente?</string>
   <string name="AskOverwriteBinary_yes">Sobrescribir</string>
@@ -522,7 +527,11 @@
   <string name="ok_donate">¡Cuéntame más!</string>
   <string name="no_thanks">No, no me gusta mucho</string>
   <string name="enter_http_login_title">Introducir datos de acceso WebDav:</string>
+  <string name="enter_smb_login_title">Introduzca los datos de acceso Samba:</string>
   <string name="hint_http_url">URL de la carpeta o del archivo (ex: mycloud.me.com/webdav/)</string>
+  <string name="hint_smb_url">URL de la carpeta o archivo (ej: 192.168.1.10/share/folder/)</string>
+  <string name="hint_smb_domain">Dominio del usuario Samba</string>
+  <string name="hint_smb_username">Usuario de Samba</string>
   <string name="enter_owncloud_login_title">Introduzca datos de usuario de OwnCloud:</string>
   <string name="hint_owncloud_url">OwnCloud URL (ej: owncloud.me.com)</string>
   <string name="enter_nextcloud_login_title">Introducir datos de inicio de sesión de Nextcloud:</string>
@@ -552,7 +561,7 @@
   <string name="sftp_shk_title">Algoritmo(s) de clave de host del servidor (opcional)</string>
   <string name="hint_sftp_shk">\"Nombres/especificaciones separadas por comas</string>
   <string name="enter_ftp_login_title">Introducir datos de acceso FTP:</string>
-  <string name="enter_mega_login_title">Digite las credenciales de su cuenta en MEGA:</string>
+  <string name="enter_mega_login_title">Introduce las credenciales de tu cuenta MEGA:</string>
   <string name="select_storage_type">Seleccione el tipo de almacenamiento:</string>
   <string name="filestoragename_file">Archivo local</string>
   <string name="filestoragename_androidget">Coger de una aplicación de terceros</string>
@@ -560,14 +569,16 @@
   <string name="filestoragename_ftp">FTP</string>
   <string name="filestoragename_http">HTTP (WebDav)</string>
   <string name="filestoragename_https">HTTPS (WebDav)</string>
+  <string name="filestoragename_smb">Samba (Windows Share)</string>
   <string name="filestoragename_owncloud">OwnCloud</string>
   <string name="filestoragename_nextcloud">Nextcloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
   <string name="filestoragename_dropboxKP2A">Dropbox (carpeta KP2A)</string>
   <string name="filestoragehelp_dropboxKP2A">Si no quieres darle a KP2A acceso completo a tu Dropbox, deberías seleccionar esta opción. Sólo se pedirá acceso a la carpeta Apps/Keepass2Android. Esto es especialmente adecuado cuando creas una nueva base de datos. Si ya tienes una base de datos, slecciona esta opción para crear la carpeta, luego pon el archivo dentro de esta carpeta (desde tu PC) y después selecciona otra vez esta opción para abrir el archivo.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
+  <string name="filestoragehelp_gdrive">Nota: Google está restringiendo el acceso a Google Drive desde aplicaciones para más y más usuarios. Si la implementación integrada de Google Drive no funciona, por favor utiliza el selector de archivos del sistema en su lugar y allí selecciona Google Drive</string>
   <string name="filestoragename_gdriveKP2A">Google Drive (archivos KP2A)</string>
-  <string name="filestoragehelp_gdriveKP2A">Si no deseas brindarle acceso completo a KP2A para acceder a todos los archivos en Google Drive, debes seleccionar esta opción. Recuerda que primero debes crear una base de datos y los archivos existentes no son visibles para la aplicación. Selecciona esta opción desde la pantalla de \"Crear una base de datos\" o, si ya abriste una base de datos, puedes exportarla seleccionando esta opción.</string>
+  <string name="filestoragehelp_gdriveKP2A">Si no deseas dar acceso KP2A completo a todos los archivos en Google Drive, debes seleccionar esta opción. Recuerda que primero debes crear una base de datos y los archivos existentes no son visibles para la aplicación. Selecciona esta opción desde la pantalla de \"Crear una base de datos\" o, si ya abriste una base de datos, puedes exportarla seleccionando esta opción.</string>
   <string name="filestoragename_pcloud">PCloud (carpeta de KP2A)</string>
   <string name="filestoragehelp_pcloud">Este tipo de almacenamiento sólo solicitará acceso a la carpeta de pCloud \"Aplicaciones/Keepass2Android\". Si desea utilizar una base de datos existente de su cuenta pCloud, asegúrese de que el archivo se coloca en dicha carpeta de pCloud.</string>
   <string name="filestoragename_pcloudall">PCloud (acceso sin restricciones)</string>
@@ -585,7 +596,7 @@
   <string name="help_database_location">Puede almacenar su base de datos localmente en su dispositivo Android o en la nube(solo en la versión non-Offline). Keepass2Android permite acceder a la base de datos aun cuando estas sin conexión a Internet. Como la base de datos es encriptada de forma segura con una encriptación AES de 256 bit, nadie podrá acceder a sus contraseñas a excepción de usted. Recomendamos el uso de Dropbox ya que es se puede utilizar desde todos los dispositivos y también proporciona copias de seguridad de las versiones anteriores de las bases de datos.</string>
   <string name="hint_database_location">Seleccione dónde desea almacenar la base de datos:</string>
   <string name="button_change_location">Cambiar ubicación</string>
-  <string name="help_quickunlock">Si está habilitado, Keepass2Android se queda funcionando en segundo plano incluso cuando la base de datos está bloqueada. Esto permite abrir la base de datos más adelante con sólo una pequeña parte de la contraseña maestra.</string>
+  <string name="help_quickunlock">Si está habilitado, Keepass2Android se queda funcionando en segundo plano incluso cuando la base de datos está bloqueada. Esto permite abrir la base de datos más adelante con solo una pequeña parte de la contraseña maestra.</string>
   <string name="master_password">Contraseña maestra</string>
   <string name="help_master_password">Su base de datos está encriptada con la contraseña que introduzca aquí. ¡Elija una contraseña fuerte para mantener la base de datos segura!. Consejos: Hacer una frase o dos y utilizar las primeras letras de las palabras como contraseña. Incluir signos de puntuación.</string>
   <string name="hint_master_password">Seleccione una contraseña maestra para proteger su base de datos:</string>
@@ -734,18 +745,55 @@
   <string name="DbUnlockedChannel_name">Base de datos desbloqueada</string>
   <string name="DbUnlockedChannel_desc">Notificación acerca de que la base de datos está siendo desbloqueada</string>
   <string name="DbQuicklockedChannel_name">QuickUnlock</string>
-  <string name="DbQuicklockedChannel_desc">Notificación acerca de que la base de datos está siendo bloqueada con QuickUnlock</string>
+  <string name="DbQuicklockedChannel_desc">Notificación acerca de que la base de datos está siendo bloqueada con Desbloqueo Rápido</string>
   <string name="EntryChannel_name">Notificaciones de entrada</string>
   <string name="EntryChannel_desc">Notificación para simplificar el acceso a la entrada seleccionada actualmente.</string>
+  <string name="BackgroundSyncChannel_name">Operación de sincronización</string>
+  <string name="BackgroundSyncChannel_desc">Notificación para indicar que una sincronización se realiza en segundo plano.</string>
   <string name="CloseDbAfterFailedAttempts">Cierre la base de datos después de tres intentos fallidos de desbloqueo biométrico.</string>
+  <string name="hint_smb_credentials">Si deseas acceder a archivos desde tu equipo Windows personal, utiliza el nombre del equipo o la dirección IP local como URL del host; introduce el nombre del equipo como dominio y el inicio de sesión de Windows (a menudo igual que tu cuenta de Microsoft) como nombre de usuario y contraseña.</string>
   <string name="WarnFingerprintInvalidated">¡Atención! La autenticación biométrica puede ser invalidada por Android, p. ej. después de añadir una nueva huella dactilar en los ajustes de su dispositivo. ¡Esté seguro de conocer siempre cómo desbloquear con su contraseña maestra!</string>
+  <string name="webdav_chunked_upload_size_title">Tamaño de Chunk para subir a WebDav</string>
+  <string name="webdav_chunked_upload_enabled_title">Habilitar la carga chunked para WebDav</string>
+  <string name="webdav_chunked_upload_enabled_summary">Para servidores WebDav que no soportan la subida de archivos grandes en una sola petición. Cuando está activado, Keepass2Android utiliza el chunking WebDav estándar, no el método de chunking Nextcloud.</string>
+  <string name="webdav_chunked_upload_size_summary">Tamaño de los chunks al subir a servidores WebDav en bytes.</string>
+  <string name="cleartextTrafficPermitted_title">Permitir tráfico de red de texto sin formato en WebDav</string>
+  <string name="cleartextTrafficPermitted_summary">Las conexiones HTTP no son seguras. Habilita esta opción únicamente si tiene otras medidas de seguridad en su lugar.</string>
+  <string-array name="ChangeLog_1_15_net">
+    <item>Mejoras en el manejo de URL para WebDav con caracteres no ASCII</item>
+  </string-array>
+  <string-array name="ChangeLog_1_15">
+    <item>Sincronización en segundo plano añadida: Keepass2Android ahora utiliza la copia en caché interna de la base de datos para cargar y guardar para hacer estas operaciones más rápidas. Después de esto, se inicia la sincronización con la base de datos remota. </item>
+    <item>Se añadieron preferencias de usuario para controlar el comportamiento de la sincronización en segundo plano. Puedes habilitar la sincronización en segundo plano y controlar si la sincronización debe realizarse siempre o sólo en redes Wi-Fi.</item>
+  </string-array>
+  <string-array name="ChangeLog_1_14">
+    <item>Actualización de .net 9 y Target SDK versión 35. Esto viene con barra de estado transparente en Android 15 porque ahora es el valor predeterminado.</item>
+    <item>Pequeñas mejoras</item>
+    <item>Botones eliminados para donar y encontrar plugins, para cumplir con las políticas de Google Play</item>
+  </string-array>
+  <string-array name="ChangeLog_1_14_net">
+    <item>Mejoras WebDav: Corrección de errores para listar carpetas; soporte para subidas chunked y transacciones</item>
+    <item>Añadido soporte para compartir redes Samba/Windows</item>
+    <item>JSch actualizado para soportar algoritmos más modernos en SFTP</item>
+  </string-array>
+  <string-array name="ChangeLog_1_13">
+    <item>Estimación de la calidad de las contraseñas mejorada teniendo en cuenta las contraseñas más populares.</item>
+    <item>Bloquear Desbloqueo Rápido basado en contraseña (por razones de seguridad) si el dispositivo no tiene un bloqueo de pantalla activado.</item>
+    <item>Actualiza la configuración de seguridad de red para desactivar la transferencia de texto sin formato.</item>
+  </string-array>
   <string-array name="ChangeLog_1_12">
     <item>Actualizado desde Xamarin Android a .net 8</item>
-    <item>Upgraded to Target SDK 34</item>
-    <item>Upgraded to Material 3 user interface</item>
-    <item>Improve autofill to work with Compose apps</item>
-    <item>Fix hostname matching in autofill and search</item>
-    <item>Fix issue with password generator</item>
+    <item>Actualizado a Target SDK 34</item>
+    <item>Actualizado a la interfaz de usuario de Material 3</item>
+    <item>Mejorar el autorrelleno para trabajar con aplicaciones de composición</item>
+    <item>Corregir la coincidencia del nombre de host en el autorrelleno y búsqueda</item>
+    <item>Corregir problema con el generador de contraseñas</item>
+  </string-array>
+  <string-array name="ChangeLog_1_12_net">
+    <item>Actualizado OneDrive SDK a la versión 5.68</item>
+    <item>Actualizado Dropbox SDK a la versión 7.0.0</item>
+    <item>Gradle actualizado, NewtonsoftJson, FluentFTP, MegaApiClient y okhttp</item>
+    <item>Bugfix en selección de archivo WebDav</item>
   </string-array>
   <string-array name="ChangeLog_1_11">
     <item>Añadidos botones de acción flotante para la búsqueda y vista general de TOTP (si las entradas TOTP están presentes).</item>
@@ -785,7 +833,7 @@
     <item>Corregir la desaparición del aviso de autocompletado en Firefox</item>
     <item>Integrar sugerencias de autocompletar con el teclado (requiere Android 11+)</item>
     <item>Permitir cambiar el idioma de la aplicación en los ajustes</item>
-    <item>Añadir la opción de sincronizar la base de datos después de QuickUnlock</item>
+    <item>Añadir la opción de sincronizar la base de datos después de Desbloqueo Rápido</item>
     <item>Corrección de errores: No poner los nombres de los archivos en minúsculas al guardar en Dropbox</item>
   </string-array>
   <string-array name="ChangeLog_1_09a">
@@ -879,8 +927,8 @@
     * Evitar cierre erróneo cuando el usuario intenta activar Autorrellenado en dispositivos Huawei.\n
   </string>
   <string name="ChangeLog_1_04">    Versión 1.04\n
-    *Agregado servicio de Autorellenado para Android 8.0 y superiores.\n
-    *Liberías actualizadas, herramientas de construcción y versión de SDK objetivo.\n
+    * Agregado servicio de Autorrellenado para Android 8.0 y posteriores.\n
+    * Librerías actualizadas, herramientas de construcción y versión de Target SDK.\n
   </string>
   <string name="ChangeLog_1_03">Version 1.03\n
      * Eliminado servicio de accesibilidad por Autorellenado, tal y como solicitó Google. Por favor, comprueba la configuración de acceso por clave para encontrasr un plugin que replique la funcionalidad anterior.\n
@@ -1205,6 +1253,33 @@
   <string name="AutofillWarning_trustAsBrowser">Aceptar siempre en \"%1$s\"</string>
   <string name="kp2a_switch_on_sendgodone">Volver cuando termine</string>
   <string name="kp2a_switch_on_sendgodone_summary">Volver cuando se presione enviar/ir/finalizado</string>
+  <string name="qr_scanning_error_no_google_play_services">La exploración de código QR requiere servicios de Google Play. Por favor, instala o actualiza los Servicios de Google Play en tu dispositivo.</string>
   <string name="english_ime_settings">Ajustes del teclado de Keepass2Android</string>
-  <string name="switch_keyboard_on_search_enabled">Nota: Ha habilitado la aplicación - Seguridad - Acceso a la contraseña - Interruptor de teclado - Cambiar teclado. Esto puede causar que esta ventana se muestre cuando busque una entrada desde el navegador.</string>
+  <string name="autoswitch_enabled_but_not_setup">Nota: Has activado la aplicación - Configuración - Acceso a la contraseña - Cambio de teclado - Cambio de teclado automático, pero no parece estar configurado correctamente.</string>
+  <string name="switch_keyboard_for_totp_enabled">Nota: Has habilitado App - Acceso con contraseña - Servicio de Autorrelleno - Autorrelleno para entradas TOTP. Esto puede causar que esta ventana se muestre cuando se abre una entrada con un TOTP.</string>
+  <string name="switch_keyboard_inside_kp2a_enabled">Nota: Ha habilitado la aplicación - Seguridad - Usar teclado integrado dentro de Keepass2Android. Esto puede causar que esta ventana se muestre al abrir la aplicación o editar una entrada.</string>
+  <string name="switch_keyboard_on_search_enabled">Nota: Ha habilitado la aplicación - Seguridad - Acceso a la contraseña - Intercambio de teclado - Cambiar teclado. Esto puede causar que esta ventana se muestre cuando busque una entrada desde el navegador.</string>
+  <string name="user_interaction_required">Se requiere interacción con el usuario. Por favor, abre la aplicación.</string>
+  <string name="failed_to_access_database">La base de datos está actualmente en uso y no se puede acceder.</string>
+  <string name="configure_ssids">Configurar SSIDs</string>
+  <string name="add_current_ssid">Añadir SSID actual</string>
+  <string name="enter_ssid_hint">Introducir SSID</string>
+  <string name="add_ssid">Añadir otro SSID</string>
+  <string name="no_ssids">No se añadieron SSIDs. La sincronización automática en segundo plano se realizará en cualquier Wi-Fi.</string>
+  <string name="ssid_empty_or_exists">SSID está vacío o ya está en la lista</string>
+  <string name="location_permission_required">Se requiere permiso de ubicación para leer el SSID actual</string>
+  <string name="permission_granted">Permiso de ubicación concedido</string>
+  <string name="permission_denied">Permiso denegado. No se puede leer el SSID actual. Por favor, habilita el permiso a través de la configuración de Android.</string>
+  <string name="remove_ssid_title">Eliminar SSID</string>
+  <string name="ssid_explanation">Define una lista de SSIDs. La sincronización automática en segundo plano se realizará si ha iniciado sesión en alguno de estos.</string>
+  <string name="remove_ssid_message">¿Estás seguro de que deseas eliminar este SSID?</string>
+  <string name="permission_needed">Se requiere permiso</string>
+  <string name="permission_location_rationale">El permiso de ubicación es necesario para leer tu Wi-Fi SSID actual. Esto es necesario si quieres restringir la sincronización  en segundo plano a ciertos SSIDs.</string>
+  <string name="BackgroundSyncWifiSsids_title">Sincronización en segundo plano basada en Wi-Fi SSID</string>
+  <string name="BackgroundSyncWifiOnly_title">Sincronización en segundo plano sólo por Wi-Fi</string>
+  <string name="BackgroundSyncWifiOnly_summary">Si se selecciona, la sincronización en segundo plano sólo se inicia cuando estás conectado a Wi-Fi.</string>
+  <string name="pref_enable_periodic_background_sync_title">Sincronización en segundo plano periódica</string>
+  <string name="pref_enable_periodic_background_sync_summary">Si se activa, la aplicación sincronizará periódicamente las bases de datos desbloqueadas. Esto respeta los ajustes de conexión de red desde arriba.</string>
+  <string name="pref_periodic_background_sync_interval_title">Intervalo de tiempo de sincronización periódica en segundo plano</string>
+  <string name="pref_periodic_background_sync_interval_summary">Establece el intervalo para la sincronización en segundo plano en minutos.</string>
 </resources>

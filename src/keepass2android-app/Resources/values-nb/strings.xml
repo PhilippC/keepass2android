@@ -316,6 +316,7 @@
   <string name="AcceptAllServerCertificates_title">SSL-sertifikater</string>
   <string name="AcceptAllServerCertificates_summary">Definere oppførselen når sertifikatbekreftelse misslykkes. Merk: Du kan installere sertifikater på din enhet dersom bekreftelse feiler!</string>
   <string name="ClearOfflineCache_title">Tømme hurtiglager?</string>
+  <string name="ClearOfflineCache_question">Dette vil slette alle mellomlagrede databasefiler. Du vil miste eventuelle usynkroniserte endringer du gjorde mens du ikke hadde tilgang til kildedatabasen! Fortsette?</string>
   <string name="CheckForFileChangesOnSave_title">Se etter endringer</string>
   <string name="CheckForFileChangesOnSave_summary">Kontroller om filen har blitt endret eksternt før endringer lagres.</string>
   <string name="CheckForDuplicateUuids_title">Se etter dupliserte UUIDer</string>

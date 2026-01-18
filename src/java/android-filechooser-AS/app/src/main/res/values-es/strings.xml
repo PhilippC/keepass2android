@@ -56,8 +56,8 @@
     <string name="afc_title_sort_by">Ordenar por…</string>
     <string name="afc_yesterday">Ayer</string>
     <plurals name="afc_title_choose_directories">
-        <item quantity="one">Seleccione la carpeta&#8230;…</item>
-        <item quantity="other">Elija varias carpetas&#8230;</item>
+        <item quantity="one">Elegir carpeta...</item>
+        <item quantity="other">Elegir carpetas...</item>
     </plurals>
     <plurals name="afc_title_choose_files">
         <item quantity="one">Seleccione el archivo&#8230;</item>
