@@ -344,6 +344,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="QuickUnlockDefaultEnabled_summary">Definiert, ob QuickUnlock standardmäßig aktiviert ist oder nicht.</string>
   <string name="ViewDatabaseSecure_title">Datenbankanzeige schützen</string>
   <string name="ViewDatabaseSecure_summary">Wenn aktiviert, können keine Bildschirmfotos gemacht werden und es wird kein Vorschaubild der App in der Liste der zuletzt verwendeten Apps angezeigt.</string>
+  <string name="DisableSecureDisplayCheck_summary">Anzeige von sensiblen Informationen erlauben, auch wenn der aktuelle Bildschirm von Android nicht als \"sicher\" markiert wurde.</string>
   <string name="QuickUnlockIconHidden_title">QuickUnlock-Symbol verstecken</string>
   <string name="QuickUnlockIconHidden_summary">QuickUnlock funktioniert leider nicht ohne ein Benachrichtigungssymbol. Wähle diese Option, um ein transparentes Symbol zu verwenden.</string>
   <string name="QuickUnlockIconHidden16_title">QuickUnlock-Symbol verstecken</string>
