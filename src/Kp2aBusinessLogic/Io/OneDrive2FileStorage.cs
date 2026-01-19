@@ -208,6 +208,7 @@ namespace keepass2android.Io
     {
       _publicClientApp = PublicClientApplicationBuilder.Create(ClientID)
           .WithRedirectUri($"msal{ClientID}://auth")
+          .WithBroker(true)  // Enable broker authentication to pass device ID for Intune/Entra managed devices
           .Build();
     }
 
