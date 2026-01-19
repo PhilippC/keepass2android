@@ -20,7 +20,7 @@
   <string name="AboutText">Keepass2Android er en adgangskodehåndterings-app, der giver læse-/skriveadgang til KeePass 2.x-databaser på Android.</string>
   <string name="CreditsText">Brugerfladen er baseret på en portering af KeePassDroid, udviklet af Brian Pellin. Koden til databaseoperationerne baserer sig på KeePass af Dominik Reichl. Android-robotten er reproduceret eller ændret fra arbejde skabt og delt af Google og anvendt jf. betingelserne beskrevet i \"Creative Commons 3.0 Attribution License\".</string>
   <string name="CreditsTextSFTP">SFTP-understøttelse er implementeret vha. JSch-biblioteket under BSD-licensen, skabt af JCraft, Inc.</string>
-  <string name="CreditsIcons">Hammerikonet er kreéret af John Caserta fra Noun Project. Pingvinikonet er kreéret af Adriano Emerick fra Noun Project. Fjerikonet er kreéret af Jon Testa fra Noun Project. Æbleikonet er kreéret af Ava Rowell fra Noun Project. Billedikonet stammer fra https://icons8.com/icon/5570/Picture.</string>
+  <string name="CreditsIcons">Hammerikonet er kreeret af John Caserta fra Noun Project. Pingvinikonet er kreeret af Adriano Emerick fra Noun Project. Fjerikonet er kreeret af Jon Testa fra Noun Project. Æbleikonet er kreeret af Ava Rowell fra Noun Project. Billedikonet stammer fra https://icons8.com/icon/5570/Picture.</string>
   <string name="accept">Acceptér</string>
   <string name="deny">Afvis</string>
   <string name="add_entry">Tilføj post</string>
