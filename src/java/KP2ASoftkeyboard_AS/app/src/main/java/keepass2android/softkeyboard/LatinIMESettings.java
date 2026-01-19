@@ -35,6 +35,9 @@ import android.preference.PreferenceManager;
 import android.speech.SpeechRecognizer;
 import android.text.AutoText;
 import android.util.Log;
+import android.os.Build;
+import android.view.View;
+import android.view.WindowInsets;
 
 public class LatinIMESettings extends PreferenceActivity
         implements SharedPreferences.OnSharedPreferenceChangeListener,
@@ -64,8 +67,6 @@ public class LatinIMESettings extends PreferenceActivity
         mQuickFixes = (CheckBoxPreference) findPreference(QUICK_FIXES_KEY);
         mSettingsKeyPreference = (ListPreference) findPreference(PREF_SETTINGS_KEY);
         prefs.registerOnSharedPreferenceChangeListener(this);
-
-        
     }
 
     @Override
@@ -77,7 +78,25 @@ public class LatinIMESettings extends PreferenceActivity
                     .removePreference(mQuickFixes);
         }
         
-        
+        // Apply window insets to handle system bars
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            View listView = getListView();
+            if (listView != null) {
+                listView.setOnApplyWindowInsetsListener(new View.OnApplyWindowInsetsListener() {
+                    @Override
+                    public WindowInsets onApplyWindowInsets(View v, WindowInsets insets) {
+                        // Apply padding for system bars
+                        v.setPadding(
+                                insets.getSystemWindowInsetLeft(),
+                                insets.getSystemWindowInsetTop(),
+                                insets.getSystemWindowInsetRight(),
+                                insets.getSystemWindowInsetBottom()
+                        );
+                        return insets;
+                    }
+                });
+            }
+        }
     }
 
     @Override
