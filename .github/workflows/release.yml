@@ -121,7 +121,9 @@ jobs:
         make manifestlink Flavor=${{ matrix.flavor }}
 
     - name: Install NuGet dependencies
-      run: make nuget Flavor=${{ matrix.flavor }}
+      run: |
+        dotnet workload restore --project src/KeePass.sln
+        make nuget Flavor=${{ matrix.flavor }}
 
     - name: Build APK (net)
       env:

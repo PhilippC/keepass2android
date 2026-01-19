@@ -960,7 +960,7 @@ namespace keepass2android
 
 
       var moveElement = new MoveElements(elementsToMove.ToList(), Group, App.Kp2a, new ActionInContextInstanceOnOperationFinished(ContextInstanceId, App.Kp2a,
-          (success, message, context) =>
+          (success, message, importantMessage, exception, context) =>
           {
             (context as GroupBaseActivity)?.StopMovingElements();
             if (!String.IsNullOrEmpty(message))
@@ -1450,7 +1450,7 @@ namespace keepass2android
     {
       return new ActionInContextInstanceOnOperationFinished(
           ContextInstanceId, App.Kp2a,
-          (success, message, context) =>
+          (success, message, importantMessage, exception, context) =>
           {
             if (success)
             {
@@ -1573,6 +1573,10 @@ namespace keepass2android
         case Resource.Id.menu_edit:
           GroupEditActivity.Launch(Activity, checkedItems.First().ParentGroup, (PwGroup)checkedItems.First());
           break;
+        case Resource.Id.menu_edit_keeshare:
+          var intent = EditKeeShareActivity.CreateIntent(Activity, (PwGroup)checkedItems.First());
+          Activity.StartActivity(intent);
+          break;
         default:
           return false;
 
@@ -1647,6 +1651,12 @@ namespace keepass2android
       if (menuItem != null)
       {
         menuItem.SetVisible(IsOnlyOneEntryChecked());
+      }
+
+      menuItem = mode.Menu.FindItem(Resource.Id.menu_edit_keeshare);
+      if (menuItem != null)
+      {
+        menuItem.SetVisible(IsOnlyOneGroupChecked());
       }
     }
 
@@ -1738,8 +1748,8 @@ namespace keepass2android
       }
 
       int dbIndex = 0;
-      Action<bool, string, Context> action = null;
-      action = (success, message, context) =>
+      Action<bool, string, bool, Exception, Context> action = null;
+      action = (success, message, importantMessage, exception, context) =>
       {
         if (success)
         {
@@ -1751,17 +1761,17 @@ namespace keepass2android
             return;
           }
           new DeleteMultipleItemsFromOneDatabase(activity, itemsForDatabases[dbIndex].Key,
-                    itemsForDatabases[dbIndex].Value, new ActionOnOperationFinished(App.Kp2a, (b, s, activity1) => action(b, s, activity1)), app)
+                    itemsForDatabases[dbIndex].Value, new ActionOnOperationFinished(App.Kp2a, (b, s, im, ex, activity1) => action(b, s, im, ex, activity1)), app)
                     .Start();
         }
         else
         {
-          onOperationFinishedHandler.SetResult(false, message, true, null);
+          onOperationFinishedHandler.SetResult(false, message, importantMessage, exception);
         }
       };
 
       new DeleteMultipleItemsFromOneDatabase(activity, itemsForDatabases[dbIndex].Key,
-          itemsForDatabases[dbIndex].Value, new ActionOnOperationFinished(App.Kp2a, (b, s, activity1) => action(b, s, activity1)), app)
+          itemsForDatabases[dbIndex].Value, new ActionOnOperationFinished(App.Kp2a, (b, s, im, ex, activity1) => action(b, s, im, ex, activity1)), app)
           .Start();
     }
 

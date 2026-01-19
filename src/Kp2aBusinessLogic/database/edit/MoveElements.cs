@@ -136,7 +136,7 @@ namespace keepass2android.database.edit
 
       int indexToSave = 0;
       bool allSavesSuccess = true;
-      void ContinueSave(bool success, string message, Context activeActivity)
+      void ContinueSave(bool success, string message, bool importantMessage, Exception exception, Context activeActivity)
       {
         allSavesSuccess &= success;
         indexToSave++;
