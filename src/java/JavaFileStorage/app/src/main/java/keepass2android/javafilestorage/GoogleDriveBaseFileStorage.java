@@ -324,7 +324,29 @@ public abstract class GoogleDriveBaseFileStorage extends JavaFileStorageBase {
 			File file = getFileForPath(gdrivePath, driveService);
 			InputStream res =  getFileContent(file, driveService);
 			logDebug("openFileForRead ok.");
-			return res;
+			// --- INICIO LÓGICA KEESHARE ---
+            if (path.endsWith(".kdbx.share")) {
+                java.util.zip.ZipInputStream zis = new java.util.zip.ZipInputStream(res);
+                java.util.zip.ZipEntry entry;
+                byte[] databaseBytes = null;
+                while ((entry = zis.getNextEntry()) != null) {
+                    if (entry.getName().equals("database.kdbx")) {
+                        java.io.ByteArrayOutputStream buffer = new java.io.ByteArrayOutputStream();
+                        int nRead;
+                        byte[] data = new byte[16384];
+                        while ((nRead = zis.read(data, 0, data.length)) != -1) {
+                            buffer.write(data, 0, nRead);
+                        }
+                        databaseBytes = buffer.toByteArray();
+                    }
+                    zis.closeEntry();
+                }
+                if (databaseBytes != null) {
+                    return new java.io.ByteArrayInputStream(databaseBytes);
+                }
+            }
+            return res; 
+            // --- FIN LÓGICA KEESHARE ---
 		}
 		catch (Exception e)
 		{
