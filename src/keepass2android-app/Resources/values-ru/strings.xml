@@ -690,6 +690,8 @@
   <string name="Continue">Продолжить</string>
   <string name="NoFilenameWarning">URI, который Вы ввели, не похож на имя файла. Вы уверены, что это правильно?</string>
   <string name="FirstInvalidCompositeKeyError">Неверный составной ключ! Пожалуйста, попробуйте еще раз.</string>
+  <string name="RepeatedInvalidCompositeKeyHelp"></string>
+  <string name="HintLocalBackupInvalidCompositeKey"></string>
   <string name="open_other_db">Открыть другую базу данных…</string>
   <string name="select_database">Выбрать базу данных</string>
   <string name="configure_child_dbs">Настройка дочерних баз данных…</string>
