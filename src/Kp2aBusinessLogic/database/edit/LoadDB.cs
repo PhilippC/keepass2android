@@ -68,6 +68,10 @@ namespace keepass2android
 
     private static OnOperationFinishedHandler WrapHandlerForKeeShare(IKp2aApp app, OnOperationFinishedHandler originalHandler)
     {
+      // Note: OnLoadCompleteKeeShareCheck runs in BOTH cases below (null or not null)
+      // The null check is just to handle the two scenarios differently:
+      // - If null: create a simple handler that only runs KeeShare check
+      // - If not null: wrap the existing handler to run KeeShare check before it
       if (originalHandler == null)
       {
         return new ActionOnOperationFinished(app, (success, message, importantMessage, exception, context) =>
