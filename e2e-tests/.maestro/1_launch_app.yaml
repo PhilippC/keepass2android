@@ -1,0 +1,9 @@
+appId: keepass2android.keepass2android_nonet
+---
+# Launch app and dismiss changelog dialog
+- launchApp
+- tapOn:
+    id: "android:id/button1"
+    optional: true
+- assertVisible:
+    text: "Keepass2Android"

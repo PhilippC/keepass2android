@@ -1,0 +1,45 @@
+appId: keepass2android.keepass2android_nonet
+---
+# Test: Access group menu options
+- launchApp
+
+# Unlock if needed
+- tapOn:
+    text: "Password"
+    optional: true
+- runFlow:
+    when:
+      visible: "Unlock"
+    commands:
+      - inputText: "testpassword123"
+      - hideKeyboard
+      - tapOn: "Unlock"
+      - extendedWaitUntil:
+          visible: "eMail"
+          timeout: 10000
+
+# Dismiss any dialogs
+- tapOn:
+    text: "I don't care"
+    optional: true
+- tapOn:
+    text: "Do not show again"
+    optional: true
+
+# Tap on a group to open it
+- tapOn: "Internet"
+
+# Wait for group to load
+- extendedWaitUntil:
+    visible:
+      text: "Internet"
+    timeout: 5000
+
+# Tap on More options menu (overflow menu icon)
+- tapOn:
+    text: "More options"
+
+# Wait for menu to appear
+- extendedWaitUntil:
+    visible: ".*"
+    timeout: 3000

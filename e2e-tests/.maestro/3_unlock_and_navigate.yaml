@@ -1,0 +1,21 @@
+appId: keepass2android.keepass2android_nonet
+---
+# Test: Unlock database and navigate to group settings
+- launchApp
+
+# Enter password - the database was created with "testpassword123"
+- tapOn:
+    text: "Password"
+- inputText: "testpassword123"
+
+# Hide keyboard and unlock
+- hideKeyboard
+- tapOn: "Unlock"
+
+# Wait for database to load - look for group list
+- extendedWaitUntil:
+    visible:
+      text: ".*"
+    timeout: 10000
+
+# The database should now be open showing groups

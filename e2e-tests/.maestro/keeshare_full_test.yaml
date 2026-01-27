@@ -1,0 +1,54 @@
+appId: keepass2android.keepass2android_nonet
+---
+# Test: Full KeeShare configuration flow
+# This test verifies the KeeShare functionality added in PR #3106
+
+- launchApp
+
+# Unlock if needed
+- tapOn:
+    text: "Password"
+    optional: true
+- runFlow:
+    when:
+      visible: "Unlock"
+    commands:
+      - inputText: "testpassword123"
+      - hideKeyboard
+      - tapOn: "Unlock"
+      - extendedWaitUntil:
+          visible: "eMail"
+          timeout: 10000
+
+# Dismiss any dialogs
+- tapOn:
+    text: "I don't care"
+    optional: true
+- tapOn:
+    text: "Do not show again"
+    optional: true
+
+# Navigate to Settings
+- tapOn:
+    text: "More options"
+- tapOn: "Settings"
+
+# Go to Database settings
+- tapOn: "Database"
+
+# Scroll down to find KeeShare option
+- scrollUntilVisible:
+    element: "Configure KeeShare groups…"
+    direction: DOWN
+
+# Tap on Configure KeeShare groups
+- tapOn: "Configure KeeShare groups…"
+
+# Wait for KeeShare configuration screen to load
+- extendedWaitUntil:
+    visible: ".*"
+    timeout: 5000
+
+# Verify we're on the KeeShare configuration screen
+- assertVisible:
+    text: ".*KeeShare.*"

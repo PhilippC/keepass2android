@@ -363,6 +363,21 @@ namespace keepass2android
 
     void LaunchPasswordActivityForIoc(IOConnectionInfo ioc)
     {
+      bool noForward = Intent.GetBooleanExtra(NoForwardToPasswordActivity, false);
+      Kp2aLog.Log($"FileSelect.LaunchPasswordActivityForIoc: NoForwardToPasswordActivity={noForward}, ioc={ioc?.Path}");
+
+      // If NoForwardToPasswordActivity is set, just return the selected file path
+      // without launching PasswordActivity
+      if (noForward)
+      {
+        Kp2aLog.Log("FileSelect: Returning file path without launching PasswordActivity");
+        Intent resultIntent = new Intent();
+        resultIntent.PutExtra("ioc", IOConnectionInfo.SerializeToString(ioc));
+        SetResult(Result.Ok, resultIntent);
+        Finish();
+        return;
+      }
+
       IFileStorage fileStorage = App.Kp2a.GetFileStorage(ioc);
 
       if (fileStorage.RequiresCredentials(ioc))
@@ -395,6 +410,7 @@ namespace keepass2android
     protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
     {
       base.OnActivityResult(requestCode, resultCode, data);
+      Kp2aLog.Log($"FileSelect.OnActivityResult: requestCode={requestCode}, resultCode={resultCode}");
 
       if (resultCode == KeePass.ExitCloseAfterTaskComplete)
       {
@@ -408,6 +424,7 @@ namespace keepass2android
 
       if (resultCode == (Result)FileStorageResults.FileUsagePrepared)
       {
+        Kp2aLog.Log("FileSelect: FileUsagePrepared");
         IOConnectionInfo ioc = new IOConnectionInfo();
         Util.SetIoConnectionFromIntent(ioc, data);
         LaunchPasswordActivityForIoc(ioc);
@@ -415,6 +432,7 @@ namespace keepass2android
 
       if ((resultCode == Result.Ok) && (requestCode == RequestCodeSelectIoc))
       {
+        Kp2aLog.Log("FileSelect: RequestCodeSelectIoc with Result.Ok");
         IOConnectionInfo ioc = new IOConnectionInfo();
         Util.SetIoConnectionFromIntent(ioc, data);
         LaunchPasswordActivityForIoc(ioc);

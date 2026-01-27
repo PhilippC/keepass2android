@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+  <LinearLayout
+      android:orientation="vertical"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:padding="16dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/keeshare_description"
+        android:textSize="14sp"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Group Selection -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/keeshare_group_label"
+        android:textStyle="bold"
+        android:layout_marginTop="8dp" />
+
+    <Spinner
+        android:id="@+id/spinner_group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp" />
+
+    <LinearLayout
+        android:id="@+id/new_group_container"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_marginTop="8dp">
+
+      <com.google.android.material.textfield.TextInputLayout
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_weight="1"
+          android:hint="@string/keeshare_new_group_name">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_new_group_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text" />
+      </com.google.android.material.textfield.TextInputLayout>
+    </LinearLayout>
+
+    <!-- Share Type -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/keeshare_type_label"
+        android:textStyle="bold"
+        android:layout_marginTop="16dp" />
+
+    <RadioGroup
+        android:id="@+id/radio_group_type"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp">
+
+      <RadioButton
+          android:id="@+id/radio_import"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="@string/keeshare_type_import"
+          android:checked="true" />
+
+      <RadioButton
+          android:id="@+id/radio_synchronize"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="@string/keeshare_type_synchronize" />
+
+      <RadioButton
+          android:id="@+id/radio_export"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="@string/keeshare_type_export" />
+    </RadioGroup>
+
+    <!-- File Path -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/keeshare_filepath_label"
+        android:textStyle="bold"
+        android:layout_marginTop="16dp" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp">
+
+      <com.google.android.material.textfield.TextInputLayout
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_weight="1"
+          android:hint="@string/keeshare_filepath_hint">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_filepath"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text" />
+      </com.google.android.material.textfield.TextInputLayout>
+
+      <Button
+          android:id="@+id/btn_browse"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_gravity="center_vertical"
+          android:text="@string/keeshare_browse_file"
+          style="?android:attr/buttonBarButtonStyle" />
+    </LinearLayout>
+
+    <!-- Password -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:hint="@string/keeshare_password_label"
+        app:endIconMode="password_toggle"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+      <com.google.android.material.textfield.TextInputEditText
+          android:id="@+id/edit_password"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:inputType="textPassword" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+  </LinearLayout>
+</ScrollView>

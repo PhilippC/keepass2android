@@ -1,0 +1,35 @@
+appId: keepass2android.keepass2android_nonet
+---
+# Test: Explore how to access KeeShare settings
+- launchApp
+
+# Unlock if needed
+- tapOn:
+    text: "Password"
+    optional: true
+- runFlow:
+    when:
+      visible: "Unlock"
+    commands:
+      - inputText: "testpassword123"
+      - hideKeyboard
+      - tapOn: "Unlock"
+      - extendedWaitUntil:
+          visible: "eMail"
+          timeout: 10000
+
+# Dismiss any dialogs
+- tapOn:
+    text: "I don't care"
+    optional: true
+- tapOn:
+    text: "Do not show again"
+    optional: true
+
+# Tap on a group to open it
+- tapOn: "Internet"
+
+# Wait for group contents to load
+- extendedWaitUntil:
+    visible: ".*"
+    timeout: 5000

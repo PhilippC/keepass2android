@@ -1178,6 +1178,31 @@ namespace keepass2android
 #if !EXCLUDE_TWOFISH
       CipherPool.GlobalPool.AddCipher(new TwofishCipherEngine());
 #endif
+
+      SaveDb.OnSaveCompleteKeeShareExport = (kp2aApp, db, handler) =>
+      {
+        if (db != null && KeeShare.HasExportableKeeShareGroups(db.KpDatabase))
+        {
+          KeeShare.ExportOnSave(kp2aApp, handler);
+        }
+        else
+        {
+          handler?.Run();
+        }
+      };
+
+      LoadDb.OnLoadCompleteKeeShareCheck = (kp2aApp, handler) =>
+      {
+        if (kp2aApp.CurrentDb?.KpDatabase?.RootGroup != null && 
+            KeeShare.HasKeeShareGroups(kp2aApp.CurrentDb.KpDatabase.RootGroup))
+        {
+          KeeShare.Check(kp2aApp, handler);
+        }
+        else
+        {
+          handler?.Run();
+        }
+      };
     }
 
 

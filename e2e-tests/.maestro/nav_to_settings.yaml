@@ -1,0 +1,5 @@
+appId: keepass2android.keepass2android_nonet
+---
+# Tap Settings in the overflow menu
+- tapOn:
+    text: "Settings"

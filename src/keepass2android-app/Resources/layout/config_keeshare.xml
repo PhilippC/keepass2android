@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+
+  <LinearLayout
+      android:orientation="vertical"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:gravity="center_horizontal">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/mytoolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
+    <TextView android:id="@+id/keeshare_explanation"
+        android:text="@string/keeshare_explanation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:layout_margin="6dp"
+        android:layout_marginBottom="2dp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:background="?android:attr/colorBackground"
+        android:layout_height="match_parent">
+
+      <ListView
+          android:id="@android:id/list"
+          android:padding="8dp"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:layout_marginBottom="12dip"
+          android:layout_marginLeft="12dip"
+          android:layout_marginRight="12dip"
+          android:layout_marginTop="12dip"
+          android:layout_alignParentTop="true" />
+
+      <TextView
+          android:id="@+id/empty_text"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_centerInParent="true"
+          android:text="@string/keeshare_no_groups"
+          android:textSize="16sp"
+          android:visibility="gone" />
+    </RelativeLayout>
+  </LinearLayout>
+
+  <com.google.android.material.floatingactionbutton.FloatingActionButton
+      android:id="@+id/fab_add_keeshare"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="bottom|end"
+      android:layout_margin="16dp"
+      android:src="@drawable/baseline_add_24"
+      android:contentDescription="@string/keeshare_add_new"
+      app:tint="@android:color/white" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
+
