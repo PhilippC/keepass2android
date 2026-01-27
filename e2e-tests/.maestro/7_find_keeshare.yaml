@@ -1,0 +1,39 @@
+appId: keepass2android.keepass2android_nonet
+---
+# Test: Find KeeShare in Settings
+- launchApp
+
+# Unlock if needed
+- tapOn:
+    text: "Password"
+    optional: true
+- runFlow:
+    when:
+      visible: "Unlock"
+    commands:
+      - inputText: "testpassword123"
+      - hideKeyboard
+      - tapOn: "Unlock"
+      - extendedWaitUntil:
+          visible: "eMail"
+          timeout: 10000
+
+# Dismiss any dialogs
+- tapOn:
+    text: "I don't care"
+    optional: true
+- tapOn:
+    text: "Do not show again"
+    optional: true
+
+# Open menu
+- tapOn:
+    text: "More options"
+
+# Tap Settings
+- tapOn: "Settings"
+
+# Wait for settings to load
+- extendedWaitUntil:
+    visible: ".*"
+    timeout: 5000

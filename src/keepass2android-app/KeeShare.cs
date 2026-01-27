@@ -20,7 +20,7 @@ namespace keepass2android
     /// <summary>
     /// Represents a KeeShare group item for UI display and configuration.
     /// </summary>
-    public sealed class KeeShareItem
+    public sealed class KeeShareItem : Java.Lang.Object
     {
         public PwGroup Group { get; }
         public PwDatabase Database { get; }
@@ -699,9 +699,9 @@ namespace keepass2android
 
         private void ProcessGroup(PwGroup group)
         {
-            if (group.CustomData.Get(ActiveKey) == "true")
+            if (group.CustomData.Get(KeeShare.ActiveKey) == "true")
             {
-                string type = group.CustomData.Get(TypeKey);
+                string type = group.CustomData.Get(KeeShare.TypeKey);
                 if (type == "Export" || type == "Synchronize")
                 {
                     try
@@ -726,7 +726,7 @@ namespace keepass2android
         private void ExportGroup(PwGroup sourceGroup)
         {
             string path = KeeShare.GetEffectiveFilePath(sourceGroup);
-            string password = sourceGroup.CustomData.Get(PasswordKey) ?? "";
+            string password = sourceGroup.CustomData.Get(KeeShare.PasswordKey) ?? "";
 
             StatusLogger.UpdateMessage(_app.GetResourceString(UiStringKey.saving_database) + ": " + sourceGroup.Name);
 
@@ -792,7 +792,7 @@ namespace keepass2android
 
         private void ProcessGroup(PwGroup group)
         {
-            if (group.CustomData.Get(ActiveKey) == "true")
+            if (group.CustomData.Get(KeeShare.ActiveKey) == "true")
             {
                 try
                 {
@@ -814,9 +814,9 @@ namespace keepass2android
 
         private void ProcessKeeShare(PwGroup group)
         {
-            string type = group.CustomData.Get(TypeKey);
+            string type = group.CustomData.Get(KeeShare.TypeKey);
             string path = KeeShare.GetEffectiveFilePath(group);
-            string password = group.CustomData.Get(PasswordKey);
+            string password = group.CustomData.Get(KeeShare.PasswordKey);
 
             if (string.IsNullOrEmpty(path))
             {
@@ -826,7 +826,7 @@ namespace keepass2android
 
             if (type == "Import" || type == "Synchronize")
             {
-                StatusLogger.UpdateMessage(_app.GetResourceString(UiStringKey.OpeningDatabase) + ": " + group.Name);
+                StatusLogger.UpdateMessage(_app.GetResourceString(UiStringKey.loading_database) + ": " + group.Name);
                 Import(group, path, password, type);
             }
             else if (type == "Export")
@@ -966,8 +966,9 @@ namespace keepass2android
                             if (key.UserKeys.Count() == 0)
                                  key.AddUserKey(new KcpPassword(""));
 
+                            shareDb.MasterKey = key;
                             KdbxFile kdbx = new KdbxFile(shareDb);
-                            kdbx.Load(kdbxStream, KdbxFormat.Default, key);
+                            kdbx.Load(kdbxStream, KdbxFormat.Default, null);
 
                             SyncGroups(shareDb, targetGroup, type);
                         }
