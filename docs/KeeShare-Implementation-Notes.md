@@ -107,7 +107,103 @@ _app.MarkAllGroupsAsDirty();
 
 **Status:** FIXED. Imported entries can now be viewed without crashing.
 
-## Test Files
+## Unit Tests
+
+The KeeShare functionality has comprehensive unit tests in `src/KeeShare.Tests/`.
+
+### Test Architecture
+
+Due to framework incompatibility (the app targets `net9.0-android`, tests target `net8.0`), tests use a pattern of copying pure logic into test helpers to avoid Android dependencies.
+
+**Test Helpers (`TestHelpers/`):**
+| File | Purpose |
+|------|---------|
+| `PwGroupStub.cs` | Stub for PwGroup with CustomData, Groups, Entries |
+| `PwEntryStub.cs` | Stub for PwEntry with ParentGroup |
+| `PwDatabaseStub.cs` | Stub for PwDatabase with IsOpen, RootGroup |
+| `KeeShareConfigLogic.cs` | Copy of configuration methods from KeeShare.cs |
+| `KeeShareCompatibilityLogic.cs` | Copy of KeePassXC compatibility logic |
+| `KeeShareStateLogic.cs` | Copy of state checking methods |
+| `KeeShareTestHelpers.cs` | Signature verification logic |
+
+### Running Unit Tests
+
+```bash
+cd src/KeeShare.Tests
+dotnet test --verbosity normal
+```
+
+### Test Coverage (141 tests)
+
+| Test Class | Tests | Coverage |
+|------------|-------|----------|
+| `ConfigurationTests.cs` | 37 | EnableKeeShare, DisableKeeShare, GetEffectiveFilePath, etc. |
+| `KeePassXCCompatibilityTests.cs` | 30 | HasKeePassXCFormat, TryImportKeePassXCConfig |
+| `StateCheckingTests.cs` | 39 | IsReadOnlyBecauseKeeShareImport, HasExportableKeeShareGroups |
+| `KeeShareItemTests.cs` | 15 | KeeShareItem properties |
+| `SignatureVerificationTests.cs` | 14 | VerifySignatureCore with various inputs |
+| `HasKeeShareGroupsTests.cs` | 6 | HasKeeShareGroups recursive detection |
+
+### Mutation Testing
+
+To validate that tests are meaningful (actually catch bugs), we use manual mutation testing.
+
+**What is Mutation Testing?**
+Mutation testing introduces deliberate bugs (mutations) into the code and verifies that tests fail. If tests still pass after a mutation, the tests aren't catching that class of bug.
+
+**Running Manual Mutation Tests:**
+
+1. Introduce a mutation in a test helper file
+2. Run tests
+3. Verify tests fail (mutation "killed")
+4. Revert the mutation
+
+**Example Mutations and Results:**
+
+| Mutation | Description | Result |
+|----------|-------------|--------|
+| Change `"true"` to `"false"` in EnableKeeShare | Sets Active to wrong value | **KILLED** (4 tests failed) |
+| Remove type validation | Accept invalid types | **KILLED** (1 test failed) |
+| Check "Export" instead of "Import" in IsReadOnlyBecauseKeeShareImport | Wrong type check | **KILLED** (7 tests failed) |
+| HasKeePassXCFormat always returns false | Skip format detection | **KILLED** (21 tests failed) |
+| GetEffectiveFilePath returns original path first | Wrong priority | **KILLED** (1 test failed) |
+
+All mutations were killed, demonstrating the tests validate:
+- Correct values being set
+- Validation logic working
+- Business logic (Import vs Export distinctions)
+- Priority/ordering logic
+- Detection algorithms
+
+**Automated Mutation Testing with Stryker.NET:**
+
+Stryker.NET is the standard tool for .NET mutation testing, but requires separate source and test projects. Since our logic is in test helpers (same project), Stryker can't directly mutate it.
+
+If you restructure to have logic in a separate library:
+
+```bash
+# Install Stryker
+dotnet tool install --global dotnet-stryker
+
+# Run mutation testing
+cd src/KeeShare.Tests
+dotnet-stryker
+```
+
+### Keeping Test Helpers in Sync
+
+When modifying `KeeShare.cs`, update the corresponding test helper:
+
+| Production Code | Test Helper |
+|-----------------|-------------|
+| `KeeShare.cs` lines 46-195 (config) | `KeeShareConfigLogic.cs` |
+| `KeeShare.cs` lines 197-308 (KeePassXC) | `KeeShareCompatibilityLogic.cs` |
+| `KeeShare.cs` lines 358-542 (state) | `KeeShareStateLogic.cs` |
+| `KeeShareCheckOperation.VerifySignatureCore` | `KeeShareTestHelpers.cs` |
+
+Each helper includes a comment with the sync date - update this when syncing.
+
+## E2E Test Files
 
 Test database files in `e2e-tests/test-data/`:
 - `keeshare-test-main.kdbx` - Password: `test123` - Main database to open
