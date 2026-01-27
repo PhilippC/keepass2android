@@ -96,7 +96,16 @@ System.Exception: Database element KeePassLib.PwUuid not found in any of 1 datab
    at keepass2android.view.PwEntryView..ctor(...)
 ```
 
-**Status:** UNRESOLVED. This appears to be because imported/cloned entries are not registered with Kp2a's database tracking system. The sync itself works (entries are imported), but they cannot be displayed in the UI.
+**Root Cause:** Imported/cloned entries were not registered with Kp2a's database tracking system (Elements, EntriesById, GroupsById collections).
+
+**Solution:** Added `UpdateGlobals()` and `MarkAllGroupsAsDirty()` after MergeIn in KeeShare.cs:
+```csharp
+// In SyncGroups method, after MergeIn:
+_app.CurrentDb.UpdateGlobals();
+_app.MarkAllGroupsAsDirty();
+```
+
+**Status:** FIXED. Imported entries can now be viewed without crashing.
 
 ## Test Files
 
@@ -131,7 +140,7 @@ Tests the complete flow:
 7. Tap Sync now
 8. Verify sync completes
 
-**Current Status:** Test passes for core functionality (steps 1-8 work). Entry display verification is skipped due to the display bug.
+**Current Status:** Test passes completely, including verifying imported entries can be viewed.
 
 ### Other test files
 - `keeshare_edit_password.yaml` - Tests editing password
