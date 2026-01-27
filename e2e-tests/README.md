@@ -38,27 +38,68 @@ maestro test .maestro/keeshare_full_test.yaml
 
 ## Test Files
 
+### Core Tests
 | File | Description |
 |------|-------------|
 | `1_launch_app.yaml` | Basic app launch and changelog dismissal |
 | `2_create_database.yaml` | Create a new test database with password |
 | `3_unlock_and_navigate.yaml` | Unlock existing database |
-| `keeshare_full_test.yaml` | Full KeeShare configuration flow |
+
+### KeeShare Tests
+| File | Description |
+|------|-------------|
+| `keeshare_import_flow.yaml` | **Complete KeeShare import workflow** - Creates config, sets password, syncs |
+| `keeshare_view_imported_entries.yaml` | **Display bug regression test** - Verifies imported entries can be viewed |
+| `keeshare_edit_password.yaml` | Tests editing KeeShare password via Edit dialog |
+| `keeshare_wrong_password.yaml` | Tests error handling for incorrect passwords |
+| `keeshare_full_test.yaml` | Basic KeeShare configuration screen test |
 
 ## Notes
 
 - The app uses `FLAG_SECURE` for password protection, so screenshots will appear black
 - Maestro can still interact with UI elements despite the secure flag
-- The test database is created with password: `testpassword123`
+- Test databases are in `test-data/` directory
 
 ## KeeShare Testing
 
-The `keeshare_full_test.yaml` verifies:
-1. App launches and unlocks successfully
-2. Navigation to Settings → Database → Configure KeeShare groups works
-3. KeeShare configuration screen loads correctly
+### Test Databases
 
-To test KeeShare import/export functionality, you would need to:
-1. Create a shared database file
-2. Configure a group with KeeShare settings
-3. Verify synchronization occurs
+Located in `test-data/`:
+- `keeshare-test-main.kdbx` - Main database (password: `test123`)
+- `keeshare-test-export.kdbx` - KeeShare export file (password: `share123`)
+
+### Running KeeShare Tests
+
+```bash
+# Push test files to emulator
+adb push e2e-tests/test-data/keeshare-test-main.kdbx /sdcard/Download/
+adb push e2e-tests/test-data/keeshare-test-export.kdbx /sdcard/Download/
+
+# Clear app data and run test
+adb shell pm clear keepass2android.keepass2android_nonet
+maestro test e2e-tests/.maestro/keeshare_import_flow.yaml
+```
+
+### What the Tests Verify
+
+1. **keeshare_import_flow.yaml**:
+   - Opens test database
+   - Navigates to KeeShare configuration
+   - Creates new KeeShare import configuration
+   - Sets password via Edit dialog
+   - Triggers sync and verifies completion
+
+2. **keeshare_view_imported_entries.yaml**:
+   - Complete import flow (same as above)
+   - Navigates back to database view
+   - Opens the imported "Shared Passwords" group
+   - **Verifies "Test Service Account" entry is visible** (regression test for display bug)
+
+### Recreating Test Databases
+
+If tests fail with stale keeshare groups, recreate the main database:
+```bash
+rm e2e-tests/test-data/keeshare-test-main.kdbx
+echo -e "test123\ntest123" | keepassxc-cli db-create -p e2e-tests/test-data/keeshare-test-main.kdbx
+echo "test123" | keepassxc-cli add -u testuser -p e2e-tests/test-data/keeshare-test-main.kdbx "Sample Entry" <<< "testpass"
+```
