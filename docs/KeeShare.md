@@ -62,13 +62,46 @@ Sharing is configured at the **group level** - when you enable KeeShare on a gro
 
 ## Setup Guide
 
-KeeShare setup involves two steps:
-1. **Configure the share in KeePassXC** (desktop) - set the sharing mode, file path, and password
-2. **Configure device paths in KeePass2Android** - since Android file paths differ from desktop paths
+There are two ways to set up KeeShare:
 
-### Step 1: Configure in KeePassXC (Desktop)
+**Option A: Configure entirely in KeePass2Android** (new!)
+- Create a new KeeShare import/export directly in the app
+- Best for Android-only users or when you don't have access to KeePassXC
 
-KeeShare configuration must be done in KeePassXC on your computer first.
+**Option B: Configure in KeePassXC first**
+- Set up sharing in KeePassXC on desktop
+- Configure device-specific paths in KeePass2Android
+- Best when working across desktop and mobile
+
+### Option A: Configure in KeePass2Android (Recommended for Mobile-Only)
+
+You can now create KeeShare configurations directly in KeePass2Android without needing KeePassXC.
+
+1. **Open your database** in KeePass2Android
+
+2. **Navigate to KeeShare settings**:
+   - Tap the menu (⋮) → **Settings** → **Database** → **Configure KeeShare groups...**
+
+3. **Tap the + button** (FAB) in the bottom right corner
+
+   ![KeeShare with FAB](images/keeshare_with_fab.png)
+
+4. **Configure the KeeShare**:
+
+   ![Add KeeShare Dialog](images/keeshare_add_dialog.png)
+
+   - **Group to sync**: Select an existing group or create a new one
+   - **Share Type**: Choose Import, Export, or Synchronize
+   - **Shared File Path**: Tap "Browse..." to select the shared `.kdbx` file
+   - **Password**: Enter the password for the shared container (if any)
+
+5. **Tap OK** to save the configuration
+
+6. The entries will sync when you save your database
+
+### Option B: Configure in KeePassXC (Desktop) First
+
+If you're working with both desktop and mobile, you can configure KeeShare in KeePassXC first.
 
 1. **Open your database** in KeePassXC on your computer
 
