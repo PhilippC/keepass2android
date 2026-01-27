@@ -818,6 +818,11 @@ namespace keepass2android
             string path = KeeShare.GetEffectiveFilePath(group);
             string password = group.CustomData.Get(KeeShare.PasswordKey);
 
+            Kp2aLog.Log("KeeShare: Processing group " + group.Name +
+                        " - Type: " + (type ?? "null") +
+                        ", Path: " + (path ?? "null") +
+                        ", Password length: " + (password?.Length ?? 0));
+
             if (string.IsNullOrEmpty(path))
             {
                 Kp2aLog.Log("KeeShare: No file path configured for group " + group.Name + " on this device. Skipping.");
@@ -972,10 +977,18 @@ namespace keepass2android
 
                             SyncGroups(shareDb, targetGroup, type);
                         }
+                        catch (KeePassLib.Keys.InvalidCompositeKeyException)
+                        {
+                            // Provide a more user-friendly error message
+                            string friendlyMessage = string.IsNullOrEmpty(password)
+                                ? "Wrong password. The shared file requires a password - use Edit to set it."
+                                : "Wrong password for the shared file. Use Edit to update the password.";
+                            throw new Exception(friendlyMessage);
+                        }
                         finally
                         {
                             shareDb?.Close();
-                            
+
                             if (kdbxMem != null && kdbxMem != ms)
                             {
                                 kdbxMem.Dispose();

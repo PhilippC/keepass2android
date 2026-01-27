@@ -85,6 +85,12 @@ namespace keepass2android
                         View sendingView = (View)sender;
                         _context.OnSyncNow(_displayedItems[GetClickedPos(sendingView)]);
                     };
+
+                    view.FindViewById<Button>(Resource.Id.keeshare_edit_settings).Click += (sender, args) =>
+                    {
+                        View sendingView = (View)sender;
+                        _context.OnEditSettings(_displayedItems[GetClickedPos(sendingView)]);
+                    };
                 }
                 else
                 {
@@ -124,6 +130,20 @@ namespace keepass2android
                     statusText = _context.GetString(Resource.String.keeshare_path_not_configured);
                 }
                 view.FindViewById<TextView>(Resource.Id.keeshare_device_status).Text = statusText;
+
+                // Show password status
+                string password = item.Password;
+                var passwordStatusView = view.FindViewById<TextView>(Resource.Id.keeshare_password_status);
+                if (string.IsNullOrEmpty(password))
+                {
+                    passwordStatusView.Text = _context.GetString(Resource.String.keeshare_password_not_set);
+                    passwordStatusView.SetTextColor(Android.Graphics.Color.ParseColor("#CC6600")); // Orange warning
+                }
+                else
+                {
+                    passwordStatusView.Text = _context.GetString(Resource.String.keeshare_password_set);
+                    passwordStatusView.SetTextColor(Android.Graphics.Color.ParseColor("#008800")); // Green ok
+                }
 
                 view.FindViewById<Button>(Resource.Id.keeshare_clear_path).Visibility =
                     hasDevicePath ? ViewStates.Visible : ViewStates.Gone;
@@ -203,13 +223,82 @@ namespace keepass2android
                     }
                     else
                     {
-                        App.Kp2a.ShowMessage(activity, message ?? activity.GetString(Resource.String.keeshare_sync_failed), MessageSeverity.Error);
+                        // Provide more helpful error messages
+                        string errorMessage = message ?? activity.GetString(Resource.String.keeshare_sync_failed);
+                        if (errorMessage.Contains("master key") || errorMessage.Contains("InvalidCompositeKeyException"))
+                        {
+                            errorMessage = activity.GetString(Resource.String.keeshare_wrong_password);
+                        }
+                        App.Kp2a.ShowMessage(activity, errorMessage, MessageSeverity.Error);
                     }
                     activity?.Update();
                 }));
 
             BlockingOperationStarter pt = new BlockingOperationStarter(App.Kp2a, syncOp);
             pt.Run();
+        }
+
+        private void OnEditSettings(KeeShareItem item)
+        {
+            ShowEditKeeShareDialog(item);
+        }
+
+        private void ShowEditKeeShareDialog(KeeShareItem item)
+        {
+            var group = item.Group;
+            var inflater = LayoutInflater.From(this);
+            var dialogView = inflater.Inflate(Resource.Layout.dialog_edit_keeshare, null);
+
+            // Set up share type radio buttons
+            var typeRadioGroup = dialogView.FindViewById<RadioGroup>(Resource.Id.radio_group_type);
+            string currentType = item.Type;
+            if (currentType == "Import")
+                dialogView.FindViewById<RadioButton>(Resource.Id.radio_import).Checked = true;
+            else if (currentType == "Synchronize")
+                dialogView.FindViewById<RadioButton>(Resource.Id.radio_synchronize).Checked = true;
+            else if (currentType == "Export")
+                dialogView.FindViewById<RadioButton>(Resource.Id.radio_export).Checked = true;
+
+            // Set up password field
+            var passwordEdit = dialogView.FindViewById<TextInputEditText>(Resource.Id.edit_password);
+            string currentPassword = item.Password;
+            if (!string.IsNullOrEmpty(currentPassword))
+            {
+                passwordEdit.Text = currentPassword;
+            }
+
+            // Show current path
+            var pathText = dialogView.FindViewById<TextView>(Resource.Id.text_current_path);
+            string effectivePath = KeeShare.GetEffectiveFilePath(group);
+            pathText.Text = !string.IsNullOrEmpty(effectivePath) ? effectivePath : GetString(Resource.String.not_set);
+
+            var builder = new MaterialAlertDialogBuilder(this)
+                .SetTitle(Resource.String.keeshare_edit_title)
+                .SetView(dialogView)
+                .SetPositiveButton(Android.Resource.String.Ok, (sender, args) =>
+                {
+                    // Get new values
+                    int selectedTypeId = typeRadioGroup.CheckedRadioButtonId;
+                    string newType;
+                    if (selectedTypeId == Resource.Id.radio_import)
+                        newType = "Import";
+                    else if (selectedTypeId == Resource.Id.radio_synchronize)
+                        newType = "Synchronize";
+                    else
+                        newType = "Export";
+
+                    string newPassword = passwordEdit?.Text?.ToString();
+
+                    // Update the group's KeeShare settings
+                    KeeShare.UpdateKeeShareConfig(group, newType, null, newPassword);
+
+                    // Save and update
+                    var saveItem = new KeeShareItem(group, item.Database);
+                    Save(saveItem);
+                })
+                .SetNegativeButton(Android.Resource.String.Cancel, (sender, args) => { });
+
+            builder.Show();
         }
 
         private void Update()

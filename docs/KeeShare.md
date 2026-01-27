@@ -208,6 +208,24 @@ This means no groups in your database have KeeShare configured. You need to:
 3. Save the database
 4. Re-open it in KeePass2Android
 
+### "Wrong password" or "master key is invalid" errors
+
+This means the password configured for the KeeShare group doesn't match the password used to encrypt the shared container file.
+
+**To fix:**
+
+1. Go to **Settings** → **Database** → **Configure KeeShare groups...**
+2. Find the KeeShare group showing the error
+3. Check the password status indicator:
+   - Orange text "Password: not set" = you need to set a password
+   - Green text "Password: configured" = password may be wrong
+4. Tap **Edit** to open the settings dialog
+5. Enter the correct password (the one used when exporting from KeePassXC)
+6. Tap **OK** to save
+7. Tap **Sync now** to retry
+
+**Note:** The password for the shared container is separate from your main database password. Make sure you're entering the password that was set when the KeeShare was originally configured in KeePassXC.
+
 ### Shared entries not appearing
 
 1. Verify the device-specific path is correct and points to the shared container file

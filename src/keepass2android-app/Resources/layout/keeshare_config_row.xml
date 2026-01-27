@@ -68,6 +68,13 @@
           android:textSize="12sp"
           android:textStyle="italic" />
 
+      <TextView
+          android:id="@+id/keeshare_password_status"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:textSize="12sp"
+          android:textStyle="italic" />
+
       <LinearLayout
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
@@ -77,19 +84,29 @@
             android:id="@+id/keeshare_configure_path"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/keeshare_configure_path" />
+            android:text="@string/keeshare_configure_path"
+            style="?android:attr/buttonBarButtonStyle" />
 
         <Button
             android:id="@+id/keeshare_clear_path"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/keeshare_clear_path" />
+            android:text="@string/keeshare_clear_path"
+            style="?android:attr/buttonBarButtonStyle" />
+
+        <Button
+            android:id="@+id/keeshare_edit_settings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/keeshare_edit_settings"
+            style="?android:attr/buttonBarButtonStyle" />
 
         <Button
             android:id="@+id/keeshare_sync_now"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/keeshare_sync_now" />
+            android:text="@string/keeshare_sync_now"
+            style="?android:attr/buttonBarButtonStyle" />
 
       </LinearLayout>
 

@@ -754,6 +754,7 @@
   <string name="keeshare_configure_path">Configure path</string>
   <string name="keeshare_clear_path">Clear</string>
   <string name="keeshare_sync_now">Sync now</string>
+  <string name="keeshare_edit_settings">Edit</string>
   <string name="keeshare_path_configured">Path for this device</string>
   <string name="keeshare_using_original_path">Using original path</string>
   <string name="keeshare_path_not_configured">No path configured for this device</string>
@@ -784,6 +785,11 @@
   <string name="keeshare_type_synchronize">Synchronize (two-way)</string>
   <string name="keeshare_browse_file">Browse…</string>
   <string name="keeshare_added">KeeShare configuration added</string>
+  <string name="keeshare_wrong_password">Wrong password for shared file. Use Edit to update the password.</string>
+  <string name="keeshare_current_path_label">Shared File</string>
+  <string name="keeshare_password_hint_edit">Enter the password used to encrypt the shared file</string>
+  <string name="keeshare_password_set">Password: configured</string>
+  <string name="keeshare_password_not_set">Password: not set (tap Edit if the shared file has a password)</string>
   <string name="select_file">Select…</string>
   <string name="error_group_not_found">Group not found</string>
   <string name="error_save_failed">Save failed</string>
