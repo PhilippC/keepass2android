@@ -7,9 +7,9 @@ KeeShare enables secure sharing and synchronization of password entries between 
 - [Overview](#overview)
 - [How It Works](#how-it-works)
 - [Sharing Modes](#sharing-modes)
-- [Step-by-Step Setup](#step-by-step-setup)
-- [Device-Specific Paths](#device-specific-paths)
-- [KeePassXC Compatibility](#keepassxc-compatibility)
+- [Setup Guide](#setup-guide)
+  - [Step 1: Configure in KeePassXC](#step-1-configure-in-keepassxc-desktop)
+  - [Step 2: Configure in KeePass2Android](#step-2-configure-device-paths-in-keepass2android)
 - [Security Considerations](#security-considerations)
 - [Troubleshooting](#troubleshooting)
 
@@ -60,89 +60,83 @@ Sharing is configured at the **group level** - when you enable KeeShare on a gro
 - **Team password sharing (one admin)**: Admin uses `Export`, team uses `Import`
 - **Family sharing (equal access)**: Everyone uses `Synchronize`
 
-## Step-by-Step Setup
+## Setup Guide
 
-### Step 1: Create a Shared Group
+KeeShare setup involves two steps:
+1. **Configure the share in KeePassXC** (desktop) - set the sharing mode, file path, and password
+2. **Configure device paths in KeePass2Android** - since Android file paths differ from desktop paths
 
-1. Open your KeePass database in KeePass2Android
-2. Create a new group (or use an existing one) for the passwords you want to share
-3. Move or create the entries you want to share into this group
+### Step 1: Configure in KeePassXC (Desktop)
 
-### Step 2: Configure KeeShare Settings
+KeeShare configuration must be done in KeePassXC on your computer first.
 
-1. Open the **menu** (three dots) → **Settings**
-2. Tap **Database** → **Configure KeeShare groups...**
-3. You'll see a list of groups that can be configured for sharing
+1. **Open your database** in KeePassXC on your computer
 
-### Step 3: Set Up Export/Synchronize
+2. **Enable KeeShare** in settings:
+   - Go to **Tools → Settings → KeeShare**
+   - Check **"Allow import"** to receive shared credentials
+   - Check **"Allow export"** to share your credentials
 
-To share passwords with others:
+3. **Configure a group for sharing**:
+   - Right-click on the group you want to share
+   - Select **"Edit Group"**
+   - Go to the **"KeeShare"** tab
+   - Select the sharing mode (Import, Export, or Synchronize)
+   - Set the **file path** for the shared container (use a cloud-synced folder like Dropbox, Google Drive, etc.)
+   - Set a **password** for the shared container
 
-1. Select the group you want to share
-2. Set **Type** to `Export` or `Synchronize`
-3. Set the **File Path** to a location accessible to all parties:
-   - Cloud storage folder (Dropbox, Google Drive, OneDrive, etc.)
-   - Network share
-   - Local folder that syncs across devices
-4. Set a **Password** for the shared container
-   > Use a strong, unique password - share it securely with recipients
+4. **Save your database** - This creates the shared container file
 
-5. Save the settings
+### Step 2: Configure Device Paths in KeePass2Android
 
-### Step 4: Set Up Import (Recipients)
+Since file paths on Android differ from desktop paths, you need to tell KeePass2Android where to find the shared container file on your device.
 
-For users who will receive shared passwords:
+#### Opening the KeeShare Configuration
 
-1. Open the KeeShare configuration
-2. Create a group (or use an existing one) to receive the shared entries
-3. Set **Type** to `Import` or `Synchronize`
-4. Set the **File Path** to the same location as the exporter
-5. Enter the same **Password** used by the exporter
-6. Save the settings
+1. **Open your database** in KeePass2Android
 
-### Step 5: Initial Sync
+   ![Database Groups](images/02_database_groups.png)
 
-- On **Export**: Save your database to create the initial shared container
-- On **Import**: The shared entries will be merged when you open/save the database
-- On **Synchronize**: Both operations occur automatically
+2. **Open the menu** by tapping the three dots (⋮) in the top right
 
-## Device-Specific Paths
+   ![Overflow Menu](images/03_overflow_menu.png)
 
-Since file paths can differ between devices (e.g., `/storage/emulated/0/Dropbox/` on one phone vs. `/sdcard/Dropbox/` on another), KeePass2Android supports **device-specific paths**.
+3. **Tap "Settings"**
 
-This means each device can have its own path to the shared container file, while all pointing to the same file through cloud sync.
+   ![Settings Main](images/04_settings_main.png)
 
-### How to Configure
+4. **Tap "Database"** to access database settings
 
-When you set up KeeShare on a new device:
+   ![Database Settings](images/05_database_settings.png)
 
-1. Go to **Settings** → **Database** → **Configure KeeShare groups...**
-2. Find groups that show "Groups created in KeePassXC may need a device-specific file path configured here"
-3. Tap the group and set the **local path** that points to the shared file on this device
+5. **Tap "Configure KeeShare groups..."**
 
-### Example
+   ![KeeShare Groups](images/06_keeshare_groups.png)
 
-- **PC (KeePassXC)**: `C:\Users\Me\Dropbox\Shared\team-passwords.kdbx`
-- **Android Phone 1**: `/storage/emulated/0/Dropbox/Shared/team-passwords.kdbx`
-- **Android Phone 2**: `/sdcard/Android/data/com.dropbox.android/files/Shared/team-passwords.kdbx`
+#### Setting Device-Specific Paths
+
+If you have groups configured for KeeShare (from KeePassXC), they will appear in the list. For each group:
+
+1. **Tap "Configure path"** to set the Android-specific location of the shared container file
+
+2. **Navigate to the shared file** on your device:
+   - If using Dropbox: Look in `/storage/emulated/0/Dropbox/...`
+   - If using Google Drive: The file may be in `/storage/emulated/0/Android/data/com.google/...`
+   - If using a local folder synced via another method, navigate to that location
+
+3. **Select the shared container file** (`.kdbx` file)
+
+4. The path will be saved and sync will work on this device
+
+#### Example Path Mappings
+
+| Platform | Example Path |
+|----------|--------------|
+| Windows (KeePassXC) | `C:\Users\Me\Dropbox\Shared\team-passwords.kdbx` |
+| macOS (KeePassXC) | `/Users/Me/Dropbox/Shared/team-passwords.kdbx` |
+| Android (KeePass2Android) | `/storage/emulated/0/Dropbox/Shared/team-passwords.kdbx` |
 
 All three paths point to the same Dropbox file, synced by the Dropbox app on each device.
-
-## KeePassXC Compatibility
-
-KeePass2Android is compatible with KeeShare groups created in KeePassXC. The app automatically detects and supports multiple configuration formats:
-
-- **KeePassXC native format** (`KeeShare.Active`, `KeeShare.Type`, etc.)
-- **Alternative formats** (`KeeShareReference.Path`, `KPXC_KeeShare_Path`, etc.)
-
-### Migrating from KeePassXC
-
-If you created KeeShare groups in KeePassXC:
-
-1. Open the database in KeePass2Android
-2. Go to **Settings** → **Database** → **Configure KeeShare groups...**
-3. Groups with KeePassXC configuration will be listed
-4. Set the **device-specific path** for each group to point to the shared file on your Android device
 
 ## Security Considerations
 
@@ -173,19 +167,27 @@ If you created KeeShare groups in KeePassXC:
 
 ## Troubleshooting
 
+### "No KeeShare groups found" in KeePass2Android
+
+This means no groups in your database have KeeShare configured. You need to:
+1. Open the database in KeePassXC on your computer
+2. Configure KeeShare on the groups you want to share
+3. Save the database
+4. Re-open it in KeePass2Android
+
 ### Shared entries not appearing
 
-1. Verify the file path is correct and the file exists
+1. Verify the device-specific path is correct and points to the shared container file
 2. Check the password matches exactly (case-sensitive)
 3. Ensure the sharing mode is set correctly (Import or Synchronize to receive)
-4. Save and reopen the database to trigger sync
+4. Tap "Sync now" in the KeeShare configuration screen
 
 ### "File not found" errors
 
 1. Check if the shared container file exists at the specified path
 2. On Android, verify the app has storage permissions
-3. For cloud storage, ensure the sync app has finished syncing
-4. Try setting a device-specific path
+3. For cloud storage, ensure the sync app has finished syncing the file
+4. Try reconfiguring the device-specific path
 
 ### Sync conflicts
 
@@ -194,17 +196,17 @@ When the same entry is modified on multiple devices:
 - The newer change wins
 - Older data is preserved in the entry's history
 
-### KeePassXC groups not recognized
-
-1. Go to **Configure KeeShare groups...**
-2. The app should auto-detect KeePassXC format groups
-3. Set the device-specific path for Android access
-
 ### Permission issues on Android
 
 1. Go to Android Settings → Apps → KeePass2Android → Permissions
 2. Ensure Storage permission is granted
 3. For Android 11+, you may need to grant "All files access" for some storage locations
+
+### KeePassXC groups not showing in KeePass2Android
+
+1. Make sure you saved the database after configuring KeeShare in KeePassXC
+2. Close and reopen the database in KeePass2Android
+3. Check that the groups have `KeeShare.Active = true` in their CustomData
 
 ## References
 
