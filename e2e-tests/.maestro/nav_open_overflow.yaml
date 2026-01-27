@@ -1,0 +1,5 @@
+appId: keepass2android.keepass2android_nonet
+---
+# Open the overflow menu (three dots)
+- tapOn:
+    text: "More options"

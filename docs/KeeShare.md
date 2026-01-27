@@ -85,11 +85,11 @@ You can now create KeeShare configurations directly in KeePass2Android without n
 
 3. **Tap the + button** (FAB) in the bottom right corner
 
-   ![KeeShare with FAB](images/keeshare_with_fab.png)
+   <img src="images/keeshare_with_fab.png" alt="KeeShare with FAB" style="max-width: 300px;">
 
 4. **Configure the KeeShare**:
 
-   ![Add KeeShare Dialog](images/keeshare_add_dialog.png)
+   <img src="images/keeshare_add_dialog.png" alt="Add KeeShare Dialog" style="max-width: 300px;">
 
    - **Group to sync**: Select an existing group or create a new one
    - **Share Type**: Choose Import, Export, or Synchronize
@@ -129,23 +129,23 @@ Since file paths on Android differ from desktop paths, you need to tell KeePass2
 
 1. **Open your database** in KeePass2Android
 
-   ![Database Groups](images/02_database_groups.png)
+   <img src="images/02_database_groups.png" alt="Database Groups" style="max-width: 300px;">
 
 2. **Open the menu** by tapping the three dots (⋮) in the top right
 
-   ![Overflow Menu](images/03_overflow_menu.png)
+   <img src="images/03_overflow_menu.png" alt="Overflow Menu" style="max-width: 300px;">
 
 3. **Tap "Settings"**
 
-   ![Settings Main](images/04_settings_main.png)
+   <img src="images/04_settings_main.png" alt="Settings Main" style="max-width: 300px;">
 
 4. **Tap "Database"** to access database settings
 
-   ![Database Settings](images/05_database_settings.png)
+   <img src="images/05_database_settings.png" alt="Database Settings" style="max-width: 300px;">
 
 5. **Tap "Configure KeeShare groups..."**
 
-   ![KeeShare Groups](images/06_keeshare_groups.png)
+   <img src="images/06_keeshare_groups.png" alt="KeeShare Groups" style="max-width: 300px;">
 
 #### Setting Device-Specific Paths
 

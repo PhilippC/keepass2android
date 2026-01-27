@@ -1,0 +1,11 @@
+appId: keepass2android.keepass2android_nonet
+---
+# Scroll to and tap Configure KeeShare groups
+- scrollUntilVisible:
+    element:
+      text: ".*Configure KeeShare.*"
+    direction: DOWN
+    timeout: 10000
+
+- tapOn:
+    text: ".*Configure KeeShare.*"

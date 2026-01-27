@@ -60,6 +60,93 @@ maestro test .maestro/keeshare_full_test.yaml
 - Maestro can still interact with UI elements despite the secure flag
 - Test databases are in `test-data/` directory
 
+## Capturing Screenshots for Documentation
+
+### The Problem: FLAG_SECURE Blocks Screenshots
+
+KeePass2Android uses Android's `FLAG_SECURE` window flag to prevent screenshots for security reasons. This means:
+
+- **`adb shell screencap`** produces black images
+- **Maestro's `takeScreenshot`** produces black images
+- **Android's built-in screenshot** produces black images
+
+This is intentional security behavior and cannot be bypassed from within Android.
+
+### The Solution: Capture the macOS Emulator Window
+
+Since `FLAG_SECURE` only blocks Android-level screenshot APIs, we can capture the emulator window itself using macOS screen capture:
+
+```bash
+# Capture the emulator window directly
+screencapture -l <window_id> -x -o screenshot.png
+```
+
+The `capture_docs_screenshots.sh` script automates this by:
+1. Finding the Android Emulator window ID using Python/Quartz
+2. Using Maestro to navigate through the app (Maestro can interact with secure windows)
+3. Capturing the emulator window at each step using `screencapture`
+
+### Using the Screenshot Capture Script
+
+```bash
+# Run full screenshot capture for documentation
+./e2e-tests/capture_docs_screenshots.sh
+
+# Test that window capture works (captures current screen)
+./e2e-tests/capture_docs_screenshots.sh --test
+
+# Show help
+./e2e-tests/capture_docs_screenshots.sh --help
+```
+
+**Prerequisites:**
+- macOS (uses `screencapture` and Python/Quartz)
+- Android Emulator running and visible
+- Maestro installed (`~/.maestro/bin/maestro`)
+- App installed with test database in Downloads (`keeshare-test-main.kdbx`, password: `test123`)
+
+**What it captures:**
+| Screenshot | Description |
+|------------|-------------|
+| `02_database_groups.png` | Database view after unlock |
+| `03_overflow_menu.png` | Overflow menu open |
+| `04_settings_main.png` | Main settings screen |
+| `05_database_settings.png` | Database settings with KeeShare option |
+| `06_keeshare_groups.png` | KeeShare groups list |
+| `keeshare_with_fab.png` | KeeShare list with FAB visible |
+| `keeshare_add_dialog.png` | Add KeeShare dialog |
+
+### Technical Details for Future Debugging
+
+**Getting the window ID:**
+The script uses Python/Quartz to get the CGWindowID required by `screencapture -l`:
+
+```python
+import Quartz
+windows = Quartz.CGWindowListCopyWindowInfo(Quartz.kCGWindowListOptionOnScreenOnly, Quartz.kCGNullWindowID)
+for w in windows:
+    if 'qemu' in w.get('kCGWindowOwnerName', '').lower():
+        print(w.get('kCGWindowNumber'))  # This is the window ID
+```
+
+**Why osascript doesn't work:**
+AppleScript's `id of window` returns a different identifier than what `screencapture -l` expects. You must use the CGWindowID from Quartz.
+
+**Navigation flows:**
+The script uses dedicated Maestro YAML files for each navigation step (in `.maestro/`):
+- `open_database.yaml` - Launch app, dismiss changelog, open and unlock database
+- `nav_open_overflow.yaml` - Open the three-dot menu
+- `nav_to_settings.yaml` - Tap Settings
+- `nav_to_database_settings.yaml` - Tap Database
+- `nav_to_keeshare.yaml` - Scroll to and tap Configure KeeShare groups
+- `nav_tap_fab.yaml` - Tap the floating action button
+
+**Common issues:**
+- If screenshots are black: You're using adb/Maestro screenshot, not window capture
+- If navigation fails: Check Maestro flow files match current UI text/IDs
+- If window not found: Ensure emulator is running and visible (not minimized)
+- If wrong activity: The main activity is `crc64c98c008c0cd742cb.KeePass` (MAUI-generated)
+
 ## KeeShare Testing
 
 ### Test Databases

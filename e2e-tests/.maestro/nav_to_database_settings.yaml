@@ -1,0 +1,5 @@
+appId: keepass2android.keepass2android_nonet
+---
+# Tap Database in settings
+- tapOn:
+    text: "Database"
