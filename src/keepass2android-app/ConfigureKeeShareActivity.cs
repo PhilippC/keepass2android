@@ -18,7 +18,7 @@ using KeePassLib.Serialization;
 
 namespace keepass2android
 {
-    [Activity(Label = "@string/keeshare_title", MainLauncher = false, Theme = "@style/Kp2aTheme_BlueNoActionBar", LaunchMode = LaunchMode.SingleInstance, ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden, Exported = true)]
+    [Activity(Label = "@string/keeshare_title", MainLauncher = false, Theme = "@style/Kp2aTheme_BlueNoActionBar", LaunchMode = LaunchMode.SingleTop, ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden, Exported = true)]
     [IntentFilter(new[] { "kp2a.action.ConfigureKeeShareActivity" }, Categories = new[] { Intent.CategoryDefault })]
     public class ConfigureKeeShareActivity : LockCloseActivity
     {
@@ -33,6 +33,8 @@ namespace keepass2android
         private TextInputEditText _dialogFilePathEdit;
         private string _pendingNewConfigType;
         private string _pendingNewConfigPassword;
+        private string _pendingNewGroupName; // For creating a new group in OnActivityResult
+        private bool _pendingCreateNewGroup; // Flag to indicate if we should create a new group
 
         public class KeeShareAdapter : BaseAdapter
         {
@@ -231,7 +233,8 @@ namespace keepass2android
                         }
                         App.Kp2a.ShowMessage(activity, errorMessage, MessageSeverity.Error);
                     }
-                    activity?.Update();
+                    // Update must be called on UI thread
+                    activity?.RunOnUiThread(() => activity.Update());
                 }));
 
             BlockingOperationStarter pt = new BlockingOperationStarter(App.Kp2a, syncOp);
@@ -342,7 +345,13 @@ namespace keepass2android
         {
             var db = App.Kp2a.FindDatabaseForElement(group);
             if (db == null) return;
+            SaveDatabase(db);
+        }
 
+        // Save using a specific database instance (useful for newly created groups
+        // that FindDatabaseForElement might not recognize yet)
+        private void SaveDatabase(Database db)
+        {
             var saveTask = new SaveDb(App.Kp2a, db,
                 new ActionInContextInstanceOnOperationFinished(ContextInstanceId, App.Kp2a,
                     (success, message, importantMessage, exception, context) =>
@@ -350,6 +359,10 @@ namespace keepass2android
                         var activity = context as ConfigureKeeShareActivity;
                         if (activity != null)
                         {
+                            // Ensure Elements collection is updated before UI refresh.
+                            // SaveDb posts UpdateGlobals() asynchronously, but we need it
+                            // to complete before Update() so new groups are visible.
+                            db.UpdateGlobals();
                             activity.Update();
                             if (success)
                             {
@@ -422,6 +435,13 @@ namespace keepass2android
                         _pendingNewConfigGroup = null;
                     }
                 }
+
+                _pendingNewConfigType = savedInstanceState.GetString("PendingNewConfigType");
+                _pendingNewConfigPassword = savedInstanceState.GetString("PendingNewConfigPassword");
+
+                // Restore deferred group creation flags
+                _pendingCreateNewGroup = savedInstanceState.GetBoolean("PendingCreateNewGroup", false);
+                _pendingNewGroupName = savedInstanceState.GetString("PendingNewGroupName");
             }
         }
 
@@ -487,30 +507,38 @@ namespace keepass2android
                 var passwordEdit = dialogView.FindViewById<TextInputEditText>(Resource.Id.edit_password);
                 _pendingNewConfigPassword = passwordEdit?.Text?.ToString();
 
-                // Determine the group
+                // Store group selection info - defer actual group creation to OnActivityResult
+                // to avoid issues with activity recreation and database state
                 int groupPosition = groupSpinner.SelectedItemPosition;
                 if (groupPosition == 0)
                 {
-                    // Create new group
-                    string newGroupName = newGroupNameEdit?.Text?.ToString();
-                    if (string.IsNullOrWhiteSpace(newGroupName))
+                    // Will create new group in OnActivityResult
+                    _pendingCreateNewGroup = true;
+                    _pendingNewGroupName = newGroupNameEdit?.Text?.ToString();
+                    if (string.IsNullOrWhiteSpace(_pendingNewGroupName))
                     {
-                        newGroupName = "KeeShare Import";
+                        _pendingNewGroupName = "KeeShare Import";
                     }
-                    var newGroup = new PwGroup(true, true, newGroupName, PwIcon.Folder);
-                    db.KpDatabase.RootGroup.AddGroup(newGroup, true);
-                    _pendingNewConfigGroup = newGroup;
+                    _pendingNewConfigGroup = null;
                 }
                 else
                 {
+                    // Use existing group
+                    _pendingCreateNewGroup = false;
+                    _pendingNewGroupName = null;
                     _pendingNewConfigGroup = availableGroups[groupPosition - 1];
                 }
 
-                // Launch file picker
-                Intent intent = new Intent(this, typeof(FileSelectActivity));
-                intent.PutExtra(FileSelectActivity.NoForwardToPasswordActivity, true);
-                intent.PutExtra("MakeCurrent", false);
+                // Launch direct file picker using Android Storage Access Framework
+                // This avoids the complex FileSelectActivity flow that can launch PasswordActivity
+                Kp2aLog.Log("ConfigureKeeShare: Browse button tapped, launching ACTION_OPEN_DOCUMENT");
+                Intent intent = new Intent(Intent.ActionOpenDocument);
+                intent.AddCategory(Intent.CategoryOpenable);
+                intent.SetType("*/*");
+                string[] mimeTypes = { "application/octet-stream", "application/x-keepass2" };
+                intent.PutExtra(Intent.ExtraMimeTypes, mimeTypes);
                 StartActivityForResult(intent, ReqCodeSelectFileForNewConfig);
+                Kp2aLog.Log($"ConfigureKeeShare: Started file picker with requestCode={ReqCodeSelectFileForNewConfig}");
 
                 _addDialog?.Dismiss();
             };
@@ -617,6 +645,20 @@ namespace keepass2android
             {
                 outState.PutString(PendingNewConfigGroupUuidKey, Convert.ToBase64String(_pendingNewConfigGroup.Uuid.UuidBytes));
             }
+            if (_pendingNewConfigType != null)
+            {
+                outState.PutString("PendingNewConfigType", _pendingNewConfigType);
+            }
+            if (_pendingNewConfigPassword != null)
+            {
+                outState.PutString("PendingNewConfigPassword", _pendingNewConfigPassword);
+            }
+            // Save flags for deferred group creation
+            outState.PutBoolean("PendingCreateNewGroup", _pendingCreateNewGroup);
+            if (_pendingNewGroupName != null)
+            {
+                outState.PutString("PendingNewGroupName", _pendingNewGroupName);
+            }
         }
 
         protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
@@ -638,31 +680,73 @@ namespace keepass2android
                 }
                 _pendingConfigItem = null;
             }
-            else if (requestCode == ReqCodeSelectFileForNewConfig && _pendingNewConfigGroup != null)
+            else if (requestCode == ReqCodeSelectFileForNewConfig && (_pendingNewConfigGroup != null || _pendingCreateNewGroup))
             {
-                if (resultCode == Result.Ok)
+                Kp2aLog.Log($"ConfigureKeeShare: OnActivityResult for new config, resultCode={resultCode}, hasData={data?.Data != null}, createNewGroup={_pendingCreateNewGroup}");
+                if (resultCode == Result.Ok && data?.Data != null)
                 {
-                    string iocString = data?.GetStringExtra("ioc");
-                    if (!string.IsNullOrEmpty(iocString))
+                    var db = App.Kp2a.CurrentDb;
+                    if (db?.KpDatabase?.RootGroup == null)
                     {
-                        IOConnectionInfo ioc = IOConnectionInfo.UnserializeFromString(iocString);
-                        string filePath = ioc.Path;
-
-                        // Enable KeeShare on the group with the selected file
-                        KeeShare.EnableKeeShare(_pendingNewConfigGroup, _pendingNewConfigType ?? "Import", filePath, _pendingNewConfigPassword);
-
-                        // Save and update
-                        SaveGroup(_pendingNewConfigGroup);
+                        Kp2aLog.Log("ConfigureKeeShare: Database not available in OnActivityResult");
+                        App.Kp2a.ShowMessage(this, GetString(Resource.String.error_group_not_found), MessageSeverity.Error);
+                        return;
                     }
+
+                    // Handle direct file picker result (Android Storage Access Framework)
+                    Android.Net.Uri uri = data.Data;
+                    Kp2aLog.Log($"ConfigureKeeShare: Selected file URI: {uri}");
+
+                    // Take persistent permission for this URI
+                    try
+                    {
+                        ContentResolver.TakePersistableUriPermission(uri,
+                            ActivityFlags.GrantReadUriPermission | ActivityFlags.GrantWriteUriPermission);
+                    }
+                    catch (Exception ex)
+                    {
+                        Kp2aLog.Log($"ConfigureKeeShare: Could not take persistent permission: {ex.Message}");
+                    }
+
+                    // Create IOConnectionInfo from the URI
+                    IOConnectionInfo ioc = IOConnectionInfo.FromPath(uri.ToString());
+                    string serializedIoc = IOConnectionInfo.SerializeToString(ioc);
+
+                    // Determine the target group - create new group if needed
+                    PwGroup targetGroup;
+                    if (_pendingCreateNewGroup)
+                    {
+                        // Create new group now (deferred from Browse button click)
+                        string groupName = _pendingNewGroupName ?? "KeeShare Import";
+                        targetGroup = new PwGroup(true, true, groupName, PwIcon.Folder);
+                        db.KpDatabase.RootGroup.AddGroup(targetGroup, true);
+                        Kp2aLog.Log($"ConfigureKeeShare: Created new group '{groupName}'");
+                    }
+                    else
+                    {
+                        targetGroup = _pendingNewConfigGroup;
+                    }
+
+                    // Enable KeeShare on the group with the selected file
+                    // Store the serialized IOC as the device-specific path
+                    KeeShare.EnableKeeShare(targetGroup, _pendingNewConfigType ?? "Import", null, _pendingNewConfigPassword);
+                    KeeShare.SetDeviceFilePath(targetGroup, serializedIoc);
+
+                    // Save using the database directly (don't use SaveGroup because
+                    // FindDatabaseForElement may not recognize newly created groups)
+                    SaveDatabase(db);
+                    Update(); // Refresh the list to show the new KeeShare group
                 }
                 else
                 {
-                    // User cancelled file selection - if we created a new group, we might want to remove it
-                    // For now, just leave it (user can delete it manually if needed)
+                    Kp2aLog.Log($"ConfigureKeeShare: File selection cancelled or no data");
                 }
+                // Reset all pending state
                 _pendingNewConfigGroup = null;
                 _pendingNewConfigType = null;
                 _pendingNewConfigPassword = null;
+                _pendingCreateNewGroup = false;
+                _pendingNewGroupName = null;
             }
         }
     }

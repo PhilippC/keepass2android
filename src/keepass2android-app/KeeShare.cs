@@ -1103,8 +1103,16 @@ namespace keepass2android
             {
                 targetGroup.CustomData.Set(kvp.Key, kvp.Value);
             }
-            
+
             targetGroup.Touch(true, false);
+
+            // Update the tracking collections (Elements, EntriesById, GroupsById) so that
+            // imported entries can be found by FindDatabaseForElement. Without this, viewing
+            // imported entries would crash with "Database element not found" error.
+            _app.CurrentDb.UpdateGlobals();
+
+            // Mark all groups as dirty so the UI refreshes and shows the imported entries
+            _app.MarkAllGroupsAsDirty();
         }
 
         /// <summary>

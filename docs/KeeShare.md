@@ -8,10 +8,11 @@ KeeShare enables secure sharing and synchronization of password entries between 
 - [How It Works](#how-it-works)
 - [Sharing Modes](#sharing-modes)
 - [Setup Guide](#setup-guide)
-  - [Step 1: Configure in KeePassXC](#step-1-configure-in-keepassxc-desktop)
-  - [Step 2: Configure in KeePass2Android](#step-2-configure-device-paths-in-keepass2android)
+  - [Option A: Configure in KeePass2Android](#option-a-configure-in-keepass2android-recommended-for-mobile-only)
+  - [Option B: Configure in KeePassXC First](#option-b-configure-in-keepassxc-desktop-first)
 - [Security Considerations](#security-considerations)
 - [Troubleshooting](#troubleshooting)
+- [Testing the KeeShare Feature](#testing-the-keeshare-feature)
 
 ## Overview
 
@@ -258,6 +259,122 @@ When the same entry is modified on multiple devices:
 1. Make sure you saved the database after configuring KeeShare in KeePassXC
 2. Close and reopen the database in KeePass2Android
 3. Check that the groups have `KeeShare.Active = true` in their CustomData
+
+## Testing the KeeShare Feature
+
+This section describes how to manually test the KeeShare functionality and run the automated E2E tests.
+
+### Test Files
+
+The repository includes test files in `e2e-tests/test-data/`:
+
+| File | Password | Description |
+|------|----------|-------------|
+| `keeshare-test-export.kdbx` | `TestKeeShare123!` | A KeeShare export containing test entries |
+| `keeshare-test-main.kdbx` | `TestMain123!` | A main database for testing imports |
+
+**Test export contents:**
+- Group: `Shared Credentials`
+- Entry: `Test Service Account`
+  - Username: `testuser@example.com`
+  - Password: `SharedPassword456!`
+  - URL: `https://test.example.com`
+
+### Manual Testing Steps
+
+#### Prerequisites
+
+1. An Android emulator or device with KeePass2Android installed
+2. The test files copied to the device's Downloads folder
+
+#### Setup
+
+1. **Copy test files to the emulator:**
+   ```bash
+   adb push e2e-tests/test-data/keeshare-test-export.kdbx /sdcard/Download/
+   adb push e2e-tests/test-data/keeshare-test-main.kdbx /sdcard/Download/
+   ```
+
+2. **Open KeePass2Android** and select the main test database:
+   - Tap "Open file"
+   - Navigate to Downloads
+   - Select `keeshare-test-main.kdbx`
+   - Enter password: `TestMain123!`
+
+#### Test: Add KeeShare Import
+
+1. Go to **Menu (⋮)** → **Settings** → **Database** → **Configure KeeShare groups...**
+2. Tap the **+ button** (FAB) in the bottom right
+3. Configure:
+   - **Group**: Select "Create new group" and name it "Imported Credentials"
+   - **Share Type**: Import (read-only)
+   - **File Path**: Tap "Browse..." and select `keeshare-test-export.kdbx` from Downloads
+   - **Password**: `TestKeeShare123!`
+4. Tap **OK**
+5. Verify the new KeeShare group appears in the list with:
+   - Green "Password: configured" status
+6. Tap **Sync now**
+7. Navigate back to the database and verify the "Test Service Account" entry appears
+
+#### Test: Wrong Password Error Handling
+
+1. Go to **Configure KeeShare groups...**
+2. Tap **Edit** on the KeeShare group
+3. Change the password to something wrong (e.g., `wrongpassword`)
+4. Tap **OK**, then **Sync now**
+5. Verify you see a user-friendly error message about wrong password
+6. Tap **Edit** again and fix the password to `TestKeeShare123!`
+7. Tap **Sync now** and verify it succeeds
+
+### Running Automated E2E Tests
+
+The project uses [Maestro](https://maestro.mobile.dev/) for E2E testing.
+
+#### Prerequisites
+
+1. Install Maestro:
+   ```bash
+   curl -Ls "https://get.maestro.mobile.dev" | bash
+   ```
+
+2. Start an Android emulator or connect a device
+
+3. Install the app:
+   ```bash
+   adb install -r src/keepass2android-app/bin/Release/net9.0-android/keepass2android.keepass2android_nonet-Signed.apk
+   ```
+
+#### Running the KeeShare Tests
+
+```bash
+# Run all KeeShare tests
+maestro test e2e-tests/.maestro/keeshare_import_flow.yaml
+
+# Run with verbose output
+maestro test --debug-output e2e-tests/.maestro/keeshare_import_flow.yaml
+```
+
+#### Test Scenarios Covered
+
+| Test File | Description |
+|-----------|-------------|
+| `keeshare_import_flow.yaml` | Complete flow: add import, set password, sync, verify entry |
+| `keeshare_edit_password.yaml` | Edit existing KeeShare config to update password |
+| `keeshare_wrong_password.yaml` | Verify error handling for wrong password |
+
+### Creating Your Own Test Export
+
+To create a test KeeShare export file in KeePassXC:
+
+1. Open or create a database in KeePassXC
+2. Create a group for sharing (e.g., "Test Share")
+3. Add test entries to the group
+4. Right-click the group → **Edit Group** → **KeeShare** tab
+5. Select **Export** mode
+6. Set the export path and password
+7. Save the database
+
+The export file will be created at the specified path and can be used for testing imports in KeePass2Android.
 
 ## References
 
