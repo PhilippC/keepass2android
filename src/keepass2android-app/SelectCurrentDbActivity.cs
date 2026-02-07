@@ -323,12 +323,9 @@ namespace keepass2android
         {
           if (IsOtpUri(Intent.Data))
           {
-            AppTask = new CreateEntryThenCloseTask()
+            AppTask = new AddOtpToEntryTask()
             {
-              AllFields = Newtonsoft.Json.JsonConvert.SerializeObject(new Dictionary<string, string>()
-                            {
-                                { "otp", Intent.DataString }
-                            })
+              OtpUri = Intent.DataString
             };
           }
           else

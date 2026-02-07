@@ -850,6 +850,133 @@ namespace keepass2android
     }
   }
 
+  /// <summary>
+  /// Task for adding OTP configuration to an existing entry or creating a new entry with OTP.
+  /// Launched when the user scans an otpauth:// QR code via the system camera.
+  /// </summary>
+  public class AddOtpToEntryTask : AppTask
+  {
+    public const string OtpUriKey = "OtpUri";
+
+    public string OtpUri { get; set; }
+
+    public override void Setup(Bundle b)
+    {
+      OtpUri = b.GetString(OtpUriKey);
+    }
+
+    public override IEnumerable<IExtra> Extras
+    {
+      get
+      {
+        yield return new StringExtra { Key = OtpUriKey, Value = OtpUri };
+      }
+    }
+
+    public override void LaunchFirstGroupActivity(Activity act)
+    {
+      OtpEntryResults.Launch(act, this, new ActivityLaunchModeRequestCode(0));
+    }
+
+    public override void CompleteOnCreateEntryActivity(EntryActivity activity, Thread notifyPluginsOnOpenThread)
+    {
+      if (App.Kp2a.CurrentDb.CanWrite == false || string.IsNullOrEmpty(OtpUri))
+      {
+        base.CompleteOnCreateEntryActivity(activity, notifyPluginsOnOpenThread);
+        return;
+      }
+
+      // Check if the entry already has OTP configuration
+      var pwEntryOutput = new PwEntryOutput(activity.Entry, App.Kp2a.CurrentDb);
+      bool hasExistingOtp = new Kp2aTotp().TryGetAdapter(pwEntryOutput) != null;
+
+      if (hasExistingOtp)
+      {
+        // Entry already has OTP — ask user to confirm overwrite
+        AskOverwriteOtpThenComplete(activity, notifyPluginsOnOpenThread);
+      }
+      else
+      {
+        // Entry has no OTP — ask user to confirm adding
+        AskAddOtpThenComplete(activity, notifyPluginsOnOpenThread);
+      }
+    }
+
+    private void AskAddOtpThenComplete(EntryActivity activity, Thread notifyPluginsOnOpenThread)
+    {
+      MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(activity);
+      builder.SetTitle(activity.GetString(Resource.String.otp_add_to_entry_title));
+      builder.SetMessage(activity.GetString(Resource.String.otp_add_to_entry_text));
+
+      builder.SetPositiveButton(activity.GetString(Resource.String.yes), (dlgSender, dlgEvt) =>
+      {
+        activity.AddOtpToEntry(OtpUri, (EntryActivity ctx) =>
+        {
+          ctx.Recreate();
+        });
+      });
+
+      builder.SetNegativeButton(activity.GetString(Resource.String.no), (dlgSender, dlgEvt) =>
+      {
+        base.CompleteOnCreateEntryActivity(activity, notifyPluginsOnOpenThread);
+      });
+
+      Dialog dialog = builder.Create();
+      dialog.Show();
+    }
+
+    private void AskOverwriteOtpThenComplete(EntryActivity activity, Thread notifyPluginsOnOpenThread)
+    {
+      MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(activity);
+      builder.SetTitle(activity.GetString(Resource.String.otp_overwrite_title));
+      builder.SetMessage(activity.GetString(Resource.String.otp_overwrite_text));
+
+      builder.SetPositiveButton(activity.GetString(Resource.String.overwrite), (dlgSender, dlgEvt) =>
+      {
+        activity.AddOtpToEntry(OtpUri, (EntryActivity ctx) =>
+        {
+          ctx.Recreate();
+        });
+      });
+
+      builder.SetNegativeButton(activity.GetString(Resource.String.cancel), (dlgSender, dlgEvt) =>
+      {
+        base.CompleteOnCreateEntryActivity(activity, notifyPluginsOnOpenThread);
+      });
+
+      Dialog dialog = builder.Create();
+      dialog.Show();
+    }
+
+    /// <summary>
+    /// Extracts a search keyword from the otpauth:// URI (issuer or label).
+    /// </summary>
+    public static string GetSearchTextFromOtpUri(string otpUri)
+    {
+      try
+      {
+        System.Uri uri = new System.Uri(otpUri);
+        var query = System.Web.HttpUtility.ParseQueryString(uri.Query);
+        string issuer = query.Get("issuer");
+        if (!string.IsNullOrEmpty(issuer))
+          return issuer;
+
+        // fallback: extract from path, e.g. otpauth://totp/Issuer:user@example.com
+        string path = System.Uri.UnescapeDataString(uri.AbsolutePath).TrimStart('/');
+        if (path.Contains(":"))
+          return path.Substring(0, path.IndexOf(':'));
+
+        if (!string.IsNullOrEmpty(path))
+          return path;
+      }
+      catch (Exception)
+      {
+        // ignore parse errors
+      }
+      return null;
+    }
+  }
+
 
   /// <summary>
   /// Navigate to a folder and open a Task (appear in SearchResult)
