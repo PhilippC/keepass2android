@@ -109,11 +109,25 @@ namespace keepass2android
         string design = prefs.GetString(_activity.GetString(Resource.String.design_key), _activity.GetString(Resource.String.design_default));
         return design switch
         {
+          "MaterialYou" => AppCompatDelegate.ModeNightFollowSystem,
           "System" => AppCompatDelegate.ModeNightFollowSystem,
           "Light" => AppCompatDelegate.ModeNightNo,
           "Dark" => AppCompatDelegate.ModeNightYes,
           _ => AppCompatDelegate.ModeNightFollowSystem,
         };
+      }
+    }
+
+    public bool IsMaterialYouEnabled
+    {
+      get
+      {
+        var prefs = PreferenceManager.GetDefaultSharedPreferences(_activity);
+        string design = prefs.GetString(
+          _activity.GetString(Resource.String.design_key), 
+          _activity.GetString(Resource.String.design_default)
+        );
+        return design == "MaterialYou";
       }
     }
 
