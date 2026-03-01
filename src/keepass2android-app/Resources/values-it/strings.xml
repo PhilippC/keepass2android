@@ -341,7 +341,9 @@
   <string name="QuickUnlockDefaultEnabled_title">Abilita QuickUnlock come impostazione predefinita</string>
   <string name="QuickUnlockDefaultEnabled_summary">Indica se QuickUnlock è attivato per default o no.</string>
   <string name="ViewDatabaseSecure_title">Proteggi la visibilità dei dati</string>
+  <string name="DisableSecureDisplayCheck_title">Salta controllo per la visualizzazione sicura</string>
   <string name="ViewDatabaseSecure_summary">Se abilitato, non permette di fare screenshot né mostra la miniatura nella lista delle App Recenti.</string>
+  <string name="DisableSecureDisplayCheck_summary">Permetti di mostrare informazioni sensibili anche se la schermata corrente non è contrassegnata come \"sicura\" da Android.</string>
   <string name="QuickUnlockIconHidden_title">Nascondi l\'icona QuickUnlock</string>
   <string name="QuickUnlockIconHidden_summary">QuickUnlock purtroppo non funziona senza visualizzare un\'icona di notifica. Seleziona questa opzione per utilizzare un\'icona trasparente.</string>
   <string name="QuickUnlockIconHidden16_title">Nascondi l\'icona QuickUnlock</string>
@@ -743,16 +745,19 @@ Ecco alcuni suggerimenti che ti potrebbero aiutare a diagnosticare il problema:\
   <string name="EntryChannel_name">Notifiche della voce</string>
   <string name="EntryChannel_desc">Notifica per semplificare l\'accesso alla voce attualmente selezionata.</string>
   <string name="BackgroundSyncChannel_name">Operazione di sincronizzazione</string>
+  <string name="BackgroundSyncChannel_desc">Notifica per indicare che una sincronizzazione viene eseguita in background.</string>
   <string name="CloseDbAfterFailedAttempts">Chiudi il database dopo tre tentativi di sblocco biometrici falliti.</string>
   <string name="hint_smb_credentials">Se desideri accedere ai file del tuo computer Windows personale, usa il nome del computer o l\'indirizzo IP locale come URL host; digita il nome del computer come dominio e il login di Windows (spesso lo stesso dell\'account Microsoft) come nome utente e password.</string>
   <string name="WarnFingerprintInvalidated">Attenzione! L\'autenticazione biometrica può essere invalidata da Android, ad es. dopo aver aggiunto una nuova impronta digitale nelle impostazioni del dispositivo. Assicurati di sapere sempre come sbloccare con la tua password principale!</string>
   <string name="webdav_chunked_upload_size_title">Dimensione del blocco per il caricamento WebDav</string>
+  <string name="webdav_chunked_upload_enabled_title">Abilita caricamento a blocchi per WebDav</string>
+  <string name="webdav_chunked_upload_enabled_summary">Per i server WebDav che non supportano il caricamento di file di grandi dimensioni in una singola richiesta. Se abilitato, Keepass2Android utilizza il chunking standard WebDav, non il metodo di chunking Nextcloud.</string>
   <string name="cleartextTrafficPermitted_title">Consenti il traffico di rete in chiaro in WebDav</string>
   <string name="cleartextTrafficPermitted_summary">Le connessioni HTTP non sono sicure. Abilita questa opzione solo se hai altre misure di sicurezza in atto.</string>
   <string-array name="ChangeLog_1_14">
     <item>Aggiornato a .net 9 e Target SDK versione 35. Su Android 15 è disponibile una barra di stato trasparente, perché la visualizzazione bordo-a-bordo è ora predefinita.</item>
     <item>Miglioramenti minori dell\'interfaccia utente</item>
-    <item>Removed buttons for donate and find plugins, in order to comply with Google Play policies</item>
+    <item>Rimossi i pulsanti per donare e trovare estensioni, al fine di rispettare le politiche di Google Play</item>
   </string-array>
   <string-array name="ChangeLog_1_14_net">
     <item>Miglioramenti WebDav: correzione di bug per l\'elenco delle cartelle; supporto per caricamenti e transazioni in blocchi</item>
@@ -1226,4 +1231,26 @@ Prima release pubblica
   <string name="switch_keyboard_for_totp_enabled">Nota: Hai abilitato App - Accesso password - Servizio di autocompilazione - Autocompilazione per le voci TOTP. Questo può causare la visualizzazione di questa finestra quando si apre una voce con un TOTP.</string>
   <string name="switch_keyboard_inside_kp2a_enabled">Nota: Hai abilitato App - Sicurezza - Usa la tastiera integrata all\'interno di Keepass2Android. Questo può causare la visualizzazione di questa finestra quando si apre l\'app o si modifica una voce.</string>
   <string name="switch_keyboard_on_search_enabled">Nota: hai abilitato App - Sicurezza - Accesso tramite password - Cambio tastiera - Cambia tastiera. Questa finestra potrebbe essere visualizzata quando cerchi una voce dal browser.</string>
+  <string name="user_interaction_required">Interazione dall\'utente richiesta. Si prega di aprire l\'app.</string>
+  <string name="configure_ssids">Configura gli SSID</string>
+  <string name="add_current_ssid">Aggiungi SSID Attuale</string>
+  <string name="enter_ssid_hint">Inserisci SSID</string>
+  <string name="add_ssid">Aggiungi un altro SSID</string>
+  <string name="no_ssids">Nessun SSID aggiunto. La sincronizzazione automatica in background sarà eseguita in qualsiasi Wi-Fi.</string>
+  <string name="ssid_empty_or_exists">L\'SSID è vuoto o già in lista</string>
+  <string name="location_permission_required">Permesso di localizzazione richiesto per leggere l\'SSID attuale</string>
+  <string name="permission_granted">Autorizzazione di localizzazione concessa</string>
+  <string name="permission_denied">Permesso negato. Impossibile leggere l\'SSID attuale. Si prega di abilitare l\'autorizzazione tramite le impostazioni di Android.</string>
+  <string name="remove_ssid_title">Rimuovi SSID</string>
+  <string name="ssid_explanation">Definire un elenco di SSID. La sincronizzazione automatica in background sarà eseguita se si è connessi a uno di questi.</string>
+  <string name="remove_ssid_message">Sei sicuro di voler rimuovere questo SSID?</string>
+  <string name="permission_needed">Permesso richiesto</string>
+  <string name="permission_location_rationale">    Il permesso posizione è necessario per leggere il tuo SSID Wi-Fi attuale. Questo è necessario se si desidera limitare la sincronizzazione in background a determinati SSID.
+  </string>
+  <string name="BackgroundSyncWifiSsids_title">Sincronizzazione in background in base all\'SSID della rete Wi-Fi</string>
+  <string name="BackgroundSyncWifiOnly_title">Sincronizzazione in background solo in Wi-Fi</string>
+  <string name="BackgroundSyncWifiOnly_summary">Se selezionato, la sincronizzazione in background viene avviata solo se connesso a una rete Wi-Fi.</string>
+  <string name="pref_enable_periodic_background_sync_title">Sincronizzazione periodica in background</string>
+  <string name="pref_periodic_background_sync_interval_title">Intervallo di sincronizzazione periodica in background</string>
+  <string name="pref_periodic_background_sync_interval_summary">Imposta l\'intervallo per la sincronizzazione in background in minuti.</string>
 </resources>
