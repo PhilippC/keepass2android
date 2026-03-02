@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?> 
+<PreferenceScreen
+      xmlns:android="http://schemas.android.com/apk/res/android"
+	  android:key="@string/kdf_screen_key"
+	  android:title="@string/KeyDerivFunc" >
+
+     
+      <ListPreference
+			  android:key="@string/kdf_key"
+			  android:title="@string/KeyDerivFunc"
+			  android:dialogTitle="@string/KeyDerivFunc"/>
+
+      
+
+    <keepass2android.settings.RoundsPreference
+		  android:key="@string/rounds_key"
+		  android:persistent="false"
+		  android:title="@string/rounds"
+		  android:dialogLayout="@layout/database_kdf_settings"
+		  android:positiveButtonText="@string/entry_save"
+		  android:negativeButtonText="@string/entry_cancel"/>
+    
+    <keepass2android.settings.Argon2RoundsPreference
+		  android:key="argon2rounds"
+		  android:persistent="false"
+		  android:title="@string/rounds"
+		  android:dialogLayout="@layout/database_kdf_settings"
+		  android:positiveButtonText="@string/entry_save"
+		  android:negativeButtonText="@string/entry_cancel"/>
+    
+    <keepass2android.settings.Argon2MemoryPreference
+		  android:key="argon2memory"
+		  android:persistent="false"
+		  android:title="@string/argon2memory"
+		  android:dialogLayout="@layout/database_kdf_settings"
+		  android:positiveButtonText="@string/entry_save"
+		  android:negativeButtonText="@string/entry_cancel"/>
+    
+    <keepass2android.settings.Argon2ParallelismPreference
+		  android:key="argon2parallelism"
+		  android:persistent="false"
+		  android:title="@string/argon2parallelism"
+		  android:dialogLayout="@layout/database_kdf_settings"
+		  android:positiveButtonText="@string/entry_save"
+		  android:negativeButtonText="@string/entry_cancel"/>
+</PreferenceScreen>
+  

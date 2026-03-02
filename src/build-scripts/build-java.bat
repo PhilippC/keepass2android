@@ -1,10 +1,15 @@
 cd ..\java\JavaFileStorageTest-AS
-call gradlew assemble
+call ./gradlew clean assemble || exit /b
+cd ..\..\build-scripts
 
-cd ..\KP2ASoftkeyboard_AS
-call gradlew assemble
+cd ..\java\KP2ASoftkeyboard_AS
+call ./gradlew clean assemble || exit /b
+cd ..\..\build-scripts
 
-cd ..\Keepass2AndroidPluginSDK2
-call gradlew assemble
+cd ..\java\Keepass2AndroidPluginSDK2
+call ./gradlew clean assemble || exit /b
+cd ..\..\build-scripts
 
+cd ..\java\KP2AKdbLibrary
+call ./gradlew clean assemble || exit /b
 cd ..\..\build-scripts

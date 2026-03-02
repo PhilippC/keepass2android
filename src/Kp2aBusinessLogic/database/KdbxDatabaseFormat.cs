@@ -1,3 +1,18 @@
+// This file is part of Keepass2Android, Copyright 2025 Philipp Crocoll.
+//
+//   Keepass2Android is free software: you can redistribute it and/or modify
+//   it under the terms of the GNU General Public License as published by
+//   the Free Software Foundation, either version 3 of the License, or
+//   (at your option) any later version.
+//
+//   Keepass2Android is distributed in the hope that it will be useful,
+//   but WITHOUT ANY WARRANTY; without even the implied warranty of
+//   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//   GNU General Public License for more details.
+//
+//   You should have received a copy of the GNU General Public License
+//   along with Keepass2Android.  If not, see <http://www.gnu.org/licenses/>.
+
 using System.IO;
 using KeePassLib;
 using KeePassLib.Interfaces;
@@ -6,82 +21,88 @@ using KeePassLib.Serialization;
 
 namespace keepass2android
 {
-	public class KdbxDatabaseFormat : IDatabaseFormat
-	{
-		private readonly KdbxFormat _format;
+  public class KdbxDatabaseFormat : IDatabaseFormat
+  {
+    private readonly KdbxFormat _format;
 
-		public KdbxDatabaseFormat(KdbxFormat format)
-		{
-			_format = format;
-		}
+    public static KdbxFormat GetFormatToUse(string fileExt)
+    {
+      return fileExt.Equals("kdbp", StringComparison.OrdinalIgnoreCase) ? KdbxFormat.ProtocolBuffers :
+          (fileExt.Equals("xml", StringComparison.OrdinalIgnoreCase) ? KdbxFormat.PlainXml : KdbxFormat.Default);
+    }
 
-		public void PopulateDatabaseFromStream(PwDatabase db, Stream s, IStatusLogger slLogger)
-		{
-			KdbxFile kdbx = new KdbxFile(db);
-			kdbx.DetachBinaries = db.DetachBinaries;
+    public KdbxDatabaseFormat(KdbxFormat format)
+    {
+      _format = format;
+    }
 
-			kdbx.Load(s, _format, slLogger);
-			HashOfLastStream = kdbx.HashOfFileOnDisk;
-			s.Close();
+    public void PopulateDatabaseFromStream(PwDatabase db, Stream s, IStatusLogger slLogger)
+    {
+      KdbxFile kdbx = new KdbxFile(db);
+      kdbx.DetachBinaries = db.DetachBinaries;
 
-		}
+      kdbx.Load(s, _format, slLogger);
+      HashOfLastStream = kdbx.HashOfFileOnDisk;
+      s.Close();
 
-		public byte[] HashOfLastStream { get; private set; }
-		public bool CanWrite { get { return true; } }
-		public string SuccessMessage { get { return null; } }
-		public void Save(PwDatabase kpDatabase, Stream stream)
-		{
-			kpDatabase.Save(stream, null);
-		}
+    }
 
-		public bool CanHaveEntriesInRootGroup
-		{
-			get { return true; }
-		}
+    public byte[] HashOfLastStream { get; private set; }
+    public bool CanWrite { get { return _format != KdbxFormat.PlainXml; } }
+    public string SuccessMessage { get { return null; } }
+    public void Save(PwDatabase kpDatabase, Stream stream)
+    {
+      kpDatabase.Save(stream, null);
+    }
 
-		public bool CanHaveMultipleAttachments
-		{
-			get { return true; }
-		}
+    public bool CanHaveEntriesInRootGroup
+    {
+      get { return true; }
+    }
 
-		public bool CanHaveCustomFields
-		{
-			get { return true; }
-		}
+    public bool CanHaveMultipleAttachments
+    {
+      get { return true; }
+    }
 
-		public bool HasDefaultUsername
-		{
-			get { return true; }
-		}
+    public bool CanHaveCustomFields
+    {
+      get { return true; }
+    }
 
-		public bool HasDatabaseName
-		{
-			get { return true; }
-		}
+    public bool HasDefaultUsername
+    {
+      get { return true; }
+    }
 
-		public bool SupportsAttachmentKeys
-		{
-			get { return true; }
-		}
+    public bool HasDatabaseName
+    {
+      get { return true; }
+    }
 
-		public bool SupportsTags
-		{
-			get { return true; }
-		}
+    public bool SupportsAttachmentKeys
+    {
+      get { return true; }
+    }
 
-		public bool SupportsOverrideUrl
-		{
-			get { return true; }
-		}
+    public bool SupportsTags
+    {
+      get { return true; }
+    }
 
-		public bool CanRecycle
-		{
-			get { return true; }
-		}
+    public bool SupportsOverrideUrl
+    {
+      get { return true; }
+    }
 
-		public bool SupportsTemplates
-		{
-			get { return true; }
-		}
-	}
+    public bool CanRecycle
+    {
+      get { return true; }
+    }
+
+    public bool SupportsTemplates
+    {
+      get { return true; }
+    }
+  }
 }

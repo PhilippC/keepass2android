@@ -23,85 +23,99 @@ using KeePassLib;
 namespace keepass2android
 {
 
-	public class AddGroup : RunnableOnFinish {
-		internal Database Db
-		{
-			get { return _app.GetDb(); }
-		}
-		private IKp2aApp _app;
-		private readonly String _name;
-		private readonly int _iconId;
-		private readonly PwUuid _groupCustomIconId;
-		internal PwGroup Group;
-		internal PwGroup Parent;
-		protected bool DontSave;
-		readonly Activity _ctx;
-		
-		
-		public static AddGroup GetInstance(Activity ctx, IKp2aApp app, string name, int iconid, PwUuid groupCustomIconId, PwGroup parent, OnFinish finish, bool dontSave) {
-			return new AddGroup(ctx, app, name, iconid, groupCustomIconId, parent, finish, dontSave);
-		}
+  public class AddGroup : OperationWithFinishHandler
+  {
+    internal Database Db
+    {
+      get { return _app.CurrentDb; }
+    }
+
+    public IKp2aApp App { get => _app; }
+
+    private IKp2aApp _app;
+    private readonly String _name;
+    private readonly int _iconId;
+    private readonly PwUuid _groupCustomIconId;
+    public PwGroup Group;
+    internal PwGroup Parent;
+    protected bool DontSave;
 
 
-		private AddGroup(Activity ctx, IKp2aApp app, String name, int iconid, PwUuid groupCustomIconId, PwGroup parent, OnFinish finish, bool dontSave)
-			: base(ctx, finish)
-		{
-			_ctx = ctx;
-			_name = name;
-			_iconId = iconid;
-			_groupCustomIconId = groupCustomIconId;
-			Parent = parent;
-			DontSave = dontSave;
-			_app = app;
+    public static AddGroup GetInstance(IKp2aApp app, string name, int iconid, PwUuid groupCustomIconId, PwGroup parent, OnOperationFinishedHandler operationFinishedHandler, bool dontSave)
+    {
+      return new AddGroup(app, name, iconid, groupCustomIconId, parent, operationFinishedHandler, dontSave);
+    }
 
-			_onFinishToRun = new AfterAdd(ctx, this, OnFinishToRun);
-		}
-		
-		
-		public override void Run() {
-			StatusLogger.UpdateMessage(UiStringKey.AddingGroup);
-			// Generate new group
-			Group = new PwGroup(true, true, _name, (PwIcon)_iconId);
-			if (_groupCustomIconId != null)
-			{
-				Group.CustomIconUuid = _groupCustomIconId;
-			}
-			Parent.AddGroup(Group, true);
 
-			// Commit to disk
-			SaveDb save = new SaveDb(_ctx, _app, OnFinishToRun, DontSave);
-			save.SetStatusLogger(StatusLogger);
-			save.Run();
-		}
-		
-		private class AfterAdd : OnFinish {
-			readonly AddGroup _addGroup;
+    private AddGroup(IKp2aApp app, String name, int iconid, PwUuid groupCustomIconId, PwGroup parent, OnOperationFinishedHandler operationFinishedHandler, bool dontSave)
+        : base(app, operationFinishedHandler)
+    {
+      _name = name;
+      _iconId = iconid;
+      _groupCustomIconId = groupCustomIconId;
+      Parent = parent;
+      DontSave = dontSave;
+      _app = app;
 
-			public AfterAdd(Activity activity, AddGroup addGroup,OnFinish finish): base(activity, finish) {
-				_addGroup = addGroup;
-			}
-				
+      _operationFinishedHandler = new AfterAdd(_app, this, operationFinishedHandler);
+    }
 
-			public override void Run() {
-				
-				if ( Success ) {
-					// Mark parent group dirty
-					_addGroup.Db.Dirty.Add(_addGroup.Parent);
-					
-					// Add group to global list
-					_addGroup.Db.Groups[_addGroup.Group.Uuid] = _addGroup.Group;
-				} else {
-					StatusLogger.UpdateMessage(UiStringKey.UndoingChanges);
-					_addGroup.Parent.Groups.Remove(_addGroup.Group);
-				}
-				
-				base.Run();
-			}
-			
-		}
-		
-		
-	}
+
+    public override void Run()
+    {
+      StatusLogger.UpdateMessage(UiStringKey.AddingGroup);
+      // Generate new group
+      Group = new PwGroup(true, true, _name, (PwIcon)_iconId);
+      if (_groupCustomIconId != null)
+      {
+        Group.CustomIconUuid = _groupCustomIconId;
+      }
+      Parent.AddGroup(Group, true);
+      _app.CurrentDb.GroupsById[Group.Uuid] = Group;
+      _app.CurrentDb.Elements.Add(Group);
+
+      // Commit to disk
+      SaveDb save = new SaveDb(_app, _app.CurrentDb, operationFinishedHandler, DontSave, null);
+      save.SetStatusLogger(StatusLogger);
+      save.Run();
+    }
+
+    private class AfterAdd : OnOperationFinishedHandler
+    {
+      readonly AddGroup _addGroup;
+
+      public AfterAdd(IKp2aApp app, AddGroup addGroup, OnOperationFinishedHandler operationFinishedHandler) : base(app, operationFinishedHandler)
+      {
+        _addGroup = addGroup;
+      }
+
+
+      public override void Run()
+      {
+
+        if (Success)
+        {
+          // Mark parent group dirty
+          _addGroup.App.DirtyGroups.Add(_addGroup.Parent);
+
+          // Add group to global list
+          _addGroup.Db.GroupsById[_addGroup.Group.Uuid] = _addGroup.Group;
+          _addGroup.Db.Elements.Add(_addGroup.Group);
+        }
+        else
+        {
+          StatusLogger.UpdateMessage(UiStringKey.UndoingChanges);
+          _addGroup.Parent.Groups.Remove(_addGroup.Group);
+
+        }
+
+        base.Run();
+      }
+
+    }
+
+
+  }
 
 }
 

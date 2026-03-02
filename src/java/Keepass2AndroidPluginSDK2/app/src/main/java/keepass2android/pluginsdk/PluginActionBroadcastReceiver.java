@@ -1,3 +1,20 @@
+/*
+ * This file is part of Keepass2Android, Copyright 2025 Philipp Crocoll.
+ *
+ *   Keepass2Android is free software: you can redistribute it and/or modify
+ *   it under the terms of the GNU General Public License as published by
+ *   the Free Software Foundation, either version 3 of the License, or
+ *   (at your option) any later version.
+ *
+ *   Keepass2Android is distributed in the hope that it will be useful,
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *   GNU General Public License for more details.
+ *
+ *   You should have received a copy of the GNU General Public License
+ *   along with Keepass2Android.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 package keepass2android.pluginsdk;
 
 import java.util.ArrayList;
@@ -6,6 +23,7 @@ import java.util.Iterator;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.json.JSONArray;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -65,7 +83,16 @@ public abstract class PluginActionBroadcastReceiver extends BroadcastReceiver {
 		
 		protected String[] getProtectedFieldsListFromIntent()
 		{
-			return _intent.getStringArrayExtra(Strings.EXTRA_PROTECTED_FIELDS_LIST);
+			try {
+				JSONArray json = new JSONArray(_intent.getStringExtra(Strings.EXTRA_PROTECTED_FIELDS_LIST));
+				String[] res = new String[json.length()];
+				for(int i = 0; i < json.length(); i++)
+					res[i] = json.getString(i);
+				return res;
+			} catch (JSONException e) {
+				e.printStackTrace();
+				return null;
+			}
 		}
 		
 

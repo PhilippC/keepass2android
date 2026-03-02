@@ -1,3 +1,18 @@
+// This file is part of Keepass2Android, Copyright 2025 Philipp Crocoll.
+//
+//   Keepass2Android is free software: you can redistribute it and/or modify
+//   it under the terms of the GNU General Public License as published by
+//   the Free Software Foundation, either version 3 of the License, or
+//   (at your option) any later version.
+//
+//   Keepass2Android is distributed in the hope that it will be useful,
+//   but WITHOUT ANY WARRANTY; without even the implied warranty of
+//   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//   GNU General Public License for more details.
+//
+//   You should have received a copy of the GNU General Public License
+//   along with Keepass2Android.  If not, see <http://www.gnu.org/licenses/>.
+
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -8,199 +23,206 @@ using KeePassLib.Serialization;
 
 namespace keepass2android.Io
 {
-	public interface IOfflineSwitchable
-	{
-		bool IsOffline { get; set; }
-	}
+  public interface IOfflineSwitchable
+  {
+    bool IsOffline { get; set; }
+    bool TriggerWarningWhenFallingBackToCache { get; set; }
+  }
 
-/// <summary>
-	/// Encapsulates another IFileStorage. Allows to switch to offline mode by throwing
-	/// an exception when trying to read or write a file.
-	/// </summary>
-	public class OfflineSwitchableFileStorage : IFileStorage, IOfflineSwitchable, IPermissionRequestingFileStorage
-	{
-		private readonly IFileStorage _baseStorage;
-		public bool IsOffline { get; set; }
+  /// <summary>
+  /// Encapsulates another IFileStorage. Allows to switch to offline mode by throwing
+  /// an exception when trying to read or write a file.
+  /// </summary>
+  public class OfflineSwitchableFileStorage : IFileStorage, IOfflineSwitchable, IPermissionRequestingFileStorage
+  {
+    private readonly IFileStorage _baseStorage;
+    public bool IsOffline { get; set; }
+    public bool TriggerWarningWhenFallingBackToCache { get; set; }
 
-		public OfflineSwitchableFileStorage(IFileStorage baseStorage)
-		{
-			_baseStorage = baseStorage;
-		}
+    public OfflineSwitchableFileStorage(IFileStorage baseStorage)
+    {
+      _baseStorage = baseStorage;
+    }
 
-		public IEnumerable<string> SupportedProtocols
-		{
-			get { return _baseStorage.SupportedProtocols; }
-		}
+    public IEnumerable<string> SupportedProtocols
+    {
+      get { return _baseStorage.SupportedProtocols; }
+    }
 
-	    public bool UserShouldBackup
-	    {
-	        get { return _baseStorage.UserShouldBackup; }
-	    }
+    public bool UserShouldBackup
+    {
+      get { return _baseStorage.UserShouldBackup; }
+    }
 
-	    public void Delete(IOConnectionInfo ioc)
-		{
-			_baseStorage.Delete(ioc);
-		}
+    public void Delete(IOConnectionInfo ioc)
+    {
+      _baseStorage.Delete(ioc);
+    }
 
-		public bool CheckForFileChangeFast(IOConnectionInfo ioc, string previousFileVersion)
-		{
-			return _baseStorage.CheckForFileChangeFast(ioc, previousFileVersion);
-		}
+    public bool CheckForFileChangeFast(IOConnectionInfo ioc, string previousFileVersion)
+    {
+      return _baseStorage.CheckForFileChangeFast(ioc, previousFileVersion);
+    }
 
-		public string GetCurrentFileVersionFast(IOConnectionInfo ioc)
-		{
-			return _baseStorage.GetCurrentFileVersionFast(ioc);
-		}
+    public string GetCurrentFileVersionFast(IOConnectionInfo ioc)
+    {
+      return _baseStorage.GetCurrentFileVersionFast(ioc);
+    }
 
-		public Stream OpenFileForRead(IOConnectionInfo ioc)
-		{
-			AssertOnline();
-			return _baseStorage.OpenFileForRead(ioc);
-		}
+    public Stream OpenFileForRead(IOConnectionInfo ioc)
+    {
+      AssertOnline();
+      return _baseStorage.OpenFileForRead(ioc);
+    }
 
-		private void AssertOnline()
-		{
-			if (IsOffline)
-			{
-				//throw new Exception(_app.GetResourceString(UiStringKey.InOfflineMode));
-				throw new OfflineModeException();
-			}
-		}
+    private void AssertOnline()
+    {
+      if (IsOffline)
+      {
+        //throw new Exception(_app.GetResourceString(UiStringKey.InOfflineMode));
+        throw new OfflineModeException();
+      }
+    }
 
-		public IWriteTransaction OpenWriteTransaction(IOConnectionInfo ioc, bool useFileTransaction)
-		{
-			AssertOnline();
-			return _baseStorage.OpenWriteTransaction(ioc, useFileTransaction);
-		}
+    public IWriteTransaction OpenWriteTransaction(IOConnectionInfo ioc, bool useFileTransaction)
+    {
+      AssertOnline();
+      return _baseStorage.OpenWriteTransaction(ioc, useFileTransaction);
+    }
 
-		public string GetFilenameWithoutPathAndExt(IOConnectionInfo ioc)
-		{
-			return _baseStorage.GetFilenameWithoutPathAndExt(ioc);
-		}
+    public string GetFilenameWithoutPathAndExt(IOConnectionInfo ioc)
+    {
+      return _baseStorage.GetFilenameWithoutPathAndExt(ioc);
+    }
 
-		public bool RequiresCredentials(IOConnectionInfo ioc)
-		{
-			return _baseStorage.RequiresCredentials(ioc);
-		}
+    public string GetFileExtension(IOConnectionInfo ioc)
+    {
+      return _baseStorage.GetFileExtension(ioc);
+    }
 
-		public void CreateDirectory(IOConnectionInfo ioc, string newDirName)
-		{
-			_baseStorage.CreateDirectory(ioc, newDirName);
-		}
+    public bool RequiresCredentials(IOConnectionInfo ioc)
+    {
+      return _baseStorage.RequiresCredentials(ioc);
+    }
 
-		public IEnumerable<FileDescription> ListContents(IOConnectionInfo ioc)
-		{
-			return _baseStorage.ListContents(ioc);
-		}
+    public void CreateDirectory(IOConnectionInfo ioc, string newDirName)
+    {
+      _baseStorage.CreateDirectory(ioc, newDirName);
+    }
 
-		public FileDescription GetFileDescription(IOConnectionInfo ioc)
-		{
-			return _baseStorage.GetFileDescription(ioc);
-		}
+    public IEnumerable<FileDescription> ListContents(IOConnectionInfo ioc)
+    {
+      return _baseStorage.ListContents(ioc);
+    }
 
-		public bool RequiresSetup(IOConnectionInfo ioConnection)
-		{
-			if (IsOffline)
-				return false;
-			return _baseStorage.RequiresSetup(ioConnection);
-		}
+    public FileDescription GetFileDescription(IOConnectionInfo ioc)
+    {
+      return _baseStorage.GetFileDescription(ioc);
+    }
 
-		public string IocToPath(IOConnectionInfo ioc)
-		{
-			return _baseStorage.IocToPath(ioc);
-		}
+    public bool RequiresSetup(IOConnectionInfo ioConnection)
+    {
+      if (IsOffline)
+        return false;
+      return _baseStorage.RequiresSetup(ioConnection);
+    }
 
-		public void StartSelectFile(IFileStorageSetupInitiatorActivity activity, bool isForSave, int requestCode, string protocolId)
-		{
-			_baseStorage.StartSelectFile(activity, isForSave, requestCode, protocolId);
-		}
+    public string IocToPath(IOConnectionInfo ioc)
+    {
+      return _baseStorage.IocToPath(ioc);
+    }
 
-		public void PrepareFileUsage(IFileStorageSetupInitiatorActivity activity, IOConnectionInfo ioc, int requestCode,
-			bool alwaysReturnSuccess)
-		{
-			if (IsOffline)
-			{
-				Intent intent = new Intent();
-				activity.IocToIntent(intent, ioc);
-				activity.OnImmediateResult(requestCode, (int)FileStorageResults.FileUsagePrepared, intent);
-				return;
-			}
-				
-			_baseStorage.PrepareFileUsage(activity, ioc, requestCode, alwaysReturnSuccess);
-		}
+    public void StartSelectFile(IFileStorageSetupInitiatorActivity activity, bool isForSave, int requestCode, string protocolId)
+    {
+      _baseStorage.StartSelectFile(activity, isForSave, requestCode, protocolId);
+    }
 
-		public void PrepareFileUsage(Context ctx, IOConnectionInfo ioc)
-		{
-			if (IsOffline)
-				return;
-			_baseStorage.PrepareFileUsage(ctx, ioc);
-		}
+    public void PrepareFileUsage(IFileStorageSetupInitiatorActivity activity, IOConnectionInfo ioc, int requestCode,
+        bool alwaysReturnSuccess)
+    {
+      if (IsOffline)
+      {
+        Intent intent = new Intent();
+        activity.IocToIntent(intent, ioc);
+        activity.OnImmediateResult(requestCode, (int)FileStorageResults.FileUsagePrepared, intent);
+        return;
+      }
 
-		public void OnCreate(IFileStorageSetupActivity activity, Bundle savedInstanceState)
-		{
-			_baseStorage.OnCreate(activity, savedInstanceState);
-		}
+      _baseStorage.PrepareFileUsage(activity, ioc, requestCode, alwaysReturnSuccess);
+    }
 
-		public void OnResume(IFileStorageSetupActivity activity)
-		{
-			_baseStorage.OnResume(activity);
-		}
+    public void PrepareFileUsage(Context ctx, IOConnectionInfo ioc)
+    {
+      if (IsOffline)
+        return;
+      _baseStorage.PrepareFileUsage(ctx, ioc);
+    }
 
-		public void OnStart(IFileStorageSetupActivity activity)
-		{
-			_baseStorage.OnStart(activity);
-		}
+    public void OnCreate(IFileStorageSetupActivity activity, Bundle savedInstanceState)
+    {
+      _baseStorage.OnCreate(activity, savedInstanceState);
+    }
 
-		public void OnActivityResult(IFileStorageSetupActivity activity, int requestCode, int resultCode, Intent data)
-		{
-			_baseStorage.OnActivityResult(activity, requestCode, resultCode, data);
-		}
+    public void OnResume(IFileStorageSetupActivity activity)
+    {
+      _baseStorage.OnResume(activity);
+    }
 
-		public string GetDisplayName(IOConnectionInfo ioc)
-		{
-			return _baseStorage.GetDisplayName(ioc);
-		}
+    public void OnStart(IFileStorageSetupActivity activity)
+    {
+      _baseStorage.OnStart(activity);
+    }
 
-		public string CreateFilePath(string parent, string newFilename)
-		{
-			return _baseStorage.CreateFilePath(parent, newFilename);
-		}
+    public void OnActivityResult(IFileStorageSetupActivity activity, int requestCode, int resultCode, Intent data)
+    {
+      _baseStorage.OnActivityResult(activity, requestCode, resultCode, data);
+    }
 
-		public IOConnectionInfo GetParentPath(IOConnectionInfo ioc)
-		{
-			return _baseStorage.GetParentPath(ioc);
-		}
+    public string GetDisplayName(IOConnectionInfo ioc)
+    {
+      return _baseStorage.GetDisplayName(ioc);
+    }
 
-		public IOConnectionInfo GetFilePath(IOConnectionInfo folderPath, string filename)
-		{
-			return _baseStorage.GetFilePath(folderPath, filename);
-		}
+    public string CreateFilePath(string parent, string newFilename)
+    {
+      return _baseStorage.CreateFilePath(parent, newFilename);
+    }
 
-		public bool IsPermanentLocation(IOConnectionInfo ioc)
-		{
-			return _baseStorage.IsPermanentLocation(ioc);
-		}
+    public IOConnectionInfo GetParentPath(IOConnectionInfo ioc)
+    {
+      return _baseStorage.GetParentPath(ioc);
+    }
 
-		public bool IsReadOnly(IOConnectionInfo ioc, OptionalOut<UiStringKey> reason = null)
-		{
-			return _baseStorage.IsReadOnly(ioc, reason);
-		}
+    public IOConnectionInfo GetFilePath(IOConnectionInfo folderPath, string filename)
+    {
+      return _baseStorage.GetFilePath(folderPath, filename);
+    }
 
-	public void OnRequestPermissionsResult(IFileStorageSetupActivity fileStorageSetupActivity, int requestCode,
-		string[] permissions, Permission[] grantResults)
-	{
-		if (_baseStorage is IPermissionRequestingFileStorage)
-		{
-			((IPermissionRequestingFileStorage)_baseStorage).OnRequestPermissionsResult(fileStorageSetupActivity, requestCode, permissions, grantResults);
-		}
-	}
-	}
+    public bool IsPermanentLocation(IOConnectionInfo ioc)
+    {
+      return _baseStorage.IsPermanentLocation(ioc);
+    }
 
-	public class OfflineModeException : Exception
-	{
-		public override string Message
-		{
-			get { return "Working offline."; }
-		}
-	}
+    public bool IsReadOnly(IOConnectionInfo ioc, OptionalOut<UiStringKey> reason = null)
+    {
+      return _baseStorage.IsReadOnly(ioc, reason);
+    }
+
+    public void OnRequestPermissionsResult(IFileStorageSetupActivity fileStorageSetupActivity, int requestCode,
+        string[] permissions, Permission[] grantResults)
+    {
+      if (_baseStorage is IPermissionRequestingFileStorage)
+      {
+        ((IPermissionRequestingFileStorage)_baseStorage).OnRequestPermissionsResult(fileStorageSetupActivity, requestCode, permissions, grantResults);
+      }
+    }
+  }
+
+  public class OfflineModeException : Exception
+  {
+    public override string Message
+    {
+      get { return "Working offline."; }
+    }
+  }
 }

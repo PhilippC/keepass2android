@@ -22,87 +22,96 @@ using KeePassLib.Keys;
 
 namespace keepass2android
 {
-	public class SetPassword : RunnableOnFinish {
-		
-		private readonly String _password;
-		private readonly String _keyfile;
-		private readonly IKp2aApp _app;
-		private readonly bool _dontSave;
-		private readonly Activity _ctx;
-		
-		public SetPassword(Activity ctx, IKp2aApp app, String password, String keyfile, OnFinish finish): base(ctx, finish) {
-			_ctx = ctx;
-			_app = app;
-			_password = password;
-			_keyfile = keyfile;
-			_dontSave = false;
-		}
+  public class SetPassword : OperationWithFinishHandler
+  {
 
-		public SetPassword(Activity ctx, IKp2aApp app, String password, String keyfile, OnFinish finish, bool dontSave)
-			: base(ctx, finish)
-		{
-			_ctx = ctx;
-			_app = app;
-			_password = password;
-			_keyfile = keyfile;
-			_dontSave = dontSave;
-		}
-		
-		
-		public override void Run ()
-		{
-			StatusLogger.UpdateMessage(UiStringKey.SettingPassword);
-			PwDatabase pm = _app.GetDb().KpDatabase;
-			CompositeKey newKey = new CompositeKey ();
-			if (String.IsNullOrEmpty (_password) == false) {
-				newKey.AddUserKey (new KcpPassword (_password)); 
-			}
-			if (String.IsNullOrEmpty (_keyfile) == false) {
-				try {
-					newKey.AddUserKey (new KcpKeyFile (_keyfile));
-				} catch (Exception) {
-					//TODO MessageService.ShowWarning (strKeyFile, KPRes.KeyFileError, exKF);
-					return;
-				}
-			}
+    private readonly String _password;
+    private readonly String _keyfile;
+    private readonly IKp2aApp _app;
+    private readonly bool _dontSave;
 
-			DateTime previousMasterKeyChanged = pm.MasterKeyChanged;
-			CompositeKey previousKey = pm.MasterKey;
+    public SetPassword(IKp2aApp app, String password, String keyfile, OnOperationFinishedHandler operationFinishedHandler) : base(app, operationFinishedHandler)
+    {
 
-			pm.MasterKeyChanged = DateTime.Now;
-			pm.MasterKey = newKey;
+      _app = app;
+      _password = password;
+      _keyfile = keyfile;
+      _dontSave = false;
+    }
 
-			// Save Database
-			_onFinishToRun = new AfterSave(ActiveActivity, previousKey, previousMasterKeyChanged, pm, OnFinishToRun);
-			SaveDb save = new SaveDb(_ctx, _app, OnFinishToRun, _dontSave);
-			save.SetStatusLogger(StatusLogger);
-			save.Run();
-		}
-		
-		private class AfterSave : OnFinish {
-			private readonly CompositeKey _backup;
-			private readonly DateTime _previousKeyChanged;
-			private readonly PwDatabase _db;
-			
-			public AfterSave(Activity activity, CompositeKey backup, DateTime previousKeyChanged, PwDatabase db, OnFinish finish): base(activity, finish) {
-				_previousKeyChanged = previousKeyChanged;
-				_backup = backup;
-				_db = db;
-			}
-			
-			public override void Run() {
-				if ( ! Success ) {
-					_db.MasterKey = _backup;
-					_db.MasterKeyChanged = _previousKeyChanged;
-				}
-				
-				base.Run();
-			}
-			
-		}
+    public SetPassword(IKp2aApp app, String password, String keyfile, OnOperationFinishedHandler operationFinishedHandler, bool dontSave)
+        : base(app, operationFinishedHandler)
+    {
+      _app = app;
+      _password = password;
+      _keyfile = keyfile;
+      _dontSave = dontSave;
+    }
 
-		
-	}
+
+    public override void Run()
+    {
+      StatusLogger.UpdateMessage(UiStringKey.SettingPassword);
+      PwDatabase pm = _app.CurrentDb.KpDatabase;
+      CompositeKey newKey = new CompositeKey();
+      if (String.IsNullOrEmpty(_password) == false)
+      {
+        newKey.AddUserKey(new KcpPassword(_password));
+      }
+      if (String.IsNullOrEmpty(_keyfile) == false)
+      {
+        try
+        {
+          newKey.AddUserKey(new KcpKeyFile(_keyfile));
+        }
+        catch (Exception)
+        {
+          //TODO MessageService.ShowWarning (strKeyFile, KPRes.KeyFileError, exKF);
+          return;
+        }
+      }
+
+      DateTime previousMasterKeyChanged = pm.MasterKeyChanged;
+      CompositeKey previousKey = pm.MasterKey;
+
+      pm.MasterKeyChanged = DateTime.Now;
+      pm.MasterKey = newKey;
+
+      // Save Database
+      _operationFinishedHandler = new AfterSave(_app, previousKey, previousMasterKeyChanged, pm, operationFinishedHandler);
+      SaveDb save = new SaveDb(_app, _app.CurrentDb, operationFinishedHandler, _dontSave, null);
+      save.SetStatusLogger(StatusLogger);
+      save.Run();
+    }
+
+    private class AfterSave : OnOperationFinishedHandler
+    {
+      private readonly CompositeKey _backup;
+      private readonly DateTime _previousKeyChanged;
+      private readonly PwDatabase _db;
+
+      public AfterSave(IActiveContextProvider activeContextProvider, CompositeKey backup, DateTime previousKeyChanged, PwDatabase db, OnOperationFinishedHandler operationFinishedHandler) : base(activeContextProvider, operationFinishedHandler)
+      {
+        _previousKeyChanged = previousKeyChanged;
+        _backup = backup;
+        _db = db;
+      }
+
+      public override void Run()
+      {
+        if (!Success)
+        {
+          _db.MasterKey = _backup;
+          _db.MasterKeyChanged = _previousKeyChanged;
+        }
+
+        base.Run();
+      }
+
+    }
+
+
+  }
 
 }
 

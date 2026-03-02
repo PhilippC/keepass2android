@@ -1,3 +1,20 @@
+/*
+ * This file is part of Keepass2Android, Copyright 2025 Philipp Crocoll.
+ *
+ *   Keepass2Android is free software: you can redistribute it and/or modify
+ *   it under the terms of the GNU General Public License as published by
+ *   the Free Software Foundation, either version 3 of the License, or
+ *   (at your option) any later version.
+ *
+ *   Keepass2Android is distributed in the hope that it will be useful,
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *   GNU General Public License for more details.
+ *
+ *   You should have received a copy of the GNU General Public License
+ *   along with Keepass2Android.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 package keepass2android.javafilestorage.webdav;
 
 import android.util.Xml;
@@ -57,6 +74,8 @@ public class PropfindXmlParser
                 public String DisplayName;
                 public String LastModified;
                 public String ContentLength;
+
+                public boolean IsCollection;
             }
             public String status;
             public Prop prop;
@@ -191,6 +210,8 @@ public class PropfindXmlParser
                 continue;
             }
             String name = parser.getName();
+            String namespace = parser.getNamespace();
+
 
             android.util.Log.d("PARSE", "4name = " + name);
             if (name.equals("getcontentlength"))
@@ -200,12 +221,46 @@ public class PropfindXmlParser
                 prop.LastModified = readText(parser);
             } else if (name.equals("displayname")) {
                 prop.DisplayName = readText(parser);
+            } else if (name.equals("resourcetype") && namespace.equals(ns)) {
+                // We found the <d:resourcetype> tag
+                prop.IsCollection = readResourceType(parser);
             } else {
                 skip(parser);
             }
         }
 
         return  prop;
+    }
+
+    private boolean readResourceType(XmlPullParser parser) throws IOException, XmlPullParserException {
+        boolean isCollection = false;
+        parser.require(XmlPullParser.START_TAG, ns, "resourcetype");
+
+        while (parser.next() != XmlPullParser.END_TAG) {
+
+            if (parser.getEventType() != XmlPullParser.START_TAG) {
+                continue;
+            }
+            String name = parser.getName();
+            String namespace = parser.getNamespace();
+
+            if (name.equals("collection") && namespace.equals(ns)) {
+                // We found <d:collection/>, so it's a folder
+                isCollection = true;
+                // Since <d:collection/> is usually an empty tag, just consume it.
+                // It might contain text if there's whitespace, so consume text then end tag.
+                if (parser.next() == XmlPullParser.TEXT) {
+                    parser.nextTag(); // Move to the end tag
+                }
+                parser.require(XmlPullParser.END_TAG, ns, "collection");
+            } else {
+                // Skip any other unexpected tags within <d:resourcetype>
+                skip(parser);
+            }
+        }
+        // After reading all children of <d:resourcetype>, ensure we are at its END_TAG
+        parser.require(XmlPullParser.END_TAG, ns, "resourcetype");
+        return isCollection;
     }
 
     private void skip(XmlPullParser parser) throws XmlPullParserException, IOException {

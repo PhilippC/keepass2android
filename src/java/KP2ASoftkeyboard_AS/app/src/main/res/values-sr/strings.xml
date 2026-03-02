@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- 
+<!--
 /*
 **
 ** Copyright 2008, The Android Open Source Project
@@ -16,125 +16,228 @@
 ** See the License for the specific language governing permissions and
 ** limitations under the License.
 */
- -->
-
-<resources xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="english_ime_name" msgid="7252517407088836577">"Keepass2Android тастатура"</string>
-    <string name="english_ime_settings" msgid="6661589557206947774">"Подешавања Keepass2Android тастатуре"</string>
-    <string name="english_ime_input_options" msgid="3909945612939668554">"Опције уноса"</string>
-    <string name="vibrate_on_keypress" msgid="5258079494276955460">"Вибрирај на притисак тастера"</string>
-    <string name="sound_on_keypress" msgid="6093592297198243644">"Звук на притисак тастера"</string>
-    <string name="popup_on_keypress" msgid="123894815723512944">"Искачући прозор приликом притиска тастера"</string>
-    <string name="hit_correction" msgid="4855351009261318389">"Исправи грешке у куцању"</string>
-    <string name="hit_correction_summary" msgid="8761701873008070796">"Омогућавање исправљања грешака током уноса"</string>
-    <string name="hit_correction_land" msgid="2567691684825205448">"Грешке приликом уноса у положеном приказу"</string>
-    <string name="hit_correction_land_summary" msgid="4076803842198368328">"Омогућавање исправљања грешака током уноса"</string>
-    <string name="auto_correction" msgid="7911639788808958255">"Предлагање речи"</string>
-    <string name="auto_correction_summary" msgid="6881047311475758267">"Аутоматско исправљање претходне речи"</string>
-    <string name="prediction" msgid="466220283138359837">"Предлагање речи"</string>
-    <string name="prediction_category" msgid="7027100625580696660">"Подешавања за предлагање речи"</string>
-    <string name="prediction_summary" msgid="459788228830873110">"Омогућавање аутоматског довршавања током уноса текста"</string>
-    <string name="auto_complete_dialog_title" msgid="2172048590607201920">"Аутоматско довршавање"</string>
-    <string name="prediction_landscape" msgid="4874601565593216183">"Повећај величину поља за текст"</string>
-    <string name="prediction_landscape_summary" msgid="6736551095997839472">"Скривање предложених речи у положеном приказу"</string>
-    <string name="auto_cap" msgid="1719746674854628252">"Аутоматски унос великих слова"</string>
-    <string name="auto_cap_summary" msgid="3260681697600786825">"Унос великог слова на почетку реченице"</string>
-    <string name="auto_punctuate" msgid="7276672334264521751">"Аутоматска интерпункција"</string>
-    <string name="auto_punctuate_summary" msgid="6589441565817502132"></string>
-    <string name="quick_fixes" msgid="5353213327680897927">"Брзе исправке"</string>
-    <string name="quick_fixes_summary" msgid="3405028402510332373">"Исправља честе грешке у куцању"</string>
-    <string name="show_suggestions" msgid="507074425254289133">"Прикажи предлоге"</string>
-    <string name="show_suggestions_summary" msgid="1989672863935759654">"Приказивање предложених речи током уноса текста"</string>
-    <string name="auto_complete" msgid="1103196318775486023">"Аутоматско довршавање"</string>
-    <string name="auto_complete_summary" msgid="6113149638718274624">"Означена реч се аутоматски умеће када притиснете размак или знак интерпункције"</string>
-    <string name="prefs_settings_key" msgid="4623341240804046498">"Прикажи тастер за подешавања"</string>
-    <string name="settings_key_mode_auto_name" msgid="2993460277873684680">"Аутоматски"</string>
-    <string name="settings_key_mode_always_show_name" msgid="3047567041784760575">"Увек прикажи"</string>
-    <string name="settings_key_mode_always_hide_name" msgid="7833948046716923994">"Увек сакриј"</string>
-    <!-- no translation found for settings_key_modes:0 (8549888726962891527) -->
-    <!-- no translation found for settings_key_modes:1 (881280041213210923) -->
-    <!-- no translation found for settings_key_modes:2 (7317310620171067848) -->
-    <string name="bigram_suggestion" msgid="1323347224043514969">"Bigram предлози"</string>
-    <string name="bigram_suggestion_summary" msgid="4383845146070101531">"Користи претходну реч за побољшање предлога"</string>
-  <string-array name="prediction_modes">
-    <item msgid="4870266572388153286">"Ништа"</item>
-    <item msgid="1669461741568287396">"Основни"</item>
-    <item msgid="4894328801530136615">"Напредно"</item>
-  </string-array>
-    <string name="added_word" msgid="8993883354622484372">"<xliff:g id="WORD">%s</xliff:g> : Сачувано"</string>
-    <string name="tip_long_press" msgid="6101270866284343344">"Држите тастер да бисте видели акценте (ø, ö итд.)"</string>
-    <string name="tip_dismiss" msgid="7585579046862204381">"Притисните тастер „Назад“ ↶ у било ком тренутку да бисте затворили тастатуру"</string>
-    <string name="tip_access_symbols" msgid="6344098517525531652">"Приступите бројевима и симболима"</string>
-    <string name="tip_add_to_dictionary" msgid="1487293888469227817">"Притисните и држите прву реч са леве стране да бисте је додали у речник"</string>
-    <string name="touch_to_continue" msgid="7869803257948414531">"Додирните овај савет да бисте наставили »"</string>
-    <string name="touch_to_finish" msgid="7990196086480585789">"Додирните овде да бисте затворили овај савет и почели да уносите текст!"</string>
-    <string name="tip_to_open_keyboard" msgid="6821200275486950452"><b>"Тастатура се отвара сваки пут када додирнете поље за текст"</b></string>
-    <string name="tip_to_view_accents" msgid="5433158573693308501"><b>"Додирните и држите тастер да бисте видели акценте"\n"(ø, ö, ô, ó, и тако даље)"</b></string>
-    <string name="tip_to_open_symbols" msgid="7345139325622444880"><b>"Пређите на бројеве и симболе тако што ћете додирнути овај тастер"</b></string>
-    <string name="tip_to_close_symbols" msgid="5227724217206927185"><b>"Вратите се на слова тако што ћете поново додирнути овај тастер"</b></string>
-    <string name="tip_to_launch_settings" msgid="8402961128983196128"><b>"Додирните и држите овај тастер да бисте променили подешавања тастатуре, као што је аутоматско довршавање"</b></string>
-    <string name="tip_to_start_typing" msgid="7213843601369174313"><b>"Пробајте!"</b></string>
-    <string name="label_go_key" msgid="1635148082137219148">"Иди"</string>
-    <string name="label_next_key" msgid="362972844525672568">"Следеће"</string>
-    <string name="label_done_key" msgid="2441578748772529288">"Готово"</string>
-    <string name="label_send_key" msgid="2815056534433717444">"Пошаљи"</string>
-    <string name="label_symbol_key" msgid="6175820506864489453">"?123"</string>
-    <string name="label_phone_key" msgid="4275497665515080551">"123"</string>
-    <string name="label_alpha_key" msgid="8864943487292437456">"ABC"</string>
-    <string name="label_alt_key" msgid="2846315350346694811">"ALT"</string>
-    <string name="voice_warning_title" msgid="4419354150908395008">"Гласовни унос"</string>
-    <string name="voice_warning_locale_not_supported" msgid="637923019716442333">"Гласовни унос тренутно није подржан за ваш језик, али функционише на енглеском."</string>
-    <string name="voice_warning_may_not_understand" msgid="4611518823070986445">"Гласовни унос је експериментална функција која користи Google-ово мрежно препознавање гласа."</string>
-    <string name="voice_warning_how_to_turn_off" msgid="5652369578498701761">"Да бисте искључили гласовни унос, идите на подешавања тастатуре."</string>
-    <string name="voice_hint_dialog_message" msgid="6892342981545727994">"Да бисте користили гласовни унос, притисните дугме за микрофон или превуците прст преко тастатуре на екрану."</string>
-    <string name="voice_listening" msgid="467518160751321844">"Говорите сада"</string>
-    <string name="voice_working" msgid="6666937792815731889">"Обрада"</string>
-    <string name="voice_initializing" msgid="661962047129906646"></string>
-    <string name="voice_error" msgid="5140896300312186162">"Грешка. Покушајте поново."</string>
-    <string name="voice_network_error" msgid="6649556447401862563">"Повезивање није могуће"</string>
-    <string name="voice_too_much_speech" msgid="5746973620134227376">"Грешка, говорите предуго."</string>
-    <string name="voice_audio_error" msgid="5072707727016414454">"Проблем са звуком"</string>
-    <string name="voice_server_error" msgid="7807129913977261644">"Грешка сервера"</string>
-    <string name="voice_speech_timeout" msgid="8461817525075498795">"Не чује се говор"</string>
-    <string name="voice_no_match" msgid="4285117547030179174">"Нема подударања"</string>
-    <string name="voice_not_installed" msgid="5552450909753842415">"Гласовна претрага није инсталирана"</string>
-    <string name="voice_swipe_hint" msgid="6943546180310682021"><b>"Савет:"</b>" Превуците прстом преко тастатуре за гласовни унос"</string>
-    <string name="voice_punctuation_hint" msgid="1611389463237317754"><b>"Савет:"</b>" Следећи пут покушајте да изговорите знакове интерпункције као што су „тачка“, „зарез“ или „знак питања“."</string>
-    <string name="cancel" msgid="6830980399865683324">"Откажи"</string>
-    <string name="ok" msgid="7898366843681727667">"Потврди"</string>
-    <string name="voice_input" msgid="2466640768843347841">"Гласовни унос"</string>
-  <string-array name="voice_input_modes">
-    <item msgid="1349082139076086774">"На главној тастатури"</item>
-    <item msgid="8529385602829095903">"На тастатури са симболима"</item>
-    <item msgid="7283103513488381103">"Искључено"</item>
-  </string-array>
-  <string-array name="voice_input_modes_summary">
-    <item msgid="554248625705084903">"Микрофон на главној тастатури"</item>
-    <item msgid="6907837061058876770">"Микрофон на тастатури са симболима"</item>
-    <item msgid="3664304608587798036">"Гласовни унос је онемогућен"</item>
-  </string-array>
-    <string name="auto_submit" msgid="9151008027068358518">"Аутоматски пошаљи после гласа"</string>
-    <string name="auto_submit_summary" msgid="4961875269610384226">"Аутоматски притисак на enter приликом претраге или преласка на следеће поље."</string>
-    <string name="open_the_keyboard" msgid="2215920976029260466"><font size="17"><b>"Активирање тастатуре"\n</b></font><font size="3">\n</font>"Додирните било које поље за текст."</string>
-    <string name="close_the_keyboard" msgid="6251022259044940103"><font size="17"><b>"Затварање тастатуре"\n</b></font><font size="3">\n</font>"Притисните тастер „Назад“."</string>
-    <string name="touch_and_hold" msgid="6154166367273010534"><font size="17"><b>"Додирните и држите тастер да би се приказале опције"\n</b></font><font size="3">\n</font>"Приступ знаковима интерпункције и акцентима."</string>
-    <string name="keyboard_settings" msgid="4585753477617374032"><font size="17"><b>"Подешавања тастатуре"\n</b></font><font size="3">\n</font>"Додирните и држите тастер "<b>"?123"</b>"."</string>
-    <string name="popular_domain_0" msgid="3745279225122472969">".com"</string>
-    <string name="popular_domain_1" msgid="1370572248164278467">".net"</string>
-    <string name="popular_domain_2" msgid="3036812463748402878">".org"</string>
-    <string name="popular_domain_3" msgid="8718639560809452028">".gov"</string>
-    <string name="popular_domain_4" msgid="35359437471311470">".edu"</string>
-    <string name="selectInputMethod" msgid="315076553378705821">"Изаберите метод уноса"</string>
-    <string name="language_selection_title" msgid="1651299598555326750">"Језици за унос"</string>
-    <string name="language_selection_summary" msgid="187110938289512256">"Превуците прст преко тастера за размак да бисте променили језик"</string>
-    <string name="hint_add_to_dictionary" msgid="9006292060636342317">"← Поново додирните да бисте сачували"</string>
-    <string name="has_dictionary" msgid="6071847973466625007">"Речник је доступан"</string>
-    <string name="prefs_enable_log" msgid="6620424505072963557">"Омогући повратну информацију корисника"</string>
-    <string name="prefs_description_log" msgid="5827825607258246003">"Помозите да се побољша овај уређивач режима уноса тако што ће се аутоматски послати статистика о коришћењу и извештаји о грешкама компанији Google."</string>
-    <string name="prefs_enable_recorrection" msgid="4588408906649533582">"Додирните да бисте исправили речи"</string>
-    <string name="prefs_enable_recorrection_summary" msgid="1056068922330206170">"Додирните унете речи да бисте их исправили"</string>
-    <string name="keyboard_layout" msgid="437433231038683666">"Тема тастатуре"</string>
-    <string name="subtype_mode_keyboard" msgid="2242090416595003881">"тастатура"</string>
-    <string name="subtype_mode_voice" msgid="4394113125441627771">"глас"</string>
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <!-- Title for Latin keyboard  -->
+    <string name="english_ime_name">Keepass2Android тастатура</string>
+    <!-- Title for Latin keyboard settings activity / dialog -->
+    <string name="english_ime_settings">Подешавања Keepass2Android тастатуре</string>
+    <!-- Title for Latin keyboard input options dialog -->
+    <string name="english_ime_input_options">Опције уноса</string>
+    <!-- Option to provide vibrate/haptic feedback on keypress -->
+    <string name="vibrate_on_keypress">Вибрирај на притисак тастера</string>
+    <!-- Option to play back sound on keypress in soft keyboard -->
+    <string name="sound_on_keypress">Звук на притисак тастера</string>
+    <!-- Option to pop up the character with a larger font above soft keyboard -->
+    <string name="popup_on_keypress">Искачући прозор приликом притиска тастера</string>
+    <!-- Option to enable using nearby keys when correcting/predicting -->
+    <string name="hit_correction">Исправи грешке у куцању</string>
+    <!-- Description for hit_correction  -->
+    <string name="hit_correction_summary">Омогућавање исправљања грешака током уноса</string>
+    <!-- Option to enable using nearby keys when correcting/predicting in landscape-->
+    <string name="hit_correction_land">Грешке приликом уноса у положеном приказу</string>
+    <!-- Description for hit_correction in landscape -->
+    <string name="hit_correction_land_summary">Омогућавање исправљања грешака током уноса</string>
+    <!-- Option to automatically correct word on hitting space -->
+    <string name="auto_correction">Предлагање речи</string>
+    <!-- Description for auto_correction -->
+    <string name="auto_correction_summary">Аутоматско исправљање претходне речи</string>
+    <!-- Option to enable text prediction -->
+    <string name="prediction">Предлагање речи</string>
+    <!-- Category title for text prediction -->
+    <string name="prediction_category">Подешавања за предлагање речи</string>
+    <!-- Description for text prediction -->
+    <string name="prediction_summary">Омогућавање аутоматског довршавања током уноса текста</string>
+    <!-- Dialog title for auto complete choices -->
+    <string name="auto_complete_dialog_title">Аутоматско довршавање</string>
+    <!-- Option to enable text prediction in landscape -->
+    <string name="prediction_landscape">Повећај величину поља за текст</string>
+    <!-- Description for text prediction -->
+    <string name="prediction_landscape_summary">Скривање предложених речи у положеном приказу</string>
+    <!-- Option to enable auto capitalization of sentences -->
+    <string name="auto_cap">Аутоматски унос великих слова</string>
+    <!-- Description for auto cap -->
+    <string name="auto_cap_summary">Унос великог слова на почетку реченице</string>
+    <!-- Option to enable auto punctuate -->
+    <string name="auto_punctuate">Аутоматска интерпункција</string>
+    <!-- Description for auto punctuate -->
+    <!-- Option to enable quick fixes -->
+    <string name="quick_fixes">Брзе исправке</string>
+    <!-- Description for quick fixes -->
+    <string name="quick_fixes_summary">Исправља честе грешке у куцању</string>
+    <!-- Option to enable showing suggestions -->
+    <string name="show_suggestions">Прикажи предлоге</string>
+    <!-- Description for show suggestions -->
+    <string name="show_suggestions_summary">Приказивање предложених речи током уноса текста</string>
+    <!-- Option to enable auto completion -->
+    <string name="auto_complete">Аутоматско довршавање</string>
+    <!-- Description for auto completion -->
+    <string name="auto_complete_summary">Означена реч се аутоматски умеће када притиснете размак или знак интерпункције</string>
+    <!-- Option to show/hide the settings key -->
+    <string name="prefs_settings_key">Прикажи тастер за подешавања</string>
+    <!-- Array of the settings key mode values -->
+    <!-- Option to automatically decide to show/hide the settings key -->
+    <string name="settings_key_mode_auto_name">Аутоматски</string>
+    <!-- Option to always show the settings key -->
+    <string name="settings_key_mode_always_show_name">Увек прикажи</string>
+    <!-- Option to always hide the settings key -->
+    <string name="settings_key_mode_always_hide_name">Увек сакриј</string>
+    <!-- Array of the settings key modes -->
+    <!-- Option to enable bigram completion -->
+    <string name="bigram_suggestion">Bigram предлози</string>
+    <!-- Description for auto completion -->
+    <string name="bigram_suggestion_summary">Користи претходну реч за побољшање предлога</string>
+    <!-- Array of prediction modes -->
+    <string-array name="prediction_modes">
+        <item>None</item>
+        <item>Основни</item>
+        <item>Напредно</item>
+    </string-array>
+    <!-- Don't translate -->
+    <!-- Don't translate -->
+    <!-- Don't translate -->
+    <!-- Indicates that a word has been added to the dictionary -->
+    <string name="added_word"><xliff:g id="WORD">%s</xliff:g> : Сачувано</string>
+    <!-- Tip to long press on keys -->
+    <string name="tip_long_press">Држите тастер да бисте видели акценте (ø, ö итд.)</string>
+    <!-- Tip to dismiss keyboard -->
+    <string name="tip_dismiss">Притисните тастер „Назад“ ↶ у било ком тренутку да бисте затворили тастатуру</string>
+    <!-- Tip to press ?123 to access numbers and symbols -->
+    <string name="tip_access_symbols">Приступите бројевима и симболима</string>
+    <!-- Tip to long press on typed word to add to dictionary -->
+    <string name="tip_add_to_dictionary">Притисните и држите прву реч са леве стране да бисте је додали у речник</string>
+    <!-- Instruction to touch the bubble to continue -->
+    <string name="touch_to_continue">Додирните овај савет да бисте наставили »</string>
+    <!-- Instruction to touch the bubble to start typing -->
+    <string name="touch_to_finish">Додирните овде да бисте затворили овај савет и почели да уносите текст!</string>
+    <!-- Tutorial tip 1 - The keyboard opens any time you touch a text field -->
+    <string name="tip_to_open_keyboard"><b>\"Тастатура се отвара сваки пут када додирнете поље за текст\"</b></string>
+    <!-- Tutorial tip 2 - Touch and hold a key to view accents (examples) -->
+    <string name="tip_to_view_accents"><b>\"Додирните и држите тастер да бисте видели акценте\"\n\"(ø, ö, ô, ó, и тако даље)\"</b></string>
+    <!-- Tutorial tip 3 - How to switch to number/symbol keyboard -->
+    <string name="tip_to_open_symbols"><b>\"Пређите на бројеве и симболе тако што ћете додирнути овај тастер\"</b></string>
+    <!-- Tutorial tip 4 - How to switch back to alphabet keyboard -->
+    <string name="tip_to_close_symbols"><b>\"Вратите се на слова тако што ћете поново додирнути овај тастер\"</b></string>
+    <!-- Tutorial tip 5 - How to launch keyboard settings -->
+    <string name="tip_to_launch_settings"><b>\"Додирните и држите овај тастер да бисте променили подешавања тастатуре, као што је аутоматско довршавање\"</b></string>
+    <!-- Tutorial tip 6 - Done with the tutorial -->
+    <string name="tip_to_start_typing"><b>\"Пробајте!\"</b></string>
+    <!-- Label for soft enter key when it performs GO action.  Must be short to fit on key! -->
+    <string name="label_go_key">Иди</string>
+    <!-- Label for soft enter key when it performs NEXT action.  Must be short to fit on key! -->
+    <string name="label_next_key">Следеће</string>
+    <!-- Label for soft enter key when it performs DONE action.  Must be short to fit on key! -->
+    <!-- Label for soft enter key when it performs SEND action.  Must be short to fit on key! -->
+    <string name="label_send_key">Пошаљи</string>
+    <!-- Label for "switch to symbols" key.  Must be short to fit on key! -->
+    <string name="label_symbol_key">\?123</string>
+    <!-- Label for "switch to numeric" key.  Must be short to fit on key! -->
+    <!-- Label for "switch to alphabetic" key.  Must be short to fit on key! -->
+    <!-- Label for ALT modifier key.  Must be short to fit on key! -->
+    <!-- Voice related labels -->
+    <!-- Title of the warning dialog that shows when a user initiates voice input for
+         the first time. -->
+    <string name="voice_warning_title">Гласовни унос</string>
+    <!-- Message that gets put at the top of the warning dialog if the user is attempting to use
+         voice input in a currently unsupported locale. Voice input will work for such a user,
+         but it will only recognize them in English. -->
+    <string name="voice_warning_locale_not_supported">Гласовни унос тренутно није подржан за ваш језик, али функционише на енглеском.</string>
+    <!-- Message of the warning dialog that shows when a user initiates voice input for
+         the first time, or turns it on in settings. -->
+    <string name="voice_warning_may_not_understand">Гласовни унос је експериментална функција која користи Google-ово мрежно препознавање гласа.</string>
+    <!-- An additional part of the warning dialog for voice input that only shows when the user
+         actually initiates voice input, rather than just turning it on in settings. -->
+    <string name="voice_warning_how_to_turn_off">Да бисте искључили гласовни унос, идите на подешавања тастатуре.</string>
+    <!-- Message to show when user clicks the swiping hint (which says
+        "Swipe across keyboard to speak"). Also shown when enabling settings. -->
+    <string name="voice_hint_dialog_message">Да бисте користили гласовни унос, притисните дугме за микрофон или превуците прст преко тастатуре на екрану.</string>
+    <!-- Short message to tell the user the system is ready for them to speak. -->
+    <string name="voice_listening">Говорите сада</string>
+    <!-- Short message shown after the user finishes speaking. -->
+    <string name="voice_working">Обрада</string>
+    <!-- Short message shown before the user should speak. -->
+    <!-- Short message shown when a generic error occurs. -->
+    <string name="voice_error">Грешка. Покушајте поново.</string>
+    <!-- Short message shown for a network error. -->
+    <string name="voice_network_error">Повезивање није могуће</string>
+    <!-- Short message shown for a network error where the utterance was really long,
+         in which case we should suggest that the user speak less. -->
+    <string name="voice_too_much_speech">Грешка, говорите предуго.</string>
+    <!-- Short message shown for an audio error. -->
+    <string name="voice_audio_error">Проблем са звуком</string>
+    <!-- Short message shown for an error with the voice server. -->
+    <string name="voice_server_error">Грешка сервера</string>
+    <!-- Short message shown when no speech is heard. -->
+    <string name="voice_speech_timeout">Не чује се говор</string>
+    <!-- Short message shown when the server couldn't parse any speech. -->
+    <string name="voice_no_match">Нема подударања</string>
+    <!-- Short message shown when the user initiates voice and voice
+	search is not installed. -->
+    <string name="voice_not_installed">Гласовна претрага није инсталирана</string>
+    <!-- Short hint shown in candidate view to explain voice input. -->
+    <string name="voice_swipe_hint"><b>\"Савет:\"</b>\" Превуците прстом преко тастатуре за гласовни унос\"</string>
+    <!-- Short hint shown in candidate view to explain that user can speak punctuation. -->
+    <string name="voice_punctuation_hint"><b>\"Савет:\"</b>\" Следећи пут покушајте да изговорите знакове интерпункције као што су „тачка“, „зарез“ или „знак питања“.\"</string>
+    <!-- Label on button to stop recognition. Must be short to fit on button. -->
+    <string name="cancel">Прекини</string>
+    <!-- Label on button when an error occurs -->
+    <string name="ok">Потврди</string>
+    <!-- Preferences item for enabling speech input -->
+    <string name="voice_input">Гласовни унос</string>
+    <!-- Array of Voice Input modes -->
+    <string-array name="voice_input_modes">
+        <item>На главној тастатури</item>
+        <item>На тастатури са симболима</item>
+        <item>Искључено</item>
+    </string-array>
+    <!-- Don't translate -->
+    <!-- Don't translate -->
+    <!-- Don't translate -->
+    <!-- Array of Voice Input modes summary -->
+    <string-array name="voice_input_modes_summary">
+        <item>Микрофон на главној тастатури</item>
+        <item>Микрофон на тастатури са симболима</item>
+        <item>Гласовни унос је онемогућен</item>
+    </string-array>
+    <!-- Press the "enter" key after the user speaks. Option on settings.-->
+    <string name="auto_submit">Аутоматски пошаљи после гласа</string>
+    <!-- Press the "enter" key after the user speaks. Summary of option in settings.-->
+    <string name="auto_submit_summary">Аутоматски притисак на enter приликом претраге или преласка на следеће поље.</string>
+    <!-- IME Tutorial screen (ROMAN) -->
+    <!-- appears above image showing the user to click on a TextView to show the IME -->
+    <string name="open_the_keyboard"><font size="17"><b>\"Активирање тастатуре\"\n</b></font><font size="3">\n</font>\"Додирните било које поље за текст.\"</string>
+    <!-- appears above the image showing the back button used to close the keyboard -->
+    <string name="close_the_keyboard"><font size="17"><b>\"Затварање тастатуре\"\n</b></font><font size="3">\n</font>\"Притисните тастер „Назад“.\"</string>
+    <!-- appears above image showing how to use touch and hold -->
+    <string name="touch_and_hold"><font size="17"><b>\"Додирните и држите тастер да би се приказале опције\"\n</b></font><font size="3">\n</font>\"Приступ знаковима интерпункције и акцентима.\"</string>
+    <!-- appears above image showing how to access keyboard settings -->
+    <string name="keyboard_settings"><font size="17"><b>\"Подешавања тастатуре\"\n</b></font><font size="3">\n</font>\"Додирните и држите тастер \"<b>\"?123\"</b>\".\"</string>
+    <!-- popular web domains for the locale - most popular, displayed on the keyboard -->
+    <!-- popular web domains for the locale - item 1, displayed in the popup -->
+    <!-- popular web domains for the locale - item 2, displayed in the popup -->
+    <!-- popular web domains for the locale - item 3, displayed in the popup -->
+    <!-- popular web domains for the locale - item 4, displayed in the popup -->
+    <!-- Menu item for launching Input method picker -->
+    <string name="selectInputMethod">Изаберите метод уноса</string>
+    <!-- Title for input language selection screen -->
+    <string name="language_selection_title">Језици за унос</string>
+    <!-- Title summary for input language selection screen -->
+    <string name="language_selection_summary">Превуците прст преко тастера за размак да бисте променили језик</string>
+    <!-- Add to dictionary hint -->
+    <string name="hint_add_to_dictionary">← Поново додирните да бисте сачували</string>
+    <!-- Inform the user that a particular language has an available dictionary -->
+    <string name="has_dictionary">Речник је доступан</string>
+    <!-- Preferences item for enabling to send user statistics to Google -->
+    <string name="prefs_enable_log">Омогући повратну информацију корисника</string>
+    <!-- Description for enabling to send user statistics to Google -->
+    <string name="prefs_description_log">Помозите да се побољша овај уређивач режима уноса тако што ће се аутоматски послати статистика о коришћењу и извештаји о грешкама компанији Google.</string>
+    <!-- Preferences item for enabling to correct suggestions by touching words you have typed -->
+    <string name="prefs_enable_recorrection">Додирните да бисте исправили речи</string>
+    <!-- The summary for the preferences item for enabling to correct suggestions by touching words you have typed -->
+    <string name="prefs_enable_recorrection_summary">Додирните унете речи да бисте их исправили</string>
+    <!-- Description for keyboard theme switcher -->
+    <string name="keyboard_layout">Тема тастатуре</string>
+    <string name="subtype_mode_keyboard">тастатура</string>
+    <string name="subtype_mode_voice">глас</string>
+    <!-- Title for Latin keyboard debug settings activity / dialog -->
 </resources>

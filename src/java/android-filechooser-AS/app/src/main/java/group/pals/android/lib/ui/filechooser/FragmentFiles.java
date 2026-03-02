@@ -49,10 +49,14 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.LoaderManager;
-import android.support.v4.content.CursorLoader;
-import android.support.v4.content.Loader;
+
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+import androidx.fragment.app.Fragment;
+import androidx.loader.app.LoaderManager;
+import androidx.loader.content.CursorLoader;
+import androidx.loader.content.Loader;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -269,7 +273,6 @@ public class FragmentFiles extends Fragment implements
                 FileChooserActivity.EXTRA_MAX_FILE_COUNT, 1000);
         mFileAdapter = new BaseFileAdapter(getActivity(), mFilterMode,
                 mIsMultiSelection);
-        
 
         /*
          * History.
@@ -325,6 +328,19 @@ public class FragmentFiles extends Fragment implements
          * INIT CONTROLS
          */
 
+        ViewCompat.setOnApplyWindowInsetsListener(rootView, (v, windowInsets) -> {
+            Insets systemBarsInsets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars() | WindowInsetsCompat.Type.navigationBars() | WindowInsetsCompat.Type.ime());
+
+
+            v.setPadding(
+                    systemBarsInsets.left,
+                    systemBarsInsets.top,
+                    systemBarsInsets.right,
+                    systemBarsInsets.bottom
+            );
+
+            return WindowInsetsCompat.CONSUMED;
+        });
         
         return rootView;
     }// onCreateView()
@@ -2268,12 +2284,15 @@ public class FragmentFiles extends Fragment implements
             }
 
             if (mIsSaveDialog) {
-                mTextSaveas.setText(BaseFileProviderUtils.getFileName(cursor));
+                String fileName = BaseFileProviderUtils.getFileName(cursor);
+                Uri uri = BaseFileProviderUtils.getUri(cursor);
+
+                mTextSaveas.setText(fileName);
                 /*
                  * Always set tag after setting text, or tag will be reset to
                  * null.
                  */
-                mTextSaveas.setTag(BaseFileProviderUtils.getUri(cursor));
+                mTextSaveas.setTag(uri);
             }
 
             if (mDoubleTapToChooseFiles) {
@@ -2286,10 +2305,12 @@ public class FragmentFiles extends Fragment implements
                 if (mIsMultiSelection)
                     return;
 
-                if (mIsSaveDialog)
+                if (mIsSaveDialog) {
                     checkSaveasFilenameAndFinish();
-                else
+                }
+                else {
                     finish(BaseFileProviderUtils.getUri(cursor));
+                }
             }// single tap to choose files
         }// onItemClick()
     };// mViewFilesOnItemClickListener

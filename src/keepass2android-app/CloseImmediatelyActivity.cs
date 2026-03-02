@@ -1,0 +1,47 @@
+// This file is part of Keepass2Android, Copyright 2025 Philipp Crocoll.
+//
+//   Keepass2Android is free software: you can redistribute it and/or modify
+//   it under the terms of the GNU General Public License as published by
+//   the Free Software Foundation, either version 3 of the License, or
+//   (at your option) any later version.
+//
+//   Keepass2Android is distributed in the hope that it will be useful,
+//   but WITHOUT ANY WARRANTY; without even the implied warranty of
+//   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//   GNU General Public License for more details.
+//
+//   You should have received a copy of the GNU General Public License
+//   along with Keepass2Android.  If not, see <http://www.gnu.org/licenses/>.
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+using Android.App;
+using Android.Content;
+using Android.Content.PM;
+using Android.OS;
+using Android.Runtime;
+using Android.Views;
+using Android.Widget;
+using keepass2android;
+
+namespace keepass2android
+{
+  [Activity(Label = AppNames.AppName, Theme = "@style/Kp2aTheme_ActionBar", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden)]
+  public class CloseImmediatelyActivity : AndroidX.AppCompat.App.AppCompatActivity
+  {
+    protected override void OnResume()
+    {
+      SetContentView(Resource.Layout.group);
+      base.OnResume();
+      SetResult(Result.Ok);
+      FindViewById<RelativeLayout>(Resource.Id.bottom_bar).PostDelayed(() =>
+      {
+        Finish();
+        OverridePendingTransition(0, 0);
+      }, 200);
+    }
+  }
+}

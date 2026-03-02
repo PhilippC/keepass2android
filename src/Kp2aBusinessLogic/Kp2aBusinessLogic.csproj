@@ -1,223 +1,47 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{53A9CB7F-6553-4BC0-B56B-9410BB2E59AA}</ProjectGuid>
-    <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>keepass2android</RootNamespace>
-    <AssemblyName>Kp2aBusinessLogic</AssemblyName>
-    <FileAlignment>512</FileAlignment>
-    <AndroidResgenFile>Resources\Resource.Designer.cs</AndroidResgenFile>
-    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
-    <TargetFrameworkVersion>v8.1</TargetFrameworkVersion>
-    <AndroidUseLatestPlatformSdk>true</AndroidUseLatestPlatformSdk>
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
+    <TargetFramework>net9.0-android</TargetFramework>
+    <SupportedOSPlatformVersion>21</SupportedOSPlatformVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <DefineConstants Condition="'$(Flavor)'=='NoNet'">NO_QR_SCANNER;EXCLUDE_JAVAFILESTORAGE;NoNet</DefineConstants>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;EXCLUDE_TWOFISH;_EXCLUDE_KEYBOARD;_EXCLUDE_FILECHOOSER;_EXCLUDE_JAVAFILESTORAGE;INCLUDE_KEYTRANSFORM</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <AndroidLinkMode>None</AndroidLinkMode>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'ReleaseNoNet|AnyCPU'">
-    <OutputPath>bin\ReleaseNoNet\</OutputPath>
-    <DefineConstants>TRACE;NoNet;EXCLUDE_JAVAFILESTORAGE</DefineConstants>
-    <Optimize>true</Optimize>
-    <DebugType>pdbonly</DebugType>
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-    <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="Mono.Android" />
-    <Reference Include="Mono.Security" />
-    <Reference Include="mscorlib" />
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Xml" />
-    <Reference Include="Xamarin.Android.Arch.Core.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Xamarin.Android.Arch.Core.Common.1.0.0\lib\MonoAndroid80\Xamarin.Android.Arch.Core.Common.dll</HintPath>
-    </Reference>
-    <Reference Include="Xamarin.Android.Arch.Lifecycle.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Xamarin.Android.Arch.Lifecycle.Common.1.0.1\lib\MonoAndroid80\Xamarin.Android.Arch.Lifecycle.Common.dll</HintPath>
-    </Reference>
-    <Reference Include="Xamarin.Android.Arch.Lifecycle.Runtime, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Xamarin.Android.Arch.Lifecycle.Runtime.1.0.0\lib\MonoAndroid80\Xamarin.Android.Arch.Lifecycle.Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="Xamarin.Android.Support.Annotations, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Xamarin.Android.Support.Annotations.26.1.0.1\lib\MonoAndroid80\Xamarin.Android.Support.Annotations.dll</HintPath>
-    </Reference>
-    <Reference Include="Xamarin.Android.Support.Compat, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Xamarin.Android.Support.Compat.26.1.0.1\lib\MonoAndroid80\Xamarin.Android.Support.Compat.dll</HintPath>
-    </Reference>
-    <Reference Include="Xamarin.Android.Support.Core.UI, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Xamarin.Android.Support.Core.UI.26.1.0.1\lib\MonoAndroid80\Xamarin.Android.Support.Core.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="Xamarin.Android.Support.Core.Utils, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Xamarin.Android.Support.Core.Utils.26.1.0.1\lib\MonoAndroid80\Xamarin.Android.Support.Core.Utils.dll</HintPath>
-    </Reference>
-    <Reference Include="Xamarin.Android.Support.Fragment, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Xamarin.Android.Support.Fragment.26.1.0.1\lib\MonoAndroid80\Xamarin.Android.Support.Fragment.dll</HintPath>
-    </Reference>
-    <Reference Include="Xamarin.Android.Support.Media.Compat, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Xamarin.Android.Support.Media.Compat.26.1.0.1\lib\MonoAndroid80\Xamarin.Android.Support.Media.Compat.dll</HintPath>
-    </Reference>
-    <Reference Include="Xamarin.Android.Support.v13, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Xamarin.Android.Support.v13.26.1.0.1\lib\MonoAndroid80\Xamarin.Android.Support.v13.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="database\CheckDatabaseForChanges.cs" />
-    <Compile Include="database\edit\AddTemplateEntries.cs" />
-    <Compile Include="database\edit\CopyEntry.cs" />
-    <Compile Include="database\edit\DeleteMultipleItems.cs" />
-    <Compile Include="database\edit\EditGroup.cs" />
-    <Compile Include="database\edit\MoveElements.cs" />
-    <Compile Include="database\KdbDatabaseFormat.cs" />
-    <Compile Include="database\KdbxDatabaseFormat.cs" />
-    <Compile Include="database\PwEntryOutput.cs" />
-    <Compile Include="database\SynchronizeCachedDatabase.cs" />
-    <Compile Include="DataExchange\FileFormatProvider.cs" />
-    <Compile Include="DataExchange\Formats\KeePassCsv1x.cs" />
-    <Compile Include="DataExchange\Formats\KeePassKdb2x.cs" />
-    <Compile Include="DataExchange\Formats\KeePassXml2x.cs" />
-    <Compile Include="DataExchange\PwExportInfo.cs" />
-    <Compile Include="Io\AndroidContentStorage.cs" />
-    <Compile Include="Io\BuiltInFileStorage.cs" />
-    <Compile Include="Io\CachingFileStorage.cs" />
-    <Compile Include="Io\DropboxFileStorage.cs" />
-    <Compile Include="Io\DropboxFileStorageKeys.cs" />
-    <Compile Include="Io\FileDescription.cs" />
-    <Compile Include="Io\FileStorageSetupActivity.cs" />
-    <Compile Include="Io\FileStorageSetupInitiatorActivity.cs" />
-    <Compile Include="Io\GDriveFileStorage.cs" />
-    <Compile Include="Io\IFileStorage.cs" />
-    <Compile Include="Io\IoUtil.cs" />
-    <Compile Include="Io\JavaFileStorage.cs" />
-    <Compile Include="Io\NetFtpFileStorage.cs" />
-    <Compile Include="Io\OfflineSwitchableFileStorage.cs" />
-    <Compile Include="Io\PCloudFileStorage.cs" />
-    <Compile Include="Io\SftpFileStorage.cs" />
-    <Compile Include="Io\OneDriveFileStorage.cs" />
-    <Compile Include="Io\WebDavFileStorage.cs" />
-    <Compile Include="IProgressDialog.cs" />
-    <Compile Include="PreferenceKey.cs" />
-    <Compile Include="SelectStorageLocationActivityBase.cs" />
-    <Compile Include="UiStringKey.cs" />
-    <Compile Include="database\Database.cs" />
-    <Compile Include="database\edit\ActionOnFinish.cs" />
-    <Compile Include="database\edit\AddEntry.cs" />
-    <Compile Include="database\edit\AddGroup.cs" />
-    <Compile Include="database\edit\CreateDB.cs" />
-    <Compile Include="database\edit\DeleteEntry.cs" />
-    <Compile Include="database\edit\DeleteGroup.cs" />
-    <Compile Include="database\edit\DeleteRunnable.cs" />
-    <Compile Include="database\edit\FileOnFinish.cs" />
-    <Compile Include="database\edit\LoadDB.cs" />
-    <Compile Include="database\edit\OnFinish.cs" />
-    <Compile Include="database\edit\RunnableOnFinish.cs" />
-    <Compile Include="database\edit\SaveDB.cs" />
-    <Compile Include="database\edit\SetPassword.cs" />
-    <Compile Include="database\edit\UpdateEntry.cs" />
-    <Compile Include="IKp2aApp.cs" />
-    <Compile Include="IDrawableFactory.cs" />
-    <Compile Include="KeyFileException.cs" />
-    <Compile Include="ProgressTask.cs" />
-    <Compile Include="PwGroupEqualityFromIdComparer.cs" />
-    <Compile Include="PwUuidEqualityComparer.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SearchDbHelper.cs" />
-    <Compile Include="ProgressDialogStatusLogger.cs" />
-    <Compile Include="Utils\EntryUtil.cs" />
-    <Compile Include="Utils\Spr\SprContext.cs" />
-    <Compile Include="Utils\Spr\SprEncoding.cs" />
-    <Compile Include="Utils\Spr\SprEngine.cs" />
-    <Compile Include="Utils\Spr\SprEngine.PickChars.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\AdalBindings\AdalBindings.csproj">
-      <Project>{0b109c0e-0514-4340-8779-5bd6a0dde84e}</Project>
-      <Name>AdalBindings</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\JavaFileStorageBindings\JavaFileStorageBindings.csproj">
-      <Project>{48574278-4779-4b3a-a9e4-9cf1bc285d0b}</Project>
-      <Name>JavaFileStorageBindings</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\KeePassLib2Android\KeePassLib2Android.csproj">
-      <Project>{545B4A6B-8BBA-4FBE-92FC-4AC060122A54}</Project>
-      <Name>KeePassLib2Android</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\KP2AKdbLibraryBinding\KP2AKdbLibraryBinding.csproj">
-      <Project>{70D3844A-D9FA-4A64-B205-A84C6A822196}</Project>
-      <Name>KP2AKdbLibraryBinding</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\netftpandroid\System.Net.FtpClient\System.Net.FtpClient.Android.csproj">
-      <Project>{146FD497-BA03-4740-B6C5-5C84EA8FCDE2}</Project>
-      <Name>System.Net.FtpClient.Android</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\TwofishCipher\TwofishCipher.csproj">
-      <Project>{5CF675A5-9BEE-4720-BED9-D5BF14A2EBF9}</Project>
-      <Name>TwofishCipher</Name>
-    </ProjectReference>
-  </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <PackageReference Include="FluentFTP" Version="52.1.0" Condition="'$(Flavor)'!='NoNet'" />
+    <PackageReference Include="MegaApiClient" Version="1.10.4" Condition="'$(Flavor)'!='NoNet'" />
+    <PackageReference Include="Microsoft.Graph" Version="5.68.0" Condition="'$(Flavor)'!='NoNet'" />
+    <PackageReference Include="Microsoft.Identity.Client" Version="4.67.1" Condition="'$(Flavor)'!='NoNet'" />
+    <PackageReference Include="SMBLibrary" Version="1.5.4" Condition="'$(Flavor)'!='NoNet'" />
+    <PackageReference Include="Xamarin.AndroidX.Browser" Version="1.8.0" />
+    <PackageReference Include="Xamarin.AndroidX.Core" Version="1.13.1.5" />
+    <PackageReference Include="Xamarin.Google.Android.Material" Version="1.11.0.3" />
   </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
-  <Import Project="..\packages\Xamarin.Android.Support.Annotations.26.1.0.1\build\MonoAndroid80\Xamarin.Android.Support.Annotations.targets" Condition="Exists('..\packages\Xamarin.Android.Support.Annotations.26.1.0.1\build\MonoAndroid80\Xamarin.Android.Support.Annotations.targets')" />
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>Dieses Projekt verweist auf mindestens ein NuGet-Paket, das auf diesem Computer fehlt. Verwenden Sie die Wiederherstellung von NuGet-Paketen, um die fehlenden Dateien herunterzuladen. Weitere Informationen finden Sie unter "http://go.microsoft.com/fwlink/?LinkID=322105". Die fehlende Datei ist "{0}".</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('..\packages\Xamarin.Android.Support.Annotations.26.1.0.1\build\MonoAndroid80\Xamarin.Android.Support.Annotations.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.Android.Support.Annotations.26.1.0.1\build\MonoAndroid80\Xamarin.Android.Support.Annotations.targets'))" />
-    <Error Condition="!Exists('..\packages\Xamarin.Android.Arch.Core.Common.1.0.0\build\MonoAndroid80\Xamarin.Android.Arch.Core.Common.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.Android.Arch.Core.Common.1.0.0\build\MonoAndroid80\Xamarin.Android.Arch.Core.Common.targets'))" />
-    <Error Condition="!Exists('..\packages\Xamarin.Android.Arch.Lifecycle.Common.1.0.1\build\MonoAndroid80\Xamarin.Android.Arch.Lifecycle.Common.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.Android.Arch.Lifecycle.Common.1.0.1\build\MonoAndroid80\Xamarin.Android.Arch.Lifecycle.Common.targets'))" />
-    <Error Condition="!Exists('..\packages\Xamarin.Android.Arch.Lifecycle.Runtime.1.0.0\build\MonoAndroid80\Xamarin.Android.Arch.Lifecycle.Runtime.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.Android.Arch.Lifecycle.Runtime.1.0.0\build\MonoAndroid80\Xamarin.Android.Arch.Lifecycle.Runtime.targets'))" />
-    <Error Condition="!Exists('..\packages\Xamarin.Android.Support.Compat.26.1.0.1\build\MonoAndroid80\Xamarin.Android.Support.Compat.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.Android.Support.Compat.26.1.0.1\build\MonoAndroid80\Xamarin.Android.Support.Compat.targets'))" />
-    <Error Condition="!Exists('..\packages\Xamarin.Android.Support.Core.UI.26.1.0.1\build\MonoAndroid80\Xamarin.Android.Support.Core.UI.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.Android.Support.Core.UI.26.1.0.1\build\MonoAndroid80\Xamarin.Android.Support.Core.UI.targets'))" />
-    <Error Condition="!Exists('..\packages\Xamarin.Android.Support.Core.Utils.26.1.0.1\build\MonoAndroid80\Xamarin.Android.Support.Core.Utils.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.Android.Support.Core.Utils.26.1.0.1\build\MonoAndroid80\Xamarin.Android.Support.Core.Utils.targets'))" />
-    <Error Condition="!Exists('..\packages\Xamarin.Android.Support.Fragment.26.1.0.1\build\MonoAndroid80\Xamarin.Android.Support.Fragment.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.Android.Support.Fragment.26.1.0.1\build\MonoAndroid80\Xamarin.Android.Support.Fragment.targets'))" />
-    <Error Condition="!Exists('..\packages\Xamarin.Android.Support.Media.Compat.26.1.0.1\build\MonoAndroid80\Xamarin.Android.Support.Media.Compat.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.Android.Support.Media.Compat.26.1.0.1\build\MonoAndroid80\Xamarin.Android.Support.Media.Compat.targets'))" />
-    <Error Condition="!Exists('..\packages\Xamarin.Android.Support.v13.26.1.0.1\build\MonoAndroid80\Xamarin.Android.Support.v13.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.Android.Support.v13.26.1.0.1\build\MonoAndroid80\Xamarin.Android.Support.v13.targets'))" />
-  </Target>
-  <Import Project="..\packages\Xamarin.Android.Arch.Core.Common.1.0.0\build\MonoAndroid80\Xamarin.Android.Arch.Core.Common.targets" Condition="Exists('..\packages\Xamarin.Android.Arch.Core.Common.1.0.0\build\MonoAndroid80\Xamarin.Android.Arch.Core.Common.targets')" />
-  <Import Project="..\packages\Xamarin.Android.Arch.Lifecycle.Common.1.0.1\build\MonoAndroid80\Xamarin.Android.Arch.Lifecycle.Common.targets" Condition="Exists('..\packages\Xamarin.Android.Arch.Lifecycle.Common.1.0.1\build\MonoAndroid80\Xamarin.Android.Arch.Lifecycle.Common.targets')" />
-  <Import Project="..\packages\Xamarin.Android.Arch.Lifecycle.Runtime.1.0.0\build\MonoAndroid80\Xamarin.Android.Arch.Lifecycle.Runtime.targets" Condition="Exists('..\packages\Xamarin.Android.Arch.Lifecycle.Runtime.1.0.0\build\MonoAndroid80\Xamarin.Android.Arch.Lifecycle.Runtime.targets')" />
-  <Import Project="..\packages\Xamarin.Android.Support.Compat.26.1.0.1\build\MonoAndroid80\Xamarin.Android.Support.Compat.targets" Condition="Exists('..\packages\Xamarin.Android.Support.Compat.26.1.0.1\build\MonoAndroid80\Xamarin.Android.Support.Compat.targets')" />
-  <Import Project="..\packages\Xamarin.Android.Support.Core.UI.26.1.0.1\build\MonoAndroid80\Xamarin.Android.Support.Core.UI.targets" Condition="Exists('..\packages\Xamarin.Android.Support.Core.UI.26.1.0.1\build\MonoAndroid80\Xamarin.Android.Support.Core.UI.targets')" />
-  <Import Project="..\packages\Xamarin.Android.Support.Core.Utils.26.1.0.1\build\MonoAndroid80\Xamarin.Android.Support.Core.Utils.targets" Condition="Exists('..\packages\Xamarin.Android.Support.Core.Utils.26.1.0.1\build\MonoAndroid80\Xamarin.Android.Support.Core.Utils.targets')" />
-  <Import Project="..\packages\Xamarin.Android.Support.Fragment.26.1.0.1\build\MonoAndroid80\Xamarin.Android.Support.Fragment.targets" Condition="Exists('..\packages\Xamarin.Android.Support.Fragment.26.1.0.1\build\MonoAndroid80\Xamarin.Android.Support.Fragment.targets')" />
-  <Import Project="..\packages\Xamarin.Android.Support.Media.Compat.26.1.0.1\build\MonoAndroid80\Xamarin.Android.Support.Media.Compat.targets" Condition="Exists('..\packages\Xamarin.Android.Support.Media.Compat.26.1.0.1\build\MonoAndroid80\Xamarin.Android.Support.Media.Compat.targets')" />
-  <Import Project="..\packages\Xamarin.Android.Support.v13.26.1.0.1\build\MonoAndroid80\Xamarin.Android.Support.v13.targets" Condition="Exists('..\packages\Xamarin.Android.Support.v13.26.1.0.1\build\MonoAndroid80\Xamarin.Android.Support.v13.targets')" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+  <ItemGroup>
+    <ProjectReference Include="..\AndroidFileChooserBinding\AndroidFileChooserBinding.csproj" />
+    <ProjectReference Include="..\JavaFileStorageBindings\JavaFileStorageBindings.csproj" Condition="'$(Flavor)'!='NoNet'" />
+    <ProjectReference Include="..\KeePassLib2Android\KeePassLib2Android.csproj" />
+    <ProjectReference Include="..\KP2AKdbLibraryBinding\KP2AKdbLibraryBinding.csproj" />
+    <ProjectReference Include="..\TwofishCipher\TwofishCipher.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+
+</ItemGroup>
+<ItemGroup Condition="'$(Flavor)'=='NoNet'">
+  <None Remove="Io/OneDrive2FileStorage.cs" />
+  <Compile Remove="Io/OneDrive2FileStorage.cs" />
+  <Content Remove="Io/OneDrive2FileStorage.cs" />
+  <None Remove="Io/MegaFileStorage.cs" />
+  <Compile Remove="Io/MegaFileStorage.cs" />
+  <Content Remove="Io/MegaFileStorage.cs" />
+</ItemGroup>
+
+<Import Project="Io/GenerateSecrets.targets" />
+<ItemGroup>
+<Compile Include="Io/DropboxFileStorage.g.cs" />
+</ItemGroup>
+
+  
 </Project>

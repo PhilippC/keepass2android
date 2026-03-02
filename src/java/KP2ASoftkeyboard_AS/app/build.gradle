@@ -1,17 +1,25 @@
 apply plugin: 'com.android.library'
 android {
-    compileSdkVersion 23
-    buildToolsVersion '26.0.2'
+
+    namespace 'keepass2android.softkeyboard'
+
+    ndkVersion "28.2.13676358"
 
     defaultConfig {
-        minSdkVersion 18
-        targetSdkVersion 23
+        minSdkVersion 21
+        compileSdk 34
+        targetSdk 34
     }
 
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        }
+    }
+    externalNativeBuild {
+        ndkBuild {
+            path 'src/main/jni/Android.mk'
         }
     }
 }

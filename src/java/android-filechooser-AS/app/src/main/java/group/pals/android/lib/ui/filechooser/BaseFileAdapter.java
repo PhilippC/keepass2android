@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
-import android.support.v4.widget.ResourceCursorAdapter;
+import androidx.cursoradapter.widget.ResourceCursorAdapter;
 import android.util.Log;
 import android.util.SparseArray;
 import android.view.MotionEvent;

@@ -1,0 +1,37 @@
+apply plugin: 'com.android.application'
+
+android {
+    namespace 'keepass2android.plugin.qr'
+    compileSdkVersion 26
+
+    defaultConfig {
+        applicationId "keepass2android.plugin.qr"
+        minSdkVersion 14
+        targetSdkVersion 31
+        versionCode 3
+        versionName "1.0.2"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-project.txt'
+        }
+    }
+
+
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
+    }
+
+    lintOptions {
+        disable 'ExtraTranslation'
+        disable 'MissingTranslation'
+    }
+}
+
+dependencies {
+    implementation project(':Keepass2AndroidPluginSDK2')
+    implementation 'com.google.zxing:core:2.3.0'
+}

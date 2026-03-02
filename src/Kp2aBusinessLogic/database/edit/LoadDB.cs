@@ -21,166 +21,224 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Android.App;
+using Android.OS;
+using KeePass.Util;
+using keepass2android.database.edit;
+using keepass2android.Io;
 using KeePassLib;
 using KeePassLib.Keys;
 using KeePassLib.Serialization;
 
 namespace keepass2android
 {
-	public class LoadDb : RunnableOnFinish {
-		private readonly IOConnectionInfo _ioc;
-		private readonly Task<MemoryStream> _databaseData;
-		private readonly CompositeKey _compositeKey;
-		private readonly string _keyfileOrProvider;
-		private readonly IKp2aApp _app;
-		private readonly bool _rememberKeyfile;
-		IDatabaseFormat _format;
-		
-		public LoadDb(Activity activity, IKp2aApp app, IOConnectionInfo ioc, Task<MemoryStream> databaseData, CompositeKey compositeKey, String keyfileOrProvider, OnFinish finish): base(activity, finish)
-		{
-			_app = app;
-			_ioc = ioc;
-			_databaseData = databaseData;
-			_compositeKey = compositeKey;
-			_keyfileOrProvider = keyfileOrProvider;
+  public class LoadDb : OperationWithFinishHandler
+  {
+    private readonly IOConnectionInfo _ioc;
+    private readonly Task<MemoryStream> _databaseData;
+    private readonly CompositeKey _compositeKey;
+    private readonly string? _keyfileOrProvider;
+    private readonly IKp2aApp _app;
+    private readonly bool _rememberKeyfile;
+    IDatabaseFormat _format;
+
+    public bool DoNotSetStatusLoggerMessage = false;
 
 
-			_rememberKeyfile = app.GetBooleanPreference(PreferenceKey.remember_keyfile); 
-		}
-		
-		
-		public override void Run()
-		{
-			try
-			{
-				try
-				{
-                    //make sure the file data is stored in the recent files list even if loading fails
-				    SaveFileData(_ioc, _keyfileOrProvider);
+    public LoadDb(IKp2aApp app, IOConnectionInfo ioc, Task<MemoryStream> databaseData, CompositeKey compositeKey,
+        string keyfileOrProvider, OnOperationFinishedHandler operationFinishedHandler,
+        bool updateLastUsageTimestamp, bool makeCurrent, IDatabaseModificationWatcher modificationWatcher = null) : base(app, operationFinishedHandler)
+    {
+      _modificationWatcher = modificationWatcher ?? new NullDatabaseModificationWatcher();
+      _app = app;
+      _ioc = ioc;
+      _databaseData = databaseData;
+      _compositeKey = compositeKey;
+      _keyfileOrProvider = keyfileOrProvider;
+      _updateLastUsageTimestamp = updateLastUsageTimestamp;
+      _makeCurrent = makeCurrent;
+      _rememberKeyfile = app.GetBooleanPreference(PreferenceKey.remember_keyfile);
+    }
+
+    protected bool success = false;
+    private bool _updateLastUsageTimestamp;
+    private readonly bool _makeCurrent;
+    private readonly IDatabaseModificationWatcher _modificationWatcher;
+
+    public override void Run()
+    {
+      try
+      {
+        try
+        {
+          //make sure the file data is stored in the recent files list even if loading fails
+          SaveFileData(_ioc, _keyfileOrProvider);
 
 
-                    StatusLogger.UpdateMessage(UiStringKey.loading_database);
-					//get the stream data into a single stream variable (databaseStream) regardless whether its preloaded or not:
-					MemoryStream preloadedMemoryStream = _databaseData == null ? null : _databaseData.Result;
-					MemoryStream databaseStream;
-					if (preloadedMemoryStream != null)
-						databaseStream = preloadedMemoryStream;
-					else
-					{
-						using (Stream s = _app.GetFileStorage(_ioc).OpenFileForRead(_ioc))
-						{
-							databaseStream = new MemoryStream();
-							s.CopyTo(databaseStream);
-							databaseStream.Seek(0, SeekOrigin.Begin);
-						}
-					}
+          var fileStorage = _app.GetFileStorage(_ioc);
 
-					//ok, try to load the database. Let's start with Kdbx format and retry later if that is the wrong guess:
-					_format = new KdbxDatabaseFormat(KdbpFile.GetFormatToUse(_ioc));
-					TryLoad(databaseStream);
-				}
-				catch (Exception e)
-				{
-					this.Exception = e;
-					throw;
-				}
-			}
-			catch (KeyFileException)
-			{
-				Kp2aLog.Log("KeyFileException");
-				Finish(false, /*TODO Localize: use Keepass error text KPRes.KeyFileError (including "or invalid format")*/
-				       _app.GetResourceString(UiStringKey.keyfile_does_not_exist), Exception);
-			}
-			catch (AggregateException e)
-			{
-				string message = e.Message;
-				foreach (var innerException in e.InnerExceptions)
-				{
-					message = innerException.Message;
-					// Override the message shown with the last (hopefully most recent) inner exception
-					Kp2aLog.LogUnexpectedError(innerException);
-				}
-				Finish(false, _app.GetResourceString(UiStringKey.ErrorOcurred) + " " + message, Exception);
-				return;
-			}
-			catch (DuplicateUuidsException e)
-			{
-				Kp2aLog.Log(e.ToString());
-				Finish(false, _app.GetResourceString(UiStringKey.DuplicateUuidsError) + " " + e.Message + _app.GetResourceString(UiStringKey.DuplicateUuidsErrorAdditional), Exception);
-				return;
-			}
-			catch (Exception e)
-			{
-				if (!(e is InvalidCompositeKeyException))
-					Kp2aLog.LogUnexpectedError(e);
-				Finish(false, _app.GetResourceString(UiStringKey.ErrorOcurred) + " " + e.Message, Exception);
-				return;
-			}
-			
-			
-		}
+          RequiresSubsequentSync = false;
 
-		/// <summary>
-		/// Holds the exception which was thrown during execution (if any)
-		/// </summary>
-		public Exception Exception { get; set; }
 
-		private void TryLoad(MemoryStream databaseStream)
-		{
-			//create a copy of the stream so we can try again if we get an exception which indicates we should change parameters
-			//This is not optimal in terms of (short-time) memory usage but is hard to avoid because the Keepass library closes streams also in case of errors.
-			//Alternatives would involve increased traffic (if file is on remote) and slower loading times, so this seems to be the best choice.
-			MemoryStream workingCopy = new MemoryStream();
-			databaseStream.CopyTo(workingCopy);
-			workingCopy.Seek(0, SeekOrigin.Begin);
-			//reset stream if we need to reuse it later:
-			databaseStream.Seek(0, SeekOrigin.Begin);
-			//now let's go:
-			try
-			{
-                _app.LoadDatabase(_ioc, workingCopy, _compositeKey, StatusLogger, _format);
-				Kp2aLog.Log("LoadDB OK");
+          if (!DoNotSetStatusLoggerMessage)
+          {
+            StatusLogger.UpdateMessage(UiStringKey.loading_database);
+          }
 
-			    //make sure the stored access time for the actual file is more recent than that of its backup
-			    Thread.Sleep(10);
-                SaveFileData(_ioc, _keyfileOrProvider);
-
-                Finish(true, _format.SuccessMessage);
-			}
-			catch (OldFormatException)
-			{
-				_format = new KdbDatabaseFormat(_app);
-				TryLoad(databaseStream);
-			}
-			catch (InvalidCompositeKeyException)
-			{
-				KcpPassword passwordKey = (KcpPassword)_compositeKey.GetUserKey(typeof(KcpPassword));
-
-				if ((passwordKey != null) && (passwordKey.Password.ReadString() == "") && (_compositeKey.UserKeyCount > 1))
-				{
-					//if we don't get a password, we don't know whether this means "empty password" or "no password"
-					//retry without password:
-					_compositeKey.RemoveUserKey(passwordKey);
-					//retry:
-					TryLoad(databaseStream);
-				}
-				else throw;
-			}
-			
-		}
-
-		private void SaveFileData(IOConnectionInfo ioc, String keyfileOrProvider) {
-
-            if (!_rememberKeyfile)
+          //get the stream data into a single stream variable (databaseStream) regardless whether its preloaded or not:
+          MemoryStream preloadedMemoryStream = _databaseData == null ? null : _databaseData.Result;
+          MemoryStream databaseStream;
+          if (preloadedMemoryStream != null)
+          {
+            //note: if the stream has been loaded already, we don't need to trigger another sync later on
+            databaseStream = preloadedMemoryStream;
+          }
+          else
+          {
+            if (_app.SyncInBackgroundPreference && fileStorage is CachingFileStorage cachingFileStorage &&
+                cachingFileStorage.IsCached(_ioc))
             {
-                keyfileOrProvider = "";
+              cachingFileStorage.IsOffline = true;
+              //no warning. We'll trigger a sync later.
+              cachingFileStorage.TriggerWarningWhenFallingBackToCache = false;
+              RequiresSubsequentSync = true;
+
             }
-            _app.StoreOpenedFileAsRecent(ioc, keyfileOrProvider);
-		}
-		
-		
-		
-	}
+            using (Stream s = fileStorage.OpenFileForRead(_ioc))
+            {
+              databaseStream = new MemoryStream();
+              s.CopyTo(databaseStream);
+              databaseStream.Seek(0, SeekOrigin.Begin);
+            }
+          }
+
+          if (!StatusLogger.ContinueWork())
+          {
+            return;
+          }
+
+          //ok, try to load the database. Let's start with Kdbx format and retry later if that is the wrong guess:
+          _format = new KdbxDatabaseFormat(KdbxDatabaseFormat.GetFormatToUse(fileStorage.GetFileExtension(_ioc)));
+          TryLoad(databaseStream);
+
+
+
+          success = true;
+        }
+        catch (Exception e)
+        {
+          this.Exception = e;
+          throw;
+        }
+      }
+      catch (KeyFileException)
+      {
+        Kp2aLog.Log("KeyFileException");
+        Finish(false, /*TODO Localize: use Keepass error text KPRes.KeyFileError (including "or invalid format")*/
+               _app.GetResourceString(UiStringKey.keyfile_does_not_exist), false, Exception);
+      }
+      catch (AggregateException e)
+      {
+        string message = ExceptionUtil.GetErrorMessage(e);
+        foreach (var innerException in e.InnerExceptions)
+        {
+          message = ExceptionUtil.GetErrorMessage(innerException);
+          // Override the message shown with the last (hopefully most recent) inner exception
+          Kp2aLog.LogUnexpectedError(innerException);
+        }
+        Finish(false, _app.GetResourceString(UiStringKey.ErrorOcurred) + " " + message, false, Exception);
+        return;
+      }
+      catch (DuplicateUuidsException e)
+      {
+        Kp2aLog.Log(e.ToString());
+        Finish(false, _app.GetResourceString(UiStringKey.DuplicateUuidsError) + " " + ExceptionUtil.GetErrorMessage(e) + _app.GetResourceString(UiStringKey.DuplicateUuidsErrorAdditional), false, Exception);
+        return;
+      }
+      catch (Java.Lang.InterruptedException)
+      {
+        Kp2aLog.Log("Load interrupted");
+        //close without Finish()
+        return;
+      }
+      catch (Exception e)
+      {
+        if (!(e is InvalidCompositeKeyException))
+          Kp2aLog.LogUnexpectedError(e);
+        Finish(false, _app.GetResourceString(UiStringKey.ErrorOcurred) + " " + (ExceptionUtil.GetErrorMessage(e) ?? (e is FileNotFoundException ? _app.GetResourceString(UiStringKey.FileNotFound) : "")), false, Exception);
+        return;
+      }
+
+
+    }
+
+    public bool RequiresSubsequentSync { get; set; } = false;
+
+    /// <summary>
+    /// Holds the exception which was thrown during execution (if any)
+    /// </summary>
+    public Exception Exception { get; set; }
+
+    Database TryLoad(MemoryStream databaseStream)
+    {
+      Kp2aLog.Log("LoadDb: Copying database in memory");
+      //create a copy of the stream so we can try again if we get an exception which indicates we should change parameters
+      //This is not optimal in terms of (short-time) memory usage but is hard to avoid because the Keepass library closes streams also in case of errors.
+      //Alternatives would involve increased traffic (if file is on remote) and slower loading times, so this seems to be the best choice.
+      MemoryStream workingCopy = new MemoryStream();
+      databaseStream.CopyTo(workingCopy);
+      workingCopy.Seek(0, SeekOrigin.Begin);
+      //reset stream if we need to reuse it later:
+      databaseStream.Seek(0, SeekOrigin.Begin);
+      if (!StatusLogger.ContinueWork())
+      {
+        throw new Java.Lang.InterruptedException();
+      }
+
+      //now let's go:
+      try
+      {
+        Database newDb =
+            _app.LoadDatabase(_ioc, workingCopy, _compositeKey, StatusLogger, _format, _makeCurrent, _modificationWatcher);
+        Kp2aLog.Log("LoadDB OK");
+
+        Finish(true, _format.SuccessMessage);
+        return newDb;
+      }
+      catch (OldFormatException)
+      {
+        _format = new KdbDatabaseFormat(_app);
+        return TryLoad(databaseStream);
+      }
+      catch (InvalidCompositeKeyException)
+      {
+        KcpPassword passwordKey = (KcpPassword)_compositeKey.GetUserKey(typeof(KcpPassword));
+
+        if ((passwordKey != null) && (passwordKey.Password.ReadString() == "") && (_compositeKey.UserKeyCount > 1))
+        {
+          //if we don't get a password, we don't know whether this means "empty password" or "no password"
+          //retry without password:
+          _compositeKey.RemoveUserKey(passwordKey);
+          //retry:
+          return TryLoad(databaseStream);
+        }
+        else throw;
+      }
+
+    }
+
+    private void SaveFileData(IOConnectionInfo ioc, String keyfileOrProvider)
+    {
+
+      if (!_rememberKeyfile)
+      {
+        keyfileOrProvider = "";
+      }
+      _app.StoreOpenedFileAsRecent(ioc, keyfileOrProvider, _updateLastUsageTimestamp);
+    }
+
+
+
+  }
 
 }
 

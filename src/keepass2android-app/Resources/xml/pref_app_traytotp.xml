@@ -1,0 +1,22 @@
+<PreferenceScreen
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:key="@string/TrayTotp_prefs_key"
+	android:title="@string/TrayTotp_prefs"
+>
+
+
+	<EditTextPreference
+		android:enabled="true"
+		android:persistent="true"
+		android:summary="@string/TrayTotp_SeedField_summary"
+		android:defaultValue="TOTP Seed"
+		android:title="@string/TrayTotp_SeedField_title"
+		android:key="@string/TrayTotp_SeedField_key" />
+	<EditTextPreference
+		android:enabled="true"
+		android:persistent="true"
+		android:summary="@string/TrayTotp_SettingsField_summary"
+		android:defaultValue="TOTP Settings"
+		android:title="@string/TrayTotp_SettingsField_title"
+		android:key="@string/TrayTotp_SettingsField_key" />
+</PreferenceScreen>

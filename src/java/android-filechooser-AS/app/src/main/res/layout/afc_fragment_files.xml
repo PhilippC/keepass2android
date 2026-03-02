@@ -8,7 +8,7 @@
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent">
 
     <RelativeLayout
         android:id="@+id/afc_viewgroup_header"
@@ -47,21 +47,14 @@
                     android:layout_height="match_parent"
                     android:layout_gravity="center_vertical"
                     android:orientation="horizontal"
-                    android:showDividers="middle" />
+                    />
             </HorizontalScrollView>
-
-            <View
-                android:id="@+id/afc_header_view_divider"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/afc_viewgroup_button_locations_bottom_divider_height"
-                android:layout_below="@id/afc_view_locations_container"
-                android:background="@color/afc_border_line_dark" />
 
             <TextView
                 android:id="@+id/afc_textview_full_dir_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/afc_header_view_divider"
+                android:layout_below="@id/afc_view_locations_container"
                 android:layout_centerHorizontal="true"
                 android:ellipsize="start"
                 android:gravity="center"
@@ -122,10 +115,6 @@
         android:orientation="vertical"
         android:visibility="gone" >
 
-        <View
-            android:id="@+id/afc_footer_view_divider"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/afc_viewgroup_button_locations_bottom_divider_height" />
 
         <LinearLayout
             android:id="@+id/afc_viewgroup_footer"

@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/*
+**
+** Copyright 2008, The Android Open Source Project
+**
+** Licensed under the Apache License, Version 2.0 (the "License");
+** you may not use this file except in compliance with the License.
+** You may obtain a copy of the License at
+**
+**     http://www.apache.org/licenses/LICENSE-2.0
+**
+** Unless required by applicable law or agreed to in writing, software
+** distributed under the License is distributed on an "AS IS" BASIS,
+** WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+** See the License for the specific language governing permissions and
+** limitations under the License.
+*/
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <!-- Title for Latin keyboard  -->
+    <string name="english_ime_name">Клавіятура Keepass2Android</string>
+    <!-- Title for Latin keyboard settings activity / dialog -->
+    <string name="english_ime_settings">Налады клавіятуры Android</string>
+    <!-- Title for Latin keyboard input options dialog -->
+    <string name="english_ime_input_options">Параметры ўводу</string>
+    <!-- Option to provide vibrate/haptic feedback on keypress -->
+    <string name="vibrate_on_keypress">Вібрацыя пры націсканні клавіш</string>
+    <!-- Option to play back sound on keypress in soft keyboard -->
+    <string name="sound_on_keypress">Гук пры націсканні клавіш</string>
+    <!-- Option to pop up the character with a larger font above soft keyboard -->
+    <string name="popup_on_keypress">Павелічэнне пры націсканні кнопак</string>
+    <!-- Option to enable using nearby keys when correcting/predicting -->
+    <string name="hit_correction">Выпраўленне памылак уводу</string>
+    <!-- Description for hit_correction  -->
+    <string name="hit_correction_summary">Уключыць выпраўленне памылак падчас уводу</string>
+    <!-- Option to enable using nearby keys when correcting/predicting in landscape-->
+    <string name="hit_correction_land">Памылка ўводу ў альбомнай арыентацыі</string>
+    <!-- Description for hit_correction in landscape -->
+    <string name="hit_correction_land_summary">Уключыць выпраўленне памылак падчас уводу</string>
+    <!-- Option to automatically correct word on hitting space -->
+    <string name="auto_correction">Прапанаванне слоў</string>
+    <!-- Description for auto_correction -->
+    <string name="auto_correction_summary">Аўтаматычна выпраўляць папярэдняе слова</string>
+    <!-- Option to enable text prediction -->
+    <string name="prediction">Прапанаванне слоў</string>
+    <!-- Category title for text prediction -->
+    <string name="prediction_category">Налады прапанавання слоў</string>
+    <!-- Description for text prediction -->
+    <string name="prediction_summary">Уключыць аўтаматычнае завяршэнне слоў падчас уводу</string>
+    <!-- Dialog title for auto complete choices -->
+    <string name="auto_complete_dialog_title">Аўтазавяршэнне</string>
+    <!-- Option to enable text prediction in landscape -->
+    <string name="prediction_landscape">Павялічыць памер тэкставага поля</string>
+    <!-- Description for text prediction -->
+    <string name="prediction_landscape_summary">Хаваць прапанаванне слоў у альбомнай арыентацыі</string>
+    <!-- Option to enable auto capitalization of sentences -->
+    <string name="auto_cap">Аўтаматычныя вялікія літары</string>
+    <!-- Description for auto cap -->
+    <string name="auto_cap_summary">Рабіць вялікай першую літару сказа</string>
+    <!-- Option to enable auto punctuate -->
+    <string name="auto_punctuate">Аўтаматычная пунктуацыя</string>
+    <!-- Description for auto punctuate -->
+    <!-- Option to enable quick fixes -->
+    <string name="quick_fixes">Хуткае выпраўленне</string>
+    <!-- Description for quick fixes -->
+    <string name="quick_fixes_summary">Выпраўленне распаўсюджаных памылак</string>
+    <!-- Option to enable showing suggestions -->
+    <string name="show_suggestions">Паказ прапаноў</string>
+    <!-- Description for show suggestions -->
+    <string name="show_suggestions_summary">Прапаноўваць словы падчас уводу</string>
+    <!-- Option to enable auto completion -->
+    <string name="auto_complete">Аўтазавяршэнне</string>
+    <!-- Description for auto completion -->
+    <string name="auto_complete_summary">Пры націсканні прагала ўстаўляць прапанаванае слова</string>
+    <!-- Option to show/hide the settings key -->
+    <string name="prefs_settings_key">Кнопка налад</string>
+    <!-- Array of the settings key mode values -->
+    <!-- Option to automatically decide to show/hide the settings key -->
+    <string name="settings_key_mode_auto_name">Аўтаматычна</string>
+    <!-- Option to always show the settings key -->
+    <string name="settings_key_mode_always_show_name">Заўсёды паказваць</string>
+    <!-- Option to always hide the settings key -->
+    <string name="settings_key_mode_always_hide_name">Заўсёды хаваць</string>
+    <!-- Array of the settings key modes -->
+    <string-array name="settings_key_modes">
+        <item>@string/settings_key_mode_auto_name</item>
+        <item>@string/settings_key_mode_always_show_name</item>
+        <item>@string/settings_key_mode_always_hide_name</item>
+    </string-array>
+    <!-- Option to enable bigram completion -->
+    <string name="bigram_suggestion">Біграмныя прапановы</string>
+    <!-- Description for auto completion -->
+    <string name="bigram_suggestion_summary">Выкарыстоўвайце папярэдняе слова, каб выправіць прапанову</string>
+    <!-- Array of prediction modes -->
+    <string-array name="prediction_modes">
+        <item>Няма</item>
+        <item>Базавы</item>
+        <item>Пашыраны</item>
+    </string-array>
+    <!-- Don't translate -->
+    <!-- Don't translate -->
+    <!-- Don't translate -->
+    <!-- Indicates that a word has been added to the dictionary -->
+    <string name="added_word"><xliff:g id="word">%s</xliff:g> : захавана</string>
+    <!-- Tip to long press on keys -->
+    <string name="tip_long_press">Утрымлівайце клавішу, каб пабачыць дыякрытычныя знакі (ø, ö і г.д.)</string>
+    <!-- Tip to dismiss keyboard -->
+    <string name="tip_dismiss">Націсніце клавішу \"Назад\", каб закрыць клавіятуру ў любы момант</string>
+    <!-- Tip to press ?123 to access numbers and symbols -->
+    <string name="tip_access_symbols">Адкрыць лічбы і сімвалы</string>
+    <!-- Tip to long press on typed word to add to dictionary -->
+    <string name="tip_add_to_dictionary">Націсніце і ўтрымлівайце слова злева, каб дадаць яго ў слоўнік</string>
+    <!-- Instruction to touch the bubble to continue -->
+    <string name="touch_to_continue">Націсніце на падказку, каб працягнуць »</string>
+    <!-- Instruction to touch the bubble to start typing -->
+    <string name="touch_to_finish">Націсніце сюды, каб закрыць прапанову і пачаць увод!</string>
+    <!-- Tutorial tip 1 - The keyboard opens any time you touch a text field -->
+    <string name="tip_to_open_keyboard"><b>Клавіятура з\'яўляецца аўтаматычна пры дакрананні да тэкставага поля</b></string>
+    <!-- Tutorial tip 2 - Touch and hold a key to view accents (examples) -->
+    <string name="tip_to_view_accents"><b>Націсніце і ўтрымлівайце кнопку, каб убачыць варыянты з дыякрытычнымі знакамі\n(ø, ö, ô, ó і г.д.)</b>
+    </string>
+    <!-- Tutorial tip 3 - How to switch to number/symbol keyboard -->
+    <string name="tip_to_open_symbols"><b>Для пераключэння паміж лічбамі і сімваламі выкарыстоўвайце гэтую кнопку</b></string>
+    <!-- Tutorial tip 4 - How to switch back to alphabet keyboard -->
+    <string name="tip_to_close_symbols"><b>Каб вярнуцца назад да літар, зноў націсніце гэтую кнопку</b></string>
+    <!-- Tutorial tip 5 - How to launch keyboard settings -->
+    <string name="tip_to_launch_settings"><b>Націсніце і ўтрымлівайце гэтую кнопку, каб змяніць налады клавіятуры кшталту аўтазапаўнення</b></string>
+    <!-- Tutorial tip 6 - Done with the tutorial -->
+    <string name="tip_to_start_typing"><b>Паспрабуйце!</b></string>
+    <!-- Label for soft enter key when it performs GO action.  Must be short to fit on key! -->
+    <string name="label_go_key">Пераход</string>
+    <!-- Label for soft enter key when it performs NEXT action.  Must be short to fit on key! -->
+    <string name="label_next_key">Далей</string>
+    <!-- Label for soft enter key when it performs DONE action.  Must be short to fit on key! -->
+    <string name="label_done_key">Завершана</string>
+    <!-- Label for soft enter key when it performs SEND action.  Must be short to fit on key! -->
+    <string name="label_send_key">Адправіць</string>
+    <!-- Label for "switch to symbols" key.  Must be short to fit on key! -->
+    <string name="label_symbol_key">\?123</string>
+    <!-- Label for "switch to numeric" key.  Must be short to fit on key! -->
+    <string name="label_phone_key">123</string>
+    <!-- Label for "switch to alphabetic" key.  Must be short to fit on key! -->
+    <string name="label_alpha_key">АБВ</string>
+    <!-- Label for ALT modifier key.  Must be short to fit on key! -->
+    <string name="label_alt_key">ALT</string>
+    <!-- Voice related labels -->
+    <!-- Title of the warning dialog that shows when a user initiates voice input for
+         the first time. -->
+    <string name="voice_warning_title">Галасавы ўвод</string>
+    <!-- Message that gets put at the top of the warning dialog if the user is attempting to use
+         voice input in a currently unsupported locale. Voice input will work for such a user,
+         but it will only recognize them in English. -->
+    <string name="voice_warning_locale_not_supported">На дадзены момант галасавы ўвод не падтрымліваецца для вашай мовы, але вы можаце карыстацца ім на англійскай.</string>
+    <!-- Message of the warning dialog that shows when a user initiates voice input for
+         the first time, or turns it on in settings. -->
+    <string name="voice_warning_may_not_understand">Галасавы ўвод - эксперыментальная функцыя, якая выкарыстоўвае сістэму распазнавання маўлення ад Google.</string>
+    <!-- An additional part of the warning dialog for voice input that only shows when the user
+         actually initiates voice input, rather than just turning it on in settings. -->
+    <string name="voice_warning_how_to_turn_off">Функцыя галасавога ўводу адключаецца ў наладах клавіятуры.</string>
+    <!-- Message to show when user clicks the swiping hint (which says
+        "Swipe across keyboard to speak"). Also shown when enabling settings. -->
+    <string name="voice_hint_dialog_message">Каб выкарыстоўваць галасавы ўвод, націсніце кнопку мікрафона або правядзіце пальцам па экраннай клавіятуры.</string>
+    <!-- Short message to tell the user the system is ready for them to speak. -->
+    <string name="voice_listening">Гаварыце</string>
+    <!-- Short message shown after the user finishes speaking. -->
+    <string name="voice_working">Апрацоўка</string>
+    <!-- Short message shown before the user should speak. -->
+    <!-- Short message shown when a generic error occurs. -->
+    <string name="voice_error">Памылка. Паўтарыце спробу.</string>
+    <!-- Short message shown for a network error. -->
+    <string name="voice_network_error">Не атрымалася злучыцца</string>
+    <!-- Short message shown for a network error where the utterance was really long,
+         in which case we should suggest that the user speak less. -->
+    <string name="voice_too_much_speech">Памылка, занадта доўгая фраза.</string>
+    <!-- Short message shown for an audio error. -->
+    <string name="voice_audio_error">Праблема з гукам</string>
+    <!-- Short message shown for an error with the voice server. -->
+    <string name="voice_server_error">Памылка сервера</string>
+    <!-- Short message shown when no speech is heard. -->
+    <string name="voice_speech_timeout">Голас не чутны</string>
+    <!-- Short message shown when the server couldn't parse any speech. -->
+    <string name="voice_no_match">Супадзенняў не знойдзена</string>
+    <!-- Short message shown when the user initiates voice and voice
+	search is not installed. -->
+    <string name="voice_not_installed">Галасавы пошук не ўсталяваны</string>
+    <!-- Short hint shown in candidate view to explain voice input. -->
+    <string name="voice_swipe_hint"><b>Падказка:</b> Для пачатку галасавога ўводу правядзіце па клавіятуры</string>
+    <!-- Short hint shown in candidate view to explain that user can speak punctuation. -->
+    <string name="voice_punctuation_hint"><b>Падказа:</b> Наступным разам называйце знакі прыпынку: \"коска\", \"кропка\", \"пытальнік\".</string>
+    <!-- Label on button to stop recognition. Must be short to fit on button. -->
+    <string name="cancel">Скасаваць</string>
+    <!-- Label on button when an error occurs -->
+    <string name="ok">Добра</string>
+    <!-- Preferences item for enabling speech input -->
+    <string name="voice_input">Галасавы ўвод</string>
+    <!-- Array of Voice Input modes -->
+    <string-array name="voice_input_modes">
+        <item>На асноўнай клавіятуры</item>
+        <item>На клавіятуры сімвалаў</item>
+        <item>Адключыць</item>
+    </string-array>
+    <!-- Don't translate -->
+    <!-- Don't translate -->
+    <!-- Don't translate -->
+    <!-- Array of Voice Input modes summary -->
+    <string-array name="voice_input_modes_summary">
+        <item>Значок на асноўнай клавіятуры</item>
+        <item>Значок на клавіятуры сімвалаў</item>
+        <item>Галасавы ўвод адключаны</item>
+    </string-array>
+    <!-- Press the "enter" key after the user speaks. Option on settings.-->
+    <string name="auto_submit">Аўтаматычнае адпраўленне пасля галасавога ўводу</string>
+    <!-- Press the "enter" key after the user speaks. Summary of option in settings.-->
+    <string name="auto_submit_summary">Аўтаматычна націскаць \"Увод\" падчас пошуку альбо пераходу да новага поля.</string>
+    <!-- IME Tutorial screen (ROMAN) -->
+    <!-- appears above image showing the user to click on a TextView to show the IME -->
+    <string name="open_the_keyboard"><font size="17"><b>Адкрыццё клавіятуры\n</b></font><font size="3">\n</font>Націсніце на любое тэкставае поле.</string>
+    <!-- appears above the image showing the back button used to close the keyboard -->
+    <string name="close_the_keyboard"><font size="17"><b>Закрыццё клавіятуры\n</b></font><font size="3">\n</font>Націсніце кнопку \"Назад\".</string>
+    <!-- appears above image showing how to use touch and hold -->
+    <string name="touch_and_hold"><font size="17"><b>Націсніце \u0026 і ўтрымлівайце клавішу для паказу параметраў\n</b></font><font size="3">\n</font>Доступ да пунктуацыйных і дыякрытычных знакаў.</string>
+    <!-- appears above image showing how to access keyboard settings -->
+    <string name="keyboard_settings"><font size="17"><b>Налады клавіятуры\n</b></font><font size="3">\n</font>Націсніце \u0026 і ўтрымлівайце <b>\?123\</b>.</string>
+    <!-- popular web domains for the locale - most popular, displayed on the keyboard -->
+    <string name="popular_domain_0">".com"</string>
+    <!-- popular web domains for the locale - item 1, displayed in the popup -->
+    <string name="popular_domain_1">".net"</string>
+    <!-- popular web domains for the locale - item 2, displayed in the popup -->
+    <string name="popular_domain_2">".org"</string>
+    <!-- popular web domains for the locale - item 3, displayed in the popup -->
+    <string name="popular_domain_3">".gov"</string>
+    <!-- popular web domains for the locale - item 4, displayed in the popup -->
+    <string name="popular_domain_4">".edu"</string>
+    <!-- Menu item for launching Input method picker -->
+    <string name="selectInputMethod">Абраць метад уводу</string>
+    <!-- Title for input language selection screen -->
+    <string name="language_selection_title">Мовы ўводу</string>
+    <!-- Title summary for input language selection screen -->
+    <string name="language_selection_summary">Каб змяніць мову, правядзіце пальцам па кнопцы прагалу</string>
+    <!-- Add to dictionary hint -->
+    <string name="hint_add_to_dictionary">\u2190 Націсніце зноў, каб захаваць</string>
+    <!-- Inform the user that a particular language has an available dictionary -->
+    <string name="has_dictionary">Даступны слоўнік</string>
+    <!-- Preferences item for enabling to send user statistics to Google -->
+    <string name="prefs_enable_log">Уключыць адпраўленне водгукаў</string>
+    <!-- Description for enabling to send user statistics to Google -->
+    <string name="prefs_description_log">Дапамажыце палепшыць рэдактар метаду ўводу, дазволіўшы адпраўленне статыстыкі і справаздач пра хібы Google.</string>
+    <!-- Preferences item for enabling to correct suggestions by touching words you have typed -->
+    <string name="prefs_enable_recorrection">Выпраўленне націсканнем</string>
+    <!-- The summary for the preferences item for enabling to correct suggestions by touching words you have typed -->
+    <string name="prefs_enable_recorrection_summary">Націсніце на слова, каб выправіць яго</string>
+    <!-- Description for keyboard theme switcher -->
+    <string name="keyboard_layout">Тэма клавіятуры</string>
+    <string name="subtype_mode_keyboard">клавіятура</string>
+    <string name="subtype_mode_voice">галасавы</string>
+    <!-- Title for Latin keyboard debug settings activity / dialog -->
+    <string name="kp2a_nextfields"><![CDATA[>]]></string>
+</resources>

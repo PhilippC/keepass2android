@@ -1,0 +1,2018 @@
+﻿{
+  "InputFields": [
+    {
+      "IdEntry": null,
+      "Hint": null,
+      "ClassName": "android.widget.FrameLayout",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": null,
+      "Hint": null,
+      "ClassName": "android.view.View",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": null,
+      "Hint": null,
+      "ClassName": "android.widget.LinearLayout",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "action_mode_bar_stub",
+      "Hint": null,
+      "ClassName": "android.view.View",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": null,
+      "Hint": null,
+      "ClassName": "android.widget.FrameLayout",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": null,
+      "Hint": null,
+      "ClassName": "android.widget.FrameLayout",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "content",
+      "Hint": null,
+      "ClassName": "android.widget.FrameLayout",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "custom_tabs_handle_view_stub",
+      "Hint": null,
+      "ClassName": "android.view.View",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "coordinator",
+      "Hint": null,
+      "ClassName": "android.view.ViewGroup",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "compositor_view_holder",
+      "Hint": null,
+      "ClassName": "android.widget.FrameLayout",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": null,
+      "Hint": null,
+      "ClassName": "android.widget.FrameLayout",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": null,
+      "Hint": null,
+      "ClassName": "android.view.View",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": null,
+      "Hint": null,
+      "ClassName": "android.widget.FrameLayout",
+      "AutofillHints": null,
+      "IsFocused": true,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": null,
+      "Hint": null,
+      "ClassName": "android.widget.FrameLayout",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": null,
+      "Hint": "",
+      "ClassName": "android.webkit.WebView",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "a-page",
+      "Hint": "",
+      "ClassName": "android.view.View",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "nav-main",
+      "Hint": "",
+      "ClassName": "android.view.View",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "navbar",
+      "Hint": "",
+      "ClassName": "android.view.View",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "nav-logobar",
+      "Hint": "",
+      "ClassName": "android.view.View",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": null,
+      "Hint": "",
+      "ClassName": "android.view.View",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "nav-logo",
+      "Hint": "",
+      "ClassName": "android.view.View",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "nav-logo-sprites",
+      "Hint": "",
+      "ClassName": "android.view.View",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": null,
+      "Hint": "",
+      "ClassName": "android.widget.TextView",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": null,
+      "Hint": "",
+      "ClassName": "android.widget.TextView",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "nav-progressive-subnav",
+      "Hint": "",
+      "ClassName": "android.widget.TextView",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "outer-accordion-signin-signup-page",
+      "Hint": "",
+      "ClassName": "android.view.View",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": null,
+      "Hint": "",
+      "ClassName": "android.widget.TextView",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "accordion-signin-signup-page",
+      "Hint": "",
+      "ClassName": "android.widget.RadioGroup",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "accordion-row-register",
+      "Hint": "",
+      "ClassName": "android.view.View",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": null,
+      "Hint": "",
+      "ClassName": "android.view.View",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": null,
+      "Hint": "",
+      "ClassName": "android.widget.RadioButton",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "register_accordion_header",
+      "Hint": "",
+      "ClassName": "android.view.View",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": null,
+      "Hint": "",
+      "ClassName": "android.widget.TextView",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": null,
+      "Hint": "",
+      "ClassName": "android.widget.TextView",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": null,
+      "Hint": "",
+      "ClassName": "android.view.View",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "auth-verify-modal-action",
+      "Hint": "",
+      "ClassName": "android.widget.TextView",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "ap_register_form",
+      "Hint": "",
+      "ClassName": "android.view.View",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": null,
+      "Hint": "",
+      "ClassName": "android.view.View",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "ap_customer_name",
+      "Hint": "Nome e cognome",
+      "ClassName": "android.widget.EditText",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 1,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": null,
+      "Hint": "",
+      "ClassName": "android.view.View",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "ap_email",
+      "Hint": "Numero di cellulare o e-mail",
+      "ClassName": "android.widget.EditText",
+      "AutofillHints": null,
+      "IsFocused": true,
+      "InputType": 209,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null,
+      "ExpectedAssignedHints": [ "username" ]
+    },
+    {
+      "IdEntry": "auth-register-mobile-custom-message",
+      "Hint": "",
+      "ClassName": "android.widget.TextView",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "auth-password-container",
+      "Hint": "",
+      "ClassName": "android.view.View",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "ap_password",
+      "Hint": "Crea una password",
+      "ClassName": "android.widget.EditText",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 225,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null,
+      "ExpectedAssignedHints": [ "password" ]
+    },
+    {
+      "IdEntry": "auth-show-password-checkbox-container",
+      "Hint": "",
+      "ClassName": "android.view.View",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": null,
+      "Hint": "",
+      "ClassName": "android.view.View",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "auth-register-show-password-checkbox",
+      "Hint": "",
+      "ClassName": "android.widget.CheckBox",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": null,
+      "Hint": "",
+      "ClassName": "android.widget.TextView",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": null,
+      "Hint": "",
+      "ClassName": "android.widget.TextView",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "auth-continue",
+      "Hint": "",
+      "ClassName": "android.view.View",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "continue",
+      "Hint": "",
+      "ClassName": "android.widget.Button",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "legal-section",
+      "Hint": "",
+      "ClassName": "android.view.View",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "legalTextRow",
+      "Hint": "",
+      "ClassName": "android.view.View",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": null,
+      "Hint": "",
+      "ClassName": "android.widget.TextView",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": null,
+      "Hint": "",
+      "ClassName": "android.view.View",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": null,
+      "Hint": "",
+      "ClassName": "android.widget.TextView",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": null,
+      "Hint": "",
+      "ClassName": "android.widget.TextView",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": null,
+      "Hint": "",
+      "ClassName": "android.view.View",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": null,
+      "Hint": "",
+      "ClassName": "android.widget.TextView",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": null,
+      "Hint": "",
+      "ClassName": "android.widget.TextView",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": null,
+      "Hint": "",
+      "ClassName": "android.view.View",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": null,
+      "Hint": "",
+      "ClassName": "android.widget.TextView",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": null,
+      "Hint": "",
+      "ClassName": "android.widget.TextView",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": null,
+      "Hint": "",
+      "ClassName": "android.view.View",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": null,
+      "Hint": "",
+      "ClassName": "android.widget.TextView",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": null,
+      "Hint": "",
+      "ClassName": "android.widget.TextView",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "ab-reg-link-section",
+      "Hint": "",
+      "ClassName": "android.view.View",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": null,
+      "Hint": "",
+      "ClassName": "android.view.View",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": null,
+      "Hint": "",
+      "ClassName": "android.widget.TextView",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "ab-registration-link",
+      "Hint": "",
+      "ClassName": "android.view.View",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": null,
+      "Hint": "",
+      "ClassName": "android.view.View",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": null,
+      "Hint": "",
+      "ClassName": "android.widget.TextView",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": null,
+      "Hint": "",
+      "ClassName": "android.widget.TextView",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "accordion-row-login",
+      "Hint": "",
+      "ClassName": "android.view.View",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": null,
+      "Hint": "",
+      "ClassName": "android.view.View",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": null,
+      "Hint": "",
+      "ClassName": "android.widget.RadioButton",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "login_accordion_header",
+      "Hint": "",
+      "ClassName": "android.view.View",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": null,
+      "Hint": "",
+      "ClassName": "android.widget.TextView",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": null,
+      "Hint": "",
+      "ClassName": "android.widget.TextView",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": null,
+      "Hint": "",
+      "ClassName": "android.view.View",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "nav-ftr",
+      "Hint": "",
+      "ClassName": "android.view.View",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": null,
+      "Hint": "",
+      "ClassName": "android.widget.ListView",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": null,
+      "Hint": "",
+      "ClassName": "android.view.View",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": null,
+      "Hint": "",
+      "ClassName": "android.view.View",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": null,
+      "Hint": "",
+      "ClassName": "android.widget.TextView",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": null,
+      "Hint": "",
+      "ClassName": "android.view.View",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": null,
+      "Hint": "",
+      "ClassName": "android.view.View",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": null,
+      "Hint": "",
+      "ClassName": "android.widget.TextView",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": null,
+      "Hint": "",
+      "ClassName": "android.view.View",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": null,
+      "Hint": "",
+      "ClassName": "android.view.View",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": null,
+      "Hint": "",
+      "ClassName": "android.widget.TextView",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": null,
+      "Hint": "",
+      "ClassName": "android.view.View",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": null,
+      "Hint": "",
+      "ClassName": "android.view.View",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": null,
+      "Hint": "",
+      "ClassName": "android.widget.TextView",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "nav-ftr-copyright",
+      "Hint": "",
+      "ClassName": "android.widget.TextView",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "a-popover-root",
+      "Hint": "",
+      "ClassName": "android.widget.TextView",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": null,
+      "Hint": null,
+      "ClassName": "android.view.ViewGroup",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": null,
+      "Hint": null,
+      "ClassName": "android.widget.FrameLayout",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "ar_view_holder",
+      "Hint": null,
+      "ClassName": "android.widget.FrameLayout",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "capture_overlay",
+      "Hint": null,
+      "ClassName": "android.view.View",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "overview_list_layout_holder",
+      "Hint": null,
+      "ClassName": "android.widget.FrameLayout",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "bottom_container",
+      "Hint": null,
+      "ClassName": "android.widget.FrameLayout",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": null,
+      "Hint": null,
+      "ClassName": "android.widget.FrameLayout",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": null,
+      "Hint": null,
+      "ClassName": "android.widget.FrameLayout",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": null,
+      "Hint": null,
+      "ClassName": "android.widget.FrameLayout",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": null,
+      "Hint": null,
+      "ClassName": "android.widget.LinearLayout",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "infobar_icon",
+      "Hint": null,
+      "ClassName": "android.widget.ImageView",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": null,
+      "Hint": null,
+      "ClassName": "android.widget.LinearLayout",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "translate_infobar_tabs",
+      "Hint": null,
+      "ClassName": "android.widget.HorizontalScrollView",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": null,
+      "Hint": null,
+      "ClassName": "android.widget.LinearLayout",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": null,
+      "Hint": null,
+      "ClassName": "android.widget.LinearLayout",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": null,
+      "Hint": null,
+      "ClassName": "android.widget.ImageView",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": null,
+      "Hint": null,
+      "ClassName": "android.widget.TextView",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": null,
+      "Hint": null,
+      "ClassName": "android.widget.FrameLayout",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "translate_infobar_tab_text",
+      "Hint": null,
+      "ClassName": "android.widget.TextView",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "translate_infobar_tab_progressbar",
+      "Hint": null,
+      "ClassName": "android.widget.ProgressBar",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": null,
+      "Hint": null,
+      "ClassName": "android.widget.LinearLayout",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": null,
+      "Hint": null,
+      "ClassName": "android.widget.ImageView",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": null,
+      "Hint": null,
+      "ClassName": "android.widget.TextView",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": null,
+      "Hint": null,
+      "ClassName": "android.widget.FrameLayout",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "translate_infobar_tab_text",
+      "Hint": null,
+      "ClassName": "android.widget.TextView",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "translate_infobar_tab_progressbar",
+      "Hint": null,
+      "ClassName": "android.widget.ProgressBar",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "translate_infobar_menu_button",
+      "Hint": null,
+      "ClassName": "android.widget.ImageButton",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "infobar_close_button",
+      "Hint": null,
+      "ClassName": "android.widget.ImageButton",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "keyboard_accessory_sheet_stub",
+      "Hint": null,
+      "ClassName": "android.view.View",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "bottombar_stub",
+      "Hint": null,
+      "ClassName": "android.view.View",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "tab_modal_dialog_container_stub",
+      "Hint": null,
+      "ClassName": "android.view.View",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "tab_modal_dialog_container_sibling_view",
+      "Hint": null,
+      "ClassName": "android.view.View",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "omnibox_results_container_stub",
+      "Hint": null,
+      "ClassName": "android.view.View",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "action_bar_black_background",
+      "Hint": null,
+      "ClassName": "android.view.View",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "bottom_controls",
+      "Hint": null,
+      "ClassName": "android.widget.FrameLayout",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "bottom_controls_wrapper",
+      "Hint": null,
+      "ClassName": "android.widget.LinearLayout",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": null,
+      "Hint": null,
+      "ClassName": "android.widget.ImageView",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "bottom_container_slot",
+      "Hint": null,
+      "ClassName": "android.widget.FrameLayout",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": null,
+      "Hint": null,
+      "ClassName": "android.widget.FrameLayout",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": null,
+      "Hint": null,
+      "ClassName": "android.widget.FrameLayout",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "main_content",
+      "Hint": null,
+      "ClassName": "android.widget.LinearLayout",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "toolbar_left_button",
+      "Hint": null,
+      "ClassName": "android.widget.ImageView",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "toolbar_container_view",
+      "Hint": null,
+      "ClassName": "android.widget.FrameLayout",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "tab_list_view",
+      "Hint": null,
+      "ClassName": "androidx.recyclerview.widget.RecyclerView",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "toolbar_right_button",
+      "Hint": null,
+      "ClassName": "android.widget.ImageView",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "tab_strip_fading_edge_start",
+      "Hint": null,
+      "ClassName": "android.widget.ImageView",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "tab_strip_fading_edge_end",
+      "Hint": null,
+      "ClassName": "android.widget.ImageView",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "control_container",
+      "Hint": null,
+      "ClassName": "android.widget.FrameLayout",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "toolbar_container",
+      "Hint": null,
+      "ClassName": "android.widget.FrameLayout",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "toolbar",
+      "Hint": null,
+      "ClassName": "android.widget.FrameLayout",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "home_button",
+      "Hint": null,
+      "ClassName": "android.widget.ImageButton",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "location_bar",
+      "Hint": null,
+      "ClassName": "android.widget.FrameLayout",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "location_bar_status_view_left_space",
+      "Hint": null,
+      "ClassName": "android.view.View",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "location_bar_status",
+      "Hint": null,
+      "ClassName": "android.widget.LinearLayout",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "location_bar_incognito_badge_stub",
+      "Hint": null,
+      "ClassName": "android.view.View",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "location_bar_status_icon_view",
+      "Hint": null,
+      "ClassName": "android.widget.LinearLayout",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "location_bar_status_icon_frame",
+      "Hint": null,
+      "ClassName": "android.widget.FrameLayout",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "location_bar_status_icon_bg",
+      "Hint": null,
+      "ClassName": "android.view.View",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "location_bar_status_icon",
+      "Hint": null,
+      "ClassName": "android.widget.ImageView",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "location_bar_status_icon_holding_space",
+      "Hint": null,
+      "ClassName": "android.view.View",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "location_bar_verbose_status",
+      "Hint": null,
+      "ClassName": "android.widget.TextView",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "location_bar_verbose_status_separator",
+      "Hint": null,
+      "ClassName": "android.view.View",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "location_bar_verbose_status_extra_space",
+      "Hint": null,
+      "ClassName": "android.view.View",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "location_bar_status_view_right_space",
+      "Hint": null,
+      "ClassName": "android.view.View",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "url_bar",
+      "Hint": "Suchbegriff oder Webadresse eingeben",
+      "ClassName": "android.widget.EditText",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 524305,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "url_action_container",
+      "Hint": null,
+      "ClassName": "android.widget.LinearLayout",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "toolbar_buttons",
+      "Hint": null,
+      "ClassName": "android.widget.LinearLayout",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "optional_toolbar_button_container",
+      "Hint": null,
+      "ClassName": "android.widget.FrameLayout",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "swappable_icon_secondary_background",
+      "Hint": null,
+      "ClassName": "android.widget.ImageView",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "optional_toolbar_button",
+      "Hint": null,
+      "ClassName": "android.widget.ImageButton",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "action_chip_label",
+      "Hint": null,
+      "ClassName": "android.widget.TextView",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "swappable_icon_animation_image",
+      "Hint": null,
+      "ClassName": "android.widget.ImageView",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "tab_switcher_button",
+      "Hint": null,
+      "ClassName": "android.widget.ImageButton",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "menu_button_wrapper",
+      "Hint": null,
+      "ClassName": "android.widget.FrameLayout",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "menu_button",
+      "Hint": null,
+      "ClassName": "android.widget.ImageButton",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "menu_badge",
+      "Hint": null,
+      "ClassName": "android.widget.ImageView",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "toolbar_hairline",
+      "Hint": null,
+      "ClassName": "android.widget.ImageView",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "find_toolbar_stub",
+      "Hint": null,
+      "ClassName": "android.view.View",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "find_toolbar_tablet_stub",
+      "Hint": null,
+      "ClassName": "android.view.View",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": null,
+      "Hint": null,
+      "ClassName": "android.widget.ProgressBar",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": null,
+      "Hint": null,
+      "ClassName": "android.widget.ImageView",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "tab_switcher_toolbar_stub",
+      "Hint": null,
+      "ClassName": "android.view.View",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "grid_tab_switcher_view_holder_stub",
+      "Hint": null,
+      "ClassName": "android.view.View",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "message_container",
+      "Hint": null,
+      "ClassName": "android.widget.FrameLayout",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "status_indicator_stub",
+      "Hint": null,
+      "ClassName": "android.view.View",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "empty_container_stub",
+      "Hint": null,
+      "ClassName": "android.view.View",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "sheet_container",
+      "Hint": null,
+      "ClassName": "android.widget.FrameLayout",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "survey_container",
+      "Hint": null,
+      "ClassName": "android.widget.FrameLayout",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "page_zoom_container",
+      "Hint": null,
+      "ClassName": "android.view.View",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "dialog_parent_view",
+      "Hint": null,
+      "ClassName": "android.widget.FrameLayout",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "keyboard_accessory",
+      "Hint": null,
+      "ClassName": "android.widget.LinearLayout",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": null,
+      "Hint": null,
+      "ClassName": "android.widget.ImageView",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "accessory_bar_contents",
+      "Hint": null,
+      "ClassName": "android.widget.LinearLayout",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "tabs",
+      "Hint": null,
+      "ClassName": "android.widget.HorizontalScrollView",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": null,
+      "Hint": null,
+      "ClassName": "android.widget.LinearLayout",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": null,
+      "Hint": null,
+      "ClassName": "android.widget.LinearLayout",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": null,
+      "Hint": null,
+      "ClassName": "android.widget.ImageView",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": null,
+      "Hint": null,
+      "ClassName": "android.widget.TextView",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": null,
+      "Hint": null,
+      "ClassName": "android.view.View",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "bar_items_view",
+      "Hint": null,
+      "ClassName": "androidx.recyclerview.widget.RecyclerView",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "menu_anchor_stub",
+      "Hint": null,
+      "ClassName": "android.view.View",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": null,
+      "Hint": null,
+      "ClassName": "android.view.View",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "action_mode_bar_stub",
+      "Hint": null,
+      "ClassName": "android.view.View",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "navigationBarBackground",
+      "Hint": null,
+      "ClassName": "android.view.View",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "statusBarBackground",
+      "Hint": null,
+      "ClassName": "android.view.View",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    }
+  ],
+  "PackageId": "com.android.chrome",
+  "WebDomain": "www.amazon.it"
+}

@@ -1,0 +1,469 @@
+﻿{
+  "InputFields": [
+    {
+      "IdEntry": null,
+      "Hint": null,
+      "ClassName": "android.widget.FrameLayout",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "action_bar_root",
+      "Hint": null,
+      "ClassName": "android.widget.LinearLayout",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "action_mode_bar_stub",
+      "Hint": null,
+      "ClassName": "android.view.View",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "rootContainer",
+      "Hint": null,
+      "ClassName": "android.widget.LinearLayout",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "navigationToolbarStub",
+      "Hint": null,
+      "ClassName": "android.view.View",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "container",
+      "Hint": null,
+      "ClassName": "android.widget.FrameLayout",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "container",
+      "Hint": null,
+      "ClassName": "android.widget.FrameLayout",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "gestureLayout",
+      "Hint": null,
+      "ClassName": "android.widget.FrameLayout",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "browserWindow",
+      "Hint": null,
+      "ClassName": "android.view.ViewGroup",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "browserLayout",
+      "Hint": null,
+      "ClassName": "android.view.ViewGroup",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "swipeRefresh",
+      "Hint": null,
+      "ClassName": "android.view.ViewGroup",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "engineView",
+      "Hint": null,
+      "ClassName": "android.widget.FrameLayout",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": null,
+      "Hint": null,
+      "ClassName": "android.view.ViewGroup",
+      "AutofillHints": null,
+      "IsFocused": true,
+      "InputType": 0,
+      "HtmlInfoTag": "",
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": null,
+      "Hint": null,
+      "ClassName": "android.view.ViewGroup",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": "form",
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": null,
+      "Hint": null,
+      "ClassName": "android.widget.EditText",
+      "AutofillHints": [
+        "password"
+      ],
+      "IsFocused": false,
+      "InputType": 225,
+      "HtmlInfoTag": "input",
+      "HtmlInfoTypeAttribute": "password",
+      "ExpectedAssignedHints": [ "password" ]
+    },
+    {
+      "IdEntry": null,
+      "Hint": null,
+      "ClassName": "android.widget.EditText",
+      "AutofillHints": [
+        "emailAddress"
+      ],
+      "IsFocused": false,
+      "InputType": 33,
+      "HtmlInfoTag": "input",
+      "HtmlInfoTypeAttribute": "email",
+      "ExpectedAssignedHints": [ "emailAddress" ]
+    },
+    {
+      "IdEntry": null,
+      "Hint": null,
+      "ClassName": "android.widget.EditText",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": "input",
+      "HtmlInfoTypeAttribute": "checkbox"
+    },
+    {
+      "IdEntry": null,
+      "Hint": null,
+      "ClassName": "android.widget.EditText",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": "input",
+      "HtmlInfoTypeAttribute": "submit"
+    },
+    {
+      "IdEntry": null,
+      "Hint": null,
+      "ClassName": "android.view.ViewGroup",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": "form",
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": null,
+      "Hint": null,
+      "ClassName": "android.widget.EditText",
+      "AutofillHints": [
+        "password"
+      ],
+      "IsFocused": false,
+      "InputType": 225,
+      "HtmlInfoTag": "input",
+      "HtmlInfoTypeAttribute": "password",
+      "ExpectedAssignedHints": [ "password" ]
+    },
+    {
+      "IdEntry": null,
+      "Hint": null,
+      "ClassName": "android.widget.EditText",
+      "AutofillHints": [
+        "emailAddress"
+      ],
+      "IsFocused": false,
+      "InputType": 33,
+      "HtmlInfoTag": "input",
+      "HtmlInfoTypeAttribute": "email",
+
+      "ExpectedAssignedHints": [ "emailAddress" ]
+    },
+    {
+      "IdEntry": null,
+      "Hint": null,
+      "ClassName": "android.widget.EditText",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": "input",
+      "HtmlInfoTypeAttribute": "submit"
+    },
+    {
+      "IdEntry": "stubFindInPage",
+      "Hint": null,
+      "ClassName": "android.view.View",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "viewDynamicDownloadDialog",
+      "Hint": null,
+      "ClassName": "android.view.ViewGroup",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "crash_reporter_view",
+      "Hint": null,
+      "ClassName": "android.view.ViewGroup",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "toolbar",
+      "Hint": null,
+      "ClassName": "android.view.ViewGroup",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "mozac_browser_toolbar_navigation_actions",
+      "Hint": null,
+      "ClassName": "android.widget.LinearLayout",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "mozac_browser_toolbar_origin_view",
+      "Hint": null,
+      "ClassName": "android.widget.LinearLayout",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "mozac_browser_toolbar_title_view",
+      "Hint": null,
+      "ClassName": "android.widget.TextView",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "mozac_browser_toolbar_url_view",
+      "Hint": "Suche oder Adresse",
+      "ClassName": "android.widget.TextView",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "mozac_browser_toolbar_page_actions",
+      "Hint": null,
+      "ClassName": "android.widget.LinearLayout",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "mozac_browser_toolbar_browser_actions",
+      "Hint": null,
+      "ClassName": "android.widget.LinearLayout",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "counter_root",
+      "Hint": null,
+      "ClassName": "android.widget.FrameLayout",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "counter_text",
+      "Hint": null,
+      "ClassName": "android.widget.TextView",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "mozac_browser_toolbar_menu",
+      "Hint": null,
+      "ClassName": "android.widget.FrameLayout",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "mozac_browser_toolbar_progress",
+      "Hint": null,
+      "ClassName": "android.widget.ProgressBar",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "mozac_browser_toolbar_container",
+      "Hint": null,
+      "ClassName": "android.view.ViewGroup",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "mozac_browser_toolbar_edit_actions_start",
+      "Hint": null,
+      "ClassName": "android.widget.LinearLayout",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "mozac_browser_toolbar_edit_url_view",
+      "Hint": null,
+      "ClassName": "android.widget.EditText",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 17,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "mozac_browser_toolbar_edit_actions_end",
+      "Hint": null,
+      "ClassName": "android.widget.LinearLayout",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "readerViewControlsBar",
+      "Hint": null,
+      "ClassName": "android.view.ViewGroup",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "addressSelectBar",
+      "Hint": null,
+      "ClassName": "android.view.ViewGroup",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "creditCardSelectBar",
+      "Hint": null,
+      "ClassName": "android.view.ViewGroup",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "loginSelectBar",
+      "Hint": null,
+      "ClassName": "android.view.ViewGroup",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    },
+    {
+      "IdEntry": "tabPreview",
+      "Hint": null,
+      "ClassName": "android.widget.FrameLayout",
+      "AutofillHints": null,
+      "IsFocused": false,
+      "InputType": 0,
+      "HtmlInfoTag": null,
+      "HtmlInfoTypeAttribute": null
+    }
+  ],
+  "PackageId": "org.mozilla.firefox",
+  "WebDomain": "www.amazon.it"
+}

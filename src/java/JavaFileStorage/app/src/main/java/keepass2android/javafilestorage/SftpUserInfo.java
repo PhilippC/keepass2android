@@ -1,6 +1,22 @@
+/*
+ * This file is part of Keepass2Android, Copyright 2025 Philipp Crocoll.
+ *
+ *   Keepass2Android is free software: you can redistribute it and/or modify
+ *   it under the terms of the GNU General Public License as published by
+ *   the Free Software Foundation, either version 3 of the License, or
+ *   (at your option) any later version.
+ *
+ *   Keepass2Android is distributed in the hope that it will be useful,
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *   GNU General Public License for more details.
+ *
+ *   You should have received a copy of the GNU General Public License
+ *   along with Keepass2Android.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 package keepass2android.javafilestorage;
 
-import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -12,7 +28,7 @@ import android.os.Looper;
 import android.os.Message;
 import android.os.Messenger;
 import android.os.SystemClock;
-import android.support.v4.app.NotificationCompat;
+import androidx.core.app.NotificationCompat;
 import android.util.Log;
 
 import com.jcraft.jsch.UserInfo;
@@ -35,7 +51,6 @@ public class SftpUserInfo implements UserInfo {
 				builder.setContentText("SFTP prompt");
 				builder.setSmallIcon(R.drawable.ic_logo_green_foreground);
 
-
 				Handler h = new Handler() {
 					public void handleMessage(Message M) {
 						msg.copyFrom(M);
@@ -52,7 +67,16 @@ public class SftpUserInfo implements UserInfo {
 				intent.putExtra("keepass2android.sftp.prompt", text);
 				intent.setData((Uri.parse("suckit://"+SystemClock.elapsedRealtime())));
 
-				PendingIntent contentIntent = PendingIntent.getActivity(_appContext, 0, intent, 0);
+
+				Log.e("KP2AJFS[thread]", "built after 2023-03-14");
+
+				int flags = 0;
+				if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S) {
+					Log.e("KP2AJFS[thread]", "Setting mutable flag...");
+					flags |= PendingIntent.FLAG_MUTABLE;
+				}
+				PendingIntent contentIntent = PendingIntent.getActivity(_appContext, 0, intent, flags);
+
 				builder.setContentIntent(contentIntent);
 
 				{
@@ -109,17 +133,19 @@ public class SftpUserInfo implements UserInfo {
 	Context _appContext;
 
 	String _password;
+	String _passphrase;
 	
-	public SftpUserInfo(String password, Context appContext)
+	public SftpUserInfo(String password, String passphrase, Context appContext)
 	{
 		_password = password;
+		_passphrase = passphrase;
 		_appContext = appContext;
 	}
 
 	@Override
 	public String getPassphrase() {
-		
-		return null;
+
+		return _passphrase;
 	}
 
 	@Override
@@ -130,12 +156,12 @@ public class SftpUserInfo implements UserInfo {
 
 	@Override
 	public boolean promptPassword(String message) {
-		return true;
+		return _password != null;
 	}
 
 	@Override
 	public boolean promptPassphrase(String message) {
-		return false; //passphrase not supported
+		return _passphrase != null;
 	}
 
 	@Override

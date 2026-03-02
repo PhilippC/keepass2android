@@ -21,86 +21,103 @@ using KeePassLib;
 
 namespace keepass2android
 {
-	public class AddEntry : RunnableOnFinish {
-		protected Database Db
-		{
-			get { return _app.GetDb(); }
-		}
+  public class AddEntry : OperationWithFinishHandler
+  {
+    protected Database Db
+    {
+      get { return _app.CurrentDb; }
+    }
 
-		private readonly IKp2aApp _app;
-		private readonly PwEntry _entry;
-		private readonly PwGroup _parentGroup;
-		private readonly Activity _ctx;
-		
-		public static AddEntry GetInstance(Activity ctx, IKp2aApp app, PwEntry entry, PwGroup parentGroup, OnFinish finish) {
+    private readonly IKp2aApp _app;
+    private readonly PwEntry _entry;
+    private readonly PwGroup _parentGroup;
+    private readonly Database _db;
 
-			return new AddEntry(ctx, app, entry, parentGroup, finish);
-		}
-		
-		protected AddEntry(Activity ctx, IKp2aApp app, PwEntry entry, PwGroup parentGroup, OnFinish finish):base(ctx, finish) {
-			_ctx = ctx;
-			_parentGroup = parentGroup;
-			_app = app;
-			_entry = entry;
-			
-			_onFinishToRun = new AfterAdd(ctx, app.GetDb(), entry, OnFinishToRun);
-		}
-		
-		
-		public override void Run() {	
-			StatusLogger.UpdateMessage(UiStringKey.AddingEntry);
+    public static AddEntry GetInstance(IKp2aApp app, PwEntry entry, PwGroup parentGroup, OnOperationFinishedHandler operationFinishedHandler, Database db)
+    {
 
-			//make sure we're not adding the entry if it was added before.
-			//(this might occur in very rare cases where the user dismissis the save dialog 
-			//by rotating the screen while saving and then presses save again)
-			if (_parentGroup.FindEntry(_entry.Uuid, false) == null)
-			{
-				_parentGroup.AddEntry(_entry, true);	
-			}
-			
-			
-			// Commit to disk
-			SaveDb save = new SaveDb(_ctx, _app, OnFinishToRun);
-			save.SetStatusLogger(StatusLogger);
-			save.Run();
-		}
-		
-		private class AfterAdd : OnFinish {
-			private readonly Database _db;
-			private readonly PwEntry _entry;
+      return new AddEntry(db, app, entry, parentGroup, operationFinishedHandler);
+    }
 
-			public AfterAdd(Activity activity, Database db, PwEntry entry, OnFinish finish):base(activity, finish) {
-				_db = db;
-				_entry = entry;
+    public AddEntry(Database db, IKp2aApp app, PwEntry entry, PwGroup parentGroup, OnOperationFinishedHandler operationFinishedHandler) : base(app, operationFinishedHandler)
+    {
+      _db = db;
+      _parentGroup = parentGroup;
+      _app = app;
+      _entry = entry;
 
-			}
-			
+      _operationFinishedHandler = new AfterAdd(app.CurrentDb, entry, app, operationFinishedHandler);
+    }
 
 
-			public override void Run() {
-				if ( Success ) {
-					
-					PwGroup parent = _entry.ParentGroup; 
-					
-					// Mark parent group dirty
-					_db.Dirty.Add(parent);
-					
-					// Add entry to global
-					_db.Entries[_entry.Uuid] = _entry;
-					
-				} else
-				{
-					StatusLogger.UpdateMessage(UiStringKey.UndoingChanges);
-					//TODO test fail
-					_entry.ParentGroup.Entries.Remove(_entry);
-				}
-				
-				base.Run();
-			}
-		}
-		
-		
-	}
+    public override void Run()
+    {
+      StatusLogger.UpdateMessage(UiStringKey.AddingEntry);
+
+      //make sure we're not adding the entry if it was added before.
+      //(this might occur in very rare cases where the user dismissis the save dialog 
+      //by rotating the screen while saving and then presses save again)
+      if (_parentGroup.FindEntry(_entry.Uuid, false) == null)
+      {
+        _parentGroup.AddEntry(_entry, true);
+      }
+
+      // Add entry to global
+      _db.EntriesById[_entry.Uuid] = _entry;
+      _db.Elements.Add(_entry);
+
+      // Commit to disk
+      SaveDb save = new SaveDb(_app, _app.CurrentDb, operationFinishedHandler);
+      save.SetStatusLogger(StatusLogger);
+      save.Run();
+    }
+
+    private class AfterAdd : OnOperationFinishedHandler
+    {
+      private readonly Database _db;
+      private readonly PwEntry _entry;
+      private readonly IKp2aApp _app;
+
+      public AfterAdd(Database db, PwEntry entry, IKp2aApp app, OnOperationFinishedHandler operationFinishedHandler) : base(app, operationFinishedHandler)
+      {
+        _db = db;
+        _entry = entry;
+        _app = app;
+      }
+
+
+
+      public override void Run()
+      {
+        if (Success)
+        {
+
+          PwGroup parent = _entry.ParentGroup;
+
+          // Mark parent group dirty
+          _app.DirtyGroups.Add(parent);
+          // even mark the parent of the parent dirty to update the views showing the number of child entries
+          if (parent?.ParentGroup != null)
+          {
+            _app.DirtyGroups.Add(parent.ParentGroup);
+          }
+
+
+
+        }
+        else
+        {
+          StatusLogger.UpdateMessage(UiStringKey.UndoingChanges);
+          //TODO test fail
+          _entry.ParentGroup.Entries.Remove(_entry);
+        }
+
+        base.Run();
+      }
+    }
+
+
+  }
 
 }
 

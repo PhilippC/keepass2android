@@ -27,151 +27,165 @@ using KeePassLib.Resources;
 
 namespace KeePassLib.Cryptography.Cipher
 {
-	public sealed class ChaCha20Engine : ICipherEngine2
-	{
-		private PwUuid m_uuid = new PwUuid(new byte[] {
-			0xD6, 0x03, 0x8A, 0x2B, 0x8B, 0x6F, 0x4C, 0xB5,
-			0xA5, 0x24, 0x33, 0x9A, 0x31, 0xDB, 0xB5, 0x9A
-		});
+  public sealed class ChaCha20Engine : ICipherEngine2
+  {
+    private static PwUuid m_uuid = null;
 
-		public PwUuid CipherUuid
-		{
-			get { return m_uuid; }
-		}
+    internal static PwUuid ChaCha20Uuid
+    {
+      get
+      {
+        PwUuid pu = m_uuid;
+        if (pu == null)
+        {
+          pu = new PwUuid(new byte[] {
+                        0xD6, 0x03, 0x8A, 0x2B, 0x8B, 0x6F, 0x4C, 0xB5,
+                        0xA5, 0x24, 0x33, 0x9A, 0x31, 0xDB, 0xB5, 0x9A });
+          m_uuid = pu;
+        }
 
-		public string DisplayName
-		{
-			get
-			{
-				return ("ChaCha20 (" + KLRes.KeyBits.Replace(@"{PARAM}",
-					"256") + ", RFC 7539)");
-			}
-		}
+        return pu;
+      }
+    }
 
-		public int KeyLength
-		{
-			get { return 32; }
-		}
+    public PwUuid CipherUuid
+    {
+      get { return ChaCha20Uuid; }
+    }
 
-		public int IVLength
-		{
-			get { return 12; } // 96 bits
-		}
+    public string DisplayName
+    {
+      get
+      {
+        return ("ChaCha20 (" + KLRes.KeyBits.Replace(@"{PARAM}",
+            "256") + ", RFC 7539)");
+      }
+    }
 
-		public Stream EncryptStream(Stream sPlainText, byte[] pbKey, byte[] pbIV)
-		{
-			return new ChaCha20Stream(sPlainText, true, pbKey, pbIV);
-		}
+    public int KeyLength
+    {
+      get { return 32; }
+    }
 
-		public Stream DecryptStream(Stream sEncrypted, byte[] pbKey, byte[] pbIV)
-		{
-			return new ChaCha20Stream(sEncrypted, false, pbKey, pbIV);
-		}
-	}
+    public int IVLength
+    {
+      get { return 12; } // 96 bits
+    }
 
-	internal sealed class ChaCha20Stream : Stream
-	{
-		private Stream m_sBase;
-		private readonly bool m_bWriting;
-		private ChaCha20Cipher m_c;
+    public Stream EncryptStream(Stream sPlainText, byte[] pbKey, byte[] pbIV)
+    {
+      return new ChaCha20Stream(sPlainText, true, pbKey, pbIV);
+    }
 
-		private byte[] m_pbBuffer = null;
+    public Stream DecryptStream(Stream sEncrypted, byte[] pbKey, byte[] pbIV)
+    {
+      return new ChaCha20Stream(sEncrypted, false, pbKey, pbIV);
+    }
+  }
 
-		public override bool CanRead
-		{
-			get { return !m_bWriting; }
-		}
+  internal sealed class ChaCha20Stream : Stream
+  {
+    private Stream m_sBase;
+    private readonly bool m_bWriting;
+    private ChaCha20Cipher m_c;
 
-		public override bool CanSeek
-		{
-			get { return false; }
-		}
+    private byte[] m_pbBuffer = null;
 
-		public override bool CanWrite
-		{
-			get { return m_bWriting; }
-		}
+    public override bool CanRead
+    {
+      get { return !m_bWriting; }
+    }
 
-		public override long Length
-		{
-			get { Debug.Assert(false); throw new NotSupportedException(); }
-		}
+    public override bool CanSeek
+    {
+      get { return false; }
+    }
 
-		public override long Position
-		{
-			get { Debug.Assert(false); throw new NotSupportedException(); }
-			set { Debug.Assert(false); throw new NotSupportedException(); }
-		}
+    public override bool CanWrite
+    {
+      get { return m_bWriting; }
+    }
 
-		public ChaCha20Stream(Stream sBase, bool bWriting, byte[] pbKey32,
-			byte[] pbIV12)
-		{
-			if(sBase == null) throw new ArgumentNullException("sBase");
+    public override long Length
+    {
+      get { Debug.Assert(false); throw new NotSupportedException(); }
+    }
 
-			m_sBase = sBase;
-			m_bWriting = bWriting;
-			m_c = new ChaCha20Cipher(pbKey32, pbIV12);
-		}
+    public override long Position
+    {
+      get { Debug.Assert(false); throw new NotSupportedException(); }
+      set { Debug.Assert(false); throw new NotSupportedException(); }
+    }
 
-		protected override void Dispose(bool bDisposing)
-		{
-			if(bDisposing)
-			{
-				if(m_sBase != null)
-				{
-					m_c.Dispose();
-					m_c = null;
+    public ChaCha20Stream(Stream sBase, bool bWriting, byte[] pbKey32,
+        byte[] pbIV12)
+    {
+      if (sBase == null) throw new ArgumentNullException("sBase");
 
-					m_sBase.Close();
-					m_sBase = null;
-				}
+      m_sBase = sBase;
+      m_bWriting = bWriting;
+      m_c = new ChaCha20Cipher(pbKey32, pbIV12);
+    }
 
-				m_pbBuffer = null;
-			}
+    protected override void Dispose(bool bDisposing)
+    {
+      if (bDisposing)
+      {
+        if (m_sBase != null)
+        {
+          m_c.Dispose();
+          m_c = null;
 
-			base.Dispose(bDisposing);
-		}
+          m_sBase.Close();
+          m_sBase = null;
+        }
 
-		public override void Flush()
-		{
-			Debug.Assert(m_sBase != null);
-			if(m_bWriting && (m_sBase != null)) m_sBase.Flush();
-		}
+        m_pbBuffer = null;
+      }
 
-		public override long Seek(long lOffset, SeekOrigin soOrigin)
-		{
-			Debug.Assert(false);
-			throw new NotImplementedException();
-		}
+      base.Dispose(bDisposing);
+    }
 
-		public override void SetLength(long lValue)
-		{
-			Debug.Assert(false);
-			throw new NotImplementedException();
-		}
+    public override void Flush()
+    {
+      Debug.Assert(m_sBase != null);
+      if (m_bWriting && (m_sBase != null)) m_sBase.Flush();
+    }
 
-		public override int Read(byte[] pbBuffer, int iOffset, int nCount)
-		{
-			if(m_bWriting) throw new InvalidOperationException();
+    public override long Seek(long lOffset, SeekOrigin soOrigin)
+    {
+      Debug.Assert(false);
+      throw new NotImplementedException();
+    }
 
-			int cbRead = m_sBase.Read(pbBuffer, iOffset, nCount);
-			m_c.Decrypt(pbBuffer, iOffset, cbRead);
-			return cbRead;
-		}
+    public override void SetLength(long lValue)
+    {
+      Debug.Assert(false);
+      throw new NotImplementedException();
+    }
 
-		public override void Write(byte[] pbBuffer, int iOffset, int nCount)
-		{
-			if(nCount < 0) throw new ArgumentOutOfRangeException("nCount");
-			if(nCount == 0) return;
+    public override int Read(byte[] pbBuffer, int iOffset, int nCount)
+    {
+      if (m_bWriting) throw new InvalidOperationException();
 
-			if(!m_bWriting) throw new InvalidOperationException();
+      int cbRead = m_sBase.Read(pbBuffer, iOffset, nCount);
+      m_c.Decrypt(pbBuffer, iOffset, cbRead);
+      return cbRead;
+    }
 
-			if((m_pbBuffer == null) || (m_pbBuffer.Length < nCount))
-				m_pbBuffer = new byte[nCount];
-			Array.Copy(pbBuffer, iOffset, m_pbBuffer, 0, nCount);
+    public override void Write(byte[] pbBuffer, int iOffset, int nCount)
+    {
+      if (nCount < 0) throw new ArgumentOutOfRangeException("nCount");
+      if (nCount == 0) return;
 
-			m_c.Encrypt(m_pbBuffer, 0, nCount);
-			m_sBase.Write(m_pbBuffer, 0, nCount);
-		}
-	}
+      if (!m_bWriting) throw new InvalidOperationException();
+
+      if ((m_pbBuffer == null) || (m_pbBuffer.Length < nCount))
+        m_pbBuffer = new byte[nCount];
+      Array.Copy(pbBuffer, iOffset, m_pbBuffer, 0, nCount);
+
+      m_c.Encrypt(m_pbBuffer, 0, nCount);
+      m_sBase.Write(m_pbBuffer, 0, nCount);
+    }
+  }
 }

@@ -1,0 +1,167 @@
+// This file is part of Keepass2Android, Copyright 2025 Philipp Crocoll.
+//
+//   Keepass2Android is free software: you can redistribute it and/or modify
+//   it under the terms of the GNU General Public License as published by
+//   the Free Software Foundation, either version 3 of the License, or
+//   (at your option) any later version.
+//
+//   Keepass2Android is distributed in the hope that it will be useful,
+//   but WITHOUT ANY WARRANTY; without even the implied warranty of
+//   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//   GNU General Public License for more details.
+//
+//   You should have received a copy of the GNU General Public License
+//   along with Keepass2Android.  If not, see <http://www.gnu.org/licenses/>.
+
+using System;
+using System.IO;
+using Android.App;
+using Android.Content;
+using Android.Content.PM;
+using Android.Util;
+using Android.Widget;
+using Google.Android.Material.Dialog;
+using KeePass.DataExchange;
+using KeePass.DataExchange.Formats;
+using KeePassLib.Interfaces;
+using KeePassLib.Serialization;
+using keepass2android.Io;
+using keepass2android;
+
+namespace keepass2android
+{
+  public class ExportDbProcessManager : FileSaveProcessManager
+  {
+    private readonly FileFormatProvider _ffp;
+
+    public ExportDbProcessManager(int requestCode, LifecycleAwareActivity activity, FileFormatProvider ffp) : base(requestCode, activity)
+    {
+      _ffp = ffp;
+    }
+
+    protected override void SaveFile(IOConnectionInfo ioc)
+    {
+      var exportDb = new ExportDatabaseActivity.ExportDb(App.Kp2a, new ActionInContextInstanceOnOperationFinished(_activity.ContextInstanceId, App.Kp2a, (success, message, context) =>
+          {
+            if (!success)
+              App.Kp2a.ShowMessage(context, message, MessageSeverity.Error);
+            else
+              App.Kp2a.ShowMessage(context, _activity.GetString(Resource.String.export_database_successful), MessageSeverity.Info);
+            (context as Activity)?.Finish();
+          }
+      ), _ffp, ioc);
+      BlockingOperationStarter pt = new BlockingOperationStarter(App.Kp2a, exportDb);
+      pt.Run();
+
+    }
+  }
+
+  [Activity(Label = "@string/app_name",
+      ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden,
+      Theme = "@style/Kp2aTheme_ActionBar", Exported = true)]
+  [IntentFilter(new[] { "kp2a.action.ExportDatabaseActivity" }, Categories = new[] { Intent.CategoryDefault })]
+  public class ExportDatabaseActivity : LockCloseActivity
+  {
+    FileFormatProvider[] _ffp = new FileFormatProvider[]
+        {
+                new KeePassKdb2x(),
+                new KeePassXml2x(),
+                new KeePassCsv1x()
+        };
+
+    private int _fileFormatIndex;
+
+    private ExportDbProcessManager _exportDbProcessManager;
+
+    protected override void OnCreate(Android.OS.Bundle savedInstanceState)
+    {
+      base.OnCreate(savedInstanceState);
+      MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(this);
+      builder.SetTitle(Resource.String.export_fileformats_title);
+      builder.SetSingleChoiceItems(Resource.Array.export_fileformat_options, _fileFormatIndex,
+          delegate (object sender, DialogClickEventArgs args) { _fileFormatIndex = args.Which; });
+      builder.SetPositiveButton(Android.Resource.String.Ok, delegate
+      {
+        _exportDbProcessManager = new ExportDbProcessManager(0, this, _ffp[_fileFormatIndex]);
+        _exportDbProcessManager.StartProcess();
+      });
+      builder.SetNegativeButton(Resource.String.cancel, delegate
+      {
+        Finish();
+      });
+      builder.Show();
+    }
+
+    protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
+    {
+      base.OnActivityResult(requestCode, resultCode, data);
+
+      if (_exportDbProcessManager?.OnActivityResult(requestCode, resultCode, data) == true)
+        return;
+
+      Finish();
+
+    }
+
+
+    protected int RequestCodeDbFilename
+    {
+      get { return 0; }
+    }
+
+    public class ExportDb : OperationWithFinishHandler
+    {
+      private readonly IKp2aApp _app;
+      private readonly FileFormatProvider _fileFormat;
+      private IOConnectionInfo _targetIoc;
+
+      public ExportDb(IKp2aApp app, OnOperationFinishedHandler onOperationFinishedHandler, FileFormatProvider fileFormat, IOConnectionInfo targetIoc) : base(app, onOperationFinishedHandler)
+      {
+        _app = app;
+        this._fileFormat = fileFormat;
+        _targetIoc = targetIoc;
+      }
+
+      public override void Run()
+      {
+        StatusLogger.UpdateMessage(UiStringKey.exporting_database);
+        var pd = _app.CurrentDb.KpDatabase;
+        PwExportInfo pwInfo = new PwExportInfo(pd.RootGroup, pd, true);
+
+        try
+        {
+          var fileStorage = _app.GetFileStorage(_targetIoc);
+          if (fileStorage is IOfflineSwitchable)
+          {
+            ((IOfflineSwitchable)fileStorage).IsOffline = false;
+          }
+          using (var writeTransaction = fileStorage.OpenWriteTransaction(_targetIoc, _app.GetBooleanPreference(PreferenceKey.UseFileTransactions)))
+          {
+            Stream sOut = writeTransaction.OpenFile();
+            _fileFormat.Export(pwInfo, sOut, new NullStatusLogger());
+
+            if (sOut != null) sOut.Close();
+
+            writeTransaction.CommitWrite();
+
+          }
+          if (fileStorage is IOfflineSwitchable)
+          {
+            ((IOfflineSwitchable)fileStorage).IsOffline = App.Kp2a.OfflineMode;
+          }
+
+          Finish(true);
+
+
+        }
+        catch (Exception ex)
+        {
+          Finish(false, Util.GetErrorMessage(ex));
+        }
+
+
+      }
+    }
+
+  }
+}

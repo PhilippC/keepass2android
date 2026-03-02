@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Copyright (c) 2012 Hai Bison
+
+    See the file LICENSE at the root directory of this project for copying
+    permission.
+-->
+<resources>
+    <string name="afc_cmd_advanced_selection_all">Усе</string>
+    <string name="afc_cmd_advanced_selection_invert">Адваротнае вылучэнне</string>
+    <string name="afc_cmd_advanced_selection_none">Няма</string>
+    <string name="afc_cmd_grid_view">У выглядзе сеткі</string>
+    <string name="afc_cmd_home">Галоўная</string>
+    <string name="afc_cmd_list_view">У выглядзе спіса</string>
+    <string name="afc_cmd_new_folder">Новы каталог…</string>
+    <string name="afc_cmd_select_all_files">Абраць усе файлы</string>
+    <string name="afc_cmd_select_all_folders">Абраць усе каталогі</string>
+    <string name="afc_cmd_sort">Сартаванне…</string>
+    <string name="afc_file">файл</string>
+    <string name="afc_folder">каталог</string>
+    <string name="afc_hint_clear">ачысціць</string>
+    <string name="afc_hint_folder_name">назва каталога</string>
+    <string name="afc_hint_save_as_filename">назва файла</string>
+    <string name="afc_hint_search">пошук</string>
+    <string name="afc_msg_app_doesnot_have_permission_to_create_files">У гэтай праграмы няма дазволу на стварэнне файлаў і каталогаў</string>
+    <string name="afc_msg_app_doesnot_have_permission_to_delete_files">У гэтай праграмы няма дазволу на выдаленне файлаў і каталогаў</string>
+    <string name="afc_msg_cancelled">Скасавана</string>
+    <string name="afc_msg_cannot_connect_to_file_provider_service">Не атрымалася злучыцца са службай захоўвання файлаў</string>
+    <string name="afc_msg_cannot_create_new_folder_here">Тут немагчыма стварыць новы каталог</string>
+    <string name="afc_msg_cannot_save_a_file_here">Тут немагчыма захаваць файл</string>
+    <string name="afc_msg_done">Завершана</string>
+    <string name="afc_msg_empty">Пуста</string>
+    <string name="afc_msg_failed_please_try_again">Не атрымалася. Калі ласка, паспрабуйце зноў.</string>
+    <string name="afc_msg_loading">Загрузка…</string>
+    <string name="afc_phone">Тэлефон</string>
+    <string name="afc_pmsg_cannot_access_dir">Не ўдалося атрымаць доступ да \"%1$s\"</string>
+    <string name="afc_pmsg_cannot_create_folder">Не атрымалася стварыць каталог \"%1$s\"</string>
+    <string name="afc_pmsg_cannot_delete_file">Не атрымалася выдаліць %1$s \"%2$s\"</string>
+    <string name="afc_pmsg_confirm_delete_file">Сапраўды хочаце выдаліць %1$s \"%2$s\"?</string>
+    <string name="afc_pmsg_confirm_replace_file">Файл \"%1$s\" ужо існуе.\n\nХочаце замяніць яго?</string>
+    <string name="afc_pmsg_deleting_file">Выдаленне %1$s \"%2$s\"…</string>
+    <string name="afc_pmsg_file_has_been_deleted">%1$s \"%2$s\" выдалены</string>
+    <string name="afc_pmsg_filename_is_directory">\"%1$s\" - каталог</string>
+    <string name="afc_pmsg_filename_is_invalid">Назва файла \"%1$s\" хібная</string>
+    <string name="afc_pmsg_max_file_count_allowed">…змяшчае больш файлаў, максімальная колькасць: %1$,d</string>
+    <string name="afc_pmsg_unknown_error">Невядомая памылка: %1$s</string>
+    <string name="afc_root">Каранёвы каталог (Root)</string>
+    <string name="afc_title_advanced_selection">Абраць…</string>
+    <string name="afc_title_confirmation">Пацвярджэнне</string>
+    <string name="afc_title_date">Дата</string>
+    <string name="afc_title_error">Памылка</string>
+    <string name="afc_title_info">Звесткі</string>
+    <string name="afc_title_name">Назва</string>
+    <string name="afc_title_save_as">Захаваць як…</string>
+    <string name="afc_title_size">Памер</string>
+    <string name="afc_title_sort_by">Сартаваць па…</string>
+    <string name="afc_yesterday">Учора</string>
+    <plurals name="afc_title_choose_directories">
+        <item quantity="one">Абраць каталог…</item>
+        <item quantity="few">Абраць каталогі…</item>
+        <item quantity="many">Абраць каталогі…</item>
+        <item quantity="other">Абраць каталогі…</item>
+    </plurals>
+    <plurals name="afc_title_choose_files">
+        <item quantity="one">Абраць файл…</item>
+        <item quantity="few">Абраць файлы…</item>
+        <item quantity="many">Абраць файлы…</item>
+        <item quantity="other">Абраць файлы…</item>
+    </plurals>
+    <plurals name="afc_title_choose_files_directories">
+        <item quantity="one">Абраць файл / каталог…</item>
+        <item quantity="few">Абраць файлы / каталогі…</item>
+        <item quantity="many">Абраць файлы / каталогі…</item>
+        <item quantity="other">Абраць файлы / каталогі…</item>
+    </plurals>
+</resources>

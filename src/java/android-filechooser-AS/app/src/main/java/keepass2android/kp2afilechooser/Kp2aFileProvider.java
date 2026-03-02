@@ -1,3 +1,20 @@
+/*
+ * This file is part of Keepass2Android, Copyright 2025 Philipp Crocoll.
+ *
+ *   Keepass2Android is free software: you can redistribute it and/or modify
+ *   it under the terms of the GNU General Public License as published by
+ *   the Free Software Foundation, either version 3 of the License, or
+ *   (at your option) any later version.
+ *
+ *   Keepass2Android is distributed in the hope that it will be useful,
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *   GNU General Public License for more details.
+ *
+ *   You should have received a copy of the GNU General Public License
+ *   along with Keepass2Android.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 package keepass2android.kp2afilechooser;
 /* Author: Philipp Crocoll
  * 
@@ -63,8 +80,6 @@ public abstract class Kp2aFileProvider extends BaseFileProvider {
 
     @Override
     public boolean onCreate() {
-
-        Log.d("KP2A_FC_P", "onCreate");
 
         BaseFileProviderUtils.registerProviderInfo(_ID,
                 getAuthority());
@@ -222,12 +237,12 @@ public abstract class Kp2aFileProvider extends BaseFileProvider {
         try
         {
             checkConnection(uri);
-            Log.d("KP2A_FC_P", "checking connection for " + uri + " ok.");
+            if (Utils.doLog()) Log.d("KP2A_FC_P", "checking connection for " + uri + " ok.");
             return null;
         }
         catch (Exception e)
         {
-            Log.d("KP2A_FC_P","Check connection failed with: " + e.toString());
+            if (Utils.doLog()) Log.d("KP2A_FC_P","Check connection failed with: " + e.toString());
 
             MatrixCursor matrixCursor = new MatrixCursor(BaseFileProviderUtils.CONNECTION_CHECK_CURSOR_COLUMNS);
             RowBuilder newRow = matrixCursor.newRow();
@@ -255,7 +270,7 @@ public abstract class Kp2aFileProvider extends BaseFileProvider {
         }
         catch (FileNotFoundException ex)
         {
-            Log.d("KP2A_FC_P","File not found. Ignore.");
+            if (Utils.doLog()) Log.d("KP2A_FC_P","File not found. Ignore.");
 
             return;
         }
@@ -276,8 +291,8 @@ public abstract class Kp2aFileProvider extends BaseFileProvider {
         MatrixCursor matrixCursor = null;
 
         String lastPathSegment = uri.getLastPathSegment();
-        
-        Log.d("KP2A_FC_P", "lastPathSegment:" + lastPathSegment);
+
+        if (Utils.doLog()) Log.d("KP2A_FC_P", "lastPathSegment:" + lastPathSegment);
         
         if (BaseFile.CMD_CANCEL.equals(lastPathSegment)) {
             int taskId = ProviderUtils.getIntQueryParam(uri,
@@ -306,10 +321,9 @@ public abstract class Kp2aFileProvider extends BaseFileProvider {
 	            String parentPath = getParentPath(path);
 	            
         		
-        		if (parentPath == null)
-	            {
+        		if (parentPath == null) {
         			if (Utils.doLog())
-        				Log.d(CLASSNAME, "parent file is null");
+                        Log.d(CLASSNAME, "parent file is null");
 	                return null;
 	            }
                 FileEntry e;
@@ -362,7 +376,7 @@ public abstract class Kp2aFileProvider extends BaseFileProvider {
 
         } else if (BaseFile.CMD_CHECK_CONNECTION.equals(lastPathSegment))
         {
-            Log.d("KP2A_FC_P","Check connection...");
+            if (Utils.doLog()) Log.d("KP2A_FC_P","Check connection...");
             return getCheckConnectionCursor(uri);
         }
 
@@ -471,7 +485,7 @@ public abstract class Kp2aFileProvider extends BaseFileProvider {
                 String displayName = getFileEntryCached(dirName).displayName;
                 newRow.add(displayName);
                 
-                Log.d(CLASSNAME, "Returning name " + displayName+" for " +dirName);
+                if (Utils.doLog()) Log.d(CLASSNAME, "Returning name " + displayName+" for " +dirName);
             }
         }
 
@@ -501,10 +515,10 @@ public abstract class Kp2aFileProvider extends BaseFileProvider {
 		RowBuilder newRow = matrixCursor.newRow();
 		newRow.add(id);// _ID
 		newRow.add(BaseFile
-		        .genContentIdUriBase(
-		                getAuthority())
-		        .buildUpon().appendPath(f.path)
-		        .build().toString());
+                .genContentIdUriBase(
+                        getAuthority())
+                .buildUpon().appendPath(f.path)
+                .build().toString());
 		newRow.add(f.path);
 		if (f.displayName == null)
 			Log.w("KP2AJ", "displayName is null for " + f.path);
@@ -530,7 +544,7 @@ public abstract class Kp2aFileProvider extends BaseFileProvider {
      *         parameters.
      */
     private MatrixCursor doRetrieveFileInfo(Uri uri) {
-    	Log.d(CLASSNAME, "retrieve file info "+uri.toString());
+
         MatrixCursor matrixCursor = BaseFileProviderUtils.newBaseFileCursor();
 
         String filename = extractFile(uri);
@@ -549,7 +563,7 @@ public abstract class Kp2aFileProvider extends BaseFileProvider {
     //puts the file entry in the cache for later reuse with retrieveFileInfo
 	private void updateFileEntryCache(FileEntry f) {
 		if (f != null)
-			fileEntryMap.put(f.path, f);
+            fileEntryMap.put(f.path, f);
 	}
 	//removes the file entry from the cache (if cached). Should be called whenever the file changes
 	private void removeFromCache(String filename, boolean recursive) {
@@ -584,7 +598,7 @@ public abstract class Kp2aFileProvider extends BaseFileProvider {
 
 	//returns the file entry from the cache if present or queries the concrete provider method to return the file info
     private FileEntry getFileEntryCached(String filename) {
-    	//check if enry is cached:
+    	//check if entry is cached:
     	FileEntry cachedEntry = fileEntryMap.get(filename);
     	if (cachedEntry != null)
     	{
@@ -691,7 +705,7 @@ public abstract class Kp2aFileProvider extends BaseFileProvider {
         }
         catch (Exception e)
         {
-            Log.d("KP2A_FC_P", "sortFiles() >> "+e);
+            if (Utils.doLog()) Log.d("KP2A_FC_P", "sortFiles() >> "+e);
             throw e;
         }
     }// sortFiles()
@@ -728,7 +742,7 @@ public abstract class Kp2aFileProvider extends BaseFileProvider {
         if (targetParent != null && targetParent.startsWith(source))
         {
         	if (Utils.doLog())
-        		Log.d("KP2A_FC_P", source+" is parent of "+target);
+                Log.d("KP2A_FC_P", source + " is parent of " + target);
             return BaseFileProviderUtils.newClosedCursor();
         }
         if (Utils.doLog())
@@ -768,27 +782,36 @@ public abstract class Kp2aFileProvider extends BaseFileProvider {
 
     private String getParentPath(String path)
     {
-    	path = removeTrailingSlash(path);
-    	if (path.indexOf("://") == -1)
-    	{
-    		Log.d("KP2A_FC_P", "invalid path: " + path);
-    		return null; 
-    	}
-    	String pathWithoutProtocol = path.substring(path.indexOf("://")+3);
-    	int lastSlashPos = path.lastIndexOf("/");
-    	if (pathWithoutProtocol.indexOf("/") == -1)
-    	{
-    		Log.d("KP2A_FC_P", "parent of " + path +" is null");
-    		return null;
-    	}
-    	else
-    	{
-    		String parent = path.substring(0, lastSlashPos)+"/";
-    		Log.d("KP2A_FC_P", "parent of " + path +" is "+parent);
-    		return parent;
-    	}
+        String params = null;
+        int paramsIdx = path.lastIndexOf("?");
+        if (paramsIdx > 0) {
+            params = path.substring(paramsIdx);
+            path = path.substring(0, paramsIdx);
+        }
+
+        path = removeTrailingSlash(path);
+        if (path.indexOf("://") == -1)
+        {
+            if (Utils.doLog()) Log.d("KP2A_FC_P", "invalid path: " + path);
+            return null;
+        }
+        String pathWithoutProtocol = path.substring(path.indexOf("://") + 3);
+        int lastSlashPos = path.lastIndexOf("/");
+        if (pathWithoutProtocol.indexOf("/") == -1)
+        {
+            if (Utils.doLog()) Log.d("KP2A_FC_P", "parent of " + path + " is null");
+            return null;
+        }
+        else
+        {
+            String parent = path.substring(0, lastSlashPos) + "/";
+            if (params != null) {
+                parent += params;
+            }
+            if (Utils.doLog()) Log.d("KP2A_FC_P", "parent of " + path +" is " + parent);
+            return parent;
+        }
     }
-    
     
 
 	protected abstract FileEntry getFileEntry(String path, StringBuilder errorMessageBuilder) throws Exception;

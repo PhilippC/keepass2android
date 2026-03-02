@@ -23,68 +23,69 @@ using KeePassLib;
 
 namespace keepass2android
 {
-	
-	public class DeleteGroup : DeleteRunnable {
-		
-		private PwGroup _group;
-		protected bool DontSave;
 
-        public DeleteGroup(Activity activity, IKp2aApp app, PwGroup group, OnFinish finish)
-            : base(activity, finish, app)
-        {
-			SetMembers(activity, app, group, false);
-		}
-        /*
-        public DeleteGroup(Context ctx, Database db, PwGroup group, Activity act, OnFinish finish, bool dontSave)
-            : base(finish)
-        {
-			SetMembers(ctx, db, group, act, dontSave);
-		}
-        
-		public DeleteGroup(Context ctx, Database db, PwGroup group, OnFinish finish, bool dontSave):base(finish) {
-			SetMembers(ctx, db, group, null, dontSave);
-		}
-        */
-        private void SetMembers(Activity activity, IKp2aApp app, PwGroup group, bool dontSave)
-        {
-			base.SetMembers(activity, app.GetDb());
+  public class DeleteGroup : DeleteRunnable
+  {
 
-			_group = group;
-	        DontSave = dontSave;
-            
-		}
+    private PwGroup _group;
+    protected bool DontSave;
 
-		public override bool CanRecycle
-		{
-			get
-			{
-				return App.GetDb().DatabaseFormat.CanRecycle && CanRecycleGroup(_group);
-			}
-		}
+    public DeleteGroup(Activity activity, IKp2aApp app, PwGroup group, OnOperationFinishedHandler operationFinishedHandler)
+        : base(operationFinishedHandler, app)
+    {
+      SetMembers(app, group, false);
+    }
+    /*
+    public DeleteGroup(Context ctx, Database db, PwGroup group, Activity act, OnOperationFinishedHandler operationFinishedHandler, bool dontSave)
+        : base(operationFinishedHandler)
+    {
+        SetMembers(ctx, db, group, act, dontSave);
+    }
 
-		protected override UiStringKey QuestionRecycleResourceId
-		{
-			get
-			{
-				return UiStringKey.AskDeletePermanentlyGroup;
-			}
-		}
+    public DeleteGroup(Context ctx, Database db, PwGroup group, OnOperationFinishedHandler operationFinishedHandler, bool dontSave):base(operationFinishedHandler) {
+        SetMembers(ctx, db, group, null, dontSave);
+    }
+    */
+    private void SetMembers(IKp2aApp app, PwGroup group, bool dontSave)
+    {
+      base.SetMembers(app.FindDatabaseForElement(group));
 
-		protected override UiStringKey QuestionNoRecycleResourceId
-		{
-			get { return UiStringKey.AskDeletePermanentlyGroupNoRecycle; }
-		}
+      _group = group;
+      DontSave = dontSave;
 
-		protected override void PerformDelete(List<PwGroup> touchedGroups, List<PwGroup> permanentlyDeletedGroups)
-	    {
-	        DoDeleteGroup(_group, touchedGroups, permanentlyDeletedGroups);
-	    }
+    }
 
-	    public override UiStringKey StatusMessage
-	    {
-	        get { return UiStringKey.DeletingGroup; }
-	    }
-	}
+    public override bool CanRecycle
+    {
+      get
+      {
+        return Db.DatabaseFormat.CanRecycle && CanRecycleGroup(_group);
+      }
+    }
+
+    protected override UiStringKey QuestionRecycleResourceId
+    {
+      get
+      {
+        return UiStringKey.AskDeletePermanentlyGroup;
+      }
+    }
+
+    protected override UiStringKey QuestionNoRecycleResourceId
+    {
+      get { return UiStringKey.AskDeletePermanentlyGroupNoRecycle; }
+    }
+
+    protected override void PerformDelete(List<PwGroup> touchedGroups, List<PwGroup> permanentlyDeletedGroups)
+    {
+      DoDeleteGroup(_group, touchedGroups, permanentlyDeletedGroups);
+    }
+
+    public override UiStringKey StatusMessage
+    {
+      get { return UiStringKey.DeletingGroup; }
+    }
+  }
 
 }
 

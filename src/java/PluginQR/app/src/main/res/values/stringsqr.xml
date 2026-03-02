@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ This file is part of Keepass2Android, Copyright 2025 Philipp Crocoll.
+
+   Keepass2Android is free software: you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation, either version 3 of the License, or
+   (at your option) any later version.
+
+   Keepass2Android is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with Keepass2Android.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<resources>
+
+    <string name="app_name">QR Plugin for KP2A</string>
+    <string name="title_activity_qr">QR Display</string>
+    <string name="action_show_qr">Show QR Code</string>
+    <string name="include_label">Include field label</string>
+    <string name="all_fields">All fields</string>
+    <string name="kp2aplugin_title">QR Plugin</string>
+    <string name="kp2aplugin_shortdesc">Displays password entries as QR code; can be used to scan QR codes which can then be added to Keepass2Android.</string>
+    <string name="kp2aplugin_author">Philipp Crocoll</string>
+    <string name="scan_qr">Scan QR code from other device</string>
+    <string name="show_qr">Select entry to show as QR code</string>
+    <string name="no_host_app">No host app detected! Please install Keepass2Android from Google Play!</string>
+    <string name="not_enabled_as_plugin">Not enabled as plugin in host app!</string>
+    <string name="enabled_as_plugin">Enabled as plugin!</string>
+    <string name="enable_as_plugin">Enable as plugin</string>
+	<string name="qr_question">Text found on QR code. How do you want to handle this text?</string>
+	<string name="create_entry">Create new entry</string>
+	<string name="search_entry">Search and open existing entry</string>
+	<string name="about">About</string>
+	<string name="about_msg">This app is built based on the ZXing library and barcode scanner app (Copyright by the ZXing team, licensed under the Apache 2.0 license).</string>
+</resources>

@@ -20,7 +20,9 @@ import android.content.Context;
 import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
+
+import androidx.core.view.WindowCompat;
+import androidx.fragment.app.FragmentActivity;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.widget.GridView;
@@ -221,7 +223,6 @@ public class FileChooserActivity extends FragmentActivity {
     
     public static final String EXTRA_RESULT_FILE_EXISTS = CLASSNAME + ".result_file_exists";
     
-    
 
     /*
      * CONTROLS
@@ -243,6 +244,7 @@ public class FileChooserActivity extends FragmentActivity {
                     R.style.Afc_Theme_Dark));
 
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.afc_activity_filechooser);
         Ui.adjustDialogSizeForLargeScreen(getWindow());
 
