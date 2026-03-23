@@ -682,6 +682,13 @@ namespace keepass2android
       }
     }
 
+    public class PasskeyPreferenceFragment : PreferenceFragmentWithResource
+    {
+      public PasskeyPreferenceFragment() : base(Resource.Xml.pref_app_passkeys)
+      {
+      }
+    }
+
     public class DebugLogPreferenceFragment : PreferenceFragmentWithResource
     {
 
@@ -1208,7 +1215,7 @@ namespace keepass2android
   /// <summary>
   /// Activity to configure the application, without database settings. Does not require an unlocked database, or close when the database is locked
   /// </summary>
-  [Activity(Label = "@string/app_name", Theme = "@style/Kp2aTheme_BlueActionBar", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden)]
+  [Activity(Label = "@string/app_name", Name = "keepass2android.AppSettingsActivity", Theme = "@style/Kp2aTheme_BlueActionBar", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden, Exported = true)]
   public class AppSettingsActivity : LockingActivity, PreferenceFragmentCompat.IOnPreferenceStartFragmentCallback, FragmentManager.IOnBackStackChangedListener
   {
     private ActivityDesign _design;

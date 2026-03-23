@@ -636,6 +636,7 @@
   <string name="TrayTotp_SettingsField_title">TOTP Settings field name</string>
   <string name="TrayTotp_SettingsField_summary">Enter the field name of the settings field for TrayTotp here.</string>
   <string name="TrayTotp_prefs">TrayTotp</string>
+  <string name="Passkey_prefs">Passkey Settings</string>
   <string name="DebugLog_prefs_prefs">Log-File for Debugging</string>
   <string name="DebugLog_title">Use log file</string>
   <string name="FtpDebug_title">FTP/SFTP debug logging</string>
@@ -1352,5 +1353,33 @@
 
   <string name="pref_periodic_background_sync_interval_title">Periodic background synchronization time interval</string>
   <string name="pref_periodic_background_sync_interval_summary">Set the interval for background synchronization in minutes.</string>
+
+  <string name="credential_provider_service_subtitle">Password credential provider</string>
+  <string name="credential_provider_password_creation_description">Save Password in new entry</string>
+  <string name="credential_provider_locked_database_description">Database is locked. Open Keepass2Android to unlock.</string>
+  <string name="credential_provider_passkey_creation_description">Save Passkey</string>
+  <string name="open_app_name">Open %1$s</string>
+  <string name="manage_credentials">Manage Credentials</string>
+
+  <!-- Passkey Settings Screen -->
+  <string name="pref_passkeys_screen_summary">Configure passkey backup behavior</string>
+  <string name="pref_passkeys_backup_category_title">Backup Flags</string>
+  <string name="pref_passkeys_uv_category_title">User Verification</string>
+
+  <!-- Passkey Backup Settings -->
+  <string name="passkeys_backup_eligibility_key" translatable="false">passkeys_backup_eligibility_key</string>
+  <string name="passkeys_backup_eligibility_title">Passkey Backup Eligibility</string>
+  <string name="passkeys_backup_eligibility_summary">Determine at creation time whether passkeys can be backed up. This affects how websites treat your passkeys.</string>
+  
+  <string name="passkeys_backup_state_key" translatable="false">passkeys_backup_state_key</string>
+  <string name="passkeys_backup_state_title">Passkey Backup State</string>
+  <string name="passkeys_backup_state_summary">Mark passkeys as backed up (requires Backup Eligibility enabled). Enable if you sync your database across devices.</string>
+
+  <!-- Passkey User Verification -->
+  <string name="passkeys_force_user_verification_when_preferred_key" translatable="false">passkeys_force_user_verification_when_preferred_key</string>
+  <string name="passkeys_force_user_verification_when_preferred_title">Force user verification when preferred</string>
+  <string name="passkeys_force_user_verification_when_preferred_summary">When a site requests \"preferred\" user verification, still require biometric or device lock before using a passkey.</string>
+  <string name="passkey_user_verification_required_title">User verification required</string>
+  <string name="passkey_user_verification_required_description">Confirm your identity to use this passkey.</string>
     
 </resources>
