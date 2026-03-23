@@ -1365,6 +1365,7 @@
   <string name="pref_passkeys_screen_summary">Configure passkey backup behavior</string>
   <string name="pref_passkeys_backup_category_title">Backup Flags</string>
   <string name="pref_passkeys_uv_category_title">User Verification</string>
+  <string name="passkeys_uv_setting_change_subtitle">Confirm your identity to change this setting.</string>
 
   <!-- Passkey Backup Settings -->
   <string name="passkeys_backup_eligibility_key" translatable="false">passkeys_backup_eligibility_key</string>
