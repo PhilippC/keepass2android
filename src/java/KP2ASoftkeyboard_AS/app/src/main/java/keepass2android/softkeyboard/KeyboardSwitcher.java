@@ -69,6 +69,9 @@ public class KeyboardSwitcher implements SharedPreferences.OnSharedPreferenceCha
 
     public static final String DEFAULT_LAYOUT_ID = "4";
     public static final String PREF_KEYBOARD_LAYOUT = "pref_keyboard_layout_20100902";
+    public static final String PREF_KEY_LAYOUT = "pref_key_layout";
+    public static final String KEY_LAYOUT_QWERTY = "qwerty";
+    public static final String KEY_LAYOUT_DVORAK = "dvorak";
     private static final int[] THEMES = new int [] {
         R.layout.input_basic, R.layout.input_basic_highcontrast, R.layout.input_stone_normal,
         R.layout.input_stone_bold, R.layout.input_gingerbread};
@@ -86,6 +89,7 @@ public class KeyboardSwitcher implements SharedPreferences.OnSharedPreferenceCha
     private static final int[] KBD_SYMBOLS_SHIFT = new int[] {
         R.xml.kbd_symbols_shift, R.xml.kbd_symbols_shift_black};
     private static final int[] KBD_QWERTY = new int[] {R.xml.kbd_qwerty, R.xml.kbd_qwerty_black};
+    private static final int[] KBD_DVORAK = new int[] {R.xml.kbd_dvorak, R.xml.kbd_dvorak_black};
     
     private static final int[] KBD_KP2A = new int[] {R.xml.kbd_kp2a, R.xml.kbd_kp2a_black};
 
@@ -141,6 +145,7 @@ public class KeyboardSwitcher implements SharedPreferences.OnSharedPreferenceCha
     private Locale mInputLocale;
 
     private int mLayoutId;
+    private String mKeyLayout;
 
     private static final KeyboardSwitcher sInstance = new KeyboardSwitcher();
 
@@ -158,6 +163,7 @@ public class KeyboardSwitcher implements SharedPreferences.OnSharedPreferenceCha
         final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(ims);
         sInstance.mLayoutId = Integer.valueOf(
                 prefs.getString(PREF_KEYBOARD_LAYOUT, DEFAULT_LAYOUT_ID));
+        sInstance.mKeyLayout = prefs.getString(PREF_KEY_LAYOUT, KEY_LAYOUT_QWERTY);
         sInstance.updateSettingsKeyState(prefs);
         prefs.registerOnSharedPreferenceChangeListener(sInstance);
 
@@ -321,7 +327,8 @@ public class KeyboardSwitcher implements SharedPreferences.OnSharedPreferenceCha
             }
         }
         // TODO: generalize for any KeyboardId
-        int keyboardRowsResId = KBD_QWERTY[charColorId];
+        int[] alphaKbd = KEY_LAYOUT_DVORAK.equals(mKeyLayout) ? KBD_DVORAK : KBD_QWERTY;
+        int keyboardRowsResId = alphaKbd[charColorId];
 
         switch (mode) {
     		case MODE_KP2A:
@@ -569,6 +576,9 @@ public class KeyboardSwitcher implements SharedPreferences.OnSharedPreferenceCha
         if (PREF_KEYBOARD_LAYOUT.equals(key)) {
             changeLatinKeyboardView(
                     Integer.valueOf(sharedPreferences.getString(key, DEFAULT_LAYOUT_ID)), false);
+        } else if (PREF_KEY_LAYOUT.equals(key)) {
+            mKeyLayout = sharedPreferences.getString(key, KEY_LAYOUT_QWERTY);
+            setKeyboardMode(mMode, mImeOptions, mPreferSymbols);
         } else if (LatinIMESettings.PREF_SETTINGS_KEY.equals(key)) {
             updateSettingsKeyState(sharedPreferences);
             recreateInputView();

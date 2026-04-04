@@ -61,6 +61,14 @@
                 android:action="keepass2android.softkeyboard.INPUT_LANGUAGE_SELECTION"/>
     </PreferenceScreen>
 
+    <ListPreference
+            android:key="pref_key_layout"
+            android:title="@string/pref_key_layout_title"
+            android:entries="@array/key_layout_entries"
+            android:entryValues="@array/key_layout_entry_values"
+            android:defaultValue="qwerty"
+            android:persistent="true" />
+
         
     <PreferenceCategory
         android:title="@string/kp2a_prefs"
