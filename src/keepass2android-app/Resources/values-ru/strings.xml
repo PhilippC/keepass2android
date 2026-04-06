@@ -62,7 +62,7 @@
   <string name="FileHandling_prefs">Обработка файлов</string>
   <string name="keyboard_prefs">Клавиатура</string>
   <string name="export_prefs">Экспорт БД...</string>
-  <string name="fingerprint_prefs">Разблокирование при помощи биометрии</string>
+  <string name="fingerprint_prefs">Биометрическая разблокировка</string>
   <string name="import_db_prefs">Импорт базы данных во внутреннюю папку</string>
   <string name="import_keyfile_prefs">Импорт файла-ключа во внутреннюю папку</string>
   <string name="export_keyfile_prefs">Экспорт файла с ключом из внутренней папки</string>
@@ -390,7 +390,7 @@
   <string name="LockWhenNavigateBack_title">Блокировать при выходе из приложения</string>
   <string name="LockWhenNavigateBack_summary">Блокировать БД при выходе кнопкой \"назад\".</string>
   <string name="UseKp2aKeyboardInKp2a_title">Клавиатура \"Keepass2Android\"</string>
-  <string name="UseKp2aKeyboardInKp2a_summary">Если Вы не доверяете своей стандартной клавиатуре, установите этот параметр, чтобы использовать встроенную клавиатуру при вводе мастер-пароля или редактирования записей.</string>
+  <string name="UseKp2aKeyboardInKp2a_summary">Если Вы не доверяете стандартной клавиатуре устройства, установите этот параметр, чтобы использовать собственную клавиатуру приложения при вводе мастер-пароля и редактировании записей.</string>
   <string name="ActivateSearchViewOnStart_title">Активировать поле поиска при запуске</string>
   <string name="ActivateSearchViewOnStart_summary">Активировать поле поиска в группе после разблокировки или когда ищем значение</string>
   <string name="NoDonateOption_title">Скрыть опцию пожертвования</string>
