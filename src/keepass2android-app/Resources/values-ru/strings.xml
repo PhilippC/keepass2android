@@ -525,16 +525,16 @@
   <string name="hint_owncloud_url">URL-адрес OwnCloud (например: owncloud.me.com)</string>
   <string name="enter_nextcloud_login_title">Введите логин для Nextcloud:</string>
   <string name="hint_nextcloud_url">URL-адрес Nextcloud (например: nextcloud.me.com)</string>
-  <string name="hint_sftp_host">хост (например: 192.168.0.1)</string>
+  <string name="hint_sftp_host">Хост (192.168.0.1)</string>
   <string name="hint_sftp_port">порт</string>
-  <string name="initial_directory">Исходный каталог (необязательно):</string>
+  <string name="initial_directory">Начальная директория (необязательно)</string>
   <string name="connect_timeout">Время ожидания соединения секунды (опционально)</string>
   <string name="enter_sftp_login_title">Введите данные SFTP логина:</string>
   <string name="sftp_auth_mode">Режим аутентификации</string>
   <string name="send_public_key">Отправить публичный ключ...</string>
   <string name="select_private_keyfile">Выберите закрытый ключ ...</string>
   <string name="hint_sftp_key_name">Имя нового ключа</string>
-  <string name="hint_sftp_key_content">Новый сетевой контент</string>
+  <string name="hint_sftp_key_content">Закрытый ключ</string>
   <string name="private_key_saved">Закрытый ключ сохранен</string>
   <string name="private_key_save_failed">Не удалось сохранить закрытый ключ: %1$s</string>
   <string name="private_key_info">Введите имя ключа и содержимое для сохранения</string>
@@ -544,7 +544,7 @@
   <string name="delete_key">Удалить закрытый ключ</string>
   <string name="private_key_select">Выберите закрытый ключ ...</string>
   <string name="private_key_create_new">[Добавить новый...]</string>
-  <string name="hint_sftp_key_passphrase">Парольная фраза (опционально)</string>
+  <string name="hint_sftp_key_passphrase">Пароль ключа (опционально)</string>
   <string name="sftp_kex_title">Обмен ключами (KEX) Алгоритм(ы) (опционально)</string>
   <string name="hint_sftp_kex">Названия/спецификации через запятую</string>
   <string name="sftp_shk_title">Алгоритм(ы) ключа хоста сервера (опционально)</string>
@@ -692,6 +692,14 @@
   <string name="FirstInvalidCompositeKeyError">Неверный составной ключ! Пожалуйста, попробуйте еще раз.</string>
   <string name="RepeatedInvalidCompositeKeyHelp"></string>
   <string name="HintLocalBackupInvalidCompositeKey"></string>
+  <string name="CorruptDatabaseHelp">    Файл поврежден. \n
+    Тут приведены несколько подсказок, которые могут помочь в решении этой проблемы:\n
+    
+    • Если вы скопировали файл через USB (MTP-Mode), попробуйте еще раз при помощи утилиты \"MyPhoneExplorer\". MTP-режим иногда обрезает файлы.\n
+    • Если не удается открыть файл даже в вашем персональном компьютере, очень вероятно, что файл действительно поврежден. Пожалуйста, используйте резервную копию вашей базы данных. Если есть предположение, что в этом виноват \"Keepass2Android\", то свяжитесь с нами.\n
+    • Если файл открывается с вашего персонального компьютера, свяжитесь с нами. Вы можете сохранить его с разными параметрами (например, в распакованном виде) и попробовать открыть его снова в \"Keepass2Android\".
+
+  </string>
   <string name="open_other_db">Открыть другую базу данных…</string>
   <string name="select_database">Выбрать базу данных</string>
   <string name="configure_child_dbs">Настройка дочерних баз данных…</string>
