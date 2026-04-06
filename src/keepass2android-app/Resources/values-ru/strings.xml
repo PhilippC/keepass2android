@@ -564,6 +564,7 @@
   <string name="filestoragename_dropboxKP2A">Dropbox (папка KP2A)</string>
   <string name="filestoragehelp_dropboxKP2A">Если вы не хотите предоставлять KP2A доступ к вашему полному Dropbox, вы можете выбрать эту опцию. Он будет запрашивать только доступ к папке Apps/Keepass2Android. Это особенно подходит при создании новой базы данных. Если у вас уже есть база данных, нажмите эту опцию, чтобы создать папку, затем поместите файл в папку (с компьютера), а затем снова выберите эту опцию для открытия файла.</string>
   <string name="filestoragename_gdrive">Диск Google</string>
+  <string name="filestoragehelp_gdrive">Пожалуйста, обратите внимание: Google ограничивает доступ к Google Drive от приложений для большего числа пользователей. Если встроенная версия Google Drive не работает, используйте опцию выбора системных файлов и выберите Google Drive!</string>
   <string name="filestoragename_gdriveKP2A">Google Drive (KP2A файлы)</string>
   <string name="filestoragehelp_gdriveKP2A">Если вы не хотите предоставлять KP2A доступ к вашему полному Google Диску, вы можете выбрать эту опцию. Обратите внимание, что сначала необходимо создать файл базы данных, существующие файлы не видны приложению. Либо выберите эту опцию на экране Создать базу данных, либо, если вы уже открыли базу данных, экспортируйте ее, выбрав эту опцию.</string>
   <string name="filestoragename_pcloud">PCloud (KP2A folder)</string>
@@ -692,6 +693,8 @@
   <string name="FirstInvalidCompositeKeyError">Неверный составной ключ! Пожалуйста, попробуйте еще раз.</string>
   <string name="RepeatedInvalidCompositeKeyHelp"></string>
   <string name="HintLocalBackupInvalidCompositeKey"></string>
+  <string name="HintLocalBackupOtherError">    \n
+ &amp;#82Подсказка: Keepass2Android сохранил последнюю успешно открытую версию файла во внутренней памяти. Его можно открыть, нажав \"%1$s\" и выбрав локальную резервную копию.</string>
   <string name="CorruptDatabaseHelp">    Файл поврежден. \n
     Тут приведены несколько подсказок, которые могут помочь в решении этой проблемы:\n
     
@@ -725,20 +728,57 @@
   <string name="DbQuicklockedChannel_desc">Уведомление о том, что БД будет заблокирована БыстройРазблокировкой</string>
   <string name="EntryChannel_name">Уведомление о записи</string>
   <string name="EntryChannel_desc">Уведомление для упрощенного доступа к выбранной в данный момент записи.</string>
+  <string name="BackgroundSyncChannel_name">Операция синхронизации</string>
+  <string name="BackgroundSyncChannel_desc">Уведомление о том, что синхронизация выполняется в фоновом режиме.</string>
   <string name="CloseDbAfterFailedAttempts">Закрыть базу данных после трёх неудачных попыток биометрической разблокировки.</string>
+  <string name="hint_smb_credentials">Если вы хотите получить доступ к файлам с вашего персонального компьютера Windows, используйте имя компьютера или локальный IP адрес в качестве URL-адреса хоста; введите имя компьютера как домен и логин Windows (часто то же самое, что и ваш аккаунт Microsoft) как имя пользователя и пароль.</string>
   <string name="WarnFingerprintInvalidated">Внимание! Биометрическая аутентификация может быть аннулирована через Android, напр. после добавления нового отпечатка пальца в настройках устройства. Убедитесь, что вы всегда знаете, как разблокировать с помощью мастер-пароля!</string>
+  <string name="webdav_chunked_upload_size_title">Размер части (чанка) для загрузки WebDav</string>
+  <string name="webdav_chunked_upload_enabled_title">Включить загрузку частями (чанками) по WebDav</string>
+  <string name="webdav_chunked_upload_enabled_summary">Для WebDav серверов, которые не поддерживают загрузку больших файлов по одному запросу. Если включено, Keepass2Android использует стандартный метод разбиения на части WebDav, а не Nextcloud.</string>
+  <string name="webdav_chunked_upload_size_summary">Размер части (чанков) при загрузке на серверы WebDav в байтах.</string>
+  <string name="cleartextTrafficPermitted_title">Разрешить текстовый сетевой трафик в WebDav</string>
+  <string name="cleartextTrafficPermitted_summary">HTTP-соединения небезопасны. Включите эту опцию, только если у вас есть другие меры безопасности.</string>
+  <string-array name="ChangeLog_1_15_net">
+    <item>Улучшение обработки URL для WebDav с не-ASCII символами</item>
+  </string-array>
+  <string-array name="ChangeLog_1_15">
+    <item>Добавлена фоновая синхронизация: Keepass2Android теперь использует внутреннюю копию кэша базы данных для загрузки и сохранения, чтобы сделать эти операции быстрее. После этого начинается синхронизация с удаленной базой данных. </item>
+    <item>Добавлены пользовательские настройки для управления поведением фоновой синхронизации. Вы можете включить периодическую фоновую синхронизацию и установить как должна  выполняться синхронизация: всегда или только в сетях Wi-Fi.</item>
+  </string-array>
+  <string-array name="ChangeLog_1_14">
+    <item>Обновление до .net 9 и Target SDK версии 35. Это включает прозрачную строку состояния на Android 15, потому что edge-to-edge теперь по умолчанию.</item>
+    <item>Небольшие улучшения интерфейса</item>
+    <item>Удаленные кнопки для пожертвования и поиска плагинов, чтобы соответствовать политике Google Play</item>
+  </string-array>
+  <string-array name="ChangeLog_1_14_net">
+    <item>Улучшения WebDav: Исправление ошибок при отображении папок; поддержка загрузок частями (чанками) и транзакций</item>
+    <item>Добавлена поддержка общего доступа по сети Samba (Windows)</item>
+    <item>Обновленный JSch для поддержки более современных алгоритмов в SFTP</item>
+  </string-array>
+  <string-array name="ChangeLog_1_13">
+    <item>Улучшена оценка качества пароля с учётом наиболее популярных паролей.</item>
+    <item>Блокировать QuickUnlock по паролю (по соображениям безопасности), если на устройстве не включена блокировка экрана.</item>
+    <item>Обновите конфигурацию сетевой безопасности, чтобы отключить передачу открытого текста.</item>
+  </string-array>
   <string-array name="ChangeLog_1_12">
-    <item>Upgraded from Xamarin Android to .net 8</item>
-    <item>Upgraded to Target SDK 34</item>
-    <item>Upgraded to Material 3 user interface</item>
-    <item>Improve autofill to work with Compose apps</item>
-    <item>Fix hostname matching in autofill and search</item>
+    <item>Обновлено с Xamarin Android до .net 8</item>
+    <item>Улучшено до целевого SDK 34</item>
+    <item>Обновлен пользовательский интерфейс до Material 3</item>
+    <item>Улучшено автозаполнение для работы с приложениями</item>
+    <item>Исправлено имя хоста в автозаполнении и поиске</item>
     <item>Исправлена проблема с генератором паролей</item>
+  </string-array>
+  <string-array name="ChangeLog_1_12_net">
+    <item>Обновлено OneDrive SDK до версии 5.68</item>
+    <item>Обновлен Dropbox SDK до версии 7.0.0</item>
+    <item>Улучшенная Gradle, NewtonsoftJson, FluentFTP, MegaApiClient и okhttp</item>
+    <item>Исправлена ошибка выбора файла WebDav</item>
   </string-array>
   <string-array name="ChangeLog_1_11">
     <item>Добавлены плавающие кнопки для поиска и обзора TOTP (если присутствуют записи TOTP).</item>
     <item></item>
-    <item>TOTP can now be seen from the group view.</item>
+    <item>TOTP теперь можно увидеть с точки зрения группы.</item>
     <item>Копирование текстового значения в буфер обмена при длительном нажатии в режиме просмотра записей.</item>
     <item>Сделать TOTP легко доступным на встроенной клавиатуре.</item>
     <item>Показывать уведомление о вводе при автозаполнении записи TOTP. Это позволяет скопировать TOTP в буфер обмена. Настроить поведение можно в настройках.</item>
@@ -747,6 +787,13 @@
   </string-array>
   <string-array name="ChangeLog_1_11_net">
     <item>Обновите pCloud SDK, чтобы предоставить доступ к общим папкам</item>
+  </string-array>
+  <string-array name="ChangeLog_1_10">
+    <item>Добавлена поддержка разрешений для уведомлений на Android 13+</item>
+    <item>Улучшена реализация FTP и SFTP</item>
+    <item>Добавлен доступ к полному pCloud</item>
+    <item>Позволяет выбрать системный язык в диалоговом окне язык</item>
+    <item>Исправлена проблема с запоминанием Keyfile + изменен тип пароля</item>
   </string-array>
   <string-array name="ChangeLog_1_09e">
     <item>Исправлены ошибки, приводящие к сбоям и незапланированным выходам</item>
@@ -904,5 +951,31 @@
   <string name="AutofillWarning_Intro">Вы собираетесь вставить учётные данные для домена \"%1$s\" в приложение \"%2$s\".</string>
   <string name="AutofillWarning_FillDomainInUntrustedApp">Если вы уверены, что \"%2$s\" принадлежит к \"%1$s\" или доверяете приложению \"%2$s\" не злоупотребляйте учётными данными (например, потому что это доверенное приложение браузера), если всё хорошо можно продолжить. Если нет, пожалуйста, отмените.</string>
   <string name="AutofillWarning_trustAsBrowser">Всегда принимать в \"%1$s\"</string>
+  <string name="kp2a_switch_on_sendgodone_summary">Переключить назад при нажатии \"Отправить/Готово\"</string>
+  <string name="qr_scanning_error_no_google_play_services">Сканирование QR-кода требует Google Play Services. Пожалуйста, установите или обновите Сервисы Google Play на вашем устройстве.</string>
   <string name="english_ime_settings">Настройки клавиатуры \"Keepass2Android\"</string>
+  <string name="user_interaction_required">Требуется действие пользователя. Откройте приложение.</string>
+  <string name="failed_to_access_database">База данных в настоящее время используется и не доступна.</string>
+  <string name="configure_ssids">Конфигурация SSIDs</string>
+  <string name="add_current_ssid">Добавить текущий SSID</string>
+  <string name="enter_ssid_hint">Введите SSID</string>
+  <string name="add_ssid">Добавить другой SSID</string>
+  <string name="no_ssids">Не добавлено SSID. Автоматическая фоновая синхронизация будет выполняться в любой Wi-Fi.</string>
+  <string name="ssid_empty_or_exists">SSID пуст или уже в списке</string>
+  <string name="location_permission_required">Для чтения текущего SSID требуется разрешение на определение местоположения</string>
+  <string name="permission_granted">Разрешение на местоположение предоставлено</string>
+  <string name="permission_denied">Доступ запрещен. Невозможно прочитать текущий SSID. Пожалуйста, включите разрешение через настройки Android.</string>
+  <string name="remove_ssid_title">Удалить SSID</string>
+  <string name="ssid_explanation">Определите список SSID. Автоматическая фоновая синхронизация будет выполнена, если вы войдете в любой из них.</string>
+  <string name="remove_ssid_message">Вы уверены, что хотите удалить этот SSID?</string>
+  <string name="permission_needed">Требуемые разрешения</string>
+  <string name="permission_location_rationale">    Разрешение местоположения необходимо для чтения вашего текущего Wi-Fi SSID. Это требуется, если вы хотите ограничить фоновую синхронизацию с определенными SSID.
+  </string>
+  <string name="BackgroundSyncWifiSsids_title">Фоновая синхронизация основанная на Wi-Fi SSID</string>
+  <string name="BackgroundSyncWifiOnly_title">Фоновая синхронизация только в Wi-Fi</string>
+  <string name="BackgroundSyncWifiOnly_summary">Если выбрано, фоновая синхронизация запускается только при подключении к Wi-Fi.</string>
+  <string name="pref_enable_periodic_background_sync_title">Периодическая фоновая синхронизация</string>
+  <string name="pref_enable_periodic_background_sync_summary">Если этот параметр включен, приложение будет периодически синхронизировать разблокированные базы данных. Это будет учитывать настройки подключения выше.</string>
+  <string name="pref_periodic_background_sync_interval_title">Интервал для фоновой синхронизации</string>
+  <string name="pref_periodic_background_sync_interval_summary">Задать интервал для фоновой синхронизации в минутах.</string>
 </resources>
