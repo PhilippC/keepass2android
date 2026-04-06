@@ -186,8 +186,8 @@
   <string name="loading_database">Загрузка базы данных…</string>
   <string name="lowercase">Нижний регистр</string>
   <string name="MaskedPassword">*****</string>
-  <string name="maskpass_title">Скрыть пароль</string>
-  <string name="maskpass_summary">Скрыть пароли по умолчанию</string>
+  <string name="maskpass_title">Скрывать пароли</string>
+  <string name="maskpass_summary">По умолчанию не отображать пароли в открытом виде</string>
   <string name="masktotp_title">Маскировка поля TOTP</string>
   <string name="masktotp_summary">По умолчанию скрывать поле TOTP</string>
   <string name="NoAutofillDisabling_title">Нет возможности отключить автозаполнение</string>
