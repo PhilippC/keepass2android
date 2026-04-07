@@ -351,7 +351,7 @@
   <string name="QuickUnlockHideLength_title">Скрывать длину ключа</string>
   <string name="QuickUnlockHideLength_summary">При установке этого параметра не будет подсказки о длине упрощённого пароля на этапе быстрой разблокировки.</string>
   <string name="QuickUnlockKeyFromDatabase_title">Код из записи в базе данных</string>
-  <string name="QuickUnlockKeyFromDatabase_summary">Если активная база данных содержит запись с названием \"Быстрая разблокировка\" в ее корневой группе, пароль этой записи используется в качестве кода \"Быстрой разблокировки\".</string>
+  <string name="QuickUnlockKeyFromDatabase_summary">Если активная база данных содержит запись с названием \"QuickUnlock\" в корневой группе (\"Root\"), пароль из этой записи используется в качестве кода для быстрой разблокировки.</string>
   <string name="QuickUnlock_fail">Быстрая разблокировка не удалась: неправильный пароль!</string>
   <string name="SaveAttachmentDialog_title">Сохранить вложение</string>
   <string name="SaveAttachmentDialog_text">Пожалуйста выберите, куда следует сохранить вложение.</string>
