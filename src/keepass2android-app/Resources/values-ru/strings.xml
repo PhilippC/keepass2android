@@ -109,6 +109,7 @@
   <string name="disable_fingerprint_unlock">Отключить разблокирование при помощи биометрии</string>
   <string name="enable_fingerprint_unlock">Включить полное разблокирование при помощи биометрии</string>
   <string name="enable_fingerprint_quickunlock">Включить быстрое разблокирование при помощи биометрии</string>
+  <string name="password_based_quick_unlock_not_available_text">Быстрая разблокировка упрощённым паролем недоступна: на Вашем устройстве отключена блокировка экрана. Эта мера безопасности нужна на тот случай, если кто-то увидит вводимую Вами упрощённую комбинацию.</string>
   <string name="fingerprint_unlock_failed">Ошибка биометрического разблокирования. Ключ расшифрования был отклонён операционной системой. Обычно, это происходит, если были изменены параметры биометрической аутентификации или безопасности. </string>
   <string name="fingerprint_disabled_wrong_masterkey">Ошибка при разблокировании базы данных: неверный составной ключ. Разблокирование с помощью биометрии было отключено, так как сохранённый основной пароль более недействителен. </string>
   <string name="fingerprint_reenable">Для задания нового основного пароля повторно активируйте биометрическую аутентификацию.</string>
@@ -332,7 +333,7 @@
   <string name="enter_filename_details_create_import">В следующем шаге будет выбран файл для импортирования.</string>
   <string name="enable_quickunlock">Включить \"Быструю разблокировку\"</string>
   <string name="QuickUnlock_label">Введите последние %1$d символов вашего пароля:</string>
-  <string name="QuickUnlock_label_secure">Ввести код для БыстройРазблокировки:</string>
+  <string name="QuickUnlock_label_secure">Введите код для быстрой разблокировки:</string>
   <string name="QuickUnlock_button">Быстрая разблокировка!</string>
   <string name="QuickUnlock_lockButton">Закрыть БД</string>
   <string name="enable_screen_lock">Включить блокировку экрана</string>
@@ -344,12 +345,12 @@
   <string name="QuickUnlockIconHidden_summary">К сожалению, \"Быстрая разблокировка\" не работает без отображения значка уведомлений. Включите этот параметр для использования прозрачного значка.</string>
   <string name="QuickUnlockIconHidden16_title">Скрыть значок БыстройРазблокировки</string>
   <string name="QuickUnlockIconHidden16_summary">Быстрая разблокировка требует уведомления для своей работы. Выберите этот параметр, чтобы отображать уведомление без иконки.</string>
-  <string name="QuickUnlockBlockedWhenDeviceNotSecure_summary">Блокировать ввод ключа быстрой разблокировки, если не включена блокировка экрана с помощью пин кода или пароля. Это предотвращает атаки типа «подглядывание через плечо». Отключайте эту опцию только в том случае, если вы понимаете риск. Обратите внимание, что быструю разблокирку по-прежнему можно использовать с биометрическими данными.</string>
-  <string name="QuickUnlockLength_title">Длина ключа</string>
+  <string name="QuickUnlockBlockedWhenDeviceNotSecure_summary">Запретить ввод упрощённого пароля, если на устройстве отключена блокировка экрана. Эта функция предназначена для защиты от подсматривания. Не рекомендуется снимать этот запрет, если Вы не осознаёте связанные с этим риски.  Учтите, что функцию быстрой разблокировки можно использовать совместно с биометрией.</string>
+  <string name="QuickUnlockLength_title">Длина кода</string>
   <string name="QuickUnlockLength_summary">Максимальное количество символов, используемых как пароль БыстройРазблокировки.</string>
   <string name="QuickUnlockHideLength_title">Скрывать длину ключа</string>
-  <string name="QuickUnlockHideLength_summary">Если включено, длина кода для \"Быстрой разблокировки\" не будет отображаться на экране.</string>
-  <string name="QuickUnlockKeyFromDatabase_title">Ключ из записи в базе данных</string>
+  <string name="QuickUnlockHideLength_summary">При установке этого параметра не будет подсказки о длине упрощённого пароля на этапе быстрой разблокировки.</string>
+  <string name="QuickUnlockKeyFromDatabase_title">Код из записи в базе данных</string>
   <string name="QuickUnlockKeyFromDatabase_summary">Если активная база данных содержит запись с названием \"Быстрая разблокировка\" в ее корневой группе, пароль этой записи используется в качестве кода \"Быстрой разблокировки\".</string>
   <string name="QuickUnlock_fail">Быстрая разблокировка не удалась: неправильный пароль!</string>
   <string name="SaveAttachmentDialog_title">Сохранить вложение</string>
