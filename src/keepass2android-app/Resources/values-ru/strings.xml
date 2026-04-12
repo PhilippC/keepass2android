@@ -400,7 +400,7 @@
   <string name="NoDonationReminder_title">Никогда не спрашивать о пожертвовании</string>
   <string name="NoDonationReminder_summary">Я не дам вам ни копейки, или я уже пожертвовал. Не спрашивать о пожертвовании даже в день рождения автора.</string>
   <string name="UseOfflineCache_title">Кэширование базы данных</string>
-  <string name="UseOfflineCache_summary">Сохранять копию базы данных в кэш приложения. Это позволит использовать базы данных даже тогда, когда сам файл базы данных недоступен.</string>
+  <string name="UseOfflineCache_summary">Сохранять копию базы данных в кэш-директории приложения. Таким образом, доступ к базе данных останется даже тогда, когда исходный файл недоступен.</string>
   <string name="CreateBackups_title">Локальные резервные копии</string>
   <string name="CreateBackups_summary">Создать локальную резервную копию после успешной загрузки БД.</string>
   <string name="UpdatingBackup">Обновление локальной резервной копии...</string>
@@ -433,7 +433,7 @@
   <string name="OpenKp2aKeyboardAutomatically_title">Переключить клавиатуру</string>
   <string name="OpenKp2aKeyboardAutomatically_summary">Открыть диалог выбора клавиатуры, когда запись доступна через клавиатуру KP2A после поиска из браузера или с помощью клавиатуры.</string>
   <string name="kp2a_switch_rooted">Автоматическое переключение клавиатуры</string>
-  <string name="kp2a_switch_rooted_summary">Автоматическое переключение на клавиатуру KP2A, когда запись открыта. Требуется правильно настроенный плагин KeyboardSwap или устройство с root-правами и приложение Secure Settings с System+. </string>
+  <string name="kp2a_switch_rooted_summary">Автоматическое переключение на клавиатуру KP2A, когда запись открыта. Требуется правильно настроенный плагин KeyboardSwap или приложение Secure Settings с System+ на устройстве с root-правами.</string>
   <string name="get_keyboardswap">Установить плагин KeyboardSwap</string>
   <string name="get_keyboardswap_summary">Этот плагин позволяет переключиться на клавиатуру KP2A без root-прав. Требуется ADB. </string>
   <string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_title">Автопереключение только после поиска</string>
