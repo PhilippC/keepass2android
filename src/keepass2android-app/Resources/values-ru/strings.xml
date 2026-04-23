@@ -385,11 +385,11 @@
   <string name="UseFileTransactions_title">Файловые транзакции</string>
   <string name="UseFileTransactions_summary">Использовать файловые транзакции для записи баз данных</string>
   <string name="LockWhenScreenOff_title">Блокировка при выключении экрана</string>
-  <string name="LockWhenScreenOff_summary">Блокировка базы данных при выключении экрана.</string>
+  <string name="LockWhenScreenOff_summary">Блокировка базы данных при отключении экрана.</string>
   <string name="ClearPasswordOnLeave_title">Очистить введенный мастер-пароль</string>
   <string name="ClearPasswordOnLeave_summary">Очистить введенный мастер-пароль при покидании экрана без разблокировки базы данных.</string>
   <string name="LockWhenNavigateBack_title">Блокировать при выходе из приложения</string>
-  <string name="LockWhenNavigateBack_summary">Блокировать БД при выходе кнопкой \"назад\".</string>
+  <string name="LockWhenNavigateBack_summary">Блокировать базу данных при выходе кнопкой \"назад\"</string>
   <string name="UseKp2aKeyboardInKp2a_title">Клавиатура \"Keepass2Android\"</string>
   <string name="UseKp2aKeyboardInKp2a_summary">Если Вы не доверяете стандартной клавиатуре устройства, установите этот параметр, чтобы использовать собственную клавиатуру приложения при вводе мастер-пароля и редактировании записей.</string>
   <string name="ActivateSearchViewOnStart_title">Активировать поле поиска при запуске</string>
@@ -449,8 +449,8 @@
   <string name="DocumentAccessRevoked">Файл больше недоступен для Keepass2Android. Либо он был удален, либо разрешения доступа были отменены. Пожалуйста, откройте файл еще раз, например, используя Изменить БД.</string>
   <string name="PreloadDatabaseEnabled_title">Предварительная загрузка файла базы данных</string>
   <string name="PreloadDatabaseEnabled_summary">Запуск фоновой загрузки или скачивания файла базы данных во время ввода пароля.</string>
-  <string name="SyncAfterQuickUnlock_title">Синхронизация после БыстройРазблокировки</string>
-  <string name="SyncAfterQuickUnlock_summary">Синхронизировать базу данных с удаленным файлом после БыстройРазблокировки.</string>
+  <string name="SyncAfterQuickUnlock_title">Синхронизация после быстрой разблокировки</string>
+  <string name="SyncAfterQuickUnlock_summary">Синхронизировать базу данных с удалённой версией (из внешнего расположения) после быстрой разблокировки.</string>
   <string name="AskOverwriteBinary">Вы хотите перезаписать существующий двоичный файл с тем же именем?</string>
   <string name="AskOverwriteBinary_title">Перезаписать существующий двоичный файл?</string>
   <string name="AskOverwriteBinary_yes">Перезаписать</string>
