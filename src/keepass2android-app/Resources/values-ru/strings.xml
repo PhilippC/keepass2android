@@ -47,7 +47,7 @@
   <string name="NavigationToGroupCompleted_message">Отображение группы сейчас: %1$s</string>
   <string name="AutofillDisabledQueriesPreference_title">Отключенные цели автозаполнения</string>
   <string name="AutofillDisabledQueriesPreference_summary">Просмотр списка приложений и сайтов, для которых автозаполнение было отключено</string>
-  <string name="OfferSaveCredentials_summary">Если этот параметр включен, Android спросит, хотите ли вы сохранить учетные данные после того, как вы вручную ввели данные в автозаполняемые поля.</string>
+  <string name="OfferSaveCredentials_summary">После ввода учётных данных в автозаполняемые поля Android спросит, хотите ли Вы их сохранить, если этот параметр включен.</string>
   <string name="OfferSaveCredentials_title">Предлагать сохранять учетные данные</string>
   <string name="ShowGroupInEntry_title">Показывать имя группы при просмотре записи</string>
   <string name="unknown_uri_scheme">Извините! Keepass2Android не может обработать возвращаемый URI %1$s. Свяжитесь с разработчиком!</string>
@@ -435,7 +435,7 @@
   <string name="kp2a_switch_rooted">Автоматическое переключение клавиатуры</string>
   <string name="kp2a_switch_rooted_summary">Автоматическое переключение на клавиатуру KP2A, когда запись открыта. Требуется правильно настроенный плагин KeyboardSwap или приложение Secure Settings с System+ на устройстве с root-правами.</string>
   <string name="get_keyboardswap">Установить плагин KeyboardSwap</string>
-  <string name="get_keyboardswap_summary">Этот плагин позволяет переключиться на клавиатуру KP2A без root-прав. Требуется ADB. </string>
+  <string name="get_keyboardswap_summary">Этот плагин позволяет переключиться на клавиатуру KP2A без root-прав. Требуется ADB (Android Debug Bridge).</string>
   <string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_title">Автопереключение только после поиска</string>
   <string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_summary">Переключаться автоматически на клавиатуру KP2A только после использования функции \"Отправить URL\" (но не в других вариантах открытия записи)</string>
   <string name="AutoSwitchBackKeyboard_title">Переключить клавиатуру обратно</string>
@@ -692,8 +692,15 @@
   <string name="Continue">Продолжить</string>
   <string name="NoFilenameWarning">URI, который Вы ввели, не похож на имя файла. Вы уверены, что это правильно?</string>
   <string name="FirstInvalidCompositeKeyError">Неверный составной ключ! Пожалуйста, попробуйте еще раз.</string>
-  <string name="RepeatedInvalidCompositeKeyHelp"></string>
-  <string name="HintLocalBackupInvalidCompositeKey"></string>
+  <string name="RepeatedInvalidCompositeKeyHelp">    Неправильный составной ключ! Пожалуйста, попробуйте выполнить следующие шаги для разблокировки Вашей базы данных:\n
+
+    • Убедитесь, что Вы вводите правильный пароль. Его можно отобразить значком \"глаз\".\n
+    • Убедитесь, что выбран правильный тип пароля. Он должен совпадать с тем типом, который был указан при создании базы данных.\n
+    • Убедитесь, что Вы открыли файл с верной базой данных.
+  </string>
+  <string name="HintLocalBackupInvalidCompositeKey">    \n
+    • Подсказка: если Вы считаете, что файл базы данных может быть повреждён, или забыли мастер-пароль после его изменения, воспользуйтесь последней успешно открытой версией файла, нажав \"%1$s\" и выбрав локальную резервную копию.
+  </string>
   <string name="HintLocalBackupOtherError">    \n
  &amp;#82Подсказка: Keepass2Android сохранил последнюю успешно открытую версию файла во внутренней памяти. Его можно открыть, нажав \"%1$s\" и выбрав локальную резервную копию.</string>
   <string name="CorruptDatabaseHelp">    Файл поврежден. \n
