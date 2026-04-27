@@ -90,6 +90,13 @@ public class LatinKeyboard extends Keyboard {
     private int mPrefLetterY;
     private int mPrefDistance;
 
+    private int[] mOriginalKeyX;
+    private int[] mOriginalKeyWidth;
+    private int[] mOriginalKeyGap;
+    private int mOriginalMinWidth = -1;
+    private int mDynamicMinWidth = -1;
+    private int[] mAllKeyIndices;
+
     // TODO: generalize for any keyboardId
     private boolean mIsBlackSym;
 
@@ -786,10 +793,52 @@ public class LatinKeyboard extends Keyboard {
         if (mCurrentlyInSpace) {
             return mSpaceKeyIndexArray;
         } else {
-            // Avoid dead pixels at edges of the keyboard
-            return super.getNearestKeys(Math.max(0, Math.min(x, getMinWidth() - 1)),
-                    Math.max(0, Math.min(y, getHeight() - 1)));
+            // Avoid relying on Keyboard's internal nearest-key grid after dynamic resize,
+            // as those caches are private and not rebuildable from here.
+            if (mAllKeyIndices == null || mAllKeyIndices.length != getKeys().size()) {
+                mAllKeyIndices = new int[getKeys().size()];
+                for (int i = 0; i < mAllKeyIndices.length; i++) {
+                    mAllKeyIndices[i] = i;
+                }
+            }
+            return mAllKeyIndices;
         }
+    }
+
+    @Override
+    public int getMinWidth() {
+        return mDynamicMinWidth > 0 ? mDynamicMinWidth : super.getMinWidth();
+    }
+
+    public void resizeToWidth(int newWidth) {
+        if (newWidth <= 0) return;
+        final List<Key> keys = getKeys();
+        if (keys == null || keys.isEmpty()) return;
+
+        if (mOriginalKeyX == null || mOriginalKeyX.length != keys.size()) {
+            mOriginalKeyX = new int[keys.size()];
+            mOriginalKeyWidth = new int[keys.size()];
+            mOriginalKeyGap = new int[keys.size()];
+            mOriginalMinWidth = super.getMinWidth();
+            for (int i = 0; i < keys.size(); i++) {
+                Key key = keys.get(i);
+                mOriginalKeyX[i] = key.x;
+                mOriginalKeyWidth[i] = key.width;
+                mOriginalKeyGap[i] = key.gap;
+            }
+        }
+
+        final int baseWidth = Math.max(1, mOriginalMinWidth);
+        final float scale = ((float) newWidth) / baseWidth;
+        int maxRight = 0;
+        for (int i = 0; i < keys.size(); i++) {
+            Key key = keys.get(i);
+            key.x = Math.max(0, Math.round(mOriginalKeyX[i] * scale));
+            key.width = Math.max(1, Math.round(mOriginalKeyWidth[i] * scale));
+            key.gap = Math.max(0, Math.round(mOriginalKeyGap[i] * scale));
+            maxRight = Math.max(maxRight, key.x + key.width);
+        }
+        mDynamicMinWidth = Math.max(1, maxRight);
     }
 
     private int indexOf(int code) {
