@@ -378,8 +378,8 @@ namespace keepass2android.services.Kp2aCredentialProvider.Passkey
           return CBORObject.NewMap()
             .Add(CoseKeyKeytype, CoseKtyRsa)
             .Add(CoseKeyAlgorithm, (int)CoseAlgRs256)
-            .Add(CoseKeyCurve, n!)  // n: modulus (reusing CRV label per COSE spec for RSA)
-            .Add(CoseKeyX, e!);   // e: exponent (reusing X label per COSE spec for RSA)
+            .Add(CoseKeyCurve, n!)  // n: modulus
+            .Add(CoseKeyX, e!);   // e: exponent
         }
 
         throw new ArgumentException("Failed to extract RSA key specification");
