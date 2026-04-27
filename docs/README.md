@@ -6,7 +6,9 @@ Keepass2Android is a password manager app. It allows to store and retrieve passw
 The password database file can be synchronized across different devices. This works best using one of the built-in cloud storage options, but can also be performed with third-party apps. Keepass2Android is compatible with KeePass 2.x and KeepassXC on PCs as well as many other KeePass ports for a variety of platforms.
 
 # Where to get it?
-Regular stable releases of Keepass2Android are available on [Google Play](https://play.google.com/store/apps/details?id=keepass2android.keepass2android).
+Regular stable releases of Keepass2Android are available on Google Play.
+* [Keepass2Android](https://play.google.com/store/apps/details?id=keepass2android.keepass2android)
+* [Keepass2Android Offline](https://play.google.com/store/apps/details?id=keepass2android.keepass2android_nonet)
 
 Beta-releases can be obtained by opting in to the [Beta testing channel](https://play.google.com/apps/testing/keepass2android.keepass2android) or [Beta testing channel for Keepass2Android Offline](https://play.google.com/apps/testing/keepass2android.keepass2android_nonet).
 
