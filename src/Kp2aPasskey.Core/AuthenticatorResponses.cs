@@ -37,7 +37,7 @@ namespace keepass2android.services.Kp2aCredentialProvider.Passkey
   /// - The request came from the correct relying party (via RP ID hash)
   /// - User presence and verification status
   /// - Whether the credential is backed up and eligible for sync
-  /// - For registration: includes attested credential data (AAGUID + credential ID + public key)
+  /// - For registration: includes attested credential data (AuthenticatorAttestationGuid + credential ID + public key)
   /// 
   /// Structure per https://www.w3.org/TR/webauthn-3/#table-authData:
   /// - rpIdHash: 32 bytes (SHA-256 of relying party ID)
@@ -94,7 +94,7 @@ namespace keepass2android.services.Kp2aCredentialProvider.Passkey
         flags |= 0x10;
 
       // Bit 6: Attested Credential Data (AT) - Credential data present
-      // Set during registration to indicate AAGUID + credentialId + publicKey follow
+      // Set during registration to indicate AuthenticatorAttestationGuid + credentialId + publicKey follow
       if (attestedCredentialData)
         flags |= 0x40;
 
@@ -194,7 +194,7 @@ namespace keepass2android.services.Kp2aCredentialProvider.Passkey
   /// - publicKeyAlgorithm: COSE algorithm identifier (ES256=-7, RS256=-257, EdDSA=-8)
   /// 
   /// The authenticatorData includes:
-  /// - AAGUID: Authenticator Attestation GUID identifying keepass2android
+  /// - AuthenticatorAttestationGuid: Authenticator Attestation GUID identifying keepass2android
   /// - Credential ID: Unique identifier for this credential
   /// - Credential Public Key: COSE-encoded public key
   /// - Flags: AT (attested credential data present), BE/BS (backup eligibility/state), UP/UV
@@ -217,9 +217,9 @@ namespace keepass2android.services.Kp2aCredentialProvider.Passkey
     )
 
   {
-    // AAGUID in RFC 4122 (big-endian) format, not Microsoft's mixed-endian format
+    // AuthenticatorAttestationGuid in RFC 4122 (big-endian) format, not Microsoft's mixed-endian format
 
-    public static byte[] AaGuid1 { get; } =
+    public static byte[] AuthenticatorAttestationGuid { get; } =
     [
       0xea, 0xec, 0xde, 0xf2, 0x1c, 0x31, 0x56, 0x34,
       0x86, 0x39, 0xf1, 0xcb, 0xd9, 0xc0, 0x0a, 0x08
@@ -236,7 +236,7 @@ namespace keepass2android.services.Kp2aCredentialProvider.Passkey
         attestedCredentialData: true
       );
 
-      // Append AAGUID + credIdLen + credentialId + credentialPublicKey
+      // Append AuthenticatorAttestationGuid + credIdLen + credentialId + credentialPublicKey
       var credIdLen = new[]
       {
         (byte)(credentialId.Length >> 8),
@@ -244,7 +244,7 @@ namespace keepass2android.services.Kp2aCredentialProvider.Passkey
       };
 
       var result = authData
-        .Concat(AaGuid1)
+        .Concat(AuthenticatorAttestationGuid)
         .Concat(credIdLen)
         .Concat(credentialId)
         .Concat(credentialPublicKey)
