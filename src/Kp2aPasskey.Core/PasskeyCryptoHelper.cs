@@ -412,22 +412,7 @@ namespace keepass2android.services.Kp2aCredentialProvider.Passkey
       }
     }
 
-    /// <summary>
-    /// Convert public key to X.509 SubjectPublicKeyInfo format for JSON response
-    /// Returns the full encoded public key in SPKI format, not just the EC point
-    /// Note: Java's GetEncoded() already returns EC points in UNCOMPRESSED format (0x04 || x || y)
-    /// within the X.509 SPKI structure, so we don't need to explicitly set the point format
-    /// like BouncyCastle's BCECPublicKey.setPointFormat("UNCOMPRESSED")
-    /// </summary>
-    public static byte[]? ConvertPublicKey(IPublicKey publicKey, long keyTypeId)
-    {
-      if (publicKey == null)
-        return null;
 
-      // Return the full X.509 SubjectPublicKeyInfo (SPKI) format
-      // This is what GetEncoded() returns by default for Java public keys
-      return publicKey.GetEncoded();
-    }
 
     private static byte[]? RemoveLeadingZero(byte[]? bytes)
     {

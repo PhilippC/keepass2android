@@ -564,7 +564,7 @@ namespace keepass2android.services.Kp2aCredentialProvider
 
       var credentialPublicKeyCbor = coseKeyObject.EncodeToBytes();
 
-      var publicKeySpki = PasskeyCryptoHelper.ConvertPublicKey(publicKey, keyTypeId);
+      var publicKeySpki = publicKey?.GetEncoded();
       if (publicKeySpki == null)
       {
         throw new InvalidOperationException("Failed to convert public key to X.509 format");
