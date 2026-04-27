@@ -236,16 +236,6 @@ namespace keepass2android.services.Kp2aCredentialProvider.Passkey
         attestedCredentialData: true
       );
 
-      // Log for debugging
-      Log.Debug("AuthenticatorAttestationResponse",
-        $"Base authData length: {authData.Length}, RP ID: {requestOptions.RelyingPartyEntity.Id}");
-      Log.Debug("AuthenticatorAttestationResponse",
-        $"AAGUID length: {AaGuid1.Length}, CredentialId length: {credentialId.Length}");
-      Log.Debug("AuthenticatorAttestationResponse",
-        $"CredentialPublicKey length: {credentialPublicKey.Length}");
-      Log.Debug("AuthenticatorAttestationResponse",
-        $"CredentialPublicKey CBOR hex: {BitConverter.ToString(credentialPublicKey)}");
-
       // Append AAGUID + credIdLen + credentialId + credentialPublicKey
       var credIdLen = new[]
       {
@@ -259,9 +249,6 @@ namespace keepass2android.services.Kp2aCredentialProvider.Passkey
         .Concat(credentialId)
         .Concat(credentialPublicKey)
         .ToArray();
-
-      Log.Debug("AuthenticatorAttestationResponse",
-        $"Final authData length: {result.Length}");
 
       return result;
     }
@@ -281,16 +268,6 @@ namespace keepass2android.services.Kp2aCredentialProvider.Passkey
     {
       var authData = BuildAuthData();
       var attestationObject = BuildAttestationObject();
-
-      // Log hex bytes for debugging - FULL dumps for comparison with KeePassDX
-      Log.Debug("AuthenticatorAttestationResponse",
-        $"=== FULL AuthData ({authData.Length} bytes) ===");
-      Log.Debug("AuthenticatorAttestationResponse",
-        BitConverter.ToString(authData));
-      Log.Debug("AuthenticatorAttestationResponse",
-        $"=== FULL AttestationObject ({attestationObject.Length} bytes) ===");
-      Log.Debug("AuthenticatorAttestationResponse",
-        BitConverter.ToString(attestationObject));
 
       var json = new JSONObject();
       json.Put("clientDataJSON", clientDataResponse.BuildResponse());
@@ -357,10 +334,6 @@ namespace keepass2android.services.Kp2aCredentialProvider.Passkey
     {
       _userHandle = userHandle;
 
-      Log.Debug("AuthenticatorAssertionResponse", "=== AUTHENTICATION DEBUG ===");
-      Log.Debug("AuthenticatorAssertionResponse", $"RP ID: {requestOptions.RpId}");
-      Log.Debug("AuthenticatorAssertionResponse", $"Challenge (base64): {Base64.EncodeToString(requestOptions.Challenge, Base64Flags.UrlSafe | Base64Flags.NoPadding | Base64Flags.NoWrap)}");
-
       _authenticatorData = AuthenticatorDataBuilder.BuildAuthenticatorData(
         relyingPartyId: Encoding.UTF8.GetBytes(requestOptions.RpId),
         userPresent: userPresent,
@@ -369,18 +342,11 @@ namespace keepass2android.services.Kp2aCredentialProvider.Passkey
         backupState: backupState
       );
 
-      Log.Debug("AuthenticatorAssertionResponse", $"AuthenticatorData ({_authenticatorData.Length} bytes): {BitConverter.ToString(_authenticatorData)}");
-
       var clientDataHash = clientDataResponse.HashData();
-      Log.Debug("AuthenticatorAssertionResponse", $"ClientDataHash ({clientDataHash.Length} bytes): {BitConverter.ToString(clientDataHash)}");
-      Log.Debug("AuthenticatorAssertionResponse", $"ClientDataJSON: {Encoding.UTF8.GetString(Base64.Decode(clientDataResponse.BuildResponse(), Base64Flags.UrlSafe | Base64Flags.NoPadding))}");
 
       // Sign: authenticatorData || clientDataHash
       var dataToSign = _authenticatorData.Concat(clientDataHash).ToArray();
-      Log.Debug("AuthenticatorAssertionResponse", $"DataToSign ({dataToSign.Length} bytes): {BitConverter.ToString(dataToSign)}");
-
       _signature = PasskeyCryptoHelper.Sign(privateKeyPem, dataToSign);
-      Log.Debug("AuthenticatorAssertionResponse", $"Signature ({_signature.Length} bytes): {BitConverter.ToString(_signature)}");
     }
 
     public JSONObject ToJson(IClientDataResponse clientDataResponse)
@@ -394,12 +360,6 @@ namespace keepass2android.services.Kp2aCredentialProvider.Passkey
       json.Put("authenticatorData", authenticatorDataB64);
       json.Put("signature", signatureB64);
       json.Put("userHandle", _userHandle);
-
-      Log.Debug("AuthenticatorAssertionResponse", "=== RESPONSE JSON FIELDS ===");
-      Log.Debug("AuthenticatorAssertionResponse", $"clientDataJSON: {clientDataJson}");
-      Log.Debug("AuthenticatorAssertionResponse", $"authenticatorData (base64): {authenticatorDataB64}");
-      Log.Debug("AuthenticatorAssertionResponse", $"signature (base64): {signatureB64}");
-      Log.Debug("AuthenticatorAssertionResponse", $"userHandle: {_userHandle}");
 
       return json;
     }
@@ -425,24 +385,7 @@ namespace keepass2android.services.Kp2aCredentialProvider.Passkey
       json.Put("authenticatorAttachment", authenticatorAttachment);
       json.Put("response", response);
 
-
-      var jsonString = json.ToString();
-      Log.Debug("FidoPublicKeyCredential", "=== COMPLETE CREDENTIAL JSON ===");
-      Log.Debug("FidoPublicKeyCredential", $"id: {id}");
-      Log.Debug("FidoPublicKeyCredential", $"rawId: {id}");
-      Log.Debug("FidoPublicKeyCredential", $"type: public-key");
-      Log.Debug("FidoPublicKeyCredential", $"authenticatorAttachment: {authenticatorAttachment}");
-      Log.Debug("FidoPublicKeyCredential", $"Full JSON length: {jsonString.Length}");
-
-      // Log JSON in chunks to avoid truncation
-      const int chunkSize = 200;
-      for (int i = 0; i < jsonString.Length; i += chunkSize)
-      {
-        int length = Math.Min(chunkSize, jsonString.Length - i);
-        Log.Debug("FidoPublicKeyCredential", $"Complete JSON chunk {i / chunkSize}: {jsonString.Substring(i, length)}");
-      }
-
-      return jsonString;
+      return json.ToString();
     }
   }
 }

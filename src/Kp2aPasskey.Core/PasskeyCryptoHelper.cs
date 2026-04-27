@@ -101,36 +101,25 @@ namespace keepass2android.services.Kp2aCredentialProvider.Passkey
             {
               var keyPair = GenerateEd25519KeyPair();
               if (keyPair != null)
-              {
-                Log.Debug("PasskeyCryptoHelper", $"Generated Ed25519 key pair (algorithm {algorithmId})");
                 return (keyPair, CoseAlgEd25519);
-              }
               break;
             }
           case CoseAlgEs256:
             {
               var keyPair = GenerateEs256KeyPair();
               if (keyPair != null)
-              {
-                Log.Debug("PasskeyCryptoHelper", $"Generated ES256 key pair (algorithm {algorithmId})");
                 return (keyPair, CoseAlgEs256);
-              }
               break;
             }
           case CoseAlgRs256:
             {
               var keyPair = GenerateRs256KeyPair();
               if (keyPair != null)
-              {
-                Log.Debug("PasskeyCryptoHelper", $"Generated RS256 key pair (algorithm {algorithmId})");
                 return (keyPair, CoseAlgRs256);
-              }
               break;
             }
           default:
-            // Unsupported algorithm, try next one
-            Log.Debug("PasskeyCryptoHelper", $"Unsupported algorithm {algorithmId}, skipping");
-            break;
+            break; // Unsupported algorithm, try next one
         }
       }
 
@@ -186,11 +175,7 @@ namespace keepass2android.services.Kp2aCredentialProvider.Passkey
     {
       try
       {
-        Log.Debug("PasskeyCryptoHelper", $"Attempting to generate Ed25519 key pair on Android {Android.OS.Build.VERSION.SdkInt} (API {(int)Android.OS.Build.VERSION.SdkInt})");
-
         // Android's Ed25519 KeyPairGenerator requires Keystore, so we use BouncyCastle C# API
-        Log.Debug("PasskeyCryptoHelper", "Using BouncyCastle C# API to generate Ed25519 key pair");
-
         var keyPairGenerator = new Ed25519KeyPairGenerator();
         keyPairGenerator.Init(new Ed25519KeyGenerationParameters(new Org.BouncyCastle.Security.SecureRandom()));
 
@@ -208,14 +193,11 @@ namespace keepass2android.services.Kp2aCredentialProvider.Passkey
         var publicKeyInfo = Org.BouncyCastle.X509.SubjectPublicKeyInfoFactory.CreateSubjectPublicKeyInfo(publicKeyParams);
         var publicKeyBytes = publicKeyInfo.GetEncoded();
 
-        Log.Debug("PasskeyCryptoHelper", $"Generated Ed25519 keys - Private: {privateKeyBytes.Length} bytes, Public: {publicKeyBytes.Length} bytes");
-
         // Create wrapper keys that implement Java interfaces
         var privateKey = new Ed25519PrivateKeyWrapper(privateKeyBytes);
         var publicKey = new Ed25519PublicKeyWrapper(publicKeyBytes);
 
         var keyPair = new AndroidKeyPair(publicKey, privateKey);
-        Log.Debug("PasskeyCryptoHelper", $"Ed25519 key pair wrapped successfully. Public key algorithm: {keyPair.Public?.Algorithm}, Format: {keyPair.Public?.Format}");
         return keyPair;
       }
       catch (Exception ex)
@@ -277,15 +259,11 @@ namespace keepass2android.services.Kp2aCredentialProvider.Passkey
           _ => throw new SecurityException($"Unknown key type: {privateKeyParams.GetType().Name}")
         };
 
-        Log.Debug("PasskeyCryptoHelper", $"Signing with {algorithmSignature} (key type: {privateKeyParams.GetType().Name})");
-
         // Sign using BouncyCastle C# API
         var signer = SignerUtilities.GetSigner(algorithmSignature);
         signer.Init(true, privateKeyParams);
         signer.BlockUpdate(dataToSign, 0, dataToSign.Length);
         var signatureBytes = signer.GenerateSignature();
-
-        Log.Debug("PasskeyCryptoHelper", $"Signed {dataToSign.Length} bytes → {signatureBytes.Length} byte signature");
         return signatureBytes;
       }
       catch (Exception ex)
