@@ -136,8 +136,8 @@ namespace keepass2android.services.Kp2aCredentialProvider.Passkey
     {
       try
       {
-        var es256CurveNameBc = "secp256r1";
-        var spec = new ECGenParameterSpec(es256CurveNameBc);
+        const string es256CurveName = "secp256r1";
+        var spec = new ECGenParameterSpec(es256CurveName);
         var keyPairGenerator = KeyPairGenerator.GetInstance("EC");
         keyPairGenerator?.Initialize(spec);
         return keyPairGenerator?.GenerateKeyPair();
