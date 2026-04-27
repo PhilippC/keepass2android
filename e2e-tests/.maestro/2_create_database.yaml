@@ -1,0 +1,41 @@
+appId: keepass2android.keepass2android_nonet
+---
+# Test: Create a new database for KeeShare testing
+- launchApp:
+    clearState: true
+
+# Dismiss changelog if present
+- tapOn:
+    id: "android:id/button1"
+    optional: true
+
+# Create new database
+- tapOn: "Create new database..."
+
+# Wait for create database screen
+- assertVisible: "DATABASE LOCATION"
+
+# Enter master password
+- tapOn:
+    text: "password"
+- inputText: "testpassword123"
+
+# Confirm password
+- tapOn:
+    text: "confirm password"
+- inputText: "testpassword123"
+
+# Hide keyboard
+- hideKeyboard
+
+# Create the database
+- scrollUntilVisible:
+    element: "Create database"
+    direction: DOWN
+- tapOn: "Create database"
+
+# Wait for database to be created and opened - look for the group screen
+- extendedWaitUntil:
+    visible:
+      text: "keepass"
+    timeout: 15000
