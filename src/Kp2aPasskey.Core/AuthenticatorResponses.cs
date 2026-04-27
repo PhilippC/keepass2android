@@ -253,13 +253,13 @@ namespace keepass2android.services.Kp2aCredentialProvider.Passkey
       return result;
     }
 
-    private byte[] BuildAttestationObject()
+    private byte[] BuildAttestationObject(byte[] authData)
     {
       // https://www.w3.org/TR/webauthn-3/#attestation-object
       var cbor = CBORObject.NewMap()
         .Add("fmt", "none")
         .Add("attStmt", CBORObject.NewMap())
-        .Add("authData", BuildAuthData());
+        .Add("authData", authData);
 
       return cbor.EncodeToBytes();
     }
@@ -267,7 +267,7 @@ namespace keepass2android.services.Kp2aCredentialProvider.Passkey
     public JSONObject ToJson()
     {
       var authData = BuildAuthData();
-      var attestationObject = BuildAttestationObject();
+      var attestationObject = BuildAttestationObject(authData);
 
       var json = new JSONObject();
       json.Put("clientDataJSON", clientDataResponse.BuildResponse());
