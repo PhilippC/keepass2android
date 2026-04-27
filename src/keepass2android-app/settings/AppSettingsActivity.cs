@@ -452,7 +452,20 @@ namespace keepass2android
         base.OnCreate(savedInstanceState);
         FindPreference(GetString(Resource.String.keyfile_key)).PreferenceChange += OnRememberKeyFileHistoryChanged;
 
-
+        FindPreference(GetString(Resource.String.design_key)).PreferenceChange += (sender, args) =>
+        {
+          var newDesign = args.NewValue.ToString();
+          Kp2aLog.Log($"Design changed to: {newDesign}");
+          
+          if (newDesign == "MaterialYou" && (int)Android.OS.Build.VERSION.SdkInt >= 31)
+          {
+            App.Kp2a.ShowMessage(Activity, 
+              GetString(Resource.String.material_you_enabled), 
+              MessageSeverity.Info);
+          }
+          // restart to apply theme change. Recreating would be nicer, but that - for some reason - causes GroupActivity to be twice on the backstack afterwards :-(
+          Activity.Finish();
+        };
       }
     }
     public class DisplayPreferenceFragment : PreferenceFragmentWithResource
