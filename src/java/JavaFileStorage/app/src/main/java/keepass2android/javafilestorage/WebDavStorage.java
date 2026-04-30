@@ -389,9 +389,24 @@ public class WebDavStorage extends JavaFileStorageBase {
 
         if (writeTransactional)
         {
-            String randomSuffix = ".tmp." + generateRandomHexString(8);
-            uploadFile(path + randomSuffix, data, false);
-            renameOrMoveWebDavResource(path+randomSuffix, path, true);
+            // Generate a unique temporary file suffix
+            String tempSuffix = ".tmp." + generateRandomHexString(8);
+            String tempPath;
+
+            // Preserve the original file extension for WebDAV providers that don't support
+            // changing extensions. Insert temp suffix before the extension instead of after it.
+            // Example: "file.kdbx" -> "file.tmp.abc12345.kdbx" (instead of "file.kdbx.tmp.abc12345")
+            int lastDot = path.lastIndexOf('.');
+            int lastSlash = path.lastIndexOf('/');
+            if (lastDot > lastSlash && lastDot >= 0) {
+                // File has an extension: insert temp suffix before the extension
+                tempPath = path.substring(0, lastDot) + tempSuffix + path.substring(lastDot);
+            } else {
+                // No extension: append temp suffix at the end
+                tempPath = path + tempSuffix;
+            }
+            uploadFile(tempPath, data, false);
+            renameOrMoveWebDavResource(tempPath, path, true);
             return;
         }
 
