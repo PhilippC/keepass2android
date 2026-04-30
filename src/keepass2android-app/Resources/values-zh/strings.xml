@@ -1264,4 +1264,13 @@ Initial public release
   <string name="pref_enable_periodic_background_sync_summary">如启用，应用会定期同步解锁的数据库。这遵守上面的网络连接设置。</string>
   <string name="pref_periodic_background_sync_interval_title">定期后台同步间隔</string>
   <string name="pref_periodic_background_sync_interval_summary">设置分钟为单位的后台同步间隔</string>
+
+  <string name="otp_find_entry">查找 OTP 对应的记录</string>
+  <string name="otp_select_other_entry">选择其他记录</string>
+  <string name="otp_create_new_entry">新建记录</string>
+  <string name="otp_add_to_entry_title">添加 OTP 到记录？</string>
+  <string name="otp_add_to_entry_text">将扫描到的 OTP 配置添加到所选记录中？</string>
+  <string name="otp_overwrite_title">OTP 已存在</string>
+  <string name="otp_overwrite_text">此记录已有 OTP 配置，是否覆盖？</string>
+  <string name="overwrite">覆盖</string>
 </resources>
