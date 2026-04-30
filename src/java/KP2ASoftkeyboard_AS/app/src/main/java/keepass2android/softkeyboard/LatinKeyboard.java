@@ -151,7 +151,9 @@ public class LatinKeyboard extends Keyboard {
         sSpacebarVerticalCorrection = res.getDimensionPixelOffset(
                 R.dimen.spacebar_vertical_correction);
         mIsAlphaKeyboard = xmlLayoutResId == R.xml.kbd_qwerty
-                || xmlLayoutResId == R.xml.kbd_qwerty_black;
+                || xmlLayoutResId == R.xml.kbd_qwerty_black
+                || xmlLayoutResId == R.xml.kbd_dvorak
+                || xmlLayoutResId == R.xml.kbd_dvorak_black;
         // The index of space key is available only after Keyboard constructor has finished.
         mSpaceKeyIndexArray = new int[] { indexOf(KP2AKeyboard.KEYCODE_SPACE) };
         initializeNumberHintResources(context);

@@ -373,6 +373,19 @@
     <string name="subtype_mode_keyboard">keyboard</string>
     <string name="subtype_mode_voice">voice</string>
 
+    <!-- Key layout preference -->
+    <string name="pref_key_layout_title">Key layout</string>
+    <string name="pref_key_layout_qwerty" translatable="false">QWERTY</string>
+    <string name="pref_key_layout_dvorak" translatable="false">Dvorak</string>
+    <string-array name="key_layout_entries" translatable="false">
+        <item>@string/pref_key_layout_qwerty</item>
+        <item>@string/pref_key_layout_dvorak</item>
+    </string-array>
+    <string-array name="key_layout_entry_values" translatable="false">
+        <item>qwerty</item>
+        <item>dvorak</item>
+    </string-array>
+
     <!-- Title for Latin keyboard debug settings activity / dialog -->
     <string name="english_ime_debug_settings" translatable="false">Android keyboard Debug settings</string>
     <string name="prefs_debug_mode" translatable="false">Debug Mode</string>
