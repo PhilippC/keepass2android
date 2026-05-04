@@ -185,8 +185,15 @@ namespace keepass2android.services.Kp2aCredentialProvider.Passkey
         var privateKeyParams = (Ed25519PrivateKeyParameters)bcKeyPair.Private;
         var publicKeyParams = (Ed25519PublicKeyParameters)bcKeyPair.Public;
 
-        // Get PKCS#8 encoded private key
-        var privateKeyInfo = Org.BouncyCastle.Pkcs.PrivateKeyInfoFactory.CreatePrivateKeyInfo(privateKeyParams);
+        // Build PKCS#8 v0 PrivateKeyInfo (RFC 8410) — KeePassXC/OpenSSL compatible
+        // BouncyCastle's PrivateKeyInfoFactory generates OneAsymmetricKey v1 which embeds the
+        // public key in an optional [1] field. This might be rejected for Ed25519.
+        var algId = new Org.BouncyCastle.Asn1.X509.AlgorithmIdentifier(
+          Org.BouncyCastle.Asn1.EdEC.EdECObjectIdentifiers.id_Ed25519);
+        var rawSeed = privateKeyParams.GetEncoded(); // 32-byte private key seed
+        // RFC 8410 CurvePrivateKey ::= OCTET STRING (seed), stored as the privateKey content
+        var privateKeyInfo = new Org.BouncyCastle.Asn1.Pkcs.PrivateKeyInfo(algId,
+          new Org.BouncyCastle.Asn1.DerOctetString(rawSeed));
         var privateKeyBytes = privateKeyInfo.GetEncoded();
 
         // Get X.509 encoded public key
