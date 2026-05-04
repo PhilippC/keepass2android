@@ -56,7 +56,7 @@ namespace Kp2aPasskey.Core
       var passkeyFieldsJson = new JSONObject();
       passkeyFieldsJson.Put(PwDefs.TitleField, $"Passkey for {relyingParty}");
       passkeyFieldsJson.Put(PwDefs.UserNameField, username);
-      passkeyFieldsJson.Put(PwDefs.UrlField, $"passkey:{relyingParty}");
+      passkeyFieldsJson.Put(PwDefs.UrlField, relyingParty);
 
       // Add passkey extra fields
       passkeyFieldsJson.Put(PasskeyStorage.FIELD_USERNAME, passkey.Username);

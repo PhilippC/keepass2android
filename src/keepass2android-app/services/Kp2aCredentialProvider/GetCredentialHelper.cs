@@ -111,9 +111,16 @@ namespace keepass2android.services.Kp2aCredentialProvider
         var relyingPartyId = requestOptions.RpId;
         var allowCredentials = requestOptions.AllowCredentials;
 
-        var query = $"passkey:{relyingPartyId}";
-        var searchResults = ShareUrlResults.GetSearchResultsForUrl(query);
-        var foundEntries = searchResults?.Entries.ToList() ?? new List<PwEntry>();
+        // Search directly by the KPEX_PASSKEY_RELYING_PARTY extra field — no pseudo-URL needed.
+        var foundEntries = new List<PwEntry>();
+        foreach (var db in App.Kp2a.OpenDatabases)
+        {
+          var results = db.SearchForRelyingParty(relyingPartyId);
+          if (results?.Entries != null)
+          {
+            foundEntries.AddRange(results.Entries);
+          }
+        }
 
         // Filter by allowCredentials if specified
         if (allowCredentials.Count > 0)
@@ -213,10 +220,13 @@ namespace keepass2android.services.Kp2aCredentialProvider
       foreach (var entry in entries)
       {
         var passkey = Kp2aPasskey.Core.PasskeyStorage.RetrievePasskey(entry);
-        if (passkey != null && allowedCredentialIds.Contains(passkey.CredentialId))
+        if (passkey == null)
         {
-          filtered.Add(entry);
+          continue;
         }
+        bool match = allowedCredentialIds.Contains(passkey.CredentialId);
+        if (match)
+          filtered.Add(entry);
       }
 
       return filtered;
