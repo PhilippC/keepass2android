@@ -896,7 +896,7 @@ namespace keepass2android
         {
           string key = iter.Next().ToString();
           string value = allFields.Get(key).ToString();
-          bool isProtected = ((ProtectedFieldsList != null) && (ProtectedFieldsList.Contains(key)))
+          bool isProtected = ((ProtectedFieldsList != null) && ProtectedFieldsList.Contains(key))
               || (key == PwDefs.PasswordField);
           newEntry.Strings.Set(key, new ProtectedString(isProtected, value));
         }

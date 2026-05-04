@@ -385,6 +385,9 @@ namespace keepass2android.services.Kp2aCredentialProvider
       // Build public key encodings (CBOR for credential, X.509 SPKI for Android)
       var (credentialPublicKeyCbor, publicKeySpki) = BuildPublicKeyEncodings(publicKey, keyTypeId);
 
+      var beFlag = passkey.BackupEligibility ?? PasskeyPreferences.GetBackupEligibility(this);
+      var bsFlag = passkey.BackupState ?? PasskeyPreferences.GetBackupState(this);
+
       // Build attestation response
       var attestationResponse = new AuthenticatorAttestationResponse(
         requestOptions: creationOptions,
@@ -392,8 +395,8 @@ namespace keepass2android.services.Kp2aCredentialProvider
         credentialPublicKey: credentialPublicKeyCbor,
         userPresent: true,
         userVerified: _userVerifiedForCreate,
-        backupEligibility: passkey.BackupEligibility ?? PasskeyPreferences.GetBackupEligibility(this),
-        backupState: passkey.BackupState ?? PasskeyPreferences.GetBackupState(this),
+        backupEligibility: beFlag,
+        backupState: bsFlag,
         publicKeyTypeId: keyTypeId,
         publicKeySpki: publicKeySpki,
         clientDataResponse: clientDataResponse
@@ -947,13 +950,16 @@ namespace keepass2android.services.Kp2aCredentialProvider
         );
       }
 
+      var assertionBe = passkey.BackupEligibility ?? PasskeyPreferences.GetBackupEligibility(this);
+      var assertionBs = passkey.BackupState ?? PasskeyPreferences.GetBackupState(this);
+
       // Build assertion response
       var assertionResponse = new AuthenticatorAssertionResponse(
         requestOptions: requestOptions,
         userPresent: true,
         userVerified: userVerified,
-        backupEligibility: passkey.BackupEligibility ?? PasskeyPreferences.GetBackupEligibility(this),
-        backupState: passkey.BackupState ?? PasskeyPreferences.GetBackupState(this),
+        backupEligibility: assertionBe,
+        backupState: assertionBs,
         userHandle: passkey.UserHandle,
         privateKeyPem: passkey.PrivateKeyPem,
         clientDataResponse: clientDataResponse
