@@ -18,11 +18,17 @@
 //   You should have received a copy of the GNU General Public License
 //   along with Keepass2Android.  If not, see <http://www.gnu.org/licenses/>.
 
+using System.Linq;
 using System.Security.Cryptography;
 using Android.Util;
 using Java.Lang;
 using Java.Security;
 using Java.Security.Spec;
+using Org.BouncyCastle.Asn1;
+using Org.BouncyCastle.Asn1.Pkcs;
+using Org.BouncyCastle.Asn1.Sec;
+using Org.BouncyCastle.Asn1.X509;
+using Org.BouncyCastle.Asn1.X9;
 using Org.BouncyCastle.Crypto;
 using Org.BouncyCastle.Crypto.Generators;
 using Org.BouncyCastle.Crypto.Parameters;
@@ -217,21 +223,25 @@ namespace keepass2android.services.Kp2aCredentialProvider.Passkey
 
     /// <summary>
     /// Convert a private key to PEM format for storage (PKCS#8).
-    /// Uses BouncyCastle PemWriter (PKCS#8 DER → base64 with PEM headers).
+    /// Always writes PKCS#8 "BEGIN PRIVATE KEY" format.
+    /// Note: PemWriter must NOT be used here — for EC keys it auto-converts to SEC1
+    /// ("BEGIN EC PRIVATE KEY") which BouncyCastle's own PemReader cannot reliably
+    /// parse back due to a curve OID lookup bug in ECDomainParameters.FromX962Parameters.
     /// </summary>
     public static string ConvertPrivateKeyToPem(IPrivateKey privateKey)
     {
       var encoded = privateKey?.GetEncoded()
         ?? throw new ArgumentException("Cannot encode private key");
 
-      // Parse the PKCS#8 DER bytes into a BouncyCastle PrivateKeyInfo ASN.1 structure
-      var privateKeyInfo = Org.BouncyCastle.Asn1.Pkcs.PrivateKeyInfo.GetInstance(encoded);
-
-      // Let PemWriter handle headers, base64 and line-wrapping
-      using var writer = new StringWriter();
-      new PemWriter(writer).WriteObject(privateKeyInfo);
-      return writer.ToString().Trim();
-
+      // encoded is always PKCS#8 DER on Android (Java GetEncoded() contract).
+      // Build the PEM manually to guarantee "BEGIN PRIVATE KEY" header regardless of key type.
+      var b64 = Convert.ToBase64String(encoded);
+      var sb = new System.Text.StringBuilder();
+      sb.AppendLine("-----BEGIN PRIVATE KEY-----");
+      for (int i = 0; i < b64.Length; i += 64)
+        sb.AppendLine(b64.Substring(i, System.Math.Min(64, b64.Length - i)));
+      sb.Append("-----END PRIVATE KEY-----");
+      return sb.ToString();
     }
 
     /// <summary>
@@ -244,18 +254,8 @@ namespace keepass2android.services.Kp2aCredentialProvider.Passkey
     {
       try
       {
-        // Parse PEM once with BouncyCastle — covers PKCS#8, SEC1 (EC), PKCS#1 (RSA)
-        AsymmetricKeyParameter privateKeyParams;
-        using (var reader = new StringReader(privateKeyPem))
-        {
-          var pemObject = new PemReader(reader).ReadObject();
-          privateKeyParams = pemObject switch
-          {
-            AsymmetricCipherKeyPair kp => kp.Private,
-            AsymmetricKeyParameter kp => kp,
-            _ => throw new ArgumentException($"Unsupported PEM object type: {pemObject?.GetType().Name}")
-          };
-        }
+        // Parse PEM — covers PKCS#8 and, as a fallback for existing entries, SEC1 (BEGIN EC PRIVATE KEY)
+        var privateKeyParams = ParsePrivateKeyFromPem(privateKeyPem);
 
         // Determine signature algorithm directly from key type — no string matching on .Algorithm
         string algorithmSignature = privateKeyParams switch
@@ -280,6 +280,73 @@ namespace keepass2android.services.Kp2aCredentialProvider.Passkey
       }
     }
 
+
+    /// <summary>
+    /// Parse an asymmetric private key from a PEM string.
+    /// Handles PKCS#8 ("BEGIN PRIVATE KEY"), PKCS#1 RSA, and SEC1 EC ("BEGIN EC PRIVATE KEY").
+    /// SEC1 fallback is needed because BouncyCastle's PemReader can throw on some SEC1 keys
+    /// due to a NullReferenceException in ECDomainParameters.FromX962Parameters.
+    /// </summary>
+    private static AsymmetricKeyParameter ParsePrivateKeyFromPem(string pemText)
+    {
+      try
+      {
+        using var reader = new StringReader(pemText);
+        var obj = new PemReader(reader).ReadObject();
+        return obj switch
+        {
+          AsymmetricCipherKeyPair kp => kp.Private,
+          AsymmetricKeyParameter k => k,
+          _ => throw new ArgumentException($"Unsupported PEM object type: {obj?.GetType().Name}")
+        };
+      }
+      catch when (pemText.Contains("EC PRIVATE KEY"))
+      {
+        // BouncyCastle PemReader fails to read some SEC1 keys (NRE in curve OID lookup).
+        // Convert SEC1 → PKCS#8 PrivateKeyInfo manually so PrivateKeyFactory can handle it.
+        return ParseSec1EcPrivateKey(ExtractDerBytesFromPem(pemText));
+      }
+    }
+
+    /// <summary>
+    /// Parse a SEC1 EC private key DER blob by wrapping it in a PKCS#8 PrivateKeyInfo
+    /// and delegating to BouncyCastle's PrivateKeyFactory.
+    /// </summary>
+    private static ECPrivateKeyParameters ParseSec1EcPrivateKey(byte[] sec1Der)
+    {
+      // SEC1 ECPrivateKey ::= SEQUENCE { version, privateKey OCTET STRING,
+      //     [0] ECParameters OPTIONAL, [1] publicKey BIT STRING OPTIONAL }
+      var sec1Seq = (Asn1Sequence)Asn1Object.FromByteArray(sec1Der);
+      var sec1 = ECPrivateKeyStructure.GetInstance(sec1Seq);
+
+      // Extract curve OID from the optional [0] context-tagged field
+      Asn1Object? curveParams = null;
+      foreach (var element in sec1Seq)
+      {
+        if (element is Asn1TaggedObject tagged && tagged.TagNo == 0)
+        {
+          curveParams = tagged.GetObject();
+          break;
+        }
+      }
+
+      if (curveParams == null)
+        throw new ArgumentException("SEC1 EC key missing curve parameters in [0] field");
+
+      // Build PKCS#8 PrivateKeyInfo: AlgorithmIdentifier { id-ecPublicKey, curveOID } + SEC1 body
+      var algId = new AlgorithmIdentifier(X9ObjectIdentifiers.IdECPublicKey, curveParams);
+      var privKeyInfo = new PrivateKeyInfo(algId, sec1);
+      return (ECPrivateKeyParameters)PrivateKeyFactory.CreateKey(privKeyInfo);
+    }
+
+    private static byte[] ExtractDerBytesFromPem(string pemText)
+    {
+      var base64 = string.Concat(
+        pemText.Split('\n')
+               .Select(l => l.Trim())
+               .Where(l => l.Length > 0 && !l.StartsWith("-----")));
+      return Convert.FromBase64String(base64);
+    }
 
     /// <summary>
     /// Convert a public key to CBOR format for COSE encoding
