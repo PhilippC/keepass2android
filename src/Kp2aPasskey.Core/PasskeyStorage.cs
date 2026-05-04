@@ -44,6 +44,10 @@ namespace Kp2aPasskey.Core
     public const string FIELD_FLAG_BS = "KPEX_PASSKEY_FLAG_BS";
     public const string PASSKEY_TAG = "Passkey";
 
+    // Fields that must be stored encrypted (ProtectInMemory) in the KeePass entry
+    public static readonly IReadOnlyList<string> ProtectedFields =
+      [FIELD_PRIVATE_KEY, FIELD_CREDENTIAL_ID, FIELD_USER_HANDLE];
+
 
     public static JSONObject CreatePasskeyFieldsJson(string relyingParty, string username, PasskeyData passkey)
     {

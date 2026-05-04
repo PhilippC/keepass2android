@@ -801,18 +801,11 @@ namespace keepass2android.services.Kp2aCredentialProvider
 
     private Intent BuildLaunchIntentToCreatePasskey(JSONObject passkeyFieldsJson)
     {
-      var jsonProtectedFields = new JSONArray(new List<string>
-      {
-        PasskeyStorage.FIELD_PRIVATE_KEY,
-        PasskeyStorage.FIELD_CREDENTIAL_ID,
-        PasskeyStorage.FIELD_USER_HANDLE
-      });
-      var jsonTags = new JSONArray(new List<string> { PasskeyStorage.PASSKEY_TAG });
-
       var forwardIntent = new Intent(this, typeof(SelectCurrentDbActivity));
       forwardIntent.PutExtra(Strings.ExtraEntryOutputData, passkeyFieldsJson.ToString());
-      forwardIntent.PutExtra(Strings.ExtraProtectedFieldsList, jsonProtectedFields.ToString());
-      forwardIntent.PutExtra(CreateEntryThenCloseTask.TagsKey, jsonTags.ToString());
+      // Must use PutStringArrayListExtra — CreateEntryThenCloseTask.Setup reads these with GetStringArrayList
+      forwardIntent.PutStringArrayListExtra(Strings.ExtraProtectedFieldsList, PasskeyStorage.ProtectedFields.ToList());
+      forwardIntent.PutStringArrayListExtra(CreateEntryThenCloseTask.TagsKey, new List<string> { PasskeyStorage.PASSKEY_TAG });
       forwardIntent.PutExtra(AppTask.AppTaskKey, "CreateEntryThenCloseTask");
       forwardIntent.PutExtra(CreateEntryThenCloseTask.ShowUserNotificationsKey, "false");
       return forwardIntent;
