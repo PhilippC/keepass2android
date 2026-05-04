@@ -780,7 +780,7 @@ namespace keepass2android.services.Kp2aCredentialProvider
         ? $"https://{creationOptions.RelyingPartyEntity.Id}"
         : PasskeyOptionParsingHelper.GetOriginForCallingApp(createRequest.CallingAppInfo);
 
-      var passkeyFieldsJson = CreatePasskeyFieldsJson(creationOptions.RelyingPartyEntity.Id, creationOptions.UserEntity.Name, passkey);
+      var passkeyFieldsJson = PasskeyStorage.CreatePasskeyFieldsJson(creationOptions.RelyingPartyEntity.Id, creationOptions.UserEntity.Name, passkey);
 
       var forwardIntent = BuildLaunchIntentToCreatePasskey(passkeyFieldsJson);
 
@@ -828,27 +828,6 @@ namespace keepass2android.services.Kp2aCredentialProvider
       return passkeyResponseJson;
     }
 
-    private static JSONObject CreatePasskeyFieldsJson(string relyingParty, string username, PasskeyData passkey)
-    {
-      // Build AllFields JSON with passkey data in extra fields (compatible with KeePassDX/KeePassXC)
-      // Start with standard entry fields
-      var passkeyFieldsJson = new JSONObject();
-      passkeyFieldsJson.Put(PwDefs.TitleField, $"Passkey for {relyingParty}");
-      passkeyFieldsJson.Put(PwDefs.UserNameField, username);
-      passkeyFieldsJson.Put(PwDefs.UrlField, $"passkey:{relyingParty}");
-
-      // Add passkey extra fields
-      passkeyFieldsJson.Put(PasskeyStorage.FIELD_USERNAME, passkey.Username);
-      passkeyFieldsJson.Put(PasskeyStorage.FIELD_PRIVATE_KEY, passkey.PrivateKeyPem);
-      passkeyFieldsJson.Put(PasskeyStorage.FIELD_CREDENTIAL_ID, passkey.CredentialId);
-      passkeyFieldsJson.Put(PasskeyStorage.FIELD_USER_HANDLE, passkey.UserHandle);
-      passkeyFieldsJson.Put(PasskeyStorage.FIELD_RELYING_PARTY, passkey.RelyingParty);
-      if (passkey.BackupEligibility.HasValue)
-        passkeyFieldsJson.Put(PasskeyStorage.FIELD_FLAG_BE, passkey.BackupEligibility.Value.ToString().ToLower());
-      if (passkey.BackupState.HasValue)
-        passkeyFieldsJson.Put(PasskeyStorage.FIELD_FLAG_BS, passkey.BackupState.Value.ToString().ToLower());
-      return passkeyFieldsJson;
-    }
 
     #endregion
 

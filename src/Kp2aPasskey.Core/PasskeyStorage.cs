@@ -22,6 +22,7 @@ using System;
 using System.Linq;
 using KeePassLib;
 using KeePassLib.Security;
+using Org.Json;
 
 namespace Kp2aPasskey.Core
 {
@@ -43,51 +44,28 @@ namespace Kp2aPasskey.Core
     public const string FIELD_FLAG_BS = "KPEX_PASSKEY_FLAG_BS";
     public const string PASSKEY_TAG = "Passkey";
 
-    /// <summary>
-    /// Store passkey data in a KeePass entry using ExtraFields (Strings)
-    /// </summary>
-    public static void StorePasskey(PwEntry entry, PasskeyData passkey)
+
+    public static JSONObject CreatePasskeyFieldsJson(string relyingParty, string username, PasskeyData passkey)
     {
-      if (entry == null || passkey == null)
-        throw new ArgumentNullException();
+      // Build AllFields JSON with passkey data in extra fields (compatible with KeePassDX/KeePassXC)
+      // Start with standard entry fields
+      var passkeyFieldsJson = new JSONObject();
+      passkeyFieldsJson.Put(PwDefs.TitleField, $"Passkey for {relyingParty}");
+      passkeyFieldsJson.Put(PwDefs.UserNameField, username);
+      passkeyFieldsJson.Put(PwDefs.UrlField, $"passkey:{relyingParty}");
 
-      // Add Passkey tag
-      if (!entry.Tags.Contains(PASSKEY_TAG))
-      {
-        var tags = new List<string>(entry.Tags);
-        tags.Add(PASSKEY_TAG);
-        entry.Tags = tags;
-      }
-
-      // Store passkey data in ExtraFields (Strings)
-      entry.Strings.Set(FIELD_USERNAME, new ProtectedString(false, passkey.Username));
-      entry.Strings.Set(FIELD_PRIVATE_KEY, new ProtectedString(true, passkey.PrivateKeyPem)); // Protected
-      entry.Strings.Set(FIELD_CREDENTIAL_ID, new ProtectedString(true, passkey.CredentialId)); // Protected
-      entry.Strings.Set(FIELD_USER_HANDLE, new ProtectedString(true, passkey.UserHandle)); // Protected
-      entry.Strings.Set(FIELD_RELYING_PARTY, new ProtectedString(false, passkey.RelyingParty));
-
+      // Add passkey extra fields
+      passkeyFieldsJson.Put(PasskeyStorage.FIELD_USERNAME, passkey.Username);
+      passkeyFieldsJson.Put(PasskeyStorage.FIELD_PRIVATE_KEY, passkey.PrivateKeyPem);
+      passkeyFieldsJson.Put(PasskeyStorage.FIELD_CREDENTIAL_ID, passkey.CredentialId);
+      passkeyFieldsJson.Put(PasskeyStorage.FIELD_USER_HANDLE, passkey.UserHandle);
+      passkeyFieldsJson.Put(PasskeyStorage.FIELD_RELYING_PARTY, passkey.RelyingParty);
       if (passkey.BackupEligibility.HasValue)
-        entry.Strings.Set(FIELD_FLAG_BE, new ProtectedString(false, passkey.BackupEligibility.Value.ToString().ToLower()));
-
+        passkeyFieldsJson.Put(PasskeyStorage.FIELD_FLAG_BE, passkey.BackupEligibility.Value ? "1" : "0");
       if (passkey.BackupState.HasValue)
-        entry.Strings.Set(FIELD_FLAG_BS, new ProtectedString(false, passkey.BackupState.Value.ToString().ToLower()));
-
-      // Also store the username in the standard username field if not already set
-      if (string.IsNullOrEmpty(entry.Strings.ReadSafe(PwDefs.UserNameField)))
-      {
-        entry.Strings.Set(PwDefs.UserNameField, new ProtectedString(false, passkey.Username));
-      }
-
-      // Add passkey: URL for searchability
-      var url = entry.Strings.ReadSafe(PwDefs.UrlField);
-      var passkeyUrl = $"passkey:{passkey.RelyingParty}";
-      if (!url.Contains(passkeyUrl))
-      {
-        var newUrl = string.IsNullOrEmpty(url) ? passkeyUrl : $"{url}\n{passkeyUrl}";
-        entry.Strings.Set(PwDefs.UrlField, new ProtectedString(false, newUrl));
-      }
+        passkeyFieldsJson.Put(PasskeyStorage.FIELD_FLAG_BS, passkey.BackupState.Value ? "1" : "0");
+      return passkeyFieldsJson;
     }
-
     /// <summary>
     /// Retrieve passkey data from a KeePass entry
     /// </summary>
@@ -130,19 +108,18 @@ namespace Kp2aPasskey.Core
 
       // Parse optional boolean fields
       var backupEligibleStr = entry.Strings.ReadSafe(FIELD_FLAG_BE);
-      if (!string.IsNullOrEmpty(backupEligibleStr) && bool.TryParse(backupEligibleStr, out var backupEligible))
-      {
-        passkey.BackupEligibility = backupEligible;
-      }
+      if (!string.IsNullOrEmpty(backupEligibleStr))
+        passkey.BackupEligibility = ParseBool(backupEligibleStr);
 
       var backupStateStr = entry.Strings.ReadSafe(FIELD_FLAG_BS);
-      if (!string.IsNullOrEmpty(backupStateStr) && bool.TryParse(backupStateStr, out var backupState))
-      {
-        passkey.BackupState = backupState;
-      }
+      if (!string.IsNullOrEmpty(backupStateStr))
+        passkey.BackupState = ParseBool(backupStateStr);
 
       return passkey;
     }
+
+    private static bool ParseBool(string value) =>
+      value == "1" || string.Equals(value, "true", StringComparison.OrdinalIgnoreCase);
 
     /// <summary>
     /// Check if an entry contains passkey data
