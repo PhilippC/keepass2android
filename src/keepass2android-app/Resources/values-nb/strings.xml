@@ -408,6 +408,9 @@
   <string name="hint_sftp_port">port</string>
   <string name="initial_directory">Første katalog (valgfritt):</string>
   <string name="enter_sftp_login_title">Angi innloggingsinformasjon for SFTP:</string>
+  <string name="sftp_kex_title">Nøkkelutveksling (KEX) algoritme(r) (valgfritt)</string>
+  <string name="hint_sftp_kex"></string>
+  <string name="hint_sftp_shk"></string>
   <string name="enter_ftp_login_title">Angi innloggingsinformasjon for FTP:</string>
   <string name="select_storage_type">Velg lagringstype:</string>
   <string name="filestoragename_file">Lokal fil</string>

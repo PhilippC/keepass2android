@@ -341,7 +341,9 @@
   <string name="QuickUnlockDefaultEnabled_title">Ενεργοποίηση QuickUnlock εξ ορισμού</string>
   <string name="QuickUnlockDefaultEnabled_summary">Ορίζει αν το QuickUnlock είναι ενεργό εξ ορισμού ή όχι.</string>
   <string name="ViewDatabaseSecure_title">Προστασία προβολής βάσης δεδομένων</string>
+  <string name="DisableSecureDisplayCheck_title">Παράλειψη ελέγχου για ασφαλή οθόνη</string>
   <string name="ViewDatabaseSecure_summary">Εάν ενεργοποιηθεί, δεν επιτρέπονται screenshots και δεν εμφανίζεται μικρογραφία της εφαρμογής στη λίστα πρόσφατων εφαρμογών.</string>
+  <string name="DisableSecureDisplayCheck_summary">Επιτρέπει την εμφάνιση ευαίσθητων πληροφοριών, ακόμη και αν η τρέχουσα οθόνη δεν έχει επισημανθεί \"ασφαλής\" από το Android.</string>
   <string name="QuickUnlockIconHidden_title">Απόκρυψη εικονιδίου QuickUnlock</string>
   <string name="QuickUnlockIconHidden_summary">To QuickUnlock δυστυχώς δεν λειτουργεί χωρίς να εμφανίζει εικονίδιο ειδοποίησης. Επιλέξτε αυτήν την επιλογή για να χρησιμοποιήσετε διαφανές εικονίδιο.</string>
   <string name="QuickUnlockIconHidden16_title">Απόκρυψη εικονιδίου QuickUnlock</string>
