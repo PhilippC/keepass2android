@@ -341,6 +341,7 @@
   <string name="QuickUnlockDefaultEnabled_title">Ve výchozím nastavení povolit Rychlé odemknutí</string>
   <string name="QuickUnlockDefaultEnabled_summary">Určuje, zda je Rychlé odemknutí ve výchozím nastavení povoleno nebo ne.</string>
   <string name="ViewDatabaseSecure_title">Chránit zobrazení databáze</string>
+  <string name="DisableSecureDisplayCheck_title">Přeskočit kontrolu zabezpečení displeje</string>
   <string name="ViewDatabaseSecure_summary">Je-li povoleno, nejsou povoleny screenshoty aplikace a náhled aplikace se nebude zobrazovat v seznamu posledních aplikací.</string>
   <string name="QuickUnlockIconHidden_title">Skrýt ikonu Rychlého odemknutí</string>
   <string name="QuickUnlockIconHidden_summary">Rychlé odemknutí bohužel nefunguje bez zobrazení ikony upozornění. Vyberte tuto možnost, pokud chcete použít průhlednou ikonu.</string>
