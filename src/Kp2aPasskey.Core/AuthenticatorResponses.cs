@@ -158,6 +158,7 @@ namespace keepass2android.services.Kp2aCredentialProvider.Passkey
       _clientDataJson.Put("type", type == RequestType.Create ? "webauthn.create" : "webauthn.get");
       _clientDataJson.Put("challenge", Base64EncodeUrlSafe(challenge));
       _clientDataJson.Put("origin", origin);
+      _clientDataJson.Put("crossOrigin", false);
     }
 
     public byte[] HashData()

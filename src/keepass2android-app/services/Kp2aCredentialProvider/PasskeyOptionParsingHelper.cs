@@ -74,47 +74,33 @@ namespace keepass2android.services.Kp2aCredentialProvider
 
       try
       {
-        var packageManager = Application.Context.PackageManager;
-
-        var packageInfo = packageManager?.GetPackageInfo(
-          callingAppInfo.PackageName,
-          PackageInfoFlags.Signatures
-        );
-
-        if (packageInfo?.Signatures == null || packageInfo.Signatures.Count == 0)
+        // Use the SigningInfo the framework already attached to CallingAppInfo
+        var signers = callingAppInfo.SigningInfo?.GetApkContentsSigners();
+        if (signers == null || signers.Length == 0)
         {
+          Kp2aLog.Log($"GetOriginForCallingApp: no signers in CallingAppInfo.SigningInfo for {callingAppInfo.PackageName}");
           return AppKeyHashStringPrefix;
         }
 
-        // Get the first signature and extract the X.509 certificate
-        var signature = packageInfo.Signatures[0];
-
-        // Parse the X.509 certificate from the signature (same as KeePassDX)
-        var certFactory = Java.Security.Cert.CertificateFactory.GetInstance("X.509");
-        var signatureBytes = signature.ToByteArray();
-        using var memStream = new MemoryStream(signatureBytes);
-        var x509Cert = (Java.Security.Cert.X509Certificate)certFactory.GenerateCertificate(memStream);
-
-        // Hash the DER-encoded certificate (not the signature!)
+        // signers[0].ToByteArray() returns the raw DER-encoded X.509 certificate bytes
+        var certDer = signers[0].ToByteArray();
         using var sha256 = System.Security.Cryptography.SHA256.Create();
-        var certEncoded = x509Cert?.GetEncoded();
-        if (certEncoded == null)
-        {
-          return AppKeyHashStringPrefix;
-        }
-        var hash = sha256.ComputeHash(certEncoded);
+        var hash = sha256.ComputeHash(certDer);
         var base64Hash = Base64.EncodeToString(
           hash,
           Base64Flags.UrlSafe | Base64Flags.NoPadding | Base64Flags.NoWrap
         );
 
-        return $"{AppKeyHashStringPrefix}{base64Hash}";
+        var origin = $"{AppKeyHashStringPrefix}{base64Hash}";
+        Kp2aLog.Log($"GetOriginForCallingApp: {callingAppInfo.PackageName} -> {origin}");
+        return origin;
       }
       catch (Exception e)
       {
-        Kp2aLog.Log($"Error getting origin for {callingAppInfo.PackageName}: {e.Message}");
+        Kp2aLog.Log($"GetOriginForCallingApp: error for {callingAppInfo.PackageName}: {e}");
         return AppKeyHashStringPrefix;
       }
     }
   }
+
 }
