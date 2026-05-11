@@ -51,6 +51,8 @@ using keepass2android.Utils;
 using KeePassLib.Keys;
 using KeePassLib.Serialization;
 using FragmentManager = AndroidX.Fragment.App.FragmentManager;
+using AndroidX.Fragment.App;
+using keepass2android.services.Kp2aCredentialProvider;
 
 namespace keepass2android
 {
@@ -682,6 +684,50 @@ namespace keepass2android
       }
     }
 
+    public class PasskeyPreferenceFragment : PreferenceFragmentWithResource
+    {
+      public PasskeyPreferenceFragment() : base(Resource.Xml.pref_app_passkeys)
+      {
+      }
+
+      public override void OnCreatePreferences(Bundle savedInstanceState, string rootKey)
+      {
+        base.OnCreatePreferences(savedInstanceState, rootKey);
+
+        var uvPref = FindPreference(GetString(Resource.String.passkeys_force_user_verification_when_preferred_key)) as SwitchPreferenceCompat;
+        if (uvPref != null)
+          uvPref.PreferenceChange += (sender, args) =>
+          {
+            var context = RequireContext();
+            var boolValue = (bool)args.NewValue;
+
+            if (!UserVerificationHelper.CanAuthenticate(context))
+              return; // no biometric hardware — allow change directly
+
+            // reject any change for now. If the (async) user verification succeeds, we'll update the value.
+            args.Handled = false;
+
+            UserVerificationHelper.ShowUserVerification(
+              RequireActivity(),
+              GetString(Resource.String.passkey_user_verification_required_title),
+              GetString(Resource.String.passkeys_uv_setting_change_subtitle),
+              onSuccess: () =>
+              {
+                PreferenceManager.GetDefaultSharedPreferences(context)
+                  .Edit()
+                  .PutBoolean(((Preference)sender).Key, boolValue)
+                  .Apply();
+                ((SwitchPreferenceCompat)sender).Checked = boolValue;
+              },
+              onCancelOrError: () =>
+              {
+              }
+            );
+          };
+      }
+
+    }
+
     public class DebugLogPreferenceFragment : PreferenceFragmentWithResource
     {
 
@@ -1208,7 +1254,7 @@ namespace keepass2android
   /// <summary>
   /// Activity to configure the application, without database settings. Does not require an unlocked database, or close when the database is locked
   /// </summary>
-  [Activity(Label = "@string/app_name", Theme = "@style/Kp2aTheme_BlueActionBar", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden)]
+  [Activity(Label = "@string/app_name", Name = "keepass2android.AppSettingsActivity", Theme = "@style/Kp2aTheme_BlueActionBar", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden, Exported = true)]
   public class AppSettingsActivity : LockingActivity, PreferenceFragmentCompat.IOnPreferenceStartFragmentCallback, FragmentManager.IOnBackStackChangedListener
   {
     private ActivityDesign _design;

@@ -194,6 +194,14 @@ namespace keepass2android
       set;
     }
 
+    /// <summary>
+    /// If true, the SelectCurrentDbActivity doesn't forward to the already opened database
+    /// </summary>
+    public virtual bool ExplicitlySelectDatabase
+    {
+      get { return false; }
+    }
+
 
     /// <summary>
     /// Returns the parameters of the task for storage in a bundle or intent
@@ -409,6 +417,49 @@ namespace keepass2android
   public class NullTask : AppTask
   {
 
+  }
+
+  public class UnlockThenCloseWithResultTask : AppTask
+  {
+    public UnlockThenCloseWithResultTask()
+    {
+    }
+    public UnlockThenCloseWithResultTask(bool explicitlySelectDatabase)
+    {
+      this.explicitlySelectDatabase = explicitlySelectDatabase;
+    }
+
+    public const String ResultCodeKey = "UnlockThenCloseWithResultTask_ResultCode";
+    public const String ExplicitlySelectDatabaseKey = "UnlockThenCloseWithResultTask_ExplicitlySelectDatabase";
+    public int ResultCode { get; set; }
+    public override void Setup(Bundle b)
+    {
+      base.Setup(b);
+      ResultCode = b.GetInt(ResultCodeKey, 0);
+      explicitlySelectDatabase = b.GetBoolean(ExplicitlySelectDatabaseKey, false);
+    }
+
+    private bool explicitlySelectDatabase;
+    public override bool ExplicitlySelectDatabase
+    {
+      get { return explicitlySelectDatabase; }
+    }
+
+    public override IEnumerable<IExtra> Extras
+    {
+      get
+      {
+        foreach (IExtra e in base.Extras)
+          yield return e;
+        yield return new IntExtra { Key = ResultCodeKey, Value = ResultCode };
+        yield return new BoolExtra { Key = ExplicitlySelectDatabaseKey, Value = ExplicitlySelectDatabase };
+      }
+    }
+    public override void LaunchFirstGroupActivity(Activity act)
+    {
+      SetActivityResult(act, (Result)ResultCode);
+      act.Finish();
+    }
   }
 
   /// <summary>
@@ -770,6 +821,10 @@ namespace keepass2android
     /// </summary>
     public const String ProtectedFieldsListKey = Keepass2android.Pluginsdk.Strings.ExtraProtectedFieldsList;
 
+    /// <summary>
+    /// extra key for CustomData as JSON string (key-value pairs). optional.
+    /// </summary>
+    public const String CustomDataKey = "CreateEntry_CustomData";
 
     /// <summary>
     /// Extra key to specify whether user notifications (e.g. for copy password or keyboard) should be displayed when the entry 
@@ -777,12 +832,21 @@ namespace keepass2android
     /// </summary>
     public const String ShowUserNotificationsKey = "ShowUserNotifications";
 
+    /// <summary>
+    /// Extra key to specify tags for the entry. Passed as StringArrayExtra. optional.
+    /// </summary>
+    public const String TagsKey = "CreateEntry_Tags";
+
 
     public string Url { get; set; }
 
     public string AllFields { get; set; }
 
     public IList<string> ProtectedFieldsList { get; set; }
+
+    public string CustomData { get; set; }
+
+    public IList<string> Tags { get; set; }
 
     public ActivationCondition ShowUserNotifications { get; set; }
 
@@ -795,6 +859,8 @@ namespace keepass2android
       Url = b.GetString(UrlKey);
       AllFields = b.GetString(AllFieldsKey);
       ProtectedFieldsList = b.GetStringArrayList(ProtectedFieldsListKey);
+      CustomData = b.GetString(CustomDataKey);
+      Tags = b.GetStringArrayList(TagsKey);
     }
     public override IEnumerable<IExtra> Extras
     {
@@ -806,6 +872,10 @@ namespace keepass2android
           yield return new StringExtra { Key = AllFieldsKey, Value = AllFields };
         if (ProtectedFieldsList != null)
           yield return new StringArrayListExtra { Key = ProtectedFieldsListKey, Value = ProtectedFieldsList };
+        if (CustomData != null)
+          yield return new StringExtra { Key = CustomDataKey, Value = CustomData };
+        if (Tags != null)
+          yield return new StringArrayListExtra { Key = TagsKey, Value = Tags };
 
         yield return new StringExtra { Key = ShowUserNotificationsKey, Value = ShowUserNotifications.ToString() };
       }
@@ -826,11 +896,35 @@ namespace keepass2android
         {
           string key = iter.Next().ToString();
           string value = allFields.Get(key).ToString();
-          bool isProtected = ((ProtectedFieldsList != null) && (ProtectedFieldsList.Contains(key)))
+          bool isProtected = ((ProtectedFieldsList != null) && ProtectedFieldsList.Contains(key))
               || (key == PwDefs.PasswordField);
           newEntry.Strings.Set(key, new ProtectedString(isProtected, value));
         }
 
+      }
+
+      if (CustomData != null)
+      {
+        var customDataJson = new Org.Json.JSONObject(CustomData);
+        for (var iter = customDataJson.Keys(); iter.HasNext;)
+        {
+          string key = iter.Next().ToString();
+          string value = customDataJson.Get(key).ToString();
+          newEntry.CustomData.Set(key, value);
+        }
+      }
+
+      if (Tags != null && Tags.Count > 0)
+      {
+        var existingTags = new System.Collections.Generic.List<string>(newEntry.Tags);
+        foreach (var tag in Tags)
+        {
+          if (!existingTags.Contains(tag))
+          {
+            existingTags.Add(tag);
+          }
+        }
+        newEntry.Tags = existingTags;
       }
 
     }

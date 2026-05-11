@@ -28,6 +28,7 @@ namespace keepass2android
 
   public class CreateDb : OperationWithFinishHandler
   {
+    public const string DefaultDbName = "Keepass2Android Password Database";
     private readonly IOConnectionInfo _ioc;
     private readonly bool _dontSave;
     private readonly IKp2aApp _app;
@@ -68,7 +69,7 @@ namespace keepass2android
       db.KpDatabase.New(_ioc, _key, _app.GetFileStorage(_ioc).GetFilenameWithoutPathAndExt(_ioc));
 
       db.KpDatabase.KdfParameters = (new AesKdf()).GetDefaultParameters();
-      db.KpDatabase.Name = "Keepass2Android Password Database";
+      db.KpDatabase.Name = DefaultDbName;
       //re-set the name of the root group because the PwDatabase uses UrlUtil which is not appropriate for all file storages:
       db.KpDatabase.RootGroup.Name = _app.GetFileStorage(_ioc).GetFilenameWithoutPathAndExt(_ioc);
 

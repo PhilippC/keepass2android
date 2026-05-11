@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  android:title="@string/Passkey_prefs"
+  android:summary="@string/pref_passkeys_screen_summary">
+
+  <PreferenceCategory
+    android:title="@string/pref_passkeys_backup_category_title">
+    
+    <SwitchPreferenceCompat
+      android:key="@string/passkeys_backup_eligibility_key"
+      android:title="@string/passkeys_backup_eligibility_title"
+      android:summary="@string/passkeys_backup_eligibility_summary"
+      android:defaultValue="@bool/passkeys_backup_eligibility_default"
+      app:iconSpaceReserved="false" />
+
+    <SwitchPreferenceCompat
+      android:key="@string/passkeys_backup_state_key"
+      android:dependency="@string/passkeys_backup_eligibility_key"
+      android:title="@string/passkeys_backup_state_title"
+      android:summary="@string/passkeys_backup_state_summary"
+      android:defaultValue="@bool/passkeys_backup_state_default"
+      app:iconSpaceReserved="false" />
+
+  </PreferenceCategory>
+
+  <PreferenceCategory
+    android:title="@string/pref_passkeys_uv_category_title">
+    <SwitchPreferenceCompat
+      android:key="@string/passkeys_force_user_verification_when_preferred_key"
+      android:title="@string/passkeys_force_user_verification_when_preferred_title"
+      android:summary="@string/passkeys_force_user_verification_when_preferred_summary"
+      android:defaultValue="@bool/passkeys_force_user_verification_when_preferred_default"
+      app:iconSpaceReserved="false" />
+  </PreferenceCategory>
+
+</PreferenceScreen>
