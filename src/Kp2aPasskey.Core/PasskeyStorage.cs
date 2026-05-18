@@ -86,8 +86,22 @@ namespace Kp2aPasskey.Core
       }
 
       var username = entry.Strings.ReadSafe(FIELD_USERNAME);
+      if (string.IsNullOrEmpty(username))
+      {
+        // fallback to Strongbox compatible field:
+        username = entry.Strings.ReadSafe("KPXC_PASSKEY_USERNAME");
+      }
+
       var privateKeyPem = entry.Strings.ReadSafe(FIELD_PRIVATE_KEY);
       var credentialId = entry.Strings.ReadSafe(FIELD_CREDENTIAL_ID);
+      if (string.IsNullOrEmpty(credentialId))
+      {
+        // fallback to Strongbox compatible field:
+        credentialId = entry.Strings.ReadSafe("KPEX_PASSKEY_GENERATED_USER_ID");
+      }
+
+
+
       var userHandle = entry.Strings.ReadSafe(FIELD_USER_HANDLE);
       var relyingParty = entry.Strings.ReadSafe(FIELD_RELYING_PARTY);
 
