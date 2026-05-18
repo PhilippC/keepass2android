@@ -385,6 +385,7 @@ namespace keepass2android.services.Kp2aCredentialProvider.Passkey
       json.Put("type", "public-key");
       json.Put("authenticatorAttachment", authenticatorAttachment);
       json.Put("response", response);
+      json.Put("clientExtensionResults", new JSONObject());
 
       return json.ToString();
     }
