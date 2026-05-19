@@ -66,7 +66,7 @@ namespace Kp2aBusinessLogic.Io
       public static SmbConnectionInfo FromUrlAndCredentials(string url, string username, string password, string? domain)
       {
         string userDomain = username;
-        if (domain != null)
+        if (!string.IsNullOrEmpty(domain))
         {
           userDomain = domain + "\\" + username;
         }
@@ -96,45 +96,61 @@ namespace Kp2aBusinessLogic.Io
         }
 
         fullpath = fullpath.Substring(6);
-        string[] authAndPath = fullpath.Split('@');
-        if (authAndPath.Length != 2)
+        int authSeparator = fullpath.LastIndexOf('@');
+        string authPart = "";
+        string pathPart = fullpath;
+        if (authSeparator >= 0)
         {
-          throw new Exception("Invalid smb path!");
+          authPart = fullpath.Substring(0, authSeparator);
+          pathPart = fullpath.Substring(authSeparator + 1);
         }
 
-        string[] userAndPwd = authAndPath[0].Split(':');
-        if (userAndPwd.Length != 2)
-        {
-          throw new Exception("Invalid smb path!");
-        }
-
-        string[] pathParts = authAndPath[1].Split('/');
+        string[] pathParts = pathPart.Split('/');
         if (pathParts.Length < 1)
         {
           throw new Exception("Invalid smb path!");
         }
 
         Host = pathParts[0];
-        if (pathParts.Length > 1)
+        if (pathParts.Length > 1 && !string.IsNullOrEmpty(pathParts[1]))
         {
           Share = pathParts[1];
         }
+        else
+        {
+          Share = null;
+        }
+
         LocalPath = String.Join("/", pathParts.Skip(2));
         if (LocalPath.EndsWith("/"))
         {
           LocalPath = LocalPath.Substring(0, LocalPath.Length - 1);
         }
 
-        Username = WebUtility.UrlDecode(userAndPwd[0]);
+        if (authSeparator >= 0)
+        {
+          int passwordSeparator = authPart.IndexOf(':');
+          if (passwordSeparator < 0)
+          {
+            throw new Exception("Invalid smb path!");
+          }
+
+          Username = WebUtility.UrlDecode(authPart.Substring(0, passwordSeparator));
+          Password = WebUtility.UrlDecode(authPart.Substring(passwordSeparator + 1));
+        }
+        else
+        {
+          Username = ioc.UserName;
+          Password = ioc.Password;
+        }
+
         if (Username.Contains("\\"))
         {
-          string[] domainAndUser = Username.Split('\\');
-          Domain = domainAndUser[0];
-          Username = domainAndUser[1];
+          int domainSeparator = Username.IndexOf('\\');
+          Domain = Username.Substring(0, domainSeparator);
+          Username = Username.Substring(domainSeparator + 1);
         }
         else Domain = null;
-
-        Password = WebUtility.UrlDecode(userAndPwd[1]);
       }
 
       public string ToPath()
@@ -145,13 +161,27 @@ namespace Kp2aBusinessLogic.Io
           domainUser = Domain + "\\" + Username;
         }
 
-        return "smb://" + WebUtility.UrlEncode(domainUser) + ":" + WebUtility.UrlEncode(Password) + "@" + Host +
-               "/" + Share + "/" + LocalPath;
+        return BuildPath("smb://" + WebUtility.UrlEncode(domainUser) + ":" + WebUtility.UrlEncode(Password) + "@" + Host);
       }
 
       public string GetPathWithoutCredentials()
       {
-        return "smb://" + Host + "/" + Share + "/" + LocalPath;
+        return BuildPath("smb://" + Host);
+      }
+
+      private string BuildPath(string prefix)
+      {
+        if (string.IsNullOrEmpty(Share))
+        {
+          return prefix + "/";
+        }
+
+        if (string.IsNullOrEmpty(LocalPath))
+        {
+          return prefix + "/" + Share + "/";
+        }
+
+        return prefix + "/" + Share + "/" + LocalPath;
       }
 
       public string GetLocalSmbPath()
@@ -169,15 +199,19 @@ namespace Kp2aBusinessLogic.Io
           Domain = Domain,
           Share = Share
         };
-        string[] pathParts = LocalPath?.Split('/') ?? [];
-        if (pathParts.Length > 0)
+        var pathParts = LocalPath?.Split('/').Where(p => !string.IsNullOrEmpty(p)).ToArray() ?? [];
+        if (pathParts.Length > 1)
         {
           parent.LocalPath = string.Join("/", pathParts.Take(pathParts.Length - 1));
+        }
+        else if (pathParts.Length == 1)
+        {
+          parent.LocalPath = "";
         }
         else
         {
           parent.LocalPath = "";
-          parent.Share = "";
+          parent.Share = null;
         }
 
         return parent;
@@ -199,6 +233,7 @@ namespace Kp2aBusinessLogic.Io
         if (string.IsNullOrEmpty(Share))
         {
           child.Share = childName;
+          child.LocalPath = "";
         }
         else
         {
@@ -214,7 +249,7 @@ namespace Kp2aBusinessLogic.Io
 
       public string ToDisplayString()
       {
-        return "smb://" + Host + "/" + Share + "/" + LocalPath;
+        return BuildPath("smb://" + Host);
 
       }
     }
@@ -234,7 +269,7 @@ namespace Kp2aBusinessLogic.Io
         var status = Client.Login(info.Domain ?? string.Empty, info.Username, info.Password);
         if (status != NTStatus.STATUS_SUCCESS)
         {
-          throw new Exception($"Failed to login to SMB as {info.Username}");
+          throw new Exception($"Failed to login to SMB as {info.Username}: {status}");
         }
 
         _isLoggedIn = true;
@@ -242,6 +277,10 @@ namespace Kp2aBusinessLogic.Io
         if (!string.IsNullOrEmpty(info.Share))
         {
           FileStore = Client.TreeConnect(info.Share, out status);
+          if (status != NTStatus.STATUS_SUCCESS || FileStore == null)
+          {
+            throw new Exception($"Failed to connect to SMB share {info.Share} on {info.Host}: {status}");
+          }
         }
 
       }
@@ -457,7 +496,6 @@ namespace Kp2aBusinessLogic.Io
           Path = parent.GetChild(share).ToPath()
         };
       }
-
     }
 
     public IEnumerable<FileDescription> ListContents(IOConnectionInfo ioc)
@@ -472,9 +510,19 @@ namespace Kp2aBusinessLogic.Io
       }
 
       NTStatus status = conn.FileStore!.CreateFile(out var directoryHandle, out _, info.GetLocalSmbPath(), AccessMask.GENERIC_READ, FileAttributes.Directory, ShareAccess.Read | ShareAccess.Write, CreateDisposition.FILE_OPEN, CreateOptions.FILE_DIRECTORY_FILE, null);
-      if (status == NTStatus.STATUS_SUCCESS)
+      if (status != NTStatus.STATUS_SUCCESS)
       {
-        conn.FileStore.QueryDirectory(out List<QueryDirectoryFileInformation> fileList, directoryHandle, "*", FileInformationClass.FileDirectoryInformation);
+        throw new Exception($"Failed to list directory {info.GetPathWithoutCredentials()}: {status}");
+      }
+
+      try
+      {
+        status = conn.FileStore.QueryDirectory(out List<QueryDirectoryFileInformation> fileList, directoryHandle, "*", FileInformationClass.FileDirectoryInformation);
+        if (status != NTStatus.STATUS_SUCCESS && status != NTStatus.STATUS_NO_MORE_FILES)
+        {
+          throw new Exception($"Failed to query directory {info.GetPathWithoutCredentials()}: {status}");
+        }
+
         foreach (var fi in fileList)
         {
           var fileDirectoryInformation = fi as FileDirectoryInformation;
@@ -488,6 +536,9 @@ namespace Kp2aBusinessLogic.Io
 
           result.Add(fileDescription);
         }
+      }
+      finally
+      {
         conn.FileStore.CloseFile(directoryHandle);
       }
 
@@ -517,36 +568,53 @@ namespace Kp2aBusinessLogic.Io
 
       if (string.IsNullOrEmpty(info.Share))
       {
-        return new FileDescription
-        {
-          CanRead = true,
-          CanWrite = true,
-          DisplayName = info.Host,
-          IsDirectory = true,
-          Path = info.ToPath()
-        };
+        return CreateDirectoryDescription(info.Host, info.ToPath());
+      }
+
+      if (string.IsNullOrEmpty(info.LocalPath))
+      {
+        return CreateDirectoryDescription(info.Share, info.ToPath());
       }
 
       using SmbConnection conn = new SmbConnection(info);
       NTStatus status = conn.FileStore!.CreateFile(out var directoryHandle, out _, info.GetParent().GetLocalSmbPath(), AccessMask.GENERIC_READ, FileAttributes.Directory, ShareAccess.Read | ShareAccess.Write, CreateDisposition.FILE_OPEN, CreateOptions.FILE_DIRECTORY_FILE, null);
       if (status != NTStatus.STATUS_SUCCESS) throw new Exception($"Failed to query details for {info.LocalPath}");
-      conn.FileStore.QueryDirectory(out List<QueryDirectoryFileInformation> fileList, directoryHandle, info.Stem(), FileInformationClass.FileDirectoryInformation);
-      foreach (var fi in fileList)
+      try
       {
-        var fileDirectoryInformation = fi as FileDirectoryInformation;
-        if (fileDirectoryInformation == null)
-          continue;
+        status = conn.FileStore.QueryDirectory(out List<QueryDirectoryFileInformation> fileList, directoryHandle, info.Stem(), FileInformationClass.FileDirectoryInformation);
+        if (status != NTStatus.STATUS_SUCCESS && status != NTStatus.STATUS_NO_MORE_FILES)
+          throw new Exception($"Failed to query details for {info.LocalPath}: {status}");
 
-        if (fileDirectoryInformation.FileName is "." or "..")
-          continue;
+        foreach (var fi in fileList)
+        {
+          var fileDirectoryInformation = fi as FileDirectoryInformation;
+          if (fileDirectoryInformation == null)
+            continue;
 
-        return FileDescriptionConvert(ioc, fileDirectoryInformation);
+          if (fileDirectoryInformation.FileName is "." or "..")
+            continue;
 
-
+          return FileDescriptionConvert(new IOConnectionInfo { Path = info.GetParent().ToPath() }, fileDirectoryInformation);
+        }
       }
-      conn.FileStore.CloseFile(directoryHandle);
+      finally
+      {
+        conn.FileStore.CloseFile(directoryHandle);
+      }
 
       throw new Exception($"Failed to query details for {info.LocalPath}");
+    }
+
+    private static FileDescription CreateDirectoryDescription(string displayName, string path)
+    {
+      return new FileDescription
+      {
+        CanRead = true,
+        CanWrite = true,
+        DisplayName = displayName,
+        IsDirectory = true,
+        Path = path
+      };
     }
 
     public bool RequiresSetup(IOConnectionInfo ioConnection)
