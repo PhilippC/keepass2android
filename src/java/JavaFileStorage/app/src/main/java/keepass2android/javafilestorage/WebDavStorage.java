@@ -740,11 +740,12 @@ public class WebDavStorage extends JavaFileStorageBase {
             ConnectionInfo ci = splitStringToConnectionInfo(path);
             try
             {
-                return java.net.URLDecoder.decode(ci.URL, StandardCharsets.UTF_8);
+                // don't use StandardCharsets.UTF_8, this is not compatible with older Android versions.
+                return java.net.URLDecoder.decode(ci.URL, "UTF-8");
             }
             catch (Exception e)
             {
-                return  ci.URL;
+                return ci.URL;
             }
         }
         catch (Exception e)
