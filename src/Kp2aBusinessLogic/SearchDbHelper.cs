@@ -119,6 +119,28 @@ namespace keepass2android
       return UrlUtil.GetHost(url.Trim());
     }
 
+    /// <summary>
+    /// Returns all entries whose <c>KPEX_PASSKEY_RELYING_PARTY</c> extra field exactly matches
+    /// <paramref name="relyingParty"/> (case-insensitive).
+    /// </summary>
+    public PwGroup SearchForRelyingParty(Database database, string relyingParty)
+    {
+      string strGroupName = _app.GetResourceString(UiStringKey.search_results);
+      PwGroup pgResults = new PwGroup(true, true, strGroupName, PwIcon.EMailSearch) { IsVirtual = true };
+
+      foreach (PwEntry entry in database.EntriesById.Values)
+      {
+        if (!entry.GetSearchingEnabled())
+          continue;
+        var storedRp = entry.Strings.ReadSafe("KPEX_PASSKEY_RELYING_PARTY");
+        // Log every entry that has the field so mismatches are visible in logcat
+        if (string.Equals(storedRp, relyingParty, StringComparison.OrdinalIgnoreCase))
+          pgResults.AddEntry(entry, false);
+      }
+
+      return pgResults;
+    }
+
     public PwGroup SearchForHost(Database database, String url, bool allowSubdomains)
     {
       String host = ExtractHost(url);
