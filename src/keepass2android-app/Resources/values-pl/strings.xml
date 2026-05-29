@@ -1136,4 +1136,6 @@
   <string name="configure_ssids">Konfiguruj SSID</string>
   <string name="add_current_ssid">Dodaj bieżące SSID</string>
   <string name="enter_ssid_hint">Wprowadź SSID</string>
+  <string name="remove_ssid_message">Czy na pewno chcesz usunąć tę sieć Wi-Fi?</string>
+  <string name="permission_needed">Wymagane uprawnienie</string>
 </resources>

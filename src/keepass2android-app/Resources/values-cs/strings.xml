@@ -341,7 +341,9 @@
   <string name="QuickUnlockDefaultEnabled_title">Ve výchozím nastavení povolit Rychlé odemknutí</string>
   <string name="QuickUnlockDefaultEnabled_summary">Určuje, zda je Rychlé odemknutí ve výchozím nastavení povoleno nebo ne.</string>
   <string name="ViewDatabaseSecure_title">Chránit zobrazení databáze</string>
+  <string name="DisableSecureDisplayCheck_title">Přeskočit kontrolu zabezpečení obrazovky</string>
   <string name="ViewDatabaseSecure_summary">Je-li povoleno, nejsou povoleny screenshoty aplikace a náhled aplikace se nebude zobrazovat v seznamu posledních aplikací.</string>
+  <string name="DisableSecureDisplayCheck_summary">Povolit zobrazování citlivých informací, i když aktuální obrazovka není systémem Android označena jako „zabezpečená“.</string>
   <string name="QuickUnlockIconHidden_title">Skrýt ikonu Rychlého odemknutí</string>
   <string name="QuickUnlockIconHidden_summary">Rychlé odemknutí bohužel nefunguje bez zobrazení ikony upozornění. Vyberte tuto možnost, pokud chcete použít průhlednou ikonu.</string>
   <string name="QuickUnlockIconHidden16_title">Skrýt ikonu Rychlého odemknutí</string>
@@ -755,6 +757,9 @@
   <string name="webdav_chunked_upload_size_summary">Velikost bloků při nahrávání na servery WebDav v bajtech.</string>
   <string name="cleartextTrafficPermitted_title">Povolit síťový provoz v otevřeném textu ve WebDav</string>
   <string name="cleartextTrafficPermitted_summary">HTTP připojení nejsou bezpečná. Tuto možnost povolte pouze v případě, že máte zavedena další bezpečnostní opatření.</string>
+  <string-array name="ChangeLog_1_15_net">
+    <item>Vylepšení zpracování URL pro WebDav se znaky mimo ASCII</item>
+  </string-array>
   <string-array name="ChangeLog_1_15">
     <item>Přidána synchronizace na pozadí: Keepass2Android nyní používá interní kopii databáze v mezipaměti pro načítání a ukládání, aby byly tyto operace rychlejší. Poté se spustí synchronizace se vzdálenou databází. </item>
     <item>Přidány uživatelské předvolby pro ovládání chování synchronizace na pozadí. Můžete povolit pravidelnou synchronizaci na pozadí a ovládat, zda se synchronizace má provádět vždy, nebo pouze při připojení k síti Wi-Fi.</item>
@@ -762,7 +767,7 @@
   <string-array name="ChangeLog_1_14">
     <item>Aktualizace na .net 9 a cílovou verzi SDK 35. To přináší průhledný stavový řádek v systému Android 15, protože nyní je výchozím nastavením režim od okraje k okraji.</item>
     <item>Drobná vylepšení uživatelského rozhraní</item>
-    <item>Removed buttons for donate and find plugins, in order to comply with Google Play policies</item>
+    <item>Odstraněna tlačítka pro příspěvky a vyhledávání pluginů, aby byly dodrženy zásady služby Google Play</item>
   </string-array>
   <string-array name="ChangeLog_1_14_net">
     <item>Vylepšení WebDav: Oprava chyby při zobrazování seznamu složek; podpora fragmentovaných nahrávání a transakcí</item>

@@ -82,8 +82,8 @@
   <string name="ClearClipboard">Schránka vyčistená.</string>
   <string name="clipboard_timeout">Časový limit schránky</string>
   <string name="clipboard_timeout_summary">Čas pred vyčistením schránky po skopírovaní mena alebo hesla</string>
-  <string name="copy_username">Meno používateľa skopírované do schránky</string>
-  <string name="copy_password">Heslo skopírované do schránky</string>
+  <string name="copy_username">Kopírovať meno používateľa do schránky</string>
+  <string name="copy_password">Kopírovať heslo do schránky</string>
   <string name="copy_totp">Vyberte na skopírovanie jednorazového hesla do schránky</string>
   <string name="available_through_keyboard">Záznam je dostupný cez klávesnicu KP2A</string>
   <string name="app_language_pref_title">Jazyk aplikácie</string>
@@ -341,7 +341,9 @@
   <string name="QuickUnlockDefaultEnabled_title">Zapnúť rýchle odomknutie</string>
   <string name="QuickUnlockDefaultEnabled_summary">Určuje, či je rýchle odomknutie štandardne zapnuté alebo nie.</string>
   <string name="ViewDatabaseSecure_title">Ochrana zobrazenia databázy</string>
+  <string name="DisableSecureDisplayCheck_title">Preskočiť kontrolu zabezpečenia obrazovky</string>
   <string name="ViewDatabaseSecure_summary">Ak je táto voľba zapnutá, nie je povolené vytváranie snímok obrazovky a aplikácia nie je zobrazená v zozname posledných aplikácií.</string>
+  <string name="DisableSecureDisplayCheck_summary">Povoliť zobrazenie citlivých údajov aj keď nie je aktuálna obrazovka označená systémom Android ako \"bezpečná\".</string>
   <string name="QuickUnlockIconHidden_title">Skryť ikonu rýchleho odomknutia</string>
   <string name="QuickUnlockIconHidden_summary">Rýchle odomknutie nemôže fungovať bez zobrazenia notifikačnej ikony. Ak chcete zobraziť priehľadnú ikonu, vyberte túto možnosť.</string>
   <string name="QuickUnlockIconHidden16_title">Skryť ikonu rýchleho odomknutia</string>
@@ -431,7 +433,7 @@
   <string name="AutoFillTotp_prefs_CopyTotpToClipboard_summary">Pri autom. dopĺňaní záznamu s TOTP, skopírovať TOTP do schránky</string>
   <string name="AutoFillTotp_prefs_ActivateKeyboard_summary">Pri autom. dopĺňaní záznamu s TOTP, aktivovať vstavanú klávesnicu. Klávesnica má tlačidlo pre TOTP.</string>
   <string name="AutoFillTotp_prefs_ActivateKeyboard_title">Aktivovať vstavanú klávesnicu</string>
-  <string name="TotpCopiedToClipboard">TOTP skopírované do schránky</string>
+  <string name="TotpCopiedToClipboard">Kopírovať TOTP do schránky</string>
   <string name="ShowKp2aKeyboardNotification_title">Notifikácia klávesnice KP2A</string>
   <string name="ShowKp2aKeyboardNotification_summary">Sprístupniť celý záznam cez klávesnicu KP2A (odporúča sa).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Prepnúť klávesnicu</string>
