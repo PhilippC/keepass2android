@@ -521,13 +521,15 @@ public class KP2AKeyboard extends InputMethodService
         // locale (mSystemLocale), then reload the input locale list from the
         // latin ime settings (shared prefs) and reset the input locale
         // to the first one.
-        final String systemLocale = conf.locale.toString();
+        final Locale configLocale = conf.locale != null ? conf.locale
+                : (conf.getLocales().size() > 0 ? conf.getLocales().get(0) : Locale.getDefault());
+        final String systemLocale = configLocale.toString();
         if (!TextUtils.equals(systemLocale, mSystemLocale)) {
             mSystemLocale = systemLocale;
             if (mLanguageSwitcher != null) {
                 mLanguageSwitcher.loadLocales(
                         PreferenceManager.getDefaultSharedPreferences(this));
-                mLanguageSwitcher.setSystemLocale(conf.locale);
+                mLanguageSwitcher.setSystemLocale(configLocale);
                 toggleLanguage(true, true);
             } else {
                 reloadKeyboards();
