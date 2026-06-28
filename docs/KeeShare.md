@@ -270,14 +270,12 @@ The repository includes test files in `e2e-tests/test-data/`:
 
 | File | Password | Description |
 |------|----------|-------------|
-| `keeshare-test-export.kdbx` | `TestKeeShare123!` | A KeeShare export containing test entries |
-| `keeshare-test-main.kdbx` | `TestMain123!` | A main database for testing imports |
+| `keeshare-test-export.kdbx` | `share123` | A KeeShare export containing a test entry |
+| `keeshare-test-main.kdbx` | `test123` | A main database for testing imports (contains "Sample Entry") |
 
-**Test export contents:**
-- Group: `Shared Credentials`
-- Entry: `Test Service Account`
+**Test export contents** (verified with `keepassxc-cli`):
+- Entry (at the root group): `Test Service Account`
   - Username: `testuser@example.com`
-  - Password: `SharedPassword456!`
   - URL: `https://test.example.com`
 
 ### Manual Testing Steps
@@ -299,7 +297,7 @@ The repository includes test files in `e2e-tests/test-data/`:
    - Tap "Open file"
    - Navigate to Downloads
    - Select `keeshare-test-main.kdbx`
-   - Enter password: `TestMain123!`
+   - Enter password: `test123`
 
 #### Test: Add KeeShare Import
 
@@ -309,7 +307,7 @@ The repository includes test files in `e2e-tests/test-data/`:
    - **Group**: Select "Create new group" and name it "Imported Credentials"
    - **Share Type**: Import (read-only)
    - **File Path**: Tap "Browse..." and select `keeshare-test-export.kdbx` from Downloads
-   - **Password**: `TestKeeShare123!`
+   - **Password**: `share123`
 4. Tap **OK**
 5. Verify the new KeeShare group appears in the list with:
    - Green "Password: configured" status
@@ -323,7 +321,7 @@ The repository includes test files in `e2e-tests/test-data/`:
 3. Change the password to something wrong (e.g., `wrongpassword`)
 4. Tap **OK**, then **Sync now**
 5. Verify you see a user-friendly error message about wrong password
-6. Tap **Edit** again and fix the password to `TestKeeShare123!`
+6. Tap **Edit** again and fix the password to `share123`
 7. Tap **Sync now** and verify it succeeds
 
 ### Running Automated E2E Tests

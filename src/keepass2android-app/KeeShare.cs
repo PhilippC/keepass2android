@@ -1230,7 +1230,7 @@ namespace keepass2android
                     
                     if (pemText.StartsWith("-----BEGIN CERTIFICATE-----"))
                     {
-                        var cert = X509Certificate2.CreateFromPem(pemText);
+                        using (var cert = X509Certificate2.CreateFromPem(pemText))
                         using (var rsaKey = cert.GetRSAPublicKey())
                         {
                             if (rsaKey == null)
