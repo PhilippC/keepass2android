@@ -1,4 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+ This file is part of Keepass2Android, Copyright 2025 Philipp Crocoll.
+
+   Keepass2Android is free software: you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation, either version 3 of the License, or
+   (at your option) any later version.
+
+   Keepass2Android is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with Keepass2Android.  If not, see <http://www.gnu.org/licenses/>.
+-->
 <resources>
   <string name="about_feedback">Comentários</string>
   <string name="AboutText">Keepass2Android é uma implementação do gerenciador de senhas KeePass.</string>
@@ -327,7 +343,9 @@
   <string name="QuickUnlockDefaultEnabled_title">Habilitar Desbloqueio Rápido por padrão</string>
   <string name="QuickUnlockDefaultEnabled_summary">Define se o Desbloqueio Rápido está habilitado por padrão ou não.</string>
   <string name="ViewDatabaseSecure_title">Proteger a exibição da base de dados</string>
+  <string name="DisableSecureDisplayCheck_title">Ignorar verificação de exibição segura</string>
   <string name="ViewDatabaseSecure_summary">Se habilitado, as capturas de tela são bloqueadas e a miniatura do app não é exibida na lista de apps recentes.</string>
+  <string name="DisableSecureDisplayCheck_summary">Permitir mostrar informações confidenciais mesmo que a tela atual não esteja sinalizada como \"segura\" pelo Android.</string>
   <string name="QuickUnlockIconHidden_title">Ocultar o ícone do QuickUnlock</string>
   <string name="QuickUnlockIconHidden_summary">O QuickUnlock infelizmente não funciona sem exibir um ícone de notificação. Selecione esta opção para usar um ícone transparente.</string>
   <string name="QuickUnlockIconHidden16_title">Ocultar o ícone do QuickUnlock</string>
@@ -753,6 +771,7 @@
   <string-array name="ChangeLog_1_14">
     <item>Atualização para .NET 9 e Target SDK versão 35. Isso vem com a barra de status transparente no Android 15 porque agora é o padrão.</item>
     <item>Pequenas melhorias na interface do usuário</item>
+    <item>Removido botões para doar e encontrar plugins, para cumprir as políticas do Google Play</item>
   </string-array>
   <string-array name="ChangeLog_1_14_net">
     <item>Melhorias no WebDav: Correção de bug ao listar pastas; Suporte para uploads e transações em blocos</item>

@@ -360,7 +360,17 @@ namespace keepass2android
       var ctx = LocaleManager.LocalizedAppContext;
       if (DatabaseIsUnlocked || QuickLocked)
       {
-        ContextCompat.StartForegroundService(ctx, new Intent(ctx, typeof(OngoingNotificationsService)));
+        try
+        {
+          ContextCompat.StartForegroundService(ctx, new Intent(ctx, typeof(OngoingNotificationsService)));
+        }
+        catch (Exception e)
+        {
+          // ForegroundServiceStartNotAllowedException (Android 12+): startForegroundService() is
+          // not allowed when called from a background-restricted context such as onTaskRemoved().
+          // In this case the notification simply cannot be updated; this is acceptable.
+          Kp2aLog.LogUnexpectedError(e);
+        }
       }
       else
       {
@@ -1023,7 +1033,10 @@ namespace keepass2android
       Handler handler = new Handler(Looper.MainLooper);
       handler.Post(() =>
           {
-            AskForReload((Activity)ctx, actionOnResult);
+            var activity = (ctx as Activity) ?? (ActiveContext as Activity);
+            if (activity == null)
+              return;
+            AskForReload(activity, actionOnResult);
           });
     }
 

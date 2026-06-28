@@ -1,4 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+ This file is part of Keepass2Android, Copyright 2025 Philipp Crocoll.
+
+   Keepass2Android is free software: you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation, either version 3 of the License, or
+   (at your option) any later version.
+
+   Keepass2Android is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with Keepass2Android.  If not, see <http://www.gnu.org/licenses/>.
+-->
 <resources>
   <string name="about_feedback">Tilbakemelding</string>
   <string name="AboutText">Keepass2Android er en android-utgave av KeePass passordbestyrer.</string>
@@ -300,6 +316,7 @@
   <string name="AcceptAllServerCertificates_title">SSL-sertifikater</string>
   <string name="AcceptAllServerCertificates_summary">Definere oppførselen når sertifikatbekreftelse misslykkes. Merk: Du kan installere sertifikater på din enhet dersom bekreftelse feiler!</string>
   <string name="ClearOfflineCache_title">Tømme hurtiglager?</string>
+  <string name="ClearOfflineCache_question">Dette vil slette alle mellomlagrede databasefiler. Du vil miste eventuelle usynkroniserte endringer du gjorde mens du ikke hadde tilgang til kildedatabasen! Fortsette?</string>
   <string name="CheckForFileChangesOnSave_title">Se etter endringer</string>
   <string name="CheckForFileChangesOnSave_summary">Kontroller om filen har blitt endret eksternt før endringer lagres.</string>
   <string name="CheckForDuplicateUuids_title">Se etter dupliserte UUIDer</string>

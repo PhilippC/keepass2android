@@ -1,4 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+ This file is part of Keepass2Android, Copyright 2025 Philipp Crocoll.
+
+   Keepass2Android is free software: you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation, either version 3 of the License, or
+   (at your option) any later version.
+
+   Keepass2Android is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with Keepass2Android.  If not, see <http://www.gnu.org/licenses/>.
+-->
 <resources>
   <string name="about_feedback">反馈</string>
   <string name="AboutText">Keepass2Android 是一款支持 Keepass 2.x 数据库读写的Android平台的密码管理应用。</string>
@@ -325,7 +341,9 @@
   <string name="QuickUnlockDefaultEnabled_title">默认启用快速解锁</string>
   <string name="QuickUnlockDefaultEnabled_summary">设定是否在默认情况下启用快速解锁</string>
   <string name="ViewDatabaseSecure_title">数据库保护显示</string>
+  <string name="DisableSecureDisplayCheck_title">跳过安全显示屏检查</string>
   <string name="ViewDatabaseSecure_summary">如果启用，截图和应用程序缩略图将不会展示在最近的应用程序列表中。</string>
+  <string name="DisableSecureDisplayCheck_summary">允许显示敏感信息，即使当前屏幕未被Android标记为“安全”。</string>
   <string name="QuickUnlockIconHidden_title">隐藏快速锁定图标</string>
   <string name="QuickUnlockIconHidden_summary">不幸无法显示快速解锁的通知图标。选择此选项可使用一个透明的图标。</string>
   <string name="QuickUnlockIconHidden16_title">隐藏快速锁定图标</string>
@@ -751,6 +769,7 @@
   <string-array name="ChangeLog_1_14">
     <item>更新至 .net 9 和 Target SDK 版本 35。这在 Android 15 上带有透明状态栏，因为以无边框方式显示现在是默认设置。</item>
     <item>较小的用户界面改进</item>
+    <item>为了遵守 Google Play 政策，移除了捐赠和查找插件的按钮</item>
   </string-array>
   <string-array name="ChangeLog_1_14_net">
     <item>WebDav 改进：修复列出文件夹的错误；支持分块上传和事务</item>

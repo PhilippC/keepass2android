@@ -4,14 +4,18 @@ android {
 
     namespace 'keepass2android.kp2akeytransform'
 
+    // Explicit NDK version used for ndk-build
+    ndkVersion "28.2.13676358"
 
+    compileSdk 34
 
     defaultConfig {
-        ndk.abiFilters 'armeabi-v7a','arm64-v8a','x86','x86_64'
         minSdkVersion 21
         targetSdkVersion 34
-        compileSdk 34
 
+        ndk {
+            abiFilters 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64'
+        }
     }
 
     buildTypes {

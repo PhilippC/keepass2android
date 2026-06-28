@@ -38,12 +38,6 @@ Keepassdroid, Copyright Brian Pellin.
     android:title="@string/application"
     android:summary="@string/application_settings" />
 
-
-  <Preference android:key="plugin_key" android:title="@string/plugins" app:iconSpaceReserved="false">
-    
-    <intent android:action="kp2a.action.PluginListActivity" />
-  </Preference>
-
   <Preference
     app:iconSpaceReserved="false"
     android:key="@string/about_prefs_key"

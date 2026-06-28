@@ -34,6 +34,7 @@ import android.inputmethodservice.Keyboard;
 import android.media.AudioManager;
 import android.net.Uri;
 import android.os.Build;
+import android.view.WindowInsets;
 import android.os.Debug;
 import android.os.Handler;
 import android.os.Message;
@@ -51,6 +52,7 @@ import android.view.Gravity;
 import android.view.HapticFeedbackConstants;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.CompletionInfo;
@@ -519,13 +521,15 @@ public class KP2AKeyboard extends InputMethodService
         // locale (mSystemLocale), then reload the input locale list from the
         // latin ime settings (shared prefs) and reset the input locale
         // to the first one.
-        final String systemLocale = conf.locale.toString();
+        final Locale configLocale = conf.locale != null ? conf.locale
+                : (conf.getLocales().size() > 0 ? conf.getLocales().get(0) : Locale.getDefault());
+        final String systemLocale = configLocale.toString();
         if (!TextUtils.equals(systemLocale, mSystemLocale)) {
             mSystemLocale = systemLocale;
             if (mLanguageSwitcher != null) {
                 mLanguageSwitcher.loadLocales(
                         PreferenceManager.getDefaultSharedPreferences(this));
-                mLanguageSwitcher.setSystemLocale(conf.locale);
+                mLanguageSwitcher.setSystemLocale(configLocale);
                 toggleLanguage(true, true);
             } else {
                 reloadKeyboards();
@@ -543,6 +547,11 @@ public class KP2AKeyboard extends InputMethodService
         mConfigurationChanging = true;
         super.onConfigurationChanged(conf);
         mConfigurationChanging = false;
+        // Re-apply nav bar padding after orientation change; post it so the
+        // new window layout has settled before we read the insets.
+        mHandler.post(new Runnable() {
+            @Override public void run() { scheduleApplyNavBarInsetsToInputViewLayout(); }
+        });
     }
 
     @Override
@@ -628,6 +637,7 @@ public class KP2AKeyboard extends InputMethodService
         checkReCorrectionOnStart();
         
         tryKp2aAutoFill(attribute);
+        scheduleApplyNavBarInsetsToInputViewLayout();
         
         if (TRACE) Debug.startMethodTracing("/data/trace/latinime");
     }
@@ -1034,6 +1044,62 @@ public class KP2AKeyboard extends InputMethodService
     @Override
     public void setCandidatesViewShown(boolean shown) {
         setCandidatesViewShownInternal(shown, true /* needsInputViewShown */);
+    }
+
+    @Override
+    public void onWindowShown() {
+        super.onWindowShown();
+        scheduleApplyNavBarInsetsToInputViewLayout();
+    }
+
+    private void scheduleApplyNavBarInsetsToInputViewLayout() {
+        applyNavBarInsetsToInputViewLayout();
+        mHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                applyNavBarInsetsToInputViewLayout();
+            }
+        }, 100);
+    }
+
+    private void applyNavBarInsetsToInputViewLayout() {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R) return;
+        final View inputView = mKeyboardSwitcher.getInputView();
+        if (inputView == null) return;
+
+        WindowManager wm = (WindowManager) getSystemService(Context.WINDOW_SERVICE);
+        android.view.WindowMetrics metrics = wm.getCurrentWindowMetrics();
+        android.graphics.Insets nav =
+                metrics.getWindowInsets().getInsets(WindowInsets.Type.navigationBars());
+
+        android.view.Window win = getWindow() != null ? getWindow().getWindow() : null;
+        View decor = win != null ? win.getDecorView() : null;
+        int decorWidth = decor != null ? decor.getWidth() : 0;
+        int decorHeight = decor != null ? decor.getHeight() : 0;
+        int displayWidth = metrics.getBounds().width();
+        int displayHeight = metrics.getBounds().height();
+
+        final int tolerancePx = 2;
+        boolean windowAlreadyExcludesHorizontalNav = decorWidth > 0
+                && decorWidth <= (displayWidth - nav.left - nav.right + tolerancePx);
+
+        int effectiveLeft = windowAlreadyExcludesHorizontalNav ? 0 : nav.left;
+        int effectiveRight = windowAlreadyExcludesHorizontalNav ? 0 : nav.right;
+        // Do not infer bottom-nav exclusion from decor height: IME windows are naturally
+        // shorter than display height, so that heuristic wrongly drops bottom inset.
+        int effectiveBottom = nav.bottom;
+
+        ViewGroup.LayoutParams lp = inputView.getLayoutParams();
+        if (lp instanceof ViewGroup.MarginLayoutParams) {
+            ViewGroup.MarginLayoutParams mlp = (ViewGroup.MarginLayoutParams) lp;
+            if (mlp.leftMargin != effectiveLeft || mlp.rightMargin != effectiveRight
+                    || mlp.bottomMargin != effectiveBottom) {
+                mlp.leftMargin   = effectiveLeft;
+                mlp.rightMargin  = effectiveRight;
+                mlp.bottomMargin = effectiveBottom;
+                inputView.setLayoutParams(mlp);
+            }
+        } 
     }
 
     @Override

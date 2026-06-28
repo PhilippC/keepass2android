@@ -1540,7 +1540,7 @@ namespace keepass2android
       {
         PopulateText(Resource.Id.entry_expires, GetString(Resource.String.never));
       }
-        ((CheckBox)FindViewById(Resource.Id.entry_expires_checkbox)).Checked = State.Entry.Expires;
+      ((CheckBox)FindViewById(Resource.Id.entry_expires_checkbox)).Checked = State.Entry.Expires;
       FindViewById(Resource.Id.entry_expires).Enabled = State.Entry.Expires;
     }
 

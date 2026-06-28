@@ -748,6 +748,18 @@ public class LatinKeyboardBaseView extends View implements PointerTracker.UIProx
     @Override
     public void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
+        if (mKeyboard instanceof LatinKeyboard) {
+            final int newKeyboardWidth = Math.max(1, w - getPaddingLeft() - getPaddingRight());
+            ((LatinKeyboard)mKeyboard).resizeToWidth(newKeyboardWidth);
+            mKeys = mKeyDetector.setKeyboard(mKeyboard, -getPaddingLeft(),
+                    -getPaddingTop() + mVerticalCorrection);
+            for (PointerTracker tracker : mPointerTrackers) {
+                tracker.setKeyboard(mKeys, mKeyHysteresisDistance);
+            }
+            computeProximityThreshold(mKeyboard);
+            mKeyboardChanged = true;
+            invalidateAllKeys();
+        }
         // Release the buffer, if any and it will be reallocated on the next draw
         mBuffer = null;
     }

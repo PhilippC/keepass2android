@@ -30,7 +30,6 @@ namespace keepass2android
 {
   public class CheckDatabaseForChanges : OperationWithFinishHandler
   {
-    private readonly Context _context;
     private readonly IKp2aApp _app;
 
 
@@ -66,7 +65,7 @@ namespace keepass2android
 
           if (!MemUtil.ArraysEqual(_app.CurrentDb.KpDatabase.HashOfFileOnDisk, hashingRemoteStream.Hash))
           {
-            _app.TriggerReload(_context, null);
+            _app.TriggerReload(null, null);
             Finish(true);
           }
           else

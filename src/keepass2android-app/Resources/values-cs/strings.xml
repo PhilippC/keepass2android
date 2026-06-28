@@ -1,4 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+ This file is part of Keepass2Android, Copyright 2025 Philipp Crocoll.
+
+   Keepass2Android is free software: you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation, either version 3 of the License, or
+   (at your option) any later version.
+
+   Keepass2Android is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with Keepass2Android.  If not, see <http://www.gnu.org/licenses/>.
+-->
 <resources>
   <string name="about_feedback">Zpětná vazba</string>
   <string name="AboutText">Keepass2Android je správce hesel pro práci se soubory KeePass 2.x. na platformě Android.</string>
@@ -746,6 +762,7 @@
   <string-array name="ChangeLog_1_14">
     <item>Aktualizace na .net 9 a cílovou verzi SDK 35. To přináší průhledný stavový řádek v systému Android 15, protože nyní je výchozím nastavením režim od okraje k okraji.</item>
     <item>Drobná vylepšení uživatelského rozhraní</item>
+    <item>Removed buttons for donate and find plugins, in order to comply with Google Play policies</item>
   </string-array>
   <string-array name="ChangeLog_1_14_net">
     <item>Vylepšení WebDav: Oprava chyby při zobrazování seznamu složek; podpora fragmentovaných nahrávání a transakcí</item>

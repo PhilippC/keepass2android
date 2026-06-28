@@ -1,4 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+ This file is part of Keepass2Android, Copyright 2025 Philipp Crocoll.
+
+   Keepass2Android is free software: you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation, either version 3 of the License, or
+   (at your option) any later version.
+
+   Keepass2Android is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with Keepass2Android.  If not, see <http://www.gnu.org/licenses/>.
+-->
 <resources>
   <string name="about_feedback">Commenti</string>
   <string name="AboutText">Keepass2Android è un gestore di password per Android che supporta l\'accesso in lettura/scrittura ai database di KeePass 2.x.</string>
@@ -736,6 +752,7 @@ Ecco alcuni suggerimenti che ti potrebbero aiutare a diagnosticare il problema:\
   <string-array name="ChangeLog_1_14">
     <item>Aggiornato a .net 9 e Target SDK versione 35. Su Android 15 è disponibile una barra di stato trasparente, perché la visualizzazione bordo-a-bordo è ora predefinita.</item>
     <item>Miglioramenti minori dell\'interfaccia utente</item>
+    <item>Removed buttons for donate and find plugins, in order to comply with Google Play policies</item>
   </string-array>
   <string-array name="ChangeLog_1_14_net">
     <item>Miglioramenti WebDav: correzione di bug per l\'elenco delle cartelle; supporto per caricamenti e transazioni in blocchi</item>
