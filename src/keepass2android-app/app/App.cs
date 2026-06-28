@@ -1007,6 +1007,7 @@ namespace keepass2android
                             new SftpFileStorage(LocaleManager.LocalizedAppContext, this, IsFtpDebugEnabled()),
                             new NetFtpFileStorage(LocaleManager.LocalizedAppContext, this, IsFtpDebugEnabled),
                             new WebDavFileStorage(this, WebDavChunkedUploadSize, App.Context),
+                            new S3FileStorage(LocaleManager.LocalizedAppContext, this),
                             new SmbFileStorage(),
                             new PCloudFileStorage(LocaleManager.LocalizedAppContext, this),
                             new PCloudFileStorageAll(LocaleManager.LocalizedAppContext, this),
