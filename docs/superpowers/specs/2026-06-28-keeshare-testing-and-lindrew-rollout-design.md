@@ -4,6 +4,8 @@
 **Branch:** `keeshare-support` (PR [#3165](https://github.com/PhilippC/keepass2android/pull/3165), `beveradb` fork → `PhilippC:main`, currently `[WIP]`)
 **Author:** Andrew Beveridge
 
+> **Update 2026-06-28 (autonomous session).** Phase 0 is **done**: the app builds and runs (the "blocked on dotnet 8" assumption was wrong — the `/usr/local/share/dotnet` .NET 10 SDK with the `android` workload builds `net9.0-android`; see the build recipe in the findings report). Phase 1 findings are in **`../reviews/2026-06-28-keeshare-findings.md`**, and the executable breakdown is in **`../plans/2026-06-28-keeshare-implementation-plan.md`**. Two revisions to this spec emerged: (a) `keepassxc-cli` has no `keeshare` command, so the cross-compat suite tests the *unsigned* round-trip via CLI and uses *captured GUI fixtures* for signed containers; (b) the branch is 113 commits behind `main`, so a **rebase comes first** (most of the 187-file diff is phantom).
+
 ## Goal
 
 Pick the parked KeeShare work back up and get it to a state where:
