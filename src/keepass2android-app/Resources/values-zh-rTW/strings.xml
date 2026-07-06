@@ -109,6 +109,7 @@
   <string name="disable_fingerprint_unlock">停用生物識別解鎖</string>
   <string name="enable_fingerprint_unlock">啟用完整生物識別解鎖</string>
   <string name="enable_fingerprint_quickunlock">啟用 QuickUnlock 生物識別解鎖</string>
+  <string name="password_based_quick_unlock_not_available">無法使用基於密碼的快速解鎖</string>
   <string name="fingerprint_unlock_failed">生物識別解鎖失敗。系統無法驗證解密金鑰，你可能更改了安全設定或生物識別設定。 </string>
   <string name="fingerprint_disabled_wrong_masterkey">解鎖資料庫失敗：無效複合金鑰。由於已儲存的主密碼不再有效，生物識別解鎖亦無效。 </string>
   <string name="fingerprint_reenable">請重新為新的主密碼啟用生物識別解鎖</string>
@@ -417,6 +418,7 @@
   <string name="ShowSeparateNotifications_summary">顯示分開的通知以便用於將使用者名和密碼複製到剪貼簿並啟動鍵盤。</string>
   <string name="AccServiceAutoFill_prefs">自動填入（無障礙服務）</string>
   <string name="AutoFill_prefs">自動填入服務</string>
+  <string name="AutoFillTotp_prefs_CopyTotpToClipboard_title">複製 TOTP 到剪貼簿</string>
   <string name="ShowKp2aKeyboardNotification_title">KP2A 鍵盤通知</string>
   <string name="ShowKp2aKeyboardNotification_summary">透過 KP2A 鍵盤取得項目全部資訊 (建議使用)。</string>
   <string name="OpenKp2aKeyboardAutomatically_title">切換鍵盤</string>
