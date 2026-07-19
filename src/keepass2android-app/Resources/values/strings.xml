@@ -1249,7 +1249,7 @@
   <string-array name="design_options">
     <item>Light</item>
     <item>Dark</item>
-    <item>Material You</item>
+    <item>MaterialYou</item>
     <item>System settings</item>
   </string-array>
   <string-array name="design_values">

@@ -66,6 +66,11 @@ namespace keepass2android
       AppCompatDelegate.DefaultNightMode = _currentThemeId.Value;
       _secureWindow = SecureWindowPref();
 
+      if (IsMaterialYouEnabled && Build.VERSION.SdkInt >= BuildVersionCodes.S)
+      {
+          _activity.SetTheme(Resource.Style.Kp2aTheme_MaterialYou);
+      }
+
       _currentIconSet = PreferenceManager.GetDefaultSharedPreferences(_activity)
           .GetString("IconSetKey", _activity.PackageName);
     }
