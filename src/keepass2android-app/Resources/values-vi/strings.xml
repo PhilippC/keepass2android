@@ -698,7 +698,8 @@
   <string name="HintLocalBackupInvalidCompositeKey">    \n
     • Gợi ý: Nếu bạn nghĩ rằng tập tin cơ sở dữ liệu bị hỏng hoặc bạn đã quên khoá chính sau khi thay đổi nó, bạn có thể nhấn \"%1$s\" và chọn bản sao lưu cục bộ để mở phiên bản tập tin được mở thành công gần đây nhất.
   </string>
-  <string name="HintLocalBackupOtherError">    \n
+  <string name="HintLocalBackupOtherError">
+    \n
     • Gợi ý: Keepass2Android đã lưu trữ phiên bản tập tin được mở thành công gần đây nhất trên bộ nhớ trong. Bạn có thể mở nó bằng cách nhấn vào \"%1$s\" và chọn bản sao lưu cục bộ.
   </string>
   <string name="CorruptDatabaseHelp">    Tập tin bị hỏng. \n
