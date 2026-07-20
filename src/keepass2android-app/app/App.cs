@@ -138,6 +138,8 @@ namespace keepass2android
             Kp2aLog.Log("QuickLocking database");
             QuickLocked = true;
             LastOpenedEntry = null;
+            if (!lockWasTriggeredByTimeout)
+              LastOpenedEntryFullIdForRestore = null;
             BroadcastDatabaseAction(LocaleManager.LocalizedAppContext, Strings.ActionLockDatabase);
           }
           else
@@ -157,6 +159,7 @@ namespace keepass2android
 
           _currentDatabase = null;
           LastOpenedEntry = null;
+          LastOpenedEntryFullIdForRestore = null;
           QuickLocked = false;
 
 
@@ -480,6 +483,13 @@ namespace keepass2android
     /// Information about the last opened entry. Includes the entry but also transformed fields.
     /// </summary>
     public PwEntryOutput LastOpenedEntry { get; set; }
+
+    /// <summary>
+    /// FullId of the last entry opened in EntryActivity that should be restored after a
+    /// timeout-triggered QuickLock/unlock cycle. Cleared when the user explicitly navigates
+    /// away from the entry (back, Home, CloseAfterTaskComplete) or explicitly locks the database.
+    /// </summary>
+    public string? LastOpenedEntryFullIdForRestore { get; set; }
 
     public Database CurrentDb
     {

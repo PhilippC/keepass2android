@@ -151,6 +151,16 @@ namespace keepass2android
 
     }
 
+    public static Intent GetLaunchIntent(Context ctx, Database db, PwEntry pw, int pos, AppTask appTask)
+    {
+      Intent i = new Intent(ctx, typeof(EntryActivity));
+      i.PutExtra(KeyEntry, new ElementAndDatabaseId(db, pw).FullId);
+      i.PutExtra(KeyRefreshPos, pos);
+      i.PutExtra(KeyEntryHistoryIndex, -1);
+      appTask.ToIntent(i);
+      return i;
+    }
+
     public static void Launch(Activity act, PwEntry pw, int pos, AppTask appTask, ActivityFlags? flags = null, int historyIndex = -1)
     {
       Intent i = new Intent(act, typeof(EntryActivity));
@@ -532,6 +542,8 @@ namespace keepass2android
       SetupEditButtons();
 
       App.Kp2a.LastOpenedEntry = new PwEntryOutput(Entry, App.Kp2a.CurrentDb);
+      if (_historyIndex < 0)
+        App.Kp2a.LastOpenedEntryFullIdForRestore = new ElementAndDatabaseId(App.Kp2a.CurrentDb, Entry).FullId;
 
       _pluginActionReceiver = new PluginActionReceiver(this);
       ContextCompat.RegisterReceiver(this, _pluginActionReceiver, new IntentFilter(Strings.ActionAddEntryAction), (int)ReceiverFlags.Exported);
@@ -986,6 +998,7 @@ namespace keepass2android
 
     public override void OnBackPressed()
     {
+      App.Kp2a.LastOpenedEntryFullIdForRestore = null;
       base.OnBackPressed();
       //OverridePendingTransition(Resource.Animation.anim_enter_back, Resource.Animation.anim_leave_back);
     }
@@ -1535,6 +1548,7 @@ namespace keepass2android
           //Currently the action bar only displays the home button when we come from a previous activity.
           //So we can simply Finish. See this page for information on how to do this in more general (future?) cases:
           //http://developer.android.com/training/implementing-navigation/ancestral.html
+          App.Kp2a.LastOpenedEntryFullIdForRestore = null;
           Finish();
           //OverridePendingTransition(Resource.Animation.anim_enter_back, Resource.Animation.anim_leave_back);
 
@@ -1637,6 +1651,7 @@ namespace keepass2android
 
     public void CloseAfterTaskComplete()
     {
+      App.Kp2a.LastOpenedEntryFullIdForRestore = null;
       //before closing, wait a little to get plugin updates
       int numPlugins = new PluginDatabase(this).GetPluginsWithAcceptedScope(Strings.ScopeCurrentEntry).Count();
       var timeToWait = TimeSpan.FromMilliseconds(500 * numPlugins);

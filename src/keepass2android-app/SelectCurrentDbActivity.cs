@@ -224,7 +224,7 @@ namespace keepass2android
     {
       App.Kp2a.CurrentDb = selectedDatabase;
       LaunchingOther = true;
-      AppTask.LaunchFirstGroupActivity(this);
+      GetEffectiveTask().LaunchFirstGroupActivity(this);
     }
 
     public override bool OnCreateOptionsMenu(IMenu menu)
@@ -300,7 +300,7 @@ namespace keepass2android
           {
             LaunchingOther = true;
             AppTask.CanActivateSearchViewOnStart = true;
-            AppTask.LaunchFirstGroupActivity(this);
+            GetEffectiveTask().LaunchFirstGroupActivity(this);
           }
         }
         else
@@ -436,7 +436,7 @@ namespace keepass2android
         if (OpenAutoExecEntries(App.Kp2a.CurrentDb)) return false;
         LaunchingOther = true;
         AppTask.CanActivateSearchViewOnStart = true;
-        AppTask.LaunchFirstGroupActivity(this);
+        GetEffectiveTask().LaunchFirstGroupActivity(this);
       }
       else
       {
@@ -448,6 +448,13 @@ namespace keepass2android
 
 
       return true;
+    }
+
+    private AppTask GetEffectiveTask()
+    {
+      if (AppTask is NullTask && !string.IsNullOrEmpty(App.Kp2a.LastOpenedEntryFullIdForRestore))
+        return new OpenLastEntryTask(App.Kp2a.LastOpenedEntryFullIdForRestore);
+      return AppTask;
     }
 
     protected override void OnResume()
@@ -493,7 +500,7 @@ namespace keepass2android
         if ((App.Kp2a.OpenDatabases.Count() == 1) || (AppTask is SearchUrlTask))
         {
           LaunchingOther = true;
-          AppTask.LaunchFirstGroupActivity(this);
+          GetEffectiveTask().LaunchFirstGroupActivity(this);
           return;
         }
 
@@ -649,7 +656,7 @@ namespace keepass2android
 
               _pendingBackgroundSyncs.Clear();
 
-              AppTask.LaunchFirstGroupActivity(this);
+              GetEffectiveTask().LaunchFirstGroupActivity(this);
             }
 
 

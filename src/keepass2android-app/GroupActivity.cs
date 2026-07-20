@@ -69,6 +69,19 @@ namespace keepass2android
       Launch(act, null, appTask, launchMode);
     }
 
+    public static Intent GetRootLaunchIntent(Context ctx, AppTask appTask)
+    {
+      return GetLaunchIntent(ctx, App.Kp2a.CurrentDb.Root, appTask);
+    }
+
+    public static Intent GetLaunchIntent(Context ctx, PwGroup g, AppTask appTask)
+    {
+      Intent i = new Intent(ctx, typeof(GroupActivity));
+      i.PutExtra(KeyEntry, g.Uuid.ToHexString());
+      appTask.ToIntent(i);
+      return i;
+    }
+
     public static void Launch(Activity act, PwGroup g, AppTask appTask, ActivityLaunchMode launchMode)
     {
       Intent i = new Intent(act, typeof(GroupActivity));
