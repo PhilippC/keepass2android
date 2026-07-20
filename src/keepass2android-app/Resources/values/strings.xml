@@ -1352,5 +1352,14 @@
 
   <string name="pref_periodic_background_sync_interval_title">Periodic background synchronization time interval</string>
   <string name="pref_periodic_background_sync_interval_summary">Set the interval for background synchronization in minutes.</string>
+
+  <string name="otp_find_entry">Find entry for OTP</string>
+  <string name="otp_select_other_entry">Select another entry</string>
+  <string name="otp_create_new_entry">Create new entry</string>
+  <string name="otp_add_to_entry_title">Add OTP to entry?</string>
+  <string name="otp_add_to_entry_text">Add the scanned OTP configuration to the selected entry?</string>
+  <string name="otp_overwrite_title">OTP already exists</string>
+  <string name="otp_overwrite_text">This entry already has an OTP configuration. Do you want to overwrite it?</string>
+  <string name="overwrite">Overwrite</string>
     
 </resources>

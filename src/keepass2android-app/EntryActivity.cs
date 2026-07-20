@@ -1585,6 +1585,35 @@ namespace keepass2android
 
     }
 
+    /// <summary>
+    /// Adds or overwrites the OTP configuration in the entry using the KeeWeb/KeePassXC "otp" field format.
+    /// </summary>
+    internal void AddOtpToEntry(string otpUri, Action<EntryActivity> finishAction)
+    {
+      PwEntry initialEntry = Entry.CloneDeep();
+
+      PwEntry newEntry = Entry;
+      newEntry.History = newEntry.History.CloneDeep();
+      newEntry.CreateBackup(null);
+
+      newEntry.Touch(true, false); // Touch *after* backup
+
+      // Set the "otp" field with the otpauth:// URI (KeeWeb/KeePassXC format)
+      newEntry.Strings.Set("otp", new ProtectedString(true, otpUri));
+
+      // Save the entry:
+      ActionOnOperationFinished closeOrShowError = new ActionInContextInstanceOnOperationFinished(ContextInstanceId, App.Kp2a, (success, message, context) =>
+      {
+        OnOperationFinishedHandler.DisplayMessage(this, message, true);
+        finishAction(context as EntryActivity);
+      });
+
+      OperationWithFinishHandler runnable = new UpdateEntry(App.Kp2a, initialEntry, newEntry, closeOrShowError);
+
+      BlockingOperationStarter pt = new BlockingOperationStarter(App.Kp2a, runnable);
+      pt.Run();
+    }
+
     public bool GetVisibilityForProtectedView(TextView protectedView)
     {
       if (protectedView == null)
