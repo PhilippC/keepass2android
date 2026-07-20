@@ -66,6 +66,11 @@ namespace keepass2android
       AppCompatDelegate.DefaultNightMode = _currentThemeId.Value;
       _secureWindow = SecureWindowPref();
 
+      if (IsMaterialYouEnabled && Build.VERSION.SdkInt >= BuildVersionCodes.S)
+      {
+          _activity.SetTheme(Resource.Style.Kp2aTheme_MaterialYou);
+      }
+
       _currentIconSet = PreferenceManager.GetDefaultSharedPreferences(_activity)
           .GetString("IconSetKey", _activity.PackageName);
     }
@@ -109,11 +114,25 @@ namespace keepass2android
         string design = prefs.GetString(_activity.GetString(Resource.String.design_key), _activity.GetString(Resource.String.design_default));
         return design switch
         {
+          "MaterialYou" => AppCompatDelegate.ModeNightFollowSystem,
           "System" => AppCompatDelegate.ModeNightFollowSystem,
           "Light" => AppCompatDelegate.ModeNightNo,
           "Dark" => AppCompatDelegate.ModeNightYes,
           _ => AppCompatDelegate.ModeNightFollowSystem,
         };
+      }
+    }
+
+    public bool IsMaterialYouEnabled
+    {
+      get
+      {
+        var prefs = PreferenceManager.GetDefaultSharedPreferences(_activity);
+        string design = prefs.GetString(
+          _activity.GetString(Resource.String.design_key), 
+          _activity.GetString(Resource.String.design_default)
+        );
+        return design == "MaterialYou";
       }
     }
 
