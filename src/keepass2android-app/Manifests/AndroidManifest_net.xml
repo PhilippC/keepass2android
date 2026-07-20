@@ -310,7 +310,10 @@ The scheme=file is still there for old OS devices. It's also queried by apps lik
   <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
   <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />  
 
+  <!-- Camera permission for in-app attachment photo capture (runtime permission on API 23+) -->
+  <uses-permission android:name="android.permission.CAMERA" />
   <uses-feature android:name="android.hardware.camera" android:required="false" />
+  <uses-feature android:name="android.hardware.camera.autofocus" android:required="false" />
 
   <!-- Samsung Pass permission -->
   <uses-permission android:name="com.samsung.android.providers.context.permission.WRITE_USE_APP_FEATURE_SURVEY" />

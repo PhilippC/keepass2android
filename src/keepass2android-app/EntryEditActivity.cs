@@ -935,12 +935,85 @@ namespace keepass2android
         AddBinary(filename, true);
     }
 
+    /// <summary>
+    /// Variant of <see cref="AddBinaryOrAsk"/> for bytes that are already in memory
+    /// (e.g. an in-app camera capture). Shows the same overwrite/rename dialog.
+    /// </summary>
+    void AddBinaryFromBytesOrAsk(string filename, byte[] bytes)
+    {
+      if (State.Entry.Binaries.Get(filename) != null)
+      {
+        MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(this);
+        builder.SetTitle(GetString(Resource.String.AskOverwriteBinary_title));
+        builder.SetMessage(GetString(Resource.String.AskOverwriteBinary));
+        builder.SetPositiveButton(GetString(Resource.String.AskOverwriteBinary_yes), (dlgSender, dlgEvt) =>
+        {
+          AddBinaryFromBytes(filename, bytes, true);
+        });
+        builder.SetNegativeButton(GetString(Resource.String.AskOverwriteBinary_no), (dlgSender, dlgEvt) =>
+        {
+          AddBinaryFromBytes(filename, bytes, false);
+        });
+        builder.SetNeutralButton(GetString(Android.Resource.String.Cancel), (dlgSender, dlgEvt) => { });
+        builder.Create().Show();
+      }
+      else
+      {
+        AddBinaryFromBytes(filename, bytes, true);
+      }
+    }
+
+    /// <summary>
+    /// Stores <paramref name="bytes"/> directly as a <see cref="ProtectedBinary"/> attachment.
+    /// When <paramref name="overwrite"/> is false the filename is made unique by appending a counter.
+    /// </summary>
+    void AddBinaryFromBytes(string filename, byte[] bytes, bool overwrite)
+    {
+      string strItem = filename;
+      if (!overwrite)
+      {
+        string strBase = KeePassLib.Utility.UrlUtil.StripExtension(strItem);
+        string strExt = "." + KeePassLib.Utility.UrlUtil.GetExtension(strItem);
+        int nTry = 0;
+        while (true)
+        {
+          string strNewName = strBase + nTry.ToString(System.Globalization.CultureInfo.InvariantCulture) + strExt;
+          if (State.Entry.Binaries.Get(strNewName) == null)
+          {
+            strItem = strNewName;
+            break;
+          }
+          ++nTry;
+        }
+      }
+      try
+      {
+        State.Entry.Binaries.Set(strItem, new KeePassLib.Security.ProtectedBinary(false, bytes));
+      }
+      catch (Exception exAttach)
+      {
+        App.Kp2a.ShowMessage(this,
+          GetString(Resource.String.AttachFailed) + " " + Util.GetErrorMessage(exAttach),
+          MessageSeverity.Error);
+      }
+      State.EntryModified = true;
+      PopulateBinaries();
+    }
+
     protected override void OnResume()
     {
       if (_uriToAddOrAsk != null)
       {
         AddBinaryOrAsk(_uriToAddOrAsk);
         _uriToAddOrAsk = null;
+      }
+      if (_cameraPhotoBytes != null)
+      {
+        var bytes = _cameraPhotoBytes;
+        var filename = _cameraPhotoFilename ?? "photo.jpg";
+        _cameraPhotoBytes = null;
+        _cameraPhotoFilename = null;
+        AddBinaryFromBytesOrAsk(filename, bytes);
       }
       base.OnResume();
     }
@@ -1401,6 +1474,17 @@ namespace keepass2android
             }
             _uriToAddOrAsk = uri; //we can't launch a dialog in onActivityResult, so delay this to onResume		
           }
+          else if (requestCode == Intents.RequestCodeCameraCapture)
+          {
+            // Transfer bytes via static field – Intent extras have a 1 MB IPC limit.
+            var photoBytes = CapturePhotoActivity.CapturedPhotoBytes;
+            CapturePhotoActivity.CapturedPhotoBytes = null;
+            if (photoBytes != null)
+            {
+              _cameraPhotoBytes = photoBytes;
+              _cameraPhotoFilename = data?.GetStringExtra(CapturePhotoActivity.ExtraFilename) ?? "photo.jpg";
+            }
+          }
           return;
         case Result.Canceled:
           return;
@@ -1466,8 +1550,29 @@ namespace keepass2android
         addBinaryButton.Enabled = !State.Entry.Binaries.Any();
       addBinaryButton.Click += (sender, e) =>
       {
-        Util.ShowBrowseDialog(this, Intents.RequestCodeFileBrowseForBinary, false, true /*force OpenDocument if available, GetContent is not well support starting with Android 7 */);
-
+        // Offer both a file browser and an in-app camera (no disk/gallery write).
+        var items = new string[]
+        {
+          GetString(Resource.String.attach_browse_file),
+          GetString(Resource.String.attach_take_photo)
+        };
+        new Google.Android.Material.Dialog.MaterialAlertDialogBuilder(this)
+          .SetTitle(Resource.String.add_binary)
+          .SetItems(items, (dlgSender, dlgArgs) =>
+          {
+            if (dlgArgs.Which == 0)
+            {
+              Util.ShowBrowseDialog(this, Intents.RequestCodeFileBrowseForBinary, false,
+                true /*force OpenDocument if available*/);
+            }
+            else
+            {
+              StartActivityForResult(
+                new Intent(this, typeof(CapturePhotoActivity)),
+                Intents.RequestCodeCameraCapture);
+            }
+          })
+          .Show();
       };
 
       binariesGroup.AddView(addBinaryButton, layoutParams);
@@ -1581,6 +1686,8 @@ namespace keepass2android
     private string[] _additionalKeys = null;
     private List<View> _editModeHiddenViews;
     private Uri _uriToAddOrAsk;
+    private byte[]? _cameraPhotoBytes;
+    private string? _cameraPhotoFilename;
 
     public string[] AdditionalKeys
     {

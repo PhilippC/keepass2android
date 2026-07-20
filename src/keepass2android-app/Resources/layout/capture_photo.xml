@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  In-app camera capture layout. Uses CameraX PreviewView so no photo is ever
+  written to external storage or the media gallery.
+-->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/black">
+
+    <!-- Live camera preview - fills the entire screen -->
+    <androidx.camera.view.PreviewView
+        android:id="@+id/camera_preview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <!-- Bottom control bar overlaid on the preview -->
+    <LinearLayout
+        android:id="@+id/camera_controls"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="#CC000000"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="12dp">
+
+        <!-- Cancel / close -->
+        <ImageButton
+            android:id="@+id/btn_cancel"
+            android:layout_width="0dp"
+            android:layout_height="64dp"
+            android:layout_weight="1"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/cancel"
+            android:padding="12dp"
+            android:src="@drawable/baseline_close_24"
+            android:tint="@android:color/white" />
+
+        <!-- Shutter / capture (larger, center) -->
+        <ImageButton
+            android:id="@+id/btn_capture"
+            android:layout_width="0dp"
+            android:layout_height="80dp"
+            android:layout_weight="1"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/capture_photo_title"
+            android:padding="8dp"
+            android:src="@drawable/baseline_camera_alt_24"
+            android:tint="@android:color/white" />
+
+        <!-- Flip camera front/back -->
+        <ImageButton
+            android:id="@+id/btn_flip_camera"
+            android:layout_width="0dp"
+            android:layout_height="64dp"
+            android:layout_weight="1"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/capture_flip_camera"
+            android:padding="12dp"
+            android:src="@drawable/baseline_sync_24"
+            android:tint="@android:color/white" />
+
+    </LinearLayout>
+
+</FrameLayout>

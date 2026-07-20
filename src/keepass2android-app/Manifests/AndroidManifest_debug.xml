@@ -282,6 +282,11 @@ The scheme=file is still there for old OS devices. It's also queried by apps lik
     <meta-data android:name="com.sec.android.multiwindow.MINIMUM_SIZE_W" android:value="426.0dip" />
     <meta-data android:name="com.sec.android.multiwindow.MINIMUM_SIZE_H" android:value="360.0dip" />
   </application>
+  <!-- Camera permission for in-app attachment photo capture (runtime permission on API 23+) -->
+  <uses-permission android:name="android.permission.CAMERA" />
+  <!-- required="false": app works without a camera; feature only shown on devices that have one -->
+  <uses-feature android:name="android.hardware.camera" android:required="false" />
+  <uses-feature android:name="android.hardware.camera.autofocus" android:required="false" />
   <uses-permission android:name="android.permission.VIBRATE" />
   <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
   <uses-permission android:name="android.permission.INTERNET" />
