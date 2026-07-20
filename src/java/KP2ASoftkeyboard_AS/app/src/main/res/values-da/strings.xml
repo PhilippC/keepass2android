@@ -183,7 +183,7 @@
     <!-- Short hint shown in candidate view to explain that user can speak punctuation. -->
     <string name="voice_punctuation_hint"><b>\"Tip:\"</b>\" Næste gang kan du forsøge at sige tegnsætning, f.eks. \"punktum\", \"komma\" eller \"spørgsmålstegn\".\"</string>
     <!-- Label on button to stop recognition. Must be short to fit on button. -->
-    <string name="cancel">Annullér</string>
+    <string name="cancel">Afbryd</string>
     <!-- Label on button when an error occurs -->
     <string name="ok">OK</string>
     <!-- Preferences item for enabling speech input -->

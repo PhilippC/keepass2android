@@ -69,7 +69,7 @@
     </plurals>
     <plurals name="afc_title_choose_files_directories">
         <item quantity="one">Wybierz plik/folder…</item>
-        <item quantity="few">Wybierz pliki/foldery...</item>
+        <item quantity="few">Wybierz pliki/foldery…</item>
         <item quantity="many">Wybierz pliki/foldery…</item>
         <item quantity="other">Wybierz pliki/foldery…</item>
     </plurals>

@@ -761,6 +761,8 @@
   <string name="cleartextTrafficPermitted_summary">HTTP 连接不安全。只有当您有其他安全措施时才启用它。</string>
   <string-array name="ChangeLog_1_15_net">
     <item>改进针对带有非 ASCII 字符的 WebDav 的 URL 处理</item>
+    <item>Improvements to OneDrive Authentication</item>
+    <item>Minor bug fixes</item>
   </string-array>
   <string-array name="ChangeLog_1_15">
     <item>添加了后台同步：Keepass2Android 现在使用数据库的内部缓存副本进行加载和保存，以使这些操作更快。操作完成后，将启动与远程数据库的同步。</item>
@@ -1255,7 +1257,8 @@ Initial public release
   <string name="ssid_explanation">定义 SSID 列表。如果连上这些 SSID 中的任何一个会执行自动后台同步。</string>
   <string name="remove_ssid_message">确定要删除 SSID 吗？</string>
   <string name="permission_needed">需要权限</string>
-  <string name="permission_location_rationale">    需要位置权限来读取当前 Wi-Fi SSID.如果希望只在某些 SSID 下进行后台同步，这个权限是必需的。
+  <string name="permission_location_rationale">
+    需要位置权限来读取当前 Wi-Fi SSID.如果希望只在某些 SSID 下进行后台同步，这个权限是必需的。
   </string>
   <string name="BackgroundSyncWifiSsids_title">基于 Wi-Fi SSID 的后台同步</string>
   <string name="BackgroundSyncWifiOnly_title">只在 Wi-Fi 连接时进行后台同步</string>

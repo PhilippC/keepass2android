@@ -763,6 +763,8 @@
   <string name="cleartextTrafficPermitted_summary">As conexões HTTP não são seguras. Habilite isso apenas se você tiver outras medidas de segurança em vigor.</string>
   <string-array name="ChangeLog_1_15_net">
     <item>Melhorias no tratamento de URL para WebDav com caracteres não ASCII</item>
+    <item>Improvements to OneDrive Authentication</item>
+    <item>Minor bug fixes</item>
   </string-array>
   <string-array name="ChangeLog_1_15">
     <item>Sincronização em segundo plano implementada: O Keepass2Android agora usa a cópia interna em cache do banco de dados para carregar e salvar, tornando essas operações mais rápidas. Em seguida, a sincronização com o banco de dados remoto é iniciada. </item>
@@ -1283,7 +1285,8 @@
   <string name="ssid_explanation">Defina uma lista de SSIDs. A sincronização automática em segundo plano será executada se você estiver conectado a qualquer um deles.</string>
   <string name="remove_ssid_message">Tem certeza de que deseja remover este SSID?</string>
   <string name="permission_needed">Permissão Necessária</string>
-  <string name="permission_location_rationale">    A permissão de localização é necessária para ler seu SSID Wi-Fi atual. Isso é necessário se você quiser restringir a sincronização em segundo plano a determinados SSIDs.
+  <string name="permission_location_rationale">
+    A permissão de localização é necessária para ler seu SSID Wi-Fi atual. Isso é necessário se você quiser restringir a sincronização em segundo plano a determinados SSIDs.
   </string>
   <string name="BackgroundSyncWifiSsids_title">Sincronização em segundo plano com base em Wi-Fi-SSID</string>
   <string name="BackgroundSyncWifiOnly_title">Sincronização em segundo plano somente em Wi-Fi</string>

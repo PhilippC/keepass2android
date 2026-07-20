@@ -341,7 +341,9 @@
   <string name="QuickUnlockDefaultEnabled_title">Abilita QuickUnlock come impostazione predefinita</string>
   <string name="QuickUnlockDefaultEnabled_summary">Indica se QuickUnlock è attivato per default o no.</string>
   <string name="ViewDatabaseSecure_title">Proteggi la visibilità dei dati</string>
+  <string name="DisableSecureDisplayCheck_title">Salta controllo per la visualizzazione sicura</string>
   <string name="ViewDatabaseSecure_summary">Se abilitato, non permette di fare screenshot né mostra la miniatura nella lista delle App Recenti.</string>
+  <string name="DisableSecureDisplayCheck_summary">Permetti di mostrare informazioni sensibili anche se la schermata corrente non è contrassegnata come \"sicura\" da Android.</string>
   <string name="QuickUnlockIconHidden_title">Nascondi l\'icona QuickUnlock</string>
   <string name="QuickUnlockIconHidden_summary">QuickUnlock purtroppo non funziona senza visualizzare un\'icona di notifica. Seleziona questa opzione per utilizzare un\'icona trasparente.</string>
   <string name="QuickUnlockIconHidden16_title">Nascondi l\'icona QuickUnlock</string>
@@ -705,13 +707,17 @@
 
 • assicurati di aver inserito la password corretta. Usa l\'icona che rappresenta un occhio per vedere la password immessa.\n
 • assicurati di aver selezionato il tipo di password corretto. Assicurati che coincida con il tipo usato quando hai creato il database.\n
-• assicurati di aver selezionato il file del database corretto.</string>
-  <string name="HintLocalBackupInvalidCompositeKey">    \n  
+• assicurati di aver selezionato il file del database corretto.
+</string>
+  <string name="HintLocalBackupInvalidCompositeKey">
+    \n  
    • Suggerimento: se pensi che il tuo file di database possa essere danneggiato oppure non ricordi la password principale dopo averla modificata, puoi provare con l\'ultima versione di file aperta correttamente facendo clic su \"%1$s\" e selezionando il backup locale.</string>
-  <string name="HintLocalBackupOtherError">     \n
+  <string name="HintLocalBackupOtherError">
+     \n
      • Suggerimento: Keepass2Android ha archiviato l\'ultima versione del file aperta correttamente nella memoria interna. È possibile aprirla facendo clic su \"%1$s\" e selezionando il backup locale.
   </string>
-  <string name="CorruptDatabaseHelp">Il file è corrotto.\n
+  <string name="CorruptDatabaseHelp">
+Il file è corrotto.\n
 Ecco alcuni suggerimenti che ti potrebbero aiutare a diagnosticare il problema:\n
 
 • se hai copiato il file tramite USB (MTP-Mode), riprova usando uno strumento come MyPhoneExplorer. (MTP  a volte tronca i file.)\n
@@ -743,16 +749,19 @@ Ecco alcuni suggerimenti che ti potrebbero aiutare a diagnosticare il problema:\
   <string name="EntryChannel_name">Notifiche della voce</string>
   <string name="EntryChannel_desc">Notifica per semplificare l\'accesso alla voce attualmente selezionata.</string>
   <string name="BackgroundSyncChannel_name">Operazione di sincronizzazione</string>
+  <string name="BackgroundSyncChannel_desc">Notifica per indicare che una sincronizzazione viene eseguita in background.</string>
   <string name="CloseDbAfterFailedAttempts">Chiudi il database dopo tre tentativi di sblocco biometrici falliti.</string>
   <string name="hint_smb_credentials">Se desideri accedere ai file del tuo computer Windows personale, usa il nome del computer o l\'indirizzo IP locale come URL host; digita il nome del computer come dominio e il login di Windows (spesso lo stesso dell\'account Microsoft) come nome utente e password.</string>
   <string name="WarnFingerprintInvalidated">Attenzione! L\'autenticazione biometrica può essere invalidata da Android, ad es. dopo aver aggiunto una nuova impronta digitale nelle impostazioni del dispositivo. Assicurati di sapere sempre come sbloccare con la tua password principale!</string>
   <string name="webdav_chunked_upload_size_title">Dimensione del blocco per il caricamento WebDav</string>
+  <string name="webdav_chunked_upload_enabled_title">Abilita caricamento a blocchi per WebDav</string>
+  <string name="webdav_chunked_upload_enabled_summary">Per i server WebDav che non supportano il caricamento di file di grandi dimensioni in una singola richiesta. Se abilitato, Keepass2Android utilizza il chunking standard WebDav, non il metodo di chunking Nextcloud.</string>
   <string name="cleartextTrafficPermitted_title">Consenti il traffico di rete in chiaro in WebDav</string>
   <string name="cleartextTrafficPermitted_summary">Le connessioni HTTP non sono sicure. Abilita questa opzione solo se hai altre misure di sicurezza in atto.</string>
   <string-array name="ChangeLog_1_14">
     <item>Aggiornato a .net 9 e Target SDK versione 35. Su Android 15 è disponibile una barra di stato trasparente, perché la visualizzazione bordo-a-bordo è ora predefinita.</item>
     <item>Miglioramenti minori dell\'interfaccia utente</item>
-    <item>Removed buttons for donate and find plugins, in order to comply with Google Play policies</item>
+    <item>Rimossi i pulsanti per donare e trovare estensioni, al fine di rispettare le politiche di Google Play</item>
   </string-array>
   <string-array name="ChangeLog_1_14_net">
     <item>Miglioramenti WebDav: correzione di bug per l\'elenco delle cartelle; supporto per caricamenti e transazioni in blocchi</item>
@@ -891,7 +900,8 @@ Ecco alcuni suggerimenti che ti potrebbero aiutare a diagnosticare il problema:\
 * scambiato implementazioneTLS per FTPS, aggiunto un rimedio al bug JSch con server che supportano gssapi-with-mic\n
 * bugfix\n
   </string>
-  <string name="ChangeLog_1_05">    Versione 1. 5\n
+  <string name="ChangeLog_1_05">
+    Versione 1. 5\n
     * Usa canali di notifica per Android 8, consentendo la configurazione tramite le impostazioni di sistema\n
     * Mostra l\'icona di voce nella notificazione\n
     * Usa le icone adattive per Android 8, utilizzare l\'icona round launcher per Android 7\n
@@ -909,7 +919,8 @@ Ecco alcuni suggerimenti che ti potrebbero aiutare a diagnosticare il problema:\
   <string name="ChangeLog_1_04b">    Versione 1.04b\n 
     * Evita il crash quando l\'utente tenta di abilitare la Compilazione automatica su dispositivi Huawei.\n
   </string>
-  <string name="ChangeLog_1_04">    Versione 1.04\n
+  <string name="ChangeLog_1_04">
+    Versione 1.04\n
     * Aggiunto il Servizio di compilazione automatica per Android 8.0 e successivi.\n
     * Aggiornati librerie e strumenti di compilazione e versione target SDK.\n
   </string>
@@ -970,7 +981,8 @@ Ecco alcuni suggerimenti che ti potrebbero aiutare a diagnosticare il problema:\
 * bug risolti (nella tastiera incorporata, alla selezione di icone)\n
 * aggiunta opzione per la segnalazione di errori\n
 * aggiunti messaggi di aiuto in vari punti\n  </string>
-  <string name="ChangeLog_0_9_9">Versione 0.9.9\n
+  <string name="ChangeLog_0_9_9">
+Versione 0.9.9\n
 * Interfaccia completamente riprogettata. Grazie mille a Stefano Pignataro (http://www.spstudio.at) per l\'assistenza!\n
 * Consente di aggiungere icone personalizzate\n
 * Supporta la modalità Multi Window sui dispositivi Samsung\n
@@ -992,7 +1004,8 @@ Ecco alcuni suggerimenti che ti potrebbero aiutare a diagnosticare il problema:\
   <string name="ChangeLog_0_9_7b">Versione 0.9.7b\n
 * aggiornate le traduzioni\n
 * bugfix:  font Password mancante nella versione 0.9.7; ordina per nome non ordinava i gruppi\n</string>
-  <string name="ChangeLog_0_9_7">    Versione 0.9.\n
+  <string name="ChangeLog_0_9_7">
+    Versione 0.9.\n
     * scrivere il supporto per i database di Keepass 1 (kdb) (beta!\n
     * meglio tornare alla tastiera precedente (funziona anche su dispositivi non rootati)\n
     * supporto per KeeChallenge con sfide di lunghezza variabile\n
@@ -1000,7 +1013,8 @@ Ecco alcuni suggerimenti che ti potrebbero aiutare a diagnosticare il problema:\
     * ordine inverso per Ordina per Modifica Data (ora discendente)\n
     * correzioni di bug: Note ora aggiornate correttamente dopo le modifiche, Viste password ora nascondere correttamente la password su (si spera) tutti i dispositivi, problema fisso che ha permesso di aggiungere una voce due volte, problema fisso con la visualizzazione di un avviso UUID duplicato anche dopo aver risolto il database\n
   </string>
-  <string name="ChangeLog_0_9_6">    Versione 0.9.\n
+  <string name="ChangeLog_0_9_6">
+    Versione 0.9.\n
     * consente di importare file chiave e/o file di database locale nella directory interna dell\'app (vedi impostazioni)\n
     * consente diverse opzioni di ordinamento\n
     * preferenze migliorate per il cambio automatico della tastiera\n
@@ -1023,7 +1037,8 @@ Ecco alcuni suggerimenti che ti potrebbero aiutare a diagnosticare il problema:\
 * aggiornato SDK di Dropbox per includere un aggiornamento di sicurezza (edizione normale)\n
 * aggiornati i tool di sviluppo --&gt; aumentata dimensione apk :-(\n
 Avevo promesso alcune altre modifiche. Arriveranno con la prossima release - scusate. Ho voluto pubblicare queste correzioni il più presto possibile.</string>
-  <string name="ChangeLog_0_9_4"><b>Versione 0.9.4</b>\n
+  <string name="ChangeLog_0_9_4">
+<b>Versione 0.9.4</b>\n
 * aggiunto supporto ai plug-in: guarda nelle impostazioni per scoprire come ottenerli!\n
 * pubblicato QR plug-in (scansiona password, mostra password come QR-code, trasferisci voci ad altri dispositivi KP2A)\n
 * pubblicato InputStick plug-in (trasferisci credenziali al PC via bluetooth - richiede chiavetta InputStick USB)\n
@@ -1039,7 +1054,8 @@ Avevo promesso alcune altre modifiche. Arriveranno con la prossima release - scu
 * migliorata l\'interfaccia utente\n
 * corretto un bug nell\'interfaccia di Google Drive\n
 * aggiunta un\'opzione per disabilitare la funzione \"donazione\"\n
-* l\'icona QuickUnlock ora è nascosta di default su dispositivi Android 4.2+\n</string>
+* l\'icona QuickUnlock ora è nascosta di default su dispositivi Android 4.2+\n
+	</string>
   <string name="ChangeLog_0_9_3_r5"><b>Versione 0.9.3 r5</b>\n 
 		* Incorporate correzioni da Xamarin: Keepass2Android è ora compatibile con ART su Android 4.4.2. Finalmente!\n 
 		* Correzioni di errori: errori in sincronizzazione (aggiornamento visualizzazione, corretto controllo per modifiche in http), errori su dispositivi Android 2.x, errori nelle implementazioni di archiviazione con Google Drive e OneDrive, pulizia degli appunti alla chiusura del database, errori in apertura allegati, problemi di visualizzazione della tastiera\n</string>
@@ -1060,7 +1076,8 @@ Avevo promesso alcune altre modifiche. Arriveranno con la prossima release - scu
   <string name="ChangeLog_0_9_1"><b>Versione 0.9.1</b>\n
 * Aggiunto il supporto per SkyDrive (solo nell\'edizione normale di Keepass2Android)\n
 * Corretti i problemi di integrazione con Google Drive\n
-* Aggiunto supporto NTLM</string>
+* Aggiunto supporto NTLM
+</string>
   <string name="ChangeLog_0_9"><b>Versione 0.9</b> \n
 * integrato supporto per Dropbox e Google Drive (database in lettura/scrittura; solo per Keepass2Android edizione regolare)\n
 * integrata la selezione dei file (basata su android-filechooser di HBA)\n
@@ -1073,7 +1090,8 @@ Avevo promesso alcune altre modifiche. Arriveranno con la prossima release - scu
 * Consentito lo spostamento di voci e gruppi\n
 * L\'icona QuickUnlock può essere resa trasparente (vedi le impostazioni)\n
 * Correzioni di errori</string>
-  <string name="ChangeLog_0_8_5"><b>Versione 0.8.5</b>\n
+  <string name="ChangeLog_0_8_5">
+<b>Versione 0.8.5</b>\n
 * i file remoti vengono mantenuti nella cache locale dell\'applicazione per permetterne l\'uso offline (compresa la modifica e la successiva sincronizzazione). Vedi le impostazioni. \n
 * Icona di notifica per visualizzare lo stato del blocco del database (vedi Impostazioni)\n
 * Migliorato il rilevamento dello stato del blocco del database in alcune circostanze \n
@@ -1102,7 +1120,8 @@ Grazie a Niki Hüttner (www.close-cut.de) per il logo!\n</string>
 * Correzione di errori (OI File manager, Open URL)</string>
   <string name="ChangeLog_0_8_1"><b>Versione 0.8.1</b>\n
 * KP2A Offline e \"Online\" possono di nuovo essere installati insieme\n
-* Aggiunte nuove traduzioni (grazie a tutti i collaboratori!)</string>
+* Aggiunte nuove traduzioni (grazie a tutti i collaboratori!)
+</string>
   <string name="ChangeLog_0_8"><b>Versione 0.8</b>\n
 * Migliorata l\'interfaccia utente in particolare per i dispositivi con Android 4.x\n
 * Consentito l\'utilizzo di gestori di file personali per selezionare file esistenti\n
@@ -1226,4 +1245,27 @@ Prima release pubblica
   <string name="switch_keyboard_for_totp_enabled">Nota: Hai abilitato App - Accesso password - Servizio di autocompilazione - Autocompilazione per le voci TOTP. Questo può causare la visualizzazione di questa finestra quando si apre una voce con un TOTP.</string>
   <string name="switch_keyboard_inside_kp2a_enabled">Nota: Hai abilitato App - Sicurezza - Usa la tastiera integrata all\'interno di Keepass2Android. Questo può causare la visualizzazione di questa finestra quando si apre l\'app o si modifica una voce.</string>
   <string name="switch_keyboard_on_search_enabled">Nota: hai abilitato App - Sicurezza - Accesso tramite password - Cambio tastiera - Cambia tastiera. Questa finestra potrebbe essere visualizzata quando cerchi una voce dal browser.</string>
+  <string name="user_interaction_required">Interazione dall\'utente richiesta. Si prega di aprire l\'app.</string>
+  <string name="configure_ssids">Configura gli SSID</string>
+  <string name="add_current_ssid">Aggiungi SSID Attuale</string>
+  <string name="enter_ssid_hint">Inserisci SSID</string>
+  <string name="add_ssid">Aggiungi un altro SSID</string>
+  <string name="no_ssids">Nessun SSID aggiunto. La sincronizzazione automatica in background sarà eseguita in qualsiasi Wi-Fi.</string>
+  <string name="ssid_empty_or_exists">L\'SSID è vuoto o già in lista</string>
+  <string name="location_permission_required">Permesso di localizzazione richiesto per leggere l\'SSID attuale</string>
+  <string name="permission_granted">Autorizzazione di localizzazione concessa</string>
+  <string name="permission_denied">Permesso negato. Impossibile leggere l\'SSID attuale. Si prega di abilitare l\'autorizzazione tramite le impostazioni di Android.</string>
+  <string name="remove_ssid_title">Rimuovi SSID</string>
+  <string name="ssid_explanation">Definire un elenco di SSID. La sincronizzazione automatica in background sarà eseguita se si è connessi a uno di questi.</string>
+  <string name="remove_ssid_message">Sei sicuro di voler rimuovere questo SSID?</string>
+  <string name="permission_needed">Permesso richiesto</string>
+  <string name="permission_location_rationale">
+    Il permesso posizione è necessario per leggere il tuo SSID Wi-Fi attuale. Questo è necessario se si desidera limitare la sincronizzazione in background a determinati SSID.
+  </string>
+  <string name="BackgroundSyncWifiSsids_title">Sincronizzazione in background in base all\'SSID della rete Wi-Fi</string>
+  <string name="BackgroundSyncWifiOnly_title">Sincronizzazione in background solo in Wi-Fi</string>
+  <string name="BackgroundSyncWifiOnly_summary">Se selezionato, la sincronizzazione in background viene avviata solo se connesso a una rete Wi-Fi.</string>
+  <string name="pref_enable_periodic_background_sync_title">Sincronizzazione periodica in background</string>
+  <string name="pref_periodic_background_sync_interval_title">Intervallo di sincronizzazione periodica in background</string>
+  <string name="pref_periodic_background_sync_interval_summary">Imposta l\'intervallo per la sincronizzazione in background in minuti.</string>
 </resources>

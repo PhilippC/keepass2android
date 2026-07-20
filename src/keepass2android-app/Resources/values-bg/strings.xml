@@ -434,7 +434,8 @@
   <string name="filestoragename_ftp">FTP</string>
   <string name="filestoragename_http">HTTP (WebDav)</string>
   <string name="filestoragename_https">HTTPS (WebDav)</string>
-  <string name="filestoragename_owncloud">OwnCloud</string>
+  <string name="filestoragename_owncloud">OwnCloud
+</string>
   <string name="filestoragename_dropbox">Dropbox</string>
   <string name="filestoragename_dropboxKP2A">Dropbox (KP2A папка)</string>
   <string name="filestoragename_gdrive">Google Drive</string>
