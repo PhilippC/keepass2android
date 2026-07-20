@@ -141,7 +141,10 @@ namespace keepass2android
         long id = cursor.GetLong(cursor.GetColumnIndexOrThrow(KeyFileId));
 
         var vals = new ContentValues();
-        vals.Put(KeyFileKeyfile, keyFile);
+        // Only update the keyfile if explicitly provided. null means "unknown - preserve existing value".
+        // An empty string "" is used to intentionally clear the keyfile (e.g. when remember_keyfile is off).
+        if (keyFile != null)
+          vals.Put(KeyFileKeyfile, keyFile);
         if (updateLastUsageTimestamp)
           vals.Put(KeyFileUpdated, Java.Lang.JavaSystem.CurrentTimeMillis());
 
