@@ -703,19 +703,23 @@
   <string name="Continue">Suivant</string>
   <string name="NoFilenameWarning">L\'URI que vous avez entré ne ressemble pas à un nom de fichier. Etes-vous sûr qu\'il s\'agit d\'un fichier valide ?</string>
   <string name="FirstInvalidCompositeKeyError">Clé composite invalide ! S\'il vous plaît essayez encore.</string>
-  <string name="RepeatedInvalidCompositeKeyHelp">    Clé composite non valide ! Veuillez essayer les étapes suivantes pour déverrouiller votre base de données :\n
+  <string name="RepeatedInvalidCompositeKeyHelp">
+    Clé composite non valide ! Veuillez essayer les étapes suivantes pour déverrouiller votre base de données :\n
 
     • Assurez-vous que vous avez saisi le bon mot de passe. Utilisez l\'icône en forme d\'œil pour révéler le mot de passe saisi.\n
     • Assurez-vous que vous avez sélectionné le bon type de mot de passe et qu\'il correspond à celui utilisé lors de la création de la base de données.\n
     • Assurez-vous que vous avez sélectionné le bon fichier de base de données.
   </string>
-  <string name="HintLocalBackupInvalidCompositeKey">    \n
+  <string name="HintLocalBackupInvalidCompositeKey">
+    \n
     • Indice : si vous pensez que votre fichier de base de données est corrompu ou que vous ne vous souvenez pas de la clé principale après l\'avoir modifiée, vous pouvez essayer avec la dernière version du fichier ouverte avec succès en appuyant sur « %1$s » et en sélectionnant la sauvegarde locale.
   </string>
-  <string name="HintLocalBackupOtherError">    \n
+  <string name="HintLocalBackupOtherError">
+    \n
     • Indice : Keepass2Android a enregistré la dernière version de fichier ouverte avec succès sur le stockage interne. Vous pouvez l\'ouvrir en appuyant sur « %1$s »  et en sélectionnant la sauvegarde locale.
   </string>
-  <string name="CorruptDatabaseHelp">    Le fichier est corrompu.\n
+  <string name="CorruptDatabaseHelp">
+    Le fichier est corrompu.\n
     Voici quelques conseils qui pourraient aider à diagnostiquer le problème :\n
 
     • Si vous avez copié le fichier via USB (mode MTP), essayez à nouveau en utilisant un outil comme MyPhoneExplorer. MTP tronque les fichiers dans certains cas.\n
@@ -761,6 +765,8 @@
   <string name="cleartextTrafficPermitted_summary">Les connexions HTTP ne sont pas sécurisées. N\'activez ceci que si vous avez d\'autres mesures de sécurité en place.</string>
   <string-array name="ChangeLog_1_15_net">
     <item>Améliorations de la gestion des URL pour WebDav avec des caractères non-ASCII</item>
+    <item>Improvements to OneDrive Authentication</item>
+    <item>Minor bug fixes</item>
   </string-array>
   <string-array name="ChangeLog_1_15">
     <item></item>
@@ -880,7 +886,8 @@
     <item>Corrections de bugs</item>
     <item>Corrections de bugs</item>
   </string-array>
-  <string name="ChangeLog_1_07b">    Version 1.07b\n
+  <string name="ChangeLog_1_07b">
+    Version 1.07b\n
     * Amélioration des performances d\'Argon2 par l\'utilisation de l\'implémentation native (Remerciements à Chih-Hsuan Yen!)\n
     * Possibilité de désactiver le verrouillage par empreinte digitale en cliquant sur l\'icône empreinte digitale (évite les problèmes avec les lecteurs d\'empreinte digitale placés sous l\'écran, remerciements à marcoDallas!)\n
     * Rétablissement de la position courante du curseur lors de la bascule entre les modes mot de passe visible / caché (Remerciements à DDoSolitary!)\n
@@ -931,7 +938,8 @@
     * Suppression des rapports d\'erreur en utilisant Xamarin Insights\n
     * Mise à jour des outils de compilation\n
   </string>
-  <string name="ChangeLog_1_01g">    Version 1. 1-g\n
+  <string name="ChangeLog_1_01g">
+    Version 1. 1-g\n
     * Correction pour un plantage lorsque vous essayez de travailler hors ligne\n
     * Correction pour un codage incorrect des identifiants FTP(S)\n
     * Correction pour les plantages lors de l\'utilisation de OneDrive et des anciennes versions d\'Android\n
@@ -963,12 +971,14 @@
   </string>
   <string name="ChangeLog_0_9_8b">Version 0.9.8b\n
 		* corrections de bugs (Sauvegarde a échoué pour certaines bases, exporter vers le périphérique local ne fonctionne pas, sélectionner certaines options de préférence crash l\'app)\n</string>
-  <string name="ChangeLog_0_9_8">Version 0.9.8\n
+  <string name="ChangeLog_0_9_8">
+		Version 0.9.8\n
 		* Support du Storage Access Framework (permet l\'écriture sur carte SD et Google Drive dans KP2A Offline)\n
 		* Essai de détecter les erreurs de saisie dans les URL WebDAV (répertoire au lieu du fichier)\n
 		* Police de mot de passe modifié\n
 		* Autorise le changement de compte Dropbox\n
-		* correction de bug: maintenant se souvient du mot de passe OTP\n</string>
+		* correction de bug: maintenant se souvient du mot de passe OTP\n
+	</string>
   <string name="ChangeLog_0_9_7b">Version 0.9.7b\n
 		* traductions actualisées\n
 		* corrections de bugs : polices de mot de passe était manquant dans 0.9.7, trie par nom ne trie pas les groupes\n</string>
@@ -979,7 +989,8 @@
     * Empêche la prise de captures d\'écran depuis le déverrouillage rapide et les écrans de mots de passe
     * ordre de tri inversé pour le tri par date de modification (maintenant descendant)\n
     * Correction de bugs : L\'affichage des notes est maintenant mis à jour correctement après les changements, l\'affichage des mots de passe cache maintenant le mot de passe correctement sur (espérons-le) tous les appareils, correction du problème qui permettait d\'ajouter une entrée deux fois, correction du problème d\'affichage de l\'avertissement de duplication de l\'UUID même après avoir corrigé la base de données</string>
-  <string name="ChangeLog_0_9_6">    Version 0.9.6
+  <string name="ChangeLog_0_9_6">
+    Version 0.9.6
     * Possibilité d\'importer un fichier clé et/ou un fichier de base de données local dans le répertoire interne de l\'application (voir les paramètres)\n
     * Permet différentes options de tri.
     * Amélioration des préférences pour la commutation automatique du clavier
@@ -992,7 +1003,8 @@
     * Ajout d\'une vérification des bases de données corrompues (UUIDs en double)\n
     * rechargement automatique de la base de données lorsqu\'un changement est détecté, ce qui résout le problème de sécurité lié à la divulgation du mot de passe principal
     * amélioration du polissage de la disposition des petits claviers, correction du thème des paramètres du clavier (merci à Wiktor Ławski)\n</string>
-  <string name="ChangeLog_0_9_5">    <b>Version 0.9.5</b>\nbsp;* Correction des problèmes de navigation dans les fichiers, en particulier sur Android 4.4.\nbsp;*.
+  <string name="ChangeLog_0_9_5">
+    <b>Version 0.9.5</b>\nbsp;* Correction des problèmes de navigation dans les fichiers, en particulier sur Android 4.4.\nbsp;*.
     * Correction de problèmes avec la navigation dans les fichiers (en particulier sur Android 4.4)\n
     * Correction du problème de chargement des fichiers .kdb (Keepass 1) sur le Nexus 5 avec Android Lollipop.
     * Ajout d\'une option pour empêcher les captures d\'écran/afficher l\'application dans la liste des applications récentes
@@ -1001,7 +1013,8 @@
     * Mise à jour du SDK Dropbox pour inclure un correctif de sécurité officiel (édition normale)\n
     * Mise à jour des outils de construction --&amp;gt ; la taille de l\'apk a augmenté :-(\n)
  J\'ai promis d\'autres changements. Ils viendront avec la prochaine version - désolé. Je voulais publier ces correctifs dès que possible.</string>
-  <string name="ChangeLog_0_9_4">    <b>Version 0.9.4</b>\nbsp;* * ajout d\'un plug-in pour le support de l\'interface utilisateur.
+  <string name="ChangeLog_0_9_4">
+    <b>Version 0.9.4</b>\nbsp;* * ajout d\'un plug-in pour le support de l\'interface utilisateur.
     * ajout d\'un support pour les plugins : Voir les paramètres pour savoir comment obtenir les plug-ins!\N- * publié le plug-in QR (scanner les mots de passe sous forme de code QR)
     * plugin QR publié (scanner les mots de passe, afficher les mots de passe sous forme de code QR, transférer les entrées vers d\'autres appareils KP2A)\n
     * Plugin InputStick publié (transfert des données d\'identification vers votre PC via bluetooth - nécessite la clé USB InputStick)\n
@@ -1021,7 +1034,8 @@
   <string name="ChangeLog_0_9_3_r5">    <b>Version 0.9.3 r5</b>\nbsp;*.
     * Incorporation des corrections de Xamarin : Keepass2Android est maintenant compatible avec ART sur Android 4.4.2. Enfin !
     * Corrections de bugs : bugs dans la synchronisation (rafraîchissement de l\'affichage, vérification correcte des changements sur http), bugs sur les appareils Android 2.x, bugs dans les implémentations de stockage Google Drive et OneDrive, effacement du presse-papier lors de la fermeture de la base de données, bug lors de l\'ouverture des pièces jointes, problèmes d\'affichage avec les claviers</string>
-  <string name="ChangeLog_0_9_3">    <b>Version 0.9.3</b>\nbsp;* Nouveau clavier.
+  <string name="ChangeLog_0_9_3">
+    <b>Version 0.9.3</b>\nbsp;* Nouveau clavier.
     * Nouveau clavier avec de nombreuses améliorations. Voir les paramètres pour le personnaliser.
     * Support en lecture seule pour kdb (fichiers Keepass 1). Expérimental !\N
     * Ajout du support SFTP
@@ -1039,26 +1053,30 @@
     * Prise en charge intégrée de SkyDrive (Keepass2Android regular edition seulement)\n
     * Correction des problèmes d\'intégration de Google Drive
     * Ajout du support NTLM</string>
-  <string name="ChangeLog_0_9">    <b>Version 0.9</b>\n
+  <string name="ChangeLog_0_9">
+    <b>Version 0.9</b>\n
     * Prise en charge intégrée de Dropbox et Google Drive (bases de données en lecture/écriture ; Keepass2Android édition normale uniquement)\n
     * Navigateur de fichiers personnalisé intégré (basé sur android-filechooser de HBA)\n
     * Interface utilisateur améliorée pour la création de nouvelles bases de données
     * Police personnalisée DejaVu Sans Mono incluse pour l\'affichage des mots de passe
     * Corrections de bugs</string>
-  <string name="ChangeLog_0_8_6">    <b>Version 0.8.6</b>\nbsp;* * Prise en charge du chiffrement Twofish
+  <string name="ChangeLog_0_8_6">
+    <b>Version 0.8.6</b>\nbsp;* * Prise en charge du chiffrement Twofish
     * Prise en charge du cryptage Twofish
     * Permettre l\'édition des groupes
     * Permettre le déplacement des entrées et des groupes
     * L\'icône de QuickUnlock peut être rendue transparente (voir les réglages)
     * Corrections de bugs</string>
-  <string name="ChangeLog_0_8_5">    <b>Version 0.8.5</b>\nbsp ;
+  <string name="ChangeLog_0_8_5">
+    <b>Version 0.8.5</b>\nbsp ;
     * Les fichiers distants sont stockés dans le cache de l\'application locale pour permettre une utilisation hors ligne (y compris l\'édition et la synchronisation ultérieure). Voir les paramètres. \n
     * Icône de notification pour visualiser l\'état de verrouillage de la base de données (voir les paramètres).
     * Amélioration de la détermination de l\'état de verrouillage dans certaines situations
     * Les fichiers de la base de données sont chargés en mémoire pendant que vous tapez votre mot de passe pour augmenter la vitesse de chargement (voir les paramètres)\n
     * Possibilité d\'ajouter des entrées au groupe racine
     * Corrections de bugs (résolution des champs de référence, problèmes avec le clavier sur les appareils italiens et chinois)</string>
-  <string name="ChangeLog_0_8_4">    <b>Version 0.8.4</b>\nbsp;* * Les modifications externes de la base de données sont détectées lors de la sauvegarde.
+  <string name="ChangeLog_0_8_4">
+    <b>Version 0.8.4</b>\nbsp;* * Les modifications externes de la base de données sont détectées lors de la sauvegarde.
     * Les modifications apportées aux bases de données externes sont détectées et fusionnées lors de la sauvegarde.
     * Amélioration des performances de chargement
     * Barre d\'outils de recherche améliorée avec suggestions
@@ -1066,7 +1084,8 @@
     * Ajout de la prise en charge du format .kdbp pour un chargement et une sauvegarde plus rapides.
     * Amélioration de l\'édition des chaînes supplémentaires et de l\'affichage caché lors de la protection
  Merci à Alex Vallat pour ses contributions au code!\N- Merci à Niki Hüttner (www.close-cut.de) pour le nouveau logo!</string>
-  <string name="ChangeLog_0_8_3">    <b>Version 0.8.3</b>\nbsp;* *Index de nom d\'utilisateur/TAN affiché dans la liste d\'entrée (voir les paramètres)
+  <string name="ChangeLog_0_8_3">
+    <b>Version 0.8.3</b>\nbsp;* *Index de nom d\'utilisateur/TAN affiché dans la liste d\'entrée (voir les paramètres)
     * Index du nom d\'utilisateur/TAN affiché dans la liste des entrées (voir réglages)\n
     * Les entrées peuvent être créées si la recherche à partir du navigateur ne renvoie pas de résultats.
     * Le clavier KP2A permet de rechercher des informations d\'identification pour l\'application en cours.
@@ -1074,24 +1093,28 @@
     * La boîte de dialogue de sélection du clavier s\'ouvre automatiquement après la recherche d\'une URL (voir les paramètres).
     * Les espaces réservés dans les champs de saisie sont remplacés avant la copie (la plupart des espaces réservés sont pris en charge)\n
     * Corrections de bogues mineurs</string>
-  <string name="ChangeLog_0_8_2">    <b>Version 0.8.2</b> * Prise en charge de l\'authentification Digest dans WebDAV
+  <string name="ChangeLog_0_8_2">
+    <b>Version 0.8.2</b> * Prise en charge de l\'authentification Digest dans WebDAV
     * Prise en charge de l\'authentification Digest dans WebDAV
     * Correction de bugs (OI File manager, Open URL)</string>
   <string name="ChangeLog_0_8_1">   <b>Version 0.8.1</b>\nbsp;* KP2A Offline et « Online » peut être installé à la fois en ligne et hors ligne.
     * KP2A Offline et \"Online\" peuvent être installés tous les deux.
     * Ajout de nouvelles traductions (merci à tous les contributeurs !)</string>
-  <string name="ChangeLog_0_8">    <b>Version 0.8</b>\nbsp;* Amélioration de l\'interface utilisateur, en particulier pour les appareils Android 4.x
+  <string name="ChangeLog_0_8">
+    <b>Version 0.8</b>\nbsp;* Amélioration de l\'interface utilisateur, en particulier pour les appareils Android 4.x
     * Amélioration de l\'interface utilisateur, en particulier pour les appareils Android 4.x.
     * Permettre l\'utilisation de gestionnaires de fichiers délibérés pour la sélection de fichiers existants.
     * Ajout d\'un moyen plus sûr d\'ouvrir les pièces jointes (via le répertoire cache).
     * Correction de bugs dans l\'activité d\'édition
     * Probablement introduit de nouveaux bugs :-)</string>
   <string name="ChangeLog_keptDonate">Possibilité élargie de faire un don d\'une bière ou autre chose</string>
-  <string name="ChangeLog_0_7">    <b>Version 0.7</b>\N- * Amélioration de la vitesse de chargement : les transformations de clés sont désormais plus rapides !
+  <string name="ChangeLog_0_7">
+    <b>Version 0.7</b>\N- * Amélioration de la vitesse de chargement : les transformations de clés sont désormais plus rapides !
     * Augmentation de la vitesse de chargement : les transformations de touches sont maintenant 10x plus rapides!\n
     * Ajout du clavier logiciel Keepass2Android : Basculez sur ce clavier pour saisir les informations d\'identification. Vous protège des renifleurs de mots de passe basés sur le presse-papiers (désactivez les anciennes notifications du presse-papiers dans les options)*.
     * Ajout d\'une option pour donner une bière ou autre chose (voir le menu)</string>
-  <string name="ChangeLog">    <b>Version 0.6.2</b>\nbsp;* * Intégration de Google Drive/Dropbox/.../...
+  <string name="ChangeLog">
+    <b>Version 0.6.2</b>\nbsp;* * Intégration de Google Drive/Dropbox/.../...
     * Intégration Google Drive/Dropbox/... : Utilisez l\'application officielle Google Drive ou Dropbox et ouvrez n\'importe quel fichier .kdbx. KP2A s\'affichera alors.
     * Amélioration du dialogue de recherche
     * Amélioration des résultats de recherche pour les URL de partage avec des sous-domaines
@@ -1217,7 +1240,8 @@
   <string name="ssid_explanation">Définir une liste de SSIDs. La synchronisation automatique en arrière-plan sera effectuée si vous êtes connecté à l\'un de ceux-ci.</string>
   <string name="remove_ssid_message">Êtes-vous sûr de vouloir supprimer ce SSID?</string>
   <string name="permission_needed">Autorisation requise</string>
-  <string name="permission_location_rationale">    L\'autorisation de localisation est nécessaire pour lire votre SSID Wi-Fi actuel. Ceci est requis si vous souhaitez restreindre la synchronisation en arrière-plan à certains SSIDs.
+  <string name="permission_location_rationale">
+    L\'autorisation de localisation est nécessaire pour lire votre SSID Wi-Fi actuel. Ceci est requis si vous souhaitez restreindre la synchronisation en arrière-plan à certains SSIDs.
   </string>
   <string name="BackgroundSyncWifiSsids_title">Synchronisation en arrière-plan basée sur le SSID Wi-Fi</string>
   <string name="BackgroundSyncWifiOnly_title">Synchronisation en arrière-plan uniquement en Wi-Fi</string>
