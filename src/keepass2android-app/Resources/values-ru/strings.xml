@@ -47,7 +47,7 @@
   <string name="NavigationToGroupCompleted_message">Отображение группы сейчас: %1$s</string>
   <string name="AutofillDisabledQueriesPreference_title">Отключенные цели автозаполнения</string>
   <string name="AutofillDisabledQueriesPreference_summary">Просмотр списка приложений и сайтов, для которых автозаполнение было отключено</string>
-  <string name="OfferSaveCredentials_summary">Если этот параметр включен, Android спросит, хотите ли вы сохранить учетные данные после того, как вы вручную ввели данные в автозаполняемые поля.</string>
+  <string name="OfferSaveCredentials_summary">После ввода учётных данных в автозаполняемые поля Android спросит, хотите ли Вы их сохранить, если этот параметр включен.</string>
   <string name="OfferSaveCredentials_title">Предлагать сохранять учетные данные</string>
   <string name="ShowGroupInEntry_title">Показывать имя группы при просмотре записи</string>
   <string name="unknown_uri_scheme">Извините! Keepass2Android не может обработать возвращаемый URI %1$s. Свяжитесь с разработчиком!</string>
@@ -62,7 +62,7 @@
   <string name="FileHandling_prefs">Обработка файлов</string>
   <string name="keyboard_prefs">Клавиатура</string>
   <string name="export_prefs">Экспорт БД...</string>
-  <string name="fingerprint_prefs">Разблокирование при помощи биометрии</string>
+  <string name="fingerprint_prefs">Биометрическая разблокировка</string>
   <string name="import_db_prefs">Импорт базы данных во внутреннюю папку</string>
   <string name="import_keyfile_prefs">Импорт файла-ключа во внутреннюю папку</string>
   <string name="export_keyfile_prefs">Экспорт файла с ключом из внутренней папки</string>
@@ -109,6 +109,7 @@
   <string name="disable_fingerprint_unlock">Отключить разблокирование при помощи биометрии</string>
   <string name="enable_fingerprint_unlock">Включить полное разблокирование при помощи биометрии</string>
   <string name="enable_fingerprint_quickunlock">Включить быстрое разблокирование при помощи биометрии</string>
+  <string name="password_based_quick_unlock_not_available_text">Быстрая разблокировка упрощённым паролем недоступна: на Вашем устройстве отключена блокировка экрана. Эта мера безопасности нужна на тот случай, если кто-то увидит вводимую Вами упрощённую комбинацию.</string>
   <string name="fingerprint_unlock_failed">Ошибка биометрического разблокирования. Ключ расшифрования был отклонён операционной системой. Обычно, это происходит, если были изменены параметры биометрической аутентификации или безопасности. </string>
   <string name="fingerprint_disabled_wrong_masterkey">Ошибка при разблокировании базы данных: неверный составной ключ. Разблокирование с помощью биометрии было отключено, так как сохранённый основной пароль более недействителен. </string>
   <string name="fingerprint_reenable">Для задания нового основного пароля повторно активируйте биометрическую аутентификацию.</string>
@@ -186,8 +187,8 @@
   <string name="loading_database">Загрузка базы данных…</string>
   <string name="lowercase">Нижний регистр</string>
   <string name="MaskedPassword">*****</string>
-  <string name="maskpass_title">Скрыть пароль</string>
-  <string name="maskpass_summary">Скрыть пароли по умолчанию</string>
+  <string name="maskpass_title">Скрывать пароли</string>
+  <string name="maskpass_summary">По умолчанию не отображать пароли в открытом виде</string>
   <string name="masktotp_title">Маскировка поля TOTP</string>
   <string name="masktotp_summary">По умолчанию скрывать поле TOTP</string>
   <string name="NoAutofillDisabling_title">Нет возможности отключить автозаполнение</string>
@@ -332,7 +333,7 @@
   <string name="enter_filename_details_create_import">В следующем шаге будет выбран файл для импортирования.</string>
   <string name="enable_quickunlock">Включить \"Быструю разблокировку\"</string>
   <string name="QuickUnlock_label">Введите последние %1$d символов вашего пароля:</string>
-  <string name="QuickUnlock_label_secure">Ввести код для БыстройРазблокировки:</string>
+  <string name="QuickUnlock_label_secure">Введите код для быстрой разблокировки:</string>
   <string name="QuickUnlock_button">Быстрая разблокировка!</string>
   <string name="QuickUnlock_lockButton">Закрыть БД</string>
   <string name="enable_screen_lock">Включить блокировку экрана</string>
@@ -344,13 +345,13 @@
   <string name="QuickUnlockIconHidden_summary">К сожалению, \"Быстрая разблокировка\" не работает без отображения значка уведомлений. Включите этот параметр для использования прозрачного значка.</string>
   <string name="QuickUnlockIconHidden16_title">Скрыть значок БыстройРазблокировки</string>
   <string name="QuickUnlockIconHidden16_summary">Быстрая разблокировка требует уведомления для своей работы. Выберите этот параметр, чтобы отображать уведомление без иконки.</string>
-  <string name="QuickUnlockBlockedWhenDeviceNotSecure_summary">Блокировать ввод ключа быстрой разблокировки, если не включена блокировка экрана с помощью пин кода или пароля. Это предотвращает атаки типа «подглядывание через плечо». Отключайте эту опцию только в том случае, если вы понимаете риск. Обратите внимание, что быструю разблокирку по-прежнему можно использовать с биометрическими данными.</string>
-  <string name="QuickUnlockLength_title">Длина ключа</string>
+  <string name="QuickUnlockBlockedWhenDeviceNotSecure_summary">Запретить ввод упрощённого пароля, если на устройстве отключена блокировка экрана. Эта функция предназначена для защиты от подсматривания. Не рекомендуется снимать этот запрет, если Вы не осознаёте связанные с этим риски.  Учтите, что функцию быстрой разблокировки можно использовать совместно с биометрией.</string>
+  <string name="QuickUnlockLength_title">Длина кода</string>
   <string name="QuickUnlockLength_summary">Максимальное количество символов, используемых как пароль БыстройРазблокировки.</string>
   <string name="QuickUnlockHideLength_title">Скрывать длину ключа</string>
-  <string name="QuickUnlockHideLength_summary">Если включено, длина кода для \"Быстрой разблокировки\" не будет отображаться на экране.</string>
-  <string name="QuickUnlockKeyFromDatabase_title">Ключ из записи в базе данных</string>
-  <string name="QuickUnlockKeyFromDatabase_summary">Если активная база данных содержит запись с названием \"Быстрая разблокировка\" в ее корневой группе, пароль этой записи используется в качестве кода \"Быстрой разблокировки\".</string>
+  <string name="QuickUnlockHideLength_summary">При установке этого параметра не будет подсказки о длине упрощённого пароля на этапе быстрой разблокировки.</string>
+  <string name="QuickUnlockKeyFromDatabase_title">Код из записи в базе данных</string>
+  <string name="QuickUnlockKeyFromDatabase_summary">Если активная база данных содержит запись с названием \"QuickUnlock\" в корневой группе (\"Root\"), пароль из этой записи используется в качестве кода для быстрой разблокировки.</string>
   <string name="QuickUnlock_fail">Быстрая разблокировка не удалась: неправильный пароль!</string>
   <string name="SaveAttachmentDialog_title">Сохранить вложение</string>
   <string name="SaveAttachmentDialog_text">Пожалуйста выберите, куда следует сохранить вложение.</string>
@@ -384,13 +385,13 @@
   <string name="UseFileTransactions_title">Файловые транзакции</string>
   <string name="UseFileTransactions_summary">Использовать файловые транзакции для записи баз данных</string>
   <string name="LockWhenScreenOff_title">Блокировка при выключении экрана</string>
-  <string name="LockWhenScreenOff_summary">Блокировка базы данных при выключении экрана.</string>
+  <string name="LockWhenScreenOff_summary">Блокировка базы данных при отключении экрана.</string>
   <string name="ClearPasswordOnLeave_title">Очистить введенный мастер-пароль</string>
   <string name="ClearPasswordOnLeave_summary">Очистить введенный мастер-пароль при покидании экрана без разблокировки базы данных.</string>
   <string name="LockWhenNavigateBack_title">Блокировать при выходе из приложения</string>
-  <string name="LockWhenNavigateBack_summary">Блокировать БД при выходе кнопкой \"назад\".</string>
+  <string name="LockWhenNavigateBack_summary">Блокировать базу данных при выходе кнопкой \"назад\"</string>
   <string name="UseKp2aKeyboardInKp2a_title">Клавиатура \"Keepass2Android\"</string>
-  <string name="UseKp2aKeyboardInKp2a_summary">Если Вы не доверяете своей стандартной клавиатуре, установите этот параметр, чтобы использовать встроенную клавиатуру при вводе мастер-пароля или редактирования записей.</string>
+  <string name="UseKp2aKeyboardInKp2a_summary">Если Вы не доверяете стандартной клавиатуре устройства, установите этот параметр, чтобы использовать собственную клавиатуру приложения при вводе мастер-пароля и редактировании записей.</string>
   <string name="ActivateSearchViewOnStart_title">Активировать поле поиска при запуске</string>
   <string name="ActivateSearchViewOnStart_summary">Активировать поле поиска в группе после разблокировки или когда ищем значение</string>
   <string name="NoDonateOption_title">Скрыть опцию пожертвования</string>
@@ -399,7 +400,7 @@
   <string name="NoDonationReminder_title">Никогда не спрашивать о пожертвовании</string>
   <string name="NoDonationReminder_summary">Я не дам вам ни копейки, или я уже пожертвовал. Не спрашивать о пожертвовании даже в день рождения автора.</string>
   <string name="UseOfflineCache_title">Кэширование базы данных</string>
-  <string name="UseOfflineCache_summary">Сохранять копию базы данных в кэш приложения. Это позволит использовать базы данных даже тогда, когда сам файл базы данных недоступен.</string>
+  <string name="UseOfflineCache_summary">Сохранять копию базы данных в кэш-директории приложения. Таким образом, доступ к базе данных останется даже тогда, когда исходный файл недоступен.</string>
   <string name="CreateBackups_title">Локальные резервные копии</string>
   <string name="CreateBackups_summary">Создать локальную резервную копию после успешной загрузки БД.</string>
   <string name="UpdatingBackup">Обновление локальной резервной копии...</string>
@@ -432,9 +433,9 @@
   <string name="OpenKp2aKeyboardAutomatically_title">Переключить клавиатуру</string>
   <string name="OpenKp2aKeyboardAutomatically_summary">Открыть диалог выбора клавиатуры, когда запись доступна через клавиатуру KP2A после поиска из браузера или с помощью клавиатуры.</string>
   <string name="kp2a_switch_rooted">Автоматическое переключение клавиатуры</string>
-  <string name="kp2a_switch_rooted_summary">Автоматическое переключение на клавиатуру KP2A, когда запись открыта. Требуется правильно настроенный плагин KeyboardSwap или устройство с root-правами и приложение Secure Settings с System+. </string>
+  <string name="kp2a_switch_rooted_summary">Автоматическое переключение на клавиатуру KP2A, когда запись открыта. Требуется правильно настроенный плагин KeyboardSwap или приложение Secure Settings с System+ на устройстве с root-правами.</string>
   <string name="get_keyboardswap">Установить плагин KeyboardSwap</string>
-  <string name="get_keyboardswap_summary">Этот плагин позволяет переключиться на клавиатуру KP2A без root-прав. Требуется ADB. </string>
+  <string name="get_keyboardswap_summary">Этот плагин позволяет переключиться на клавиатуру KP2A без root-прав. Требуется ADB (Android Debug Bridge).</string>
   <string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_title">Автопереключение только после поиска</string>
   <string name="OpenKp2aKeyboardAutomaticallyOnlyAfterSearch_summary">Переключаться автоматически на клавиатуру KP2A только после использования функции \"Отправить URL\" (но не в других вариантах открытия записи)</string>
   <string name="AutoSwitchBackKeyboard_title">Переключить клавиатуру обратно</string>
@@ -448,8 +449,8 @@
   <string name="DocumentAccessRevoked">Файл больше недоступен для Keepass2Android. Либо он был удален, либо разрешения доступа были отменены. Пожалуйста, откройте файл еще раз, например, используя Изменить БД.</string>
   <string name="PreloadDatabaseEnabled_title">Предварительная загрузка файла базы данных</string>
   <string name="PreloadDatabaseEnabled_summary">Запуск фоновой загрузки или скачивания файла базы данных во время ввода пароля.</string>
-  <string name="SyncAfterQuickUnlock_title">Синхронизация после БыстройРазблокировки</string>
-  <string name="SyncAfterQuickUnlock_summary">Синхронизировать базу данных с удаленным файлом после БыстройРазблокировки.</string>
+  <string name="SyncAfterQuickUnlock_title">Синхронизация после быстрой разблокировки</string>
+  <string name="SyncAfterQuickUnlock_summary">Синхронизировать базу данных с удалённой версией (из внешнего расположения) после быстрой разблокировки.</string>
   <string name="AskOverwriteBinary">Вы хотите перезаписать существующий двоичный файл с тем же именем?</string>
   <string name="AskOverwriteBinary_title">Перезаписать существующий двоичный файл?</string>
   <string name="AskOverwriteBinary_yes">Перезаписать</string>
@@ -525,16 +526,16 @@
   <string name="hint_owncloud_url">URL-адрес OwnCloud (например: owncloud.me.com)</string>
   <string name="enter_nextcloud_login_title">Введите логин для Nextcloud:</string>
   <string name="hint_nextcloud_url">URL-адрес Nextcloud (например: nextcloud.me.com)</string>
-  <string name="hint_sftp_host">хост (например: 192.168.0.1)</string>
+  <string name="hint_sftp_host">Хост (192.168.0.1)</string>
   <string name="hint_sftp_port">порт</string>
-  <string name="initial_directory">Исходный каталог (необязательно):</string>
+  <string name="initial_directory">Начальная директория (необязательно)</string>
   <string name="connect_timeout">Время ожидания соединения секунды (опционально)</string>
   <string name="enter_sftp_login_title">Введите данные SFTP логина:</string>
   <string name="sftp_auth_mode">Режим аутентификации</string>
   <string name="send_public_key">Отправить публичный ключ...</string>
   <string name="select_private_keyfile">Выберите закрытый ключ ...</string>
   <string name="hint_sftp_key_name">Имя нового ключа</string>
-  <string name="hint_sftp_key_content">Новый сетевой контент</string>
+  <string name="hint_sftp_key_content">Закрытый ключ</string>
   <string name="private_key_saved">Закрытый ключ сохранен</string>
   <string name="private_key_save_failed">Не удалось сохранить закрытый ключ: %1$s</string>
   <string name="private_key_info">Введите имя ключа и содержимое для сохранения</string>
@@ -544,7 +545,7 @@
   <string name="delete_key">Удалить закрытый ключ</string>
   <string name="private_key_select">Выберите закрытый ключ ...</string>
   <string name="private_key_create_new">[Добавить новый...]</string>
-  <string name="hint_sftp_key_passphrase">Парольная фраза (опционально)</string>
+  <string name="hint_sftp_key_passphrase">Пароль ключа (опционально)</string>
   <string name="sftp_kex_title">Обмен ключами (KEX) Алгоритм(ы) (опционально)</string>
   <string name="hint_sftp_kex">Названия/спецификации через запятую</string>
   <string name="sftp_shk_title">Алгоритм(ы) ключа хоста сервера (опционально)</string>
@@ -564,6 +565,7 @@
   <string name="filestoragename_dropboxKP2A">Dropbox (папка KP2A)</string>
   <string name="filestoragehelp_dropboxKP2A">Если вы не хотите предоставлять KP2A доступ к вашему полному Dropbox, вы можете выбрать эту опцию. Он будет запрашивать только доступ к папке Apps/Keepass2Android. Это особенно подходит при создании новой базы данных. Если у вас уже есть база данных, нажмите эту опцию, чтобы создать папку, затем поместите файл в папку (с компьютера), а затем снова выберите эту опцию для открытия файла.</string>
   <string name="filestoragename_gdrive">Диск Google</string>
+  <string name="filestoragehelp_gdrive">Пожалуйста, обратите внимание: Google ограничивает доступ к Google Drive от приложений для большего числа пользователей. Если встроенная версия Google Drive не работает, используйте опцию выбора системных файлов и выберите Google Drive!</string>
   <string name="filestoragename_gdriveKP2A">Google Drive (KP2A файлы)</string>
   <string name="filestoragehelp_gdriveKP2A">Если вы не хотите предоставлять KP2A доступ к вашему полному Google Диску, вы можете выбрать эту опцию. Обратите внимание, что сначала необходимо создать файл базы данных, существующие файлы не видны приложению. Либо выберите эту опцию на экране Создать базу данных, либо, если вы уже открыли базу данных, экспортируйте ее, выбрав эту опцию.</string>
   <string name="filestoragename_pcloud">PCloud (KP2A folder)</string>
@@ -690,6 +692,27 @@
   <string name="Continue">Продолжить</string>
   <string name="NoFilenameWarning">URI, который Вы ввели, не похож на имя файла. Вы уверены, что это правильно?</string>
   <string name="FirstInvalidCompositeKeyError">Неверный составной ключ! Пожалуйста, попробуйте еще раз.</string>
+  <string name="RepeatedInvalidCompositeKeyHelp">    Неправильный составной ключ! Пожалуйста, попробуйте выполнить следующие шаги для разблокировки Вашей базы данных:\n
+
+    • Убедитесь, что Вы вводите правильный пароль. Его можно отобразить значком \"глаз\".\n
+    • Убедитесь, что выбран правильный тип пароля. Он должен совпадать с тем типом, который был указан при создании базы данных.\n
+    • Убедитесь, что Вы открыли файл с верной базой данных.
+  </string>
+  <string name="HintLocalBackupInvalidCompositeKey">
+    \n
+    • Подсказка: если Вы считаете, что файл базы данных может быть повреждён, или забыли мастер-пароль после его изменения, воспользуйтесь последней успешно открытой версией файла, нажав \"%1$s\" и выбрав локальную резервную копию.
+  </string>
+  <string name="HintLocalBackupOtherError">    \n
+ &amp;#82Подсказка: Keepass2Android сохранил последнюю успешно открытую версию файла во внутренней памяти. Его можно открыть, нажав \"%1$s\" и выбрав локальную резервную копию.</string>
+  <string name="CorruptDatabaseHelp">
+    Файл поврежден. \n
+    Тут приведены несколько подсказок, которые могут помочь в решении этой проблемы:\n
+    
+    • Если вы скопировали файл через USB (MTP-Mode), попробуйте еще раз при помощи утилиты \"MyPhoneExplorer\". MTP-режим иногда обрезает файлы.\n
+    • Если не удается открыть файл даже в вашем персональном компьютере, очень вероятно, что файл действительно поврежден. Пожалуйста, используйте резервную копию вашей базы данных. Если есть предположение, что в этом виноват \"Keepass2Android\", то свяжитесь с нами.\n
+    • Если файл открывается с вашего персонального компьютера, свяжитесь с нами. Вы можете сохранить его с разными параметрами (например, в распакованном виде) и попробовать открыть его снова в \"Keepass2Android\".
+
+  </string>
   <string name="open_other_db">Открыть другую базу данных…</string>
   <string name="select_database">Выбрать базу данных</string>
   <string name="configure_child_dbs">Настройка дочерних баз данных…</string>
@@ -715,20 +738,59 @@
   <string name="DbQuicklockedChannel_desc">Уведомление о том, что БД будет заблокирована БыстройРазблокировкой</string>
   <string name="EntryChannel_name">Уведомление о записи</string>
   <string name="EntryChannel_desc">Уведомление для упрощенного доступа к выбранной в данный момент записи.</string>
+  <string name="BackgroundSyncChannel_name">Операция синхронизации</string>
+  <string name="BackgroundSyncChannel_desc">Уведомление о том, что синхронизация выполняется в фоновом режиме.</string>
   <string name="CloseDbAfterFailedAttempts">Закрыть базу данных после трёх неудачных попыток биометрической разблокировки.</string>
+  <string name="hint_smb_credentials">Если вы хотите получить доступ к файлам с вашего персонального компьютера Windows, используйте имя компьютера или локальный IP адрес в качестве URL-адреса хоста; введите имя компьютера как домен и логин Windows (часто то же самое, что и ваш аккаунт Microsoft) как имя пользователя и пароль.</string>
   <string name="WarnFingerprintInvalidated">Внимание! Биометрическая аутентификация может быть аннулирована через Android, напр. после добавления нового отпечатка пальца в настройках устройства. Убедитесь, что вы всегда знаете, как разблокировать с помощью мастер-пароля!</string>
+  <string name="webdav_chunked_upload_size_title">Размер части (чанка) для загрузки WebDav</string>
+  <string name="webdav_chunked_upload_enabled_title">Включить загрузку частями (чанками) по WebDav</string>
+  <string name="webdav_chunked_upload_enabled_summary">Для WebDav серверов, которые не поддерживают загрузку больших файлов по одному запросу. Если включено, Keepass2Android использует стандартный метод разбиения на части WebDav, а не Nextcloud.</string>
+  <string name="webdav_chunked_upload_size_summary">Размер части (чанков) при загрузке на серверы WebDav в байтах.</string>
+  <string name="cleartextTrafficPermitted_title">Разрешить текстовый сетевой трафик в WebDav</string>
+  <string name="cleartextTrafficPermitted_summary">HTTP-соединения небезопасны. Включите эту опцию, только если у вас есть другие меры безопасности.</string>
+  <string-array name="ChangeLog_1_15_net">
+    <item>Улучшение обработки URL для WebDav с не-ASCII символами</item>
+    <item>Improvements to OneDrive Authentication</item>
+    <item>Minor bug fixes</item>
+  </string-array>
+  <string-array name="ChangeLog_1_15">
+    <item>Добавлена фоновая синхронизация: Keepass2Android теперь использует внутреннюю копию кэша базы данных для загрузки и сохранения, чтобы сделать эти операции быстрее. После этого начинается синхронизация с удаленной базой данных. </item>
+    <item>Добавлены пользовательские настройки для управления поведением фоновой синхронизации. Вы можете включить периодическую фоновую синхронизацию и установить как должна  выполняться синхронизация: всегда или только в сетях Wi-Fi.</item>
+  </string-array>
+  <string-array name="ChangeLog_1_14">
+    <item>Обновление до .net 9 и Target SDK версии 35. Это включает прозрачную строку состояния на Android 15, потому что edge-to-edge теперь по умолчанию.</item>
+    <item>Небольшие улучшения интерфейса</item>
+    <item>Удаленные кнопки для пожертвования и поиска плагинов, чтобы соответствовать политике Google Play</item>
+  </string-array>
+  <string-array name="ChangeLog_1_14_net">
+    <item>Улучшения WebDav: Исправление ошибок при отображении папок; поддержка загрузок частями (чанками) и транзакций</item>
+    <item>Добавлена поддержка общего доступа по сети Samba (Windows)</item>
+    <item>Обновленный JSch для поддержки более современных алгоритмов в SFTP</item>
+  </string-array>
+  <string-array name="ChangeLog_1_13">
+    <item>Улучшена оценка качества пароля с учётом наиболее популярных паролей.</item>
+    <item>Блокировать QuickUnlock по паролю (по соображениям безопасности), если на устройстве не включена блокировка экрана.</item>
+    <item>Обновите конфигурацию сетевой безопасности, чтобы отключить передачу открытого текста.</item>
+  </string-array>
   <string-array name="ChangeLog_1_12">
-    <item>Upgraded from Xamarin Android to .net 8</item>
-    <item>Upgraded to Target SDK 34</item>
-    <item>Upgraded to Material 3 user interface</item>
-    <item>Improve autofill to work with Compose apps</item>
-    <item>Fix hostname matching in autofill and search</item>
+    <item>Обновлено с Xamarin Android до .net 8</item>
+    <item>Улучшено до целевого SDK 34</item>
+    <item>Обновлен пользовательский интерфейс до Material 3</item>
+    <item>Улучшено автозаполнение для работы с приложениями</item>
+    <item>Исправлено имя хоста в автозаполнении и поиске</item>
     <item>Исправлена проблема с генератором паролей</item>
+  </string-array>
+  <string-array name="ChangeLog_1_12_net">
+    <item>Обновлено OneDrive SDK до версии 5.68</item>
+    <item>Обновлен Dropbox SDK до версии 7.0.0</item>
+    <item>Улучшенная Gradle, NewtonsoftJson, FluentFTP, MegaApiClient и okhttp</item>
+    <item>Исправлена ошибка выбора файла WebDav</item>
   </string-array>
   <string-array name="ChangeLog_1_11">
     <item>Добавлены плавающие кнопки для поиска и обзора TOTP (если присутствуют записи TOTP).</item>
     <item></item>
-    <item>TOTP can now be seen from the group view.</item>
+    <item>TOTP теперь можно увидеть с точки зрения группы.</item>
     <item>Копирование текстового значения в буфер обмена при длительном нажатии в режиме просмотра записей.</item>
     <item>Сделать TOTP легко доступным на встроенной клавиатуре.</item>
     <item>Показывать уведомление о вводе при автозаполнении записи TOTP. Это позволяет скопировать TOTP в буфер обмена. Настроить поведение можно в настройках.</item>
@@ -737,6 +799,13 @@
   </string-array>
   <string-array name="ChangeLog_1_11_net">
     <item>Обновите pCloud SDK, чтобы предоставить доступ к общим папкам</item>
+  </string-array>
+  <string-array name="ChangeLog_1_10">
+    <item>Добавлена поддержка разрешений для уведомлений на Android 13+</item>
+    <item>Улучшена реализация FTP и SFTP</item>
+    <item>Добавлен доступ к полному pCloud</item>
+    <item>Позволяет выбрать системный язык в диалоговом окне язык</item>
+    <item>Исправлена проблема с запоминанием Keyfile + изменен тип пароля</item>
   </string-array>
   <string-array name="ChangeLog_1_09e">
     <item>Исправлены ошибки, приводящие к сбоям и незапланированным выходам</item>
@@ -894,5 +963,32 @@
   <string name="AutofillWarning_Intro">Вы собираетесь вставить учётные данные для домена \"%1$s\" в приложение \"%2$s\".</string>
   <string name="AutofillWarning_FillDomainInUntrustedApp">Если вы уверены, что \"%2$s\" принадлежит к \"%1$s\" или доверяете приложению \"%2$s\" не злоупотребляйте учётными данными (например, потому что это доверенное приложение браузера), если всё хорошо можно продолжить. Если нет, пожалуйста, отмените.</string>
   <string name="AutofillWarning_trustAsBrowser">Всегда принимать в \"%1$s\"</string>
+  <string name="kp2a_switch_on_sendgodone_summary">Переключить назад при нажатии \"Отправить/Готово\"</string>
+  <string name="qr_scanning_error_no_google_play_services">Сканирование QR-кода требует Google Play Services. Пожалуйста, установите или обновите Сервисы Google Play на вашем устройстве.</string>
   <string name="english_ime_settings">Настройки клавиатуры \"Keepass2Android\"</string>
+  <string name="user_interaction_required">Требуется действие пользователя. Откройте приложение.</string>
+  <string name="failed_to_access_database">База данных в настоящее время используется и не доступна.</string>
+  <string name="configure_ssids">Конфигурация SSIDs</string>
+  <string name="add_current_ssid">Добавить текущий SSID</string>
+  <string name="enter_ssid_hint">Введите SSID</string>
+  <string name="add_ssid">Добавить другой SSID</string>
+  <string name="no_ssids">Не добавлено SSID. Автоматическая фоновая синхронизация будет выполняться в любой Wi-Fi.</string>
+  <string name="ssid_empty_or_exists">SSID пуст или уже в списке</string>
+  <string name="location_permission_required">Для чтения текущего SSID требуется разрешение на определение местоположения</string>
+  <string name="permission_granted">Разрешение на местоположение предоставлено</string>
+  <string name="permission_denied">Доступ запрещен. Невозможно прочитать текущий SSID. Пожалуйста, включите разрешение через настройки Android.</string>
+  <string name="remove_ssid_title">Удалить SSID</string>
+  <string name="ssid_explanation">Определите список SSID. Автоматическая фоновая синхронизация будет выполнена, если вы войдете в любой из них.</string>
+  <string name="remove_ssid_message">Вы уверены, что хотите удалить этот SSID?</string>
+  <string name="permission_needed">Требуемые разрешения</string>
+  <string name="permission_location_rationale">
+    Разрешение местоположения необходимо для чтения вашего текущего Wi-Fi SSID. Это требуется, если вы хотите ограничить фоновую синхронизацию с определенными SSID.
+  </string>
+  <string name="BackgroundSyncWifiSsids_title">Фоновая синхронизация основанная на Wi-Fi SSID</string>
+  <string name="BackgroundSyncWifiOnly_title">Фоновая синхронизация только в Wi-Fi</string>
+  <string name="BackgroundSyncWifiOnly_summary">Если выбрано, фоновая синхронизация запускается только при подключении к Wi-Fi.</string>
+  <string name="pref_enable_periodic_background_sync_title">Периодическая фоновая синхронизация</string>
+  <string name="pref_enable_periodic_background_sync_summary">Если этот параметр включен, приложение будет периодически синхронизировать разблокированные базы данных. Это будет учитывать настройки подключения выше.</string>
+  <string name="pref_periodic_background_sync_interval_title">Интервал для фоновой синхронизации</string>
+  <string name="pref_periodic_background_sync_interval_summary">Задать интервал для фоновой синхронизации в минутах.</string>
 </resources>
