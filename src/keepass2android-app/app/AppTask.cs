@@ -1081,6 +1081,93 @@ namespace keepass2android
     }
   }
 
+  /// <summary>
+  /// Restores the full activity back stack (parent groups + EntryActivity) for
+  /// the last entry that was on screen when the database was locked by timeout.
+  /// Falls back silently to the root group if anything goes wrong.
+  /// </summary>
+  public class OpenLastEntryTask : AppTask
+  {
+    private readonly string _entryFullId;
+
+    public OpenLastEntryTask(string entryFullId)
+    {
+      _entryFullId = entryFullId;
+    }
+
+    public override void LaunchFirstGroupActivity(Activity act)
+    {
+      try
+      {
+        if (string.IsNullOrEmpty(_entryFullId))
+        {
+          FallBack(act);
+          return;
+        }
+
+        var fullId = new ElementAndDatabaseId(_entryFullId);
+        var db = App.Kp2a.GetDatabase(fullId.DatabaseId);
+        if (db == null)
+        {
+          FallBack(act);
+          return;
+        }
+
+        var uuid = new PwUuid(MemUtil.HexStringToByteArray(fullId.ElementIdString));
+        if (!db.EntriesById.ContainsKey(uuid))
+        {
+          FallBack(act);
+          return;
+        }
+
+        var entry = db.EntriesById[uuid];
+
+        // Build group chain from root down to the entry's immediate parent.
+        var groupChain = new System.Collections.Generic.List<PwGroup>();
+        var current = entry.ParentGroup;
+        while (current != null)
+        {
+          groupChain.Insert(0, current);
+          current = current.ParentGroup;
+        }
+
+        // Verify every group still exists in the database (handles moved/deleted entries).
+        foreach (var g in groupChain)
+        {
+          if (!db.GroupsById.ContainsKey(g.Uuid))
+          {
+            FallBack(act);
+            return;
+          }
+        }
+
+        if (App.Kp2a.CurrentDb != db)
+          App.Kp2a.CurrentDb = db;
+
+        var nullTask = new NullTask();
+        var stackBuilder = AndroidX.Core.App.TaskStackBuilder.Create(act);
+
+        foreach (var group in groupChain)
+          stackBuilder.AddNextIntent(GroupActivity.GetLaunchIntent(act, group, nullTask));
+
+        stackBuilder.AddNextIntent(EntryActivity.GetLaunchIntent(act, db, entry, 0, nullTask));
+
+        stackBuilder.StartActivities();
+        act.Finish();
+      }
+      catch (Exception e)
+      {
+        Kp2aLog.LogUnexpectedError(e);
+        FallBack(act);
+      }
+    }
+
+    private static void FallBack(Activity act)
+    {
+      GroupActivity.Launch(act, new NullTask(), new ActivityLaunchModeRequestCode(0));
+    }
+  }
+
   public class NavigateToFolder : NavigateAndLaunchTask
   {
 
@@ -1095,6 +1182,106 @@ namespace keepass2android
     {
     }
 
+  }
+
+  /// <summary>
+  /// When reached in a group activity, opens a specific entry by its FullId.
+  /// Used as the inner task of NavigateAndOpenEntryTask.
+  /// </summary>
+  public class OpenEntryTask : AppTask
+  {
+    public const string EntryFullIdKey = "OpenEntryFullId";
+    public string EntryFullId { get; set; }
+
+    public override void Setup(Bundle b)
+    {
+      base.Setup(b);
+      EntryFullId = b.GetString(EntryFullIdKey);
+    }
+
+    public override IEnumerable<IExtra> Extras
+    {
+      get
+      {
+        foreach (var e in base.Extras) yield return e;
+        if (EntryFullId != null)
+          yield return new StringExtra { Key = EntryFullIdKey, Value = EntryFullId };
+      }
+    }
+
+    public override void StartInGroupActivity(GroupBaseActivity groupBaseActivity)
+    {
+      if (string.IsNullOrEmpty(EntryFullId)) return;
+      try
+      {
+        var id = new ElementAndDatabaseId(EntryFullId);
+        var uuid = new PwUuid(MemUtil.HexStringToByteArray(id.ElementIdString));
+        var db = App.Kp2a.CurrentDb;
+        if (db == null || !db.EntriesById.ContainsKey(uuid)) return;
+        groupBaseActivity.LaunchActivityForEntry(db.EntriesById[uuid], 0);
+      }
+      catch (Exception e)
+      {
+        Kp2aLog.LogUnexpectedError(e);
+      }
+    }
+  }
+
+  /// <summary>
+  /// Navigates through the group hierarchy to the parent of a specific entry,
+  /// then opens that entry.
+  /// </summary>
+  public class NavigateAndOpenEntryTask : NavigateAndLaunchTask
+  {
+    public NavigateAndOpenEntryTask()
+    {
+    }
+
+    public NavigateAndOpenEntryTask(PwGroup targetGroup, string entryFullId)
+        : base(targetGroup, new OpenEntryTask { EntryFullId = entryFullId })
+    {
+    }
+
+    public override void Setup(Bundle b)
+    {
+      base.Setup(b);
+      TaskToBeLaunchedAfterNavigation = new OpenEntryTask();
+      TaskToBeLaunchedAfterNavigation.Setup(b);
+    }
+  }
+
+  /// <summary>
+  /// Restores the last opened entry (from App.Kp2a.LastOpenedEntryFullIdForRestore)
+  /// by navigating through the group hierarchy and reopening the entry.
+  /// Falls back to the root group if the entry or its parent groups can no longer be found.
+  /// </summary>
+  public class RestoreLastEntryTask : AppTask
+  {
+    public override void LaunchFirstGroupActivity(Activity act)
+    {
+      try
+      {
+        string fullId = App.Kp2a.LastOpenedEntryFullIdForRestore;
+        if (string.IsNullOrEmpty(fullId)) { new NullTask().LaunchFirstGroupActivity(act); return; }
+
+        var id = new ElementAndDatabaseId(fullId);
+        var db = App.Kp2a.GetDatabase(id.DatabaseId);
+        if (db == null) { new NullTask().LaunchFirstGroupActivity(act); return; }
+
+        var uuid = new PwUuid(MemUtil.HexStringToByteArray(id.ElementIdString));
+        if (!db.EntriesById.ContainsKey(uuid)) { new NullTask().LaunchFirstGroupActivity(act); return; }
+
+        var entry = db.EntriesById[uuid];
+        if (entry.ParentGroup == null) { new NullTask().LaunchFirstGroupActivity(act); return; }
+
+        new NavigateAndOpenEntryTask(entry.ParentGroup, fullId).LaunchFirstGroupActivity(act);
+      }
+      catch (Exception e)
+      {
+        Kp2aLog.LogUnexpectedError(e);
+        new NullTask().LaunchFirstGroupActivity(act);
+      }
+    }
   }
 
   public class NavigateToFolderAndLaunchMoveElementTask : NavigateAndLaunchTask
