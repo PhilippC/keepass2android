@@ -203,24 +203,33 @@ namespace keepass2android
     {
       var btnCapture = FindViewById<ImageButton>(Resource.Id.btn_capture)!;
       btnCapture.Enabled = false;                 // prevent double-tap
-      _imageCapture?.TakePicture(new MainThreadExecutor(), new InMemoryCaptureCallback(this));
+
+      // Snapshot the current display rotation so we can correct for it during
+      // encoding. CameraX 1.4.x always uses ROTATION_0 as its internal target
+      // rotation (because this activity never recreates), so its EXIF orientation
+      // tag is written for ROTATION_0. We apply the delta between the actual
+      // display rotation and ROTATION_0 during post-processing to ensure both
+      // portrait and landscape photos come out correctly oriented.
+#pragma warning disable CS0618 // DefaultDisplay deprecated in API 30
+      int displayRotation = (int)(WindowManager!.DefaultDisplay!.Rotation);
+#pragma warning restore CS0618
+      _imageCapture?.TakePicture(new MainThreadExecutor(), new InMemoryCaptureCallback(this, displayRotation));
     }
 
     /// <summary>
-    /// Called on the UI thread once the raw JPEG bytes are available.
     /// Spawns a background thread to compute the three compressed variants,
     /// then shows the size-selection dialog on the UI thread.
     /// </summary>
-    private void OnPhotoCaptured(byte[] rawJpeg)
+    private void OnPhotoCaptured(byte[] rawJpeg, int displayRotation)
     {
       ThreadPool.QueueUserWorkItem(_ =>
       {
         byte[]? smallJpeg = null, mediumJpeg = null, originalJpeg = null;
         try
         {
-          smallJpeg = ResizeAndEncode(rawJpeg, MaxPxSmall, QualitySmall);
-          mediumJpeg = ResizeAndEncode(rawJpeg, MaxPxMedium, QualityMedium);
-          originalJpeg = ResizeAndEncode(rawJpeg, int.MaxValue, QualityOriginal);
+          smallJpeg = ResizeAndEncode(rawJpeg, MaxPxSmall, QualitySmall, displayRotation);
+          mediumJpeg = ResizeAndEncode(rawJpeg, MaxPxMedium, QualityMedium, displayRotation);
+          originalJpeg = ResizeAndEncode(rawJpeg, int.MaxValue, QualityOriginal, displayRotation);
         }
         catch (Exception ex)
         {
@@ -282,14 +291,24 @@ namespace keepass2android
     // -----------------------------------------------------------------
 
     /// <summary>
-    /// Decodes the source JPEG, optionally scales it down so that its longest
-    /// side does not exceed <paramref name="maxPx"/>, then re-encodes in RAM.
+    /// Decodes the source JPEG, applies any EXIF rotation so the pixel data matches
+    /// the visual orientation (important for viewers that ignore EXIF, e.g. KeePassXC
+    /// on desktop), optionally scales it down so that its longest side does not exceed
+    /// <paramref name="maxPx"/>, then re-encodes as JPEG in RAM.
     /// Pass <see cref="int.MaxValue"/> for <paramref name="maxPx"/> to skip scaling.
     /// </summary>
-    private static byte[] ResizeAndEncode(byte[] jpegBytes, int maxPx, int quality)
+    private static byte[] ResizeAndEncode(byte[] jpegBytes, int maxPx, int quality, int displayRotation)
     {
       var bmp = BitmapFactory.DecodeByteArray(jpegBytes, 0, jpegBytes.Length)
                 ?? throw new InvalidOperationException("Failed to decode captured image.");
+
+      // Read EXIF orientation and rotate/flip the bitmap so the pixel data is
+      // already in the correct visual orientation. This ensures that applications
+      // that do not honour EXIF metadata (e.g. KeePassXC on desktop) display the
+      // image correctly.
+      // displayRotation is passed from the capture moment to compensate for CameraX
+      // always encoding EXIF as if targetRotation=ROTATION_0 (portrait).
+      bmp = ApplyExifOrientation(bmp, jpegBytes, displayRotation);
 
       if (Math.Max(bmp.Width, bmp.Height) > maxPx)
       {
@@ -316,6 +335,87 @@ namespace keepass2android
       return $"{bytes / (1024.0 * 1024.0):F1} MB";
     }
 
+    /// <summary>
+    /// Reads the EXIF orientation tag from <paramref name="jpegBytes"/> and returns a
+    /// new <see cref="Bitmap"/> with the pixels rotated/flipped to match the visual
+    /// orientation.  Returns the original bitmap unchanged when no correction is needed.
+    /// <paramref name="displayRotation"/> is the Surface.Rotation* value at capture time
+    /// (0=portrait, 1=landscape-90, 2=portrait-180, 3=landscape-270). CameraX always
+    /// writes EXIF as if targetRotation=ROTATION_0, so we subtract the actual display
+    /// rotation to get the true correction angle.
+    /// </summary>
+    private static Bitmap ApplyExifOrientation(Bitmap source, byte[] jpegBytes, int displayRotation)
+    {
+      int orientation;
+      try
+      {
+        using var stream = new MemoryStream(jpegBytes);
+        var exif = new Android.Media.ExifInterface(stream);
+        orientation = exif.GetAttributeInt(
+            Android.Media.ExifInterface.TagOrientation,
+            (int)Android.Media.Orientation.Normal);
+      }
+      catch
+      {
+        return source; // If EXIF read fails, return as-is.
+      }
+
+      var matrix = new Matrix();
+
+      // CameraX 1.4.x always encodes EXIF as if targetRotation=ROTATION_0 (portrait).
+      // The EXIF tag therefore represents the rotation from sensor space to portrait space,
+      // regardless of what the device was actually doing at capture time.
+      // We must subtract the actual display rotation (in degrees) from the EXIF correction
+      // so that the final pixels are in the true display orientation.
+      //   displayRotation: 0=portrait, 1=landscape-90°, 2=portrait-180°, 3=landscape-270°
+      int displayDeg = displayRotation * 90;
+
+      // Degrees to rotate the bitmap to go from sensor space to correct visual orientation.
+      int exifDeg = (Android.Media.Orientation)orientation switch
+      {
+        Android.Media.Orientation.Rotate90 => 90,
+        Android.Media.Orientation.Rotate180 => 180,
+        Android.Media.Orientation.Rotate270 => 270,
+        _ => 0,
+      };
+
+      // For flip cases we still need the matrix approach; handle them separately.
+      bool isFlip = (Android.Media.Orientation)orientation is
+          Android.Media.Orientation.FlipHorizontal or
+          Android.Media.Orientation.FlipVertical or
+          Android.Media.Orientation.Transpose or
+          Android.Media.Orientation.Transverse;
+
+      if (isFlip)
+      {
+        // For flip orientations don't try to compensate display rotation —
+        // these are rare (scanner/mirror modes) and never produced by the camera.
+        switch ((Android.Media.Orientation)orientation)
+        {
+          case Android.Media.Orientation.FlipHorizontal:
+            matrix.PreScale(-1f, 1f); break;
+          case Android.Media.Orientation.FlipVertical:
+            matrix.PreScale(1f, -1f); break;
+          case Android.Media.Orientation.Transpose:
+            matrix.PostRotate(90); matrix.PreScale(-1f, 1f); break;
+          case Android.Media.Orientation.Transverse:
+            matrix.PostRotate(270); matrix.PreScale(-1f, 1f); break;
+        }
+      }
+      else
+      {
+        // Net rotation = EXIF correction − display rotation (mod 360)
+        int netDeg = ((exifDeg - displayDeg) % 360 + 360) % 360;
+        if (netDeg == 0) return source;
+        matrix.PostRotate(netDeg);
+      }
+
+      var rotated = Bitmap.CreateBitmap(source, 0, 0, source.Width, source.Height, matrix, true);
+      if (!ReferenceEquals(rotated, source))
+        source.Recycle();
+      return rotated;
+    }
+
     // -----------------------------------------------------------------
     // Inner helpers
     // -----------------------------------------------------------------
@@ -327,14 +427,16 @@ namespace keepass2android
     private class InMemoryCaptureCallback : ImageCapture.OnImageCapturedCallback
     {
       private readonly CapturePhotoActivity _activity;
+      private readonly int _displayRotation;
 
       // Required JNI constructor for .NET-Android interop.
       protected InMemoryCaptureCallback(IntPtr javaRef, JniHandleOwnership transfer)
           : base(javaRef, transfer) { }
 
-      public InMemoryCaptureCallback(CapturePhotoActivity activity)
+      public InMemoryCaptureCallback(CapturePhotoActivity activity, int displayRotation)
       {
         _activity = activity;
+        _displayRotation = displayRotation;
       }
 
       public override void OnCaptureSuccess(IImageProxy image)
@@ -342,7 +444,7 @@ namespace keepass2android
         try
         {
           byte[] bytes = ExtractJpegBytes(image);
-          _activity.RunOnUiThread(() => _activity.OnPhotoCaptured(bytes));
+          _activity.RunOnUiThread(() => _activity.OnPhotoCaptured(bytes, _displayRotation));
         }
         finally
         {
