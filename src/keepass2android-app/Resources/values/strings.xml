@@ -595,6 +595,28 @@
   <string name="filestoragename_mega">MEGA</string>
   <string name="filestoragehelp_mega">Please note: Keepass2Android must download the list of all files in your Mega account to work properly. For this reason, accessing accounts with many files might be slow.</string>
   <string name="filestoragename_content">System file picker</string>
+  <string name="filestoragename_s3">S3 / S3-compatible</string>
+  <string name="filestoragehelp_s3">Store your database in an Amazon S3 (or S3-compatible) bucket. You enter the full object key (path) of the database directly, so the app never lists the bucket: a least-privilege IAM user only needs s3:GetObject and s3:PutObject on that one object (add s3:DeleteObject only if needed). For non-AWS providers (Wasabi, Backblaze B2, Cloudflare R2 or a custom/MinIO endpoint) choose the matching provider. Note: the access key and secret key are stored on this device together with the file location, just like FTP or WebDav credentials.</string>
+  <string name="enter_s3_login_title">Enter S3 connection data:</string>
+  <string name="hint_s3_region">Region (ex: us-east-1)</string>
+  <string name="hint_s3_signing_region">Signing region (optional)</string>
+  <string name="hint_s3_endpoint">Endpoint URL (ex: https://minio.example.com)</string>
+  <string name="hint_s3_account_id">Cloudflare account ID</string>
+  <string name="hint_s3_bucket">Bucket name</string>
+  <string name="hint_s3_access_key">Access key ID</string>
+  <string name="hint_s3_secret_key">Secret access key</string>
+  <string name="s3_object_key_label">Database object key (full path in bucket)</string>
+  <string name="hint_s3_object_key">e.g. passwords.kdbx or folder/passwords.kdbx</string>
+  <string name="s3_url_preview_label">Resulting URL:</string>
+  <string name="s3_bucket_in_key_warning">The object key starts with the bucket name \"%1$s\". Your database would be stored at \"%1$s/%2$s\" — with the bucket name repeated. The object key is the path inside the bucket and should not include the bucket name. Continue anyway?</string>
+  <string name="s3_fix_object_key">Edit object key</string>
+  <string-array name="s3_providers">
+    <item>Amazon S3</item>
+    <item>Wasabi</item>
+    <item>Backblaze B2</item>
+    <item>Cloudflare R2</item>
+    <item>Custom (S3-compatible)</item>
+  </string-array>
   <string name="filestorage_setup_title">File access initialization</string>
   <string name="database_location">Database location</string>
   <string name="help_database_location">You can store your database locally on your Android device or in the cloud (non-Offline version only). Keepass2Android makes the database available even if you are offline. As the database is securely encrypted with AES 256 bit encryption, nobody will be able to access your passwords except you. We recommend to select Dropbox: It\'s accessible on all your devices and even provides backups of previous file versions.</string>
