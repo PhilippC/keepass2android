@@ -15,7 +15,8 @@ This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll.
   along with Keepass2Android.  If not, see <http://www.gnu.org/licenses/>.
   */
 
+using System.Runtime.CompilerServices;
 
-
+[assembly: InternalsVisibleTo("KeeShare.Tests")]
 
 
