@@ -1,0 +1,253 @@
+appId: keepass2android.keepass2android_nonet
+---
+# Test: KeeShare Import and View Entries
+# This test verifies that after KeeShare import, the imported entries
+# can be viewed without crashing (tests the UpdateGlobals fix).
+#
+# Prerequisites:
+#   - keeshare-test-main.kdbx in /sdcard/Download/ (password: test123)
+#   - keeshare-test-export.kdbx in /sdcard/Download/ (password: share123)
+#
+# Run with: maestro test e2e-tests/.maestro/keeshare_view_imported_entries.yaml
+
+- launchApp:
+    clearState: true
+
+# Wait for app to fully load and dismiss dialogs
+- extendedWaitUntil:
+    visible: ".*database.*|.*Open.*|.*Unlock.*|.*Change log.*"
+    timeout: 10000
+
+- tapOn:
+    text: "OK"
+    optional: true
+
+- extendedWaitUntil:
+    visible: ".*Open.*|.*file.*|.*database.*"
+    timeout: 5000
+
+- tapOn:
+    text: "OK"
+    optional: true
+- tapOn:
+    text: "I don't care"
+    optional: true
+
+# Open the test main database
+- tapOn:
+    text: "Open file"
+    optional: true
+- tapOn:
+    id: ".*open.*|.*fab.*"
+    optional: true
+
+# Handle storage type selection
+- runFlow:
+    when:
+      visible: "Select the storage type"
+    commands:
+      - tapOn: "System file picker"
+
+# Wait for and navigate file picker
+- extendedWaitUntil:
+    visible: ".*Download.*|.*Recent.*|.*Files.*|.*Open from.*"
+    timeout: 10000
+
+- tapOn:
+    id: ".*drawer.*|.*navigation.*"
+    optional: true
+- tapOn:
+    text: "Downloads"
+    optional: true
+- tapOn:
+    text: "Download"
+    optional: true
+- tapOn:
+    text: "keeshare-test-main.kdbx"
+    optional: true
+- tapOn:
+    text: "keeshare-test-main"
+    optional: true
+
+# Enter password and unlock
+- extendedWaitUntil:
+    visible: ".*Password.*|.*Unlock.*"
+    timeout: 5000
+
+- tapOn:
+    text: "Password"
+    optional: true
+- inputText: "test123"
+- hideKeyboard
+- tapOn: "Unlock"
+
+# Wait for database to open
+- extendedWaitUntil:
+    visible: ".*Sample Entry.*|.*Root.*|.*group.*"
+    timeout: 15000
+
+# Dismiss dialogs
+- tapOn:
+    text: "OK"
+    optional: true
+- tapOn:
+    text: "I don't care"
+    optional: true
+- tapOn:
+    text: "Do not show again"
+    optional: true
+- tapOn:
+    text: "Got it"
+    optional: true
+
+# Navigate to Settings -> Database -> Configure KeeShare
+- tapOn:
+    id: ".*overflow.*|.*more.*"
+    optional: true
+- tapOn:
+    text: "More options"
+    optional: true
+- tapOn: "Settings"
+
+- extendedWaitUntil:
+    visible: "Database"
+    timeout: 5000
+- tapOn: "Database"
+
+- scrollUntilVisible:
+    element:
+      text: ".*Configure KeeShare.*"
+    direction: DOWN
+    timeout: 10000
+- tapOn:
+    text: ".*Configure KeeShare.*"
+
+# Wait for KeeShare config screen
+- extendedWaitUntil:
+    visible: ".*KeeShare.*|.*No KeeShare.*"
+    timeout: 5000
+
+# Add new KeeShare configuration
+- tapOn:
+    id: ".*fab.*add.*keeshare.*"
+
+- extendedWaitUntil:
+    visible: ".*Add KeeShare.*|.*Group to sync.*"
+    timeout: 5000
+
+# Enter group name
+- tapOn:
+    id: ".*edit_new_group_name.*"
+    optional: true
+- inputText: "Shared Passwords"
+- hideKeyboard
+
+# Select Import type
+- tapOn:
+    id: ".*radio_import.*"
+    optional: true
+
+# Browse for file
+- tapOn:
+    text: ".*Browse.*"
+
+- extendedWaitUntil:
+    visible: ".*Download.*|.*Recent.*|.*Files.*|.*Open from.*"
+    timeout: 10000
+
+- tapOn:
+    id: ".*drawer.*|.*navigation.*"
+    optional: true
+- tapOn:
+    text: "Downloads"
+    optional: true
+- tapOn:
+    text: "keeshare-test-export.kdbx"
+    optional: true
+- tapOn:
+    text: "keeshare-test-export"
+    optional: true
+
+# Wait for return to KeeShare config
+- extendedWaitUntil:
+    visible: ".*KeeShare.*|.*Configure KeeShare.*"
+    timeout: 15000
+
+- extendedWaitUntil:
+    visible: ".*Sync now.*|.*Edit.*|.*Shared Passwords.*|.*No path configured.*"
+    timeout: 20000
+
+# Set password via Edit
+- tapOn:
+    text: "Edit"
+
+- extendedWaitUntil:
+    visible: ".*Edit KeeShare.*|.*Password.*"
+    timeout: 5000
+
+- tapOn:
+    id: ".*edit_password.*"
+- eraseText: 20
+- inputText: "share123"
+- hideKeyboard
+
+# Wait for text to commit
+- waitForAnimationToEnd
+
+- tapOn:
+    text: "OK"
+
+- extendedWaitUntil:
+    visible: ".*Sync now.*|.*Edit.*"
+    timeout: 10000
+
+# Trigger sync
+- tapOn:
+    text: "Sync now"
+
+# Wait for sync to complete
+- extendedWaitUntil:
+    visible: ".*sync complete.*|.*KeeShare.*"
+    timeout: 15000
+
+# Now navigate back to the database root to find the imported group
+- back
+- extendedWaitUntil:
+    visible: ".*Database.*|.*Settings.*"
+    timeout: 5000
+
+- back
+- extendedWaitUntil:
+    visible: ".*Settings.*|.*Application.*"
+    timeout: 5000
+
+- back
+# Should be back at the database view
+- extendedWaitUntil:
+    visible: ".*Sample Entry.*|.*Root.*|.*group.*|.*Shared Passwords.*"
+    timeout: 10000
+
+# Look for the imported group "Shared Passwords"
+- scrollUntilVisible:
+    element:
+      text: ".*Shared Passwords.*"
+    direction: DOWN
+    timeout: 10000
+
+# TAP ON THE IMPORTED GROUP - This is the critical test!
+# If UpdateGlobals wasn't called, this would crash with
+# "Database element not found" error
+- tapOn:
+    text: ".*Shared Passwords.*"
+
+# Wait for group contents to load - should show the imported entry
+- extendedWaitUntil:
+    visible: ".*Test Service Account.*|.*entry.*|.*Shared Passwords.*"
+    timeout: 10000
+
+# Verify the imported entry is visible (from keeshare-test-export.kdbx)
+- assertVisible:
+    text: ".*Test Service Account.*"
+    enabled: true
+
+# Test passed! The imported entry is visible and the app didn't crash
