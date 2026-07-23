@@ -756,8 +756,8 @@
   <string name="cleartextTrafficPermitted_summary">Οι συνδέσεις HTTP δεν είναι ασφαλείς. Ενεργοποιήστε αυτήν την επιλογή μόνο αν έχετε άλλα μέτρα ασφαλείας.</string>
   <string-array name="ChangeLog_1_15_net">
     <item>Βελτιώσεις στο χειρισμό URL για WebDav με μη-ASCII χαρακτήρες</item>
-    <item>Improvements to OneDrive Authentication</item>
-    <item>Minor bug fixes</item>
+    <item>Βελτιώσεις στον έλεγχο ταυτότητας OneDrive</item>
+    <item>Μικρές διορθώσεις σφαλμάτων</item>
   </string-array>
   <string-array name="ChangeLog_1_15">
     <item>Προστέθηκε συγχρονισμός στο παρασκήνιο: το Keepass2Android χρησιμοποιεί τώρα το εσωτερικό αντίγραφο cache για φόρτωση και αποθήκευση της βάσης δεδομένων για να κάνει αυτές τις λειτουργίες πιο γρήγορα. Κατόπιν, ξεκινά ο συγχρονισμός με την απομακρυσμένη βάση δεδομένων. </item>

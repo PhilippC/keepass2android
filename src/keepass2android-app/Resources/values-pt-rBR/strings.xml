@@ -763,8 +763,8 @@
   <string name="cleartextTrafficPermitted_summary">As conexões HTTP não são seguras. Habilite isso apenas se você tiver outras medidas de segurança em vigor.</string>
   <string-array name="ChangeLog_1_15_net">
     <item>Melhorias no tratamento de URL para WebDav com caracteres não ASCII</item>
-    <item>Improvements to OneDrive Authentication</item>
-    <item>Minor bug fixes</item>
+    <item>Melhorias na Autenticação do OneDrive</item>
+    <item>Pequenas correções de bugs</item>
   </string-array>
   <string-array name="ChangeLog_1_15">
     <item>Sincronização em segundo plano implementada: O Keepass2Android agora usa a cópia interna em cache do banco de dados para carregar e salvar, tornando essas operações mais rápidas. Em seguida, a sincronização com o banco de dados remoto é iniciada. </item>
