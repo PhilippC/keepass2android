@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <!-- MD3 -->
+  <style name="Kp2aTheme_MaterialYou" parent="Theme.Material3.DynamicColors.DayNight">
+    <item name="android:windowActionBar">false</item>
+    <item name="android:windowNoTitle">true</item>
+    <item name="android:windowFullscreen">false</item>
+    <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+    
+    <!-- Material You -->
+    <item name="colorPrimary">@android:color/system_accent1_500</item>
+    <item name="colorSecondary">@android:color/system_accent2_500</item>
+    <item name="colorTertiary">@android:color/system_accent3_500</item>
+    <item name="colorError">@android:color/system_red_500</item>
+    
+    <item name="android:colorBackground">@android:color/system_neutral1_0</item>
+    <item name="android:colorForeground">@android:color/system_neutral1_900</item>
+  </style>
+</resources>
