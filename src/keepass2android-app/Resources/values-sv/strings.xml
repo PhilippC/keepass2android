@@ -511,7 +511,9 @@
   <string name="ok_donate">Berätta mer!</string>
   <string name="no_thanks">Nej, jag gillar den inte så mycket</string>
   <string name="enter_http_login_title">Ange WebDav inloggnings-data:</string>
+  <string name="enter_smb_login_title">Ange Samba-inloggningsdata:</string>
   <string name="hint_http_url">Webbadressen till mapp eller fil (ex: mycloud.me.com/webdav/)</string>
+  <string name="hint_smb_url">URL till mapp eller fil (t.ex. 192.168.1.10/dela/mapp/)</string>
   <string name="hint_smb_username">Samba-användarnamn</string>
   <string name="enter_owncloud_login_title">Ange OwnCloud inloggnings-data:</string>
   <string name="hint_owncloud_url">OwnCloud URL (ex: owncloud.me.com)</string>
@@ -523,6 +525,10 @@
   <string name="enter_sftp_login_title">Ange SFTP inloggnings-data:</string>
   <string name="sftp_auth_mode">Autentiseringsläge</string>
   <string name="send_public_key">Skicka offentlig nyckel...</string>
+  <string name="hint_sftp_key_name">Nytt nyckelnamn</string>
+  <string name="hint_sftp_key_content">Nytt nyckelinnehåll</string>
+  <string name="private_key_saved">Privat nyckel sparades</string>
+  <string name="private_key_info">Ange nyckelnamn och -innehåll för att spara</string>
   <string name="private_key_delete">Radera privat nyckel: %1$s</string>
   <string name="save_key">Spara privat nyckel</string>
   <string name="delete_key">Radera privat nyckel</string>
