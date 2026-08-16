@@ -512,6 +512,7 @@
   <string name="no_thanks">Nej, jag gillar den inte så mycket</string>
   <string name="enter_http_login_title">Ange WebDav inloggnings-data:</string>
   <string name="hint_http_url">Webbadressen till mapp eller fil (ex: mycloud.me.com/webdav/)</string>
+  <string name="hint_smb_username">Samba-användarnamn</string>
   <string name="enter_owncloud_login_title">Ange OwnCloud inloggnings-data:</string>
   <string name="hint_owncloud_url">OwnCloud URL (ex: owncloud.me.com)</string>
   <string name="enter_nextcloud_login_title">Ange Nextcloud inloggnings-data:</string>
@@ -522,6 +523,11 @@
   <string name="enter_sftp_login_title">Ange SFTP inloggnings-data:</string>
   <string name="sftp_auth_mode">Autentiseringsläge</string>
   <string name="send_public_key">Skicka offentlig nyckel...</string>
+  <string name="private_key_delete">Radera privat nyckel: %1$s</string>
+  <string name="save_key">Spara privat nyckel</string>
+  <string name="delete_key">Radera privat nyckel</string>
+  <string name="private_key_select">Välj privat nyckel</string>
+  <string name="private_key_create_new">[Lägg till ny...]</string>
   <string name="enter_ftp_login_title">Ange FTP inloggnings-data:</string>
   <string name="enter_mega_login_title">Ange inloggningsdata för ditt MEGA-konto:</string>
   <string name="select_storage_type">Välj lagringtyp:</string>
@@ -540,6 +546,7 @@
   <string name="filestoragename_gdriveKP2A">Google Drive (KP2A-filer)</string>
   <string name="filestoragehelp_gdriveKP2A">Om du inte vill ge KP2A åtkomst till hela din Google Drive kan du välja det här alternativet. Observera att du måste skapa en databasfil först, befintliga filer är inte synliga för appen. Välj antingen det här alternativet från skärmen Skapa databas eller, om du redan har öppnat en databas, genom att exportera databasen genom att välja det här alternativet.</string>
   <string name="filestoragehelp_pcloud">Denna lagringstyp kommer endast att begära åtkomst till pCloud-mappen \"Applications/Keepass2Android\". Om du vill använda en befintlig databas från ditt pCloud-konto, se till att filen är placerad i den här pCloud-mappen.</string>
+  <string name="filestoragename_pcloudall">PCloud (full åtkomst)</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_onedrive2">OneDrive</string>
   <string name="filestoragename_onedrive2_full">Alla filer och utdelade filer</string>
