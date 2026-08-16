@@ -113,7 +113,7 @@
   <string name="fingerprint_disabled_wrong_masterkey">Upplåsning av databas misslyckades: felaktig nyckel. Biometrisk upplåsning inaktiverades eftersom att det lagrade huvudlösenordet inte längre är giltigt. </string>
   <string name="fingerprint_reenable">Vänligen återaktivera biometrisk upplåsning för det nya huvudlösenordet.</string>
   <string name="fingerprint_reenable2">Vänligen lås upp med ditt lösenord och återaktivera sedan biometrisk upplåsning i databasinställningarna.</string>
-  <string name="FingerprintInitFailed">Initiering av biometrisk autentisering misslyckades. </string>
+  <string name="FingerprintInitFailed">Kunde inte initiera biometrisk autentisering. </string>
   <string name="FingerprintSetupFailed">Misslyckades att kryptera data. Det kan hända om du lägger till eller tar bort registrerade fingeravtryck i systeminställningarna när Keepass2Android efterfrågar ditt fingeravtryck.</string>
   <string name="enable_fingerprint_unlock_Info">Detta kommer att spara ditt huvudlösenord på denna enhet, krypterat med Androids nyckelförvaring och skyddat med biometrisk autentisering. Detta gör det möjligt att låsa upp din databas med endast biometri.</string>
   <string name="enable_fingerprint_quickunlock_Info">Tillåter att använda biometrisk autentisering istället för snabbupplåsningskod. Lagrar inte någon information relaterat till ditt huvudlösenord.</string>
@@ -143,7 +143,7 @@
   <string name="error_could_not_create_parent">Kunde inte skapa överordnad mapp.</string>
   <string name="error_database_exists">Filen finns redan.</string>
   <string name="error_database_settinoverrgs">Misslyckades att fastställa databasinställningar.</string>
-  <string name="error_failed_to_launch_link">Misslyckades att starta länk.</string>
+  <string name="error_failed_to_launch_link">Kunde inte öppna länk.</string>
   <string name="error_filename_required">Filnamn krävs.</string>
   <string name="error_file_not_create">Kunde inte skapa filen</string>
   <string name="error_invalid_db">Ogiltig databas.</string>
@@ -445,7 +445,7 @@
   <string name="AskOverwriteBinary_title">Skriv över befintlig fil?</string>
   <string name="AskOverwriteBinary_yes">Skriv över</string>
   <string name="AskOverwriteBinary_no">Byt namn</string>
-  <string name="AttachFailed">Det gick inte att lägga till bifogad fil.</string>
+  <string name="AttachFailed">Kunde inte lägga till bifogad fil.</string>
   <string name="RecycleBin">Papperskorgen</string>
   <string name="AskDeletePermanentlyEntry">Vill du ta bort denna post permanent? Tryck på Nej för att placera i papperskorgen.</string>
   <string name="AskDeletePermanentlyGroup">Vill du ta bort denna grupp permanent? Tryck på Nej för att placera i papperskorgen.</string>
@@ -528,8 +528,10 @@
   <string name="hint_sftp_key_name">Nytt nyckelnamn</string>
   <string name="hint_sftp_key_content">Nytt nyckelinnehåll</string>
   <string name="private_key_saved">Privat nyckel sparades</string>
+  <string name="private_key_save_failed">KUND INTE spara privat nyckel: %1$s</string>
   <string name="private_key_info">Ange nyckelnamn och -innehåll för att spara</string>
   <string name="private_key_delete">Radera privat nyckel: %1$s</string>
+  <string name="private_key_delete_failed">KUNDE INTE radera privat nyckel: %1$s</string>
   <string name="save_key">Spara privat nyckel</string>
   <string name="delete_key">Radera privat nyckel</string>
   <string name="private_key_select">Välj privat nyckel</string>
@@ -587,7 +589,7 @@
   <string name="otps_pending">(En eller flera engångslösenord redan tillgängliga)</string>
   <string name="otpsecret_hint">Engångslösenords-hemlighet (t.ex. 01 23 ab cd...)</string>
   <string name="CouldntParseOtpSecret">Fel vid läsning av engångslösenords-hemlighet!</string>
-  <string name="OtpKeyError">Det gick inte att skapa en engångslösenords-nyckel! Kontrollera att du har angett ett korrekt engångslösenord.</string>
+  <string name="OtpKeyError">Kunde inte skapa engångslösenordsnyckel! Se till att du angett rätt engångslösenord.</string>
   <string name="ErrorUpdatingOtpAuxFile">Fel vid uppdatering av engångslösenordsfil!</string>
   <string name="SavingOtpAuxFile">Sparar engångslösenordsfil…</string>
   <string name="NoChallengeApp">Kunde inte hitta en app som klarar utmaningen.</string>
@@ -835,7 +837,7 @@
   <string name="PluginDescription">Beskrivning av plugin:</string>
   <string name="autofill_hint">Keepass2Android stödjer Androids Autofyll-funktion men det ser ut som du inte har aktiverat det ännu.</string>
   <string name="autofill_enable">Aktivera Autofyll</string>
-  <string name="autofill_enable_failed">Förlåt, det verkar som att din enhet inte stödjer öppna inställningarna inifrån appen. Var god öppna systeminställnignarna manuellt för autofyll för att aktivera tjänsten.</string>
+  <string name="autofill_enable_failed">Förlåt, det verkar som att din enhet inte stödjer att öppna inställningar från appen. Vänligen öppna systeminställningar manuellt för AutoFyll att aktivera tjänsten.</string>
   <string name="show_autofill_help">Visa hjälp för autofyll</string>
   <string name="autofill_sign_in_prompt">Fyll med Keepass2Android</string>
   <string name="autofill_disable">Blockera AutoFyll för %1$s</string>
@@ -861,4 +863,5 @@
   <string name="AutofillWarning_FillDomainInUntrustedApp">Om du litar på \"%2$s\" att tillhöra \"%1$s\" eller du litar på appen \"%2$s\" att inte missbruka autentiseringsuppgifterna (t.ex. om det är en betrodd webbläsarapp) är det okej att fortsätta. Om inte, vänligen avbryt.</string>
   <string name="AutofillWarning_trustAsBrowser">Acceptera alltid i \"%1$s\"</string>
   <string name="english_ime_settings">Inställningar för Keepass2Androids tangentbord</string>
+  <string name="failed_to_access_database">Databasen används nu och kan inte nås.</string>
 </resources>
