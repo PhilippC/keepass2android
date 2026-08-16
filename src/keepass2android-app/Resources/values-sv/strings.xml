@@ -332,6 +332,7 @@
   <string name="QuickUnlock_label_secure">Ange snabbupplåsningskod:</string>
   <string name="QuickUnlock_button">Snabbupplåsning!</string>
   <string name="QuickUnlock_lockButton">Stäng databas</string>
+  <string name="enable_screen_lock">Aktivera skärmlås</string>
   <string name="QuickUnlockDefaultEnabled_title">Aktivera Snabbupplåsning som standard</string>
   <string name="QuickUnlockDefaultEnabled_summary">Anger om Snabbupplåsning är aktiverad som standard eller inte.</string>
   <string name="ViewDatabaseSecure_title">Skydda databasen</string>
@@ -395,6 +396,7 @@
   <string name="NoDonationReminder_summary">Jag kommer inte ge dig ett öre eller jag har redan donerat. Be inte om en donation, inte ens på utvecklarens födelsedag.</string>
   <string name="UseOfflineCache_title">Databascachning</string>
   <string name="UseOfflineCache_summary">Behåll en kopia av databasfilen i appens arbetsmapp. Det möjliggör användning av databaser även när databasfilerna inte är nåbara.</string>
+  <string name="SyncOfflineCacheInBackground_title">Synkronisera i bakgrunder</string>
   <string name="CreateBackups_title">Lokala säkerhetskopior</string>
   <string name="CreateBackups_summary">Skapa en lokal säkerhetskopia efter framgångsrikt ha laddat en databas.</string>
   <string name="UpdatingBackup">Uppdatera lokal säkerhetskopia...</string>
@@ -414,6 +416,9 @@
   <string name="ShowSeparateNotifications_summary">Visa separata aviseringar för att kopiera användarnamn och lösenord till urklipp och aktivera tangentbordet.</string>
   <string name="AccServiceAutoFill_prefs">Autofyll tillgänglighetstjänst</string>
   <string name="AutoFill_prefs">Autofyll-tjänst</string>
+  <string name="AutoFillTotp_prefs_CopyTotpToClipboard_title">Kopiera TOTP till urklipp</string>
+  <string name="AutoFillTotp_prefs_ActivateKeyboard_title">Aktivera inbyggt tangentbord</string>
+  <string name="TotpCopiedToClipboard">Kopierade TOTP till urklipp</string>
   <string name="ShowKp2aKeyboardNotification_title">KP2A tangentbordsavisering</string>
   <string name="ShowKp2aKeyboardNotification_summary">Gör hela posten tillgänglig genom KP2A-tangentbordet(rekommenderas).</string>
   <string name="OpenKp2aKeyboardAutomatically_title">Byt tangentbord</string>
@@ -580,6 +585,7 @@
   <string name="CouldntLoadChalAuxFile_Hint">Vänligen Använd KeeChallenge plugin i KeePass 2.x (PC) till konfigurera din databas för användning med utmanings-svar!</string>
   <string name="ErrorUpdatingChalAuxFile">Fel vid uppdatering av engångslösenordsfil!</string>
   <string name="TrayTotp_SeedField_title">Tidsbaserade engångslösenords-fröfältnamn</string>
+  <string name="TOTP">TOTP</string>
   <string name="TrayTotp_SeedField_summary">Om du använder Keepass 2 pluginet ”TrayTotp” med icke-standard inställningar, ange fältnamnet för fröfältet här enligt inställningarna på datorn.</string>
   <string name="TrayTotp_SettingsField_title">Tidsbaserade engångslösenords-inställningsfältnamn</string>
   <string name="TrayTotp_SettingsField_summary">Ange fältnamnet för inställningsfältet för TrayTotp här.</string>
@@ -681,6 +687,16 @@
   <string name="EntryChannel_desc">Avisering för att underlätta tillgång till den nuvarande markerade posten.</string>
   <string name="CloseDbAfterFailedAttempts">Stäng databasen efter tre misslyckade biometriska upplåsningsförsök.</string>
   <string name="WarnFingerprintInvalidated">Varning! Biometrisk autentisering kan ogiltigförklaras av Android, t.ex. efter att du har lagt till ett nytt fingeravtryck i dina enhetsinställningar. Se till att du alltid vet hur du låser upp med ditt huvudlösenord!</string>
+  <string-array name="ChangeLog_1_11">
+    <item>Added floating action buttons for search and TOTP overview (if TOTP entries are present).</item>
+    <item>Improved display of TOTP fields by adding a timeout indicator and showing it more prominently.</item>
+    <item>TOTP syns nu från gruppvyn.</item>
+    <item>Copy text value to clipboard on long-press in entry view.</item>
+    <item>Make TOTP more easily accessible on the built-in keyboard.</item>
+    <item>Show entry notification when autofilling a TOTP entry. This allows to copy the TOTP to clipboard. See preferences to configure the behavior.</item>
+    <item>Updated TOTP implementation to resolve compatibility issues with KeePass2 and TrayTOTP</item>
+    <item>Minor improvements</item>
+  </string-array>
   <string-array name="ChangeLog_1_09d">
     <item>Tillagt stöd för visning, borttagning och återställning av säkerhetskopior</item>
     <item>Implementerat stöd för MEGA molnlagring</item>
