@@ -525,6 +525,7 @@
   <string name="enter_sftp_login_title">Ange SFTP inloggnings-data:</string>
   <string name="sftp_auth_mode">Autentiseringsläge</string>
   <string name="send_public_key">Skicka offentlig nyckel...</string>
+  <string name="select_private_keyfile">Välj privat nyckel...</string>
   <string name="hint_sftp_key_name">Nytt nyckelnamn</string>
   <string name="hint_sftp_key_content">Nytt nyckelinnehåll</string>
   <string name="private_key_saved">Privat nyckel sparades</string>
