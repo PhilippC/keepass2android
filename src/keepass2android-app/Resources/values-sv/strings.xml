@@ -702,6 +702,7 @@
   <string name="EntryChannel_name">Postaviseringar</string>
   <string name="EntryChannel_desc">Avisering för att underlätta tillgång till den nuvarande markerade posten.</string>
   <string name="CloseDbAfterFailedAttempts">Stäng databasen efter tre misslyckade biometriska upplåsningsförsök.</string>
+  <string name="hint_smb_credentials">Om du vill komma åt filer från din egna Windows-dator, använd datornamnet eller den lokala IP-adressen som värd-URL; ange datornamnet som domän och Windows-inloggning (ofta samma som ditt Microsoft-konto) som användarnamn och lösenord..</string>
   <string name="WarnFingerprintInvalidated">Varning! Biometrisk autentisering kan ogiltigförklaras av Android, t.ex. efter att du har lagt till ett nytt fingeravtryck i dina enhetsinställningar. Se till att du alltid vet hur du låser upp med ditt huvudlösenord!</string>
   <string-array name="ChangeLog_1_15_net">
     <item>Improvements to URL handling for WebDav with non-ASCII characters</item>
