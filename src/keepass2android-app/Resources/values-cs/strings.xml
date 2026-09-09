@@ -760,7 +760,7 @@
   <string-array name="ChangeLog_1_15_net">
     <item>Vylepšení zpracování URL pro WebDav se znaky mimo ASCII</item>
     <item>Improvements to OneDrive Authentication</item>
-    <item>Minor bug fixes</item>
+    <item>Drobné opravy chyb</item>
   </string-array>
   <string-array name="ChangeLog_1_15">
     <item>Přidána synchronizace na pozadí: Keepass2Android nyní používá interní kopii databáze v mezipaměti pro načítání a ukládání, aby byly tyto operace rychlejší. Poté se spustí synchronizace se vzdálenou databází. </item>
