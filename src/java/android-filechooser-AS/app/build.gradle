@@ -4,11 +4,11 @@ android {
 
     namespace 'group.pals.android.lib.ui.filechooser'
 
-    compileSdkVersion 35
+    compileSdkVersion 36
 
     defaultConfig {
         minSdkVersion 16
-        targetSdkVersion 35
+        targetSdkVersion 36
     }
 
     buildTypes {
