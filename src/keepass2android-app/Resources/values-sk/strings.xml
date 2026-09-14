@@ -84,7 +84,7 @@
   <string name="clipboard_timeout_summary">Čas pred vyčistením schránky po skopírovaní mena alebo hesla</string>
   <string name="copy_username">Kopírovať meno používateľa do schránky</string>
   <string name="copy_password">Kopírovať heslo do schránky</string>
-  <string name="copy_totp">Vyberte na skopírovanie jednorazového hesla do schránky</string>
+  <string name="copy_totp">Kopírovať jednoraz. heslo do schránky</string>
   <string name="available_through_keyboard">Záznam je dostupný cez klávesnicu KP2A</string>
   <string name="app_language_pref_title">Jazyk aplikácie</string>
   <string name="entry_is_available">je dostupný</string>
@@ -764,6 +764,7 @@
   <string name="cleartextTrafficPermitted_title">Povoliť sieťovú prevádzku vo WebDav v čistom texte</string>
   <string name="cleartextTrafficPermitted_summary">HTTP pripojenia nie sú bezpečné. Túto voľbu zapnite iba v prípade prijatia iných bezpečnostných opatrení.</string>
   <string-array name="ChangeLog_1_15_net">
+    <item>Update to Target SDK version 36</item>
     <item>Vylepšenie spracovávania URL pre WebDav so znakmi mimo ASCII</item>
     <item>Improvements to OneDrive Authentication</item>
     <item>Minor bug fixes</item>

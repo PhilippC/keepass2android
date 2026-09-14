@@ -750,6 +750,7 @@
   <string name="cleartextTrafficPermitted_title">Разрешить текстовый сетевой трафик в WebDav</string>
   <string name="cleartextTrafficPermitted_summary">HTTP-соединения небезопасны. Включите эту опцию, только если у вас есть другие меры безопасности.</string>
   <string-array name="ChangeLog_1_15_net">
+    <item>Update to Target SDK version 36</item>
     <item>Улучшение обработки URL для WebDav с не-ASCII символами</item>
     <item>Improvements to OneDrive Authentication</item>
     <item>Minor bug fixes</item>

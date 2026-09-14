@@ -760,6 +760,7 @@
   <string name="cleartextTrafficPermitted_title">Permitir tráfico de red de texto sin formato en WebDav</string>
   <string name="cleartextTrafficPermitted_summary">Las conexiones HTTP no son seguras. Habilita esta opción únicamente si tiene otras medidas de seguridad en su lugar.</string>
   <string-array name="ChangeLog_1_15_net">
+    <item>Update to Target SDK version 36</item>
     <item>Mejoras en el manejo de URL para WebDav con caracteres no ASCII</item>
     <item>Improvements to OneDrive Authentication</item>
     <item>Minor bug fixes</item>

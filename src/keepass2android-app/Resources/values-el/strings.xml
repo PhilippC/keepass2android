@@ -755,6 +755,7 @@
   <string name="cleartextTrafficPermitted_title">Να επιτρέπεται η διακίνηση μη κρυπτογραφημένου κειμένου στο WebDav</string>
   <string name="cleartextTrafficPermitted_summary">Οι συνδέσεις HTTP δεν είναι ασφαλείς. Ενεργοποιήστε αυτήν την επιλογή μόνο αν έχετε άλλα μέτρα ασφαλείας.</string>
   <string-array name="ChangeLog_1_15_net">
+    <item>Update to Target SDK version 36</item>
     <item>Βελτιώσεις στο χειρισμό URL για WebDav με μη-ASCII χαρακτήρες</item>
     <item>Improvements to OneDrive Authentication</item>
     <item>Minor bug fixes</item>
