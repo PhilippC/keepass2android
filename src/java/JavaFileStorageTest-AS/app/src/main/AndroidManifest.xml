@@ -56,7 +56,6 @@
         <activity
             android:name="group.pals.android.lib.ui.filechooser.FileChooserActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
-            android:screenOrientation="user"
             android:theme="@style/Afc.Theme.Light" />
 
         <activity
