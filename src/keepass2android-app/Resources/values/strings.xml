@@ -771,6 +771,7 @@
   <string name="cleartextTrafficPermitted_title">Allow clear-text network traffic in WebDav</string>
   <string name="cleartextTrafficPermitted_summary">HTTP connections are not secure. Only enable this if you have other security measures in place.</string>
   <string-array name="ChangeLog_1_15_net">
+    <item>Update to Target SDK version 36</item>
     <item>Improvements to URL handling for WebDav with non-ASCII characters</item>
     <item>Improvements to OneDrive Authentication</item>
     <item>Minor bug fixes</item>
