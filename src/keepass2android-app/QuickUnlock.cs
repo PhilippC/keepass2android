@@ -65,6 +65,7 @@ namespace keepass2android
     {
       _design.ApplyTheme();
       base.OnCreate(bundle);
+      PredictiveBack.Register(this, HandlePredictiveBackPressed);
 
       //use FlagSecure to make sure the last (revealed) character of the password is not visible in recent apps
       Util.MakeSecureDisplay(this);
@@ -512,8 +513,19 @@ namespace keepass2android
 
     public override void OnBackPressed()
     {
+      HandleLegacyBackPressed();
+    }
+
+    private void HandleLegacyBackPressed()
+    {
       SetResult(KeePass.ExitClose);
       base.OnBackPressed();
+    }
+
+    private void HandlePredictiveBackPressed()
+    {
+      SetResult(KeePass.ExitClose);
+      Finish();
     }
 
     private class QuickUnlockBroadcastReceiver : BroadcastReceiver

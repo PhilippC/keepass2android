@@ -554,6 +554,7 @@ namespace keepass2android
       _design.ApplyTheme();
       _currentListTextSize = PrefsUtil.GetListTextSize(this);
       base.OnCreate(savedInstanceState);
+      PredictiveBack.Register(this, HandlePredictiveBackPressed);
 
       Android.Util.Log.Debug("KP2A", "Creating GBA");
 
@@ -1297,8 +1298,19 @@ namespace keepass2android
 
     public override void OnBackPressed()
     {
+      HandleLegacyBackPressed();
+    }
+
+    private void HandleLegacyBackPressed()
+    {
       AppTask.SetActivityResult(this, KeePass.ExitNormal);
       base.OnBackPressed();
+    }
+
+    private void HandlePredictiveBackPressed()
+    {
+      AppTask.SetActivityResult(this, KeePass.ExitNormal);
+      Finish();
     }
 
     private void ChangeSort()

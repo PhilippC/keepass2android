@@ -463,6 +463,7 @@ namespace keepass2android
 
 
       SetEntryView();
+      PredictiveBack.Register(this, HandlePredictiveBackPressed);
 
       Database db = App.Kp2a.CurrentDb;
       // Likely the app has been killed exit the activity 
@@ -986,8 +987,18 @@ namespace keepass2android
 
     public override void OnBackPressed()
     {
-      base.OnBackPressed();
+      HandleLegacyBackPressed();
       //OverridePendingTransition(Resource.Animation.anim_enter_back, Resource.Animation.anim_leave_back);
+    }
+
+    private void HandleLegacyBackPressed()
+    {
+      base.OnBackPressed();
+    }
+
+    private void HandlePredictiveBackPressed()
+    {
+      Finish();
     }
 
     protected void FillData()

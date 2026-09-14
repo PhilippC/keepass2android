@@ -262,6 +262,7 @@ namespace keepass2android
     protected override void OnCreate(Bundle savedInstanceState)
     {
       base.OnCreate(savedInstanceState);
+      PredictiveBack.Register(this, HandlePredictiveBackPressed);
       SetContentView(Resource.Layout.open_db_selection);
 
       var toolbar = FindViewById<AndroidX.AppCompat.Widget.Toolbar>(Resource.Id.mytoolbar);
@@ -577,17 +578,33 @@ namespace keepass2android
 
     public override void OnBackPressed()
     {
+      HandleLegacyBackPressed();
+    }
+
+    private void HandleLegacyBackPressed()
+    {
       base.OnBackPressed();
+      ApplyBackNavigationExitState();
+    }
+
+    private void HandlePredictiveBackPressed()
+    {
+      ApplyBackNavigationExitState();
+      if (!IsFinishing)
+        Finish();
+    }
+
+    private void ApplyBackNavigationExitState()
+    {
       if (PreferenceManager.GetDefaultSharedPreferences(this)
           .GetBoolean(GetString(Resource.String.LockWhenNavigateBack_key), false))
       {
         App.Kp2a.Lock();
       }
+
       //by leaving the app with the back button, the user probably wants to cancel the task
       //The activity might be resumed (through Android's recent tasks list), then use a NullTask:
       AppTask = new NullTask();
-      if (!IsFinishing)
-        Finish();
     }
 
     public override void Finish()

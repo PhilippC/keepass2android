@@ -592,7 +592,7 @@ namespace keepass2android
   }
 
 
-  [Activity(Label = "@string/app_name", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden, Theme = "@style/Kp2aTheme_ActionBar")]
+  [Activity(Label = "@string/app_name", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden, Theme = "@style/Kp2aTheme_ActionBar", EnableOnBackInvokedCallback = false)]
   public class EntryEditActivity : LockCloseActivity
   {
 
@@ -665,6 +665,7 @@ namespace keepass2android
       }
 
       base.OnCreate(savedInstanceState);
+      PredictiveBack.Register(this, HandlePredictiveBackPressed);
 
       AppTask = AppTask.GetTaskInOnCreate(savedInstanceState, Intent);
 
@@ -1296,33 +1297,52 @@ namespace keepass2android
 
     public override void OnBackPressed()
     {
+      HandleLegacyBackPressed();
+    }
+
+    private void HandleLegacyBackPressed()
+    {
       if (State.EntryModified == false)
       {
         base.OnBackPressed();
+        return;
       }
-      else
+
+      ShowDiscardChangesDialog();
+    }
+
+    private void HandlePredictiveBackPressed()
+    {
+      if (State.EntryModified == false)
       {
-        MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(this);
-        builder.SetTitle(GetString(Resource.String.AskDiscardChanges_title));
-
-        builder.SetMessage(GetString(Resource.String.AskDiscardChanges));
-
-        builder.SetPositiveButton(GetString(Android.Resource.String.Yes), (dlgSender, dlgEvt) =>
-                                                                                                                          {
-                                                                                                                            Finish();
-
-                                                                                                                          });
-
-        builder.SetNegativeButton(GetString(Android.Resource.String.No), (dlgSender, dlgEvt) =>
-                                                                                                                         {
-
-                                                                                                                         });
-
-
-        Dialog dialog = builder.Create();
-        dialog.Show();
+        Finish();
+        return;
       }
 
+      ShowDiscardChangesDialog();
+    }
+
+    private void ShowDiscardChangesDialog()
+    {
+      MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(this);
+      builder.SetTitle(GetString(Resource.String.AskDiscardChanges_title));
+
+      builder.SetMessage(GetString(Resource.String.AskDiscardChanges));
+
+      builder.SetPositiveButton(GetString(Android.Resource.String.Yes), (dlgSender, dlgEvt) =>
+                                                                                                                        {
+                                                                                                                          Finish();
+
+                                                                                                                        });
+
+      builder.SetNegativeButton(GetString(Android.Resource.String.No), (dlgSender, dlgEvt) =>
+                                                                                                                       {
+
+                                                                                                                       });
+
+
+      Dialog dialog = builder.Create();
+      dialog.Show();
     }
 
     public void Reload()
