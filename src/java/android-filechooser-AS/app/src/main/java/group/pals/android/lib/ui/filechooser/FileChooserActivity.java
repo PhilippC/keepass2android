@@ -21,6 +21,7 @@ import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.core.view.WindowCompat;
 import androidx.fragment.app.FragmentActivity;
 import android.util.Log;
@@ -256,6 +257,24 @@ public class FileChooserActivity extends FragmentActivity {
         mFragmentFiles = FragmentFiles.newInstance(getIntent());
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.afc_fragment_files, mFragmentFiles).commit();
+
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                if (mFragmentFiles != null && mFragmentFiles.isLoading()) {
+                    if (Utils.doLog())
+                        Log.d(CLASSNAME,
+                                "handleOnBackPressed() >> cancelling previous query...");
+                    mFragmentFiles.cancelPreviousLoader();
+                    Dlg.toast(FileChooserActivity.this, R.string.afc_msg_cancelled, Dlg.LENGTH_SHORT);
+                    return;
+                }
+
+                setEnabled(false);
+                getOnBackPressedDispatcher().onBackPressed();
+                setEnabled(true);
+            }
+        });
     }// onCreate()
 
     @Override

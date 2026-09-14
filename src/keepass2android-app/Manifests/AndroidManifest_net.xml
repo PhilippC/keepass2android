@@ -63,7 +63,7 @@
       <action android:name="android.intent.action.VIEW" />
     </intent>
   </queries>
-  <uses-sdk android:minSdkVersion="21" android:targetSdkVersion="35" />
+  <uses-sdk android:minSdkVersion="21" android:targetSdkVersion="36" />
 
   <permission android:description="@string/permission_desc2" android:icon="@drawable/ic_launcher" android:label="KP2A entry search" android:name="keepass2android.keepass2android.permission.KP2aInternalSearch" android:protectionLevel="signature" />
   <permission android:description="@string/permission_desc3" android:icon="@drawable/ic_launcher" android:label="KP2A choose autofill dataset" android:name="keepass2android.keepass2android.permission.Kp2aChooseAutofill" android:protectionLevel="signature" />
@@ -107,7 +107,7 @@
 
     <provider android:name="group.pals.android.lib.ui.filechooser.providers.localfile.LocalFileProvider" android:authorities="keepass2android.keepass2android.android-filechooser.localfile" android:exported="false" />
     <provider android:name="group.pals.android.lib.ui.filechooser.providers.history.HistoryProvider" android:authorities="keepass2android.keepass2android.android-filechooser.history" android:exported="false" />
-    <activity android:name="group.pals.android.lib.ui.filechooser.FileChooserActivity" android:configChanges="keyboard|keyboardHidden|orientation|screenSize" android:screenOrientation="user" android:theme="@style/Afc.Theme.Light">
+    <activity android:name="group.pals.android.lib.ui.filechooser.FileChooserActivity" android:configChanges="keyboard|keyboardHidden|orientation|screenSize" android:theme="@style/Afc.Theme.Light">
     </activity>
 
     <service android:name="keepass2android.softkeyboard.KP2AKeyboard" android:permission="android.permission.BIND_INPUT_METHOD" android:exported="true">

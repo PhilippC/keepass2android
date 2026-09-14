@@ -2,12 +2,12 @@ apply plugin: 'com.android.application'
 
 android {
     namespace 'keepass2android.plugin.qr'
-    compileSdkVersion 26
+    compileSdkVersion 36
 
     defaultConfig {
         applicationId "keepass2android.plugin.qr"
         minSdkVersion 14
-        targetSdkVersion 31
+        targetSdkVersion 36
         versionCode 3
         versionName "1.0.2"
     }

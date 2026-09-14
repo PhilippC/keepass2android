@@ -650,6 +650,7 @@ namespace keepass2android
     {
       _activityDesign.ApplyTheme();
       base.OnCreate(savedInstanceState);
+      PredictiveBack.Register(this, HandlePredictiveBackPressed);
 
       _intentReceiver = new PasswordActivityBroadcastReceiver(this);
       IntentFilter filter = new IntentFilter();
@@ -1081,6 +1082,11 @@ namespace keepass2android
 
     public override void OnBackPressed()
     {
+      HandleLegacyBackPressed();
+    }
+
+    private void HandleLegacyBackPressed()
+    {
       if (_drawerLayout != null)
       {
         if (_drawerLayout.IsDrawerOpen((int)GravityFlags.Start))
@@ -1090,6 +1096,19 @@ namespace keepass2android
         }
       }
       base.OnBackPressed();
+    }
+
+    private void HandlePredictiveBackPressed()
+    {
+      if (_drawerLayout != null)
+      {
+        if (_drawerLayout.IsDrawerOpen((int)GravityFlags.Start))
+        {
+          _drawerLayout.CloseDrawer((int)GravityFlags.Start);
+          return;
+        }
+      }
+      Finish();
     }
 
     private void InitializeOtpSecretSpinner()
