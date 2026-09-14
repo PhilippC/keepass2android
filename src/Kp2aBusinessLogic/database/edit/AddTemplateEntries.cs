@@ -343,7 +343,7 @@ namespace keepass2android
         templateGroup = new PwGroup(true, true, _app.GetResourceString(UiStringKey.TemplateGroupName), PwIcon.Folder);
         _app.CurrentDb.KpDatabase.RootGroup.AddGroup(templateGroup, true);
         _app.CurrentDb.KpDatabase.EntryTemplatesGroup = templateGroup.Uuid;
-        _app.CurrentDb.KpDatabase.EntryTemplatesGroupChanged = DateTime.Now;
+        _app.CurrentDb.KpDatabase.EntryTemplatesGroupChanged = DateTime.UtcNow;
         _app.DirtyGroups.Add(_app.CurrentDb.KpDatabase.RootGroup);
         _app.CurrentDb.GroupsById[templateGroup.Uuid] = templateGroup;
         _app.CurrentDb.Elements.Add(templateGroup);
