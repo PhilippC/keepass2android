@@ -202,8 +202,26 @@ namespace keepass2android.Io
     // MSAL broker (WAM/Authenticator/Company Portal) is required to pass the device ID for
     // Intune/Entra-managed devices, but broken broker setups (missing package visibility,
     // missing broker redirect URI registration, ...) must not block ordinary OneDrive sign-in.
-    // We try broker first and permanently fall back to non-broker for this device once we see
-    // a broker-specific failure.
+    // The user-facing "OneDrive device sign-in" preference (pref_app_file_handling.xml) picks
+    // between: Auto (try broker, permanently fall back to non-broker for this device on a
+    // broker-specific failure), Always (force broker, surface real errors, no fallback -
+    // for admins who need to confirm/require the Intune device-ID path), and Never (skip
+    // broker entirely - the escape hatch for devices where broker itself is broken).
+    private enum BrokerMode
+    {
+      Auto,
+      Always,
+      Never
+    }
+
+    // Must match Resource.String.OneDriveBrokerMode_key's value (config.xml) - this business-logic
+    // assembly has no access to the app's generated Resource class, so the key is duplicated here.
+    private const string PrefKeyBrokerMode = "OneDriveBrokerMode";
+    private const string BrokerModeValueAlways = "ALWAYS";
+    private const string BrokerModeValueNever = "NEVER";
+
+    // Sticky per-device flag learned in Auto mode once broker is seen to fail; independent of
+    // PrefKeyBrokerMode so switching back to Auto later remembers the outcome.
     private const string PrefKeyBrokerAvailable = "OneDrive2FileStorageBrokerAvailable";
 
     private static readonly HashSet<string> BrokerFailureErrorCodes = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
@@ -216,6 +234,7 @@ namespace keepass2android.Io
       "android_broker_operation_failed",
     };
 
+    private static BrokerMode _brokerMode;
     private static bool _brokerEnabledForCurrentClient;
 
     public abstract IEnumerable<string> Scopes
@@ -225,7 +244,13 @@ namespace keepass2android.Io
 
     public OneDrive2FileStorage()
     {
-      _brokerEnabledForCurrentClient = IsBrokerAllowedByCache();
+      _brokerMode = ReadBrokerModePreference();
+      _brokerEnabledForCurrentClient = _brokerMode switch
+      {
+        BrokerMode.Always => true,
+        BrokerMode.Never => false,
+        _ => IsBrokerAllowedByCache(),
+      };
       _publicClientApp = BuildPublicClientApp(_brokerEnabledForCurrentClient);
     }
 
@@ -238,11 +263,30 @@ namespace keepass2android.Io
       return builder.Build();
     }
 
+    private BrokerMode ReadBrokerModePreference()
+    {
+      try
+      {
+        string value = PreferenceManager.GetDefaultSharedPreferences(Android.App.Application.Context)
+            .GetString(PrefKeyBrokerMode, null);
+        if (value == BrokerModeValueAlways)
+          return BrokerMode.Always;
+        if (value == BrokerModeValueNever)
+          return BrokerMode.Never;
+        return BrokerMode.Auto;
+      }
+      catch (Exception e)
+      {
+        logDebug("failed to read broker-mode preference: " + e);
+        return BrokerMode.Auto;
+      }
+    }
+
     private bool IsBrokerAllowedByCache()
     {
       try
       {
-        return PreferenceManager.GetDefaultSharedPreferences(Application.Context)
+        return PreferenceManager.GetDefaultSharedPreferences(Android.App.Application.Context)
             .GetBoolean(PrefKeyBrokerAvailable, true);
       }
       catch (Exception e)
@@ -257,13 +301,20 @@ namespace keepass2android.Io
       return ex.ErrorCode != null && BrokerFailureErrorCodes.Contains(ex.ErrorCode);
     }
 
+    // Only Auto mode auto-recovers from a broker failure by falling back to non-broker; Always
+    // mode intentionally surfaces the real error instead of silently masking a broken broker.
+    private static bool ShouldFallBackFromBroker(MsalException ex)
+    {
+      return _brokerMode == BrokerMode.Auto && _brokerEnabledForCurrentClient && IsBrokerFailure(ex);
+    }
+
     private void DisableBrokerAndRebuildClient()
     {
       _brokerEnabledForCurrentClient = false;
       _publicClientApp = BuildPublicClientApp(false);
       try
       {
-        PreferenceManager.GetDefaultSharedPreferences(Application.Context)
+        PreferenceManager.GetDefaultSharedPreferences(Android.App.Application.Context)
             .Edit().PutBoolean(PrefKeyBrokerAvailable, false).Commit();
       }
       catch (Exception e)
@@ -1075,7 +1126,7 @@ namespace keepass2android.Io
               .WithParentActivityOrWindow((Activity)activity)
               .ExecuteAsync();
         }
-        catch (MsalException msalEx) when (_brokerEnabledForCurrentClient && IsBrokerFailure(msalEx))
+        catch (MsalException msalEx) when (ShouldFallBackFromBroker(msalEx))
         {
           logDebug("interactive auth failed with broker error " + msalEx.ErrorCode + ", retrying without broker");
           DisableBrokerAndRebuildClient();
@@ -1156,7 +1207,7 @@ namespace keepass2android.Io
           logDebug("ui required");
           return null;
         }
-        catch (MsalException msalEx) when (_brokerEnabledForCurrentClient && IsBrokerFailure(msalEx))
+        catch (MsalException msalEx) when (ShouldFallBackFromBroker(msalEx))
         {
           // The broker-backed account/token cache is not usable once broker itself is broken.
           // Disable broker for future logins and fall back to a fresh interactive sign-in.
