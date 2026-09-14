@@ -416,6 +416,8 @@
   <string name="show_local_backups">Exibir backups locais</string>
   <string name="AcceptAllServerCertificates_title">Certificados SSL</string>
   <string name="AcceptAllServerCertificates_summary">Definir o comportamento quando uma validação de certificado falhar. Nota: você pode instalar certificados no seu dispositivo se a validação falhar!</string>
+  <string name="OneDriveBrokerMode_title">Entrada por dispositivo do OneDrive (broker)</string>
+  <string name="OneDriveBrokerMode_summary">Controla se a entrada no OneDrive usa o gerenciador de conta Microsoft do dispositivo (broker), o que é necessário em alguns dispositivos de trabalho gerenciados pelo Intune/Entra. Automático tenta primeiro a entrada via broker e recorre à entrada normal caso falhe. Escolha \"Nunca\" se a entrada no OneDrive falhar repetidamente neste dispositivo.</string>
   <string name="ClearOfflineCache_title">Limpar o cache?</string>
   <string name="ClearOfflineCache_question">Isso excluirá todos arquivos da base de dados em cache. Quaisquer alterações feitas sem acessar a base de dados de origem e ainda não sincronizadas serão perdidas! Continuar?</string>
   <string name="CheckForFileChangesOnSave_title">Verificar modificações</string>
@@ -1227,6 +1229,11 @@
     <item>Ignorar falhas de validação de certificado</item>
     <item>Avisar quando a validação falhar</item>
     <item>Não aceitar certificados inválidos</item>
+  </string-array>
+  <string-array name="OneDriveBrokerMode_options">
+    <item>Automático (recomendado)</item>
+    <item>Sempre usar login do dispositivo</item>
+    <item>Nunca usar login do dispositivo</item>
   </string-array>
   <string name="ClearClipboardWarning">Certifique-se de que isto funciona no seu sistema e considere usar o teclado embutido se não.</string>
   <string name="PluginDescription">Descrição fornecida pelo plugin:</string>
