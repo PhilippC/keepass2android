@@ -764,9 +764,10 @@
   <string name="cleartextTrafficPermitted_title">Povoliť sieťovú prevádzku vo WebDav v čistom texte</string>
   <string name="cleartextTrafficPermitted_summary">HTTP pripojenia nie sú bezpečné. Túto voľbu zapnite iba v prípade prijatia iných bezpečnostných opatrení.</string>
   <string-array name="ChangeLog_1_15_net">
+    <item>Update to Target SDK version 36</item>
     <item>Vylepšenie spracovávania URL pre WebDav so znakmi mimo ASCII</item>
-    <item>Vylepšenia autentifikácie do Onedrive</item>
-    <item>Menšie opravy chýb</item>
+    <item>Improvements to OneDrive Authentication</item>
+    <item>Minor bug fixes</item>
   </string-array>
   <string-array name="ChangeLog_1_15">
     <item>Pridaná synchronizácia na pozadí: Keepass2Android teraz pri načítaní a ukladaní využíva kópiu databázy v internej vyrov. pamäti, kvôli zrýchleniu práce. Potom sa spustí synchronizácia so vzdialenou databázou.</item>
