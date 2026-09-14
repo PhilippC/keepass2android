@@ -17,6 +17,7 @@ using System.Net;
 using System.Reflection;
 using System.Text;
 using Android.Content;
+using Android.Preferences;
 using Android.Util;
 using KeePass.Util;
 using keepass2android.Io.ItemLocation;
@@ -198,6 +199,24 @@ namespace keepass2android.Io
     public static IPublicClientApplication _publicClientApp = null;
     private string ClientID = "8374f801-0f55-407d-80cc-9a04fe86d9b2";
 
+    // MSAL broker (WAM/Authenticator/Company Portal) is required to pass the device ID for
+    // Intune/Entra-managed devices, but broken broker setups (missing package visibility,
+    // missing broker redirect URI registration, ...) must not block ordinary OneDrive sign-in.
+    // We try broker first and permanently fall back to non-broker for this device once we see
+    // a broker-specific failure.
+    private const string PrefKeyBrokerAvailable = "OneDrive2FileStorageBrokerAvailable";
+
+    private static readonly HashSet<string> BrokerFailureErrorCodes = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
+    {
+      "cannot_invoke_broker",
+      "no_broker_installed_on_device",
+      "no_broker_account_found",
+      "null_intent_returned_from_broker",
+      "broker_signature_verification_failed",
+      "android_broker_operation_failed",
+    };
+
+    private static bool _brokerEnabledForCurrentClient;
 
     public abstract IEnumerable<string> Scopes
     {
@@ -206,10 +225,51 @@ namespace keepass2android.Io
 
     public OneDrive2FileStorage()
     {
-      _publicClientApp = PublicClientApplicationBuilder.Create(ClientID)
-          .WithRedirectUri($"msal{ClientID}://auth")
-          .WithBroker(true)  // Enable broker authentication to pass device ID for Intune/Entra managed devices
-          .Build();
+      _brokerEnabledForCurrentClient = IsBrokerAllowedByCache();
+      _publicClientApp = BuildPublicClientApp(_brokerEnabledForCurrentClient);
+    }
+
+    private IPublicClientApplication BuildPublicClientApp(bool useBroker)
+    {
+      var builder = PublicClientApplicationBuilder.Create(ClientID)
+          .WithRedirectUri($"msal{ClientID}://auth");
+      if (useBroker)
+        builder = builder.WithBroker(true);
+      return builder.Build();
+    }
+
+    private bool IsBrokerAllowedByCache()
+    {
+      try
+      {
+        return PreferenceManager.GetDefaultSharedPreferences(Application.Context)
+            .GetBoolean(PrefKeyBrokerAvailable, true);
+      }
+      catch (Exception e)
+      {
+        logDebug("failed to read broker-available preference: " + e);
+        return true;
+      }
+    }
+
+    private static bool IsBrokerFailure(MsalException ex)
+    {
+      return ex.ErrorCode != null && BrokerFailureErrorCodes.Contains(ex.ErrorCode);
+    }
+
+    private void DisableBrokerAndRebuildClient()
+    {
+      _brokerEnabledForCurrentClient = false;
+      _publicClientApp = BuildPublicClientApp(false);
+      try
+      {
+        PreferenceManager.GetDefaultSharedPreferences(Application.Context)
+            .Edit().PutBoolean(PrefKeyBrokerAvailable, false).Commit();
+      }
+      catch (Exception e)
+      {
+        logDebug("failed to persist broker-unavailable preference: " + e);
+      }
     }
 
     class PathItemBuilder
@@ -1009,9 +1069,21 @@ namespace keepass2android.Io
       {
 
         logDebug("try interactive");
-        AuthenticationResult res = await _publicClientApp.AcquireTokenInteractive(Scopes)
-            .WithParentActivityOrWindow((Activity)activity)
-            .ExecuteAsync();
+        AuthenticationResult res;
+        try
+        {
+          res = await _publicClientApp.AcquireTokenInteractive(Scopes)
+              .WithParentActivityOrWindow((Activity)activity)
+              .ExecuteAsync();
+        }
+        catch (MsalException msalEx) when (_brokerEnabledForCurrentClient && IsBrokerFailure(msalEx))
+        {
+          logDebug("interactive auth failed with broker error " + msalEx.ErrorCode + ", retrying without broker");
+          DisableBrokerAndRebuildClient();
+          res = await _publicClientApp.AcquireTokenInteractive(Scopes)
+              .WithParentActivityOrWindow((Activity)activity)
+              .ExecuteAsync();
+        }
         logDebug("ok interactive");
         BuildClient(res);
         FinishActivityWithSuccess(activity, BuildRootPathForUser(res));
@@ -1085,6 +1157,14 @@ namespace keepass2android.Io
 
           _mClientByUser[account.HomeAccountId.Identifier] = clientWithState;
           logDebug("ui required");
+          return null;
+        }
+        catch (MsalException msalEx) when (_brokerEnabledForCurrentClient && IsBrokerFailure(msalEx))
+        {
+          // The broker-backed account/token cache is not usable once broker itself is broken.
+          // Disable broker for future logins and fall back to a fresh interactive sign-in.
+          logDebug("silent auth failed with broker error " + msalEx.ErrorCode + ", disabling broker for future logins");
+          DisableBrokerAndRebuildClient();
           return null;
         }
         catch (Exception ex)
