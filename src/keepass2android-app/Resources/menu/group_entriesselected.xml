@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
   <item android:id="@+id/menu_edit"
         android:icon="@drawable/baseline_edit_24"
@@ -25,6 +25,11 @@
         android:icon="@drawable/baseline_navigate_to_folder_24"
         android:title="@string/menu_navigate"
         android:showAsAction="always"
+    />
+  <item android:id="@+id/menu_edit_keeshare"
+        android:icon="@drawable/baseline_sync_24"
+        android:title="@string/edit_keeshare"
+        android:showAsAction="ifRoom"
     />
 
 </menu>

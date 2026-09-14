@@ -88,7 +88,7 @@ namespace keepass2android
           {
             //conflict! need to merge
             var _saveDb = new SaveDb(_app, new ActionOnOperationFinished(_app,
-                (success, result, activity) =>
+                (success, result, importantMessage, exception, activity) =>
                 {
                   if (!success)
                   {
@@ -111,7 +111,7 @@ namespace keepass2android
           else
           {
             //only the remote file was modified -> reload database.
-            var onFinished = new ActionOnOperationFinished(_app, (success, result, activity) =>
+            var onFinished = new ActionOnOperationFinished(_app, (success, result, importantMessage, exception, activity) =>
             {
               if (!success)
               {

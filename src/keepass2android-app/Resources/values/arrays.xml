@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="keeshare_types">
+        <item>Export</item>
+        <item>Import</item>
+        <item>Synchronize</item>
+    </string-array>
+</resources>

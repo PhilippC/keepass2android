@@ -100,12 +100,14 @@ namespace keepass2android
 
     protected override bool AddEntryEnabled
     {
-      get { return App.Kp2a.CurrentDb.CanWrite && ((this.Group.ParentGroup != null) || App.Kp2a.CurrentDb.DatabaseFormat.CanHaveEntriesInRootGroup); }
+      get { return App.Kp2a.CurrentDb.CanWrite && 
+                   ((this.Group.ParentGroup != null) || App.Kp2a.CurrentDb.DatabaseFormat.CanHaveEntriesInRootGroup) &&
+                   !KeeShare.IsReadOnlyBecauseKeeShareImport(this.Group); }
     }
 
     protected override bool AddGroupEnabled
     {
-      get { return App.Kp2a.CurrentDb.CanWrite; }
+      get { return App.Kp2a.CurrentDb.CanWrite && !KeeShare.IsReadOnlyBecauseKeeShareImport(this.Group); }
     }
 
     private class TemplateListAdapter : ArrayAdapter<PwEntry>
@@ -233,7 +235,7 @@ namespace keepass2android
                           //yes
                           BlockingOperationStarter pt = new BlockingOperationStarter(App.Kp2a,
                                       new AddTemplateEntries(App.Kp2a, new ActionInContextInstanceOnOperationFinished(ContextInstanceId, App.Kp2a,
-                                          (success, message, context) => (context as GroupActivity)?.StartAddEntry())));
+                                          (success, message, importantMessage, exception, context) => (context as GroupActivity)?.StartAddEntry())));
                           pt.Run();
                         },
                         (o, args) =>

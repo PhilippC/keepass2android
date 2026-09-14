@@ -48,6 +48,8 @@ Thumbs.db
 
 /src/java/kp2akeytransform/.settings
 
+/src/java/PluginQR/.settings
+
 /src/java/workspace/UITest
 /src/java/JavaFileStorage/gen/keepass2android/javafilestorage/BuildConfig.java
 /src/java/JavaFileStorage/gen/keepass2android/javafilestorage/R.java
