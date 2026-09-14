@@ -1020,9 +1020,12 @@ namespace keepass2android.Io
       }
       catch (Exception e)
       {
-        logDebug("authenticating not successful: " + e);
+        string errorMessage = "authenticating not successful";
+        if (e is MsalException msalEx)
+          errorMessage += " (" + msalEx.ErrorCode + ")";
+        logDebug(errorMessage + ": " + e);
         Intent data = new Intent();
-        data.PutExtra(FileStorageSetupDefs.ExtraErrorMessage, "authenticating not successful");
+        data.PutExtra(FileStorageSetupDefs.ExtraErrorMessage, errorMessage);
         ((Activity)activity).SetResult(Result.Canceled, data);
         ((Activity)activity).Finish();
       }
@@ -1086,7 +1089,8 @@ namespace keepass2android.Io
         }
         catch (Exception ex)
         {
-          logDebug("silent login failed: " + ex.ToString());
+          string? errorCode = (ex as MsalException)?.ErrorCode;
+          logDebug("silent login failed" + (errorCode != null ? " (" + errorCode + ")" : "") + ": " + ex);
           return null;
         }
       }
