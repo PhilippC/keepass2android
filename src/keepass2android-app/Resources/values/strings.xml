@@ -415,6 +415,8 @@
   <string name="show_local_backups">Show local backups</string>
   <string name="AcceptAllServerCertificates_title">SSL certificates</string>
   <string name="AcceptAllServerCertificates_summary">Define the behavior when certificate validation fails. Note: you can install certificates on your device if validation fails!</string>
+  <string name="OneDriveBrokerMode_title">OneDrive device sign-in (broker)</string>
+  <string name="OneDriveBrokerMode_summary">Controls whether OneDrive sign-in uses your device\'s Microsoft account manager (broker), which is required on some Intune/Entra-managed work devices. Automatic tries broker sign-in first and falls back to normal sign-in if it fails. Choose "Never" if OneDrive sign-in fails repeatedly on this device.</string>
   <string name="ClearOfflineCache_title">Clear cache?</string>
   <string name="ClearOfflineCache_question">This will delete all cached database files. Any changes you made while having no access to the source database and which have not yet been synchronized will be lost! Continue?</string>
   <string name="CheckForFileChangesOnSave_title">Check for modifications</string>
@@ -1281,6 +1283,11 @@
     <item>Ignore certificate validation failures</item>
     <item>Warn when validation fails</item>
     <item>Do not accept invalid certificates</item>
+  </string-array>
+  <string-array name="OneDriveBrokerMode_options">
+    <item>Automatic (recommended)</item>
+    <item>Always use device sign-in</item>
+    <item>Never use device sign-in</item>
   </string-array>
   <string name="ClearClipboardWarning">Make sure this works on your system and consider using the built-in keyboard if not.</string>
   <string name="PluginDescription">Description provided by the plugin:</string>

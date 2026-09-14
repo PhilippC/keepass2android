@@ -70,6 +70,15 @@
 		android:dialogTitle="@string/AcceptAllServerCertificates_title"
 		android:defaultValue="@string/AcceptAllServerCertificates_default" />
 
+	<ListPreference
+		android:key="@string/OneDriveBrokerMode_key"
+		android:title="@string/OneDriveBrokerMode_title"
+		android:summary="@string/OneDriveBrokerMode_summary"
+		android:entries="@array/OneDriveBrokerMode_options"
+		android:entryValues="@array/OneDriveBrokerMode_values"
+		android:dialogTitle="@string/OneDriveBrokerMode_title"
+		android:defaultValue="@string/OneDriveBrokerMode_default" />
+
 
 	<CheckBoxPreference
 		android:enabled="true"

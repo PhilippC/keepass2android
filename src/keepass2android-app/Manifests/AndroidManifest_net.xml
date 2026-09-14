@@ -32,6 +32,11 @@
     <package android:name="com.inputstick.apps.kp2aplugin" />
     <package android:name="com.dropbox.android" />
 
+    <!-- MSAL broker apps for OneDrive Intune/Entra-managed device authentication -->
+    <package android:name="com.azure.authenticator" />
+    <package android:name="com.microsoft.windowsintune.companyportal" />
+    <package android:name="com.microsoft.workaccount" />
+
     <intent>
       <action android:name="android.intent.action.OPEN_DOCUMENT" />
       <data android:mimeType="*/*" />
