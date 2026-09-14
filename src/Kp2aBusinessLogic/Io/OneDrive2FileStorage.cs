@@ -1053,20 +1053,19 @@ namespace keepass2android.Io
 
     public async void OnStart(IFileStorageSetupActivity activity)
     {
-      logDebug("OneDrive2.OnStart");
-      if (activity.ProcessName.Equals(FileStorageSetupDefs.ProcessNameFileUsageSetup))
-        activity.State.PutString(FileStorageSetupDefs.ExtraPath, activity.Ioc.Path);
-      string rootPathForUser = await TryLoginSilent(activity.Ioc.Path);
-      if (rootPathForUser != null)
-      {
-        logDebug("rootPathForUser not null");
-        FinishActivityWithSuccess(activity, rootPathForUser);
-        return;
-      }
-      logDebug("rootPathForUser null");
-
       try
       {
+        logDebug("OneDrive2.OnStart");
+        if (activity.ProcessName.Equals(FileStorageSetupDefs.ProcessNameFileUsageSetup))
+          activity.State.PutString(FileStorageSetupDefs.ExtraPath, activity.Ioc.Path);
+        string rootPathForUser = await TryLoginSilent(activity.Ioc.Path);
+        if (rootPathForUser != null)
+        {
+          logDebug("rootPathForUser not null");
+          FinishActivityWithSuccess(activity, rootPathForUser);
+          return;
+        }
+        logDebug("rootPathForUser null");
 
         logDebug("try interactive");
         AuthenticationResult res;
@@ -1087,8 +1086,6 @@ namespace keepass2android.Io
         logDebug("ok interactive");
         BuildClient(res);
         FinishActivityWithSuccess(activity, BuildRootPathForUser(res));
-
-
       }
       catch (Exception e)
       {
