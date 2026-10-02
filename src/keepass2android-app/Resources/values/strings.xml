@@ -374,6 +374,16 @@
   <string name="field_value">Field value</string>
   <string name="protection">Protected field</string>
   <string name="add_binary">Add file attachment</string>
+  <string name="add_photo">Take photo</string>
+  <string name="no_camera_app">No camera app found.</string>
+  <string name="photo_edit_title">Photo</string>
+  <string name="photo_reset">Reset</string>
+  <string name="photo_save">Save</string>
+  <string name="photo_size_tiny">Tiny</string>
+  <string name="photo_size_small">Small</string>
+  <string name="photo_size_medium">Medium</string>
+  <string name="photo_size_large">Large</string>
+  <string name="photo_size_full">Full</string>
   <string name="add_extra_string">Add additional string</string>
   <string name="configure_totp">Configure TOTP</string>
   <string name="totp_secret_key">Secret key</string>
