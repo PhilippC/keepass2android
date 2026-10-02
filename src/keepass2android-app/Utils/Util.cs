@@ -539,7 +539,9 @@ namespace keepass2android
           c1.MoveToFirst();
 
           var possibleFilename = c1.GetString(0);
-          if (File.Exists(possibleFilename))
+          //the path only if it may be written: on Android 11+ a file of the shared storage is readable by its path but not
+          //writable (pickers like the one of HyperOS give the path too), while the content uri itself grants writing
+          if (File.Exists(possibleFilename) && new Java.IO.File(possibleFilename).CanWrite())
             return possibleFilename;
         }
       }
