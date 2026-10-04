@@ -79,8 +79,15 @@ import android.preference.PreferenceManager;
 
 public class QRActivity extends Activity {
 
+	public static void applySecureFlags(android.view.Window window) {
+		if (window != null) {
+			window.addFlags(WindowManager.LayoutParams.FLAG_SECURE);
+		}
+	}
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		applySecureFlags(getWindow());
 		super.onCreate(savedInstanceState);
 		if ((getIntent() != null) && (getIntent().getStringExtra(Strings.EXTRA_ENTRY_OUTPUT_DATA)!= null))
 			setContentView(R.layout.activity_qr);

@@ -3,10 +3,11 @@ apply plugin: 'com.android.application'
 android {
     namespace 'keepass2android.plugin.qr'
     compileSdkVersion 36
+    buildToolsVersion '35.0.0'
 
     defaultConfig {
         applicationId "keepass2android.plugin.qr"
-        minSdkVersion 14
+        minSdkVersion 18
         targetSdkVersion 36
         versionCode 3
         versionName "1.0.2"
@@ -34,4 +35,6 @@ android {
 dependencies {
     implementation project(':Keepass2AndroidPluginSDK2')
     implementation 'com.google.zxing:core:2.3.0'
+    testImplementation 'junit:junit:4.13.2'
+    testImplementation 'org.mockito:mockito-core:4.11.0'
 }
