@@ -1275,6 +1275,46 @@ namespace keepass2android
       State.EntryModified = true;
       PopulateBinaries();
     }
+    const int RequestCodeCameraPermission = 37326;
+    const int RequestCodePhotoEdit = 37327;
+
+    void StartPhoto()
+    {
+      try
+      {
+        if (!PhotoCapture.Start(this, Intents.RequestCodePhotoForBinary))
+          App.Kp2a.ShowMessage(this, GetString(Resource.String.no_camera_app), MessageSeverity.Error);
+      }
+      catch (Java.Lang.SecurityException)
+      {
+        // the app holds the camera permission in its manifest (a library may add it): then the camera app may be started
+        // only once the user has granted it
+        RequestPermissions(new[] { Android.Manifest.Permission.Camera }, RequestCodeCameraPermission);
+      }
+    }
+
+    void AddPhoto()
+    {
+      string result = PhotoCapture.ResultPath(this);
+      byte[] photo;
+      try
+      {
+        photo = File.ReadAllBytes(result);
+      }
+      catch (Exception ex)
+      {
+        App.Kp2a.ShowMessage(this, GetString(Resource.String.AttachFailed) + " " + Util.GetErrorMessage(ex), MessageSeverity.Error);
+        return;
+      }
+      finally
+      {
+        File.Delete(result);
+      }
+      State.Entry.Binaries.Set(PhotoCapture.Name(), new ProtectedBinary(false, photo));
+      State.EntryModified = true;
+      PopulateBinaries();
+    }
+
     public static byte[] ReadFully(Stream input)
     {
       byte[] buffer = new byte[16 * 1024];
@@ -1406,6 +1446,16 @@ namespace keepass2android
 
           return;
         case Result.Ok:
+          if (requestCode == Intents.RequestCodePhotoForBinary)
+          {
+            StartActivityForResult(new Intent(this, typeof(PhotoEditActivity)), RequestCodePhotoEdit);
+            return;
+          }
+          if (requestCode == RequestCodePhotoEdit)
+          {
+            AddPhoto();
+            return;
+          }
           if (requestCode == Intents.RequestCodeFileBrowseForBinary)
           {
             Uri uri = data.Data;
@@ -1423,6 +1473,8 @@ namespace keepass2android
           }
           return;
         case Result.Canceled:
+          if (requestCode == Intents.RequestCodePhotoForBinary)
+            PhotoCapture.DeleteShot(this);
           return;
       }
 
@@ -1491,6 +1543,12 @@ namespace keepass2android
       };
 
       binariesGroup.AddView(addBinaryButton, layoutParams);
+
+      Button addPhotoButton = (Button)LayoutInflater.Inflate(Resource.Layout.EntryEditButtonAdd, null);
+      addPhotoButton.Text = GetString(Resource.String.add_photo);
+      addPhotoButton.Enabled = addBinaryButton.Enabled;
+      addPhotoButton.Click += (sender, e) => StartPhoto();
+      binariesGroup.AddView(addPhotoButton, layoutParams);
 
       var binariesLabel = FindViewById(Resource.Id.entry_binaries_label);
       if (binariesLabel != null)
@@ -1625,6 +1683,8 @@ namespace keepass2android
     public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
     {
       base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+      if (requestCode == RequestCodeCameraPermission && grantResults.Length > 0 && grantResults[0] == Android.Content.PM.Permission.Granted)
+        StartPhoto();
     }
 
 

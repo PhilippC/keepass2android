@@ -369,6 +369,16 @@
   <string name="field_value">Значение поля</string>
   <string name="protection">Защищённое поле</string>
   <string name="add_binary">Добавить вложение</string>
+  <string name="add_photo">Сделать снимок</string>
+  <string name="no_camera_app">Не найдено приложение камеры.</string>
+  <string name="photo_edit_title">Снимок</string>
+  <string name="photo_reset">Сбросить</string>
+  <string name="photo_save">Сохранить</string>
+  <string name="photo_size_tiny">Мини</string>
+  <string name="photo_size_small">Малый</string>
+  <string name="photo_size_medium">Средний</string>
+  <string name="photo_size_large">Крупный</string>
+  <string name="photo_size_full">Полный</string>
   <string name="add_extra_string">Добавить доп строку</string>
   <string name="configure_totp">Настроить TOTP</string>
   <string name="totp_secret_key">Секретный ключ</string>
