@@ -923,7 +923,7 @@ namespace keepass2android
             (RelativeLayout)LayoutInflater.Inflate(Resource.Layout.entry_extrastring_value, null);
         var valueView = valueViewContainer.FindViewById<TextView>(Resource.Id.entry_extra);
         if (key != null)
-          valueView.Text = key;
+          valueView.Text = key + "  ·  " + AttachmentPreview.SizeText(pair.Value.Length);
 
         string popupKey = Strings.PrefixBinary + key;
 
@@ -969,7 +969,32 @@ namespace keepass2android
         */
 
       }
+      AddThumbnails(binariesGroup);
       FindViewById(Resource.Id.entry_binaries_label).Visibility = Entry.Binaries.Any() ? ViewStates.Visible : ViewStates.Gone;
+    }
+
+    /// <summary>A row of tiles of the attachments that can be shown (<see cref="AttachmentPreview"/>); a tap shows one bigger.</summary>
+    private void AddThumbnails(ViewGroup binariesGroup)
+    {
+      int side = (int)(96 * Resources.DisplayMetrics.Density);
+      int gap = (int)(4 * Resources.DisplayMetrics.Density);
+      LinearLayout row = null;
+      foreach (KeyValuePair<string, ProtectedBinary> pair in Entry.Binaries.OrderBy(p => p.Key))
+      {
+        View tile = AttachmentPreview.Tile(this, pair.Key, pair.Value.ReadData(), side);
+        if (tile == null)
+          continue;
+        if (row == null)
+        {
+          row = new LinearLayout(this) { Orientation = Orientation.Horizontal };
+          var scroll = new HorizontalScrollView(this);
+          scroll.AddView(row);
+          binariesGroup.AddView(scroll);
+        }
+        var lp = new LinearLayout.LayoutParams(side, side);
+        lp.SetMargins(gap, gap, gap, gap);
+        row.AddView(tile, lp);
+      }
     }
 
     // url = file path or whatever suitable URL you want.
