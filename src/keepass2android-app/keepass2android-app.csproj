@@ -14,6 +14,10 @@
     <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <DefineConstants Condition="'$(Flavor)'=='NoNet'">NO_QR_SCANNER;EXCLUDE_JAVAFILESTORAGE;NoNet</DefineConstants>
+    <!-- NoDonationMenu hides the donate menu option (does not affect the fullscreen donate reminder).
+         Enabled by default, so it also applies to Visual Studio builds; pass -p:NoDonationMenu=false to disable. -->
+    <NoDonationMenu Condition="'$(NoDonationMenu)'==''">true</NoDonationMenu>
+    <DefineConstants Condition="'$(NoDonationMenu)'=='true'">$(DefineConstants);NO_DONATION_MENU</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Assets\fontawesome-webfont.ttf" />

@@ -100,8 +100,13 @@ else
   $(warning Configuration environment variable not set.)
 endif
 
-DELETE_MANIFEST_LINK := 
-CREATE_MANIFEST_LINK := 
+#append NoDonationMenu=true to the 'make' call to build with NO_DONATION_MENU defined (hides the donate menu option)
+ifneq ($(NoDonationMenu),)
+  DOTNET_PARAM += -p:NoDonationMenu="$(NoDonationMenu)"
+endif
+
+DELETE_MANIFEST_LINK :=
+CREATE_MANIFEST_LINK :=
 
 MANIFEST_FILE := 
 ifneq ($(Flavor),)

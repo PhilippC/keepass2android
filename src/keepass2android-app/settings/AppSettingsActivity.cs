@@ -531,8 +531,14 @@ namespace keepass2android
         new AppLanguageManager(this, languagePref, supportedLocales);
 
 
-        PrepareNoDonatePreference(Activity, FindPreference(GetString(Resource.String.NoDonateOption_key)));
         var displayPrefScreen = ((PreferenceScreen)FindPreference(GetString(Resource.String.display_prefs_key)));
+#if NO_DONATION_MENU
+        //the donate menu is always hidden, so the option to hide it is meaningless
+        var noDonateOptionPref = FindPreference(GetString(Resource.String.NoDonateOption_key));
+        displayPrefScreen.RemovePreference(noDonateOptionPref);
+#else
+        PrepareNoDonatePreference(Activity, FindPreference(GetString(Resource.String.NoDonateOption_key)));
+#endif
         PrepareNoDonationReminderPreference(Activity, displayPrefScreen, FindPreference(GetString(Resource.String.NoDonationReminder_key)));
 
         FindPreference(GetString(Resource.String.design_key)).PreferenceChange += (sender, args) =>

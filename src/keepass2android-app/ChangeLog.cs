@@ -251,6 +251,9 @@ namespace keepass2android
 
           if (usageCount <= 5)
             showDonateOption = false;
+#if NO_DONATION_MENU
+          showDonateOption = false;
+#endif
 
           if (showDonateOption)
           {
