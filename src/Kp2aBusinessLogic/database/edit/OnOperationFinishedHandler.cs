@@ -124,19 +124,25 @@ namespace keepass2android
 
     public static void DisplayMessage(Context ctx, string message, bool makeDialog)
     {
-      if (!String.IsNullOrEmpty(message))
+      if (String.IsNullOrEmpty(message))
+        return;
+
+      Kp2aLog.Log("OnOperationFinishedHandler message: " + message);
+
+      // Showing a dialog or toast must happen on the UI thread, but finish handlers
+      // can run on a background (save/load) worker thread. Touching Toast/Dialog there
+      // throws ("Can't toast on a thread that has not called Looper.prepare()"), so
+      // marshal the actual display to the main looper.
+      void ShowUi()
       {
-        Kp2aLog.Log("OnOperationFinishedHandler message: " + message);
         if (makeDialog && ctx != null)
         {
           try
           {
-            MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(ctx);
-
-            builder.SetMessage(message)
+            new MaterialAlertDialogBuilder(ctx)
+                .SetMessage(message)
                 .SetPositiveButton(Android.Resource.String.Ok, (sender, args) => ((Dialog)sender).Dismiss())
                 .Show();
-
           }
           catch (Exception)
           {
@@ -146,6 +152,11 @@ namespace keepass2android
         else
           Toast.MakeText(ctx ?? Application.Context, message, ToastLength.Long).Show();
       }
+
+      if (Looper.MyLooper() == Looper.MainLooper)
+        ShowUi();
+      else
+        new Handler(Looper.MainLooper).Post(ShowUi);
     }
   }
 }

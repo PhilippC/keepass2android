@@ -453,7 +453,9 @@ namespace keepass2android
         }
         else
         {
-          DisplayMessage(_activity);
+          //show the (possibly long) save error in a dismissible dialog rather than a
+          //short-lived toast that truncates it (makeDialog: true)
+          DisplayMessage(_activity, Message, true);
           try
           {
             App.Kp2a.GetFileStorage(_ioc).Delete(_ioc);

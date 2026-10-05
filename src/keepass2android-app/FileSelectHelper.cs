@@ -484,6 +484,130 @@ namespace keepass2android
     }
 
 
+    private void ShowS3Dialog(Activity activity, Util.FileSelectedHandler onSelectFile, Action onCancel, string defaultPath)
+    {
+#if !NoNet
+      MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(activity);
+      View dlgContents = activity.LayoutInflater.Inflate(Resource.Layout.s3credentials, null);
+
+      var providerSpinner = dlgContents.FindViewById<Spinner>(Resource.Id.s3_provider);
+      var regionView = dlgContents.FindViewById<EditText>(Resource.Id.s3_region);
+      var endpointView = dlgContents.FindViewById<EditText>(Resource.Id.s3_endpoint);
+      var accountView = dlgContents.FindViewById<EditText>(Resource.Id.s3_account_id);
+      var bucketView = dlgContents.FindViewById<EditText>(Resource.Id.s3_bucket);
+      var accessKeyView = dlgContents.FindViewById<EditText>(Resource.Id.s3_access_key);
+      var secretKeyView = dlgContents.FindViewById<EditText>(Resource.Id.s3_secret_key);
+      var objectKeyView = dlgContents.FindViewById<EditText>(Resource.Id.s3_object_key);
+      var previewView = dlgContents.FindViewById<TextView>(Resource.Id.s3_url_preview);
+
+      void UpdateFieldVisibility(int position)
+      {
+        bool isR2 = position == (int)S3Provider.CloudflareR2;
+        bool isCustom = position == (int)S3Provider.Custom;
+        regionView.Visibility = isR2 ? ViewStates.Gone : ViewStates.Visible;
+        endpointView.Visibility = isCustom ? ViewStates.Visible : ViewStates.Gone;
+        accountView.Visibility = isR2 ? ViewStates.Visible : ViewStates.Gone;
+        //for a custom endpoint the region is only the SigV4 signing region (optional), not an
+        //AWS region; relabel so users don't think they must enter an AWS-style region code
+        regionView.Hint = activity.GetString(isCustom
+            ? Resource.String.hint_s3_signing_region
+            : Resource.String.hint_s3_region);
+      }
+
+      //Single source of truth for reading the dialog fields, so the live preview and the
+      //path actually saved can never drift apart. region/endpointOrAccount are derived from
+      //the selected provider (region field for AWS/Wasabi/B2; endpoint for Custom; account
+      //for R2, whose region is fixed to "auto").
+      (S3Provider provider, string region, string endpointOrAccount, string bucket,
+          string accessKey, string secretKey, string objectKey) ReadDialogValues()
+      {
+        var provider = (S3Provider)providerSpinner.SelectedItemPosition;
+        string region = provider == S3Provider.CloudflareR2 ? "" : regionView.Text;
+        string endpointOrAccount = "";
+        if (provider == S3Provider.Custom)
+          endpointOrAccount = endpointView.Text;
+        else if (provider == S3Provider.CloudflareR2)
+          endpointOrAccount = accountView.Text;
+        return (provider, region, endpointOrAccount, bucketView.Text, accessKeyView.Text,
+                secretKeyView.Text, objectKeyView.Text);
+      }
+
+      void UpdatePreview()
+      {
+        var v = ReadDialogValues();
+        previewView.Text = S3PathCodec.BuildPreviewUrl(v.provider, v.region, v.endpointOrAccount,
+                  v.bucket, v.objectKey);
+      }
+
+      providerSpinner.ItemSelected += (sender, args) => { UpdateFieldVisibility(args.Position); UpdatePreview(); };
+
+      EventHandler<Android.Text.TextChangedEventArgs> onFieldChanged = (sender, args) => UpdatePreview();
+      regionView.TextChanged += onFieldChanged;
+      endpointView.TextChanged += onFieldChanged;
+      accountView.TextChanged += onFieldChanged;
+      bucketView.TextChanged += onFieldChanged;
+      objectKeyView.TextChanged += onFieldChanged;
+
+      if (!defaultPath.EndsWith(_schemeSeparator))
+      {
+        var ioc = IOConnectionInfo.FromPath(defaultPath);
+        var connection = S3FileStorage.ConnectionSettings.FromIoc(ioc);
+        S3FileStorage.GetBucketAndObjectKey(ioc, out string bucket, out string objectKey);
+
+        providerSpinner.SetSelection((int)connection.Provider);
+        regionView.Text = connection.Region;
+        if (connection.Provider == S3Provider.Custom)
+          endpointView.Text = connection.EndpointOrAccount;
+        else if (connection.Provider == S3Provider.CloudflareR2)
+          accountView.Text = connection.EndpointOrAccount;
+        bucketView.Text = bucket;
+        accessKeyView.Text = connection.AccessKey;
+        secretKeyView.Text = connection.SecretKey;
+        objectKeyView.Text = objectKey;
+      }
+      UpdateFieldVisibility(providerSpinner.SelectedItemPosition);
+      UpdatePreview();
+
+      builder.SetView(dlgContents);
+      builder.SetPositiveButton(Android.Resource.String.Ok,
+                                (sender, args) =>
+                                {
+                                  var v = ReadDialogValues();
+                                  string s3Path = S3PathCodec.BuildFullPath(v.provider, v.region,
+                                            v.endpointOrAccount, v.bucket, v.accessKey, v.secretKey, v.objectKey);
+
+                                  //The object key is the path INSIDE the bucket. If it repeats the bucket name
+                                  //the database ends up at "bucket/bucket/..." (a common mistake). Warn and let
+                                  //the user go back and fix it; don't silently strip it (could be intentional).
+                                  string trimmedKey = (v.objectKey ?? "").TrimStart('/');
+                                  if (S3PathCodec.KeyRepeatsBucket(v.bucket, v.objectKey))
+                                  {
+                                    new MaterialAlertDialogBuilder(activity)
+                                        .SetMessage(activity.GetString(Resource.String.s3_bucket_in_key_warning, v.bucket, trimmedKey))
+                                        .SetCancelable(false)
+                                        .SetPositiveButton(Resource.String.Continue, (s, e) => onSelectFile(s3Path))
+                                        .SetNegativeButton(Resource.String.s3_fix_object_key,
+                                            (s, e) => ShowS3Dialog(activity, onSelectFile, onCancel, s3Path))
+                                        .Show();
+                                    return;
+                                  }
+
+                                  //S3 has no real directories: open the fully qualified object directly
+                                  //instead of browsing/listing the bucket (which would require s3:ListBucket).
+                                  onSelectFile(s3Path);
+                                });
+      EventHandler<DialogClickEventArgs> evtH = new EventHandler<DialogClickEventArgs>((sender, e) => onCancel());
+
+      builder.SetNegativeButton(Android.Resource.String.Cancel, evtH);
+      builder.SetTitle(activity.GetString(Resource.String.enter_s3_login_title));
+      builder.SetCancelable(false);
+      Dialog dialog = builder.Create();
+
+      dialog.Show();
+#endif
+    }
+
+
     private void ShowMegaDialog(Activity activity, Util.FileSelectedHandler onStartBrowse, Action onCancel, string defaultPath)
     {
 #if !NoNet
@@ -552,6 +676,8 @@ namespace keepass2android
         ShowSftpDialog(_activity, ReturnFileOrStartFileChooser, ReturnCancel, defaultPath);
       else if ((defaultPath.StartsWith("ftp://")) || (defaultPath.StartsWith("ftps://")))
         ShowFtpDialog(_activity, ReturnFileOrStartFileChooser, ReturnCancel, defaultPath);
+      else if (defaultPath.StartsWith("s3://"))
+        ShowS3Dialog(_activity, ReturnFileDirectly, ReturnCancel, defaultPath);
       else if ((defaultPath.StartsWith("http://")) || (defaultPath.StartsWith("https://")))
         ShowHttpDialog(_activity, ReturnFileOrStartFileChooser, ReturnCancel, defaultPath);
       else if ((defaultPath.StartsWith("smb://")))
@@ -629,6 +755,17 @@ namespace keepass2android
         return StartFileChooser(filename);
       }
       //looks like a file
+      IocSelected(null, IOConnectionInfo.FromPath(filename));
+      return true;
+    }
+
+    /// <summary>
+    /// Selects the given fully qualified file directly, without the file-chooser/browse
+    /// step. Used by storages where browsing is undesirable, e.g. S3 (where listing would
+    /// require an extra s3:ListBucket permission and S3 has no real directories anyway).
+    /// </summary>
+    private bool ReturnFileDirectly(string filename)
+    {
       IocSelected(null, IOConnectionInfo.FromPath(filename));
       return true;
     }
@@ -795,6 +932,7 @@ namespace keepass2android
       return ioc.Path.StartsWith("http")
              || ioc.Path.StartsWith("ftp")
              || ioc.Path.StartsWith("sftp")
+             || ioc.Path.StartsWith("s3")
              || ioc.Path.StartsWith("mega");
 
     }

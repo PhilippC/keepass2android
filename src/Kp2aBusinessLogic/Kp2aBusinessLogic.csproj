@@ -10,6 +10,7 @@
     <Folder Include="Resources\" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="AWSSDK.S3" Version="3.7.511.8" Condition="'$(Flavor)'!='NoNet'" />
     <PackageReference Include="FluentFTP" Version="52.1.0" Condition="'$(Flavor)'!='NoNet'" />
     <PackageReference Include="MegaApiClient" Version="1.10.4" Condition="'$(Flavor)'!='NoNet'" />
     <PackageReference Include="Microsoft.Graph" Version="5.68.0" Condition="'$(Flavor)'!='NoNet'" />
@@ -23,6 +24,7 @@
     <ProjectReference Include="..\AndroidFileChooserBinding\AndroidFileChooserBinding.csproj" />
     <ProjectReference Include="..\JavaFileStorageBindings\JavaFileStorageBindings.csproj" Condition="'$(Flavor)'!='NoNet'" />
     <ProjectReference Include="..\KeePassLib2Android\KeePassLib2Android.csproj" />
+    <ProjectReference Include="..\Kp2aS3PathCodec\Kp2aS3PathCodec.csproj" />
     <ProjectReference Include="..\KP2AKdbLibraryBinding\KP2AKdbLibraryBinding.csproj" />
     <ProjectReference Include="..\TwofishCipher\TwofishCipher.csproj" />
   </ItemGroup>
