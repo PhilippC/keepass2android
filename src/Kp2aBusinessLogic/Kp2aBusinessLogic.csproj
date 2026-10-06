@@ -39,9 +39,7 @@
 </ItemGroup>
 
 <Import Project="Io/GenerateSecrets.targets" />
-<ItemGroup>
-<Compile Include="Io/DropboxFileStorage.g.cs" />
-</ItemGroup>
+<!-- DropboxFileStorage.g.cs is automatically included by SDK-style projects -->
 
   
 </Project>

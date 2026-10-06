@@ -1,0 +1,4 @@
+appId: keepass2android.keepass2android_nonet
+---
+- tapOn:
+    id: ".*fab_add_keeshare.*"

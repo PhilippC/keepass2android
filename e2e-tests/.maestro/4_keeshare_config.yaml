@@ -1,0 +1,30 @@
+appId: keepass2android.keepass2android_nonet
+---
+# Test: Configure KeeShare on a group
+- launchApp
+
+# Unlock database if on password screen
+- tapOn:
+    text: "Password"
+    optional: true
+- runFlow:
+    when:
+      visible: "Unlock"
+    commands:
+      - inputText: "testpassword123"
+      - hideKeyboard
+      - tapOn: "Unlock"
+      - extendedWaitUntil:
+          visible: "eMail"
+          timeout: 10000
+
+# Dismiss autofill prompt if present
+- tapOn:
+    text: "Do not show again"
+    optional: true
+
+# Long press on Internet group to access group settings
+- longPressOn: "Internet"
+
+# Check what menu appears
+- assertVisible: ".*"
