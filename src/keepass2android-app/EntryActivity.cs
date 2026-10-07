@@ -250,6 +250,12 @@ namespace keepass2android
       {
         edit.Visibility = ViewStates.Gone;
       }
+      View quickTotp = FindViewById(Resource.Id.quick_show_totp);
+      quickTotp.Click += (sender, e) =>
+      {
+        var valueView = container.FindViewById<TextView>(Resource.Id.entry_totp);
+        _activity.ToggleVisibility(valueView);
+      };
 
     }
 
