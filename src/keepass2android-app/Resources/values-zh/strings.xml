@@ -760,6 +760,7 @@
   <string name="cleartextTrafficPermitted_title">允许 WebDAV 中的明文网络流量</string>
   <string name="cleartextTrafficPermitted_summary">HTTP 连接不安全。只有当您有其他安全措施时才启用它。</string>
   <string-array name="ChangeLog_1_15_net">
+    <item>Update to Target SDK version 36</item>
     <item>改进针对带有非 ASCII 字符的 WebDav 的 URL 处理</item>
     <item>Improvements to OneDrive Authentication</item>
     <item>Minor bug fixes</item>

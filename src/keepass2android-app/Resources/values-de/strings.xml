@@ -758,6 +758,7 @@ Anbei einige Tipps, die bei der Diagnose des Problems helfen können:\n
   <string name="cleartextTrafficPermitted_title">Klartext-Netzwerkverkehr in WebDav erlauben</string>
   <string name="cleartextTrafficPermitted_summary">HTTP-Verbindungen sind nicht sicher. Diese Option nur aktivieren, wenn weitere Sicherheitsmaßnahmen vorhanden sind.</string>
   <string-array name="ChangeLog_1_15_net">
+    <item>Update to Target SDK version 36</item>
     <item>Verbesserungen im Umgang mit WebDav-URLs mit Nicht-ASCII-Zeichen</item>
     <item>Improvements to OneDrive Authentication</item>
     <item>Minor bug fixes</item>
