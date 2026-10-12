@@ -278,17 +278,6 @@ public class WebDavStorage extends JavaFileStorageBase {
                 .method("MOVE", null) // "MOVE" is the HTTP method
                 .header("Destination", destinationUrl); // New URI for the resource
 
-        // Use delete-then-move strategy to avoid HTTP 409 conflicts
-        if (overwrite) {
-            try {
-                // Try to delete the destination file first if it exists
-                deleteFileIfExists(destinationCi);
-            } catch (Exception e) {
-                // Ignore deletion errors - the file might not exist or we might not have permission
-                // The MOVE operation will fail if the destination can't be overwritten
-                Log.d("WebDavStorage", "Failed to delete destination file before move (this may be normal): " + e.getMessage());
-            }
-        }
 
         // Add Overwrite header (but don't rely on it solely)
         if (overwrite) {
@@ -299,45 +288,48 @@ public class WebDavStorage extends JavaFileStorageBase {
 
         Request request = requestBuilder.build();
 
+        int statusCode;
+        String responseMessage;
         Response response = getClient(sourceCi).newCall(request).execute();
-
-        // Check the status code
-        if (response.isSuccessful()) {
+        try {
             // WebDAV MOVE can return 201 (Created) if a new resource was created at dest,
             // or 204 (No Content) if moved to a pre-existing destination (e.g., just renamed).
             // A 200 OK might also be returned by some servers, though 201/204 are more common.
-
+            if (response.isSuccessful())
+                return;
+            statusCode = response.code();
+            responseMessage = response.message();
+        } finally {
+            response.close();
         }
-        else
-        {
-            int statusCode = response.code();
-            String errorMessage = "Rename/Move failed for " + sourceCi.URL + " to " + destinationUrl + ": " + statusCode + " " + response.message();
 
-            // If we get a 409 conflict and overwrite is true, try retry with enhanced cleanup
-            if (overwrite && statusCode == 409) {
+        String errorMessage = "Rename/Move failed for " + sourceCi.URL + " to " + destinationUrl + ": " + statusCode + " " + responseMessage;
+
+        if (overwrite && ((statusCode == 409) || (statusCode == 412))) {
+            // Only now, with the destination identified as the obstacle, delete it and move again:
+            // 409 is reported by servers which refuse to overwrite an existing destination even with
+            // Overwrite: T (see issue #3078), 412 is the status RFC 4918 defines for that case. Any
+            // other failure is left alone so that the existing destination file survives it.
+            try {
+                deleteFileIfExists(destinationCi);
+                // Small delay to ensure server processes the deletion
+                Thread.sleep(100);
+
+                // Retry the MOVE operation
+                Response retryResponse = getClient(sourceCi).newCall(request).execute();
                 try {
-                    response.close();
-                    // Force delete destination and retry
-                    deleteFileIfExists(destinationCi);
-                    // Small delay to ensure server processes the deletion
-                    Thread.sleep(100);
-
-                    // Retry the MOVE operation
-                    Response retryResponse = getClient(sourceCi).newCall(request).execute();
-                    if (retryResponse.isSuccessful()) {
-                        retryResponse.close();
+                    if (retryResponse.isSuccessful())
                         return; // Success on retry
-                    } else {
-                        errorMessage = "Rename/Move failed even after retry for " + sourceCi.URL + " to " + destinationUrl + ": " + retryResponse.code() + " " + retryResponse.message();
-                        retryResponse.close();
-                    }
-                } catch (Exception retryException) {
-                    errorMessage = "Rename/Move failed and retry attempt also failed: " + errorMessage + " (Retry error: " + retryException.getMessage() + ")";
+                    errorMessage = "Rename/Move failed even after deleting the destination for " + sourceCi.URL + " to " + destinationUrl + ": " + retryResponse.code() + " " + retryResponse.message();
+                } finally {
+                    retryResponse.close();
                 }
+            } catch (Exception retryException) {
+                errorMessage = "Rename/Move failed and retry attempt also failed: " + errorMessage + " (Retry error: " + retryException.getMessage() + ")";
             }
-
-            throw new Exception(errorMessage);
         }
+
+        throw new Exception(errorMessage);
     }
 
     /**
@@ -454,8 +446,21 @@ public class WebDavStorage extends JavaFileStorageBase {
                 // No extension: append temp suffix at the end
                 tempPath = path + tempSuffix;
             }
-            uploadFile(tempPath, data, false);
-            renameOrMoveWebDavResource(tempPath, path, true);
+            long startUpload = System.currentTimeMillis();
+            try {
+                uploadFile(tempPath, data, false);
+            } finally {
+                logDebug("WebDav transaction: upload of " + data.length + " bytes took "
+                        + (System.currentTimeMillis() - startUpload) + "ms");
+            }
+
+            long startMove = System.currentTimeMillis();
+            try {
+                renameOrMoveWebDavResource(tempPath, path, true);
+            } finally {
+                logDebug("WebDav transaction: move took "
+                        + (System.currentTimeMillis() - startMove) + "ms");
+            }
             return;
         }
 
