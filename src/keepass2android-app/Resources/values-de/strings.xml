@@ -499,6 +499,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="UseOnlineMode">Zwischengespeicherte Kopie mit der Quelldatei synchronisieren</string>
   <string name="UseOfflineMode_Info">Datenbank wird vom internen Cache geladen. Änderungen werden nur im internen Cache gespeichert und nur synchronisiert, wenn eine Datenbanksynchronisierung manuell ausgewählt wird.</string>
   <string name="InOfflineMode">Nur internen Zwischenspeicher verwenden.</string>
+  <string name="ServerNotReachable">Der Server ist nicht erreichbar. Bitte die Internetverbindung und die Serveradresse prüfen.</string>
   <string name="SynchronizingCachedDatabase">Zwischengespeicherte Datenbank synchronisieren …</string>
   <string name="DownloadingRemoteFile">Quelldatei wird geladen …</string>
   <string name="UploadingFile">Datei speichern …</string>
