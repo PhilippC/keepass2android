@@ -435,13 +435,16 @@ public class WebDavStorage extends JavaFileStorageBase {
 
         if (writeTransactional)
         {
-            // Generate a unique temporary file suffix
-            String tempSuffix = ".tmp." + generateRandomHexString(8);
+            // Generate a unique temporary file suffix. Don't separate it with dots: Apache's
+            // mod_negotiation (Options MultiViews) strips unknown extensions from the right, so
+            // "file.tmp.abc12345.kdbx" is reduced to the base name "file" and the request is then
+            // resolved against "file.kdbx" instead, which fails with "none could be negotiated".
+            String tempSuffix = "_tmp_" + generateRandomHexString(8);
             String tempPath;
 
             // Preserve the original file extension for WebDAV providers that don't support
             // changing extensions. Insert temp suffix before the extension instead of after it.
-            // Example: "file.kdbx" -> "file.tmp.abc12345.kdbx" (instead of "file.kdbx.tmp.abc12345")
+            // Example: "file.kdbx" -> "file_tmp_abc12345.kdbx" (instead of "file.kdbx.tmp.abc12345")
             int lastDot = path.lastIndexOf('.');
             int lastSlash = path.lastIndexOf('/');
             if (lastDot > lastSlash && lastDot >= 0) {
