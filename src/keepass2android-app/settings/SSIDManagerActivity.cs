@@ -43,7 +43,8 @@ namespace keepass2android
     SSIDAdapter adapter;
 
     const string PrefsName = "SSIDPrefs";
-    const string KeySSIDs = "SSIDs";
+    const string KeySSIDs = "SSIDs"; // legacy: '|'-separated
+    const string KeySSIDsJson = "SSIDsJson";
 
     protected override void OnCreate(Bundle savedInstanceState)
     {
@@ -96,6 +97,21 @@ namespace keepass2android
     public static List<string> LoadSSIDS(Context context)
     {
       var prefs = context.GetSharedPreferences(PrefsName, FileCreationMode.Private);
+      var json = prefs.GetString(KeySSIDsJson, null);
+      if (json != null)
+      {
+        try
+        {
+          return System.Text.Json.JsonSerializer.Deserialize<List<string>>(json) ?? new List<string>();
+        }
+        catch (System.Text.Json.JsonException)
+        {
+          return new List<string>();
+        }
+      }
+
+      // legacy format (before SSIDs containing '|' were supported): '|'-separated list.
+      // Didn't work with SSIDs containing '|'
       var ssids = prefs.GetString(KeySSIDs, "");
       if (!string.IsNullOrEmpty(ssids))
         return ssids.Split('|').ToList();
@@ -112,7 +128,8 @@ namespace keepass2android
     {
       var prefs = context.GetSharedPreferences(PrefsName, FileCreationMode.Private);
       var prefsEditor = prefs.Edit();
-      prefsEditor.PutString(KeySSIDs, string.Join("|", ssidList));
+      prefsEditor.PutString(KeySSIDsJson, System.Text.Json.JsonSerializer.Serialize(ssidList));
+      prefsEditor.Remove(KeySSIDs); // legacy key, superseded by KeySSIDsJson
       prefsEditor.Commit();
 
     }
