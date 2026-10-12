@@ -110,20 +110,57 @@ public class WebDavStorage extends JavaFileStorageBase {
 
         String scheme = filename.substring(0, filename.indexOf("://"));
         filename = filename.substring(scheme.length() + 3);
-        int idxAt = filename.indexOf('@');
+        int idxAt = indexOfCredentialSeparator(filename);
         if (idxAt >= 0)
         {
             String userPwd = filename.substring(0, idxAt);
             int idxColon = userPwd.indexOf(":");
-            if (idxColon >= 0);
+            if (idxColon >= 0)
             {
                 ci.username = decode(userPwd.substring(0, idxColon));
                 ci.password = decode(userPwd.substring(idxColon + 1));
             }
+            filename = filename.substring(idxAt + 1);
         }
 
-        ci.URL = scheme + "://" +filename.substring(filename.indexOf('@') + 1);
+        ci.URL = scheme + "://" + filename;
         return ci;
+    }
+
+    /**
+     * Index of the '@' which separates the credentials from the host, or -1 if there are none.
+     * Only the authority is searched, so an '@' inside the path (e.g. Synology's "@eaDir" folders)
+     * is not mistaken for that separator, and the last '@' wins so that an unencoded '@' in a
+     * legacy username doesn't cut the credentials short.
+     * @param urlWithoutScheme the URL with the leading "scheme://" already removed
+     */
+    private static int indexOfCredentialSeparator(String urlWithoutScheme)
+    {
+        int endOfAuthority = urlWithoutScheme.length();
+        for (int i = 0; i < urlWithoutScheme.length(); i++)
+        {
+            char c = urlWithoutScheme.charAt(i);
+            if ((c == '/') || (c == '?') || (c == '#'))
+            {
+                endOfAuthority = i;
+                break;
+            }
+        }
+        return urlWithoutScheme.lastIndexOf('@', endOfAuthority - 1);
+    }
+
+    /**
+     * The "scheme://credentials@" prefix of the given URL, or null if it doesn't contain credentials.
+     */
+    private static String getCredentialPrefix(String url)
+    {
+        int idxScheme = url.indexOf("://");
+        if (idxScheme < 0)
+            return null;
+        int idxAt = indexOfCredentialSeparator(url.substring(idxScheme + 3));
+        if (idxAt < 0)
+            return null;
+        return url.substring(0, idxScheme + 3 + idxAt + 1);
     }
 
 
@@ -274,7 +311,7 @@ public class WebDavStorage extends JavaFileStorageBase {
         else
         {
             int statusCode = response.code();
-            String errorMessage = "Rename/Move failed for " + sourceCi.URL + " to " + destinationCi.URL + ": " + statusCode + " " + response.message();
+            String errorMessage = "Rename/Move failed for " + sourceCi.URL + " to " + destinationUrl + ": " + statusCode + " " + response.message();
 
             // If we get a 409 conflict and overwrite is true, try retry with enhanced cleanup
             if (overwrite && statusCode == 409) {
@@ -291,7 +328,7 @@ public class WebDavStorage extends JavaFileStorageBase {
                         retryResponse.close();
                         return; // Success on retry
                     } else {
-                        errorMessage = "Rename/Move failed even after retry for " + sourceCi.URL + " to " + destinationCi.URL + ": " + retryResponse.code() + " " + retryResponse.message();
+                        errorMessage = "Rename/Move failed even after retry for " + sourceCi.URL + " to " + destinationUrl + ": " + retryResponse.code() + " " + retryResponse.message();
                         retryResponse.close();
                     }
                 } catch (Exception retryException) {
@@ -572,10 +609,11 @@ public class WebDavStorage extends JavaFileStorageBase {
                         //relative path:
                         e.path = buildPathFromHref(parentPath, r.href);
                     }
-                    if ( (parentPath.indexOf("@") != -1) && (e.path.indexOf("@") == -1))
+                    String credentialPrefix = getCredentialPrefix(parentPath);
+                    if ((credentialPrefix != null) && (getCredentialPrefix(e.path) == null))
                     {
                         //username/password not contained in .href response. Add it back from parentPath:
-                        e.path = parentPath.substring(0, parentPath.indexOf("@")+1) + e.path.substring(e.path.indexOf("://")+3);
+                        e.path = credentialPrefix + e.path.substring(e.path.indexOf("://")+3);
                     }
 
                     if ((depth == 1) && e.isDirectory)
