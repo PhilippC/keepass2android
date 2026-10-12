@@ -35,9 +35,7 @@ android:layout_height="wrap_content">
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:src="@drawable/ic_storage_file"
-				android:padding="5dp"
-					
-				/>
+				android:padding="5dp" android:importantForAccessibility="no"/>
 
 			<TextView
 		android:id="@+id/filestorage_label"
@@ -115,8 +113,7 @@ android:layout_height="wrap_content">
 			android:hint="@string/hint_pass"
 			android:inputType="textPassword"
 			android:singleLine="true"
-			android:typeface="monospace" 
-		  android:importantForAccessibility="no" />
+			android:typeface="monospace" />
 		<!-- Confirm Password -->
 		<EditText
 			android:id="@+id/entry_confpassword"
@@ -127,8 +124,7 @@ android:layout_height="wrap_content">
 			android:hint="@string/hint_conf_pass"
 			android:inputType="textPassword"
 			android:singleLine="true"
-			android:typeface="monospace"
-		  android:importantForAccessibility="no"/>
+			android:typeface="monospace" />
 
 		</RelativeLayout>
 

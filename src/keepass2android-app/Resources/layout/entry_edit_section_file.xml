@@ -39,9 +39,7 @@ android:layout_height="wrap_content">
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:src="@drawable/ic_storage_file"
-				android:padding="5dp"
-					
-				/>
+				android:padding="5dp" android:importantForAccessibility="no"/>
 
 			<TextView
 		android:id="@+id/filestorage_label"

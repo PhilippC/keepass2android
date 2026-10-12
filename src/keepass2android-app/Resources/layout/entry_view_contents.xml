@@ -14,7 +14,7 @@
             style="@style/EntryEditSingleLine_container">
     <ImageView
         style="@style/EntryEditSingleLine_ImageView"
-        android:src="@drawable/baseline_folder_open_24" />
+        android:src="@drawable/baseline_folder_open_24" android:importantForAccessibility="no"/>
     <LinearLayout
 
         android:layout_height="wrap_content"
@@ -43,7 +43,7 @@
           android:tint="@color/md_theme_primary"
           android:src="@drawable/baseline_more_vert_24"
           android:gravity="right|bottom"
-          android:layout_alignParentRight="true" />
+          android:layout_alignParentRight="true" android:importantForAccessibility="no"/>
 
         <TextView
             android:id="@+id/entry_group_name"
@@ -59,7 +59,7 @@
             style="@style/EntryEditSingleLine_container">
     <ImageView
         style="@style/EntryEditSingleLine_ImageView"
-        android:src="@drawable/baseline_account_circle_24" />
+        android:src="@drawable/baseline_account_circle_24" android:importantForAccessibility="no"/>
 
     <LinearLayout
         
@@ -88,7 +88,7 @@
             android:tint="@color/md_theme_primary"
             android:src="@drawable/baseline_more_vert_24"
             android:gravity="right|bottom"
-            android:layout_alignParentRight="true" />
+            android:layout_alignParentRight="true" android:importantForAccessibility="no"/>
         <TextView
             android:id="@+id/entry_user_name"
             android:layout_width="fill_parent"
@@ -105,7 +105,7 @@
             style="@style/EntryEditSingleLine_container">
     <ImageView
         style="@style/EntryEditSingleLine_ImageView"
-        android:src="@drawable/baseline_link_24" />
+        android:src="@drawable/baseline_link_24" android:importantForAccessibility="no"/>
     <LinearLayout
         android:layout_height="wrap_content"
         android:layout_width="fill_parent"
@@ -132,7 +132,7 @@
             android:tint="@color/md_theme_primary"
             android:src="@drawable/baseline_more_vert_24"
             android:gravity="right|bottom"
-            android:layout_alignParentRight="true" />
+            android:layout_alignParentRight="true" android:importantForAccessibility="no"/>
         <TextView
             android:id="@+id/entry_url"
             android:layout_width="fill_parent"
@@ -148,7 +148,7 @@
             style="@style/EntryEditSingleLine_container">
     <ImageView
         style="@style/EntryEditSingleLine_ImageView"
-        android:src="@drawable/baseline_password_24" />
+        android:src="@drawable/baseline_password_24" android:importantForAccessibility="no"/>
 
     <LinearLayout
         
@@ -177,7 +177,7 @@
             android:tint="@color/md_theme_primary"
             android:src="@drawable/baseline_more_vert_24"
             android:gravity="right|bottom"
-            android:layout_alignParentRight="true" />
+            android:layout_alignParentRight="true" android:importantForAccessibility="no"/>
         <TextView
             android:id="@+id/entry_password"
             android:layout_width="fill_parent"
@@ -200,7 +200,7 @@
     style="@style/EntryEditSingleLine_container">
     <ImageView
       style="@style/EntryEditSingleLine_ImageView"
-      android:src="@drawable/baseline_access_time_24" />
+      android:src="@drawable/baseline_access_time_24" android:importantForAccessibility="no"/>
 
     <LinearLayout
         
@@ -229,7 +229,7 @@
           android:tint="@color/md_theme_primary"
           android:src="@drawable/baseline_more_vert_24"
           android:gravity="right|bottom"
-          android:layout_alignParentRight="true" />
+          android:layout_alignParentRight="true" android:importantForAccessibility="no"/>
         <TextView
           android:id="@+id/entry_totp"
           android:layout_width="fill_parent"
@@ -264,7 +264,7 @@
             style="@style/EntryEditSingleLine_container">
     <ImageView
         style="@style/EntryEditSingleLine_ImageView"
-        android:src="@drawable/baseline_comment_24" />
+        android:src="@drawable/baseline_comment_24" android:importantForAccessibility="no"/>
 
     <LinearLayout
         
@@ -293,7 +293,7 @@
                   android:tint="@color/md_theme_primary"
                   android:src="@drawable/baseline_more_vert_24"
                   android:gravity="right|bottom"
-                  android:layout_alignParentRight="true" />
+                  android:layout_alignParentRight="true" android:importantForAccessibility="no"/>
         <TextView
                   android:id="@+id/entry_comment"
                   android:layout_width="fill_parent"
@@ -309,7 +309,7 @@
             style="@style/EntryEditSingleLine_container">
     <ImageView
         style="@style/EntryEditSingleLine_ImageView"
-        android:src="@drawable/baseline_more_horiz_24" />
+        android:src="@drawable/baseline_more_horiz_24" android:importantForAccessibility="no"/>
 
     <LinearLayout
         android:id="@+id/extra_strings"    
@@ -324,7 +324,7 @@
             style="@style/EntryEditSingleLine_container">
     <ImageView
         style="@style/EntryEditSingleLine_ImageView"
-        android:src="@drawable/baseline_attachment_24" />
+        android:src="@drawable/baseline_attachment_24" android:importantForAccessibility="no"/>
 
     <LinearLayout
         android:layout_height="wrap_content"
@@ -351,7 +351,7 @@
             style="@style/EntryEditSingleLine_container">
     <ImageView
         style="@style/EntryEditSingleLine_ImageView"
-        android:src="@drawable/baseline_label_24" />
+        android:src="@drawable/baseline_label_24" android:importantForAccessibility="no"/>
 
     <LinearLayout
       
@@ -377,7 +377,7 @@
             style="@style/EntryEditSingleLine_container">
     <ImageView
         style="@style/EntryEditSingleLine_ImageView"
-        android:src="@drawable/baseline_link_24" />
+        android:src="@drawable/baseline_link_24" android:importantForAccessibility="no"/>
 
     <LinearLayout
         
@@ -405,7 +405,7 @@
             style="@style/EntryEditSingleLine_container">
     <ImageView
         style="@style/EntryEditSingleLine_ImageView"
-        android:src="@drawable/baseline_date_range_24" />
+        android:src="@drawable/baseline_date_range_24" android:importantForAccessibility="no"/>
 
     <LinearLayout
         
@@ -432,7 +432,7 @@
             style="@style/EntryEditSingleLine_container">
     <ImageView
         style="@style/EntryEditSingleLine_ImageView"
-        android:src="@drawable/baseline_explicit_24" />
+        android:src="@drawable/baseline_explicit_24" android:importantForAccessibility="no"/>
 
     <LinearLayout
         
@@ -460,7 +460,7 @@
             style="@style/EntryEditSingleLine_container">
     <ImageView
         style="@style/EntryEditSingleLine_ImageView"
-        android:src="@drawable/baseline_edit_calendar_24" />
+        android:src="@drawable/baseline_edit_calendar_24" android:importantForAccessibility="no"/>
 
     <LinearLayout
         
@@ -507,7 +507,7 @@
             style="@style/EntryEditSingleLine_container">
     <ImageView
         style="@style/EntryEditSingleLine_ImageView"
-        android:src="@drawable/baseline_history_24" />
+        android:src="@drawable/baseline_history_24" android:importantForAccessibility="no"/>
 
     <LinearLayout
         android:layout_height="wrap_content"

@@ -35,7 +35,7 @@
                     android:layout_weight="0"
                     android:scaleType="centerCrop"
                     android:layout_marginTop="@dimen/splash_logo_marginTop"
-                    android:src="@drawable/splashlogo" />
+                    android:src="@drawable/splashlogo" android:importantForAccessibility="no"/>
 
                 <TextView
                     android:layout_width="wrap_content"
