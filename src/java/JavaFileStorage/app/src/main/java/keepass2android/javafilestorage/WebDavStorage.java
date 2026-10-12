@@ -32,6 +32,7 @@ import com.burgstaller.okhttp.basic.BasicAuthenticator;
 import com.burgstaller.okhttp.digest.CachingAuthenticator;
 import com.burgstaller.okhttp.digest.DigestAuthenticator;
 
+import okhttp3.HttpUrl;
 import okhttp3.Interceptor;
 import okhttp3.Response;
 import okhttp3.Request;
@@ -54,6 +55,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeUnit;
@@ -167,7 +169,8 @@ public class WebDavStorage extends JavaFileStorageBase {
 
     private OkHttpClient getClient(ConnectionInfo ci) throws NoSuchAlgorithmException, KeyManagementException, KeyStoreException, IOException {
 
-        if (ci.URL.startsWith("http://") && !PreferenceManager.getDefaultSharedPreferences(appContext).getBoolean("permit_cleartext_traffic", false))
+        //compare case insensitive: the scheme may be stored as e.g. "HTTP://" and must not slip through
+        if (ci.URL.toLowerCase(Locale.ROOT).startsWith("http://") && !PreferenceManager.getDefaultSharedPreferences(appContext).getBoolean("permit_cleartext_traffic", false))
         {
             throw new IOException("Cleartext HTTP is disabled by user preference. Go to app settings/File handling if you really want to use HTTP.");
         }
@@ -227,10 +230,16 @@ public class WebDavStorage extends JavaFileStorageBase {
         ConnectionInfo sourceCi = splitStringToConnectionInfo(sourcePath);
         ConnectionInfo destinationCi = splitStringToConnectionInfo(destinationPath);
 
+        //The Destination header must be a valid URI and okhttp rejects header values outside
+        //0x20..0x7e, so a path with non-ascii characters would throw here (issue #3030). Let okhttp
+        //canonicalize it: that is the same encoding it applies to the request URL below, it percent
+        //encodes non-ascii characters and spaces, and it leaves already encoded paths untouched.
+        String destinationUrl = HttpUrl.get(destinationCi.URL).toString();
+
         Request.Builder requestBuilder = new Request.Builder()
                 .url(new URL(sourceCi.URL))
                 .method("MOVE", null) // "MOVE" is the HTTP method
-                .header("Destination", destinationCi.URL); // New URI for the resource
+                .header("Destination", destinationUrl); // New URI for the resource
 
         // Use delete-then-move strategy to avoid HTTP 409 conflicts
         if (overwrite) {
