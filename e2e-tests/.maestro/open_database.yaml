@@ -1,0 +1,58 @@
+appId: keepass2android.keepass2android_nonet
+---
+- launchApp
+
+# Dismiss changelog dialog if present
+- runFlow:
+    when:
+      visible: "Change log"
+    commands:
+      - tapOn: "OK"
+
+- extendedWaitUntil:
+    visible: ".*Open.*file.*"
+    timeout: 5000
+
+- tapOn:
+    text: "Open file..."
+
+- runFlow:
+    when:
+      visible: "Select the storage type"
+    commands:
+      - tapOn: "System file picker"
+
+- extendedWaitUntil:
+    visible: ".*Download.*|.*Recent.*|.*Files.*"
+    timeout: 10000
+
+- tapOn:
+    id: ".*drawer.*|.*navigation.*"
+    optional: true
+- tapOn:
+    text: "Downloads"
+    optional: true
+- tapOn:
+    text: "keeshare-test-main.kdbx"
+
+- extendedWaitUntil:
+    visible: ".*Password.*|.*Unlock.*"
+    timeout: 5000
+
+- tapOn:
+    text: "Password"
+    optional: true
+- inputText: "test123"
+- hideKeyboard
+- tapOn: "Unlock"
+
+- extendedWaitUntil:
+    visible: ".*Sample Entry.*|.*Root.*"
+    timeout: 15000
+
+- tapOn:
+    text: "OK"
+    optional: true
+- tapOn:
+    text: "I don't care"
+    optional: true

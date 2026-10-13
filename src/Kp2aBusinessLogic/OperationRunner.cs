@@ -114,7 +114,7 @@ public class OperationRunner
 
             var originalFinishedHandler = _currentlyRunningTask.Value.Operation.operationFinishedHandler;
             _currentlyRunningTask.Value.Operation.operationFinishedHandler = new ActionOnOperationFinished(app, (
-                        (success, message, context) =>
+                        (success, message, importantMessage, exception, context) =>
                         {
                           if (_currentlyRunningTask?.RunBlocking == true)
                           {

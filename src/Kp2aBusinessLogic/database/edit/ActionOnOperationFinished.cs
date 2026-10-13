@@ -25,7 +25,7 @@ namespace keepass2android
 {
   public class ActionOnOperationFinished : OnOperationFinishedHandler
   {
-    public delegate void ActionToPerformOnFinsh(bool success, String message, Context activeContext);
+    public delegate void ActionToPerformOnFinsh(bool success, String message, bool importantMessage, Exception exception, Context activeContext);
 
     readonly ActionToPerformOnFinsh _actionToPerform;
 
@@ -47,12 +47,12 @@ namespace keepass2android
       {
         Handler.Post(() =>
         {
-          _actionToPerform(Success, Message, ActiveContext);
+          _actionToPerform(Success, Message, ImportantMessage, Exception, ActiveContext);
         });
       }
       else
       {
-        _actionToPerform(Success, Message, ActiveContext);
+        _actionToPerform(Success, Message, ImportantMessage, Exception, ActiveContext);
       }
       base.Run();
     }

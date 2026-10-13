@@ -1,0 +1,5 @@
+appId: keepass2android.keepass2android_nonet
+---
+# Tap the FAB (floating action button) to add KeeShare
+- tapOn:
+    id: ".*fab.*"

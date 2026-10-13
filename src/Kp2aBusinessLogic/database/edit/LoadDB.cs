@@ -43,10 +43,17 @@ namespace keepass2android
 
     public bool DoNotSetStatusLoggerMessage = false;
 
+    /// <summary>
+    /// Static callback that can be registered by the app to handle KeeShare check after database load.
+    /// Called with (IKp2aApp app, OnOperationFinishedHandler handler).
+    /// The callback should check if KeeShare groups exist and process them, then call handler.Run().
+    /// </summary>
+    public static Action<IKp2aApp, OnOperationFinishedHandler> OnLoadCompleteKeeShareCheck { get; set; }
+
 
     public LoadDb(IKp2aApp app, IOConnectionInfo ioc, Task<MemoryStream> databaseData, CompositeKey compositeKey,
         string keyfileOrProvider, OnOperationFinishedHandler operationFinishedHandler,
-        bool updateLastUsageTimestamp, bool makeCurrent, IDatabaseModificationWatcher modificationWatcher = null) : base(app, operationFinishedHandler)
+        bool updateLastUsageTimestamp, bool makeCurrent, IDatabaseModificationWatcher modificationWatcher = null) : base(app, WrapHandlerForKeeShare(app, operationFinishedHandler))
     {
       _modificationWatcher = modificationWatcher ?? new NullDatabaseModificationWatcher();
       _app = app;
@@ -57,6 +64,53 @@ namespace keepass2android
       _updateLastUsageTimestamp = updateLastUsageTimestamp;
       _makeCurrent = makeCurrent;
       _rememberKeyfile = app.GetBooleanPreference(PreferenceKey.remember_keyfile);
+    }
+
+    private static OnOperationFinishedHandler WrapHandlerForKeeShare(IKp2aApp app, OnOperationFinishedHandler originalHandler)
+    {
+      // Note: OnLoadCompleteKeeShareCheck runs in BOTH cases below (null or not null)
+      // The null check is just to handle the two scenarios differently:
+      // - If null: create a simple handler that only runs KeeShare check
+      // - If not null: wrap the existing handler to run KeeShare check before it
+      if (originalHandler == null)
+      {
+        return new ActionOnOperationFinished(app, (success, message, importantMessage, exception, context) =>
+        {
+          if (success && app.CurrentDb?.KpDatabase?.IsOpen == true && OnLoadCompleteKeeShareCheck != null)
+          {
+            try
+            {
+              var noOpHandler = new ActionOnOperationFinished(app, (_, _, _, _, _) => { });
+              OnLoadCompleteKeeShareCheck(app, noOpHandler);
+            }
+            catch (Exception ex)
+            {
+              Kp2aLog.Log("KeeShare check after load failed: " + ex.Message);
+            }
+          }
+        });
+      }
+
+      return new ActionOnOperationFinished(app, (success, message, importantMessage, exception, context) =>
+      {
+        originalHandler.SetResult(success, message, importantMessage, exception);
+        if (success && app.CurrentDb?.KpDatabase?.IsOpen == true && OnLoadCompleteKeeShareCheck != null)
+        {
+          try
+          {
+            OnLoadCompleteKeeShareCheck(app, originalHandler);
+          }
+          catch (Exception ex)
+          {
+            Kp2aLog.Log("KeeShare check after load failed: " + ex.Message);
+            originalHandler.Run();
+          }
+        }
+        else
+        {
+          originalHandler.Run();
+        }
+      });
     }
 
     protected bool success = false;
