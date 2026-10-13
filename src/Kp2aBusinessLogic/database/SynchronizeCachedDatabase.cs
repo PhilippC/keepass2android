@@ -131,7 +131,9 @@ namespace keepass2android
 
               }
             });
-            var _loadDb = new LoadDb(_app, ioc, Task.FromResult(remoteData),
+            //remoteData comes from the source file, so no further sync is required afterwards
+            var _loadDb = new LoadDb(_app, ioc,
+                Task.FromResult(new PreloadedDatabaseData { Data = remoteData, RequiresSubsequentSync = false }),
                 _database.KpDatabase.MasterKey, null, onFinished, true, false, _modificationWatcher);
             _loadDb.SetStatusLogger(StatusLogger);
             _loadDb.DoNotSetStatusLoggerMessage = true; //Keep "sync db" as main message
