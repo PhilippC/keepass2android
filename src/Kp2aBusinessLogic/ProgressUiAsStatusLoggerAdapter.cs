@@ -34,6 +34,11 @@ public class ProgressUiAsStatusLoggerAdapter : IKp2aStatusLogger
 
   public void SetNewProgressUi(IProgressUi progressUi)
   {
+    if (ReferenceEquals(_progressUi, progressUi))
+    {
+      //nothing to switch to: hiding and showing the same ui again would only make it flicker
+      return;
+    }
     _progressUi?.Hide();
     _progressUi = progressUi;
     if (_isVisible)
