@@ -103,7 +103,13 @@ namespace keepass2android
 
 
       OperationWithFinishHandler task;
-      OnOperationFinishedHandler onOperationFinishedHandler = new ActionInContextInstanceOnOperationFinished(_activity.ContextInstanceId, App.Kp2a, (success, message, context) =>
+      //Deliberately not an ActionInContextInstanceOnOperationFinished: nothing in here needs the
+      //activity which started the synchronization. ShowMessage ignores the context and queues the
+      //message if no UI is attached, the list refresh applies to whichever group list is on screen,
+      //and the OTP aux synchronization needs no context at all. Waiting for one specific activity
+      //instance would only postpone all of that - and a sync started while opening the database
+      //outlives the activity which triggered it, so it would never run at all.
+      OnOperationFinishedHandler onOperationFinishedHandler = new ActionOnOperationFinished(App.Kp2a, (success, message, context) =>
       {
         App.Kp2a.UiThreadHandler.Post(() =>
               {

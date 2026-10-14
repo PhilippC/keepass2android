@@ -502,6 +502,7 @@
   <string name="UseOnlineMode">Synchronize cache copy with source</string>
   <string name="UseOfflineMode_Info">Database is loaded from internal cache. Changes are stored in the internal cache only and will only be synchronized when selecting Synchronize cache copy with source.</string>
   <string name="InOfflineMode">Working on internal cache only.</string>
+  <string name="ServerNotReachable">The server could not be reached. Please check your internet connection and the server address.</string>
   <string name="SynchronizingCachedDatabase">Synchronizing cached database…</string>
   <string name="DownloadingRemoteFile">Loading source file…</string>
   <string name="UploadingFile">Save file…</string>
