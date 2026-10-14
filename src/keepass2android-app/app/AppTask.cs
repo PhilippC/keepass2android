@@ -222,6 +222,19 @@ namespace keepass2android
 
     }
 
+    /// <summary>
+    /// An existing entry is opened for editing: a task may change the copy being edited before it is shown. Nothing is
+    /// written until the user saves. Returns the names of the fields it changed (empty if none).
+    /// </summary>
+    public virtual IList<string> PrepareEditEntry(PwEntry entryCopy)
+    {
+      return Array.Empty<string>();
+    }
+
+    public virtual void AfterUpdateEntry(EntryEditActivity entryEditActivity, PwEntry entry)
+    {
+    }
+
     public const String AppTaskKey = "KP2A_APPTASK";
 
     /// <summary>
@@ -847,6 +860,151 @@ namespace keepass2android
     {
       //if the user selects an entry before creating the new one, we're not closing the app
       base.CompleteOnCreateEntryActivity(activity, notifyPluginsOnOpenThread);
+    }
+  }
+
+
+  /// <summary>
+  /// Another app asks to change fields of an existing entry. The entry is found by a key field: a field of the app's
+  /// choice (for example "MyApp id") holding a value the app generated when it created the entry, typically a random
+  /// string, so the user may freely change the title, URL or anything else. The entry opens in the editor with the new
+  /// values filled in and the changed fields named; nothing is written until the user saves, the same consent as for
+  /// creating an entry. Fields that are not passed stay as they are; a field passed as JSON null is removed. If no entry
+  /// has the key, the user is told and nothing changes, or, with <see cref="CreateIfMissingKey"/>, a new entry is created
+  /// with the fields and the key field instead.
+  /// Extras: <see cref="KeyFieldKey"/> and <see cref="KeyValueKey"/> (the key field and its exact value), the JSON
+  /// key/value map in <see cref="AllFieldsKey"/>, the protected field names in <see cref="ProtectedFieldsListKey"/>.
+  /// </summary>
+  public class UpdateEntryThenCloseTask : AppTask
+  {
+    public const String KeyFieldKey = "UpdateEntry_KeyField";
+    public const String KeyValueKey = "UpdateEntry_KeyValue";
+    public const String AllFieldsKey = Keepass2android.Pluginsdk.Strings.ExtraEntryOutputData;
+    public const String ProtectedFieldsListKey = Keepass2android.Pluginsdk.Strings.ExtraProtectedFieldsList;
+
+    /// <summary>"true": if no entry has the key, a new one is created with the fields instead.</summary>
+    public const String CreateIfMissingKey = "UpdateEntry_CreateIfMissing";
+
+    public string KeyField { get; set; }
+    public string KeyValue { get; set; }
+    public string AllFields { get; set; }
+    public IList<string> ProtectedFieldsList { get; set; }
+    public bool CreateIfMissing { get; set; }
+
+    public override bool CanActivateSearchViewOnStart
+    {
+      get { return false; }
+      set { }
+    }
+
+    public override void Setup(Bundle b)
+    {
+      KeyField = b.GetString(KeyFieldKey);
+      KeyValue = b.GetString(KeyValueKey);
+      AllFields = b.GetString(AllFieldsKey);
+      ProtectedFieldsList = b.GetStringArrayList(ProtectedFieldsListKey);
+      CreateIfMissing = GetBoolFromBundle(b, CreateIfMissingKey, false);
+    }
+
+    public override IEnumerable<IExtra> Extras
+    {
+      get
+      {
+        yield return new StringExtra { Key = CreateIfMissingKey, Value = CreateIfMissing.ToString() };
+        if (KeyField != null)
+          yield return new StringExtra { Key = KeyFieldKey, Value = KeyField };
+        if (KeyValue != null)
+          yield return new StringExtra { Key = KeyValueKey, Value = KeyValue };
+        if (AllFields != null)
+          yield return new StringExtra { Key = AllFieldsKey, Value = AllFields };
+        if (ProtectedFieldsList != null)
+          yield return new StringArrayListExtra { Key = ProtectedFieldsListKey, Value = ProtectedFieldsList };
+      }
+    }
+
+    /// <summary>
+    /// The entry whose field <see cref="KeyField"/> is exactly <see cref="KeyValue"/>, outside the recycle bin, in any open
+    /// database.
+    /// </summary>
+    PwEntry FindEntry()
+    {
+      if (string.IsNullOrEmpty(KeyField) || string.IsNullOrEmpty(KeyValue)) return null;
+      foreach (var db in App.Kp2a.OpenDatabases)
+      {
+        var kp = db.KpDatabase;
+        var bin = kp.RecycleBinEnabled ? kp.RootGroup.FindGroup(kp.RecycleBinUuid, true) : null;
+        foreach (var e in db.EntriesById.Values)
+        {
+          if (e.Strings.ReadSafe(KeyField) != KeyValue) continue;
+          if (bin != null && e.IsContainedIn(bin)) continue;
+          App.Kp2a.CurrentDb = db;
+          return e;
+        }
+      }
+      return null;
+    }
+
+    public override void LaunchFirstGroupActivity(Activity act)
+    {
+      var entry = FindEntry();
+      if (entry != null)
+      {
+        EntryEditActivity.Launch(act, entry, this);
+        return;
+      }
+      if (!CreateIfMissing)
+      {
+        App.Kp2a.ShowMessage(act, act.GetString(Resource.String.UpdateEntryNotFound, KeyField), MessageSeverity.Warning);
+        act.Finish();
+        return;
+      }
+      // no such entry yet: it is created with the same fields (the ones to remove left out) and the key field; the user
+      // picks its group and saves, as for any new entry
+      var fields = AllFields == null ? new Org.Json.JSONObject() : new Org.Json.JSONObject(AllFields);
+      var removed = new List<string>();
+      for (var iter = fields.Keys(); iter.HasNext;)
+      {
+        string key = iter.Next().ToString();
+        if (fields.IsNull(key)) removed.Add(key);
+      }
+      foreach (var key in removed) fields.Remove(key);
+      if (!string.IsNullOrEmpty(KeyField)) fields.Put(KeyField, KeyValue ?? "");
+      new CreateEntryThenCloseTask { AllFields = fields.ToString(), ProtectedFieldsList = ProtectedFieldsList, ShowUserNotifications = ActivationCondition.Never }
+        .LaunchFirstGroupActivity(act);
+    }
+
+    public override IList<string> PrepareEditEntry(PwEntry entryCopy)
+    {
+      var changed = new List<string>();
+      if (AllFields == null) return changed;
+      var allFields = new Org.Json.JSONObject(AllFields);
+      for (var iter = allFields.Keys(); iter.HasNext;)
+      {
+        string key = iter.Next().ToString();
+        if (allFields.IsNull(key))
+        {
+          // JSON null: the field goes; the standard fields stay, emptied
+          if (!entryCopy.Strings.Exists(key)) continue;
+          if (PwDefs.IsStandardField(key)) entryCopy.Strings.Set(key, new ProtectedString(entryCopy.Strings.GetSafe(key).IsProtected, ""));
+          else entryCopy.Strings.Remove(key);
+          changed.Add(key);
+          continue;
+        }
+        string value = allFields.Get(key).ToString();
+        if (entryCopy.Strings.ReadSafe(key) == value) continue;
+        bool isProtected = ((ProtectedFieldsList != null) && (ProtectedFieldsList.Contains(key)))
+            || (key == PwDefs.PasswordField);
+        entryCopy.Strings.Set(key, new ProtectedString(isProtected, value));
+        changed.Add(key);
+      }
+      return changed;
+    }
+
+    public override void AfterUpdateEntry(EntryEditActivity entryEditActivity, PwEntry entry)
+    {
+      EntryActivity.Launch(entryEditActivity, entry, -1,
+          new SelectEntryTask() { ShowUserNotifications = ActivationCondition.Never, ActivateKeyboard = ActivationCondition.Never },
+          ActivityFlags.ForwardResult);
     }
   }
 

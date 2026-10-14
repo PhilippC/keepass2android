@@ -747,6 +747,16 @@ namespace keepass2android
         }
 
         State.Entry = State.EntryInDatabase.CloneDeep();
+        if (!State.IsNew)
+        {
+          // a task may bring new values for an existing entry: they go into the copy, the database changes only on save
+          var changed = AppTask.PrepareEditEntry(State.Entry);
+          if (changed.Count > 0)
+          {
+            State.EntryModified = true;
+            App.Kp2a.ShowMessage(this, GetString(Resource.String.UpdateEntryFieldsChanged, string.Join(", ", changed)), MessageSeverity.Info);
+          }
+        }
         if (State.Entry.ParentGroup != null && State.Entry.ParentGroup.Name.Equals("AutoOpen", StrUtil.CaseIgnoreCmp))
           State.EditMode = new AutoOpenEdit(State.Entry);
         else if (KpEntryTemplatedEdit.IsTemplated(db, State.Entry))
@@ -1094,7 +1104,12 @@ namespace keepass2android
       }
       else
       {
-        runnable = new UpdateEntry(App.Kp2a, initialEntry, newEntry, closeOrShowError);
+        ActionOnOperationFinished afterUpdateEntry = new ActionInContextInstanceOnOperationFinished(ContextInstanceId, App.Kp2a, (success, message, context) =>
+        {
+          if (success && context is EntryEditActivity entryEditActivity)
+            AppTask.AfterUpdateEntry(entryEditActivity, newEntry);
+        }, closeOrShowError);
+        runnable = new UpdateEntry(App.Kp2a, initialEntry, newEntry, afterUpdateEntry);
       }
       BlockingOperationStarter pt = new BlockingOperationStarter(App.Kp2a, runnable);
       pt.Run();

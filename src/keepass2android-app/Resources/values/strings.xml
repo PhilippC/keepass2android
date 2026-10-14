@@ -438,6 +438,8 @@
   <string name="AutoFillTotp_prefs_ActivateKeyboard_title">Activate built-in keyboard</string>
   
   <string name="TotpCopiedToClipboard">Copied TOTP to clipboard</string>
+  <string name="UpdateEntryFieldsChanged">Fields changed by the request (saved only when you save): %1$s</string>
+  <string name="UpdateEntryNotFound">No entry has the requested value in the field %1$s. Nothing was changed.</string>
 
   <string name="ShowKp2aKeyboardNotification_title">KP2A keyboard notification</string>
   <string name="ShowKp2aKeyboardNotification_summary">Make full entry accessible through the KP2A keyboard (recommended).</string>
