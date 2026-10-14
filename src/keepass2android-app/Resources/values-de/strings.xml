@@ -416,6 +416,8 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="show_local_backups">Lokale Backups anzeigen</string>
   <string name="AcceptAllServerCertificates_title">SSL-Zertifikate</string>
   <string name="AcceptAllServerCertificates_summary">Das Verhalten bei fehlgeschlagener Zertifikatsüberprüfung festlegen. Hinweis: Es ist möglich, Zertifikate auf diesem Gerät zu installieren, falls die Gültigkeitsprüfung fehlschlägt!</string>
+  <string name="OneDriveBrokerMode_title">OneDrive-Geräteanmeldung (Broker)</string>
+  <string name="OneDriveBrokerMode_summary">Legt fest, ob die OneDrive-Anmeldung die Microsoft-Kontoverwaltung des Geräts (Broker) verwendet. Diese ist auf einigen von Intune oder Entra verwalteten Arbeitsgeräten erforderlich. Bei „Automatisch“ wird zuerst die Broker-Anmeldung versucht. Falls sie fehlschlägt, wird auf die reguläre Anmeldung zurückgegriffen. „Nie“ auswählen, wenn die OneDrive-Anmeldung auf diesem Gerät wiederholt fehlschlägt.</string>
   <string name="ClearOfflineCache_title">Cache löschen?</string>
   <string name="ClearOfflineCache_question">Dadurch werden alle zwischengespeicherten Datenbankdateien gelöscht. Alle Änderungen, die ohne Zugriff auf die Quelldatenbank vorgenommen wurden und noch nicht synchronisiert sind, gehen verloren! Dennoch fortfahren?</string>
   <string name="CheckForFileChangesOnSave_title">Auf Änderungen prüfen</string>
@@ -758,10 +760,10 @@ Anbei einige Tipps, die bei der Diagnose des Problems helfen können:\n
   <string name="cleartextTrafficPermitted_title">Klartext-Netzwerkverkehr in WebDav erlauben</string>
   <string name="cleartextTrafficPermitted_summary">HTTP-Verbindungen sind nicht sicher. Diese Option nur aktivieren, wenn weitere Sicherheitsmaßnahmen vorhanden sind.</string>
   <string-array name="ChangeLog_1_15_net">
-    <item>Update to Target SDK version 36</item>
+    <item>Aktualisierung auf Ziel-SDK-Version 36</item>
     <item>Verbesserungen im Umgang mit WebDav-URLs mit Nicht-ASCII-Zeichen</item>
-    <item>Improvements to OneDrive Authentication</item>
-    <item>Minor bug fixes</item>
+    <item>Verbesserungen der OneDrive-Authentifizierung</item>
+    <item>Kleinere Fehlerbehebungen</item>
   </string-array>
   <string-array name="ChangeLog_1_15">
     <item>Hintergrundsynchronisierung hinzugefügt: Keepass2Android verwendet nun die interne Cache-Kopie der Datenbank zum Laden und Speichern um diese Operationen zu beschleunigen. Danach wird die Synchronisation mit der Remote-Datenbank gestartet. </item>
@@ -1189,6 +1191,11 @@ Erstes öffentliches Release</string>
     <item>Fehler bei Zertifikatsüberprüfung ignorieren</item>
     <item>Warnen, wenn die Überprüfung fehlschlägt</item>
     <item>Ungültige Zertifikate nicht akzeptieren</item>
+  </string-array>
+  <string-array name="OneDriveBrokerMode_options">
+    <item>Automatik (empfohlen)</item>
+    <item>Immer die Geräteanmeldung verwenden</item>
+    <item>Nie die Geräteanmeldung verwenden</item>
   </string-array>
   <string name="ClearClipboardWarning">Bitte sicherstellen, dass dies auf diesem System funktioniert; falls nicht, die Standardtastatur verwenden.</string>
   <string name="PluginDescription">Vom Plugin gelieferte Beschreibung:</string>
