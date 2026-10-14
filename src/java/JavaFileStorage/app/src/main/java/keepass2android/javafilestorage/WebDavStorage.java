@@ -228,6 +228,12 @@ public class WebDavStorage extends JavaFileStorageBase {
 
         builder = builder.authenticator(new CachingAuthenticatorDecorator(authenticator, authCache))
                 .addInterceptor(new AuthenticationCacheInterceptor(authCache));
+
+        //Set the timeouts for every client. without this, okhttp's defaults of 10 seconds apply. 
+        builder.connectTimeout(25, TimeUnit.SECONDS);
+        builder.readTimeout(60, TimeUnit.SECONDS);
+        builder.writeTimeout(60, TimeUnit.SECONDS);
+
         if ((mCertificateErrorHandler != null) && (!mCertificateErrorHandler.alwaysFailOnValidationError())) {
 
 
@@ -248,11 +254,6 @@ public class WebDavStorage extends JavaFileStorageBase {
 
             builder = builder.sslSocketFactory(sslSocketFactory, trustManager)
                              .hostnameVerifier(new DecoratedHostnameVerifier(OkHostnameVerifier.INSTANCE, mCertificateErrorHandler));
-
-
-            builder.connectTimeout(25, TimeUnit.SECONDS);
-            builder.readTimeout(25, TimeUnit.SECONDS);
-            builder.writeTimeout(25, TimeUnit.SECONDS);
         }
 
 
