@@ -372,6 +372,8 @@
   <string name="field_value">Valoarea câmpului</string>
   <string name="protection">Câmp protejat</string>
   <string name="add_binary">Ataşează fişier...</string>
+  <string name="capture_size_small">Mic</string>
+  <string name="capture_size_medium">Mediu</string>
   <string name="add_extra_string">Adaugă câmp adiţional</string>
   <string name="configure_totp">Configurare TOTP</string>
   <string name="totp_secret_key">Cheie secretă</string>
