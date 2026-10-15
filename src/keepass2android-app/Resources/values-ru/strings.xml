@@ -369,6 +369,8 @@
   <string name="field_value">Значение поля</string>
   <string name="protection">Защищённое поле</string>
   <string name="add_binary">Добавить вложение</string>
+  <string name="capture_size_small">Маленький</string>
+  <string name="capture_size_medium">Средний</string>
   <string name="add_extra_string">Добавить доп строку</string>
   <string name="configure_totp">Настроить TOTP</string>
   <string name="totp_secret_key">Секретный ключ</string>
