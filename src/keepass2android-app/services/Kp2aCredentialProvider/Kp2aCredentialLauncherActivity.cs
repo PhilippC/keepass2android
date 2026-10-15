@@ -296,13 +296,12 @@ namespace keepass2android.services.Kp2aCredentialProvider
           try
           {
             // Retrieve stored passkey data from instance variables
-            var callingPackage = _passkeyCallingPackage ?? "";
             var origin = _passkeyOrigin;
             var passkeyData = _passkeyResponseData;
             var clientDataHash = _passkeyClientDataHash;
             var creationOptions = _passkeyCreationOptions;
 
-            var credentialResponse = CreatePasskeyResponse(passkeyData, creationOptions, clientDataHash, callingPackage, origin);
+            var credentialResponse = CreatePasskeyResponse(passkeyData, creationOptions, clientDataHash, origin);
             PendingIntentHandler.SetCreateCredentialResponse(result, credentialResponse);
 
             SetResult(Result.Ok, result);
@@ -349,14 +348,12 @@ namespace keepass2android.services.Kp2aCredentialProvider
     }
 
     private CreatePublicKeyCredentialResponse CreatePasskeyResponse(JSONObject? passkeyData,
-      PublicKeyCredentialCreationOptions? creationOptions, byte[]? clientDataHash, string callingPackage, string? origin)
+      PublicKeyCredentialCreationOptions? creationOptions, byte[]? clientDataHash, string? origin)
     {
       if (passkeyData == null || creationOptions == null)
       {
         throw new InvalidOperationException("Passkey data not found in state");
       }
-
-      var relyingPartyId = creationOptions.RelyingPartyEntity.Id;
 
       // Get the created entry (passkey data should already be in CustomData)
       var entry = App.Kp2a.LastOpenedEntry?.Entry;
@@ -379,8 +376,16 @@ namespace keepass2android.services.Kp2aCredentialProvider
       // Load public key from stored data
       var publicKey = LoadPublicKeyFromPasskeyData(passkeyData);
 
-      // Build client data response
-      var clientDataResponse = BuildClientDataResponse(clientDataHash, callingPackage, origin, relyingPartyId, creationOptions);
+      // Build client data response. origin and clientDataHash were determined by PasskeyOriginHelper.ResolveCallerOrigin
+      // when the request came in, so clientDataHash is only set for verified privileged callers.
+      if (string.IsNullOrEmpty(origin))
+      {
+        throw new InvalidOperationException("Passkey origin not found in state");
+      }
+      var clientDataResponse = PasskeyOriginHelper.CreateClientDataResponse(
+        new PasskeyCallerOrigin(origin, clientDataHash),
+        ClientDataBuildResponse.RequestType.Create,
+        creationOptions.Challenge);
 
       // Build public key encodings (CBOR for credential, X.509 SPKI for Android)
       var (credentialPublicKeyCbor, publicKeySpki) = BuildPublicKeyEncodings(publicKey, keyTypeId);
@@ -525,36 +530,6 @@ namespace keepass2android.services.Kp2aCredentialProvider
       {
         throw new InvalidOperationException($"Failed to load public key (tried EC, RSA, Ed25519): {ex.Message}");
       }
-    }
-
-    private IClientDataResponse BuildClientDataResponse(
-      byte[]? clientDataHash,
-      string callingPackage,
-      string? origin,
-      string relyingParty,
-      PublicKeyCredentialCreationOptions creationOptions
-    )
-    {
-      // Use stored origin or calculate fallback
-      if (string.IsNullOrEmpty(origin))
-      {
-        // Fallback: calculate from package name
-        origin = Kp2aDigitalAssetLinksDataSource.IsTrustedBrowser(callingPackage)
-          ? $"https://{relyingParty}"
-          : $"android:apk-key-hash:"; // Placeholder if origin not stored
-      }
-
-      // If hash is pre-calculated by system (privileged app), use ClientDataDefinedResponse with placeholder
-      if (clientDataHash != null)
-      {
-        return new ClientDataDefinedResponse(clientDataHash);
-      }
-
-      return new ClientDataBuildResponse(
-        ClientDataBuildResponse.RequestType.Create,
-        creationOptions.Challenge,
-        origin
-      );
     }
 
     private (byte[] credentialPublicKeyCbor, byte[] publicKeySpki) BuildPublicKeyEncodings(IPublicKey publicKey, long keyTypeId)
@@ -747,7 +722,10 @@ namespace keepass2android.services.Kp2aCredentialProvider
       if (string.IsNullOrEmpty(requestJson))
         throw new InvalidOperationException("Missing request JSON");
 
-      var clientDataHash = passkeyRequest.GetClientDataHash();
+      // Verify the caller: only privileged browsers (verified by signing certificate) may provide the origin
+      // and a pre-computed clientDataHash. For all other callers, the clientDataHash is ignored.
+      var callerOrigin = PasskeyOriginHelper.ResolveCallerOrigin(this, createRequest.CallingAppInfo, passkeyRequest.GetClientDataHash());
+      var clientDataHash = callerOrigin.ClientDataHash;
 
       var creationOptions = _passkeyCreationOptions
         ?? new PublicKeyCredentialCreationOptions(requestJson, clientDataHash);
@@ -779,9 +757,7 @@ namespace keepass2android.services.Kp2aCredentialProvider
       };
 
       var callingPackage = createRequest.CallingAppInfo?.PackageName ?? "";
-      var origin = Kp2aDigitalAssetLinksDataSource.IsTrustedBrowser(callingPackage)
-        ? $"https://{creationOptions.RelyingPartyEntity.Id}"
-        : PasskeyOptionParsingHelper.GetOriginForCallingApp(createRequest.CallingAppInfo);
+      var origin = callerOrigin.Origin;
 
       var passkeyFieldsJson = PasskeyStorage.CreatePasskeyFieldsJson(creationOptions.RelyingPartyEntity.Id, creationOptions.UserEntity.Name, passkey);
 
@@ -916,39 +892,16 @@ namespace keepass2android.services.Kp2aCredentialProvider
       GetPublicKeyCredentialOption passkeyOption,
       bool userVerified)
     {
-      // Build client data response with the correct origin
-      string origin;
-      var callingPackage = callingAppInfo?.PackageName ?? "";
-
-      if (Kp2aDigitalAssetLinksDataSource.IsTrustedBrowser(callingPackage))
-      {
-        // For browsers, use the RP ID as the web origin
-        origin = $"https://{requestOptions.RpId}";
-      }
-      else
-      {
-        // Calculate Android APK origin for native apps
-        origin = PasskeyOptionParsingHelper.GetOriginForCallingApp(callingAppInfo);
-      }
-      // Try to extract clientDataHash from GetPublicKeyCredentialOption
-      // According to Android docs: if clientDataHash is provided, use it and set placeholder for clientDataJSON
-      var clientDataHash = PasskeyOptionParsingHelper.ExtractClientDataHashFromOption(passkeyOption);
-
-      IClientDataResponse clientDataResponse;
-      if (clientDataHash != null)
-      {
-        // Privileged app: use provided hash and placeholder for clientDataJSON
-        clientDataResponse = new ClientDataDefinedResponse(clientDataHash);
-      }
-      else
-      {
-        // Non-privileged app: build actual clientDataJSON
-        clientDataResponse = new ClientDataBuildResponse(
-          ClientDataBuildResponse.RequestType.Get,
-          requestOptions.Challenge,
-          origin
-        );
-      }
+      // Build client data response with the verified origin. A caller-supplied clientDataHash
+      // is only used if the caller is a verified privileged app (browser), otherwise it is ignored.
+      var callerOrigin = PasskeyOriginHelper.ResolveCallerOrigin(
+        this,
+        callingAppInfo,
+        PasskeyOptionParsingHelper.ExtractClientDataHashFromOption(passkeyOption));
+      var clientDataResponse = PasskeyOriginHelper.CreateClientDataResponse(
+        callerOrigin,
+        ClientDataBuildResponse.RequestType.Get,
+        requestOptions.Challenge);
 
       var assertionBe = passkey.BackupEligibility ?? PasskeyPreferences.GetBackupEligibility(this);
       var assertionBs = passkey.BackupState ?? PasskeyPreferences.GetBackupState(this);
