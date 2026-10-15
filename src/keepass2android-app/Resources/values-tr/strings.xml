@@ -372,6 +372,8 @@
   <string name="field_value">Alan değeri</string>
   <string name="protection">Korunmuş alan</string>
   <string name="add_binary">Ek dosya ekle...</string>
+  <string name="capture_size_small">Küçük</string>
+  <string name="capture_size_medium">Orta</string>
   <string name="add_extra_string">Ek dize ekle</string>
   <string name="configure_totp">TOTP\'yi yapılandır</string>
   <string name="totp_secret_key">Gizli anahtar</string>
@@ -752,7 +754,7 @@
   <string name="hint_smb_credentials">Kişisel Windows bilgisayarınızdaki dosyalara erişmek istiyorsanız, bilgisayar adını veya yerel IP adresini ana bilgisayar URL\'si olarak kullanın; bilgisayar adını etki alanı olarak ve Windows oturum açma bilgilerini (genellikle Microsoft hesabınızla aynıdır) kullanıcı adı ve parola olarak girin.</string>
   <string name="WarnFingerprintInvalidated">Uyarı! Örneğin cihaz ayarlarınıza yeni bir parmak izi ekledikten sonra, biyometrik kimlik doğrulama Android tarafından geçersiz kılınabilir. Ana şifrenizle her zaman kilidin nasıl açılacağını bildiğinizden emin olun!</string>
   <string name="webdav_chunked_upload_size_title">WebDav yüklemesi için parça boyutu</string>
-  <string name="webdav_chunked_upload_size_summary">WebDav sunucularına yükleme yapılırken kullanılacak yığınların bayt cinsinden boyutu.</string>
+  <string name="webdav_chunked_upload_size_summary">WebDav sunucularına yükleme yapılırken kullanılacak yığınların bayt cinsinden gösterimi</string>
   <string name="cleartextTrafficPermitted_title">WebDav\'da düz metin ağ trafiğine izin ver</string>
   <string name="cleartextTrafficPermitted_summary">HTTP bağlantıları güvenli değildir. Yalnızca başka güvenlik önlemleri uyguluyorsanız bunu etkinleştirin.</string>
   <string-array name="ChangeLog_1_14">
@@ -1274,7 +1276,7 @@
   <string name="switch_keyboard_for_totp_enabled">Not: Uygulama - Şifre erişimi - Otomatik doldurma hizmeti - TOTP girişleri için otomatik doldurma özelliğini etkinleştirdiniz. Bu, TOTP ile bir girişi açtığınızda bu pencerenin görünmesine neden olabilir.</string>
   <string name="switch_keyboard_inside_kp2a_enabled">Not: Keepass2Android içinde Uygulama - Güvenlik - Yerleşik klavyeyi kullan seçeneğini etkinleştirdiniz. Bu, uygulamayı açtığınızda veya bir girişi düzenlediğinizde bu pencerenin görünmesine neden olabilir.</string>
   <string name="switch_keyboard_on_search_enabled">Not: Uygulama - Güvenlik - Şifre erişimi - Klavye değiştirme - Klavyeyi değiştir seçeneğini etkinleştirdiniz. Bu, tarayıcıdan bir girişi aradığınızda bu pencerenin görünmesine neden olabilir.</string>
-  <string name="user_interaction_required">Kullanıcı etkileşimi gerekli. Lütfen uygulamayı açın.</string>
+  <string name="user_interaction_required">Kullanıcı interaksiyonu gereli. Lütfen uygulmayı açın.</string>
   <string name="failed_to_access_database">Veritabanı şu anda kullanımda ve veritabanına erişilemiyor.</string>
   <string name="configure_ssids">SSID yapılandırın</string>
   <string name="add_current_ssid">Geçerli SSID ekleyin</string>
