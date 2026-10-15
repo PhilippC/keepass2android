@@ -373,6 +373,8 @@
   <string name="field_value">Hodnota poľa</string>
   <string name="protection">Chránené pole</string>
   <string name="add_binary">Priložiť súbor...</string>
+  <string name="capture_size_small">Malé</string>
+  <string name="capture_size_medium">Stredné</string>
   <string name="add_extra_string">Pridať ďalší reťazec</string>
   <string name="configure_totp">Konfigurovať TOTP</string>
   <string name="totp_secret_key">Tajný kľúč</string>
@@ -415,7 +417,7 @@
   <string name="AcceptAllServerCertificates_title">Certifikáty SSL</string>
   <string name="AcceptAllServerCertificates_summary">Definujte postup pri zlyhaní overenia certifikátu. Poznámka: pri zlyhaní overenia môžete na zariadenie nainštalovať certifikáty!</string>
   <string name="OneDriveBrokerMode_title">Prihlásenie zariadenia do OneDrive (cez sprostredkovateľa)</string>
-  <string name="OneDriveBrokerMode_summary">Určuje, či sa pri prihlásení do OneDrive používa správca účtu Microsoft v zariadení, ktorý je potrebný v niektorých pracovných zariadeniach spravovaných cez Intune alebo Entra. Automaticky vyskúša prihlásenie cez sprostredkovateľa a ak zlyhá, prejde k normálnemu prihlasovaniu. Ak prihlasovanie na tomto zariadení zlyháva, vyberte voľbu \"Nikdy\".</string>
+  <string name="OneDriveBrokerMode_summary">Určuje, či sa pri prihlásení do OneDrive používa správca účtu Microsoft v zariadení, ktorý je v niektorých pracovných zariadeniach. Automaticky vyskúša prihlásenie cez sprostredkovateľa a ak zlyhá, prejde k normálnemu prihlasovaniu. Ak prihlasovanie na tomto zariadení zlyháva, vyberte voľbu \"Nikdy\".</string>
   <string name="ClearOfflineCache_title">Vymazať vyrovnávaciu pamäť?</string>
   <string name="ClearOfflineCache_question">Týmto vymažete všetky databázy uložené vo vyrov. pamäti. Stratia sa všetky zmeny vykonané vtedy, keď nebol možný prístup k zdrojovej databáze a ak neprebehla synchronizácia. Pokračovať?</string>
   <string name="CheckForFileChangesOnSave_title">Skontrolovať zmeny</string>
