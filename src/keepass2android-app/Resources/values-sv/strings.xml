@@ -364,6 +364,8 @@
   <string name="field_value">Fältvärde</string>
   <string name="protection">Skyddat fält</string>
   <string name="add_binary">Bifoga fil</string>
+  <string name="capture_size_small">Liten</string>
+  <string name="capture_size_medium">Medium</string>
   <string name="add_extra_string">Lägg till extra sträng</string>
   <string name="configure_totp">Konfigurera TOTP</string>
   <string name="totp_secret_key">Hemlig nyckel</string>
@@ -396,7 +398,7 @@
   <string name="NoDonationReminder_summary">Jag kommer inte ge dig ett öre eller jag har redan donerat. Be inte om en donation, inte ens på utvecklarens födelsedag.</string>
   <string name="UseOfflineCache_title">Databascachning</string>
   <string name="UseOfflineCache_summary">Behåll en kopia av databasfilen i appens arbetsmapp. Det möjliggör användning av databaser även när databasfilerna inte är nåbara.</string>
-  <string name="SyncOfflineCacheInBackground_title">Synkronisera i bakgrunden</string>
+  <string name="SyncOfflineCacheInBackground_title">Synkronisera i bakgrunder</string>
   <string name="CreateBackups_title">Lokala säkerhetskopior</string>
   <string name="CreateBackups_summary">Skapa en lokal säkerhetskopia efter framgångsrikt ha laddat en databas.</string>
   <string name="UpdatingBackup">Uppdatera lokal säkerhetskopia...</string>
@@ -513,7 +515,7 @@
   <string name="enter_http_login_title">Ange WebDav inloggnings-data:</string>
   <string name="enter_smb_login_title">Ange Samba-inloggningsdata:</string>
   <string name="hint_http_url">Webbadressen till mapp eller fil (ex: mycloud.me.com/webdav/)</string>
-  <string name="hint_smb_url">URL till mapp eller fil (t.ex. 192.168.1.10/share/mapp/)</string>
+  <string name="hint_smb_url">URL till mapp eller fil (t.ex. 192.168.1.10/dela/mapp/)</string>
   <string name="hint_smb_username">Samba-användarnamn</string>
   <string name="enter_owncloud_login_title">Ange OwnCloud inloggnings-data:</string>
   <string name="hint_owncloud_url">OwnCloud URL (ex: owncloud.me.com)</string>
@@ -529,9 +531,9 @@
   <string name="hint_sftp_key_name">Nytt nyckelnamn</string>
   <string name="hint_sftp_key_content">Nytt nyckelinnehåll</string>
   <string name="private_key_saved">Privat nyckel sparades</string>
-  <string name="private_key_save_failed">KUNDE INTE spara privat nyckel: %1$s</string>
+  <string name="private_key_save_failed">KUND INTE spara privat nyckel: %1$s</string>
   <string name="private_key_info">Ange nyckelnamn och -innehåll för att spara</string>
-  <string name="private_key_delete">Raderade privat nyckel: %1$s</string>
+  <string name="private_key_delete">Radera privat nyckel: %1$s</string>
   <string name="private_key_delete_failed">KUNDE INTE radera privat nyckel: %1$s</string>
   <string name="save_key">Spara privat nyckel</string>
   <string name="delete_key">Radera privat nyckel</string>
@@ -702,7 +704,7 @@
   <string name="EntryChannel_name">Postaviseringar</string>
   <string name="EntryChannel_desc">Avisering för att underlätta tillgång till den nuvarande markerade posten.</string>
   <string name="CloseDbAfterFailedAttempts">Stäng databasen efter tre misslyckade biometriska upplåsningsförsök.</string>
-  <string name="hint_smb_credentials">Om du vill komma åt filer från din egna Windows-dator, använd datornamnet eller den lokala IP-adressen som värd-URL; ange datornamnet som domän och Windows-inloggning (ofta samma som ditt Microsoft-konto) som användarnamn och lösenord.</string>
+  <string name="hint_smb_credentials">Om du vill komma åt filer från din egna Windows-dator, använd datornamnet eller den lokala IP-adressen som värd-URL; ange datornamnet som domän och Windows-inloggning (ofta samma som ditt Microsoft-konto) som användarnamn och lösenord..</string>
   <string name="WarnFingerprintInvalidated">Varning! Biometrisk autentisering kan ogiltigförklaras av Android, t.ex. efter att du har lagt till ett nytt fingeravtryck i dina enhetsinställningar. Se till att du alltid vet hur du låser upp med ditt huvudlösenord!</string>
   <string-array name="ChangeLog_1_15_net">
     <item>Update to Target SDK version 36</item>
