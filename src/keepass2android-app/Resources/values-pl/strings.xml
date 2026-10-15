@@ -369,6 +369,8 @@
   <string name="field_value">Wartość pola</string>
   <string name="protection">Pole zabezpieczone</string>
   <string name="add_binary">Dodaj załącznik...</string>
+  <string name="capture_size_small">Mała</string>
+  <string name="capture_size_medium">Średnia</string>
   <string name="add_extra_string">Dodaj dodatkowy ciąg znaków</string>
   <string name="configure_totp">Konfiguracja TOTP</string>
   <string name="totp_secret_key">Sekretny klucz</string>
