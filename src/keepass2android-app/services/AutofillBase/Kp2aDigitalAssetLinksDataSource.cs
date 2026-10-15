@@ -35,9 +35,14 @@ namespace keepass2android.services.AutofillBase
       _ctx = ctx;
     }
 
+    static public bool IsTrustedBrowser(string packageName)
+    {
+      return _trustedBrowsers.Contains(packageName);
+    }
+
     public bool IsTrustedApp(string packageName)
     {
-      if (_trustedBrowsers.Contains(packageName))
+      if (IsTrustedBrowser(packageName))
         return true;
       var prefs = PreferenceManager.GetDefaultSharedPreferences(_ctx);
       var trustedApps = prefs.GetStringSet(Autofilltrustedapps, new List<string>()).ToHashSet();
@@ -84,17 +89,59 @@ namespace keepass2android.services.AutofillBase
 
 
     static readonly HashSet<string> _trustedBrowsers = new HashSet<string>
-        {
-            "org.mozilla.firefox","org.mozilla.firefox_beta","org.mozilla.klar","org.mozilla.focus",
-            "org.mozilla.fenix","org.mozilla.reference.browser",
-            "com.android.browser","com.android.chrome","com.chrome.beta","com.chrome.dev","com.chrome.canary",
-            "com.google.android.apps.chrome","com.google.android.apps.chrome_dev",
-            "com.opera.browser","com.opera.browser.beta","com.opera.mini.native","com.opera.mini.native.beta","com.opera.touch",
-            "com.brave.browser","com.yandex.browser","com.microsoft.emmx","com.amazon.cloud9",
-            "com.sec.android.app.sbrowser","com.sec.android.app.sbrowser.beta","org.codeaurora.swe.browser",
-            "mark.via.gp","org.bromite.bromite", "org.mozilla.fennec_fdroid", "com.vivaldi.browser","com.kiwibrowser.browser",
-            "acr.browser.lightning", "acr.browser.barebones", "jp.hazuki.yuzubrowser"
-        };
+    {
+      // Chrome variants
+      "com.android.browser",
+      "com.android.chrome",
+      "com.chrome.beta",
+      "com.chrome.canary",
+      "com.chrome.dev",
+      "com.google.android.apps.chrome",
+      "com.google.android.apps.chrome_dev",
+      "org.chromium.chrome",
+        
+      // Firefox variants
+      "org.mozilla.fenix",
+      "org.mozilla.fennec_fdroid",
+      "org.mozilla.firefox",
+      "org.mozilla.firefox_beta",
+      "org.mozilla.focus",
+      "org.mozilla.klar",
+      "org.mozilla.reference.browser",
+        
+      // Microsoft Edge
+      "com.microsoft.emmx",
+        
+      // Opera variants
+      "com.opera.browser",
+      "com.opera.browser.beta",
+      "com.opera.mini.native",
+      "com.opera.mini.native.beta",
+      "com.opera.touch",
+        
+      // Samsung Internet
+      "com.sec.android.app.sbrowser",
+      "com.sec.android.app.sbrowser.beta",
+        
+      // Other established browsers
+      "com.brave.browser",
+      "com.kiwibrowser.browser",
+      "com.vivaldi.browser",
+      "com.yandex.browser",
+        
+      // Privacy-focused browsers
+      "acr.browser.barebones",
+      "acr.browser.lightning",
+      "io.github.forkmaintainers.iceraven",
+      "mark.via.gp",
+      "org.bromite.bromite",
+      "org.cromite.cromite",
+      "org.ironfoxoss.ironfox",
+        
+      // Regional/specialized browsers
+      "jp.hazuki.yuzubrowser",
+      "org.codeaurora.swe.browser",
+    };
 
   }
 }
