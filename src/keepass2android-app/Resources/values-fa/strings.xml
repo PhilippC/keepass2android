@@ -370,6 +370,8 @@ JCraft ایجاد شده است. تحت مجوز BSD.</string>
   <string name="field_value">مقدار فیلد</string>
   <string name="protection">فیلد محافظت‌شده</string>
   <string name="add_binary">افزودن پیوست فایلی</string>
+  <string name="capture_size_small">کوچک</string>
+  <string name="capture_size_medium">متوسط</string>
   <string name="add_extra_string">افزودن رشتهٔ اضافی</string>
   <string name="configure_totp">پیکربندی TOTP</string>
   <string name="totp_secret_key">کلید رمزینه</string>
