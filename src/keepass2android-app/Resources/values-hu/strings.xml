@@ -366,6 +366,8 @@
   <string name="field_value">Mező értéke</string>
   <string name="protection">Védett mező</string>
   <string name="add_binary">Fájl csatolása...</string>
+  <string name="capture_size_small">Kicsi</string>
+  <string name="capture_size_medium">Közepes</string>
   <string name="add_extra_string">Kiegészítő szövegmezők hozzáadása</string>
   <string name="configure_totp">TOTP beállítása</string>
   <string name="totp_secret_key">Titkos kulcs</string>
