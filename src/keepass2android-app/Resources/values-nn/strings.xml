@@ -141,6 +141,8 @@
   <string name="warning_read_only">SD-kortet ditt kan berre lesast. Det kan vera at du ikkje kan lagra endringar i databasen.</string>
   <string name="warning_unmounted">SD-kortet er ikkje montert i eininga di. Du kan verken henta eller laga databasen din.</string>
   <string name="version_label">Utgåve</string>
+  <string name="capture_size_small">Liten</string>
+  <string name="capture_size_medium">Middels</string>
   <string name="AskOverwriteBinary_no">Gje nytt namn</string>
   <string name="TemplateField_IdCard_Name">Namn</string>
   <string-array name="clipboard_timeout_options">

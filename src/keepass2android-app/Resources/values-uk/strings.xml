@@ -366,6 +366,8 @@
   <string name="field_value">Значення поля</string>
   <string name="protection">Захищене поле</string>
   <string name="add_binary">Додати файл</string>
+  <string name="capture_size_small">Малий</string>
+  <string name="capture_size_medium">Середній</string>
   <string name="add_extra_string">Додати рядок</string>
   <string name="configure_totp">Налаштувати TOTP</string>
   <string name="totp_secret_key">Таємний ключ</string>

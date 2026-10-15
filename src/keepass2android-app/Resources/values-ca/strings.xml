@@ -373,6 +373,8 @@
   <string name="field_value">Valor del camp</string>
   <string name="protection">Camp protegit</string>
   <string name="add_binary">Afegir el fitxer adjunt...</string>
+  <string name="capture_size_small">Petita</string>
+  <string name="capture_size_medium">Mitjana</string>
   <string name="add_extra_string">Afegir la cadena addicional</string>
   <string name="configure_totp">Configura TOTP</string>
   <string name="totp_secret_key">Clau secreta</string>
@@ -762,6 +764,7 @@ Notificació per indicar que una sincronització es fa en segon pla.</string>
   <string name="cleartextTrafficPermitted_title">Permetre trànsit de xarxa de text sense format a WebDav</string>
   <string name="cleartextTrafficPermitted_summary">Les connexions HTTP no són segures. Només activa-ho si tens altres mesures de seguretat implementades.</string>
   <string-array name="ChangeLog_1_15_net">
+    <item>Update to Target SDK version 36</item>
     <item></item>
     <item>Improvements to OneDrive Authentication</item>
     <item>Minor bug fixes</item>

@@ -365,6 +365,8 @@
   <string name="field_value">Kentän arvo</string>
   <string name="protection">Suojattu kenttä</string>
   <string name="add_binary">Lisää liitetiedosto</string>
+  <string name="capture_size_small">Pieni</string>
+  <string name="capture_size_medium">Keskikokoinen</string>
   <string name="add_extra_string">Lisää lisärivi</string>
   <string name="configure_totp">Määritä TOTP</string>
   <string name="totp_secret_key">Salainen avain</string>

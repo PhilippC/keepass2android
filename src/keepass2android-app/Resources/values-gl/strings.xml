@@ -361,6 +361,8 @@
   <string name="field_value">Nome do campo</string>
   <string name="protection">Campo protexido</string>
   <string name="add_binary">Engadir arquivo adxunto</string>
+  <string name="capture_size_small">Pequeno</string>
+  <string name="capture_size_medium">Medio</string>
   <string name="add_extra_string">Engadir cadea de caracteres adicional</string>
   <string name="delete_extra_string">Eliminar cadea de caracteres adicional</string>
   <string name="database_loaded_quickunlock_enabled">%1$s: bloqueado. QuickUnlock habilitado.</string>

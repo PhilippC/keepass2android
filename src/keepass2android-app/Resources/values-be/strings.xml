@@ -366,6 +366,8 @@
   <string name="field_value">Значэнне поля</string>
   <string name="protection">Абароненае поле</string>
   <string name="add_binary">Дадаць файл</string>
+  <string name="capture_size_small">Малы</string>
+  <string name="capture_size_medium">Сярэдні</string>
   <string name="add_extra_string">Дадаць дадатковы радок</string>
   <string name="configure_totp">Наладзіць TOTP</string>
   <string name="totp_secret_key">Сакрэтны ключ</string>

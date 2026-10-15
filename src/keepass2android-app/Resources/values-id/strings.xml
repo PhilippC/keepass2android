@@ -291,6 +291,8 @@
   <string name="field_value">Nilai ruas</string>
   <string name="protection">Ruas dilindungi</string>
   <string name="add_binary">Tambahkan lampiran berkas</string>
+  <string name="capture_size_small">Kecil</string>
+  <string name="capture_size_medium">Sedang</string>
   <string name="add_extra_string">Tambahkan ekstra lema</string>
   <string name="delete_extra_string">Hapus ekstra lema</string>
   <string name="database_loaded_quickunlock_enabled">%1$s: Terkunci. BukaCepat diaktifkan.</string>

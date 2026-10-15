@@ -369,6 +369,8 @@
   <string name="field_value">Значение поля</string>
   <string name="protection">Защищённое поле</string>
   <string name="add_binary">Добавить вложение</string>
+  <string name="capture_size_small">Маленький</string>
+  <string name="capture_size_medium">Средний</string>
   <string name="add_extra_string">Добавить доп строку</string>
   <string name="configure_totp">Настроить TOTP</string>
   <string name="totp_secret_key">Секретный ключ</string>
@@ -751,6 +753,7 @@
   <string name="cleartextTrafficPermitted_title">Разрешить текстовый сетевой трафик в WebDav</string>
   <string name="cleartextTrafficPermitted_summary">HTTP-соединения небезопасны. Включите эту опцию, только если у вас есть другие меры безопасности.</string>
   <string-array name="ChangeLog_1_15_net">
+    <item>Update to Target SDK version 36</item>
     <item>Улучшение обработки URL для WebDav с не-ASCII символами</item>
     <item>Improvements to OneDrive Authentication</item>
     <item>Minor bug fixes</item>

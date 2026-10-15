@@ -371,6 +371,8 @@
   <string name="field_value">Feltværdi</string>
   <string name="protection">Beskyttet felt</string>
   <string name="add_binary">Tilføj filvedhæftning</string>
+  <string name="capture_size_small">Lille</string>
+  <string name="capture_size_medium">Mellem</string>
   <string name="add_extra_string">Tilføj ekstra streng</string>
   <string name="configure_totp">Konfigurer TOTP</string>
   <string name="totp_secret_key">Hemmelig nøgle</string>

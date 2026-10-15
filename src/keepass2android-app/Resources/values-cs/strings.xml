@@ -373,6 +373,8 @@
   <string name="field_value">Hodnota pole</string>
   <string name="protection">Chráněné pole</string>
   <string name="add_binary">Přidat soubor jako přílohu...</string>
+  <string name="capture_size_small">Malý</string>
+  <string name="capture_size_medium">Střední</string>
   <string name="add_extra_string">Přidat doplňkový text</string>
   <string name="configure_totp">Konfigurace TOTP</string>
   <string name="totp_secret_key">Tajný klíč</string>
@@ -758,6 +760,7 @@
   <string name="cleartextTrafficPermitted_title">Povolit síťový provoz v otevřeném textu ve WebDav</string>
   <string name="cleartextTrafficPermitted_summary">HTTP připojení nejsou bezpečná. Tuto možnost povolte pouze v případě, že máte zavedena další bezpečnostní opatření.</string>
   <string-array name="ChangeLog_1_15_net">
+    <item>Update to Target SDK version 36</item>
     <item>Vylepšení zpracování URL pro WebDav se znaky mimo ASCII</item>
     <item>Improvements to OneDrive Authentication</item>
     <item>Minor bug fixes</item>
