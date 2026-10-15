@@ -369,6 +369,8 @@
   <string name="field_value">フィールド値</string>
   <string name="protection">保護されたフィールド</string>
   <string name="add_binary">添付ファイルを追加</string>
+  <string name="capture_size_small">小</string>
+  <string name="capture_size_medium">中</string>
   <string name="add_extra_string">補足文字列を追加</string>
   <string name="configure_totp">TOTP を設定</string>
   <string name="totp_secret_key">秘密鍵</string>
