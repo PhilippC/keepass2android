@@ -124,6 +124,7 @@ namespace keepass2android.services.AutofillBase
       "com.sec.android.app.sbrowser.beta",
         
       // Other established browsers
+      "com.amazon.cloud9",
       "com.brave.browser",
       "com.kiwibrowser.browser",
       "com.vivaldi.browser",
