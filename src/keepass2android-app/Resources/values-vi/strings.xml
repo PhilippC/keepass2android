@@ -366,6 +366,8 @@
   <string name="field_value">Giá trị mục</string>
   <string name="protection">Mục được bảo vệ</string>
   <string name="add_binary">Thêm tập tin đính kèm…</string>
+  <string name="capture_size_small">Nhỏ</string>
+  <string name="capture_size_medium">Trung bình</string>
   <string name="add_extra_string">Thêm chuỗi bổ sung</string>
   <string name="configure_totp">Định cấu hình TOTP</string>
   <string name="totp_secret_key">Chìa khoá bí mật</string>
