@@ -351,6 +351,8 @@
   <string name="field_value">بيانات الحقل</string>
   <string name="protection">حقل محمي</string>
   <string name="add_binary">إضافة مرفق</string>
+  <string name="capture_size_small">صغيرة</string>
+  <string name="capture_size_medium">متوسطة</string>
   <string name="add_extra_string">إضافة نص إضافي</string>
   <string name="delete_extra_string">حذف النص الإضافي</string>
   <string name="database_loaded_quickunlock_enabled">%1$s: مقفل. \"فتح القفل السريع\" مفعل.</string>
