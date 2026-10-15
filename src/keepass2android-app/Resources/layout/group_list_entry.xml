@@ -15,19 +15,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:scaleType="fitXY"
-         android:src="@drawable/group_icon_bkg_drawable"/>
+         android:src="@drawable/group_icon_bkg_drawable" android:importantForAccessibility="no"/>
 
     <ImageView android:id="@+id/icon"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:padding="5dp"
-        android:src="@drawable/ic_storage_content"/>
+        android:src="@drawable/ic_storage_content" android:importantForAccessibility="no"/>
     
   <ImageView android:id="@+id/check_mark"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:padding="5dp"
-        android:src="@drawable/baseline_check_24"/>
+        android:src="@drawable/baseline_check_24" android:contentDescription="@string/selected"/>
 
   </RelativeLayout>
   <LinearLayout
@@ -59,7 +59,7 @@
         android:layout_alignParentRight="true"
         android:layout_gravity="center_vertical"
         android:layout_weight="0"
-        android:src="@drawable/baseline_keyboard_arrow_right_24"/>
+        android:src="@drawable/baseline_keyboard_arrow_right_24" android:importantForAccessibility="no"/>
 
 
 

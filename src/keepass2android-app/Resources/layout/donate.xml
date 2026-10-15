@@ -24,7 +24,7 @@
 			android:layout_below="@id/donate_question"
 			android:adjustViewBounds="true"
 			android:scaleType="fitCenter"
-			android:src="@drawable/oktoberfest" />
+			android:src="@drawable/oktoberfest" android:importantForAccessibility="no"/>
 		<Button 
 			 android:text="@string/ok_donate"
         android:layout_width="fill_parent"

@@ -13,8 +13,7 @@
 		android:layout_height="15dp"
 			   android:src="@drawable/baseline_more_vert_24"
 			   android:gravity="right|bottom"
-			   android:layout_alignParentRight="true"
-				   />
+			   android:layout_alignParentRight="true" android:importantForAccessibility="no"/>
 	<TextView
 		android:id="@+id/entry_extra"
 		android:layout_width="fill_parent"

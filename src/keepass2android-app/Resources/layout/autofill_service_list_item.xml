@@ -42,5 +42,5 @@
         android:adjustViewBounds="true"
         
         android:layout_marginEnd="?android:attr/listPreferredItemPaddingEnd"
-        android:src="@drawable/ic_launcher" />
+        android:src="@drawable/ic_launcher" android:importantForAccessibility="no"/>
 </LinearLayout>

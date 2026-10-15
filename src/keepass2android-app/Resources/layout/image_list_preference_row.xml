@@ -9,6 +9,7 @@
     android:paddingRight="?android:attr/scrollbarSize" >
     <TextView
         android:id="@+id/image_list_view_row_text_view"
+        android:labelFor="@+id/image_list_view_row_radio_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"

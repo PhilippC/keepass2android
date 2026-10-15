@@ -1601,6 +1601,9 @@ namespace keepass2android
         password.InputType = InputTypes.ClassText | InputTypes.TextVariationPassword;
       }
       password.SetSelection(selStart, selEnd);
+      var toggleButton = FindViewById(Resource.Id.toggle_password);
+      if (toggleButton != null)
+        toggleButton.ContentDescription = GetString(_showPassword ? Resource.String.hide_password : Resource.String.show_password);
     }
 
     protected override void OnPause()
