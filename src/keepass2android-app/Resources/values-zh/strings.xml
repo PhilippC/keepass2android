@@ -373,6 +373,8 @@
   <string name="field_value">字段值</string>
   <string name="protection">受保护的字段</string>
   <string name="add_binary">添加附件...</string>
+  <string name="capture_size_small">小</string>
+  <string name="capture_size_medium">中</string>
   <string name="add_extra_string">添加额外的字符串</string>
   <string name="configure_totp">配置 TOTP</string>
   <string name="totp_secret_key">密钥</string>
