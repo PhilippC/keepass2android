@@ -351,6 +351,8 @@
   <string name="field_value">Vrijednosti polja</string>
   <string name="protection">Zaštićeno polje</string>
   <string name="add_binary">Dodaj privitak</string>
+  <string name="capture_size_small">Mala</string>
+  <string name="capture_size_medium">Srednja</string>
   <string name="add_extra_string">Dodajte dodatno polje</string>
   <string name="configure_totp">Namjesti TOTP</string>
   <string name="totp_secret_key">Tajni ključ</string>
