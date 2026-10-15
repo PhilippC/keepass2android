@@ -383,14 +383,14 @@
             android:layout_margin="16dp"
             android:layout_gravity="end|bottom|right"
             android:visibility="gone"
-            android:src="@drawable/baseline_close_24" />
+            android:src="@drawable/baseline_close_24" android:contentDescription="@string/cancel"/>
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fabAddNew"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end|bottom|right"
             android:layout_margin="16dp"
-            android:src="@drawable/baseline_add_24" />
+            android:src="@drawable/baseline_add_24" android:contentDescription="@string/menu_create"/>
         <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
             android:id="@+id/fabAddNewGroup"
             android:layout_width="wrap_content"
@@ -421,7 +421,7 @@
           android:src="@drawable/baseline_search_24"
           android:layout_marginRight="16dp"
           android:layout_marginBottom="88dp"
-          android:visibility="gone"/>
+          android:visibility="gone" android:contentDescription="@string/menu_search"/>
         <com.google.android.material.floatingactionbutton.FloatingActionButton
           android:id="@+id/fabTotpOverview"
           android:layout_width="wrap_content"
@@ -430,6 +430,6 @@
           android:src="@drawable/baseline_access_time_24"
           android:layout_marginRight="16dp"
           android:layout_marginBottom="160dp"
-          android:visibility="gone"/>
+          android:visibility="gone" android:contentDescription="@string/TOTP"/>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </RelativeLayout>

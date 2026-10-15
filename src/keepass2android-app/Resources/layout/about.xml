@@ -22,7 +22,7 @@
 			android:layout_height="wrap_content"
 			android:layout_below="@id/about_title"
 			android:scaleType="fitXY"
-			android:src="@android:drawable/divider_horizontal_dark" />
+			android:src="@android:drawable/divider_horizontal_dark" android:importantForAccessibility="no"/>
 		<TextView
 					android:id="@+id/version_title"
 					android:layout_width="wrap_content"
@@ -50,7 +50,7 @@
 			android:layout_height="wrap_content"
 			android:layout_below="@id/versionB"
 			android:scaleType="fitXY"
-			android:src="@android:drawable/divider_horizontal_dark" />
+			android:src="@android:drawable/divider_horizontal_dark" android:importantForAccessibility="no"/>
 
 		<TextView
 			android:id="@+id/feedback_title"
@@ -95,7 +95,7 @@
 			android:layout_height="wrap_content"
 			android:layout_below="@id/translate"
 			android:scaleType="fitXY"
-			android:src="@android:drawable/divider_horizontal_dark" />
+			android:src="@android:drawable/divider_horizontal_dark" android:importantForAccessibility="no"/>
 		<TextView
 			android:id="@+id/disclaimer_title"
 			style="@style/InfoHeader"

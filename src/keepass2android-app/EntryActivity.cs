@@ -1470,6 +1470,8 @@ namespace keepass2android
       SetPasswordTypeface(group.VisibleProtectedField);
 
       group.ProtectedField.InputType = InputTypes.ClassText | InputTypes.TextVariationPassword;
+      // masked text is not spoken by screen readers: announce the length instead of the content
+      group.ProtectedField.ContentDescription = GetString(Resource.String.hidden_protected_field, group.ProtectedField.Text?.Length ?? 0);
     }
 
     protected override void OnResume()
