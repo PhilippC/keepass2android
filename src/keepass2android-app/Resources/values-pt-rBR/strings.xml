@@ -260,6 +260,11 @@
   <string name="space">Espaço</string>
   <string name="search_label">Procurar</string>
   <string name="show_password">Mostrar senha</string>
+  <string name="hide_password">Ocultar senha</string>
+  <string name="hidden_protected_field">Oculto, %1$d caracteres</string>
+  <string name="browse">Navegar</string>
+  <string name="select_icon">Selecionar ícone</string>
+  <string name="selected">Selecionado</string>
   <string name="sort_menu">Ordenar por...</string>
   <string name="sort_name">Ordenar por nome</string>
   <string name="sort_db">Ordenar por data de criação</string>
@@ -375,8 +380,15 @@
   <string name="field_value">Valor do campo</string>
   <string name="protection">Campo protegido</string>
   <string name="add_binary">Adicione o arquivo anexo...</string>
+  <string name="attach_browse_file">Navegar por arquivo...</string>
+  <string name="attach_take_photo">Tirar foto...</string>
+  <string name="capture_photo_title">Tirar foto</string>
+  <string name="capture_flip_camera">Virar câmera</string>
+  <string name="camera_permission_required">É necessária permissão da câmera para tirar uma foto.</string>
+  <string name="capture_attachment_size_warning">Selecione o tamanho da foto</string>
   <string name="capture_size_small">Pequeno</string>
   <string name="capture_size_medium">Médio</string>
+  <string name="capture_size_original">Original</string>
   <string name="add_extra_string">Adicionar sequência de caracteres adicional</string>
   <string name="configure_totp">Configurar TOPT</string>
   <string name="totp_secret_key">Chave secreta</string>
@@ -503,6 +515,7 @@
   <string name="UseOnlineMode">Sincronizar cópia do cache com a origem</string>
   <string name="UseOfflineMode_Info">A base de dados é carregada do cache interno. As alterações são armazenadas só no cache interno e só serão sincronizadas ao selecionar Sincronizar cópia de cache com origem.</string>
   <string name="InOfflineMode">Trabalhando só no cache interno.</string>
+  <string name="ServerNotReachable">O servidor não pôde ser alcançado. Verifique sua conexão com a Internet e o endereço do servidor.</string>
   <string name="SynchronizingCachedDatabase">Sincronizando banco de dados em cache…</string>
   <string name="DownloadingRemoteFile">Carregando arquivo de orígem…</string>
   <string name="UploadingFile">Salvar arquivo…</string>
