@@ -27,6 +27,12 @@ namespace keepass2android.Io
   {
     bool IsOffline { get; set; }
     bool TriggerWarningWhenFallingBackToCache { get; set; }
+
+    /// <summary>
+    /// Whether to warn the user when the database could only be written to the cache. Default is
+    /// true; set to false by operations which postpone the upload on purpose.
+    /// </summary>
+    bool WarnWhenSaveToRemoteFails { get; set; }
   }
 
   /// <summary>
@@ -38,6 +44,7 @@ namespace keepass2android.Io
     private readonly IFileStorage _baseStorage;
     public bool IsOffline { get; set; }
     public bool TriggerWarningWhenFallingBackToCache { get; set; }
+    public bool WarnWhenSaveToRemoteFails { get; set; } = true;
 
     public OfflineSwitchableFileStorage(IFileStorage baseStorage)
     {

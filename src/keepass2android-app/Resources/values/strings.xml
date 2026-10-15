@@ -259,6 +259,11 @@
   <string name="space">Space</string>
   <string name="search_label">Search</string>
   <string name="show_password">Show password</string>
+  <string name="hide_password">Hide password</string>
+  <string name="hidden_protected_field">Hidden, %1$d characters</string>
+  <string name="browse">Browse</string>
+  <string name="select_icon">Select icon</string>
+  <string name="selected">Selected</string>
   <string name="sort_menu">Sort by...</string>
   <string name="sort_name">Sort by name</string>
   <string name="sort_db">Sort by creation date</string>
@@ -374,6 +379,15 @@
   <string name="field_value">Field value</string>
   <string name="protection">Protected field</string>
   <string name="add_binary">Add file attachment</string>
+  <string name="attach_browse_file">Browse file…</string>
+  <string name="attach_take_photo">Take photo…</string>
+  <string name="capture_photo_title">Take photo</string>
+  <string name="capture_flip_camera">Flip camera</string>
+  <string name="camera_permission_required">Camera permission is required to take a photo.</string>
+  <string name="capture_attachment_size_warning">Select photo size</string>
+  <string name="capture_size_small">Small</string>
+  <string name="capture_size_medium">Medium</string>
+  <string name="capture_size_original">Original</string>
   <string name="add_extra_string">Add additional string</string>
   <string name="configure_totp">Configure TOTP</string>
   <string name="totp_secret_key">Secret key</string>
@@ -415,6 +429,8 @@
   <string name="show_local_backups">Show local backups</string>
   <string name="AcceptAllServerCertificates_title">SSL certificates</string>
   <string name="AcceptAllServerCertificates_summary">Define the behavior when certificate validation fails. Note: you can install certificates on your device if validation fails!</string>
+  <string name="OneDriveBrokerMode_title">OneDrive device sign-in (broker)</string>
+  <string name="OneDriveBrokerMode_summary">Controls whether OneDrive sign-in uses your device\'s Microsoft account manager (broker), which is required on some Intune/Entra-managed work devices. Automatic tries broker sign-in first and falls back to normal sign-in if it fails. Choose "Never" if OneDrive sign-in fails repeatedly on this device.</string>
   <string name="ClearOfflineCache_title">Clear cache?</string>
   <string name="ClearOfflineCache_question">This will delete all cached database files. Any changes you made while having no access to the source database and which have not yet been synchronized will be lost! Continue?</string>
   <string name="CheckForFileChangesOnSave_title">Check for modifications</string>
@@ -500,6 +516,7 @@
   <string name="UseOnlineMode">Synchronize cache copy with source</string>
   <string name="UseOfflineMode_Info">Database is loaded from internal cache. Changes are stored in the internal cache only and will only be synchronized when selecting Synchronize cache copy with source.</string>
   <string name="InOfflineMode">Working on internal cache only.</string>
+  <string name="ServerNotReachable">The server could not be reached. Please check your internet connection and the server address.</string>
   <string name="SynchronizingCachedDatabase">Synchronizing cached database…</string>
   <string name="DownloadingRemoteFile">Loading source file…</string>
   <string name="UploadingFile">Save file…</string>
@@ -776,6 +793,7 @@
   </string-array>
 
   <string-array name="ChangeLog_1_15_net">
+    <item>Update to Target SDK version 36</item>
     <item>Improvements to URL handling for WebDav with non-ASCII characters</item>
     <item>Improvements to OneDrive Authentication</item>
     <item>Minor bug fixes</item>
@@ -1288,6 +1306,11 @@
     <item>Ignore certificate validation failures</item>
     <item>Warn when validation fails</item>
     <item>Do not accept invalid certificates</item>
+  </string-array>
+  <string-array name="OneDriveBrokerMode_options">
+    <item>Automatic (recommended)</item>
+    <item>Always use device sign-in</item>
+    <item>Never use device sign-in</item>
   </string-array>
   <string name="ClearClipboardWarning">Make sure this works on your system and consider using the built-in keyboard if not.</string>
   <string name="PluginDescription">Description provided by the plugin:</string>

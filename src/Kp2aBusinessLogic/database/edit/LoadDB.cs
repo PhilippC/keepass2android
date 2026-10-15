@@ -31,10 +31,22 @@ using KeePassLib.Serialization;
 
 namespace keepass2android
 {
+  /// <summary>
+  /// Database contents which were loaded before the password was entered, together with the
+  /// information whether they actually came from the source file. If the source file could not be
+  /// reached, the preloaded data is cache content and a synchronization is still pending - which
+  /// the preloading itself cannot do because the database is not open yet.
+  /// </summary>
+  public class PreloadedDatabaseData
+  {
+    public MemoryStream Data { get; set; }
+    public bool RequiresSubsequentSync { get; set; }
+  }
+
   public class LoadDb : OperationWithFinishHandler
   {
     private readonly IOConnectionInfo _ioc;
-    private readonly Task<MemoryStream> _databaseData;
+    private readonly Task<PreloadedDatabaseData> _databaseData;
     private readonly CompositeKey _compositeKey;
     private readonly string? _keyfileOrProvider;
     private readonly IKp2aApp _app;
@@ -44,7 +56,7 @@ namespace keepass2android
     public bool DoNotSetStatusLoggerMessage = false;
 
 
-    public LoadDb(IKp2aApp app, IOConnectionInfo ioc, Task<MemoryStream> databaseData, CompositeKey compositeKey,
+    public LoadDb(IKp2aApp app, IOConnectionInfo ioc, Task<PreloadedDatabaseData> databaseData, CompositeKey compositeKey,
         string keyfileOrProvider, OnOperationFinishedHandler operationFinishedHandler,
         bool updateLastUsageTimestamp, bool makeCurrent, IDatabaseModificationWatcher modificationWatcher = null) : base(app, operationFinishedHandler)
     {
@@ -85,12 +97,15 @@ namespace keepass2android
           }
 
           //get the stream data into a single stream variable (databaseStream) regardless whether its preloaded or not:
-          MemoryStream preloadedMemoryStream = _databaseData == null ? null : _databaseData.Result;
+          PreloadedDatabaseData? preloadedData = _databaseData?.Result;
           MemoryStream databaseStream;
-          if (preloadedMemoryStream != null)
+          if (preloadedData?.Data != null)
           {
-            //note: if the stream has been loaded already, we don't need to trigger another sync later on
-            databaseStream = preloadedMemoryStream;
+            //The stream has been loaded already. That doesn't mean we're in sync: if the source file
+            //couldn't be reached, the preloading fell back to the cache, and then we still have to
+            //trigger a sync later on - nothing else would, until the user modifies an entry.
+            RequiresSubsequentSync = preloadedData.RequiresSubsequentSync;
+            databaseStream = preloadedData.Data;
           }
           else
           {

@@ -111,6 +111,27 @@ public class OperationRunner
                             TrySetupProgressDialog();
                           });
             }
+            else
+            {
+              //Set up the progress ui for this task as well, don't just keep what the previous one
+              //used: the progress dialog of a preceding blocking task is dismissed when that task
+              //finishes, so a non-blocking task dequeued afterwards (e.g. the synchronization which
+              //SaveDb starts once the cache is written) would run without any visible progress at
+              //all until the active context happens to change.
+              app.UiThreadHandler.Post(
+                          () =>
+                          {
+                            Context? context = app.ActiveContext;
+                            if (context == null || context.ApplicationContext == context)
+                            {
+                              //No activity to show progress in. Keep whatever the progress ui is,
+                              //like SetNewActiveContext does for the application context, so that
+                              //returning to the foreground restores it instead of finding nothing.
+                              return;
+                            }
+                            SetProgressUiFromActiveContext(app);
+                          });
+            }
 
             var originalFinishedHandler = _currentlyRunningTask.Value.Operation.operationFinishedHandler;
             _currentlyRunningTask.Value.Operation.operationFinishedHandler = new ActionOnOperationFinished(app, (
@@ -152,6 +173,23 @@ public class OperationRunner
 
   }
 
+
+  /// <summary>
+  /// Shows progress in the progress ui which the currently active context provides (e.g. the inline
+  /// view of a GroupBaseActivity), instead of in a modal progress dialog.
+  /// </summary>
+  private void SetProgressUiFromActiveContext(IKp2aApp app)
+  {
+    var progressUi = (app.ActiveContext as IProgressUiProvider)?.ProgressUi;
+    if (_statusLogger == null)
+    {
+      _statusLogger = new ProgressUiAsStatusLoggerAdapter(progressUi, app);
+    }
+    else
+    {
+      _statusLogger.SetNewProgressUi(progressUi);
+    }
+  }
 
   private bool TrySetupProgressDialog()
   {
@@ -213,15 +251,7 @@ public class OperationRunner
       }
       else
       {
-        var progressUi = (context as IProgressUiProvider)?.ProgressUi;
-        if (_statusLogger == null)
-        {
-          _statusLogger = new ProgressUiAsStatusLoggerAdapter(progressUi, app);
-        }
-        else
-        {
-          _statusLogger.SetNewProgressUi(progressUi);
-        }
+        SetProgressUiFromActiveContext(app);
       }
 
       foreach (var task in _taskQueue.Concat(_currentlyRunningTask == null ?

@@ -82,8 +82,25 @@ jobs:
     - name: Export NDK environment
       shell: bash
       run: |
-        echo "ANDROID_NDK_ROOT=$ANDROID_SDK_ROOT/ndk/28.2.13676358" >> $GITHUB_ENV
-        echo "ANDROID_NDK_HOME=$ANDROID_SDK_ROOT/ndk/28.2.13676358" >> $GITHUB_ENV
+        # Find NDK >= 28, that is what the 16kb
+        # page size support needs, so pick the highest installed one and say so if there is none.
+        ndk_base="$ANDROID_SDK_ROOT/ndk"
+        ndk_dir=""
+        if [ -d "$ndk_base" ]; then
+          for name in $(ls -1 "$ndk_base" | sort -V); do
+            major=${name%%.*}
+            case "$major" in ''|*[!0-9]*) continue ;; esac
+            [ "$major" -ge 28 ] && ndk_dir="$ndk_base/$name"
+          done
+        fi
+        if [ -z "$ndk_dir" ]; then
+          echo "No NDK >= 28 found in $ndk_base. Installed NDKs:"
+          ls -1 "$ndk_base" 2>/dev/null || echo "(none)"
+          exit 1
+        fi
+        echo "Using NDK $ndk_dir"
+        echo "ANDROID_NDK_ROOT=$ndk_dir" >> $GITHUB_ENV
+        echo "ANDROID_NDK_HOME=$ndk_dir" >> $GITHUB_ENV
 
     - name: Verify NDK
       shell: bash
@@ -133,7 +150,7 @@ jobs:
         DropboxAppFolderAppKey: ${{ secrets.DROPBOX_APP_FOLDER_APP_KEY }}
         DropboxAppFolderAppSecret: ${{ secrets.DROPBOX_APP_FOLDER_APP_SECRET }}
       run: |
-        make ${{ matrix.target }} Configuration=Release Flavor=${{ matrix.flavor }}
+        make ${{ matrix.target }} Configuration=Release Flavor=${{ matrix.flavor }} NoDonationMenu=true
 
     - name: Archive production artifacts
       uses: actions/upload-artifact@v4

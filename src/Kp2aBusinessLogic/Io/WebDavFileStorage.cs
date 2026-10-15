@@ -96,10 +96,12 @@ namespace keepass2android.Io
         //legacy support. Some users may have stored IOCs with UserName inside.
         return ((WebDavStorage)Jfs).BuildFullPath(ioc.Path, ioc.UserName, ioc.Password);
       }
-      string path = base.IocToPath(ioc);
-      //make sure the path is normalized, e.g. spaces and umlauts are percent encoded.
-      string normalized = new Uri(path).AbsoluteUri;
-      return normalized;
+      //Don't normalize the path here (e.g. with new Uri(path).AbsoluteUri): that threw for stored
+      //paths which System.Uri cannot parse (crashing the app on startup via GetDisplayName) and it
+      //also rewrote the path, e.g. unescaping %7E/%2D/%5F/%2E, so we requested a different URL than
+      //before. Percent encoding of the request URL is done by okhttp when it parses the URL; only the
+      //Destination header of MOVE needs explicit encoding, see WebDavStorage.renameOrMoveWebDavResource.
+      return base.IocToPath(ioc);
 
     }
 

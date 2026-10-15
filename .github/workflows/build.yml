@@ -335,7 +335,7 @@ jobs:
         DropboxAppFolderAppKey: ${{ secrets.DROPBOX_APP_FOLDER_APP_KEY }}
         DropboxAppFolderAppSecret: ${{ secrets.DROPBOX_APP_FOLDER_APP_SECRET }}
       run: |
-        make apk Configuration=Release Flavor=Net
+        make apk Configuration=Release Flavor=Net NoDonationMenu=true
 
     - name: Archive production artifacts (net)
       uses: actions/upload-artifact@v4

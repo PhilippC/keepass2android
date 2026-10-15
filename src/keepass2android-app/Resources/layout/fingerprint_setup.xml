@@ -104,7 +104,7 @@
             android:layout_alignParentStart="true"
             android:layout_below="@+id/fingerprint_description"
             android:layout_marginTop="20dp"
-            android:src="@drawable/baseline_fingerprint_24" />
+            android:src="@drawable/baseline_fingerprint_24" android:importantForAccessibility="no"/>
         <TextView
             android:id="@+id/fingerprint_status"
             style="@style/TextAppearance.AppCompat.Body1"

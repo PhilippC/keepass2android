@@ -497,6 +497,7 @@
   <string name="UseOnlineMode">Sincronizar la copia caché con la fuente</string>
   <string name="UseOfflineMode_Info">Se ha cargado la base de datos de la caché interna. Los cambios se almacenan en la caché interna sólo y sólamente se sincronizarán cuando seleccione Sincronizar copia caché con fuente.</string>
   <string name="InOfflineMode">Trabajando con la cache interna sólo.</string>
+  <string name="ServerNotReachable">No se ha podido conectar con el servidor. Compruebe su conexión a Internet y la dirección del servidor.</string>
   <string name="SynchronizingCachedDatabase">Sincronización de base de datos en caché…</string>
   <string name="DownloadingRemoteFile">Cargando fichero fuente…</string>
   <string name="UploadingFile">Guardar archivo…</string>
@@ -761,6 +762,8 @@
   <string name="cleartextTrafficPermitted_summary">Las conexiones HTTP no son seguras. Habilita esta opción únicamente si tiene otras medidas de seguridad en su lugar.</string>
   <string-array name="ChangeLog_1_15_net">
     <item>Mejoras en el manejo de URL para WebDav con caracteres no ASCII</item>
+    <item>Improvements to OneDrive Authentication</item>
+    <item>Minor bug fixes</item>
   </string-array>
   <string-array name="ChangeLog_1_15">
     <item>Sincronización en segundo plano añadida: Keepass2Android ahora utiliza la copia en caché interna de la base de datos para cargar y guardar para hacer estas operaciones más rápidas. Después de esto, se inicia la sincronización con la base de datos remota. </item>

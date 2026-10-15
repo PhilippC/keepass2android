@@ -31,6 +31,11 @@
     <package android:name="com.inputstick.apps.kp2aplugin" />
     <package android:name="com.dropbox.android" />
 
+    <!-- MSAL broker apps for OneDrive Intune/Entra-managed device authentication -->
+    <package android:name="com.azure.authenticator" />
+    <package android:name="com.microsoft.windowsintune.companyportal" />
+    <package android:name="com.microsoft.workaccount" />
+
     <intent>
       <action android:name="android.intent.action.OPEN_DOCUMENT" />
       <data android:mimeType="*/*" />
@@ -59,7 +64,7 @@
   </queries>
 
 
-  <uses-sdk android:minSdkVersion="21" android:targetSdkVersion="35" />
+  <uses-sdk android:minSdkVersion="21" android:targetSdkVersion="36" />
   <permission android:description="@string/permission_desc2" android:icon="@drawable/ic_notify_locked" android:label="KP2A entry search" android:name="keepass2android.keepass2android_debug.permission.KP2aInternalSearch" android:protectionLevel="signature" />
   <permission android:description="@string/permission_desc3" android:icon="@drawable/ic_launcher" android:label="KP2A choose autofill dataset" android:name="keepass2android.keepass2android_debug.permission.Kp2aChooseAutofill" android:protectionLevel="signature" />
   <application
@@ -100,7 +105,7 @@
 
     <provider android:name="group.pals.android.lib.ui.filechooser.providers.localfile.LocalFileProvider" android:authorities="keepass2android.keepass2android_debug.android-filechooser.localfile" android:exported="false" />
     <provider android:name="group.pals.android.lib.ui.filechooser.providers.history.HistoryProvider" android:authorities="keepass2android.keepass2android_debug.android-filechooser.history" android:exported="false" />
-    <activity android:name="group.pals.android.lib.ui.filechooser.FileChooserActivity" android:configChanges="keyboard|keyboardHidden|orientation|screenSize" android:screenOrientation="user" android:theme="@style/Afc.Theme.Light">
+    <activity android:name="group.pals.android.lib.ui.filechooser.FileChooserActivity" android:configChanges="keyboard|keyboardHidden|orientation|screenSize" android:theme="@style/Afc.Theme.Light">
     </activity>
     <service android:name="keepass2android.softkeyboard.KP2AKeyboard" android:permission="android.permission.BIND_INPUT_METHOD" android:exported="true">
       <intent-filter>
@@ -282,6 +287,11 @@ The scheme=file is still there for old OS devices. It's also queried by apps lik
     <meta-data android:name="com.sec.android.multiwindow.MINIMUM_SIZE_W" android:value="426.0dip" />
     <meta-data android:name="com.sec.android.multiwindow.MINIMUM_SIZE_H" android:value="360.0dip" />
   </application>
+  <!-- Camera permission for in-app attachment photo capture (runtime permission on API 23+) -->
+  <uses-permission android:name="android.permission.CAMERA" />
+  <!-- required="false": app works without a camera; feature only shown on devices that have one -->
+  <uses-feature android:name="android.hardware.camera" android:required="false" />
+  <uses-feature android:name="android.hardware.camera.autofocus" android:required="false" />
   <uses-permission android:name="android.permission.VIBRATE" />
   <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
   <uses-permission android:name="android.permission.INTERNET" />

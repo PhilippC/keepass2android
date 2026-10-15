@@ -255,6 +255,7 @@ namespace keepass2android
       // Commit database
       SaveDb save = new SaveDb(App, Db, operationFinishedHandler, false, null);
       save.ShowDatabaseIocInStatus = ShowDatabaseIocInStatus;
+      save.SyncInBackground = App.SyncInBackgroundPreference;
 
       save.SetStatusLogger(StatusLogger);
       save.Run();

@@ -463,6 +463,7 @@ namespace keepass2android
 
 
       SetEntryView();
+      PredictiveBack.Register(this, HandlePredictiveBackPressed);
 
       Database db = App.Kp2a.CurrentDb;
       // Likely the app has been killed exit the activity 
@@ -986,8 +987,18 @@ namespace keepass2android
 
     public override void OnBackPressed()
     {
-      base.OnBackPressed();
+      HandleLegacyBackPressed();
       //OverridePendingTransition(Resource.Animation.anim_enter_back, Resource.Animation.anim_leave_back);
+    }
+
+    private void HandleLegacyBackPressed()
+    {
+      base.OnBackPressed();
+    }
+
+    private void HandlePredictiveBackPressed()
+    {
+      Finish();
     }
 
     protected void FillData()
@@ -1459,6 +1470,8 @@ namespace keepass2android
       SetPasswordTypeface(group.VisibleProtectedField);
 
       group.ProtectedField.InputType = InputTypes.ClassText | InputTypes.TextVariationPassword;
+      // masked text is not spoken by screen readers: announce the length instead of the content
+      group.ProtectedField.ContentDescription = GetString(Resource.String.hidden_protected_field, group.ProtectedField.Text?.Length ?? 0);
     }
 
     protected override void OnResume()

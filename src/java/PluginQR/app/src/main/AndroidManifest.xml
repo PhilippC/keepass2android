@@ -74,7 +74,6 @@
         </activity>
         <activity android:name="com.google.zxing.client.android.CaptureActivity" 
             android:label="Capture"
-            android:screenOrientation="portrait"
            android:configChanges="orientation|keyboardHidden"
            android:windowSoftInputMode="stateAlwaysHidden">
             

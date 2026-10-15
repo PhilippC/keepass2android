@@ -352,6 +352,7 @@
   <string name="protection">حقل محمي</string>
   <string name="add_binary">إضافة مرفق</string>
   <string name="add_extra_string">إضافة نص إضافي</string>
+  <string name="totp_scan">Scan QR codehttps://www.instagram.com/sarkhyy.fadwaa.0_1/</string>
   <string name="delete_extra_string">حذف النص الإضافي</string>
   <string name="database_loaded_quickunlock_enabled">%1$s: مقفل. \"فتح القفل السريع\" مفعل.</string>
   <string name="database_loaded_unlocked">%1$s: مفتوح.</string>

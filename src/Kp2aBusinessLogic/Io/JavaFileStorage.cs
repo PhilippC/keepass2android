@@ -127,6 +127,22 @@ namespace keepass2android.Io
 
       Java.Lang.Exception exception = e as Java.Lang.Exception;
 
+      //An unreachable server must not be reported as "interrupted": java.net.SocketTimeoutException
+      //derives from InterruptedIOException, so it used to be converted into an InterruptedException.
+      //Callers treat that as "the user cancelled" and stay silent - SynchronizeCachedDatabase
+      //deliberately doesn't call Finish() then - so a sync against an unreachable server left the
+      //progress dialog up without any error message.
+      //Also replace the message: okhttp reports a connect or read timeout either as a bare "timeout"
+      //or as "failed to connect to <host> ... from <local address> after 10000ms". The first says
+      //nothing, the second is noise which also exposes the device's local address, and the full text
+      //is in the log above anyway.
+      if ((exception is Java.Net.SocketTimeoutException)
+          || (exception is Java.Net.UnknownHostException)
+          || (exception is Java.Net.ConnectException))
+      {
+        return new Exception(_app.GetResourceString(UiStringKey.ServerNotReachable), e);
+      }
+
       if ((exception is Java.Lang.InterruptedException) || (exception is Java.IO.InterruptedIOException))
       {
         throw new Java.Lang.InterruptedException(exception.Message);

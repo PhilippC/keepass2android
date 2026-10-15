@@ -20,7 +20,7 @@
   <string name="AboutText">Keepass2Android er en adgangskodehåndterings-app, der giver læse-/skriveadgang til KeePass 2.x-databaser på Android.</string>
   <string name="CreditsText">Brugerfladen er baseret på en portering af KeePassDroid, udviklet af Brian Pellin. Koden til databaseoperationerne baserer sig på KeePass af Dominik Reichl. Android-robotten er reproduceret eller ændret fra arbejde skabt og delt af Google og anvendt jf. betingelserne beskrevet i \"Creative Commons 3.0 Attribution License\".</string>
   <string name="CreditsTextSFTP">SFTP-understøttelse er implementeret vha. JSch-biblioteket under BSD-licensen, skabt af JCraft, Inc.</string>
-  <string name="CreditsIcons">Hammerikonet er kreeret af John Caserta fra Noun Project. Pingvinikonet er kreeret af Adriano Emerick fra Noun Project. Fjerikonet er kreeret af Jon Testa fra Noun Project. Æbleikonet er kreeret af Ava Rowell fra Noun Project. Billedikonet stammer fra https://icons8.com/icon/5570/Picture.</string>
+  <string name="CreditsIcons">Hammerikonet er kreéret af John Caserta fra Noun Project. Pingvinikonet er kreéret af Adriano Emerick fra Noun Project. Fjerikonet er kreéret af Jon Testa fra Noun Project. Æbleikonet er kreéret af Ava Rowell fra Noun Project. Billedikonet stammer fra https://icons8.com/icon/5570/Picture.</string>
   <string name="accept">Acceptér</string>
   <string name="deny">Afvis</string>
   <string name="add_entry">Tilføj post</string>
@@ -703,13 +703,17 @@
   
     • Tjek, at den korrekte adgangskode er angivet. Benyt øjeikonet til at vise den angivne adgangskodeord.\n
     • Tjek, at den korrekte adgangskodetype er valgt. Sørg for, at den modsvarer typen, der blev anvendt ved databaseoprettelsen.\n
-    • Tjek, at den korrekte databasefil er valgt.</string>
-  <string name="HintLocalBackupInvalidCompositeKey">\n
+    • Tjek, at den korrekte databasefil er valgt.
+</string>
+  <string name="HintLocalBackupInvalidCompositeKey">
+\n
    • Tip: Mener man, at databasefilen muligvis er ødelagt, eller kan man ikke huske masternøglen, efter at have ændret den, kan man prøve den sidste filversion, det lykkedes at åbne, ved at klikke på \"%1$s\" og vælge den lokale sikkerhedskopi.</string>
-  <string name="HintLocalBackupOtherError">    \n
+  <string name="HintLocalBackupOtherError">
+    \n
     • Tip: Keepass2Android har gemt den senest filversion, det lykkedes at åbne, på den interne lagerplads. Den kan åbnes ved at trykke på \"%1$s\" og vælge den lokale sikkerhedskopi.
   </string>
-  <string name="CorruptDatabaseHelp">Filen er beskadiget.\n
+  <string name="CorruptDatabaseHelp">
+Filen er beskadiget.\n
     Her er nogle tip, som muligvis hjælper med problemdiagnosticeringen:\n
     
     • Kopierede man filen via USB (MTP-tilstand), forsøg igen med et værktøj såsom MyPhoneExplorer. MTP afkorter i visse tilfælde filer.\n
@@ -816,7 +820,8 @@
     <item>Fejlrettelser</item>
     <item>Fejlrettelser</item>
   </string-array>
-  <string name="ChangeLog_1_07b">    Version 1. 7b\n
+  <string name="ChangeLog_1_07b">
+    Version 1. 7b\n
     * Forbedret Argon2-ydeevne vha. intern implementering (Tak til Chih-Hsuan Yen!\n
     * Tilladt at deaktivere fingeraftryk ved klik på fingeraftryksikonet (undgår problemer med fingeraftrykslæsere under skærmen. Tak til marcoDallas!\n
     * Gendanne markørposition ved skift af synlighed af adgangskode (tak til DDoSolitary!\n

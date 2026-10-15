@@ -571,7 +571,8 @@
   <string name="filestoragename_dropboxKP2A">Dropbox (folder KP2A)</string>
   <string name="filestoragehelp_dropboxKP2A">Jeżeli nie chcesz dać KP2A pełnego dostępu do wszystkich folderów Dropbox, możesz wybrać tę opcję. Aplikacja zażąda dostępu jedynie do folderu Aplikacje/Keepass2Android. Jest to szczególnie przydatne podczas tworzenia nowej bazy danych. Jeżeli już posiadasz bazę danych, kliknij w tę opcję, aby utworzyć folder, następnie umieść swój plik w folderze (ze swojego PC) i wybierz tę opcję ponownie, aby otworzyć plik.</string>
   <string name="filestoragename_gdrive">Google Drive</string>
-  <string name="filestoragehelp_gdrive">Uwaga: Google ogranicza dostęp do Dysku Google dla coraz większej liczby użytkowników. Jeśli wbudowana obsługa Dysku Google nie działa, skorzystaj z systemowego wybierania plików i wybierz Dysk Google stamtąd!</string>
+  <string name="filestoragehelp_gdrive">Uwaga: Google ogranicza dostęp do Dysku Google dla coraz większej liczby użytkowników. Jeśli wbudowana obsługa Dysku Google nie działa, skorzystaj z systemowego wybierania plików i wybierz Dysk Google stamtąd!
+</string>
   <string name="filestoragename_gdriveKP2A">Dysk Google (pliki KP2A)</string>
   <string name="filestoragehelp_gdriveKP2A">Jeśli nie chcesz dać KP2A dostępu do pełnego Dysku Google, możesz wybrać tę opcję. Pamiętaj, że najpierw musisz utworzyć plik bazy danych, istniejące pliki nie są widoczne dla aplikacji. Wybierz tę opcję z ekranu tworzenia bazy danych lub, jeśli już otworzyłeś bazę danych, eksportując bazę danych wybierając tę opcję.</string>
   <string name="filestoragename_pcloud">PCloud (KP2A folder)</string>
@@ -757,7 +758,9 @@
     <item>Zaktualizowano SDK OneDrive do wersji 5.68</item>
     <item>Zaktualizowano SDK DropBox do wersji 7.0.0</item>
     <item>Zaktualizowano Gradle, NewtonsoftJson, FluentFTP, MegaApiClient i okhttp</item>
-    <item>Naprawiono błąd w wybieraniu plików WebDAV</item>
+    <item>Naprawiono błąd w wybieraniu plików WebDAV
+
+</item>
   </string-array>
   <string-array name="ChangeLog_1_11">
     <item>Dodano pływające przyciski szukania i podglądu TOTP (jeśli są wpisy TOTP).</item>
@@ -853,7 +856,8 @@
     * Nowa implementacja dla OneDrive: zawiera wsparcie dla OneDrive for Business, plików współdzielonych, wybranych zakresów dostępu, wielu kont i naprawia problemy z dostępem offline\n
     * Poprawki błędów
   </string>
-  <string name="ChangeLog_1_07">    Wersja 1.07\n
+  <string name="ChangeLog_1_07">
+    Wersja 1.07\n
     * Naprawiono błędy na urządzeniach Samsunga z Androidem 9\n
     * Pozwól na otwarcie więcej niż jednej bazy danych, kompatybilnej z KeeAutoExec\n
     * SFTP: Możliwość na uwierzytelnianie kluczem publicznym, sprawdzanie zmiany klucza hosta\n
@@ -1136,4 +1140,6 @@
   <string name="configure_ssids">Konfiguruj SSID</string>
   <string name="add_current_ssid">Dodaj bieżące SSID</string>
   <string name="enter_ssid_hint">Wprowadź SSID</string>
+  <string name="remove_ssid_message">Czy na pewno chcesz usunąć tę sieć Wi-Fi?</string>
+  <string name="permission_needed">Wymagane uprawnienie</string>
 </resources>

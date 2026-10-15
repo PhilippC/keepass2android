@@ -51,7 +51,7 @@ namespace keepass2android.services
 
     public override StartCommandResult OnStartCommand(Intent intent, StartCommandFlags flags, int startId)
     {
-      if (intent.Action == ActionStop)
+      if (intent?.Action == ActionStop)
       {
         Log.Debug(Tag, "OnStartCommand: STOP");
         StopForeground(StopForegroundFlags.Remove);

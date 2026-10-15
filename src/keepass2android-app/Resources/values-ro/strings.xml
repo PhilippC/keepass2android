@@ -331,7 +331,8 @@
   <string name="enter_filename_details_url">Trebuie specificat URL-ul complet inclusiv protocolul, de exemplu http://.</string>
   <string name="enter_filename_details_create_import">Fișierul de importat va fi selectat la pasul următor.</string>
   <string name="enable_quickunlock">Activare QuickUnlock</string>
-  <string name="QuickUnlock_label">Introdu ultimele %1$d caractere ale parolei.:</string>
+  <string name="QuickUnlock_label">Introdu ultimele %1$d caractere ale parolei.:
+</string>
   <string name="QuickUnlock_label_secure">Introdu codul pentru Deblocarea rapidă:</string>
   <string name="QuickUnlock_button">QuickUnlock!</string>
   <string name="QuickUnlock_lockButton">Închide baza de date</string>

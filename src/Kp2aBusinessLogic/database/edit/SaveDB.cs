@@ -129,6 +129,7 @@ namespace keepass2android
             offlineSwitchable.IsOffline = true;
             //no warning. We'll trigger a sync later.
             offlineSwitchable.TriggerWarningWhenFallingBackToCache = false;
+            offlineSwitchable.WarnWhenSaveToRemoteFails = false;
             requiresSubsequentSync = true;
 
           }

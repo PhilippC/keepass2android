@@ -694,11 +694,13 @@
 
     - Győződjön meg róla, hogy helyesen adta meg a jelszót. Használja a szem ikont a beírt jelszó felfedéséhez.\n
     - Győződjön meg róla, hogy a megfelelő jelszótípust választotta ki. Győződjön meg róla, hogy ez megegyezik az adatbázis létrehozásakor használt típussal.\n
-    - Győződjön meg róla, hogy a megfelelő adatbázisfájlt választotta ki.</string>
+    - Győződjön meg róla, hogy a megfelelő adatbázisfájlt választotta ki.
+</string>
   <string name="HintLocalBackupInvalidCompositeKey"> \n
     - Tipp: Ha úgy gondolja, hogy az adatbázis-fájlja sérült lehet, vagy nem emlékszik a főkulcsra (jelszó) a módosítás után, akkor a „%1$s” gombra koppintva és a helyi biztonsági mentést kiválasztva próbálkozhat a fájl utolsó sikeresen megnyitott verziójával.</string>
   <string name="HintLocalBackupOtherError">    \n
-    - Tipp: A Keepass2Android az utolsó sikeresen megnyitott fájlverziót a belső tárhelyen tárolja. Megnyithatja azt a „%1$s” koppintással és a helyi biztonsági mentés kiválasztásával.</string>
+    - Tipp: A Keepass2Android az utolsó sikeresen megnyitott fájlverziót a belső tárhelyen tárolja. Megnyithatja azt a „%1$s” koppintással és a helyi biztonsági mentés kiválasztásával.
+</string>
   <string name="CorruptDatabaseHelp">A fájl sérült. \n
     Néhány tipp, amely segíthet a probléma diagnosztizálásában:\n
 

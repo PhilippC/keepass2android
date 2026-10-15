@@ -16,7 +16,7 @@
    along with Keepass2Android.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="23" android:versionName="0.8.6" package="keepass2android.keepass2android" android:installLocation="auto">
-	<uses-sdk android:minSdkVersion="8" android:targetSdkVersion="14" />
+	<uses-sdk android:minSdkVersion="8" android:targetSdkVersion="36" />
 	<application android:label="keepass2android" android:icon="@drawable/ic_launcher">
 		<activity android:name="com.dropbox.client2.android.AuthActivity" android:launchMode="singleTask" android:configChanges="orientation|keyboard">
 			<intent-filter>
@@ -66,6 +66,10 @@
 			</intent-filter>
 		</activity>
 	</application>
+	<!-- Camera permission for in-app attachment photo capture (runtime permission on API 23+) -->
+	<uses-permission android:name="android.permission.CAMERA" />
+	<uses-feature android:name="android.hardware.camera" android:required="false" />
+	<uses-feature android:name="android.hardware.camera.autofocus" android:required="false" />
 	<uses-permission android:name="android.permission.VIBRATE" />
 	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 	<uses-permission android:name="android.permission.INTERNET" />

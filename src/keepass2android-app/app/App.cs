@@ -360,7 +360,17 @@ namespace keepass2android
       var ctx = LocaleManager.LocalizedAppContext;
       if (DatabaseIsUnlocked || QuickLocked)
       {
-        ContextCompat.StartForegroundService(ctx, new Intent(ctx, typeof(OngoingNotificationsService)));
+        try
+        {
+          ContextCompat.StartForegroundService(ctx, new Intent(ctx, typeof(OngoingNotificationsService)));
+        }
+        catch (Exception e)
+        {
+          // ForegroundServiceStartNotAllowedException (Android 12+): startForegroundService() is
+          // not allowed when called from a background-restricted context such as onTaskRemoved().
+          // In this case the notification simply cannot be updated; this is acceptable.
+          Kp2aLog.LogUnexpectedError(e);
+        }
       }
       else
       {
@@ -1023,7 +1033,10 @@ namespace keepass2android
       Handler handler = new Handler(Looper.MainLooper);
       handler.Post(() =>
           {
-            AskForReload((Activity)ctx, actionOnResult);
+            var activity = (ctx as Activity) ?? (ActiveContext as Activity);
+            if (activity == null)
+              return;
+            AskForReload(activity, actionOnResult);
           });
     }
 
@@ -1266,7 +1279,13 @@ namespace keepass2android
 
         if (DatabaseCacheEnabled)
         {
-          return new OtpAuxCachingFileStorage(innerFileStorage, LocaleManager.LocalizedAppContext, new OtpAuxCacheSupervisor(this));
+          //This storage is constructed directly and never passes through GetFileStorage, so set the
+          //warning behavior explicitly: keep the OTP aux file quiet as it always was. Problems with
+          //it are secondary to the database itself, which reports its own errors.
+          return new OtpAuxCachingFileStorage(innerFileStorage, LocaleManager.LocalizedAppContext, new OtpAuxCacheSupervisor(this))
+          {
+            WarnWhenSaveToRemoteFails = false
+          };
         }
         else
         {
@@ -1612,7 +1631,8 @@ namespace keepass2android
       {
         if (_pendingActionsForContextInstances.TryGetValue(instanceId, out var actions))
         {
-          foreach (var action in actions)
+          //Iterate a copy: an action may re-register itself for the same instance
+          foreach (var action in actions.ToList())
           {
             try
             {

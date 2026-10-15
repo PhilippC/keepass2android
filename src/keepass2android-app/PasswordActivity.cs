@@ -1,4 +1,4 @@
-/*
+﻿/*
 This file is part of Keepass2Android, Copyright 2013 Philipp Crocoll. This file is based on Keepassdroid, Copyright Brian Pellin.
 
   Keepass2Android is free software: you can redistribute it and/or modify
@@ -110,7 +110,7 @@ namespace keepass2android
     public const int ResultSelectOtherFile = (int)Result.FirstUser;
 
 
-    private Task<MemoryStream> _loadDbFileTask;
+    private Task<PreloadedDatabaseData> _loadDbFileTask;
     private bool _loadDbTaskOffline; //indicate if preloading was started with offline mode
 
     private IOConnectionInfo _ioConnection;
@@ -650,6 +650,7 @@ namespace keepass2android
     {
       _activityDesign.ApplyTheme();
       base.OnCreate(savedInstanceState);
+      PredictiveBack.Register(this, HandlePredictiveBackPressed);
 
       _intentReceiver = new PasswordActivityBroadcastReceiver(this);
       IntentFilter filter = new IntentFilter();
@@ -1022,11 +1023,15 @@ namespace keepass2android
       {
         Util.GotoDonateUrl(this);
       };
+#if NO_DONATION_MENU
+      FindViewById(Resource.Id.btn_nav_donate).Visibility = ViewStates.Gone;
+#else
       FindViewById(Resource.Id.btn_nav_donate).Visibility =
           PreferenceManager.GetDefaultSharedPreferences(this)
               .GetBoolean(GetString(Resource.String.NoDonateOption_key), false)
               ? ViewStates.Gone
               : ViewStates.Visible;
+#endif
       FindViewById(Resource.Id.btn_nav_about).Click += (sender, args) =>
       {
         AboutDialog dialog = new AboutDialog(this);
@@ -1081,6 +1086,11 @@ namespace keepass2android
 
     public override void OnBackPressed()
     {
+      HandleLegacyBackPressed();
+    }
+
+    private void HandleLegacyBackPressed()
+    {
       if (_drawerLayout != null)
       {
         if (_drawerLayout.IsDrawerOpen((int)GravityFlags.Start))
@@ -1090,6 +1100,19 @@ namespace keepass2android
         }
       }
       base.OnBackPressed();
+    }
+
+    private void HandlePredictiveBackPressed()
+    {
+      if (_drawerLayout != null)
+      {
+        if (_drawerLayout.IsDrawerOpen((int)GravityFlags.Start))
+        {
+          _drawerLayout.CloseDrawer((int)GravityFlags.Start);
+          return;
+        }
+      }
+      Finish();
     }
 
     private void InitializeOtpSecretSpinner()
@@ -1578,6 +1601,9 @@ namespace keepass2android
         password.InputType = InputTypes.ClassText | InputTypes.TextVariationPassword;
       }
       password.SetSelection(selStart, selEnd);
+      var toggleButton = FindViewById(Resource.Id.toggle_password);
+      if (toggleButton != null)
+        toggleButton.ContentDescription = GetString(_showPassword ? Resource.String.hide_password : Resource.String.show_password);
     }
 
     protected override void OnPause()
@@ -1614,17 +1640,40 @@ namespace keepass2android
 
     }
 
-    private MemoryStream PreloadDbFile()
+    private PreloadedDatabaseData PreloadDbFile()
     {
       Kp2aLog.Log("Pre-loading database file starting");
       var fileStorage = App.Kp2a.GetFileStorage(_ioConnection);
+
+      //Preloading happens before the user even entered their password, so don't report problems with
+      //the source file here: if it couldn't be read or written, we report RequiresSubsequentSync
+      //below and the synchronization which is then started reports the error with proper context.
+      if (fileStorage is IOfflineSwitchable switchable)
+      {
+        switchable.TriggerWarningWhenFallingBackToCache = false;
+        switchable.WarnWhenSaveToRemoteFails = false;
+      }
+
+      //With "synchronize offline cache in background", the database should open immediately from the
+      //cache instead of waiting for the source file.
+      if (App.Kp2a.SyncInBackgroundPreference
+          && fileStorage is CachingFileStorage cachingFileStorageForPreload
+          && cachingFileStorageForPreload.IsCached(_ioConnection))
+      {
+        cachingFileStorageForPreload.IsOffline = true;
+      }
+
       var stream = fileStorage.OpenFileForRead(_ioConnection);
 
       var memoryStream = Util.StreamToMemoryStream(stream);
 
-      Kp2aLog.Log("Pre-loading database file completed");
+      //If cache and source file may differ, we need to synchronize. Nothing else would notice that,
+      //so remember it and let LoadDb trigger a sync once the database is open.
+      bool requiresSubsequentSync = (fileStorage as CachingFileStorage)?.CacheDiffersFromRemoteAfterLastRead == true;
 
-      return memoryStream;
+      Kp2aLog.Log("Pre-loading database file completed, requiresSubsequentSync=" + requiresSubsequentSync);
+
+      return new PreloadedDatabaseData { Data = memoryStream, RequiresSubsequentSync = requiresSubsequentSync };
     }
 
     protected override void OnSaveInstanceState(Bundle outState)
@@ -2276,7 +2325,7 @@ private void errorMessage(CharSequence text)
       private readonly PasswordActivity _act;
 
 
-      public SaveOtpAuxFileAndLoadDb(IKp2aApp app, IOConnectionInfo ioc, Task<MemoryStream> databaseData, CompositeKey compositeKey, string keyfileOrProvider, OnOperationFinishedHandler operationFinishedHandler, PasswordActivity act, bool updateLastUsageTimestamp, bool makeCurrent) : base(app, ioc, databaseData, compositeKey, keyfileOrProvider, operationFinishedHandler, updateLastUsageTimestamp, makeCurrent)
+      public SaveOtpAuxFileAndLoadDb(IKp2aApp app, IOConnectionInfo ioc, Task<PreloadedDatabaseData> databaseData, CompositeKey compositeKey, string keyfileOrProvider, OnOperationFinishedHandler operationFinishedHandler, PasswordActivity act, bool updateLastUsageTimestamp, bool makeCurrent) : base(app, ioc, databaseData, compositeKey, keyfileOrProvider, operationFinishedHandler, updateLastUsageTimestamp, makeCurrent)
       {
         _act = act;
       }

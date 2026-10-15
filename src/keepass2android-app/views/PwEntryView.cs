@@ -80,9 +80,9 @@ namespace keepass2android.view
       _textView = (TextView)ev.FindViewById(Resource.Id.entry_text);
       _textView.TextSize = PrefsUtil.GetListTextSize(groupActivity);
 
-      Database db = App.Kp2a.FindDatabaseForElement(pw);
+      Database db = App.Kp2a.TryFindDatabaseForElement(pw);
 
-      ev.FindViewById(Resource.Id.entry_icon_bkg).Visibility = db.DrawableFactory.IsWhiteIconSet ? ViewStates.Visible : ViewStates.Gone;
+      ev.FindViewById(Resource.Id.entry_icon_bkg).Visibility = db?.DrawableFactory.IsWhiteIconSet == true ? ViewStates.Visible : ViewStates.Gone;
 
       _textviewDetails = (TextView)ev.FindViewById(Resource.Id.entry_text_detail);
       _textviewDetails.TextSize = PrefsUtil.GetListDetailTextSize(groupActivity);

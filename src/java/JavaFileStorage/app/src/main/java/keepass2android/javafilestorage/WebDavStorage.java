@@ -32,6 +32,7 @@ import com.burgstaller.okhttp.basic.BasicAuthenticator;
 import com.burgstaller.okhttp.digest.CachingAuthenticator;
 import com.burgstaller.okhttp.digest.DigestAuthenticator;
 
+import okhttp3.HttpUrl;
 import okhttp3.Interceptor;
 import okhttp3.Response;
 import okhttp3.Request;
@@ -54,6 +55,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeUnit;
@@ -108,20 +110,57 @@ public class WebDavStorage extends JavaFileStorageBase {
 
         String scheme = filename.substring(0, filename.indexOf("://"));
         filename = filename.substring(scheme.length() + 3);
-        int idxAt = filename.indexOf('@');
+        int idxAt = indexOfCredentialSeparator(filename);
         if (idxAt >= 0)
         {
             String userPwd = filename.substring(0, idxAt);
             int idxColon = userPwd.indexOf(":");
-            if (idxColon >= 0);
+            if (idxColon >= 0)
             {
                 ci.username = decode(userPwd.substring(0, idxColon));
                 ci.password = decode(userPwd.substring(idxColon + 1));
             }
+            filename = filename.substring(idxAt + 1);
         }
 
-        ci.URL = scheme + "://" +filename.substring(filename.indexOf('@') + 1);
+        ci.URL = scheme + "://" + filename;
         return ci;
+    }
+
+    /**
+     * Index of the '@' which separates the credentials from the host, or -1 if there are none.
+     * Only the authority is searched, so an '@' inside the path (e.g. Synology's "@eaDir" folders)
+     * is not mistaken for that separator, and the last '@' wins so that an unencoded '@' in a
+     * legacy username doesn't cut the credentials short.
+     * @param urlWithoutScheme the URL with the leading "scheme://" already removed
+     */
+    private static int indexOfCredentialSeparator(String urlWithoutScheme)
+    {
+        int endOfAuthority = urlWithoutScheme.length();
+        for (int i = 0; i < urlWithoutScheme.length(); i++)
+        {
+            char c = urlWithoutScheme.charAt(i);
+            if ((c == '/') || (c == '?') || (c == '#'))
+            {
+                endOfAuthority = i;
+                break;
+            }
+        }
+        return urlWithoutScheme.lastIndexOf('@', endOfAuthority - 1);
+    }
+
+    /**
+     * The "scheme://credentials@" prefix of the given URL, or null if it doesn't contain credentials.
+     */
+    private static String getCredentialPrefix(String url)
+    {
+        int idxScheme = url.indexOf("://");
+        if (idxScheme < 0)
+            return null;
+        int idxAt = indexOfCredentialSeparator(url.substring(idxScheme + 3));
+        if (idxAt < 0)
+            return null;
+        return url.substring(0, idxScheme + 3 + idxAt + 1);
     }
 
 
@@ -167,7 +206,8 @@ public class WebDavStorage extends JavaFileStorageBase {
 
     private OkHttpClient getClient(ConnectionInfo ci) throws NoSuchAlgorithmException, KeyManagementException, KeyStoreException, IOException {
 
-        if (ci.URL.startsWith("http://") && !PreferenceManager.getDefaultSharedPreferences(appContext).getBoolean("permit_cleartext_traffic", false))
+        //compare case insensitive: the scheme may be stored as e.g. "HTTP://" and must not slip through
+        if (ci.URL.toLowerCase(Locale.ROOT).startsWith("http://") && !PreferenceManager.getDefaultSharedPreferences(appContext).getBoolean("permit_cleartext_traffic", false))
         {
             throw new IOException("Cleartext HTTP is disabled by user preference. Go to app settings/File handling if you really want to use HTTP.");
         }
@@ -188,6 +228,12 @@ public class WebDavStorage extends JavaFileStorageBase {
 
         builder = builder.authenticator(new CachingAuthenticatorDecorator(authenticator, authCache))
                 .addInterceptor(new AuthenticationCacheInterceptor(authCache));
+
+        //Set the timeouts for every client. without this, okhttp's defaults of 10 seconds apply. 
+        builder.connectTimeout(25, TimeUnit.SECONDS);
+        builder.readTimeout(60, TimeUnit.SECONDS);
+        builder.writeTimeout(60, TimeUnit.SECONDS);
+
         if ((mCertificateErrorHandler != null) && (!mCertificateErrorHandler.alwaysFailOnValidationError())) {
 
 
@@ -208,11 +254,6 @@ public class WebDavStorage extends JavaFileStorageBase {
 
             builder = builder.sslSocketFactory(sslSocketFactory, trustManager)
                              .hostnameVerifier(new DecoratedHostnameVerifier(OkHostnameVerifier.INSTANCE, mCertificateErrorHandler));
-
-
-            builder.connectTimeout(25, TimeUnit.SECONDS);
-            builder.readTimeout(25, TimeUnit.SECONDS);
-            builder.writeTimeout(25, TimeUnit.SECONDS);
         }
 
 
@@ -227,22 +268,17 @@ public class WebDavStorage extends JavaFileStorageBase {
         ConnectionInfo sourceCi = splitStringToConnectionInfo(sourcePath);
         ConnectionInfo destinationCi = splitStringToConnectionInfo(destinationPath);
 
+        //The Destination header must be a valid URI and okhttp rejects header values outside
+        //0x20..0x7e, so a path with non-ascii characters would throw here (issue #3030). Let okhttp
+        //canonicalize it: that is the same encoding it applies to the request URL below, it percent
+        //encodes non-ascii characters and spaces, and it leaves already encoded paths untouched.
+        String destinationUrl = HttpUrl.get(destinationCi.URL).toString();
+
         Request.Builder requestBuilder = new Request.Builder()
                 .url(new URL(sourceCi.URL))
                 .method("MOVE", null) // "MOVE" is the HTTP method
-                .header("Destination", destinationCi.URL); // New URI for the resource
+                .header("Destination", destinationUrl); // New URI for the resource
 
-        // Use delete-then-move strategy to avoid HTTP 409 conflicts
-        if (overwrite) {
-            try {
-                // Try to delete the destination file first if it exists
-                deleteFileIfExists(destinationCi);
-            } catch (Exception e) {
-                // Ignore deletion errors - the file might not exist or we might not have permission
-                // The MOVE operation will fail if the destination can't be overwritten
-                Log.d("WebDavStorage", "Failed to delete destination file before move (this may be normal): " + e.getMessage());
-            }
-        }
 
         // Add Overwrite header (but don't rely on it solely)
         if (overwrite) {
@@ -253,45 +289,48 @@ public class WebDavStorage extends JavaFileStorageBase {
 
         Request request = requestBuilder.build();
 
+        int statusCode;
+        String responseMessage;
         Response response = getClient(sourceCi).newCall(request).execute();
-
-        // Check the status code
-        if (response.isSuccessful()) {
+        try {
             // WebDAV MOVE can return 201 (Created) if a new resource was created at dest,
             // or 204 (No Content) if moved to a pre-existing destination (e.g., just renamed).
             // A 200 OK might also be returned by some servers, though 201/204 are more common.
-
+            if (response.isSuccessful())
+                return;
+            statusCode = response.code();
+            responseMessage = response.message();
+        } finally {
+            response.close();
         }
-        else
-        {
-            int statusCode = response.code();
-            String errorMessage = "Rename/Move failed for " + sourceCi.URL + " to " + destinationCi.URL + ": " + statusCode + " " + response.message();
 
-            // If we get a 409 conflict and overwrite is true, try retry with enhanced cleanup
-            if (overwrite && statusCode == 409) {
+        String errorMessage = "Rename/Move failed for " + sourceCi.URL + " to " + destinationUrl + ": " + statusCode + " " + responseMessage;
+
+        if (overwrite && ((statusCode == 409) || (statusCode == 412))) {
+            // Only now, with the destination identified as the obstacle, delete it and move again:
+            // 409 is reported by servers which refuse to overwrite an existing destination even with
+            // Overwrite: T (see issue #3078), 412 is the status RFC 4918 defines for that case. Any
+            // other failure is left alone so that the existing destination file survives it.
+            try {
+                deleteFileIfExists(destinationCi);
+                // Small delay to ensure server processes the deletion
+                Thread.sleep(100);
+
+                // Retry the MOVE operation
+                Response retryResponse = getClient(sourceCi).newCall(request).execute();
                 try {
-                    response.close();
-                    // Force delete destination and retry
-                    deleteFileIfExists(destinationCi);
-                    // Small delay to ensure server processes the deletion
-                    Thread.sleep(100);
-
-                    // Retry the MOVE operation
-                    Response retryResponse = getClient(sourceCi).newCall(request).execute();
-                    if (retryResponse.isSuccessful()) {
-                        retryResponse.close();
+                    if (retryResponse.isSuccessful())
                         return; // Success on retry
-                    } else {
-                        errorMessage = "Rename/Move failed even after retry for " + sourceCi.URL + " to " + destinationCi.URL + ": " + retryResponse.code() + " " + retryResponse.message();
-                        retryResponse.close();
-                    }
-                } catch (Exception retryException) {
-                    errorMessage = "Rename/Move failed and retry attempt also failed: " + errorMessage + " (Retry error: " + retryException.getMessage() + ")";
+                    errorMessage = "Rename/Move failed even after deleting the destination for " + sourceCi.URL + " to " + destinationUrl + ": " + retryResponse.code() + " " + retryResponse.message();
+                } finally {
+                    retryResponse.close();
                 }
+            } catch (Exception retryException) {
+                errorMessage = "Rename/Move failed and retry attempt also failed: " + errorMessage + " (Retry error: " + retryException.getMessage() + ")";
             }
-
-            throw new Exception(errorMessage);
         }
+
+        throw new Exception(errorMessage);
     }
 
     /**
@@ -389,9 +428,40 @@ public class WebDavStorage extends JavaFileStorageBase {
 
         if (writeTransactional)
         {
-            String randomSuffix = ".tmp." + generateRandomHexString(8);
-            uploadFile(path + randomSuffix, data, false);
-            renameOrMoveWebDavResource(path+randomSuffix, path, true);
+            // Generate a unique temporary file suffix. Don't separate it with dots: Apache's
+            // mod_negotiation (Options MultiViews) strips unknown extensions from the right, so
+            // "file.tmp.abc12345.kdbx" is reduced to the base name "file" and the request is then
+            // resolved against "file.kdbx" instead, which fails with "none could be negotiated".
+            String tempSuffix = "_tmp_" + generateRandomHexString(8);
+            String tempPath;
+
+            // Preserve the original file extension for WebDAV providers that don't support
+            // changing extensions. Insert temp suffix before the extension instead of after it.
+            // Example: "file.kdbx" -> "file_tmp_abc12345.kdbx" (instead of "file.kdbx.tmp.abc12345")
+            int lastDot = path.lastIndexOf('.');
+            int lastSlash = path.lastIndexOf('/');
+            if (lastDot > lastSlash && lastDot >= 0) {
+                // File has an extension: insert temp suffix before the extension
+                tempPath = path.substring(0, lastDot) + tempSuffix + path.substring(lastDot);
+            } else {
+                // No extension: append temp suffix at the end
+                tempPath = path + tempSuffix;
+            }
+            long startUpload = System.currentTimeMillis();
+            try {
+                uploadFile(tempPath, data, false);
+            } finally {
+                logDebug("WebDav transaction: upload of " + data.length + " bytes took "
+                        + (System.currentTimeMillis() - startUpload) + "ms");
+            }
+
+            long startMove = System.currentTimeMillis();
+            try {
+                renameOrMoveWebDavResource(tempPath, path, true);
+            } finally {
+                logDebug("WebDav transaction: move took "
+                        + (System.currentTimeMillis() - startMove) + "ms");
+            }
             return;
         }
 
@@ -548,10 +618,11 @@ public class WebDavStorage extends JavaFileStorageBase {
                         //relative path:
                         e.path = buildPathFromHref(parentPath, r.href);
                     }
-                    if ( (parentPath.indexOf("@") != -1) && (e.path.indexOf("@") == -1))
+                    String credentialPrefix = getCredentialPrefix(parentPath);
+                    if ((credentialPrefix != null) && (getCredentialPrefix(e.path) == null))
                     {
                         //username/password not contained in .href response. Add it back from parentPath:
-                        e.path = parentPath.substring(0, parentPath.indexOf("@")+1) + e.path.substring(e.path.indexOf("://")+3);
+                        e.path = credentialPrefix + e.path.substring(e.path.indexOf("://")+3);
                     }
 
                     if ((depth == 1) && e.isDirectory)
@@ -725,11 +796,12 @@ public class WebDavStorage extends JavaFileStorageBase {
             ConnectionInfo ci = splitStringToConnectionInfo(path);
             try
             {
-                return java.net.URLDecoder.decode(ci.URL, StandardCharsets.UTF_8);
+                // don't use StandardCharsets.UTF_8, this is not compatible with older Android versions.
+                return java.net.URLDecoder.decode(ci.URL, "UTF-8");
             }
             catch (Exception e)
             {
-                return  ci.URL;
+                return ci.URL;
             }
         }
         catch (Exception e)

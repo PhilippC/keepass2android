@@ -707,10 +707,13 @@
   
    • Assegura\'t que has introduït la contrasenya correcta. Utilitzar la icona d\'ull per mostrar la contrasenya introduïda.\n
    • Assegura\'t que has seleccionat el tipus de contrasenya correcta. Assegureu-vos que correspongui el tipus utilitzada en la creació de la base de dades.\n
-   • Assegura\'t que has seleccionat l\'arxiu de base de dades correcte.</string>
-  <string name="HintLocalBackupInvalidCompositeKey">    \n 
+   • Assegura\'t que has seleccionat l\'arxiu de base de dades correcte.
+</string>
+  <string name="HintLocalBackupInvalidCompositeKey">
+    \n 
  • Suggeriment: si penses que la base de dades podria estar corrupte o no recordes la clau mestra després de modificar-lo, pot provar amb l\'última versió d\'arxiu obert satisfactòriament fent clic \"%1$s\" i seleccionant la còpia de seguretat local.</string>
-  <string name="HintLocalBackupOtherError">    \n
+  <string name="HintLocalBackupOtherError">
+    \n
     • Suggeriment: Keepass2Android ha desat l\'última versió del fitxer obert correctament a l\'emmagatzematge intern. Pots obrir-lo tocant \"%1$s\" i sel.leccionant la còpia de seguretat local.
   </string>
   <string name="CorruptDatabaseHelp">L\'arxiu està corrupte. \n 
@@ -747,7 +750,8 @@
   <string name="EntryChannel_name">Notificacions de les entrades</string>
   <string name="EntryChannel_desc">Notificació per simplificar l\'accés a l\'entrada seleccionada actualment.</string>
   <string name="BackgroundSyncChannel_name">Operació de sincronització</string>
-  <string name="BackgroundSyncChannel_desc">Notificació per indicar que una sincronització es fa en segon pla.</string>
+  <string name="BackgroundSyncChannel_desc">
+Notificació per indicar que una sincronització es fa en segon pla.</string>
   <string name="CloseDbAfterFailedAttempts">Tanca la base de dades després de tres intents fallits de desbloqueig biomètric.</string>
   <string name="hint_smb_credentials">Si vols accedir a fitxers des del teu equip Windows personal, utilitza el nom de l\'equip o l\'adreça IP local com a URL del host; introdueix el nom de l\'equip com a domini i l\'inici de sessió de Windows (sovint igual que el teu compte de Microsoft) com a nom d\'usuari i contrasenya.</string>
   <string name="WarnFingerprintInvalidated">Atenció! L\'autenticació biomètrica pot ser invalidada per Android, p. ex. després d\'afegir una nova empremta dactilar en la configuració del dispositiu. Esteu segur de conèixer sempre com desbloquejar amb la contrasenya mestra!</string>
@@ -759,6 +763,8 @@
   <string name="cleartextTrafficPermitted_summary">Les connexions HTTP no són segures. Només activa-ho si tens altres mesures de seguretat implementades.</string>
   <string-array name="ChangeLog_1_15_net">
     <item></item>
+    <item>Improvements to OneDrive Authentication</item>
+    <item>Minor bug fixes</item>
   </string-array>
   <string-array name="ChangeLog_1_15">
     <item>Sincronització en segon pla afegida: Keepass2Android ara utilitza la còpia en memòria cau interna de la base de dades per carregar i desar per fer aquestes operacions més ràpides. Després d\'això, s\'inicia la sincronització amb la base de dades remota.</item>
@@ -878,7 +884,8 @@
     <item>Correcció d\'errors</item>
     <item>Correcció d\'errors</item>
   </string-array>
-  <string name="ChangeLog_1_07b">    Version 1.07b\n
+  <string name="ChangeLog_1_07b">
+    Version 1.07b\n
     * Millora del rendiment d’Argon2 amb una implementació nativa (gràcies a Chih-Hsuan Yen!)\n
     * Permet desactivar l’empremta digital tocant la icona corresponent (evita problemes amb lectors d’empremta sota la pantalla, gràcies a marcoDallas!)\n
     * Es restaura la posició del cursor en canviar la visibilitat de la contrasenya (gràcies a DDoSolitary!)\n
@@ -887,7 +894,8 @@
     * Nova implementació d’OneDrive: inclou suport per a OneDrive for Business, fitxers compartits, àmbits d’accés seleccionables, diversos comptes i correccions en l’accés fora de línia\n
     * Correccions d’errors
   </string>
-  <string name="ChangeLog_1_07">    Version 1.07\n
+  <string name="ChangeLog_1_07">
+    Version 1.07\n
     * Correccions per evitar tancaments inesperats a Android 9 de Samsung\n
     * Permet obrir més d’una base de dades, compatible amb KeeAutoExec\n
     * SFTP: permet l’autenticació amb clau pública i comprova els canvis en la clau del servidor\n
@@ -898,15 +906,19 @@
     * SSL: confiança en certificats d’usuari\n
     * Millores a l’autocompletar, ara compatible amb Firefox i amb opció de reduir finestres emergents\n
     * Correccions d’errors\n
-  </string>
-  <string name="ChangeLog_1_06">    Version 1.06\n
+  
+</string>
+  <string name="ChangeLog_1_06">
+    Version 1.06\n
     * Es canvia a ykDroid en lloc de YubiChallenge com a app per al Challenge-Response de YubiKey.\n
     * S’afegeix suport per al Challenge-Response a l’estil KeePassXC. Nota: el format de la base de dades ha de ser KDBX4.\n
     * No es carreguen fitxers de la paperera des de Google Drive.\n
     * Es canvia la implementació TLS per a FTPS i s’afegeix una solució alternativa per a un error de JSch amb servidors que admeten gssapi-with-mic.\n
     * Correccions d’errors\n
-  </string>
-  <string name="ChangeLog_1_05">    Versió 1.05\n
+  
+</string>
+  <string name="ChangeLog_1_05">
+    Versió 1.05\n
     * S’utilitzen canals de notificació a Android 8, que permeten configurar-les des dels ajustos del sistema\n
     * Es mostra la icona de l’entrada a la notificació\n
     * S’utilitzen icones adaptatives a Android 8 i una icona d’inici rodona a Android 7\n
@@ -920,22 +932,27 @@
     * Permet desactivar els suggeriments d’autocompletar\n
     * Es corregeix una filtració de dades a logcat\n
     * Correccions d’errors\n
-  </string>
-  <string name="ChangeLog_1_04b">Versió 1.04b\n
+  
+</string>
+  <string name="ChangeLog_1_04b">
+Versió 1.04b\n
     * S’evita un tancament inesperat quan l’usuari intenta activar l’autocompletar en dispositius Huawei.\n
   </string>
-  <string name="ChangeLog_1_04">    Versió 1.04\n
+  <string name="ChangeLog_1_04">
+    Versió 1.04\n
     * S’afegeix el servei d’autocompletar per a Android 8.0 i versions posteriors.\n
     * Biblioteques, eines de compilació i versió del Target SDK actualitzades.\n
   </string>
-  <string name="ChangeLog_1_03">    Versió 1.03\n
+  <string name="ChangeLog_1_03">
+    Versió 1.03\n
     * Es retira el servei d’accessibilitat per a l’autocompletar, tal com sol·licita Google. Consulta els ajustos d’accés a contrasenyes per trobar un connector que substitueixi la funcionalitat anterior.\n
     * Es recupera l’ús d’apps de tercers com a opció d’emmagatzematge.\n
     * Visualització integrada d’imatges adjuntes sense transferir-les a altres apps.\n
     * OkHttp actualitzat per corregir problemes amb algunes connexions.\n
     * Suport per a entrades KeeTrayTOTP, ara també compatible amb entrades de Steam.\n
   </string>
-  <string name="ChangeLog_1_02">    Versió 1.02\n
+  <string name="ChangeLog_1_02">
+    Versió 1.02\n
     * Diverses millores de seguretat. Moltes gràcies per l’informe de seguretat i per la col·laboració.\n
     * Suport per a KeyboardSwapPlugin a les opcions d’accés a contrasenyes, que permet canviar automàticament el mètode d’entrada en dispositius sense root. Gràcies a Mishaal Rahman d’XDA-Developers per fer-ho possible.\n
     * Correcció del servei d’accessibilitat amb versions recents de Chrome.\n
@@ -945,22 +962,26 @@
     * Es retira el sistema d’informes d’errors a través de Xamarin Insights.\n
     * Eines de compilació actualitzades.\n
   </string>
-  <string name="ChangeLog_1_01g">    Versió 1.01-g\n
+  <string name="ChangeLog_1_01g">
+    Versió 1.01-g\n
     * Correcció d’un tancament inesperat en intentar treballar sense connexió.\n
     * Correcció d’una codificació incorrecta de credencials FTP(S).\n
     * Correcció de tancaments en utilitzar OneDrive en versions antigues d’Android.\n
     * Les hores es mostren com a hora local a la pantalla d’entrada.\n
   </string>
-  <string name="ChangeLog_1_01d">    Versió 1.01-d\n
+  <string name="ChangeLog_1_01d">
+    Versió 1.01-d\n
     * Correcció del llistat de fitxers a OneDrive.\n
     * Permet ignorar errors de certificats també quan falla la verificació del nom del servidor, no recomanat per a ús en producció.\n
     * Correcció d’errors ocasionals del Desbloqueig Ràpid tot i introduir el codi correcte.\n
   </string>
-  <string name="ChangeLog_0_9_8c">    Versió 0.9.8c\n
+  <string name="ChangeLog_0_9_8c">
+    Versió 0.9.8c\n
     * Correcció d’una vulnerabilitat SSL al Microsoft Live SDK utilitzat per accedir a fitxers a través de OneDrive.\n
     * Correcció d’errors: la versió anterior incloïa dos mètodes d’entrada, un dels quals provocava tancaments.\n
   </string>
-  <string name="ChangeLog_1_01">    Versió 1.01\n
+  <string name="ChangeLog_1_01">
+    Versió 1.01\n
     * S’afegeix suport per al nou format KDBX-4 compatible amb KeePass 2.35, incloent derivació de claus amb Argon2 i xifratge ChaCha20.\n
     * Emmagatzematge WebDav reimplementat, amb navegació de fitxers i suport per a xifratge modern.\n
     * Emmagatzematge FTP reimplementat, amb navegació de fitxers i suport per a xifratge FTPS.\n
@@ -969,13 +990,15 @@
     * S’afegeix suport per a OwnCloud.\n
     * Es demanen permisos d’emmagatzematge abans d’obrir fitxers locals.\n
   </string>
-  <string name="ChangeLog_1_0_0e">    Versió 1.0.0e\n
+  <string name="ChangeLog_1_0_0e">
+    Versió 1.0.0e\n
     * Correcció del Desbloqueig amb empremta digital en dispositius Samsung antics amb Android 6.\n
     * S’afegeix suport natiu per a dispositius x86.\n
     * Permet amagar el teclat virtual durant l’escaneig de l’empremta digital.\n
     * Actualització del sistema de compilació.\n
   </string>
-  <string name="ChangeLog_1_0_0">    Versió 1.0.0\n
+  <string name="ChangeLog_1_0_0">
+    Versió 1.0.0\n
     * Desbloqueig amb empremta digital, requereix Android 6.0 o superior o un dispositiu Samsung.\n
     * S’afegeix el servei d’autocompletar, requereix Android 5.0 o superior.\n
     * S’afegeix suport per a plantilles d’entrades.\n
@@ -988,34 +1011,40 @@
     * Inclou una opció per enviar informes d’errors.\n
     * S’afegeixen missatges d’ajuda en diversos punts.\n
   </string>
-  <string name="ChangeLog_0_9_9">    Versió 0.9.9\n
+  <string name="ChangeLog_0_9_9">
+    Versió 0.9.9\n
     * Redisseny complet de la interfície d’usuari. Moltes gràcies a Stefano Pignataro pel seu suport.\n
     * Permet afegir icones personalitzades.\n
     * Suport per al mode Multi Window en dispositius Samsung.\n
     * S’incrementa el nombre predeterminat de rondes de xifratge per a bases de dades noves.\n
     * Comprovació de claus duplicades als camps addicionals per evitar pèrdua de dades.\n
   </string>
-  <string name="ChangeLog_0_9_9c">    Versió 0.9.9c\n
+  <string name="ChangeLog_0_9_9c">
+    Versió 0.9.9c\n
     * Torna el tema fosc.\n
     * Es poden instal·lar altres paquets d’icones, amb icones d’estil Windows antic disponibles a Play Store.\n
     * S’afegeix una pregunta de confirmació en eliminar elements sense passar per la paperera.\n
     * Correccions d’errors, com una visualització incorrecta de la codificació secreta OTP o una icona d’app errònia en alguns llocs.\n
   </string>
-  <string name="ChangeLog_0_9_8b">   Versió 0.9.8b\n
+  <string name="ChangeLog_0_9_8b">
+   Versió 0.9.8b\n
     * Correccions d’errors: problemes en desar algunes bases de dades, exportació al dispositiu local que no funcionava i bloquejos en seleccionar algunes opcions de preferències.\n
   </string>
-  <string name="ChangeLog_0_9_8">    Versió 0.9.8\n
+  <string name="ChangeLog_0_9_8">
+    Versió 0.9.8\n
     * S’afegeix suport per a l’Storage Access Framework, que permet escriure a la targeta SD i a Google Drive en KP2A Offline.\n
     * Es prova de detectar entrades errònies de l’usuari en introduir URL de WebDAV, com indicar un directori en lloc d’un fitxer.\n
     * Es canvia la tipografia de la contrasenya.\n
     * Permet canviar el compte de Dropbox.\n
     * Correcció d’errors: ara es recorda la contrasenya OTP.\n
   </string>
-  <string name="ChangeLog_0_9_7b">    Versió 0.9.7b\n
+  <string name="ChangeLog_0_9_7b">
+    Versió 0.9.7b\n
     * Traduccions actualitzades.\n
     * Correccions d’errors: faltava la tipografia de la contrasenya a la versió 0.9.7 i l’ordenació per nom no ordenava els grups.\n
   </string>
-  <string name="ChangeLog_0_9_7">    Versió 0.9.7\n
+  <string name="ChangeLog_0_9_7">
+    Versió 0.9.7\n
     * Suport d’escriptura per a bases de dades KeePass 1 (kdb) en fase beta.\n
     * Millora en el retorn al teclat anterior, també funciona en dispositius sense root.\n
     * Suport per a KeeChallenge amb reptes de longitud variable.\n
@@ -1023,7 +1052,8 @@
     * Ordre invers a l’ordenació per data de modificació, ara descendent.\n
     * Correccions d’errors: la vista de notes ara s’actualitza correctament després de canvis, les vistes de contrasenya amaguen correctament la contrasenya, correcció d’errors que permetien afegir una entrada dues vegades i correcció de l’avís de UUID duplicat que es mostrava fins i tot després d’arreglar la base de dades.\n
   </string>
-  <string name="ChangeLog_0_9_6">   Versió 0.9.6\n
+  <string name="ChangeLog_0_9_6">
+   Versió 0.9.6\n
     * Permet importar un fitxer de clau i o un fitxer de base de dades local al directori intern de l’app, consulta els ajustos.\n
     * Permet diferents opcions d’ordenació.\n
     * Millores a les preferències per al canvi automàtic de teclat.\n
@@ -1037,7 +1067,8 @@
     * Recàrrega automàtica de la base de dades en detectar canvis, resol una preocupació de seguretat relacionada amb la revelació de la contrasenya mestra.\n
     * Millora del disseny del teclat petit en polonès i correcció del tema dels ajustos del teclat, gràcies a Wiktor Łaski.\n
   </string>
-  <string name="ChangeLog_0_9_5">    <b>Versió 0.9.5</b>\n
+  <string name="ChangeLog_0_9_5">
+    <b>Versió 0.9.5</b>\n
     * Correccions en la navegació de fitxers, especialment a Android 4.4.\n
     * Correcció de problemes en carregar fitxers kdb de KeePass 1 a Nexus 5 amb Android Lollipop.\n
     * S’afegeix una opció per evitar captures de pantalla i que l’app es mostri a la llista d’apps recents.\n
@@ -1047,7 +1078,8 @@
     * Eines de compilació actualitzades, la mida de l’APK ha augmentat :(\n
     * Havia promès alguns canvis més. Arribaran amb la propera versió, disculpeu. He volgut publicar aquestes correccions com més aviat millor.\n
   </string>
-  <string name="ChangeLog_0_9_4">    <b>Versió 0.9.4</b>\n
+  <string name="ChangeLog_0_9_4">
+    <b>Versió 0.9.4</b>\n
     * S’afegeix suport per a connectors. Consulta els ajustos per saber com obtenir connectors.\n
     * Publicat el connector QR, permet escanejar contrasenyes, mostrar-les com a codi QR i transferir entrades a altres dispositius KP2A.\n
     * Publicat el connector InputStick, permet transferir credencials al PC via Bluetooth, requereix un dispositiu InputStick USB.\n
@@ -1065,18 +1097,23 @@
     * S’afegeix una opció per desactivar el botó de donació.\n
     * La icona de Desbloqueig Ràpid ara s’amaga per defecte en dispositius amb Android 4.2 o superior.\n
   </string>
-  <string name="ChangeLog_0_9_3_r5">    <b>Versió 0.9.3 r5</b>\n
+  <string name="ChangeLog_0_9_3_r5">
+    <b>Versió 0.9.3 r5</b>\n
     * Finalment, s’incorporen correccions de Xamarin: KeePass2Android ara és compatible amb ART a Android 4.4.2.\n
     * Correccions d’errors: sincronització (actualització de la pantalla, comprovació correcta de canvis via HTTP), errors en dispositius Android 2.x, errors a les implementacions d’emmagatzematge de Google Drive i OneDrive, es buida el porta-retalls en tancar la base de dades, error en obrir adjunts i problemes de visualització amb el teclat.\n
-  </string>
-  <string name="ChangeLog_0_9_3">    <b>Versió 0.9.3</b>\n
+  
+
+</string>
+  <string name="ChangeLog_0_9_3">
+    <b>Versió 0.9.3</b>\n
     * Teclat nou amb moltes millores. Consulta els ajustos per personalitzar-lo.\n
     * Suport de només lectura per a kdb, fitxers de KeePass 1. Experimental.\n
     * S’afegeix suport per a SFTP.\n
     * S’afegeix una solució alternativa per a un error d’ART a Android 4.4.2.\n
     * Correccions d’errors.\n
   </string>
-  <string name="ChangeLog_0_9_2">    <b>Versió 0.9.2</b>\n
+  <string name="ChangeLog_0_9_2">
+    <b>Versió 0.9.2</b>\n
     * S’afegeix suport per a OTP, compatible amb el connector OtpKeyProv.\n
     * S’afegeix suport NFC per a OTP des de YubiKey NEO.\n
     * Diverses millores de la interfície d’usuari.\n
@@ -1085,26 +1122,30 @@
     * Millora en la validació de certificats SSL.\n
     * Correccions d’errors.\n
   </string>
-  <string name="ChangeLog_0_9_1">    <b>Versió 0.9.1</b>\n
+  <string name="ChangeLog_0_9_1">
+    <b>Versió 0.9.1</b>\n
     * S’integra suport per a SkyDrive, només a l’edició regular de KeePass2Android.\n
     * Correcció de problemes amb la integració de Google Drive.\n
     * S’afegeix suport per a NTLM.\n
   </string>
-  <string name="ChangeLog_0_9">    <b>Versió 0.9</b>\n
+  <string name="ChangeLog_0_9">
+    <b>Versió 0.9</b>\n
     * S’integra suport per a Dropbox i Google Drive, amb lectura i escriptura de bases de dades, només a l’edició regular de KeePass2Android.\n
     * S’integra un navegador de fitxers propi, basat en android-filechooser de HBA.\n
     * Millora de la interfície d’usuari per crear bases de dades noves.\n
     * S’inclou la tipografia DejaVu Sans Mono per mostrar contrasenyes.\n
     * Correccions d’errors.\n
   </string>
-  <string name="ChangeLog_0_8_6">    <b>Versió 0.8.6</b>\n
+  <string name="ChangeLog_0_8_6">
+    <b>Versió 0.8.6</b>\n
     * Suport per al xifratge Twofish.\n
     * Permet editar grups.\n
     * Permet moure entrades i grups.\n
     * La icona de Desbloqueig Ràpid es pot fer transparent, configurable als ajustos.\n
     * Correccions d’errors.\n
   </string>
-  <string name="ChangeLog_0_8_5">    <b>Versió 0.8.5</b>\n
+  <string name="ChangeLog_0_8_5">
+    <b>Versió 0.8.5</b>\n
     * Els fitxers remots s’emmagatzemen a la memòria cau local de l’app per permetre l’ús sense connexió, inclosa l’edició i la sincronització posterior. Consulta els ajustos.\n
     * Icóna de notificació per visualitzar l’estat de bloqueig de la base de dades, configurable als ajustos.\n
     * Millora en la detecció de l’estat de bloqueig en algunes situacions.\n
@@ -1112,7 +1153,8 @@
     * Es poden afegir entrades al grup arrel.\n
     * Correccions d’errors, incloent la resolució de camps de referència i problemes amb el teclat en dispositius italians i xinesos.\n
   </string>
-  <string name="ChangeLog_0_8_4">    <b>Versió 0.8.4</b>\n
+  <string name="ChangeLog_0_8_4">
+    <b>Versió 0.8.4</b>\n
     * Es detecten i s’integren els canvis externs de la base de dades en desar.\n
     * Millora del rendiment de càrrega.\n
     * Barra de cerca millorada amb suggeriments.\n
@@ -1122,7 +1164,8 @@
     * Gràcies a Alex Vallat per les seves contribucions de codi.\n
     * Gràcies a Niki Hüttner per el nou logotip.\n
   </string>
-  <string name="ChangeLog_0_8_3">    <b>Versió 0.8.3</b>\n
+  <string name="ChangeLog_0_8_3">
+    <b>Versió 0.8.3</b>\n
     * L’índex d’usuari i TAN es mostra a la llista d’entrades, configurable als ajustos.\n
     * Es poden crear entrades si la cerca des del navegador no retorna resultats.\n
     * El teclat KP2A permet cercar credencials per a l’app actual.\n
@@ -1131,15 +1174,18 @@
     * Els marcadors de posició dels camps d’entrada es substitueixen abans de copiar, amb suport per a la majoria de marcadors.\n
     * Correccions menors d’errors.\n
   </string>
-  <string name="ChangeLog_0_8_2">    <b>Versió 0.8.2</b>\n
+  <string name="ChangeLog_0_8_2">
+    <b>Versió 0.8.2</b>\n
     * Suport per a autenticació Digest a WebDAV.\n
     * Correccions d’errors, incloent el gestor de fitxers OI i l’obertura d’URL.\n
   </string>
-  <string name="ChangeLog_0_8_1">    <b>Versió 0.8.1</b>\n
+  <string name="ChangeLog_0_8_1">
+    <b>Versió 0.8.1</b>\n
     * KP2A Offline i Online es poden tornar a instal·lar tots dos.\n
     * S’afegeixen traduccions noves, gràcies a tots els col·laboradors.\n
   </string>
-  <string name="ChangeLog_0_8">    <b>Versió 0.8</b>\n
+  <string name="ChangeLog_0_8">
+    <b>Versió 0.8</b>\n
     * Millora de la interfície d’usuari, especialment en dispositius Android 4.x.\n
     * Permet utilitzar gestors de fitxers específics per seleccionar fitxers existents.\n
     * S’afegeix una manera més segura d’obrir adjunts mitjançant un directori de memòria cau.\n
@@ -1147,12 +1193,14 @@
     * Probablement s’han introduït errors nous :-)\n
   </string>
   <string name="ChangeLog_keptDonate">Estesa possibilitat de donar una cervesa o una altra cosa</string>
-  <string name="ChangeLog_0_7">    <b>Versió 0.7</b>\n
+  <string name="ChangeLog_0_7">
+    <b>Versió 0.7</b>\n
     * Augment de la velocitat de càrrega: les transformacions de clau ara són deu vegades més ràpides.\n
     * S’afegeix el teclat virtual de KeePass2Android. Canvia a aquest teclat per introduir credencials i protegir-te de capturadors de contrasenyes basats en el porta-retalls. Pots desactivar les notificacions del porta-retalls antic als ajustos.\n
     * S’afegeix una opció per convidar a una cervesa o alguna altra cosa, consulta el menú.\n
   </string>
-  <string name="ChangeLog">    <b>Versió 0.6.2</b>\n
+  <string name="ChangeLog">
+    <b>Versió 0.6.2</b>\n
     * Integració amb Google Drive i Dropbox. Utilitza l’app oficial de Google Drive o Dropbox per obrir qualsevol fitxer .kdb. Això obrirà KP2A.\n
     * Diàleg de cerca millorat.\n
     * Millora dels resultats de cerca per a URL compartides amb subdominis.\n
@@ -1282,7 +1330,8 @@
   <string name="permission_location_rationale">El permís d\'ubicació és necessari per llegir el teu Wi-Fi SSID actual. Això és necessari si vols restringir la sincronització en segon pla a certs SSIDs.</string>
   <string name="BackgroundSyncWifiSsids_title">Sincronització en segon pla només per Wi-Fi</string>
   <string name="BackgroundSyncWifiOnly_title">Sincronització en segon pla només per Wi-Fi</string>
-  <string name="BackgroundSyncWifiOnly_summary">Si se selecciona, la sincronització en segon pla només comença quan estàs connectat a Wi-Fi.</string>
+  <string name="BackgroundSyncWifiOnly_summary">
+Si se selecciona, la sincronització en segon pla només comença quan estàs connectat a Wi-Fi.</string>
   <string name="pref_enable_periodic_background_sync_title">Sincronització en segon pla periòdica</string>
   <string name="pref_enable_periodic_background_sync_summary">Si està activat, l\'aplicació sincronitzarà periòdicament les bases de dades desbloquejades. Això respecta la configuració de connexió de xarxa anterior.</string>
   <string name="pref_periodic_background_sync_interval_title">Interval de temps de sincronització periòdica en segon pla</string>
