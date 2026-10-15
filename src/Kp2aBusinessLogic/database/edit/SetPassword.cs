@@ -74,7 +74,7 @@ namespace keepass2android
       DateTime previousMasterKeyChanged = pm.MasterKeyChanged;
       CompositeKey previousKey = pm.MasterKey;
 
-      pm.MasterKeyChanged = DateTime.Now;
+      pm.MasterKeyChanged = DateTime.UtcNow;
       pm.MasterKey = newKey;
 
       // Save Database

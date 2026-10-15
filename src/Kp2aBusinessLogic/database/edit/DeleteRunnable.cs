@@ -284,7 +284,7 @@ namespace keepass2android
       if (pg.Uuid.Equals(pd.EntryTemplatesGroup))
       {
         pd.EntryTemplatesGroup = PwUuid.Zero;
-        pd.EntryTemplatesGroupChanged = DateTime.Now;
+        pd.EntryTemplatesGroupChanged = DateTime.UtcNow;
       }
 
       pgParent.Groups.Remove(pg);
