@@ -57,7 +57,6 @@
     <string name="afc_yesterday">אתמול</string>
     <plurals name="afc_title_choose_directories">
         <item quantity="one">בחר תיקייה...</item>
-        <item quantity="two"></item>
         <item quantity="other">בחר תיקיות…</item>
     </plurals>
 </resources>
