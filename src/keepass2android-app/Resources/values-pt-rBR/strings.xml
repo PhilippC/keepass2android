@@ -375,6 +375,8 @@
   <string name="field_value">Valor do campo</string>
   <string name="protection">Campo protegido</string>
   <string name="add_binary">Adicione o arquivo anexo...</string>
+  <string name="capture_size_small">Pequeno</string>
+  <string name="capture_size_medium">Médio</string>
   <string name="add_extra_string">Adicionar sequência de caracteres adicional</string>
   <string name="configure_totp">Configurar TOPT</string>
   <string name="totp_secret_key">Chave secreta</string>
