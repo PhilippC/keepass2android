@@ -374,6 +374,15 @@
   <string name="field_value">Field value</string>
   <string name="protection">Protected field</string>
   <string name="add_binary">Add file attachment</string>
+  <string name="attach_browse_file">Browse file…</string>
+  <string name="attach_take_photo">Take photo…</string>
+  <string name="capture_photo_title">Take photo</string>
+  <string name="capture_flip_camera">Flip camera</string>
+  <string name="camera_permission_required">Camera permission is required to take a photo.</string>
+  <string name="capture_attachment_size_warning">Select photo size</string>
+  <string name="capture_size_small">Small</string>
+  <string name="capture_size_medium">Medium</string>
+  <string name="capture_size_original">Original</string>
   <string name="add_extra_string">Add additional string</string>
   <string name="configure_totp">Configure TOTP</string>
   <string name="totp_secret_key">Secret key</string>
