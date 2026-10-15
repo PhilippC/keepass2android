@@ -14,10 +14,15 @@
     <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <DefineConstants Condition="'$(Flavor)'=='NoNet'">NO_QR_SCANNER;EXCLUDE_JAVAFILESTORAGE;NoNet</DefineConstants>
-    <!-- NoDonationMenu hides the donate menu option (does not affect the fullscreen donate reminder).
-         Enabled by default, so it also applies to Visual Studio builds; pass -p:NoDonationMenu=false to disable. -->
-    <NoDonationMenu Condition="'$(NoDonationMenu)'==''">true</NoDonationMenu>
-    <DefineConstants Condition="'$(NoDonationMenu)'=='true'">$(DefineConstants);NO_DONATION_MENU</DefineConstants>
+    <!-- DonationMode controls where the donate menu option and the donate link in the changelog lead to
+         (does not affect the fullscreen donate reminder):
+           None:    donate menu option and changelog link are hidden
+           Web:     they open the donation web page (for builds distributed outside of Google Play)
+           Billing: they open the in-app donation screen using Google Play Billing (for the Google Play build)
+         Defaults to None, so it also applies to Visual Studio builds; pass e.g. -p:DonationMode=Web to change. -->
+    <DonationMode Condition="'$(DonationMode)'==''">Web</DonationMode>
+    <DefineConstants Condition="'$(DonationMode)'=='Web'">$(DefineConstants);DONATION_WEB</DefineConstants>
+    <DefineConstants Condition="'$(DonationMode)'=='Billing'">$(DefineConstants);DONATION_BILLING</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Assets\fontawesome-webfont.ttf" />
@@ -767,9 +772,15 @@
     <PackageReference Include="Xamarin.Google.Android.Material" Version="1.12.0.2" />
     <PackageReference Include="Xamarin.Google.Guava" Version="33.4.0.1" />
     <PackageReference Include="Xamarin.GooglePlayServices.Auth" Version="121.3.0.1" Condition="'$(Flavor)'!='NoNet'" />
-    <PackageReference Include="Xamarin.GooglePlayServices.Base" Version="118.5.0.4" Condition="'$(Flavor)'!='NoNet'" />
+    <PackageReference Include="Xamarin.GooglePlayServices.Base" Version="118.5.0.4" Condition="'$(Flavor)'!='NoNet' And '$(DonationMode)'!='Billing'" />
+    <!-- BillingClient requires a newer Play Services Base; keep the old version for the other builds -->
+    <PackageReference Include="Xamarin.GooglePlayServices.Base" Version="118.7.1" Condition="'$(Flavor)'!='NoNet' And '$(DonationMode)'=='Billing'" />
     <PackageReference Include="Xamarin.GooglePlayServices.Code.Scanner" Version="116.1.0.10" Condition="'$(Flavor)'!='NoNet'" />
+    <PackageReference Include="Xamarin.Android.Google.BillingClient" Version="8.0.0" Condition="'$(DonationMode)'=='Billing'" />
   </ItemGroup>
+  <Target Name="ValidateDonationMode" BeforeTargets="BeforeBuild;CollectPackageReferences">
+    <Error Condition="'$(DonationMode)'!='None' And '$(DonationMode)'!='Web' And '$(DonationMode)'!='Billing'" Text="Invalid DonationMode '$(DonationMode)'. Allowed values: None, Web, Billing." />
+  </Target>
   <ItemGroup>
     <ProjectReference Include="..\AndroidFileChooserBinding\AndroidFileChooserBinding.csproj" />
     <ProjectReference Include="..\DropboxBinding\DropboxBinding.csproj" Condition="'$(Flavor)'!='NoNet'" />

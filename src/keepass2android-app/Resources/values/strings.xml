@@ -546,6 +546,17 @@
   <string name="donate_missedbday_question">Oh, you missed my birthday on May 10th! If you like this app, why not send me some birthday greetings and a little birthday gift? It is not yet too late to make me happy! :-)</string>
   <string name="ok_donate">Tell me more!</string>
   <string name="no_thanks">No, I don\'t like it that much</string>
+  <string name="donate_title">Donate</string>
+  <string name="donate_intro">If you would meet me on the street, would you invite me to a beer? Why not do that virtually?</string>
+  <string name="donate_intro2">You think I shouldn\'t develop and drink a beer? What about a coke and some fries?</string>
+  <string name="donate_oktoberfest_beer">Oktoberfest beer</string>
+  <string name="donate_small_beer">Small beer</string>
+  <string name="donate_coke">Coke and fries</string>
+  <string name="donate_product_with_price">%1$s (%2$s)</string>
+  <string name="donate_thank_you">Thank you very much :-) Did you know that you can hide the donation option in the display settings? If it is greyed out, please continue using Keepass2Android for a little while until it is enabled.</string>
+  <string name="donate_pending">Thank you! Your donation will be completed as soon as the payment has been processed.</string>
+  <string name="donate_billing_unavailable">Donations through Google Play are currently not available: %1$s</string>
+  <string name="donate_failed">The donation could not be completed: %1$s</string>
   <string name="enter_http_login_title">Enter WebDav login data:</string>
   <string name="enter_smb_login_title">Enter Samba login data:</string>
   <string name="hint_http_url">URL of folder or file (ex: mycloud.me.com/webdav/)</string>
