@@ -373,6 +373,8 @@
   <string name="field_value">Valor del camp</string>
   <string name="protection">Camp protegit</string>
   <string name="add_binary">Afegir el fitxer adjunt...</string>
+  <string name="capture_size_small">Petita</string>
+  <string name="capture_size_medium">Mitjana</string>
   <string name="add_extra_string">Afegir la cadena addicional</string>
   <string name="configure_totp">Configura TOTP</string>
   <string name="totp_secret_key">Clau secreta</string>
