@@ -366,6 +366,8 @@
   <string name="field_value">Veldwaarde</string>
   <string name="protection">Beveiligd veld</string>
   <string name="add_binary">Bestandsbijlage toevoegen...</string>
+  <string name="capture_size_small">Klein</string>
+  <string name="capture_size_medium">Gemiddeld</string>
   <string name="add_extra_string">Toevoegen extra waarde</string>
   <string name="configure_totp">TOTP configureren</string>
   <string name="totp_secret_key">Geheime sleutel</string>
