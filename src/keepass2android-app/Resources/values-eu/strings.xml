@@ -251,6 +251,8 @@
   <string name="field_value">Eremuaren balioa</string>
   <string name="protection">Babestutako eremua</string>
   <string name="add_binary">Gehitu erantsitako fitzategia</string>
+  <string name="capture_size_small">Txikia</string>
+  <string name="capture_size_medium">Ertaina</string>
   <string name="add_extra_string">Gehitu kate gehigarria</string>
   <string name="delete_extra_string">Ezabatu kate gehigarria</string>
   <string name="database_loaded_quickunlock_enabled">%1$s: Blokeatuta. QuickUnlock gaituta.</string>
