@@ -255,6 +255,9 @@
   <string name="space">Utrymme</string>
   <string name="search_label">Sök</string>
   <string name="show_password">Visa lösenord</string>
+  <string name="hide_password">Dölj lösenord</string>
+  <string name="browse">Bläddra</string>
+  <string name="selected">Markerade</string>
   <string name="sort_menu">Sortera efter...</string>
   <string name="sort_name">Sortera efter namn</string>
   <string name="sort_db">Sortera efter datum</string>
@@ -364,6 +367,8 @@
   <string name="field_value">Fältvärde</string>
   <string name="protection">Skyddat fält</string>
   <string name="add_binary">Bifoga fil</string>
+  <string name="attach_take_photo">Ta foto…</string>
+  <string name="capture_photo_title">Ta foto</string>
   <string name="capture_size_small">Liten</string>
   <string name="capture_size_medium">Medium</string>
   <string name="add_extra_string">Lägg till extra sträng</string>
