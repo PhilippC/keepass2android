@@ -369,8 +369,10 @@
   <string name="add_binary">Bifoga fil</string>
   <string name="attach_take_photo">Ta foto…</string>
   <string name="capture_photo_title">Ta foto</string>
+  <string name="capture_flip_camera">Vänd kameran</string>
   <string name="capture_size_small">Liten</string>
   <string name="capture_size_medium">Medium</string>
+  <string name="capture_size_original">Original</string>
   <string name="add_extra_string">Lägg till extra sträng</string>
   <string name="configure_totp">Konfigurera TOTP</string>
   <string name="totp_secret_key">Hemlig nyckel</string>
@@ -411,6 +413,7 @@
   <string name="show_local_backups">Visa lokala säkerhetskopior</string>
   <string name="AcceptAllServerCertificates_title">SSL-certifikat</string>
   <string name="AcceptAllServerCertificates_summary">Definiera beteendet när certifikatvalidering misslyckas. Obs: du kan installera certifikat på enheten om valideringen misslyckas!</string>
+  <string name="OneDriveBrokerMode_title"></string>
   <string name="ClearOfflineCache_title">Rensa cache?</string>
   <string name="ClearOfflineCache_question">Detta tar bort alla cachede databasfiler. Alla ändringar du gjort medan du är offline som har ännu inte synkroniserats kommer att gå förlorade! Vill du fortsätta?</string>
   <string name="CheckForFileChangesOnSave_title">Kontrollera om ändrad</string>
