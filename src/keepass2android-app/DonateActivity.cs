@@ -137,6 +137,8 @@ namespace keepass2android
         SetBusy(false);
         if (!products.Any(p => _buttonIdByProductId.ContainsKey(p.ProductId)))
           ShowStatus(GetString(Resource.String.donate_billing_unavailable, "no products found"));
+        else // an earlier, transient connection error is obsolete now
+          FindViewById(Resource.Id.donate_status)!.Visibility = ViewStates.Gone;
       });
     }
 

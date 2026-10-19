@@ -84,7 +84,10 @@ namespace keepass2android
     {
       if (result.ResponseCode != BillingResponseCode.Ok)
       {
-        _listener.OnBillingUnavailable(result);
+        Kp2aLog.Log("Donation billing setup failed: " + result.ResponseCode + " " + result.DebugMessage);
+        // a second connection attempt may report "already connecting" although the first one succeeds
+        if (!_billingClient.IsReady)
+          _listener.OnBillingUnavailable(result);
         return;
       }
       QueryProducts();
