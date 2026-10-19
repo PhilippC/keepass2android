@@ -16,8 +16,8 @@
    along with Keepass2Android.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-      android:versionCode="254"
-      android:versionName="1.15-r6"
+      android:versionCode="255"
+      android:versionName="1.16-norelease1"
       package="keepass2android.keepass2android"
       xmlns:tools="http://schemas.android.com/tools"
       android:installLocation="auto">
