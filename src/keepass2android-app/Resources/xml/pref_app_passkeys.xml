@@ -35,4 +35,13 @@
       app:iconSpaceReserved="false" />
   </PreferenceCategory>
 
+  <PreferenceCategory
+    android:title="@string/pref_passkeys_browsers_category_title">
+    <Preference
+      android:key="@string/passkeys_privileged_apps_key"
+      android:title="@string/passkeys_privileged_apps_title"
+      android:summary="@string/passkeys_privileged_apps_summary"
+      app:iconSpaceReserved="false" />
+  </PreferenceCategory>
+
 </PreferenceScreen>

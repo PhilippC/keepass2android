@@ -1406,5 +1406,16 @@
   <string name="passkeys_force_user_verification_when_preferred_summary">When a site requests \"preferred\" user verification, still require biometric or device lock before using a passkey.</string>
   <string name="passkey_user_verification_required_title">User verification required</string>
   <string name="passkey_user_verification_required_description">Confirm your identity to use this passkey.</string>
+
+  <!-- Passkey trusted (privileged) browsers -->
+  <string name="pref_passkeys_browsers_category_title">Browsers</string>
+  <string name="passkeys_privileged_apps_key" translatable="false">passkeys_privileged_apps_key</string>
+  <string name="passkeys_privileged_apps_title">Trusted browsers</string>
+  <string name="passkeys_privileged_apps_summary">Browsers which may use passkeys for websites, in addition to the built-in list of known browsers. Only select browsers you trust: a trusted browser can use your passkeys for any website.</string>
+  <string name="passkeys_privileged_apps_none">There are no browsers installed which are not already in the built-in list.</string>
+  <string name="passkeys_privileged_apps_not_installed">%1$s (not installed)</string>
+  <string name="passkey_unknown_browser_title">Unknown browser</string>
+  <string name="passkey_unknown_browser_message">%1$s (%2$s) wants to use a passkey for a website, but it is not in the list of known browsers.\n\nOnly trust this browser if you are sure it is legitimate: a trusted browser can use your passkeys for any website.\n\nSigning certificate (SHA-256):\n%3$s</string>
+  <string name="passkey_unknown_browser_add">Trust browser</string>
     
 </resources>

@@ -730,6 +730,67 @@ namespace keepass2android
               }
             );
           };
+
+        var privilegedAppsPref = FindPreference(GetString(Resource.String.passkeys_privileged_apps_key));
+        if (privilegedAppsPref != null)
+        {
+          // reading signing certificates of installed apps requires API 28
+          privilegedAppsPref.Visible = OperatingSystem.IsAndroidVersionAtLeast(28);
+          privilegedAppsPref.PreferenceClick += (_, _) => ShowPrivilegedAppsDialog();
+        }
+      }
+
+      /// <summary>
+      /// Lets the user select which browsers are in the custom privileged apps allowlist.
+      /// Shows the browsers already in the custom list (even if no longer installed) and all installed browsers
+      /// which are not contained in the bundled allowlists.
+      /// </summary>
+      private void ShowPrivilegedAppsDialog()
+      {
+        var context = RequireContext();
+        var bundledApps = PrivilegedAppsAllowlist.GetBundledApps(context);
+        var customApps = PrivilegedAppsAllowlist.GetCustomApps(context);
+        var installedBrowsers = PrivilegedAppsAllowlist.GetInstalledBrowserPackages(context);
+
+        var candidates = customApps.Select(app => (App: app, Selected: true)).ToList();
+        foreach (var packageName in installedBrowsers)
+        {
+          if (candidates.Any(c => c.App.PackageName == packageName))
+            continue;
+          var app = PrivilegedAppsAllowlist.GetInstalledApp(context, packageName);
+          if (app == null || bundledApps.Any(bundled => bundled.Matches(app)))
+            continue;
+          candidates.Add((app, false));
+        }
+
+        var builder = new MaterialAlertDialogBuilder(context);
+        builder.SetTitle(GetString(Resource.String.passkeys_privileged_apps_title));
+        if (candidates.Count == 0)
+        {
+          builder.SetMessage(GetString(Resource.String.passkeys_privileged_apps_none));
+          builder.SetPositiveButton(GetString(Android.Resource.String.Ok), (_, _) => { });
+          builder.Show();
+          return;
+        }
+
+        string GetLabel(PrivilegedApp app)
+        {
+          if (!installedBrowsers.Contains(app.PackageName))
+            return GetString(Resource.String.passkeys_privileged_apps_not_installed, app.PackageName);
+          var label = PrivilegedAppsAllowlist.GetAppLabel(context, app.PackageName);
+          return label == app.PackageName ? label : $"{label} ({app.PackageName})";
+        }
+
+        candidates = candidates.OrderBy(c => GetLabel(c.App), StringComparer.CurrentCultureIgnoreCase).ToList();
+        var selected = candidates.Select(c => c.Selected).ToArray();
+        builder.SetMultiChoiceItems(candidates.Select(c => GetLabel(c.App)).ToArray(), selected,
+          (_, args) => selected[args.Which] = args.IsChecked);
+        builder.SetPositiveButton(GetString(Android.Resource.String.Ok), (_, _) =>
+        {
+          PrivilegedAppsAllowlist.SaveCustomApps(context, candidates.Where((_, i) => selected[i]).Select(c => c.App));
+        });
+        builder.SetNegativeButton(GetString(Android.Resource.String.Cancel), (_, _) => { });
+        builder.Show();
       }
 
     }

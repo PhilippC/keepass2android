@@ -57,6 +57,13 @@
     <intent>
       <action android:name="android.intent.action.VIEW" />
     </intent>
+
+    <!-- Browsers, see PrivilegedAppsAllowlist.GetInstalledBrowserPackages (trusted browsers for passkeys) -->
+    <intent>
+      <action android:name="android.intent.action.VIEW" />
+      <category android:name="android.intent.category.BROWSABLE" />
+      <data android:scheme="https" />
+    </intent>
   </queries>
   <uses-sdk android:minSdkVersion="21" android:targetSdkVersion="36" />
 

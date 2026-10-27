@@ -77,6 +77,17 @@ namespace keepass2android.services.Kp2aCredentialProvider
     private const string AppKeyHashStringPrefix = "android:apk-key-hash:";
 
     /// <summary>
+    /// Returns true if origin is an android:apk-key-hash origin with an actual hash
+    /// (i.e. not the bare prefix returned by GetOriginForCallingApp on failure).
+    /// </summary>
+    public static bool IsValidAppOrigin(string? origin)
+    {
+      return origin != null
+        && origin.StartsWith(AppKeyHashStringPrefix, StringComparison.Ordinal)
+        && origin.Length > AppKeyHashStringPrefix.Length;
+    }
+
+    /// <summary>
     /// Get the origin for a calling app in the format: android:apk-key-hash:base64-sha256
     /// </summary>
     public static string GetOriginForCallingApp(CallingAppInfo? callingAppInfo)
