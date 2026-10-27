@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0-android</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RootNamespace>keepass2android.services.Kp2aCredentialProvider.Passkey</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="BouncyCastle.Cryptography" Version="2.6.2" />
+    <PackageReference Include="PeterO.Cbor" Version="4.5.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\KeePassLib2Android\KeePassLib2Android.csproj" />
+  </ItemGroup>
+
+</Project>
