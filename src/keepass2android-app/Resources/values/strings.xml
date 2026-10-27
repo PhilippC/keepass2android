@@ -546,7 +546,10 @@
   <string name="donate_missedbday_question">Oh, you missed my birthday on May 10th! If you like this app, why not send me some birthday greetings and a little birthday gift? It is not yet too late to make me happy! :-)</string>
   <string name="ok_donate">Tell me more!</string>
   <string name="no_thanks">No, I don\'t like it that much</string>
-  <string name="donate_title">Donate</string>
+  <string name="donate_title">Donate for Keepass2Android</string>
+  <string name="donate_author_name" translatable="false">Philipp Crocoll</string>
+  <string name="donate_author_description">Karlsruhe, Germany\nHobby developer</string>
+  <string name="donate_open_source_info">Keepass2Android is open-source software under GPLv3 and free to use.</string>
   <string name="donate_intro">If you would meet me on the street, would you invite me to a beer? Why not do that virtually?</string>
   <string name="donate_intro2">You think I shouldn\'t develop and drink a beer? What about a coke and some fries?</string>
   <string name="donate_oktoberfest_beer">Oktoberfest beer</string>
