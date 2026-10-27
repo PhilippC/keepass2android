@@ -1417,5 +1417,6 @@
   <string name="passkey_unknown_browser_title">Unknown browser</string>
   <string name="passkey_unknown_browser_message">%1$s (%2$s) wants to use a passkey for a website, but it is not in the list of known browsers.\n\nOnly trust this browser if you are sure it is legitimate: a trusted browser can use your passkeys for any website.\n\nSigning certificate (SHA-256):\n%3$s</string>
   <string name="passkey_unknown_browser_add">Trust browser</string>
+  <string name="passkey_request_interrupted">The request was interrupted. Please try again.</string>
     
 </resources>

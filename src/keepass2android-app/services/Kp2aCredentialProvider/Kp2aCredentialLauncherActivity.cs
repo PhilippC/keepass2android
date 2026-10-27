@@ -44,7 +44,11 @@ namespace keepass2android.services.Kp2aCredentialProvider
 {
   [Activity(
     Label = AppNames.AppName,
-    ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.KeyboardHidden,
+    // Handle as many configuration changes as possible ourselves: recreating the activity interrupts dialogs and
+    // user verification prompts (see OnCreate).
+    ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.KeyboardHidden
+      | ConfigChanges.ScreenSize | ConfigChanges.SmallestScreenSize | ConfigChanges.ScreenLayout
+      | ConfigChanges.UiMode,
     Theme = "@style/Kp2aTheme_ActionBar",
     WindowSoftInputMode = SoftInput.AdjustResize,
     Permission = "keepass2android." + AppNames.PackagePart + ".permission.Kp2aChooseAutofill"
@@ -73,6 +77,10 @@ namespace keepass2android.services.Kp2aCredentialProvider
     private const string BundleKeyPasskeyClientDataHash = "passkey_client_data_hash";
     private const string BundleKeyPendingOperation = "pending_operation";
     private const string BundleKeyUserVerifiedForCreate = "user_verified_for_create";
+    private const string BundleKeyWaitingForActivityResult = "waiting_for_activity_result";
+
+    // Key inside _passkeyResponseData
+    private const string PasskeyDataKeyCredentialId = "credentialId";
 
     // ViewModel-style state variables for passkey operations
     private PublicKeyCredentialCreationOptions? _passkeyCreationOptions;
@@ -95,6 +103,9 @@ namespace keepass2android.services.Kp2aCredentialProvider
     /// <remarks>This field is only needed for passkey creation because that involves an activity lifecycle break after UV.</remarks>
     private bool _userVerifiedForCreate;
 
+    /// <summary>True while a child activity (unlock, create entry) is running and its result will arrive in OnActivityResult.</summary>
+    private bool _waitingForActivityResult;
+
     protected override void OnCreate(Bundle? savedInstanceState)
     {
       base.OnCreate(savedInstanceState);
@@ -115,6 +126,25 @@ namespace keepass2android.services.Kp2aCredentialProvider
       else
       {
         var requestType = intent.GetIntExtra(CredentialRequestTypeKey, 0);
+
+        if (savedInstanceState != null)
+        {
+          // The activity was recreated, i.e. a previous instance has already handled the request. Handling it again
+          // would e.g. generate a second key pair or show the unlock screen twice.
+          if (_waitingForActivityResult)
+          {
+            // the result of the child activity is delivered to this instance via OnActivityResult
+            Kp2aLog.Log("Kp2aCredentialLauncherActivity: recreated while waiting for activity result");
+            return;
+          }
+
+          // A dialog or user verification prompt was shown. Don't try to restore it, just let the user try again.
+          Kp2aLog.Log($"Kp2aCredentialLauncherActivity: recreated during request type {requestType}, cancelling");
+          Toast.MakeText(this, Resource.String.passkey_request_interrupted, ToastLength.Long)?.Show();
+          CancelRequestAndFinish(requestType);
+          return;
+        }
+
         switch (requestType)
         {
 
@@ -189,7 +219,7 @@ namespace keepass2android.services.Kp2aCredentialProvider
 
           forwardIntent.PutExtra(AppTask.AppTaskKey, "CreateEntryThenCloseTask");
           forwardIntent.PutExtra(CreateEntryThenCloseTask.ShowUserNotificationsKey, "false");
-          StartActivityForResult(forwardIntent, CreateEntryRequestCode);
+          StartChildActivityForResult(forwardIntent, CreateEntryRequestCode);
         }
       }
       else
@@ -212,7 +242,7 @@ namespace keepass2android.services.Kp2aCredentialProvider
     {
       var forwardIntent = new Intent(this, typeof(SelectCurrentDbActivity));
       new UnlockThenCloseWithResultTask(true) { ResultCode = (int)Result.Ok }.ToIntent(forwardIntent);
-      StartActivityForResult(forwardIntent, UnlockRequestCode);
+      StartChildActivityForResult(forwardIntent, UnlockRequestCode);
     }
 
     private void HandleGetPasswordForEntryRequest(Intent requestIntent)
@@ -268,6 +298,7 @@ namespace keepass2android.services.Kp2aCredentialProvider
     )
     {
       base.OnActivityResult(requestCode, resultCode, data);
+      _waitingForActivityResult = false;
       switch (requestCode)
       {
         case CreateEntryRequestCode:
@@ -369,6 +400,11 @@ namespace keepass2android.services.Kp2aCredentialProvider
       {
         throw new InvalidOperationException("Passkey data not found in entry");
       }
+
+      if (passkey.CredentialId != passkeyData.OptString(PasskeyDataKeyCredentialId, ""))
+      {
+        throw new InvalidOperationException("Created entry does not contain the passkey generated for this request");
+      }
       var keyTypeId = passkeyData.OptLong("keyTypeId", -7);
 
       // Convert credential ID from base64
@@ -430,6 +466,9 @@ namespace keepass2android.services.Kp2aCredentialProvider
     {
       base.OnSaveInstanceState(outState);
 
+      // Saved for all request types, see OnCreate
+      outState.PutBoolean(BundleKeyWaitingForActivityResult, _waitingForActivityResult);
+
       // Save passkey creation state to survive activity recreation
       if (_pendingOperation != PendingOperation.None)
       {
@@ -470,6 +509,7 @@ namespace keepass2android.services.Kp2aCredentialProvider
       _passkeyClientDataHash = savedInstanceState.GetByteArray(BundleKeyPasskeyClientDataHash);
       _pendingOperation = (PendingOperation)savedInstanceState.GetInt(BundleKeyPendingOperation);
       _userVerifiedForCreate = savedInstanceState.GetBoolean(BundleKeyUserVerifiedForCreate);
+      _waitingForActivityResult = savedInstanceState.GetBoolean(BundleKeyWaitingForActivityResult);
 
       // Recreate PublicKeyCredentialCreationOptions from stored JSON if needed
       if (_pendingOperation is PendingOperation.CreatePasskey
@@ -765,7 +805,7 @@ namespace keepass2android.services.Kp2aCredentialProvider
       var forwardIntent = BuildLaunchIntentToCreatePasskey(passkeyFieldsJson);
 
       // Build the response JSON we'll need once the entry has been created.
-      var passkeyResponseJson = CreatePasskeyResponseJson(keyPair, keyTypeId, passkeyFieldsJson);
+      var passkeyResponseJson = CreatePasskeyResponseJson(keyPair, keyTypeId, passkey.CredentialId!);
 
       // Persist state so OnActivityResult / ContinuePasskeyCreationAfterUnlock can reconstruct the response.
       _passkeyCreationOptions = creationOptions;
@@ -776,7 +816,7 @@ namespace keepass2android.services.Kp2aCredentialProvider
       _passkeyClientDataHash = clientDataHash;
       _pendingOperation = PendingOperation.CreatePasskey;
 
-      StartActivityForResult(forwardIntent, CreateEntryRequestCode);
+      StartChildActivityForResult(forwardIntent, CreateEntryRequestCode);
     }
 
     private Intent BuildLaunchIntentToCreatePasskey(JSONObject passkeyFieldsJson)
@@ -791,14 +831,27 @@ namespace keepass2android.services.Kp2aCredentialProvider
       return forwardIntent;
     }
 
-    private JSONObject CreatePasskeyResponseJson(KeyPair keyPair, long keyTypeId, JSONObject passkeyFieldsJson)
+    /// <summary>
+    /// Data needed to build the response once the entry has been created. Saved in the instance state,
+    /// so it must not contain the private key.
+    /// </summary>
+    private JSONObject CreatePasskeyResponseJson(KeyPair keyPair, long keyTypeId, string credentialId)
     {
       var publicKeyBytes = keyPair.Public.GetEncoded();
       var passkeyResponseJson = new JSONObject();
       passkeyResponseJson.Put("publicKeyBase64", Base64.EncodeToString(publicKeyBytes, Base64Flags.Default));
       passkeyResponseJson.Put("keyTypeId", keyTypeId);
-      passkeyResponseJson.Put("passkeyFieldsJson", passkeyFieldsJson.ToString());
+      passkeyResponseJson.Put(PasskeyDataKeyCredentialId, credentialId);
       return passkeyResponseJson;
+    }
+
+    /// <summary>
+    /// Starts a child activity whose result is handled in <see cref="OnActivityResult"/>.
+    /// </summary>
+    private void StartChildActivityForResult(Intent intent, int requestCode)
+    {
+      _waitingForActivityResult = true;
+      StartActivityForResult(intent, requestCode);
     }
 
 
@@ -932,6 +985,25 @@ namespace keepass2android.services.Kp2aCredentialProvider
       PendingIntentHandler.SetGetCredentialException(result, new GetCredentialCancellationException());
       SetResult(Result.Ok, result);
       if (!IsFinishing) Finish();
+    }
+
+    private void CancelRequestAndFinish(int requestType)
+    {
+      switch (requestType)
+      {
+        case CredentialRequestTypeCreatePassword:
+        case CredentialRequestTypeCreatePasskey:
+          SetUpCancellationResponseForCreateAndFinish();
+          break;
+        case CredentialRequestTypeGetPasswordForEntry:
+        case CredentialRequestTypeGetPasskeyForEntry:
+          SetUpCancellationResponseForGetAndFinish();
+          break;
+        default:
+          SetResult(Result.Canceled);
+          Finish();
+          break;
+      }
     }
 
 
