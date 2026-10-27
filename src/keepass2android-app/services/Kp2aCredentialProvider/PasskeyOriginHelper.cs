@@ -78,10 +78,11 @@ namespace keepass2android.services.Kp2aCredentialProvider
     }
 
     /// <summary>
-    /// Returns the web origin provided by the caller if (and only if) the caller is a privileged app
-    /// (package name and signing certificate contained in one of the bundled allowlists). Returns null otherwise.
+    /// Returns the web origin reported by the caller if (and only if) the caller is a privileged app, i.e. a browser
+    /// whose package name and signing certificate are contained in one of the bundled allowlists. Returns null otherwise.
+    /// Note: Only the caller's identity is verified; the origin itself is trusted because a privileged browser reported it.
     /// </summary>
-    public static string? GetVerifiedPrivilegedOrigin(Context context, CallingAppInfo? callingAppInfo)
+    public static string? GetOriginFromPrivilegedCaller(Context context, CallingAppInfo? callingAppInfo)
     {
       if (callingAppInfo == null)
         return null;
@@ -116,11 +117,11 @@ namespace keepass2android.services.Kp2aCredentialProvider
     /// </summary>
     public static PasskeyCallerOrigin ResolveCallerOrigin(Context context, CallingAppInfo? callingAppInfo, byte[]? callerClientDataHash)
     {
-      var privilegedOrigin = GetVerifiedPrivilegedOrigin(context, callingAppInfo);
-      if (privilegedOrigin != null)
+      var originFromPrivilegedCaller = GetOriginFromPrivilegedCaller(context, callingAppInfo);
+      if (originFromPrivilegedCaller != null)
       {
-        Kp2aLog.Log($"PasskeyOriginHelper: verified privileged caller {callingAppInfo?.PackageName} with origin {privilegedOrigin}");
-        return new PasskeyCallerOrigin(privilegedOrigin, callerClientDataHash);
+        Kp2aLog.Log($"PasskeyOriginHelper: verified privileged caller {callingAppInfo?.PackageName} with origin {originFromPrivilegedCaller}");
+        return new PasskeyCallerOrigin(originFromPrivilegedCaller, callerClientDataHash);
       }
 
       if (callerClientDataHash != null)
