@@ -806,6 +806,11 @@
   <string name="webdav_chunked_upload_size_summary">Size of chunks when uploading to WebDav servers in bytes.</string>
   <string name="cleartextTrafficPermitted_title">Allow clear-text network traffic in WebDav</string>
   <string name="cleartextTrafficPermitted_summary">HTTP connections are not secure. Only enable this if you have other security measures in place.</string>
+  <string-array name="ChangeLog_1_16">
+    <item>Switched to Google-Play billing for donations (for variants published on Google Play), as requested by Google</item>
+    <item>Added built-in photo capture feature</item>
+    <item>Improved compatibility with Talkback</item>
+  </string-array>
   <string-array name="ChangeLog_1_15_net">
     <item>Update to Target SDK version 36</item>
     <item>Improvements to URL handling for WebDav with non-ASCII characters</item>
@@ -1244,6 +1249,7 @@
     * probably introduced new bugs :-)
   </string>
   <string name="ChangeLog_keptDonate">Extended possibility to donate a beer or something else</string>
+  <string name="ChangeLog_tryInAppDonation">Test the new in-app donation option!</string>
   <string name="ChangeLog_0_7">
     <b>Version 0.7</b>\n
     * Increased loading speed: key transformations now 10x faster!\n

@@ -46,6 +46,7 @@ namespace keepass2android
       MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(ctx);
       builder.SetTitle(ctx.GetString(Resource.String.ChangeLog_title));
       List<string> changeLog = new List<string>{
+        BuildChangelogString(ctx, new List<int>{Resource.Array.ChangeLog_1_16}, "1.16"),
                 BuildChangelogString(ctx, new List<int>{Resource.Array.ChangeLog_1_15,
 #if !NoNet
                     Resource.Array.ChangeLog_1_15_net
@@ -243,6 +244,25 @@ namespace keepass2android
 
     }
 
+    /// <summary>
+    /// Text of the donate link in the changelog. In 1.16 builds with in-app donations, it invites users to try them out.
+    /// </summary>
+    private static int GetDonateLinkTextId(Context ctx)
+    {
+#if DONATION_BILLING
+      try
+      {
+        string? version = ctx.PackageManager!.GetPackageInfo(ctx.PackageName!, 0)!.VersionName;
+        if (version != null && version.StartsWith("1.16"))
+          return Resource.String.ChangeLog_tryInAppDonation;
+      }
+      catch (PackageManager.NameNotFoundException)
+      {
+      }
+#endif
+      return Resource.String.ChangeLog_keptDonate;
+    }
+
     private const string HtmlEnd = @"</body>
 </html>";
 
@@ -321,7 +341,7 @@ namespace keepass2android
 
             versionLog2 += " * <a href=\"" + donateUrl
                            + "\">" +
-                           ctx.GetString(Resource.String.ChangeLog_keptDonate)
+                           ctx.GetString(GetDonateLinkTextId(ctx))
                            + "<a/>";
           }
           isFirst = false;
