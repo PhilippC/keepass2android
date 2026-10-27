@@ -162,7 +162,7 @@ namespace keepass2android
                                               prefs.GetString("pref_periodic_background_sync_interval", periodic_sync_default),
                                               int.Parse(periodic_sync_default))) < DateTime.Now))
         {
-          Kp2aLog.Log("Triggering sync for " + db.Ioc.GetDisplayName());
+          Kp2aLog.Log("Triggering sync for " + App.Kp2a.GetFileStorage(db.Ioc).GetDisplayName(db.Ioc));
           StartSynchronizeDatabase(db, false);
         }
       }
