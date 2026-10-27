@@ -787,11 +787,6 @@
   <string name="cleartextTrafficPermitted_title">Allow clear-text network traffic in WebDav</string>
   <string name="cleartextTrafficPermitted_summary">HTTP connections are not secure. Only enable this if you have other security measures in place.</string>
 
-  <string-array name="ChangeLog_1_16">
-    <item>This is a preview for Passkey support in Keepass2Android.</item>
-    <item>Please note that this is still experimental. Don\'t rely on the functionality to work.</item>
-  </string-array>
-
   <string-array name="ChangeLog_1_15_net">
     <item>Update to Target SDK version 36</item>
     <item>Improvements to URL handling for WebDav with non-ASCII characters</item>
