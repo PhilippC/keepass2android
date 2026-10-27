@@ -549,13 +549,20 @@
   <string name="donate_title">Donate for Keepass2Android</string>
   <string name="donate_author_name" translatable="false">Philipp Crocoll</string>
   <string name="donate_author_description">Karlsruhe, Germany\nHobby developer</string>
-  <string name="donate_open_source_info">Keepass2Android is open-source software under GPLv3 and free to use.</string>
+  <string name="donate_open_source_info">Keepass2Android is free and open source (GPLv3), with no ads and no paid features. I develop it in my spare time – if you find it useful, a donation helps me keep it going. Thank you!</string>
   <string name="donate_intro">If you would meet me on the street, would you invite me to a beer? Why not do that virtually?</string>
   <string name="donate_intro2">You think I shouldn\'t develop and drink a beer? What about a coke and some fries?</string>
   <string name="donate_oktoberfest_beer">Oktoberfest beer</string>
   <string name="donate_small_beer">Small beer</string>
   <string name="donate_coke">Coke and fries</string>
   <string name="donate_product_with_price">%1$s (%2$s)</string>
+  <string name="donate_other_amount">Or choose an amount (one-time):</string>
+  <!-- %1$s (label) is not shown, only the price -->
+  <string name="donate_amount_price">%2$s</string>
+  <string name="donate_yearly">Yearly</string>
+  <string name="donate_one_time">One-time</string>
+  <string name="donate_product_yearly_with_price">%1$s every year (%2$s per year)</string>
+  <string name="donate_subscription_active">%1$s every year: active, thank you! Tap to manage.</string>
   <string name="donate_thank_you">Thank you very much :-) Did you know that you can hide the donation option in the display settings? If it is greyed out, please continue using Keepass2Android for a little while until it is enabled.</string>
   <string name="donate_pending">Thank you! Your donation will be completed as soon as the payment has been processed.</string>
   <string name="donate_billing_unavailable">Donations through Google Play are currently not available: %1$s</string>

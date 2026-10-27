@@ -57,6 +57,32 @@
         android:textSize="16sp"
         android:text="@string/donate_open_source_info" />
 
+    <!-- choice between yearly (subscription) and one-time donations. Hidden if no yearly products are available. -->
+    <com.google.android.material.button.MaterialButtonToggleGroup
+        android:id="@+id/donate_frequency"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:visibility="gone"
+        app:singleSelection="true"
+        app:selectionRequired="true"
+        app:checkedButton="@+id/donate_frequency_yearly">
+
+      <Button
+          android:id="@+id/donate_frequency_yearly"
+          style="?attr/materialButtonOutlinedStyle"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="@string/donate_yearly" />
+
+      <Button
+          android:id="@+id/donate_frequency_one_time"
+          style="?attr/materialButtonOutlinedStyle"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="@string/donate_one_time" />
+    </com.google.android.material.button.MaterialButtonToggleGroup>
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -113,6 +139,67 @@
         android:visibility="gone"
         app:icon="@drawable/donate_beer"
         android:text="@string/donate_coke" />
+
+    <TextView
+        android:id="@+id/donate_other_amount_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="8dp"
+        android:gravity="center_horizontal"
+        android:textSize="18sp"
+        android:visibility="gone"
+        android:text="@string/donate_other_amount" />
+
+    <!-- amount buttons. Texts (the prices) are set in code. Hidden if the product is not available. -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+      <Button
+          android:id="@+id/donate_amount_10"
+          style="?attr/materialButtonOutlinedStyle"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_weight="1"
+          android:layout_marginLeft="4dp"
+          android:layout_marginRight="4dp"
+          android:visibility="gone" />
+      <Button
+          android:id="@+id/donate_amount_20"
+          style="?attr/materialButtonOutlinedStyle"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_weight="1"
+          android:layout_marginLeft="4dp"
+          android:layout_marginRight="4dp"
+          android:visibility="gone" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+      <Button
+          android:id="@+id/donate_amount_50"
+          style="?attr/materialButtonOutlinedStyle"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_weight="1"
+          android:layout_marginLeft="4dp"
+          android:layout_marginRight="4dp"
+          android:visibility="gone" />
+      <Button
+          android:id="@+id/donate_amount_100"
+          style="?attr/materialButtonOutlinedStyle"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_weight="1"
+          android:layout_marginLeft="4dp"
+          android:layout_marginRight="4dp"
+          android:visibility="gone" />
+    </LinearLayout>
 
     <ProgressBar
         android:id="@+id/donate_progress"
