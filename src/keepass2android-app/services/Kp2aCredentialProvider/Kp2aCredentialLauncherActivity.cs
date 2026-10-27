@@ -28,6 +28,7 @@ using AndroidX.Core.App;
 using AndroidX.Credentials;
 using AndroidX.Credentials.Exceptions;
 using AndroidX.Credentials.Provider;
+using Google.Android.Material.Dialog;
 using Java.Security;
 using Java.Security.Spec;
 using Java.Time;
@@ -801,6 +802,42 @@ namespace keepass2android.services.Kp2aCredentialProvider
     }
 
 
+    /// <summary>
+    /// If the caller is a browser acting on behalf of a website, but is not contained in any privileged apps allowlist,
+    /// asks the user whether to add it to the custom allowlist. Without that, the browser can't provide the website's origin
+    /// and passkeys can't be used on websites in that browser.
+    /// Returns false if no dialog is needed. Otherwise the dialog is shown and either <paramref name="continueRequest"/>
+    /// (after the browser was added) or <paramref name="cancelRequest"/> is called later.
+    /// </summary>
+    private bool AskToAddUnknownBrowser(CallingAppInfo? callingAppInfo, System.Action continueRequest, System.Action cancelRequest)
+    {
+      var browser = PrivilegedAppsAllowlist.GetUnknownBrowserCaller(this, callingAppInfo);
+      if (browser == null)
+        return false;
+
+      Kp2aLog.Log($"Kp2aCredentialLauncherActivity: browser {browser.PackageName} is not in the privileged apps allowlists");
+      var message = GetString(Resource.String.passkey_unknown_browser_message,
+        PrivilegedAppsAllowlist.GetAppLabel(this, browser.PackageName),
+        browser.PackageName,
+        string.Join("\n", browser.Fingerprints));
+
+      var builder = new MaterialAlertDialogBuilder(this);
+      builder.SetTitle(GetString(Resource.String.passkey_unknown_browser_title));
+      builder.SetMessage(message);
+      builder.SetPositiveButton(GetString(Resource.String.passkey_unknown_browser_add), (_, _) =>
+      {
+        if (PrivilegedAppsAllowlist.AddCustomApp(this, browser))
+          continueRequest();
+        else
+          cancelRequest();
+      });
+      builder.SetNegativeButton(GetString(Android.Resource.String.Cancel), (_, _) => cancelRequest());
+      var dialog = builder.Create();
+      dialog.CancelEvent += (_, _) => cancelRequest();
+      dialog.Show();
+      return true;
+    }
+
     #endregion
 
 
@@ -810,7 +847,8 @@ namespace keepass2android.services.Kp2aCredentialProvider
     /// Handles the request to create a new passkey.
     /// If user verification is required, shows device credential/biometric prompt first.
     /// </summary>
-    private void HandleCreatePasskeyRequest(Intent requestIntent)
+    /// <param name="browserCheckDone">True if the user was already asked about adding an unknown browser.</param>
+    private void HandleCreatePasskeyRequest(Intent requestIntent, bool browserCheckDone = false)
     {
       try
       {
@@ -824,6 +862,13 @@ namespace keepass2android.services.Kp2aCredentialProvider
         if (string.IsNullOrEmpty(requestJson))
         {
           throw new InvalidOperationException("Missing request JSON");
+        }
+
+        if (!browserCheckDone && AskToAddUnknownBrowser(createRequest.CallingAppInfo,
+              continueRequest: () => HandleCreatePasskeyRequest(requestIntent, browserCheckDone: true),
+              cancelRequest: SetUpCancellationResponseForCreateAndFinish))
+        {
+          return;
         }
 
         var clientDataHash = passkeyRequest.GetClientDataHash();
@@ -864,19 +909,29 @@ namespace keepass2android.services.Kp2aCredentialProvider
               SetUpFailureResponseForCreateAndFinish(e.Message);
             }
           },
-          onCancelOrError: () =>
-          {
-            var result = new Intent();
-            PendingIntentHandler.SetCreateCredentialException(result, new CreateCredentialCancellationException());
-            SetResult(Result.Ok, result);
-            if (!IsFinishing) Finish();
-          });
+          onCancelOrError: SetUpCancellationResponseForCreateAndFinish);
       }
       catch (Exception e)
       {
         Kp2aLog.Log($"Kp2aCredentialLauncherActivity: Error creating passkey: {e.Message}");
         SetUpFailureResponseForCreateAndFinish(e.Message);
       }
+    }
+
+    private void SetUpCancellationResponseForCreateAndFinish()
+    {
+      var result = new Intent();
+      PendingIntentHandler.SetCreateCredentialException(result, new CreateCredentialCancellationException());
+      SetResult(Result.Ok, result);
+      if (!IsFinishing) Finish();
+    }
+
+    private void SetUpCancellationResponseForGetAndFinish()
+    {
+      var result = new Intent();
+      PendingIntentHandler.SetGetCredentialException(result, new GetCredentialCancellationException());
+      SetResult(Result.Ok, result);
+      if (!IsFinishing) Finish();
     }
 
 
@@ -938,13 +993,22 @@ namespace keepass2android.services.Kp2aCredentialProvider
     /// Handles the request to get a specific passkey for an entry.
     /// Unlocks the database first if needed. If user verification is required, shows device credential/biometric prompt.
     /// </summary>
-    private void HandleGetPasskeyForEntryRequest(Intent requestIntent)
+    /// <param name="browserCheckDone">True if the user was already asked about adding an unknown browser.</param>
+    private void HandleGetPasskeyForEntryRequest(Intent requestIntent, bool browserCheckDone = false)
     {
       // Check if database is locked and launch unlock flow if needed
       if (!App.Kp2a.DatabaseIsUnlocked)
       {
         _pendingOperation = PendingOperation.GetPasskeyForEntryAfterUnlock;
         LaunchUnlockDatabase();
+        return;
+      }
+
+      if (!browserCheckDone && AskToAddUnknownBrowser(
+            PendingIntentHandler.RetrieveProviderGetCredentialRequest(requestIntent)?.CallingAppInfo,
+            continueRequest: () => HandleGetPasskeyForEntryRequest(requestIntent, browserCheckDone: true),
+            cancelRequest: SetUpCancellationResponseForGetAndFinish))
+      {
         return;
       }
 
@@ -982,13 +1046,7 @@ namespace keepass2android.services.Kp2aCredentialProvider
         {
           ReturnPasskeyForEntryAndFinish(requestIntent, userVerified: true);
         },
-        onCancelOrError: () =>
-        {
-          var result = new Intent();
-          PendingIntentHandler.SetGetCredentialException(result, new GetCredentialCancellationException());
-          SetResult(Result.Ok, result);
-          if (!IsFinishing) Finish();
-        });
+        onCancelOrError: SetUpCancellationResponseForGetAndFinish);
     }
 
     /// <summary>

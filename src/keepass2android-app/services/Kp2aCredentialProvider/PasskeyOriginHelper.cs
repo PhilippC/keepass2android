@@ -35,51 +35,16 @@ namespace keepass2android.services.Kp2aCredentialProvider
   /// <summary>
   /// Determines the origin of a passkey request in a secure way.
   /// Browsers are only trusted to provide a web origin (and a pre-computed clientDataHash) if their package name
-  /// AND signing certificate match the bundled privileged apps allowlist (verified by CallingAppInfo.GetOrigin).
+  /// AND signing certificate match one of the privileged apps allowlists (verified by CallingAppInfo.GetOrigin).
   /// All other callers are treated as native apps, identified by the hash of their signing certificate.
   /// The origin is never derived from the (caller-controlled) relying party id.
   /// </summary>
   public static class PasskeyOriginHelper
   {
     /// <summary>
-    /// Allowlist files in the Assets folder, in the format of https://www.gstatic.com/gpm-passkeys-privileged-apps/apps.json
-    /// </summary>
-    private static readonly string[] PrivilegedAllowlistAssetFiles =
-    {
-      "passkeys_privileged_apps_google.json"
-    };
-
-    private static List<string>? _privilegedAllowlists;
-    private static readonly object AllowlistLock = new object();
-
-    private static List<string> GetPrivilegedAllowlists(Context context)
-    {
-      lock (AllowlistLock)
-      {
-        if (_privilegedAllowlists != null)
-          return _privilegedAllowlists;
-
-        var allowlists = new List<string>();
-        foreach (var fileName in PrivilegedAllowlistAssetFiles)
-        {
-          try
-          {
-            using var reader = new StreamReader(context.Assets!.Open(fileName));
-            allowlists.Add(reader.ReadToEnd());
-          }
-          catch (Exception e)
-          {
-            Kp2aLog.Log($"PasskeyOriginHelper: failed to load privileged allowlist {fileName}: {e.Message}");
-          }
-        }
-        _privilegedAllowlists = allowlists;
-        return allowlists;
-      }
-    }
-
-    /// <summary>
     /// Returns the web origin reported by the caller if (and only if) the caller is a privileged app, i.e. a browser
-    /// whose package name and signing certificate are contained in one of the bundled allowlists. Returns null otherwise.
+    /// whose package name and signing certificate are contained in one of the allowlists (bundled or custom,
+    /// see <see cref="PrivilegedAppsAllowlist"/>). Returns null otherwise.
     /// Note: Only the caller's identity is verified; the origin itself is trusted because a privileged browser reported it.
     /// </summary>
     public static string? GetOriginFromPrivilegedCaller(Context context, CallingAppInfo? callingAppInfo)
@@ -87,7 +52,7 @@ namespace keepass2android.services.Kp2aCredentialProvider
       if (callingAppInfo == null)
         return null;
 
-      foreach (var allowlist in GetPrivilegedAllowlists(context))
+      foreach (var allowlist in PrivilegedAppsAllowlist.GetAllAllowlists(context))
       {
         try
         {
