@@ -231,6 +231,7 @@ namespace keepass2android
     {
       MenuInflater inflater = MenuInflater;
       inflater.Inflate(Resource.Menu.menu_selectdb, menu);
+      Util.PrepareDonateOptionMenu(menu, this);
       return base.OnCreateOptionsMenu(menu);
     }
 
@@ -249,7 +250,7 @@ namespace keepass2android
           App.Kp2a.Lock();
           return true;
         case Resource.Id.menu_donate:
-          return Util.GotoDonateUrl(this);
+          return Util.StartDonation(this);
         case Resource.Id.menu_app_settings:
           DatabaseSettingsActivity.Launch(this);
           return true;

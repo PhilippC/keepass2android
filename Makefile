@@ -100,9 +100,10 @@ else
   $(warning Configuration environment variable not set.)
 endif
 
-#append NoDonationMenu=true to the 'make' call to build with NO_DONATION_MENU defined (hides the donate menu option)
-ifneq ($(NoDonationMenu),)
-  DOTNET_PARAM += -p:NoDonationMenu="$(NoDonationMenu)"
+#append DonationMode=None|Web|Billing to the 'make' call to select where the donate menu option leads to:
+#  None: hidden (default), Web: donation web page, Billing: in-app donation via Google Play Billing (Google Play build only)
+ifneq ($(DonationMode),)
+  DOTNET_PARAM += -p:DonationMode="$(DonationMode)"
 endif
 
 DELETE_MANIFEST_LINK :=
