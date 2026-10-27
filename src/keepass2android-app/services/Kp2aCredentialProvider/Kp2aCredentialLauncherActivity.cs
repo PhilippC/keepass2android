@@ -71,7 +71,6 @@ namespace keepass2android.services.Kp2aCredentialProvider
 
     // Bundle keys for state persistence
     private const string BundleKeyPasskeyRequestJson = "passkey_request_json";
-    private const string BundleKeyPasskeyCallingPackage = "passkey_calling_package";
     private const string BundleKeyPasskeyOrigin = "passkey_origin";
     private const string BundleKeyPasskeyResponseData = "passkey_response_data";
     private const string BundleKeyPasskeyClientDataHash = "passkey_client_data_hash";
@@ -85,7 +84,6 @@ namespace keepass2android.services.Kp2aCredentialProvider
     // ViewModel-style state variables for passkey operations
     private PublicKeyCredentialCreationOptions? _passkeyCreationOptions;
     private string? _passkeyRequestJson;
-    private string? _passkeyCallingPackage;
     private string? _passkeyOrigin;
     private JSONObject? _passkeyResponseData;
     private byte[]? _passkeyClientDataHash;
@@ -455,7 +453,6 @@ namespace keepass2android.services.Kp2aCredentialProvider
     {
       _passkeyCreationOptions = null;
       _passkeyRequestJson = null;
-      _passkeyCallingPackage = null;
       _passkeyOrigin = null;
       _passkeyResponseData = null;
       _passkeyClientDataHash = null;
@@ -473,7 +470,6 @@ namespace keepass2android.services.Kp2aCredentialProvider
       if (_pendingOperation != PendingOperation.None)
       {
         outState.PutString(BundleKeyPasskeyRequestJson, _passkeyRequestJson);
-        outState.PutString(BundleKeyPasskeyCallingPackage, _passkeyCallingPackage);
         outState.PutString(BundleKeyPasskeyOrigin, _passkeyOrigin);
         outState.PutString(BundleKeyPasskeyResponseData, _passkeyResponseData?.ToString());
 
@@ -490,7 +486,6 @@ namespace keepass2android.services.Kp2aCredentialProvider
     private void RestoreInstanceState(Bundle savedInstanceState)
     {
       _passkeyRequestJson = savedInstanceState.GetString(BundleKeyPasskeyRequestJson);
-      _passkeyCallingPackage = savedInstanceState.GetString(BundleKeyPasskeyCallingPackage);
       _passkeyOrigin = savedInstanceState.GetString(BundleKeyPasskeyOrigin);
 
       var passkeyResponseDataStr = savedInstanceState.GetString(BundleKeyPasskeyResponseData);
@@ -797,7 +792,6 @@ namespace keepass2android.services.Kp2aCredentialProvider
         BackupState = PasskeyPreferences.GetBackupState(this)
       };
 
-      var callingPackage = createRequest.CallingAppInfo?.PackageName ?? "";
       var origin = callerOrigin.Origin;
 
       var passkeyFieldsJson = PasskeyStorage.CreatePasskeyFieldsJson(creationOptions.RelyingPartyEntity.Id, creationOptions.UserEntity.Name, passkey);
@@ -810,7 +804,6 @@ namespace keepass2android.services.Kp2aCredentialProvider
       // Persist state so OnActivityResult / ContinuePasskeyCreationAfterUnlock can reconstruct the response.
       _passkeyCreationOptions = creationOptions;
       _passkeyRequestJson = requestJson;
-      _passkeyCallingPackage = callingPackage;
       _passkeyOrigin = origin;
       _passkeyResponseData = passkeyResponseJson;
       _passkeyClientDataHash = clientDataHash;
