@@ -43,7 +43,7 @@
   <string name="application">Приложение</string>
   <string name="application_settings">Настройки приложения</string>
   <string name="ShowGroupnameInSearchResult_title">Отображать имя группы в результате поиска</string>
-  <string name="ShowGroupnameInSearchResult_resume">Отображать имя группы ниже заголовка записей в результатах поиска. Полезно, если некоторые записи имеют одинаковые имена.</string>
+  <string name="ShowGroupnameInSearchResult_resume">Отображать имя группы под заголовками записей в результатах поиска. Полезно, если различные записи имеют одинаковые имена.</string>
   <string name="NavigationToGroupCompleted_message">Отображение группы сейчас: %1$s</string>
   <string name="AutofillDisabledQueriesPreference_title">Отключенные цели автозаполнения</string>
   <string name="AutofillDisabledQueriesPreference_summary">Просмотр списка приложений и сайтов, для которых автозаполнение было отключено</string>
@@ -282,7 +282,7 @@
   </string-array>
   <string name="custom_settings">Пользовательские настройки</string>
   <string name="passphrase_capitalization">Использование заглавных букв в ключевой  фразе</string>
-  <string name="search_hint">Что ищем</string>
+  <string name="search_hint">Что искать?</string>
   <string name="search_results">Результаты поиска</string>
   <string name="search_in">Поиск в</string>
   <string name="select_other_entry">Выбрать другую запись</string>
@@ -311,7 +311,7 @@
   <string name="TanExpiresOnUse_title">TAN устаревают при использовании</string>
   <string name="TanExpiresOnUse_summary">Помечать TAN записи как устаревшие при их использовании</string>
   <string name="ShowUsernameInList_title">Отображать имя пользователя в списке</string>
-  <string name="ShowUsernameInList_summary">Отображать имена пользователей под заголовками. Полезно для множественных аккаунтов или TAN.</string>
+  <string name="ShowUsernameInList_summary">Отображать имена пользователей (логины) под заголовками. Полезно при работе с несколькими аккаунтами или одноразовыми паролями (TAN).</string>
   <string name="RememberRecentFiles_title">Запоминать базы данных</string>
   <string name="RememberRecentFiles_summary">Запоминать недавно открытые базы и отображать их на экране открытия базы данных.</string>
   <string name="NoDalVerification_title">Нет подтверждения DAL</string>
@@ -340,14 +340,15 @@
   <string name="QuickUnlockDefaultEnabled_title">Включить по умолчанию</string>
   <string name="QuickUnlockDefaultEnabled_summary">Определяет, включена ли \"Быстрая разблокировка\" по умолчанию или нет.</string>
   <string name="ViewDatabaseSecure_title">Защита отображения базы данных</string>
-  <string name="ViewDatabaseSecure_summary">Если включено, то не разрешены скриншоты и приложение не появится в списке Последних Запущенных.</string>
+  <string name="ViewDatabaseSecure_summary">При установке этого параметра нельзя делать скриншоты содержимого БД. Приложение не отобразится в списке недавно запущенных.</string>
   <string name="QuickUnlockIconHidden_title">Скрыть значок БыстройРазблокировки</string>
   <string name="QuickUnlockIconHidden_summary">К сожалению, \"Быстрая разблокировка\" не работает без отображения значка уведомлений. Включите этот параметр для использования прозрачного значка.</string>
   <string name="QuickUnlockIconHidden16_title">Скрыть значок БыстройРазблокировки</string>
   <string name="QuickUnlockIconHidden16_summary">Быстрая разблокировка требует уведомления для своей работы. Выберите этот параметр, чтобы отображать уведомление без иконки.</string>
   <string name="QuickUnlockBlockedWhenDeviceNotSecure_summary">Запретить ввод упрощённого пароля, если на устройстве отключена блокировка экрана. Эта функция предназначена для защиты от подсматривания. Не рекомендуется снимать этот запрет, если Вы не осознаёте связанные с этим риски.  Учтите, что функцию быстрой разблокировки можно использовать совместно с биометрией.</string>
+  <string name="QuickUnlockBlockedWhenDeviceNotSecure_title">Отключать опцию при незащищённом типе блокировки экрана</string>
   <string name="QuickUnlockLength_title">Длина кода</string>
-  <string name="QuickUnlockLength_summary">Максимальное количество символов, используемых как пароль БыстройРазблокировки.</string>
+  <string name="QuickUnlockLength_summary">Максимальное количество символов, из которых состоит упрощённый пароль для быстрой разблокировки.</string>
   <string name="QuickUnlockHideLength_title">Скрывать длину ключа</string>
   <string name="QuickUnlockHideLength_summary">При установке этого параметра не будет подсказки о длине упрощённого пароля на этапе быстрой разблокировки.</string>
   <string name="QuickUnlockKeyFromDatabase_title">Код из записи в базе данных</string>
@@ -389,7 +390,7 @@
   <string name="LockWhenScreenOff_title">Блокировка при выключении экрана</string>
   <string name="LockWhenScreenOff_summary">Блокировка базы данных при отключении экрана.</string>
   <string name="ClearPasswordOnLeave_title">Очистить введенный мастер-пароль</string>
-  <string name="ClearPasswordOnLeave_summary">Очистить введенный мастер-пароль при покидании экрана без разблокировки базы данных.</string>
+  <string name="ClearPasswordOnLeave_summary">Очистить введённый мастер-пароль при возврате без разблокировки базы данных.</string>
   <string name="LockWhenNavigateBack_title">Блокировать при выходе из приложения</string>
   <string name="LockWhenNavigateBack_summary">Блокировать базу данных при выходе кнопкой \"назад\"</string>
   <string name="UseKp2aKeyboardInKp2a_title">Клавиатура \"Keepass2Android\"</string>
@@ -637,7 +638,7 @@
   <string name="plugin_disabled">отключено</string>
   <string name="plugin_web">Найти плагины онлайн</string>
   <string name="plugin_scopes">Области</string>
-  <string name="not_enabled">не включено</string>
+  <string name="not_enabled">отключено</string>
   <string name="query_credentials_for_url">%1$s запрашивает учетные данные для %2$s.</string>
   <string name="query_credentials">%1$s запрашивает учетные данные. Пожалуйста, выберите запись.</string>
   <string name="plugin_enabled_checkbox">Включено</string>
