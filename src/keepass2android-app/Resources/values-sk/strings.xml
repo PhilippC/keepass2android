@@ -258,6 +258,11 @@
   <string name="space">Miesto</string>
   <string name="search_label">Hľadať</string>
   <string name="show_password">Zobraziť heslo</string>
+  <string name="hide_password">Skryť heslo</string>
+  <string name="hidden_protected_field">Skryté, %1$d znakov</string>
+  <string name="browse">Prehľadávať</string>
+  <string name="select_icon">Vybrať ikonu</string>
+  <string name="selected">Vybrané</string>
   <string name="sort_menu">Zoradiť podľa...</string>
   <string name="sort_name">Zoradiť podľa mena</string>
   <string name="sort_db">Zoradiť podľa dátumu vytvor.</string>
@@ -373,8 +378,15 @@
   <string name="field_value">Hodnota poľa</string>
   <string name="protection">Chránené pole</string>
   <string name="add_binary">Priložiť súbor...</string>
+  <string name="attach_browse_file">Prehľadávať súbor...</string>
+  <string name="attach_take_photo">Odfotografovať…</string>
+  <string name="capture_photo_title">Odfotografovať</string>
+  <string name="capture_flip_camera">Prevrátiť fotoaparát</string>
+  <string name="camera_permission_required">Na odfotografovanie sa vyžaduje oprávnenie pre fotoaparát</string>
+  <string name="capture_attachment_size_warning">Vybrať veľkosť fotografie</string>
   <string name="capture_size_small">Malé</string>
   <string name="capture_size_medium">Stredné</string>
+  <string name="capture_size_original">Pôvodná</string>
   <string name="add_extra_string">Pridať ďalší reťazec</string>
   <string name="configure_totp">Konfigurovať TOTP</string>
   <string name="totp_secret_key">Tajný kľúč</string>
@@ -501,6 +513,7 @@
   <string name="UseOnlineMode">Synchronizovať kópiu vo vyrov. pamäti so zdrojom</string>
   <string name="UseOfflineMode_Info">Databáza sa načítala z internej vyrov. pamäte. Zmeny sa uložia len do tejto pamäte a synchronizujú sa až po výbere voľby Synchronizovať kópiu vo vyrov. pamäti so zdrojom.</string>
   <string name="InOfflineMode">Práca len s internou vyrov. pamätou.</string>
+  <string name="ServerNotReachable">Server nie je v dosahu. Prosím, skontrolujte internetového pripojenie a adresu servera</string>
   <string name="SynchronizingCachedDatabase">Synchronizácia databázy vo vyr. pamäti…</string>
   <string name="DownloadingRemoteFile">Načítavanie zdrojového súboru…</string>
   <string name="UploadingFile">Uložiť súbor…</string>
