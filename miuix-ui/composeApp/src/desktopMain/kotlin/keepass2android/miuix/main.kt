@@ -11,6 +11,10 @@ fun main() = application {
         title = "KeePass2Android · miuix 原型",
         state = rememberWindowState(width = 420.dp, height = 780.dp),
     ) {
-        App(cacheDirPath = System.getProperty("java.io.tmpdir") ?: ".")
+        App(
+            cacheDirPath = System.getProperty("java.io.tmpdir") ?: ".",
+            oneDriveClientId = System.getenv("ONEDRIVE_CLIENT_ID")
+                ?: System.getProperty("onedrive.clientId") ?: "",
+        )
     }
 }

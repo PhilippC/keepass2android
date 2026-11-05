@@ -63,7 +63,7 @@ private val tabs = listOf(
 )
 
 @Composable
-fun App(cacheDirPath: String) {
+fun App(cacheDirPath: String, oneDriveClientId: String) {
     val systemDark = isSystemInDarkTheme()
     var themeMode by remember { mutableStateOf(ThemeMode.System) }
     val isDark = when (themeMode) {
@@ -130,6 +130,7 @@ fun App(cacheDirPath: String) {
 
                         Screen.OneDrive -> OneDriveScreen(
                             cacheDirPath = cacheDirPath,
+                            clientId = oneDriveClientId,
                             onBack = ::back,
                             onFetched = { database, keyFileName ->
                                 navigate(Screen.Unlock(database, keyFileName))

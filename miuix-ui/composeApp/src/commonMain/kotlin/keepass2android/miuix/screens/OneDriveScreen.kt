@@ -1,5 +1,7 @@
 package keepass2android.miuix.screens
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -10,16 +12,19 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import kotlinx.coroutines.Dispatchers
@@ -32,15 +37,21 @@ import top.yukonga.miuix.kmp.basic.Icon
 import top.yukonga.miuix.kmp.basic.IconButton
 import top.yukonga.miuix.kmp.basic.Scaffold
 import top.yukonga.miuix.kmp.basic.Text
+import top.yukonga.miuix.kmp.basic.TextButton
 import top.yukonga.miuix.kmp.basic.TextField
 import top.yukonga.miuix.kmp.basic.TopAppBar
 import top.yukonga.miuix.kmp.icon.MiuixIcons
 import top.yukonga.miuix.kmp.icon.extended.Back
 import top.yukonga.miuix.kmp.icon.extended.CloudFill
 import top.yukonga.miuix.kmp.icon.extended.Download
+import top.yukonga.miuix.kmp.icon.extended.File
+import top.yukonga.miuix.kmp.icon.extended.Folder
 import top.yukonga.miuix.kmp.icon.extended.Lock
+import top.yukonga.miuix.kmp.icon.extended.Refresh
 import top.yukonga.miuix.kmp.theme.MiuixTheme
 import keepass2android.miuix.data.RecentDatabase
+import keepass2android.miuix.onedrive.OneDriveItem
+import keepass2android.miuix.onedrive.OneDriveService
 import keepass2android.miuix.onedrive.fetchOneDriveSharedFile
 
 private fun humanSize(bytes: Long): String = when {
@@ -52,144 +63,399 @@ private fun humanSize(bytes: Long): String = when {
 @Composable
 fun OneDriveScreen(
     cacheDirPath: String,
+    clientId: String,
     onBack: () -> Unit,
     onFetched: (database: RecentDatabase, keyFileName: String?) -> Unit,
 ) {
     val colors = MiuixTheme.colorScheme
-    var dbLink by remember { mutableStateOf("") }
-    var keyLink by remember { mutableStateOf("") }
-    var fetching by remember { mutableStateOf(false) }
-    var status by remember { mutableStateOf<String?>(null) }
-    var error by remember { mutableStateOf<String?>(null) }
     val scope = rememberCoroutineScope()
 
-    fun fetch() {
-        val db = dbLink.trim()
-        if (db.isEmpty() || fetching) return
+    // 会话状态
+    var sessionReady by remember { mutableStateOf(false) }
+    var signedIn by remember { mutableStateOf(false) }
+    var account by remember { mutableStateOf("") }
+
+    // 登录状态
+    var signInRunning by remember { mutableStateOf(false) }
+    var signInCancelled by remember { mutableStateOf(false) }
+    var verifyUrl by remember { mutableStateOf("https://microsoft.com/devicelogin") }
+    var userCode by remember { mutableStateOf("") }
+
+    // 文件浏览状态
+    val folderStack = remember { mutableStateListOf<OneDriveItem>() }
+    var items by remember { mutableStateOf<List<OneDriveItem>>(emptyList()) }
+    var browsing by remember { mutableStateOf(false) }
+    var browseError by remember { mutableStateOf<String?>(null) }
+    var status by remember { mutableStateOf<String?>(null) }
+    var error by remember { mutableStateOf<String?>(null) }
+    var keyFileName by remember { mutableStateOf<String?>(null) }
+
+    // 分享链接模式
+    var dbLink by remember { mutableStateOf("") }
+    var keyLink by remember { mutableStateOf("") }
+    var linkFetching by remember { mutableStateOf(false) }
+
+    LaunchedEffect(clientId) {
+        OneDriveService.init(cacheDirPath, clientId)
+        if (OneDriveService.isConfigured && OneDriveService.isSignedIn) {
+            signedIn = true
+            account = runCatching { OneDriveService.accountName() }.getOrDefault("OneDrive 账号")
+        }
+        sessionReady = true
+    }
+
+    fun refreshFolder() {
+        if (!signedIn) return
         scope.launch {
-            fetching = true
+            browsing = true
+            browseError = null
+            try {
+                items = OneDriveService.listChildren(folderStack.lastOrNull()?.id)
+            } catch (e: Exception) {
+                browseError = e.message ?: "加载失败"
+            }
+            browsing = false
+        }
+    }
+
+    fun enterFolder(item: OneDriveItem) {
+        folderStack.add(item)
+        refreshFolder()
+    }
+
+    fun upFolder() {
+        if (folderStack.isNotEmpty()) {
+            folderStack.removeAt(folderStack.lastIndex)
+            refreshFolder()
+        }
+    }
+
+    fun signOut() {
+        OneDriveService.signOut()
+        signedIn = false
+        account = ""
+        items = emptyList()
+        folderStack.clear()
+    }
+
+    fun startSignIn() {
+        scope.launch {
+            signInRunning = true
+            signInCancelled = false
             error = null
             try {
-                status = "正在连接 OneDrive…"
+                OneDriveService.signIn(
+                    onCode = { url, code ->
+                        verifyUrl = url
+                        userCode = code
+                    },
+                    isCancelled = { signInCancelled },
+                )
+                signedIn = true
+                account = runCatching { OneDriveService.accountName() }.getOrDefault("OneDrive 账号")
+                refreshFolder()
+            } catch (e: Exception) {
+                if (!signInCancelled) error = e.message ?: "登录失败"
+            }
+            signInRunning = false
+            userCode = ""
+        }
+    }
+
+    fun downloadAsDatabase(item: OneDriveItem) {
+        scope.launch {
+            status = "正在下载 ${item.name}…"
+            error = null
+            try {
+                val file = OneDriveService.downloadItem(item, cacheDirPath, "database.kdbx")
+                status = null
+                onFetched(RecentDatabase(file.name, "OneDrive · ${humanSize(file.sizeBytes)}"), keyFileName)
+            } catch (e: Exception) {
+                status = null
+                error = e.message ?: "下载失败"
+            }
+        }
+    }
+
+    fun downloadAsKeyFile(item: OneDriveItem) {
+        scope.launch {
+            status = "正在下载密钥文件 ${item.name}…"
+            error = null
+            try {
+                val file = OneDriveService.downloadItem(item, cacheDirPath, "keyfile.keyx")
+                status = null
+                keyFileName = file.name
+            } catch (e: Exception) {
+                status = null
+                error = e.message ?: "下载失败"
+            }
+        }
+    }
+
+    fun fetchByLink() {
+        val link = dbLink.trim()
+        if (link.isEmpty() || linkFetching) return
+        scope.launch {
+            linkFetching = true
+            error = null
+            try {
+                status = "正在下载数据库文件…"
                 val dbFile = withContext(Dispatchers.Default) {
-                    fetchOneDriveSharedFile(db, cacheDirPath, "database.kdbx")
+                    fetchOneDriveSharedFile(link, cacheDirPath, "database.kdbx")
                 }
-                var keyName: String? = null
+                var keyName: String? = keyFileName
                 if (keyLink.isNotBlank()) {
                     status = "正在下载密钥文件…"
                     keyName = withContext(Dispatchers.Default) {
                         fetchOneDriveSharedFile(keyLink.trim(), cacheDirPath, "keyfile.keyx").name
                     }
                 }
-                fetching = false
                 status = null
-                onFetched(
-                    RecentDatabase(dbFile.name, "OneDrive · ${humanSize(dbFile.sizeBytes)}"),
-                    keyName,
-                )
+                onFetched(RecentDatabase(dbFile.name, "OneDrive · ${humanSize(dbFile.sizeBytes)}"), keyName)
             } catch (e: Exception) {
-                fetching = false
                 status = null
                 error = e.message ?: "下载失败，请稍后重试"
             }
+            linkFetching = false
+        }
+    }
+
+    fun onItemClick(item: OneDriveItem) {
+        if (item.isFolder) {
+            enterFolder(item)
+            return
+        }
+        val name = item.name.lowercase()
+        when {
+            name.endsWith(".kdbx") -> downloadAsDatabase(item)
+            name.endsWith(".keyx") || name.endsWith(".key") -> downloadAsKeyFile(item)
+            else -> error = "仅支持 .kdbx（数据库）与 .keyx / .key（密钥文件）"
         }
     }
 
     Scaffold(
         topBar = {
             TopAppBar(
-                title = "从 OneDrive 获取",
+                title = "OneDrive",
                 navigationIcon = {
                     IconButton(onClick = onBack, modifier = Modifier.padding(start = 12.dp)) {
                         Icon(MiuixIcons.Back, "返回")
                     }
                 },
+                actions = {
+                    if (signedIn) {
+                        IconButton(onClick = ::refreshFolder) {
+                            Icon(MiuixIcons.Refresh, "刷新")
+                        }
+                    }
+                },
             )
         },
     ) { padding ->
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .verticalScroll(rememberScrollState())
-                .padding(PaddingValues(start = 16.dp, end = 16.dp, top = padding.calculateTopPadding() + 8.dp)),
+        LazyColumn(
+            modifier = Modifier.fillMaxWidth(),
+            contentPadding = PaddingValues(
+                start = 16.dp,
+                end = 16.dp,
+                top = padding.calculateTopPadding() + 8.dp,
+                bottom = padding.calculateBottomPadding() + 32.dp,
+            ),
         ) {
-            Card {
-                Row(
-                    verticalAlignment = Alignment.CenterVertically,
-                    modifier = Modifier.padding(vertical = 4.dp),
-                ) {
-                    Icon(MiuixIcons.CloudFill, null, tint = colors.primary, modifier = Modifier.size(26.dp))
-                    Spacer(Modifier.width(14.dp))
+            if (!sessionReady) {
+                item {
+                    Text("正在加载…", color = colors.onSurfaceVariantSummary, modifier = Modifier.padding(16.dp))
+                }
+            } else if (!OneDriveService.isConfigured) {
+                item {
+                    Card {
+                        Column(modifier = Modifier.padding(14.dp)) {
+                            Row(verticalAlignment = Alignment.CenterVertically) {
+                                Icon(MiuixIcons.CloudFill, null, tint = colors.primary, modifier = Modifier.size(24.dp))
+                                Spacer(Modifier.width(12.dp))
+                                Text("需要配置 Client ID", fontWeight = FontWeight.SemiBold, color = colors.onSurface)
+                            }
+                            Spacer(Modifier.height(8.dp))
+                            Text(
+                                "登录 OneDrive 需要一个 Azure 应用 Client ID：\n" +
+                                    "1. 打开 portal.azure.com → 应用注册 → 新注册\n" +
+                                    "2. 受支持的账户类型选「任何组织目录和个人账户」\n" +
+                                    "3. 身份验证 → 高级设置 → 允许公共客户端流 = 是\n" +
+                                    "4. 把应用程序(客户端) ID 填入 AndroidManifest 的 onedrive_client_id（桌面端设环境变量 ONEDRIVE_CLIENT_ID）",
+                                fontSize = 13.sp,
+                                color = colors.onSurfaceVariantSummary,
+                            )
+                        }
+                    }
+                }
+            } else if (!signedIn) {
+                item {
+                    if (signInRunning && userCode.isNotEmpty()) {
+                        Card {
+                            Column(modifier = Modifier.padding(14.dp), horizontalAlignment = Alignment.CenterHorizontally) {
+                                Text("打开以下网址并输入代码完成登录", fontSize = 13.sp, color = colors.onSurfaceVariantSummary)
+                                Spacer(Modifier.height(6.dp))
+                                Text(verifyUrl, fontSize = 15.sp, fontWeight = FontWeight.SemiBold, color = colors.primary)
+                                Spacer(Modifier.height(10.dp))
+                                Text(userCode, fontSize = 28.sp, fontWeight = FontWeight.Bold, color = colors.onSurface)
+                                Spacer(Modifier.height(10.dp))
+                                Text("等待授权中…", fontSize = 13.sp, color = colors.onSurfaceVariantSummary)
+                                Spacer(Modifier.height(12.dp))
+                                TextButton(text = "取消", onClick = { signInCancelled = true })
+                            }
+                        }
+                    } else {
+                        Card {
+                            Column(modifier = Modifier.padding(14.dp), horizontalAlignment = Alignment.CenterHorizontally) {
+                                Icon(MiuixIcons.CloudFill, null, tint = colors.primary, modifier = Modifier.size(40.dp))
+                                Spacer(Modifier.height(10.dp))
+                                Text("登录 OneDrive 账号", fontWeight = FontWeight.SemiBold, color = colors.onSurface)
+                                Spacer(Modifier.height(4.dp))
+                                Text(
+                                    "使用微软设备码登录，无需输入账号密码到本应用",
+                                    fontSize = 13.sp,
+                                    color = colors.onSurfaceVariantSummary,
+                                )
+                                Spacer(Modifier.height(14.dp))
+                                Button(
+                                    onClick = ::startSignIn,
+                                    modifier = Modifier.fillMaxWidth(),
+                                    colors = ButtonDefaults.buttonColorsPrimary(),
+                                ) {
+                                    Text("登录 OneDrive")
+                                }
+                            }
+                        }
+                    }
+                }
+            } else {
+                item {
+                    Card(modifier = Modifier.padding(bottom = 12.dp)) {
+                        Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.padding(vertical = 4.dp)) {
+                            Box(
+                                modifier = Modifier
+                                    .size(40.dp)
+                                    .background(colors.primaryContainer, RoundedCornerShape(12.dp)),
+                                contentAlignment = Alignment.Center,
+                            ) {
+                                Icon(MiuixIcons.CloudFill, null, tint = colors.primary, modifier = Modifier.size(22.dp))
+                            }
+                            Column(modifier = Modifier.padding(start = 12.dp).weight(1f)) {
+                                Text(account, color = colors.onSurface)
+                                Text("已连接 OneDrive", fontSize = 12.sp, color = colors.onSurfaceVariantSummary)
+                            }
+                            TextButton(text = "退出登录", onClick = ::signOut)
+                        }
+                    }
+                    if (folderStack.isNotEmpty()) {
+                        TextButton(text = "← 返回上级", onClick = ::upFolder)
+                    }
                     Text(
-                        "粘贴 OneDrive 分享链接（支持 1drv.ms 短链），应用会把数据库和密钥文件下载到缓存目录。",
+                        "文件列表" + if (folderStack.isNotEmpty()) " · ${folderStack.last().name}" else "",
                         fontSize = 13.sp,
                         color = colors.onSurfaceVariantSummary,
-                        modifier = Modifier.weight(1f),
+                        modifier = Modifier.padding(top = 6.dp, bottom = 8.dp, start = 4.dp),
                     )
+                    if (keyFileName != null) {
+                        Card(modifier = Modifier.padding(bottom = 8.dp)) {
+                            Text(
+                                "已选择密钥文件：$keyFileName",
+                                fontSize = 13.sp,
+                                color = colors.primary,
+                                modifier = Modifier.padding(12.dp),
+                            )
+                        }
+                    }
+                    status?.let {
+                        Text(it, fontSize = 13.sp, color = colors.onSurfaceVariantSummary, modifier = Modifier.padding(bottom = 8.dp, start = 4.dp))
+                    }
+                    error?.let {
+                        Text(it, fontSize = 13.sp, color = colors.error, modifier = Modifier.padding(bottom = 8.dp, start = 4.dp))
+                    }
+                    if (browsing) {
+                        Text("加载中…", fontSize = 13.sp, color = colors.onSurfaceVariantSummary, modifier = Modifier.padding(8.dp))
+                    }
+                    browseError?.let {
+                        Text(it, fontSize = 13.sp, color = colors.error, modifier = Modifier.padding(8.dp))
+                    }
+                }
+                items(items.size) { index ->
+                    val item = items[index]
+                    Card(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(bottom = 10.dp),
+                        onClick = { onItemClick(item) },
+                    ) {
+                        Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.padding(vertical = 2.dp)) {
+                            Box(
+                                modifier = Modifier
+                                    .size(38.dp)
+                                    .background(
+                                        if (item.isFolder) colors.secondaryContainer else colors.primaryContainer,
+                                        RoundedCornerShape(10.dp),
+                                    ),
+                                contentAlignment = Alignment.Center,
+                            ) {
+                                Icon(
+                                    if (item.isFolder) MiuixIcons.Folder else MiuixIcons.File,
+                                    null,
+                                    tint = if (item.isFolder) colors.onSecondaryContainer else colors.primary,
+                                    modifier = Modifier.size(20.dp),
+                                )
+                            }
+                            Column(modifier = Modifier.padding(start = 12.dp).weight(1f)) {
+                                Text(item.name, color = colors.onSurface)
+                                if (!item.isFolder) {
+                                    Text(humanSize(item.sizeBytes), fontSize = 11.sp, color = colors.onSurfaceVariantSummary)
+                                }
+                            }
+                            if (!item.isFolder) {
+                                IconButton(onClick = { onItemClick(item) }) {
+                                    Icon(MiuixIcons.Download, "下载", tint = colors.primary)
+                                }
+                            }
+                        }
+                    }
                 }
             }
 
-            Spacer(Modifier.height(12.dp))
-
-            Card {
-                TextField(
-                    value = dbLink,
-                    onValueChange = {
-                        dbLink = it
-                        error = null
-                    },
-                    label = "数据库分享链接（.kdbx）",
-                    leadingIcon = { Icon(MiuixIcons.Download, null, tint = colors.primary) },
-                    singleLine = true,
-                )
-            }
-
-            Spacer(Modifier.height(12.dp))
-
-            Card {
-                TextField(
-                    value = keyLink,
-                    onValueChange = { keyLink = it },
-                    label = "密钥文件链接（可选，.keyx / .key）",
-                    leadingIcon = { Icon(MiuixIcons.Lock, null, tint = colors.primary) },
-                    singleLine = true,
-                )
-            }
-
-            status?.let {
+            item {
+                Spacer(Modifier.height(20.dp))
                 Text(
-                    it,
+                    "或粘贴 OneDrive 分享链接（无需登录）",
+                    fontSize = 13.sp,
                     color = colors.onSurfaceVariantSummary,
-                    modifier = Modifier.padding(start = 16.dp, top = 12.dp),
+                    modifier = Modifier.padding(start = 4.dp, bottom = 8.dp),
                 )
+                Card {
+                    TextField(
+                        value = dbLink,
+                        onValueChange = { dbLink = it },
+                        label = "数据库分享链接（.kdbx）",
+                        leadingIcon = { Icon(MiuixIcons.Download, null, tint = colors.primary) },
+                        singleLine = true,
+                    )
+                }
+                Spacer(Modifier.height(10.dp))
+                Card {
+                    TextField(
+                        value = keyLink,
+                        onValueChange = { keyLink = it },
+                        label = "密钥文件链接（可选，.keyx / .key）",
+                        leadingIcon = { Icon(MiuixIcons.Lock, null, tint = colors.primary) },
+                        singleLine = true,
+                    )
+                }
+                Spacer(Modifier.height(16.dp))
+                Button(
+                    onClick = ::fetchByLink,
+                    enabled = !linkFetching && dbLink.isNotBlank(),
+                    modifier = Modifier.fillMaxWidth(),
+                    colors = ButtonDefaults.buttonColorsPrimary(),
+                ) {
+                    Text(if (linkFetching) "获取中…" else "获取并打开")
+                }
             }
-            error?.let {
-                Text(
-                    it,
-                    color = colors.error,
-                    modifier = Modifier.padding(start = 16.dp, top = 12.dp),
-                )
-            }
-
-            Spacer(Modifier.height(20.dp))
-
-            Button(
-                onClick = ::fetch,
-                enabled = !fetching && dbLink.isNotBlank(),
-                modifier = Modifier.fillMaxWidth(),
-                colors = ButtonDefaults.buttonColorsPrimary(),
-            ) {
-                Text(if (fetching) "获取中…" else "获取并打开")
-            }
-
-            Text(
-                "原型提示：企业版 SharePoint 分享链接暂不支持；下载完成后进入解锁页（演示数据不解析真实 .kdbx）。",
-                fontSize = 12.sp,
-                color = colors.onSurfaceVariantSummary,
-                modifier = Modifier.padding(top = 14.dp, start = 16.dp),
-            )
-
-            Spacer(Modifier.height(padding.calculateBottomPadding() + 32.dp))
         }
     }
 }

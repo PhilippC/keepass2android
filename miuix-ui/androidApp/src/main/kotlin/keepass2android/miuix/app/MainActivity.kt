@@ -10,8 +10,14 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+        val clientId = runCatching {
+            packageManager.getApplicationInfo(
+                packageName,
+                android.content.pm.PackageManager.GET_META_DATA,
+            ).metaData?.getString("onedrive_client_id").orEmpty()
+        }.getOrDefault("")
         setContent {
-            App(cacheDirPath = cacheDir.absolutePath)
+            App(cacheDirPath = cacheDir.absolutePath, oneDriveClientId = clientId)
         }
     }
 }

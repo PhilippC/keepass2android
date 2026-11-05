@@ -10,6 +10,10 @@
         android:supportsRtl="true"
         android:theme="@android:style/Theme.Material.Light.NoActionBar">
 
+        <meta-data
+            android:name="onedrive_client_id"
+            android:value="" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true"
