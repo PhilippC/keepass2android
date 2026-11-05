@@ -37,6 +37,7 @@ import keepass2android.miuix.data.RecentDatabase
 @Composable
 fun UnlockScreen(
     database: RecentDatabase,
+    keyFileName: String?,
     onBack: () -> Unit,
     onUnlocked: () -> Unit,
 ) {
@@ -65,7 +66,16 @@ fun UnlockScreen(
                 .verticalScroll(rememberScrollState())
                 .padding(PaddingValues(start = 16.dp, end = 16.dp, top = padding.calculateTopPadding() + 8.dp)),
         ) {
-            Text(database.path, color = colors.onSurfaceVariantSummary, modifier = Modifier.padding(bottom = 16.dp))
+            Text(database.path, color = colors.onSurfaceVariantSummary, modifier = Modifier.padding(bottom = 4.dp))
+            if (keyFileName != null) {
+                Text(
+                    "密钥文件：$keyFileName",
+                    color = colors.onSurfaceVariantSummary,
+                    modifier = Modifier.padding(bottom = 16.dp),
+                )
+            } else {
+                Spacer(Modifier.height(12.dp))
+            }
 
             Card {
                 TextField(

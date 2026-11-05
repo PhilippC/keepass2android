@@ -29,6 +29,7 @@ import top.yukonga.miuix.kmp.basic.Text
 import top.yukonga.miuix.kmp.basic.TextButton
 import top.yukonga.miuix.kmp.basic.TopAppBar
 import top.yukonga.miuix.kmp.icon.MiuixIcons
+import top.yukonga.miuix.kmp.icon.extended.CloudFill
 import top.yukonga.miuix.kmp.icon.extended.File
 import top.yukonga.miuix.kmp.icon.extended.Lock
 import top.yukonga.miuix.kmp.icon.extended.Settings
@@ -38,6 +39,7 @@ import keepass2android.miuix.data.DemoData
 @Composable
 fun StartScreen(
     onOpenDatabase: () -> Unit,
+    onOpenOneDrive: () -> Unit,
     onSettings: () -> Unit,
 ) {
     val scrollBehavior = MiuixScrollBehavior()
@@ -103,6 +105,33 @@ fun StartScreen(
                                 fontSize = 13.sp,
                                 color = colors.onSurfaceVariantSummary,
                             )
+                        }
+                    }
+                }
+            }
+
+            item {
+                Card(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(bottom = 12.dp),
+                    onClick = onOpenOneDrive,
+                ) {
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        modifier = Modifier.padding(vertical = 4.dp),
+                    ) {
+                        Box(
+                            modifier = Modifier
+                                .size(44.dp)
+                                .background(colors.primaryContainer, RoundedCornerShape(12.dp)),
+                            contentAlignment = Alignment.Center,
+                        ) {
+                            Icon(MiuixIcons.CloudFill, null, tint = colors.primary, modifier = Modifier.size(22.dp))
+                        }
+                        Column(modifier = Modifier.padding(start = 14.dp)) {
+                            Text("从 OneDrive 获取", color = colors.onSurface)
+                            Text("粘贴分享链接获取 .kdbx 与密钥文件", fontSize = 12.sp, color = colors.onSurfaceVariantSummary)
                         }
                     }
                 }

@@ -29,17 +29,20 @@ import top.yukonga.miuix.kmp.theme.darkColorScheme
 import top.yukonga.miuix.kmp.theme.lightColorScheme
 import keepass2android.miuix.data.DemoData
 import keepass2android.miuix.data.KpEntry
+import keepass2android.miuix.data.RecentDatabase
 import keepass2android.miuix.screens.EntryScreen
 import keepass2android.miuix.screens.FavoritesScreen
 import keepass2android.miuix.screens.GeneratePasswordScreen
 import keepass2android.miuix.screens.GroupScreen
+import keepass2android.miuix.screens.OneDriveScreen
 import keepass2android.miuix.screens.SettingsScreen
 import keepass2android.miuix.screens.StartScreen
 import keepass2android.miuix.screens.UnlockScreen
 
 sealed interface Screen {
     data object Start : Screen
-    data object Unlock : Screen
+    data class Unlock(val database: RecentDatabase, val keyFileName: String? = null) : Screen
+    data object OneDrive : Screen
     data class Group(val groupId: Int) : Screen
     data object Favorites : Screen
     data class Entry(val entryId: Int) : Screen
@@ -60,7 +63,7 @@ private val tabs = listOf(
 )
 
 @Composable
-fun App() {
+fun App(cacheDirPath: String) {
     val systemDark = isSystemInDarkTheme()
     var themeMode by remember { mutableStateOf(ThemeMode.System) }
     val isDark = when (themeMode) {
@@ -120,12 +123,22 @@ fun App() {
                 ) { screen ->
                     when (screen) {
                         Screen.Start -> StartScreen(
-                            onOpenDatabase = { navigate(Screen.Unlock) },
+                            onOpenDatabase = { navigate(Screen.Unlock(DemoData.recentDatabases.first())) },
+                            onOpenOneDrive = { navigate(Screen.OneDrive) },
                             onSettings = { navigate(Screen.Settings) },
                         )
 
-                        Screen.Unlock -> UnlockScreen(
-                            database = DemoData.recentDatabases.first(),
+                        Screen.OneDrive -> OneDriveScreen(
+                            cacheDirPath = cacheDirPath,
+                            onBack = ::back,
+                            onFetched = { database, keyFileName ->
+                                navigate(Screen.Unlock(database, keyFileName))
+                            },
+                        )
+
+                        is Screen.Unlock -> UnlockScreen(
+                            database = screen.database,
+                            keyFileName = screen.keyFileName,
                             onBack = ::back,
                             onUnlocked = { navigate(Screen.Group(0)) },
                         )

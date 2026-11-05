@@ -25,7 +25,13 @@ kotlin {
             }
         }
 
+        val jvmShared by creating {
+            dependsOn(commonMain)
+        }
+        androidMain.get().dependsOn(jvmShared)
+
         val desktopMain by getting {
+            dependsOn(jvmShared)
             dependencies {
                 implementation(compose.desktop.currentOs)
             }
