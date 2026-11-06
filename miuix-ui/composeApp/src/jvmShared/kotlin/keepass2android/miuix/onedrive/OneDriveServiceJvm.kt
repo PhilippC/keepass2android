@@ -70,6 +70,10 @@ actual object OneDriveService {
         signInJob = signInScope.launch {
             try {
                 doSignIn()
+            } catch (e: java.net.UnknownHostException) {
+                signInStateInternal.value = OneDriveSignInState.Failed(
+                    "网络连接失败：无法解析微软服务器域名。\n请检查手机网络是否可用，或到 系统设置 → 网络 → 私人DNS 选择「无」后重试。",
+                )
             } catch (e: Exception) {
                 if (signInStateInternal.value !is OneDriveSignInState.Success) {
                     signInStateInternal.value = OneDriveSignInState.Failed(e.message ?: "登录失败")
@@ -152,9 +156,13 @@ actual object OneDriveService {
     actual suspend fun listChildren(folderId: String?): List<OneDriveItem> = withContext(Dispatchers.Default) {
         val base = if (folderId == null) "$GRAPH/me/drive/root/children" else "$GRAPH/me/drive/items/$folderId/children"
         val url = "$base?\$select=id,name,folder,file,size"
-        val arr = runCatching {
-            Json.parseToJsonElement(graphGet(url)).jsonObject["value"]?.jsonArray
-        }.getOrNull() ?: return@withContext emptyList()
+        val arr = try {
+            runCatching {
+                Json.parseToJsonElement(graphGet(url)).jsonObject["value"]?.jsonArray
+            }.getOrNull() ?: return@withContext emptyList()
+        } catch (e: java.net.UnknownHostException) {
+            throw IOException("网络连接失败：无法解析微软服务器域名，请检查手机网络后下拉重试")
+        }
         arr.mapNotNull { el ->
             val obj = runCatching { el.jsonObject }.getOrNull() ?: return@mapNotNull null
             OneDriveItem(
