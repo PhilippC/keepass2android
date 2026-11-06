@@ -1,14 +1,17 @@
 package keepass2android.miuix.app
 
 import android.os.Bundle
-import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.biometric.BiometricManager
+import androidx.biometric.BiometricPrompt
+import androidx.core.content.ContextCompat
+import androidx.fragment.app.FragmentActivity
 import java.io.File
 import keepass2android.miuix.App
 
-class MainActivity : ComponentActivity() {
+class MainActivity : FragmentActivity() {
 
     private var filePickCallback: ((name: String, path: String, size: Long) -> Unit)? = null
 
@@ -46,6 +49,52 @@ class MainActivity : ComponentActivity() {
         runCatching { openDocument.launch(arrayOf("*/*")) }.onFailure { filePickCallback = null }
     }
 
+    private fun biometricAvailable(): Boolean =
+        BiometricManager.from(this)
+            .canAuthenticate(BiometricManager.Authenticators.BIOMETRIC_WEAK) == BiometricManager.BIOMETRIC_SUCCESS
+
+    private fun hasQuickUnlock(dbPath: String): Boolean =
+        QuickUnlockStore.has(this, dbPath) && biometricAvailable()
+
+    private fun quickUnlock(
+        dbPath: String,
+        onSuccess: (password: String, keyFilePath: String?) -> Unit,
+        onError: (String) -> Unit,
+    ) {
+        if (!QuickUnlockStore.has(this, dbPath)) {
+            onError("未找到已保存的解锁凭据")
+            return
+        }
+        val prompt = BiometricPrompt(
+            this,
+            ContextCompat.getMainExecutor(this),
+            object : BiometricPrompt.AuthenticationCallback() {
+                override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
+                    val credentials = QuickUnlockStore.load(this@MainActivity, dbPath)
+                    if (credentials != null) {
+                        onSuccess(credentials.first, credentials.second)
+                    } else {
+                        onError("无法读取已保存的解锁凭据，请重新输入主密码")
+                    }
+                }
+
+                override fun onAuthenticationError(errorCode: Int, errString: CharSequence) {
+                    if (errorCode != BiometricPrompt.ERROR_NEGATIVE_BUTTON &&
+                        errorCode != BiometricPrompt.ERROR_USER_CANCELED
+                    ) {
+                        onError(errString.toString())
+                    }
+                }
+            },
+        )
+        val promptInfo = BiometricPrompt.PromptInfo.Builder()
+            .setTitle("指纹解锁数据库")
+            .setSubtitle("验证指纹以快速解锁")
+            .setNegativeButtonText("取消")
+            .build()
+        prompt.authenticate(promptInfo)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -70,6 +119,11 @@ class MainActivity : ComponentActivity() {
                     }
                 },
                 onPickFile = ::pickFile,
+                hasQuickUnlock = ::hasQuickUnlock,
+                quickUnlock = ::quickUnlock,
+                saveQuickUnlock = { path, password, keyPath ->
+                    QuickUnlockStore.save(this, path, password, keyPath)
+                },
             )
         }
     }

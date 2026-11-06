@@ -17,6 +17,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import kotlinx.coroutines.launch
 import top.yukonga.miuix.kmp.basic.Button
 import top.yukonga.miuix.kmp.basic.ButtonDefaults
@@ -45,20 +46,41 @@ fun UnlockScreen(
     keyFileName: String?,
     keyFilePath: String? = null,
     onPickFile: ((onResult: (name: String, path: String, size: Long) -> Unit) -> Unit)? = null,
+    hasQuickUnlock: (dbPath: String) -> Boolean = { false },
+    quickUnlock: (dbPath: String, onSuccess: (password: String, keyFilePath: String?) -> Unit, onError: (String) -> Unit) -> Unit = { _, _, _ -> },
+    saveQuickUnlock: (dbPath: String, password: String, keyFilePath: String?) -> Unit = { _, _, _ -> },
     onBack: () -> Unit,
     onUnlocked: () -> Unit,
 ) {
     val colors = MiuixTheme.colorScheme
     val scope = rememberCoroutineScope()
+    val realPath = database.realPath
     var password by remember { mutableStateOf("") }
     var showPassword by remember { mutableStateOf(false) }
-    var biometric by remember { mutableStateOf(true) }
     var rememberKeyFile by remember { mutableStateOf(false) }
     var error by remember { mutableStateOf(false) }
     var keyName by remember(database) { mutableStateOf(keyFileName) }
     var keyPath by remember(database) { mutableStateOf(keyFilePath) }
     var unlocking by remember { mutableStateOf(false) }
     var unlockError by remember { mutableStateOf<String?>(null) }
+    val fingerprintAvailable = realPath != null && hasQuickUnlock(realPath)
+
+    fun runEngine(masterPassword: String, keyFile: String?) {
+        if (unlocking || realPath == null) return
+        scope.launch {
+            unlocking = true
+            unlockError = null
+            try {
+                val content = KdbxEngine.unlock(realPath, masterPassword, keyFile)
+                DatabaseState.loadReal(content.groups, content.entries)
+                saveQuickUnlock(realPath, masterPassword, keyFile)
+                onUnlocked()
+            } catch (e: Exception) {
+                unlockError = e.message ?: "解锁失败"
+            }
+            unlocking = false
+        }
+    }
 
     fun unlock() {
         if (unlocking) return
@@ -66,23 +88,11 @@ fun UnlockScreen(
             error = true
             return
         }
-        val realPath = database.realPath
         if (realPath == null) {
             onUnlocked()
             return
         }
-        scope.launch {
-            unlocking = true
-            unlockError = null
-            try {
-                val content = KdbxEngine.unlock(realPath, password, keyPath)
-                DatabaseState.loadReal(content.groups, content.entries)
-                onUnlocked()
-            } catch (e: Exception) {
-                unlockError = e.message ?: "解锁失败"
-            }
-            unlocking = false
-        }
+        runEngine(password, keyPath)
     }
 
     Scaffold(
@@ -126,6 +136,24 @@ fun UnlockScreen(
                 Spacer(Modifier.height(4.dp))
             }
 
+            if (fingerprintAvailable) {
+                Button(
+                    onClick = { quickUnlock(realPath!!, ::runEngine) { unlockError = it } },
+                    enabled = !unlocking,
+                    modifier = Modifier.fillMaxWidth(),
+                    colors = ButtonDefaults.buttonColorsPrimary(),
+                ) {
+                    Text("使用指纹解锁")
+                }
+                Text(
+                    "或输入主密码解锁",
+                    fontSize = 12.sp,
+                    color = colors.onSurfaceVariantSummary,
+                    modifier = Modifier.padding(top = 10.dp),
+                )
+                Spacer(Modifier.height(10.dp))
+            }
+
             Card {
                 TextField(
                     value = password,
@@ -165,12 +193,6 @@ fun UnlockScreen(
             Spacer(Modifier.height(16.dp))
 
             Card {
-                SwitchPreference(
-                    checked = biometric,
-                    onCheckedChange = { biometric = it },
-                    title = "生物识别解锁",
-                    summary = "使用指纹或面容快速解锁",
-                )
                 SwitchPreference(
                     checked = rememberKeyFile,
                     onCheckedChange = { rememberKeyFile = it },

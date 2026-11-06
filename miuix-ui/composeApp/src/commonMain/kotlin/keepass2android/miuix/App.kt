@@ -80,6 +80,9 @@ fun App(
     oneDriveClientId: String,
     onOpenUrl: (String) -> Unit = {},
     onPickFile: (onResult: (name: String, path: String, size: Long) -> Unit) -> Unit = {},
+    hasQuickUnlock: (dbPath: String) -> Boolean = { false },
+    quickUnlock: (dbPath: String, onSuccess: (password: String, keyFilePath: String?) -> Unit, onError: (String) -> Unit) -> Unit = { _, _, _ -> },
+    saveQuickUnlock: (dbPath: String, password: String, keyFilePath: String?) -> Unit = { _, _, _ -> },
 ) {
     val effectiveOneDriveClientId = oneDriveClientId.ifBlank { OneDriveDefaults.ClientId }
     val systemDark = isSystemInDarkTheme()
@@ -170,6 +173,9 @@ fun App(
                             keyFileName = screen.keyFileName,
                             keyFilePath = screen.keyFilePath,
                             onPickFile = onPickFile,
+                            hasQuickUnlock = hasQuickUnlock,
+                            quickUnlock = quickUnlock,
+                            saveQuickUnlock = saveQuickUnlock,
                             onBack = ::back,
                             onUnlocked = { navigate(Screen.Group(0)) },
                         )
