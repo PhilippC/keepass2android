@@ -346,7 +346,9 @@
   <string name="QuickUnlockDefaultEnabled_title">Включить по умолчанию</string>
   <string name="QuickUnlockDefaultEnabled_summary">Определяет, включена ли \"Быстрая разблокировка\" по умолчанию или нет.</string>
   <string name="ViewDatabaseSecure_title">Защита отображения базы данных</string>
+  <string name="DisableSecureDisplayCheck_title">Пропустить проверку для безопасного дисплея</string>
   <string name="ViewDatabaseSecure_summary">При установке этого параметра нельзя делать скриншоты содержимого БД. Приложение не отобразится в списке недавно запущенных.</string>
+  <string name="DisableSecureDisplayCheck_summary">Позволяет отображать конфиденциальную информацию, даже если текущий экран не помечен как \"безопасный\" Android.</string>
   <string name="QuickUnlockIconHidden_title">Скрыть значок БыстройРазблокировки</string>
   <string name="QuickUnlockIconHidden_summary">К сожалению, \"Быстрая разблокировка\" не работает без отображения значка уведомлений. Включите этот параметр для использования прозрачного значка.</string>
   <string name="QuickUnlockIconHidden16_title">Скрыть значок БыстройРазблокировки</string>
@@ -378,8 +380,13 @@
   <string name="add_binary">Добавить вложение</string>
   <string name="attach_browse_file">Выбрать файл...</string>
   <string name="attach_take_photo">Сделать фото...</string>
+  <string name="capture_photo_title">Сделать фото</string>
+  <string name="capture_flip_camera">Переключить камеру</string>
+  <string name="camera_permission_required">Для создания фотографии требуется разрешение на доступ к камере.</string>
+  <string name="capture_attachment_size_warning">Выберите размер фото</string>
   <string name="capture_size_small">Маленький</string>
   <string name="capture_size_medium">Средний</string>
+  <string name="capture_size_original">Исходный</string>
   <string name="add_extra_string">Добавить доп строку</string>
   <string name="configure_totp">Настроить TOTP</string>
   <string name="totp_secret_key">Секретный ключ</string>
@@ -412,6 +419,7 @@
   <string name="NoDonationReminder_summary">Я не дам вам ни копейки, или я уже пожертвовал. Не спрашивать о пожертвовании даже в день рождения автора.</string>
   <string name="UseOfflineCache_title">Кэширование базы данных</string>
   <string name="UseOfflineCache_summary">Сохранять копию базы данных в кэш-директории приложения. Таким образом, доступ к базе данных останется даже тогда, когда исходный файл недоступен.</string>
+  <string name="SyncOfflineCacheInBackground_summary">При сохранении или загрузке, используйте внутренний кэш. Затем синхронизируйте с удаленным хранилищем в фоновом процессе.</string>
   <string name="SyncOfflineCacheInBackground_title">Синхронизировать в фоновом режиме</string>
   <string name="CreateBackups_title">Локальные резервные копии</string>
   <string name="CreateBackups_summary">Создать локальную резервную копию после успешной загрузки БД.</string>
@@ -503,6 +511,7 @@
   <string name="UseOnlineMode">Синхронизировать кэшированную копию с удалённым файлом</string>
   <string name="UseOfflineMode_Info">База данных загружена из внутреннего кэша. Изменения сохраняются только во внутреннем кэше и будут синхронизироваться только при выборе Синхронизация кэшированной копии с удалённым файлом.</string>
   <string name="InOfflineMode">Работа только с локальной копией базы.</string>
+  <string name="ServerNotReachable">Сервер не доступен. Проверьте подключение к интернету и адрес сервера.</string>
   <string name="SynchronizingCachedDatabase">Синхронизация кэшированной базы данных…</string>
   <string name="DownloadingRemoteFile">Загружается удалённый файл…</string>
   <string name="UploadingFile">Сохранить файл…</string>
@@ -533,8 +542,11 @@
   <string name="ok_donate">Расскажите мне ещё!</string>
   <string name="no_thanks">Спасибо, больше не нужно</string>
   <string name="enter_http_login_title">Введите данные входа WebDav:</string>
+  <string name="enter_smb_login_title">Введите данные для входа в Samba:</string>
   <string name="hint_http_url">URL-адрес файла или папки (например: mycloud.me.com/webdav/)</string>
   <string name="hint_smb_url">URL папки или файла (например: 192.168.1.10/share/folder/)</string>
+  <string name="hint_smb_domain">Домен пользователя Samba</string>
+  <string name="hint_smb_username">Имя пользователя Samba</string>
   <string name="enter_owncloud_login_title">Введите регистрационные данные OwnCloud:</string>
   <string name="hint_owncloud_url">URL-адрес OwnCloud (например: owncloud.me.com)</string>
   <string name="enter_nextcloud_login_title">Введите логин для Nextcloud:</string>
@@ -572,6 +584,7 @@
   <string name="filestoragename_ftp">FTP</string>
   <string name="filestoragename_http">HTTP (WebDav)</string>
   <string name="filestoragename_https">HTTPS (WebDav)</string>
+  <string name="filestoragename_smb">Samba (Общая папка)</string>
   <string name="filestoragename_owncloud">OwnCloud</string>
   <string name="filestoragename_nextcloud">Nextcloud</string>
   <string name="filestoragename_dropbox">Dropbox</string>
@@ -763,9 +776,9 @@
   <string name="cleartextTrafficPermitted_title">Разрешить текстовый сетевой трафик в WebDav</string>
   <string name="cleartextTrafficPermitted_summary">HTTP-соединения небезопасны. Включите эту опцию, только если у вас есть другие меры безопасности.</string>
   <string-array name="ChangeLog_1_15_net">
-    <item>Update to Target SDK version 36</item>
+    <item>Обновить до целевой SDK версии 36</item>
     <item>Улучшение обработки URL для WebDav с не-ASCII символами</item>
-    <item>Improvements to OneDrive Authentication</item>
+    <item>Улучшения аутентификации в OneDrive</item>
     <item>Исправлены незначительные ошибки</item>
   </string-array>
   <string-array name="ChangeLog_1_15">
@@ -945,8 +958,8 @@
   </string-array>
   <string-array name="OneDriveBrokerMode_options">
     <item>Автоматически (рекомендуется)</item>
-    <item>Always use device sign-in</item>
-    <item>Never use device sign-in</item>
+    <item>Всегда использовать вход с устройства</item>
+    <item>Не использовать вход с устройства</item>
   </string-array>
   <string name="ClearClipboardWarning">Убедитесь, что это работает на вашей системе и используйте встроенную клавиатуру, если нет.</string>
   <string name="PluginDescription">Описание предоставлено плагином:</string>
