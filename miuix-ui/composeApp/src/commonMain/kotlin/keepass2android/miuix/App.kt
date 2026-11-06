@@ -83,7 +83,7 @@ fun App(
     cacheDirPath: String,
     oneDriveClientId: String,
     onOpenUrl: (String) -> Unit = {},
-    onPickFile: (onResult: (name: String, path: String, size: Long) -> Unit) -> Unit = {},
+    onPickFile: (forKeyFile: Boolean, onResult: (name: String, path: String, size: Long) -> Unit) -> Unit = { _, _ -> },
     loadRecents: () -> List<RecentDatabase> = { DemoData.recentDatabases },
     saveRecents: (List<RecentDatabase>) -> Unit = {},
     onCreateFile: (suggestedName: String, onResult: (name: String, path: String) -> Unit) -> Unit = { _, _ -> },
@@ -116,6 +116,11 @@ fun App(
     fun back() {
         if (backStack.size > 1) backStack.removeAt(backStack.lastIndex)
     }
+
+    val pickDatabaseFile: ((onResult: (name: String, path: String, size: Long) -> Unit) -> Unit) =
+        { onResult -> onPickFile(false, onResult) }
+    val pickKeyFile: ((onResult: (name: String, path: String, size: Long) -> Unit) -> Unit) =
+        { onResult -> onPickFile(true, onResult) }
 
     fun switchTab(tab: Screen) {
         if (current == tab) return
@@ -156,7 +161,7 @@ fun App(
                             loadRecents = loadRecents,
                             saveRecents = saveRecents,
                             onPickDatabase = {
-                                onPickFile { name, path, size ->
+                                pickDatabaseFile { name, path, size ->
                                     navigate(
                                         Screen.Unlock(
                                             RecentDatabase(name, "本地文件 · ${humanSize(size)}", path),
@@ -172,7 +177,7 @@ fun App(
                         Screen.OpenDatabase -> OpenDatabaseChooserScreen(
                             onBack = ::back,
                             onPickDatabase = {
-                                onPickFile { name, path, size ->
+                                pickDatabaseFile { name, path, size ->
                                     navigate(
                                         Screen.Unlock(
                                             RecentDatabase(name, "本地文件 · ${humanSize(size)}", path),
@@ -185,7 +190,7 @@ fun App(
 
                         Screen.CreateDatabase -> CreateDatabaseScreen(
                             defaultPath = defaultDatabasePath.ifBlank { "$cacheDirPath/keepass.kdbx" },
-                            onPickFile = onPickFile,
+                            onPickFile = pickKeyFile,
                             onCreateFile = onCreateFile,
                             onBack = ::back,
                             onCreated = { database ->
@@ -207,7 +212,7 @@ fun App(
                             database = screen.database,
                             keyFileName = screen.keyFileName,
                             keyFilePath = screen.keyFilePath,
-                            onPickFile = onPickFile,
+                            onPickFile = pickKeyFile,
                             hasQuickUnlock = hasQuickUnlock,
                             quickUnlock = quickUnlock,
                             saveQuickUnlock = saveQuickUnlock,

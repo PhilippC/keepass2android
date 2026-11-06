@@ -18,7 +18,7 @@ fun main() = application {
             onOpenUrl = { url ->
                 runCatching { java.awt.Desktop.getDesktop().browse(java.net.URI(url)) }
             },
-            onPickFile = { onResult ->
+            onPickFile = { _, onResult ->
                 runCatching {
                     javax.swing.SwingUtilities.invokeAndWait {
                         val chooser = javax.swing.JFileChooser()

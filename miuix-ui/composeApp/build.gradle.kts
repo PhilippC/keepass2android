@@ -19,9 +19,10 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation(libs.miuix.ui)
-                implementation(libs.miuix.icons)
-                implementation(libs.miuix.preference)
+                // 用 api 暴露给 androidApp（FilePickerActivity 需要 miuix 组件）
+                api(libs.miuix.ui)
+                api(libs.miuix.icons)
+                api(libs.miuix.preference)
                 implementation(libs.kotlinx.serialization.json)
             }
         }

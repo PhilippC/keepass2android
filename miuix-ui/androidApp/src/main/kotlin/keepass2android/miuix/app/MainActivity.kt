@@ -39,62 +39,97 @@ class MainActivity : FragmentActivity() {
     }
 
     private var filePickCallback: ((name: String, path: String, size: Long) -> Unit)? = null
+    private var filePickForKeyFile = false
 
-    private val openDocument = registerForActivityResult(ActivityResultContracts.OpenDocument()) { uri ->
-        handlePickedUri(uri)
-    }
-
-    // 部分机型的系统文件管理器（DocumentsUI）被禁用时 ACTION_OPEN_DOCUMENT 会失败，回退到 GET_CONTENT
-    private val getContent = registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
-        handlePickedUri(uri)
-    }
-
-    private fun handlePickedUri(uri: android.net.Uri?) {
-        val callback = filePickCallback
-        filePickCallback = null
-        if (uri == null || callback == null) return
-        var name = uri.lastPathSegment?.substringAfterLast('/') ?: "database.kdbx"
-        var reportedSize = -1L
-        runCatching {
-            contentResolver.query(
-                uri,
-                arrayOf(android.provider.OpenableColumns.DISPLAY_NAME, android.provider.OpenableColumns.SIZE),
-                null,
-                null,
-                null,
-            )?.use { cursor ->
-                if (cursor.moveToFirst()) {
-                    cursor.getString(0)?.let { name = it }
-                    if (!cursor.isNull(1)) reportedSize = cursor.getLong(1)
-                }
-            }
+    private val filePickerLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            val callback = filePickCallback
+            filePickCallback = null
+            if (result.resultCode != RESULT_OK || callback == null) return@registerForActivityResult
+            val data = result.data ?: return@registerForActivityResult
+            val path = data.getStringExtra("path") ?: return@registerForActivityResult
+            callback(
+                data.getStringExtra("name") ?: "file",
+                path,
+                data.getLongExtra("size", -1L),
+            )
         }
-        runCatching {
-            val target = File(cacheDir, name.replace('/', '_'))
-            contentResolver.openInputStream(uri)?.use { input ->
-                target.outputStream().use { output -> input.copyTo(output) }
-            }
-            callback(name, target.absolutePath, if (reportedSize >= 0) reportedSize else target.length())
-        }
-    }
 
-    fun pickFile(onResult: (name: String, path: String, size: Long) -> Unit) {
-        filePickCallback = onResult
-        val openedDirectly = runCatching {
-            openDocument.launch(arrayOf("*/*"))
-        }.onFailure {
-            android.util.Log.e("MainActivity", "ACTION_OPEN_DOCUMENT 启动失败", it)
-        }.isSuccess
-        if (!openedDirectly) {
-            val fallback = runCatching { getContent.launch("*/*") }
-            if (fallback.isFailure) {
+    // 从「所有文件访问」设置页返回后，若已授权则继续打开文件浏览器
+    private val allFilesAccessLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+            if (isFileAccessGranted()) {
+                launchFilePicker()
+            } else {
                 filePickCallback = null
                 android.widget.Toast.makeText(
                     this,
-                    "无法打开文件选择器，请检查系统「文件管理」是否被禁用",
+                    "未授予「所有文件访问」权限，无法浏览本地文件",
                     android.widget.Toast.LENGTH_LONG,
                 ).show()
             }
+        }
+
+    private val legacyStoragePermissionLauncher =
+        registerForActivityResult(ActivityResultContracts.RequestPermission()) { granted ->
+            if (granted && filePickCallback != null) {
+                launchFilePicker()
+            } else {
+                filePickCallback = null
+                android.widget.Toast.makeText(
+                    this,
+                    "未授予存储权限，无法浏览本地文件",
+                    android.widget.Toast.LENGTH_LONG,
+                ).show()
+            }
+        }
+
+    private fun isFileAccessGranted(): Boolean =
+        if (android.os.Build.VERSION.SDK_INT >= 30) {
+            android.os.Environment.isExternalStorageManager()
+        } else {
+            ContextCompat.checkSelfPermission(
+                this,
+                android.Manifest.permission.READ_EXTERNAL_STORAGE,
+            ) == android.content.pm.PackageManager.PERMISSION_GRANTED
+        }
+
+    private fun launchFilePicker() {
+        val mode = if (filePickForKeyFile) FilePickerActivity.MODE_KEY_FILE else FilePickerActivity.MODE_DATABASE
+        val intent = android.content.Intent(this, FilePickerActivity::class.java)
+            .putExtra(FilePickerActivity.EXTRA_MODE, mode)
+        runCatching { filePickerLauncher.launch(intent) }.onFailure { filePickCallback = null }
+    }
+
+    fun pickFile(forKeyFile: Boolean, onResult: (name: String, path: String, size: Long) -> Unit) {
+        filePickCallback = onResult
+        filePickForKeyFile = forKeyFile
+        if (isFileAccessGranted()) {
+            launchFilePicker()
+        } else if (android.os.Build.VERSION.SDK_INT >= 30) {
+            // Android 11+：跳转系统设置页申请「所有文件访问」
+            val settingsIntent = android.content.Intent(
+                android.provider.Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION,
+                android.net.Uri.parse("package:$packageName"),
+            )
+            val launched = runCatching { allFilesAccessLauncher.launch(settingsIntent) }.isSuccess
+            if (!launched) {
+                runCatching {
+                    allFilesAccessLauncher.launch(
+                        android.content.Intent(android.provider.Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION),
+                    )
+                }.onFailure {
+                    filePickCallback = null
+                    android.widget.Toast.makeText(
+                        this,
+                        "无法打开权限设置页，请手动在系统设置中授予本应用「所有文件访问」",
+                        android.widget.Toast.LENGTH_LONG,
+                    ).show()
+                }
+            }
+        } else {
+            // Android 10 及以下：运行时申请存储权限
+            legacyStoragePermissionLauncher.launch(android.Manifest.permission.READ_EXTERNAL_STORAGE)
         }
     }
 

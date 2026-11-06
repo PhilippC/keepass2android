@@ -27,6 +27,7 @@ android {
 
 dependencies {
     implementation(project(":composeApp"))
+    implementation("org.jetbrains.compose.foundation:foundation:1.12.2")
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.biometric)
 }
