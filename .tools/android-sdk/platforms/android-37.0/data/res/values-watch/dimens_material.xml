@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2016 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<resources>
+    <dimen name="text_size_display_4_material">71sp</dimen>
+    <dimen name="text_size_display_3_material">44sp</dimen>
+    <dimen name="text_size_display_2_material">36sp</dimen>
+    <dimen name="text_size_display_1_material">27sp</dimen>
+    <dimen name="text_size_headline_material">18sp</dimen>
+    <dimen name="text_size_title_material">16sp</dimen>
+    <dimen name="text_size_subhead_material">16sp</dimen>
+    <dimen name="text_size_title_material_toolbar">16dp</dimen>
+    <dimen name="text_size_subtitle_material_toolbar">16dp</dimen>
+    <dimen name="text_size_menu_material">16sp</dimen>
+    <dimen name="text_size_menu_header_material">14sp</dimen>
+    <dimen name="text_size_body_2_material">14sp</dimen>
+    <dimen name="text_size_body_1_material">14sp</dimen>
+    <dimen name="text_size_caption_material">12sp</dimen>
+    <dimen name="text_size_button_material">14sp</dimen>
+
+    <dimen name="text_size_large_material">16sp</dimen>
+    <dimen name="text_size_medium_material">14sp</dimen>
+    <dimen name="text_size_small_material">12sp</dimen>
+
+    <item name="text_line_spacing_multiplier_material" format="float" type="dimen">1.2</item>
+
+    <!-- Date and time picker legacy dimens -->
+    <dimen name="picker_top_margin">1dip</dimen>
+    <dimen name="picker_bottom_margin">1dip</dimen>
+
+    <!-- Progress bar dimens -->
+    <dimen name="progress_bar_size_small">16dip</dimen>
+    <dimen name="progress_bar_size_medium">32dip</dimen>
+    <dimen name="progress_bar_size_large">64dip</dimen>
+    <dimen name="progress_bar_height">24dp</dimen>
+
+    <!-- Progress bar message dimens -->
+    <dimen name="message_progress_dialog_text_size">14sp</dimen>
+    <dimen name="message_progress_dialog_bottom_padding">80px</dimen>
+    <dimen name="message_progress_dialog_top_padding">0dp</dimen>
+    <dimen name="message_progress_dialog_start_padding">0dp</dimen>
+    <dimen name="message_progress_dialog_end_padding">0dp</dimen>
+    <item name="message_progress_dialog_letter_spacing" format="float" type="dimen">0.021</item>
+
+    <!-- fallback for screen percentage widths -->
+    <dimen name="screen_percentage_0416">7.99dp</dimen>
+    <dimen name="screen_percentage_05">9.6dp</dimen>
+    <dimen name="screen_percentage_052">9.98dp</dimen>
+    <dimen name="screen_percentage_10">19.2dp</dimen>
+    <dimen name="screen_percentage_12">23.04dp</dimen>
+    <dimen name="screen_percentage_15">28.8dp</dimen>
+    <dimen name="screen_percentage_3646">69.99dp</dimen>
+
+    <!-- dialog elevation [overrides 18dp] -->
+    <dimen name="floating_window_z">2dp</dimen>
+  </resources>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/*
+** Copyright 2015, The Android Open Source Project
+**
+** Licensed under the Apache License, Version 2.0 (the "License");
+** you may not use this file except in compliance with the License.
+** You may obtain a copy of the License at
+**
+**     http://www.apache.org/licenses/LICENSE-2.0
+**
+** Unless required by applicable law or agreed to in writing, software
+** distributed under the License is distributed on an "AS IS" BASIS,
+** WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+** See the License for the specific language governing permissions and
+** limitations under the License.
+*/
+-->
+
+<!-- These resources are around just to allow their values to be customized
+     for TV products.  Do not translate. -->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+    <!-- Flags enabling default window features. See Window.java -->
+    <bool name="config_defaultWindowFeatureOptionsPanel">false</bool>
+
+    <!-- The maximum height of the expanded horizontal picture-in-picture window -->
+    <item name="config_pictureInPictureExpandedHorizontalHeight"
+          format="dimension" type="dimen">110dp</item>
+
+    <!-- The maximum width of the expanded vertical picture-in-picture window -->
+    <item name="config_pictureInPictureExpandedVerticalWidth"
+          format="dimension" type="dimen">110dp</item>
+
+    <!-- The behavior when an activity has not specified a preference to dock big overlays or not.
+         Docking puts the activity side-by-side next to the big overlay windows. -->
+    <bool name="config_dockBigOverlayWindows">true</bool>
+
+    <!-- Whether the device uses the default focus highlight when focus state isn't specified. -->
+    <bool name="config_useDefaultFocusHighlight">false</bool>
+
+    <!-- Allow SystemUI to show the shutdown dialog -->
+    <bool name="config_showSysuiShutdown">true</bool>
+
+    <!-- Component name of the activity used to inform a user about a sensory being blocked because
+     of privacy settings. -->
+    <string name="config_sensorUseStartedActivity" translatable="false">
+        com.android.systemui/com.android.systemui.tv.sensorprivacy.TvUnblockSensorActivity
+    </string>
+
+    <!-- Component name of the activity used to inform a user about a sensory being blocked because
+     of hardware privacy switches. -->
+    <string name="config_sensorUseStartedActivity_hwToggle" translatable="false">
+        com.android.systemui/com.android.systemui.tv.sensorprivacy.TvUnblockSensorActivity
+    </string>
+
+    <!-- Component name of the activity used to inform a user about a sensor privacy update from
+     SW/HW privacy switches. -->
+    <string name="config_sensorStateChangedActivity" translatable="false">
+        com.android.systemui/com.android.systemui.tv.sensorprivacy.TvSensorPrivacyChangedActivity
+    </string>
+
+    <!-- Component name of the activity that shows the request for access to a usb device. -->
+    <string name="config_usbPermissionActivity" translatable="false">
+        com.android.systemui/com.android.systemui.tv.usb.TvUsbPermissionActivity
+    </string>
+
+    <!-- Component name of the activity that confirms the activity to start when a usb device is
+     plugged in. -->
+    <string name="config_usbConfirmActivity" translatable="false">
+        com.android.systemui/com.android.systemui.tv.usb.TvUsbConfirmActivity
+    </string>
+
+    <!-- Android TV does not have a Recents UI by default. -->
+    <bool name="config_hasRecents">false</bool>
+
+    <!-- Rectangle with rounded corners shape mask to be used for {@link AdaptiveIconDrawable} banners. -->
+    <string name="config_banner_mask" translatable="false">"M0 10C0 4.47716 2.5184 0 5.625 0H94.375C97.4816 0 100 4.47715 100 10V90C100 95.5229 97.4816 100 94.375 100H5.625C2.5184 100 0 95.5229 0 90V10Z"</string>
+
+    <!-- Indicates whether the device supports easy reader caption settings. -->
+    <bool name="config_easyReaderCaptionsSupported">true</bool>
+</resources>

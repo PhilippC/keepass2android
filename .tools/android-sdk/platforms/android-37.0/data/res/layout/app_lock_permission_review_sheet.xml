@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Copyright (C) 2026 The Android Open Source Project
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+         http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+<com.android.internal.widget.ResolverDrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/app_lock_activity_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:maxWidth="@dimen/resolver_max_width"
+    android:maxCollapsedHeight="@dimen/app_lock_edu_dialog_max_collapsed_height">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingStart="?android:attr/dialogPreferredPadding"
+        android:paddingEnd="?android:attr/dialogPreferredPadding"
+        android:paddingBottom="@dimen/dialog_padding_material"
+        android:paddingTop="0dp"
+        android:layout_ignoreOffset="true"
+        android:fitsSystemWindows="true"
+        android:background="@drawable/bottomsheet_background">
+
+        <ImageView
+            android:layout_width="@dimen/resolver_icon_size"
+            android:layout_height="@dimen/resolver_icon_size"
+            android:src="@drawable/ic_lock_bold"
+            android:layout_gravity="center_horizontal"
+            android:contentDescription="@null"
+            android:tint="?android:attr/textColorPrimary"
+            android:layout_marginBottom="@dimen/app_lock_margin_medium"/>
+
+        <TextView
+            android:id="@+id/app_lock_permission_review_dialog_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="?android:attr/textColorPrimary"
+            android:paddingStart="@dimen/app_lock_padding_extra_large"
+            android:paddingEnd="@dimen/app_lock_padding_extra_large"
+            android:gravity="center"
+            android:layout_marginBottom="@dimen/app_lock_margin_medium"/>
+
+        <TextView
+            android:id="@+id/app_lock_permission_review_dialog_subtitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/materialColorPrimary"
+            android:paddingStart="@dimen/app_lock_padding_large"
+            android:layout_marginBottom="@dimen/app_lock_item_margin"/>
+
+        <com.android.internal.app.AppLockMaxHeightRecyclerView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/app_lock_permission_review_app_list_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/app_lock_item_margin"
+            android:layout_marginBottom="@dimen/app_lock_item_margin"
+            android:paddingStart="@dimen/app_lock_padding_large"
+            android:scrollbars="vertical"
+            android:scrollbarStyle="outsideOverlay"
+            android:scrollbarThumbVertical="@drawable/app_lock_scrollbar_handle"
+            app:layoutManager="com.android.internal.widget.LinearLayoutManager" />
+
+        <LinearLayout
+            android:id="@+id/app_lock_permission_review_btn_view_all"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingTop="@dimen/app_lock_padding_extra_small"
+            android:paddingBottom="@dimen/app_lock_padding_extra_small"
+            android:paddingStart="@dimen/app_lock_padding_large"
+            android:paddingEnd="@dimen/app_lock_padding_large"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?android:attr/selectableItemBackground"
+            android:visibility="gone">
+
+            <ImageView
+                android:layout_width="@dimen/app_lock_item_icon_size"
+                android:layout_height="@dimen/app_lock_icon_size_small"
+                android:scaleType="fitCenter"
+                android:src="@android:drawable/ic_chevron_end"
+                android:tint="@color/materialColorPrimary" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/app_lock_item_margin"
+                android:text="@string/app_lock_permission_review_expand_app_list_button"
+                android:textColor="?android:attr/textColorPrimary"
+                android:textAppearance="?attr/textAppearanceSmall"/>
+        </LinearLayout>
+
+        <View
+            android:id="@+id/app_lock_permission_review_bottom_sheet_divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider"
+            android:visibility="gone" />
+
+        <LinearLayout
+            style="?android:attr/buttonBarStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/dialog_padding_material"
+            android:paddingEnd="@dimen/dialog_padding_material"
+            android:layout_marginTop="@dimen/app_lock_item_margin"
+            android:layout_marginBottom="@dimen/app_lock_item_margin"
+            android:orientation="horizontal">
+            <Button
+                android:id="@+id/app_lock_permission_review_btn_cancel"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAllCaps="false"
+                android:paddingStart="@dimen/app_lock_padding_large"
+                android:paddingEnd="@dimen/app_lock_padding_large"
+                android:text="@string/cancel" />
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <Button
+                android:id="@+id/app_lock_permission_review_btn_continue"
+                style="@android:style/Widget.DeviceDefault.Button.Colored"
+                android:background="@drawable/app_lock_btn_pill_background"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAllCaps="false"
+                android:paddingStart="@dimen/app_lock_padding_large"
+                android:paddingEnd="@dimen/app_lock_padding_large"
+                android:text="@string/app_lock_permission_review_continue_button" />
+        </LinearLayout>
+    </LinearLayout>
+</com.android.internal.widget.ResolverDrawerLayout>

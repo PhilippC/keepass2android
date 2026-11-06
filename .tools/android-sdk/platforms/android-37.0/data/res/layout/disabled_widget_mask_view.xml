@@ -1,0 +1,16 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:theme="@android:style/Theme.DeviceDefault.DayNight"
+    android:id="@android:id/background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:importantForAccessibility="noHideDescendants"
+    android:clickable="true"
+    android:clipToOutline="true">
+    <FrameLayout
+        android:theme="@android:style/Theme.DeviceDefault.DayNight"
+        android:id="@+id/inner_frameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:importantForAccessibility="noHideDescendants"
+        android:clipToOutline="true"/>
+</FrameLayout>

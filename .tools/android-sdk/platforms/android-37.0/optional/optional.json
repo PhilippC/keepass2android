@@ -1,0 +1,33 @@
+[
+  {
+    "name": "org.apache.http.legacy",
+    "jar": "org.apache.http.legacy.jar",
+    "manifest": false
+  },
+  {
+    "name": "android.car",
+    "jar": "android.car.jar",
+    "manifest": false
+  },
+  {
+    "name": "android.test.mock",
+    "jar": "android.test.mock.jar",
+    "manifest": false
+  },
+  {
+    "name": "android.test.base",
+    "jar": "android.test.base.jar",
+    "manifest": false
+  },
+  {
+    "name": "android.test.runner",
+    "jar": "android.test.runner.jar",
+    "manifest": false
+  },
+  {
+    "name": "wear-sdk",
+    "jar": "wear-sdk.jar",
+    "manifest": false
+  }
+]
+

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (C) 2018 The Android Open Source Project
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~      http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License
+  -->
+
+<ripple xmlns:android="http://schemas.android.com/apk/res/android" android:color="?attr/colorControlHighlight">
+    <item>
+        <inset
+            android:insetLeft="@dimen/notification_action_emphasized_inset_horizontal"
+            android:insetTop="@dimen/notification_action_emphasized_inset_vertical"
+            android:insetRight="@dimen/notification_action_emphasized_inset_horizontal"
+            android:insetBottom="@dimen/notification_action_emphasized_inset_vertical">
+            <shape android:shape="rectangle">
+                <corners android:radius="@dimen/notification_action_button_radius" />
+                <padding android:left="16dp"
+                         android:top="@dimen/button_padding_vertical_material"
+                         android:right="16dp"
+                         android:bottom="@dimen/button_padding_vertical_material" />
+                <solid android:color="@color/white" />
+            </shape>
+        </inset>
+    </item>
+
+    <!-- Mask is necessary so that the ripple is visible even when the button is outlined
+         (and thus transparent except for the stroke). -->
+    <item android:id="@android:id/mask">
+        <inset
+            android:insetLeft="@dimen/notification_action_emphasized_inset_horizontal"
+            android:insetTop="@dimen/notification_action_emphasized_inset_vertical"
+            android:insetRight="@dimen/notification_action_emphasized_inset_horizontal"
+            android:insetBottom="@dimen/notification_action_emphasized_inset_vertical">
+            <shape android:shape="rectangle">
+                <corners android:radius="@dimen/notification_action_button_radius" />
+                <solid android:color="#000000" />
+            </shape>
+        </inset>
+    </item>
+</ripple>

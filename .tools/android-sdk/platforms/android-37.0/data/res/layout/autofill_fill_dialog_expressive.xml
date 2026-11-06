@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2025 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<!-- NOTE: outer layout is required to make the window overlap with status bar to receive status bar
+insets. -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusable="false"
+    android:importantForAccessibility="no">
+    <com.android.server.autofill.ui.AutofillBottomSheetLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/autofill_dialog_picker"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/autofill_bottomsheet_expressive_background"
+        android:clipToOutline="true"
+        android:layout_gravity="bottom|center_horizontal">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+            <ListView
+                android:id="@+id/autofill_dialog_list"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:paddingBottom="24dp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:clipToPadding="false"
+                android:drawSelectorOnTop="true"
+                android:contentSensitivity="sensitive"
+                android:clickable="true"
+                android:divider="@null"
+                android:scrollbarStyle="outsideOverlay" />
+
+            <com.android.internal.widget.ButtonBarLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
+                android:theme="@style/Theme.DeviceDefault.AutofillDialogExpressiveButton"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <Button
+                    android:id="@+id/autofill_dialog_no"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/AutofillExpressiveTextButton"
+                    android:text="@string/cancel">
+                </Button>
+
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:visibility="invisible">
+                </Space>
+
+                <Button
+                    android:id="@+id/autofill_dialog_yes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/AutofillExpressiveFilledButton"
+                    android:text="@string/autofill_save_yes"
+                    android:visibility="gone" >
+                </Button>
+
+            </com.android.internal.widget.ButtonBarLayout>
+        </LinearLayout>
+
+        <ImageView
+            android:id="@android:id/closeButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:src="@drawable/autofill_close_icon"
+            android:scaleType="center"
+            android:background="@drawable/autofill_close_background"
+            android:layout_gravity="top|end"
+            android:contentDescription="@string/close_button_text"/>
+
+    </com.android.server.autofill.ui.AutofillBottomSheetLayout>
+</FrameLayout>

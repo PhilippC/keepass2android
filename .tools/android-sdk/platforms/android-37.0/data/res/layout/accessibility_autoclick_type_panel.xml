@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/*
+** Copyright 2025, The Android Open Source Project
+**
+** Licensed under the Apache License, Version 2.0 (the "License");
+** you may not use this file except in compliance with the License.
+** You may obtain a copy of the License at
+**
+**     http://www.apache.org/licenses/LICENSE-2.0
+**
+** Unless required by applicable law or agreed to in writing, software
+** distributed under the License is distributed on an "AS IS" BASIS,
+** WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+** See the License for the specific language governing permissions and
+** limitations under the License.
+*/
+-->
+
+<com.android.server.accessibility.autoclick.AutoclickTypeLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/accessibility_autoclick_type_panel"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
+    android:background="@drawable/accessibility_autoclick_type_panel_rounded_background"
+    android:elevation="@dimen/accessibility_autoclick_panel_resting_elevation"
+    android:orientation="vertical"
+    android:paddingVertical="8dp"
+    android:paddingHorizontal="16dp">
+
+    <LinearLayout
+        android:id="@+id/accessibility_autoclick_button_group_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/accessibility_autoclick_click_type_button_group_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/accessibility_autoclick_button_group_rounded_background"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/accessibility_autoclick_long_press_button"
+                android:src="@drawable/accessibility_autoclick_long_press"
+                style="@style/AccessibilityAutoclickPanelImageButtonStyle"
+                android:contentDescription="@string/accessibility_autoclick_long_press"
+                android:tooltipText="@string/accessibility_autoclick_long_press" />
+
+            <ImageButton
+                android:id="@+id/accessibility_autoclick_drag_button"
+                android:src="@drawable/accessibility_autoclick_drag"
+                style="@style/AccessibilityAutoclickPanelImageButtonStyle"
+                android:contentDescription="@string/accessibility_autoclick_drag"
+                android:tooltipText="@string/accessibility_autoclick_drag" />
+
+            <ImageButton
+                android:id="@+id/accessibility_autoclick_double_click_button"
+                android:src="@drawable/accessibility_autoclick_double_click"
+                style="@style/AccessibilityAutoclickPanelImageButtonStyle"
+                android:contentDescription="@string/accessibility_autoclick_double_click"
+                android:tooltipText="@string/accessibility_autoclick_double_click" />
+
+            <ImageButton
+                android:id="@+id/accessibility_autoclick_right_click_button"
+                android:src="@drawable/accessibility_autoclick_right_click"
+                style="@style/AccessibilityAutoclickPanelImageButtonStyle"
+                android:contentDescription="@string/accessibility_autoclick_right_click"
+                android:tooltipText="@string/accessibility_autoclick_right_click" />
+
+            <ImageButton
+                android:id="@+id/accessibility_autoclick_scroll_button"
+                android:src="@drawable/accessibility_autoclick_scroll"
+                style="@style/AccessibilityAutoclickPanelImageButtonStyle"
+                android:contentDescription="@string/accessibility_autoclick_scroll"
+                android:tooltipText="@string/accessibility_autoclick_scroll" />
+
+            <ImageButton
+                android:id="@+id/accessibility_autoclick_left_click_button"
+                android:src="@drawable/accessibility_autoclick_left_click"
+                style="@style/AccessibilityAutoclickPanelImageButtonStyle"
+                android:contentDescription="@string/accessibility_autoclick_left_click"
+                android:tooltipText="@string/accessibility_autoclick_left_click" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="@dimen/accessibility_autoclick_type_panel_divider_width"
+            android:layout_height="@dimen/accessibility_autoclick_type_panel_divider_height"
+            android:layout_marginStart="@dimen/accessibility_autoclick_type_panel_button_spacing"
+            android:layout_marginEnd="@dimen/accessibility_autoclick_type_panel_button_spacing"
+            android:background="@color/materialColorSurfaceContainer" />
+
+        <ImageButton
+            android:id="@+id/accessibility_autoclick_pause_button"
+            android:src="@drawable/accessibility_autoclick_pause"
+            style="@style/AccessibilityAutoclickPanelImageButtonStyle"
+            android:layout_marginEnd="@dimen/accessibility_autoclick_type_panel_button_spacing"
+            android:contentDescription="@string/accessibility_autoclick_pause"
+            android:tooltipText="@string/accessibility_autoclick_pause" />
+
+        <ImageButton
+            android:id="@+id/accessibility_autoclick_position_button"
+            android:src="@drawable/accessibility_autoclick_position"
+            style="@style/AccessibilityAutoclickPanelImageButtonStyle"
+            android:contentDescription="@string/accessibility_autoclick_position"
+            android:tooltipText="@string/accessibility_autoclick_position" />
+
+    </LinearLayout>
+
+</com.android.server.accessibility.autoclick.AutoclickTypeLinearLayout>

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2016 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<!--
+===============================================================
+                        PLEASE READ
+===============================================================
+
+The Material themes must not be modified in order to pass CTS.
+Many related themes and styles depend on other values defined in this file.
+If you would like to provide custom themes and styles for your device,
+please see styles_device_defaults.xml.
+
+===============================================================
+                        PLEASE READ
+===============================================================
+ -->
+<resources>
+    <style name="Animation.Material.Activity" parent="Animation.Activity">
+        <item name="activityOpenEnterAnimation">@anim/rounded_window_enter</item>
+        <item name="activityOpenRemoteViewsEnterAnimation">@anim/rounded_window_enter</item>
+        <item name="activityOpenExitAnimation">@null</item>
+        <item name="activityCloseEnterAnimation">@null</item>
+        <item name="activityCloseExitAnimation">@anim/rounded_window_exit</item>
+        <item name="taskOpenEnterAnimation">@anim/rounded_window_enter</item>
+        <item name="taskOpenExitAnimation">@null</item>
+        <item name="taskCloseEnterAnimation">@null</item>
+        <item name="taskCloseExitAnimation">@anim/rounded_window_exit</item>
+        <item name="taskToFrontEnterAnimation">@anim/rounded_window_enter</item>
+        <item name="taskToFrontExitAnimation">@null</item>
+        <item name="taskToBackEnterAnimation">@null</item>
+        <item name="taskToBackExitAnimation">@anim/rounded_window_exit</item>
+        <item name="wallpaperOpenEnterAnimation">@null</item>
+        <item name="wallpaperOpenExitAnimation">@anim/rounded_window_exit</item>
+        <item name="wallpaperCloseEnterAnimation">@anim/rounded_window_enter</item>
+        <item name="wallpaperCloseExitAnimation">@null</item>
+        <item name="wallpaperIntraOpenEnterAnimation">@null</item>
+        <item name="wallpaperIntraOpenExitAnimation">@anim/rounded_window_exit</item>
+        <item name="wallpaperIntraCloseEnterAnimation">@anim/rounded_window_enter</item>
+        <item name="wallpaperIntraCloseExitAnimation">@null</item>
+    </style>
+
+    <style name="PreferenceFragment.Material" parent="BasePreferenceFragment">
+        <item name="divider">@empty</item>
+    </style>
+
+    <style name="Preference.Material.PreferenceScreen" parent="Preference.Material.BasePreferenceScreen">
+        <item name="divider">@empty</item>
+    </style>
+
+    <style name="TextAppearance.Material.ListItem" parent="TextAppearance.Material.Body1" />
+    <style name="TextAppearance.Material.ListItemSecondary" parent="TextAppearance.Material.Caption" />
+
+    <style name="TextAppearance.Material.NumberPicker" parent="TextAppearance.Material.Body1">
+        <item name="textSize">@dimen/text_size_medium_material</item>
+    </style>
+
+    <!-- Alert dialog button bar button -->
+    <style name="Widget.Material.Button.ButtonBar.AlertDialog" parent="Widget.Material.Button.Borderless.Small">
+        <item name="paddingStart">@dimen/list_item_padding_start_material</item>
+        <item name="paddingEnd">@dimen/list_item_padding_end_material</item>
+        <item name="drawablePadding">8dp</item>
+        <item name="gravity">center_vertical|left</item>
+        <item name="minWidth">64dp</item>
+        <item name="minHeight">@dimen/alert_dialog_button_bar_height</item>
+    </style>
+
+    <style name="Widget.Material.NumberPicker" parent="Widget.NumberPicker">
+        <item name="internalLayout">@layout/number_picker_material</item>
+        <item name="solidColor">@color/transparent</item>
+        <item name="selectionDivider">@drawable/numberpicker_selection_divider</item>
+        <item name="selectionDividerHeight">2dp</item>
+        <item name="selectionDividersDistance">24dp</item>
+        <item name="internalMinWidth">32dp</item>
+        <item name="internalMaxHeight">90dp</item>
+        <item name="virtualButtonPressedDrawable">?selectableItemBackground</item>
+        <item name="descendantFocusability">blocksDescendants</item>
+    </style>
+
+    <style name="DialogWindowTitle.Material">
+        <item name="maxLines">@null</item>
+        <item name="scrollHorizontally">false</item>
+        <item name="textAppearance">@style/TextAppearance.Material.DialogWindowTitle</item>
+        <item name="gravity">center_horizontal|top</item>
+        <item name="ellipsize">end</item>
+    </style>
+
+    <style name="ProgressDialogMessage">
+        <item name="android:textAlignment">center</item>
+        <item name="android:fontFamily">google-sans-text</item>
+        <item name="android:letterSpacing">@dimen/message_progress_dialog_letter_spacing</item>
+        <item name="textColor">?attr/textColorPrimary</item>
+        <item name="textSize">@dimen/message_progress_dialog_text_size</item>
+        <item name="paddingBottom">@dimen/message_progress_dialog_bottom_padding</item>
+        <item name="paddingEnd">@dimen/message_progress_dialog_end_padding</item>
+        <item name="paddingStart">@dimen/message_progress_dialog_start_padding</item>
+        <item name="paddingTop">@dimen/message_progress_dialog_top_padding</item>
+    </style>
+
+    <!-- Material progress part (indeterminate/horizontal) for Wear -->
+    <style name="Widget.Material.ProgressBar.Horizontal" parent="Widget.ProgressBar.Horizontal">
+        <item name="progressDrawable">@drawable/progress_horizontal_material</item>
+        <item name="indeterminateDrawable">
+            @drawable/progress_indeterminate_horizontal_material
+        </item>
+        <item name="minHeight">@dimen/progress_bar_height</item>
+        <item name="maxHeight">@dimen/progress_bar_height</item>
+    </style>
+</resources>

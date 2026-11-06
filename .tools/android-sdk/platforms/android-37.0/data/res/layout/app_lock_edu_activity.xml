@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Copyright (C) 2026 The Android Open Source Project
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+         http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+
+<!--
+  ResolverDrawerLayout is used here to provide a consistent "bottom sheet"
+  style dialog that aligns with the system's Intent Resolver and Sharesheet UI.
+
+  Key configurations:
+  - maxWidth: Limits the dialog width to match standard system resolver dimensions.
+  - maxCollapsedHeight: Set to an unusually large value to prevent  the education screen from
+    collapsing, ensuring it remains fully expanded.
+  - ignoreOffsetTopLimit: Configured to ensure the dialog content is correctly positioned and not
+    clipped by the top of the layout.
+-->
+
+<com.android.internal.widget.ResolverDrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/app_lock_edu_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:maxWidth="@dimen/app_lock_dialog_max_width"
+    android:maxCollapsedHeight="@dimen/app_lock_edu_dialog_max_collapsed_height"
+    android:ignoreOffsetTopLimit="@id/app_lock_edu_dialog"
+    android:paddingTop="@dimen/app_lock_top_margin"
+    android:clipToPadding="false"
+    android:clipChildren="false">
+
+    <include
+        android:id="@+id/app_lock_edu_dialog"
+        layout="@layout/app_lock_edu_dialog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</com.android.internal.widget.ResolverDrawerLayout>

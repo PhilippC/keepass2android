@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2007 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<!--
+     Default system bookmarks for AOSP.
+     Bookmarks for vendor apps should be added to a bookmarks resource overlay; not here.
+
+     Typical shortcuts (not necessarily defined here):
+       'b': Browser
+       'p': Contacts
+       'e': Email
+       'c': Calendar
+       'm': Maps
+       'u': Calculator
+       'y': YouTube
+-->
+<bookmarks xmlns:androidprv="http://schemas.android.com/apk/prv/res/android">
+    <bookmark
+        role="android.app.role.BROWSER"
+        androidprv:keycode="KEYCODE_B"
+        androidprv:modifierState="META" />
+    <bookmark
+        category="android.intent.category.APP_CONTACTS"
+        androidprv:keycode="KEYCODE_P"
+        androidprv:modifierState="META" />
+    <bookmark
+        category="android.intent.category.APP_EMAIL"
+        androidprv:keycode="KEYCODE_E"
+        androidprv:modifierState="META" />
+    <bookmark
+        category="android.intent.category.APP_CALENDAR"
+        androidprv:keycode="KEYCODE_C"
+        androidprv:modifierState="META" />
+    <bookmark
+        category="android.intent.category.APP_MAPS"
+        androidprv:keycode="KEYCODE_M"
+        androidprv:modifierState="META" />
+    <bookmark
+        category="android.intent.category.APP_CALCULATOR"
+        androidprv:keycode="KEYCODE_U"
+        androidprv:modifierState="META" />
+    <bookmark
+        category="android.intent.category.APP_FILES"
+        androidprv:keycode="KEYCODE_F"
+        androidprv:modifierState="META" />
+</bookmarks>

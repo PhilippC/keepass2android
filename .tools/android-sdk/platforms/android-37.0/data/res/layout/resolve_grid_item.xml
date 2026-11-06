@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/*
+** Copyright 2006, The Android Open Source Project
+**
+** Licensed under the Apache License, Version 2.0 (the "License");
+** you may not use this file except in compliance with the License.
+** You may obtain a copy of the License at
+**
+**     http://www.apache.org/licenses/LICENSE-2.0
+**
+** Unless required by applicable law or agreed to in writing, software
+** distributed under the License is distributed on an "AS IS" BASIS,
+** WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+** See the License for the specific language governing permissions and
+** limitations under the License.
+*/
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:id="@+id/item"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:minHeight="100dp"
+              android:gravity="center"
+              android:paddingTop="24dp"
+              android:paddingBottom="12dp"
+              android:paddingLeft="12dp"
+              android:paddingRight="12dp"
+              android:focusable="true"
+              android:background="?attr/selectableItemBackgroundBorderless">
+
+    <ImageView android:id="@+id/icon"
+               android:layout_width="@dimen/chooser_icon_size"
+               android:layout_height="@dimen/chooser_icon_size"
+               android:scaleType="fitCenter" />
+
+    <!-- Size manually tuned to match specs -->
+    <Space android:layout_width="1dp"
+           android:layout_height="7dp"/>
+
+    <!-- App name or Direct Share target name, DS set to 2 lines -->
+    <TextView android:id="@android:id/text1"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:textAppearance="?attr/textAppearanceSmall"
+              android:textColor="?attr/textColorPrimary"
+              android:textSize="12sp"
+              android:gravity="top|center_horizontal"
+              android:lines="1"
+              android:ellipsize="end" />
+
+    <!-- Activity name if set, gone for Direct Share targets -->
+    <TextView android:id="@android:id/text2"
+              android:textAppearance="?android:attr/textAppearanceSmall"
+              android:textSize="12sp"
+              android:textColor="?attr/textColorSecondary"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:lines="1"
+              android:gravity="top|center_horizontal"
+              android:ellipsize="end"/>
+
+</LinearLayout>
+

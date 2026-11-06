@@ -1,0 +1,1213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/* //device/apps/common/assets/res/any/dimens.xml
+**
+** Copyright 2006, The Android Open Source Project
+**
+** Licensed under the Apache License, Version 2.0 (the "License");
+** you may not use this file except in compliance with the License.
+** You may obtain a copy of the License at
+**
+**     http://www.apache.org/licenses/LICENSE-2.0
+**
+** Unless required by applicable law or agreed to in writing, software
+** distributed under the License is distributed on an "AS IS" BASIS,
+** WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+** See the License for the specific language governing permissions and
+** limitations under the License.
+*/
+-->
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- The width that is used when creating thumbnails of applications. -->
+    <dimen name="thumbnail_width">192dp</dimen>
+    <!-- The height that is used when creating thumbnails of applications. -->
+    <dimen name="thumbnail_height">192dp</dimen>
+    <!-- The amount to scale a fullscreen screenshot thumbnail. -->
+    <item name="thumbnail_fullscreen_scale" type="fraction">60%</item>
+    <!-- The width used to calculate scale for full screen thumbnail on TV -->
+    <integer name="thumbnail_width_tv">240</integer>
+    <!-- The standard size (both width and height) of an application icon that
+         will be displayed in the app launcher and elsewhere. -->
+    <dimen name="app_icon_size">48dip</dimen>
+
+    <!-- Offset from the bottom of the device a toast shows -->
+    <dimen name="toast_y_offset">48dp</dimen>
+    <!-- Max width of a toast -->
+    <dimen name="toast_width">300dp</dimen>
+    <!-- Text size of the message within a toast -->
+    <dimen name="toast_text_size">14sp</dimen>
+    <!-- Elevation of toast view -->
+    <dimen name="toast_elevation">2dp</dimen>
+
+    <!-- The default height of the status bar used in {@link SystemBarUtils#getStatusBarHeight} to
+         calculate the status bar height. -->
+    <dimen name="status_bar_height_default">24dp</dimen>
+    <!-- Height of the status bar.
+         Do not read this dimen directly. Use {@link SystemBarUtils#getStatusBarHeight} instead.
+         -->
+    <dimen name="status_bar_height">@dimen/status_bar_height_portrait</dimen>
+    <!-- Height of the status bar in portrait.
+         Do not read this dimen directly. Use {@link SystemBarUtils#getStatusBarHeight} instead.
+         -->
+    <dimen name="status_bar_height_portrait">24dp</dimen>
+    <!-- Height of the status bar in landscape.
+         Do not read this dimen directly. Use {@link SystemBarUtils#getStatusBarHeight} instead.
+         -->
+    <dimen name="status_bar_height_landscape">@dimen/status_bar_height_portrait</dimen>
+    <!-- Height of area above QQS where battery/time go.
+         Do not read this dimen directly. Use {@link SystemBarUtils#getQuickQsOffsetHeight} instead.
+         -->
+    <dimen name="quick_qs_offset_height">48dp</dimen>
+    <!-- Height of the bottom navigation / system bar. -->
+    <dimen name="navigation_bar_height">48dp</dimen>
+    <!-- Height of the bottom navigation bar in portrait; often the same as @dimen/navigation_bar_height -->
+    <dimen name="navigation_bar_height_landscape">48dp</dimen>
+    <!-- Width of the navigation bar when it is placed vertically on the screen -->
+    <dimen name="navigation_bar_width">48dp</dimen>
+    <!-- Height of the bottom taskbar not including decorations like rounded corners. -->
+    <dimen name="taskbar_frame_height">56dp</dimen>
+    <!-- How much we expand the touchable region of the status bar below the notch to catch touches
+         that just start below the notch. -->
+    <dimen name="display_cutout_touchable_region_size">12dp</dimen>
+    <!-- The default margin used in immersive mode to capture the start of a swipe gesture from the
+         edge of the screen to show the system bars. -->
+    <dimen name="system_gestures_start_threshold">24dp</dimen>
+    <!-- The minimum swipe gesture distance for showing the system bars when in immersive mode. This
+         swipe must be within the specified system_gestures_start_threshold area. -->
+    <dimen name="system_gestures_distance_threshold">24dp</dimen>
+
+    <!-- Height of the bottom navigation bar frame; this is different than navigation_bar_height
+         where that is the height reported to all the other windows to resize themselves around the
+         navigation bar window but navigation_bar_frame_height is reported to SystemUI navigation
+         bar view's window -->
+    <dimen name="navigation_bar_frame_height">@dimen/navigation_bar_height</dimen>
+    <!-- Height of the bottom navigation bar frame in landscape -->
+    <dimen name="navigation_bar_frame_height_landscape">@dimen/navigation_bar_frame_height</dimen>
+
+    <!-- The height of the navigation gesture area if the gesture is starting from the bottom. -->
+    <dimen name="navigation_bar_gesture_height">@dimen/navigation_bar_frame_height</dimen>
+
+    <!-- The height of the navigation larger gesture area if the gesture is starting from
+         the bottom. -->
+    <dimen name="navigation_bar_gesture_larger_height">80dp</dimen>
+
+    <!-- Height of the bottom navigation / system bar in car mode. -->
+    <dimen name="navigation_bar_height_car_mode">96dp</dimen>
+    <!-- Height of the bottom navigation bar in portrait; often the same as
+         @dimen/navigation_bar_height_car_mode -->
+    <dimen name="navigation_bar_height_landscape_car_mode">96dp</dimen>
+    <!-- Width of the navigation bar when it is placed vertically on the screen in car mode -->
+    <dimen name="navigation_bar_width_car_mode">96dp</dimen>
+    <!-- Original dp height of notification icons in the status bar  -->
+    <dimen name="status_bar_icon_size">22dip</dimen>
+    <!-- New sp height of notification icons in the status bar  -->
+    <dimen name="status_bar_icon_size_sp">22sp</dimen>
+    <!-- Desired size of system icons in status bar. -->
+    <dimen name="status_bar_system_icon_size">15dp</dimen>
+    <!-- Intrinsic size of most system icons in status bar. This is the default value that
+         is used if a Drawable reports an intrinsic size of 0. -->
+    <dimen name="status_bar_system_icon_intrinsic_size">17dp</dimen>
+    <!-- Size of the giant number (unread count) in the notifications -->
+    <dimen name="status_bar_content_number_size">48sp</dimen>
+    <!-- Margin at the edge of the screen to ignore touch events for in the windowshade. -->
+    <dimen name="status_bar_edge_ignore">5dp</dimen>
+
+    <!-- Default radius of the software rounded corners. -->
+    <dimen name="rounded_corner_radius">0dp</dimen>
+    <!-- Radius of the software rounded corners at the top of the display in its natural
+        orientation. If zero, the value of rounded_corner_radius is used. -->
+    <dimen name="rounded_corner_radius_top">0dp</dimen>
+    <!-- Radius of the software rounded corners at the bottom of the display in its natural
+        orientation. If zero, the value of rounded_corner_radius is used. -->
+    <dimen name="rounded_corner_radius_bottom">0dp</dimen>
+
+    <!-- Default adjustment for the software rounded corners since corners are not perfectly
+        round. This value is used when retrieving the "radius" of the rounded corner in cases
+        where the exact bezier curve cannot be retrieved.  This value will be subtracted from
+        rounded_corner_radius to more accurately provide a "radius" for the rounded corner. -->
+    <dimen name="rounded_corner_radius_adjustment">0px</dimen>
+    <!-- Top adjustment for the software rounded corners since corners are not perfectly
+        round.  This value is used when retrieving the "radius" of the top rounded corner in cases
+        where the exact bezier curve cannot be retrieved.  This value will be subtracted from
+        rounded_corner_radius_top to more accurately provide a "radius" for the top rounded corners.
+         -->
+    <dimen name="rounded_corner_radius_top_adjustment">0px</dimen>
+    <!-- Bottom adjustment for the software rounded corners since corners are not perfectly
+        round.  This value is used when retrieving the "radius" of the bottom rounded corner in
+        cases where the exact bezier curve cannot be retrieved.  This value will be subtracted from
+        rounded_corner_radius_bottom to more accurately provide a "radius" for the bottom rounded
+        corners. -->
+    <dimen name="rounded_corner_radius_bottom_adjustment">0px</dimen>
+
+    <!-- Default paddings for content around the corners. -->
+    <dimen name="rounded_corner_content_padding">0dp</dimen>
+
+    <!-- Copied from SysUI's @dimen/navigation_key_width for the embedded nav bar in the IME. -->
+    <dimen name="input_method_navigation_key_width">70dp</dimen>
+    <!-- Copied from SysUI's @dimen/navigation_key_padding for the embedded nav bar in the IME. -->
+    <dimen name="input_method_navigation_key_padding">0dp</dimen>
+    <!-- Copied from SysUI's @dimen/nav_content_padding for the embedded nav bar in the IME. -->
+    <dimen name="input_method_nav_content_padding">0px</dimen>
+    <!-- Copied from SysUI's @dimen/key_button_ripple_max_width for the embedded nav bar in the
+         IME. -->
+    <dimen name="input_method_nav_key_button_ripple_max_width">95dp</dimen>
+    <!-- Height of the IME navigation bar; this matches the height of the system navigation bar
+         in three button navigation mode. -->
+    <dimen name="input_method_navigation_bar_height">@dimen/navigation_bar_frame_height</dimen>
+
+    <!-- Width of the window of the divider bar used to resize docked stacks. -->
+    <dimen name="docked_stack_divider_thickness">48dp</dimen>
+
+    <!-- How much the content in the divider is inset from the window bounds when resting. Used to
+         calculate the bounds of the stacks-->
+    <dimen name="docked_stack_divider_insets">19dp</dimen>
+
+    <!-- To how much the docked stack gets reduced when we decide to minimize the docked stack, i.e.
+         when the user opens homescreen. -->
+    <dimen name="docked_stack_minimize_thickness">8dp</dimen>
+
+    <!-- The amount to leave on-screen when the PIP is minimized. -->
+    <dimen name="pip_minimized_visible_size">48dp</dimen>
+
+    <!-- Min width for a tablet device -->
+    <dimen name="min_xlarge_screen_width">800dp</dimen>
+
+    <!-- Default height of a key in the password keyboard for alpha (used by keyguard) -->
+    <dimen name="password_keyboard_key_height_alpha">56dip</dimen>
+    <!-- Default height of a key in the password keyboard for numeric (used by keyguard) -->
+    <dimen name="password_keyboard_key_height_numeric">56dip</dimen>
+    <!-- Default correction for the space key in the password keyboard  (used by keyguard) -->
+    <dimen name="password_keyboard_spacebar_vertical_correction">4dip</dimen>
+    <!-- Default horizontal gap between keys in the password keyboard (used by keyguard) -->
+    <dimen name="password_keyboard_horizontalGap">3dip</dimen>
+    <!-- Default vertical gap between keys in the password keyboard (used by keyguard) -->
+    <dimen name="password_keyboard_verticalGap">9dip</dimen>
+
+    <!-- Size of lockscreen outerring on unsecure unlock LockScreen -->
+    <dimen name="keyguard_lockscreen_outerring_diameter">270dp</dimen>
+
+    <!-- Preference activity side margins -->
+    <dimen name="preference_screen_side_margin">0dp</dimen>
+    <!-- Preference activity side margins negative-->
+    <dimen name="preference_screen_side_margin_negative">0dp</dimen>
+    <!-- Preference activity top margin -->
+    <dimen name="preference_screen_top_margin">0dp</dimen>
+    <!-- Preference activity bottom margin -->
+    <dimen name="preference_screen_bottom_margin">0dp</dimen>
+    <!-- Preference widget area width (to the left of the text) -->
+    <dimen name="preference_widget_width">48dp</dimen>
+    <!-- Preference fragment padding, bottom -->
+    <dimen name="preference_fragment_padding_bottom">0dp</dimen>
+    <!-- Preference fragment padding, sides -->
+    <dimen name="preference_fragment_padding_side">16dp</dimen>
+    <!-- Weight of the left pane in a multi-pane preference layout. -->
+    <integer name="preferences_left_pane_weight">4</integer>
+    <!-- Weight of the right pane in a multi-pane preference layout. So the split is 40:60 -->
+    <integer name="preferences_right_pane_weight">6</integer>
+    <!-- Padding to the left of the preference panel breadcrumb -->
+    <dimen name="preference_breadcrumb_paddingLeft">0dp</dimen>
+    <!-- Padding to the right of the preference panel breadcrumb -->
+    <dimen name="preference_breadcrumb_paddingRight">0dp</dimen>
+    <!-- Minimum space to allocate to the left of a preference item for an icon.
+        This helps in aligning titles when some items have icons and some don't. When space is
+        at a premium, we don't pre-allocate any space. -->
+    <dimen name="preference_icon_minWidth">0dp</dimen>
+    <!-- The platform's desired minimum size for a dialog's width when it
+         is along the major axis (that is the screen is landscape).  This may
+         be either a fraction or a dimension. -->
+    <item type="dimen" name="dialog_min_width_major">65%</item>
+
+    <!-- The platform's desired fixed width for a dialog along the major axis
+         (the screen is in landscape). This may be either a fraction or a dimension.-->
+    <item type="dimen" name="dialog_fixed_width_major">100%</item>
+    <!-- The platform's desired fixed width for a dialog along the minor axis
+         (the screen is in portrait). This may be either a fraction or a dimension.-->
+    <item type="dimen" name="dialog_fixed_width_minor">100%</item>
+    <!-- The platform's desired fixed height for a dialog along the major axis
+         (the screen is in portrait). This may be either a fraction or a dimension.-->
+    <item type="dimen" name="dialog_fixed_height_major">80%</item>
+    <!-- The platform's desired fixed height for a dialog along the minor axis
+         (the screen is in landscape). This may be either a fraction or a dimension.-->
+    <item type="dimen" name="dialog_fixed_height_minor">100%</item>
+
+    <!-- Preference activity, vertical padding for the header list -->
+    <dimen name="preference_screen_header_vertical_padding">0dp</dimen>
+
+    <dimen name="preference_screen_header_padding_side">16dip</dimen>
+    <integer name="preference_screen_header_scrollbarStyle">0x02000000</integer> <!-- outsideOverlay -->
+
+    <integer name="preference_fragment_scrollbarStyle">0x02000000</integer> <!-- outsideOverlay -->
+
+    <dimen name="preference_item_padding_side">8dip</dimen>
+    <dimen name="preference_item_padding_inner">8dip</dimen>
+    <dimen name="preference_child_padding_side">16dip</dimen>
+
+    <!-- The platform's desired minimum size for a dialog's width when it
+         is along the minor axis (that is the screen is portrait).  This may
+         be either a fraction or a dimension. -->
+    <item type="dimen" name="dialog_min_width_minor">95%</item>
+
+    <!-- Default padding for dialogs. -->
+    <dimen name="dialog_padding">16dp</dimen>
+
+    <!-- The margin on the start of the content view (accommodates the icon) for minimal HUNs
+     This represents 16dp for the left margin + 24dp for the icon + 12dp for the right margin -->
+    <dimen name="notification_compact_content_margin_start">52dp</dimen>
+
+    <!-- The margin on the start of the content view (accommodates the icon), 2025 redesign version
+     This represents 16dp for the left margin + 40dp for the icon + 16dp for the right margin -->
+    <dimen name="notification_2025_content_margin_start">72dp</dimen>
+
+    <!-- The margin on the start of the content view (accommodates the icon), 2025 redesign version
+     This represents 16dp for the left margin + 40dp for the icon + 16dp for the right margin, minus
+      5dp for padding the inner view needs to avoid truncating italic text -->
+    <dimen name="notification_2025_content_margin_start_summarization">67dp</dimen>
+
+    <!-- The margin value to use for text message views that are displaying a summarization -->
+    <dimen name="notification_text_message_start_padding_summarization">5dp</dimen>
+
+    <!-- The margin value to use for text message views that are not displaying a summarization -->
+    <dimen name="notification_text_message_start_padding">0dp</dimen>
+
+    <!-- The margin on the start of the media actions, selected to ensure that action icons which
+     are visually 12x12 in a 24x24 drawable will align correctly with the text.  This means that
+     stock media action icons will align, but icons may be visually up to 20x20 and remain in-spec,
+     in which case they will protrude into the start column slightly.
+     72dp (content margin) - 8dp (media action padding) - 6dp (visual padding within drawable) -->
+    <dimen name="notification_2025_media_actions_margin_start">58dp</dimen>
+
+    <!-- The margin on the start of notification actions (2025 redesign version), to align them to
+     the rest of the notification content. Note that this can be set to 0 if the actions would not
+     fit with it included.
+     72dp (content margin) - 12dp (action padding) - 4dp (button inset) -->
+    <dimen name="notification_2025_actions_margin_start">56dp</dimen>
+
+    <!-- The margin at the end of the top line in collapsed notifications to accommodate the expader.
+     28dp (notification_2025_expand_button_pill_width) + 2 * 16dp (notification_2025_margin) -->
+    <dimen name="notification_2025_content_margin_end">60dp</dimen>
+
+    <!-- The vertical spacing for the smart reply/smart action container.
+     Note that the button background itself also has an inset of 6dp (making the height of the
+     tappable area 48dp total, 32dp for the visible button plus 6dp top and bottom), so the visible
+     space between the button and the other content is going to be 16dp. -->
+    <dimen name="notification_2025_smart_reply_container_margin">10dp</dimen>
+
+    <!-- The total height of the notification action list (2025 redesign version) -->
+    <dimen name="notification_2025_action_list_height">48dp</dimen>
+
+    <!-- The margin of the notification action list at the bottom in the 2025 redesign -->
+    <dimen name="notification_2025_action_list_margin_bottom">6dp</dimen>
+
+    <!-- The minimum height of the notification action container, to act as a bottom padding for the
+         notification when there are no actions. This should always be equal to
+         notification_2025_margin - notification_2025_action_list_margin_bottom. -->
+    <dimen name="notification_2025_action_list_min_height">10dp</dimen>
+
+    <!-- The overall height of the emphasized notification action -->
+    <dimen name="notification_action_emphasized_height">48dp</dimen>
+
+    <!-- Horizontal inset of emphasized notification actions. -->
+    <dimen name="notification_action_emphasized_inset_horizontal">@dimen/button_inset_horizontal_material</dimen>
+
+    <!-- Vertical inset of emphasized notification actions. Actual "apparent" button height will be
+         "notification_action_emphasized_height - 2 * this". -->
+    <dimen name="notification_action_emphasized_inset_vertical" android:featureFlag="!android.app.api_notification_action_custom">@dimen/button_inset_vertical_material</dimen>
+    <dimen name="notification_action_emphasized_inset_vertical" android:featureFlag="android.app.api_notification_action_custom">4dp</dimen>
+
+    <!-- The max width of a priority action button when it is collapsed to just the icon. -->
+    <dimen name="notification_actions_collapsed_priority_width">60dp</dimen>
+
+    <!-- The minimum width of the system actions added to the CallStyle notifications. -->
+    <dimen name="call_notification_system_action_min_width">100dp</dimen>
+
+    <!-- The size of icon actions in notification_material_action_list (2025 redesign version) -->
+    <dimen name="notification_2025_actions_icon_size">48dp</dimen>
+
+    <!-- The size of icons for visual actions in the notification_material_action_list -->
+    <dimen name="notification_actions_icon_drawable_size">20dp</dimen>
+
+    <!-- The corner radius if the emphasized action buttons in a notification -->
+    <dimen name="notification_action_button_radius" android:featureFlag="!android.app.api_notification_action_custom">18dp</dimen>
+    <dimen name="notification_action_button_radius" android:featureFlag="android.app.api_notification_action_custom">20dp</dimen>
+
+    <!-- Size of the stroke with for the emphasized notification button style -->
+    <dimen name="emphasized_button_stroke_width">1dp</dimen>
+
+    <!-- The spacing between the content and the header text above it, scaling with text size.
+         This value is chosen so that, taking into account the text spacing for both the text in the
+         top line and the text in the content, the distance between them is 4dp with the default
+         screen configuration (and will grow accordingly for larger font sizes) -->
+    <dimen name="notification_2025_content_margin_top">10sp</dimen>
+
+    <!-- The height of the progress bar. -->
+    <dimen name="notification_progress_bar_height">15dp</dimen>
+
+    <!-- The top margin before the notification progress bar. -->
+    <dimen name="notification_progress_margin_top">8dp</dimen>
+
+    <!-- The horizontal margin before and after the notification progress bar. -->
+    <dimen name="notification_progress_margin_horizontal">4dp</dimen>
+
+    <!-- height of the notification header for minimal HUNs -->
+    <dimen name="notification_compact_header_height">56dp</dimen>
+
+    <!-- height of the notification header (2025 redesign version) -->
+    <dimen name="notification_2025_header_height">72dp</dimen>
+
+    <!-- The height of the background for a notification header on a group -->
+    <dimen name="notification_header_background_height">49.5dp</dimen>
+
+    <!-- The height of the full-width touch rectangle for the notification header -->
+    <dimen name="notification_header_touchable_height">36dp</dimen>
+
+    <!-- size (width and height) of the circle around the icon in the minimal HUN header -->
+    <dimen name="notification_compact_icon_circle_size">24dp</dimen>
+
+    <!-- size (width and height) of the circular icon in the notification header
+         (2025 redesign version) -->
+    <dimen name="notification_2025_icon_circle_size">40dp</dimen>
+
+    <!-- padding between the notification icon and the circle containing it in minimal HUNs -->
+    <dimen name="notification_compact_icon_circle_padding">4dp</dimen>
+
+    <!-- size (width and height) of the circle icon in the notification header subtext -->
+    <dimen name="notification_header_subtext_icon_size">14sp</dimen>
+
+    <!-- padding between the notification icon and the circle containing it
+         (2025 redesign version) -->
+    <dimen name="notification_2025_icon_circle_padding">8dp</dimen>
+
+    <!-- size (width and height) of the icon in the notification header -->
+    <dimen name="notification_header_icon_size_ambient">18dp</dimen>
+
+    <!-- The margin before the start of the app name in the header. -->
+    <dimen name="notification_header_app_name_margin_start">3dp</dimen>
+
+    <!-- The margin before and after each of the items in the notification header. -->
+    <dimen name="notification_header_separating_margin">2dp</dimen>
+
+    <!-- Margin to allow space for the expand button when showing the right icon. -->
+    <!-- The notification_2025_extra_space_for_expander should be used in addition to this -->
+    <!-- to ensure the spacing adjusts with the font size accordingly -->
+    <dimen name="notification_2025_right_icon_margin_end">42dp</dimen>
+
+    <!-- sp-based additional spacing for the expand button, to scale with the font size -->
+    <dimen name="notification_2025_extra_space_for_expander">10sp</dimen>
+
+    <!-- The large icon has a smaller vertical margin than most other notification content, to -->
+    <!-- allow it to grow up to 48dp. -->
+    <dimen name="notification_2025_right_icon_vertical_margin">12dp</dimen>
+
+    <!-- the height of the expand button pill (2025 redesign version) -->
+    <dimen name="notification_2025_expand_button_pill_height">18dp</dimen>
+
+    <!-- the width of the expand button pill (2025 redesign version) -->
+    <dimen name="notification_2025_expand_button_pill_width">26dp</dimen>
+
+    <!-- the size of the expand arrow (2025 redesign version) -->
+    <dimen name="notification_2025_expand_button_icon_size">16sp</dimen>
+
+    <!-- the padding of the expand icon in the notification header -->
+    <dimen name="notification_2025_expand_button_vertical_icon_padding">1dp</dimen>
+
+    <!-- the padding of the expand icon in the notification header -->
+    <dimen name="notification_2025_expand_button_horizontal_icon_padding">5dp</dimen>
+
+    <!-- smaller padding for the end of the expand icon, for use when showing the number -->
+    <dimen name="notification_2025_expand_button_reduced_end_padding">3dp</dimen>
+
+    <!-- the space needed between the expander pill and the large icon when visible -->
+    <dimen name="notification_2025_expand_button_right_icon_spacing">8dp</dimen>
+
+    <!-- the size of the notification close button -->
+    <dimen name="notification_close_button_size">16dp</dimen>
+
+    <dimen name="notification_close_button_padding">2dp</dimen>
+
+    <!-- Margin for all notification content -->
+    <dimen name="notification_2025_margin">16dp</dimen>
+
+    <!-- A smaller version of the margin to be used when we need more space for the content -->
+    <dimen name="notification_2025_reduced_margin">12dp</dimen>
+
+    <!-- The difference between the usual margin and the reduced margin -->
+    <dimen name="notification_2025_additional_margin">4dp</dimen>
+
+    <!-- The height of each of the 1 or 2 lines in the headerless notification template -->
+    <dimen name="notification_headerless_line_height">24dp</dimen>
+
+    <!-- The minimum height of the notification content (even when there's only one line of text) -->
+    <dimen name="notification_2025_content_min_height">40dp</dimen>
+
+    <!-- Max height of a collapsed (headerless) notification with a summarization -->
+    <dimen name="notification_collapsed_height_with_summarization">300dp</dimen>
+
+    <!-- Max height of a collapsed (headerless) notification with one or two lines -->
+    <!-- 14 * 2 (reduced margins) + 48 (max collapsed content height) = 72 (notification) -->
+    <dimen name="notification_2025_min_height">72dp</dimen>
+
+    <!-- Height of a headerless notification with one line -->
+    <!-- 16 * 2 (margins) + 24 (1 line) = 56 (notification) -->
+    <dimen name="notification_headerless_min_height">56dp</dimen>
+
+    <!-- Max height of a collapsed two-line notification -->
+    <!-- 20 * 2 (margins) + 24 * 2 (2 lines) = 88 (notification) -->
+    <dimen name="notification_min_height">88dp</dimen>
+
+    <!-- The width of the big icons in notifications. -->
+    <dimen name="notification_large_icon_width">64dp</dimen>
+
+    <!-- The width of the big icons in notifications. -->
+    <dimen name="notification_large_icon_height">64dp</dimen>
+
+    <!-- The minimum width of the app name in the header if it shrinks -->
+    <dimen name="notification_header_shrink_min_width">72dp</dimen>
+
+    <!-- The minimum width of optional header fields below which the view is simply hidden -->
+    <dimen name="notification_header_shrink_hide_width">24sp</dimen>
+
+    <!-- The size of the media actions in the media notification. -->
+    <dimen name="media_notification_action_button_size">48dp</dimen>
+
+    <!-- The bottom padding for the media actions container. -->
+    <dimen name="media_notification_actions_padding_bottom">12dp</dimen>
+
+    <!-- The maximum size of the image in the expanded media notification -->
+    <dimen name="media_notification_expanded_image_margin_bottom">20dp</dimen>
+
+    <!-- The vertical padding for cast to other button in the MediaRouteChooserDialog -->
+    <dimen name="media_route_cast_to_other_vertical_padding">8dp</dimen>
+
+    <!-- The padding at the end of actions when the snooze and bubble buttons are gone-->
+    <dimen name="snooze_and_bubble_gone_padding_end">12dp</dimen>
+
+    <!-- The spacing between messages in Notification.MessagingStyle -->
+    <dimen name="notification_messaging_spacing">6dp</dimen>
+
+    <!-- The spacing between messages in Notification.MessagingStyle (2025 redesign version) -->
+    <dimen name="notification_2025_messaging_spacing">14dp</dimen>
+
+    <!-- The rounding for messaging images -->
+    <dimen name="messaging_image_rounding">4dp</dimen>
+
+    <!-- The minimum size for any image in messaging style in order to be displayed -->
+    <dimen name="messaging_image_min_size">44dp</dimen>
+
+    <!-- The maximum size for any image in messaging style in order to be displayed -->
+    <dimen name="messaging_image_max_height">136dp</dimen>
+
+    <!-- Extra spacing before and after images in messaging style -->
+    <dimen name="messaging_image_extra_spacing">8dp</dimen>
+
+    <!-- The max fraction for the value of the single Notification.MetricStyle -->
+    <item type="fraction" name="notification_single_metric_value_max_fraction">72%</item>
+
+    <!-- The max fraction for the value of the single promoted Notification.MetricStyle -->
+    <item type="fraction" name="notification_single_promoted_metric_value_max_fraction">60%</item>
+
+    <!-- Preferred width and height of the search view. -->
+    <dimen name="search_view_preferred_width">320dip</dimen>
+    <dimen name="search_view_preferred_height">48dip</dimen>
+
+    <!-- Dialog padding for round display -->
+    <dimen name="alert_dialog_round_padding">27dip</dimen>
+    <!-- Dialog title height -->
+    <dimen name="alert_dialog_title_height">64dip</dimen>
+    <!-- Dialog button bar width -->
+    <dimen name="alert_dialog_button_bar_width">64dp</dimen>
+    <!-- Dialog button bar height -->
+    <dimen name="alert_dialog_button_bar_height">48dip</dimen>
+
+    <!-- Default height of an action bar. -->
+    <dimen name="action_bar_default_height">48dip</dimen>
+    <!-- Vertical padding around action bar icons. -->
+    <dimen name="action_bar_icon_vertical_padding">8dip</dimen>
+    <!-- Text size for action bar titles -->
+    <dimen name="action_bar_title_text_size">18dp</dimen>
+    <!-- Text size for action bar subtitles -->
+    <dimen name="action_bar_subtitle_text_size">14dp</dimen>
+    <!-- Top margin for action bar subtitles -->
+    <dimen name="action_bar_subtitle_top_margin">-3dp</dimen>
+    <!-- Bottom margin for action bar subtitles -->
+    <dimen name="action_bar_subtitle_bottom_margin">5dip</dimen>
+
+    <!-- Size of clock font in LockScreen on Unsecure unlock screen. -->
+    <dimen name="keyguard_lockscreen_clock_font_size">80dip</dimen>
+
+    <!-- Size of status line font on Unsecure unlock LockScreen. -->
+    <dimen name="keyguard_lockscreen_status_line_font_size">14dip</dimen>
+
+    <!-- Size of right margin on Unsecure unlock LockScreen -->
+    <dimen name="keyguard_lockscreen_status_line_font_right_margin">42dip</dimen>
+
+    <!-- Size of top margin on Clock font to edge on unlock LockScreen -->
+    <dimen name="keyguard_lockscreen_status_line_clockfont_top_margin">22dip</dimen>
+
+    <!-- Size of top margin on Clock font to edge on unlock LockScreen -->
+    <dimen name="keyguard_lockscreen_status_line_clockfont_bottom_margin">12dip</dimen>
+
+    <!-- Padding on left margin of PIN text entry field to center it when del button is showing -->
+    <dimen name="keyguard_lockscreen_pin_margin_left">40dip</dimen>
+
+    <!-- Height of FaceUnlock view in keyguard -->
+    <dimen name="face_unlock_height">330dip</dimen>
+
+    <!-- Minimum popup width for selecting an activity in ActivityChooserDialog/ActivityChooserView. -->
+    <dimen name="activity_chooser_popup_min_width">200dip</dimen>
+
+    <!-- The default gap between components in a layout. -->
+    <dimen name="default_gap">8dip</dimen>
+
+    <!-- Text padding for dropdown items -->
+    <dimen name="dropdownitem_text_padding_left">8dip</dimen>
+
+    <!-- Text padding for dropdown items -->
+    <dimen name="dropdownitem_text_padding_right">8dip</dimen>
+
+    <!-- Width of the icon in a dropdown list -->
+    <dimen name="dropdownitem_icon_width">32dip</dimen>
+
+    <!-- Default width for a textview error popup -->
+    <dimen name="textview_error_popup_default_width">240dip</dimen>
+
+    <!-- Default padding to apply to AppWidgetHostViews containing widgets targeting API level 14 and up. -->
+    <dimen name="default_app_widget_padding_left">8dp</dimen>
+    <dimen name="default_app_widget_padding_top">8dp</dimen>
+    <dimen name="default_app_widget_padding_right">8dp</dimen>
+    <dimen name="default_app_widget_padding_bottom">8dp</dimen>
+
+    <!-- Minimum width for an action button in the menu area of an action bar -->
+    <dimen name="action_button_min_width">56dip</dimen>
+
+    <!-- Maximum height for a stacked tab bar as part of an action bar -->
+    <dimen name="action_bar_stacked_max_height">48dp</dimen>
+
+    <!-- Maximum width for a stacked action bar tab. This prevents
+         action bar tabs from becoming too wide on a wide screen when only
+         a few are present. -->
+    <dimen name="action_bar_stacked_tab_max_width">180dp</dimen>
+
+    <!-- Size of notification text (see TextAppearance.StatusBar.EventContent) -->
+    <dimen name="notification_text_size">14sp</dimen>
+    <!-- Size of notification text titles (see TextAppearance.StatusBar.EventContent.Title) -->
+    <dimen name="notification_title_text_size">14sp</dimen>
+    <!-- Size of smaller notification text (see TextAppearance.StatusBar.EventContent.Line2, Info, Time) -->
+    <dimen name="notification_subtext_size">12sp</dimen>
+    <!-- Top padding for notifications in the standard layout. -->
+    <dimen name="notification_top_pad">10dp</dimen>
+
+    <!-- Top padding for notifications when narrow (i.e. it has 3 lines) -->
+    <dimen name="notification_top_pad_narrow">4dp</dimen>
+
+    <!-- Top padding for notification when text is large -->
+    <dimen name="notification_top_pad_large_text">5dp</dimen>
+
+    <!-- Top padding for notification when text is large and narrow (i.e. it has 3 lines -->
+    <dimen name="notification_top_pad_large_text_narrow">-4dp</dimen>
+
+    <!-- The margin on top of the text of the notification -->
+    <dimen name="notification_text_margin_top">6dp</dimen>
+
+    <!-- The margin on top of the text of the notification to accommodate the large icon -->
+    <dimen name="notification_2025_text_margin_top">8dp</dimen>
+
+    <!-- Height of a single line text view in a notification -->
+    <dimen name="notification_text_height">20sp</dimen>
+
+    <!-- The padding on top of inbox style elements -->
+    <dimen name="notification_inbox_item_top_padding">5dp</dimen>
+
+    <!-- Size of the (work) profile badge for notifications (2025 redesign version).
+         Scales with font size. Chosen to look good alongside notification_subtext_size text. -->
+    <dimen name="notification_2025_badge_size">14sp</dimen>
+
+    <!-- Baseline for aligning icons in the top line (like the work profile icon or alerting icon)
+         to the text properly. This is equal to notification_2025_badge_size - 2sp. -->
+    <dimen name="notification_2025_badge_baseline">12sp</dimen>
+
+    <!-- Spacing for the top line icons (e.g. the work profile badge). -->
+    <dimen name="notification_2025_badge_margin">4dp</dimen>
+
+    <!-- Spacing for collapsed metric items -->
+    <dimen name="notification_collapsed_metric_margin">16dp</dimen>
+
+    <!-- Spacing for expanded metric items -->
+    <dimen name="notification_expanded_metric_margin">4dp</dimen>
+
+    <!-- Spacing between metric label and value for collapsed MetricStyle-->
+    <dimen name="notification_collapsed_metric_label_margin">2dp</dimen>
+
+    <!-- Spacing between metric value and unit for expanded MetricStyle-->
+    <dimen name="notification_expanded_metric_unit_margin">2dp</dimen>
+
+    <!-- Keyguard dimensions -->
+    <!-- TEMP -->
+    <dimen name="kg_security_panel_height">600dp</dimen>
+
+    <!-- Height of security view in keyguard. -->
+    <dimen name="kg_security_view_height">480dp</dimen>
+
+    <!-- Width of widget view in keyguard. -->
+    <dimen name="kg_widget_view_width">0dp</dimen>
+
+    <!-- Height of widget view in keyguard. -->
+    <dimen name="kg_widget_view_height">0dp</dimen>
+
+    <!-- Size of the clock font in keyguard's status view -->
+    <dimen name="kg_status_clock_font_size">75dp</dimen>
+
+    <!-- Size of the date font in keyguard's status view  -->
+    <dimen name="kg_status_date_font_size">15dp</dimen>
+
+    <!-- Size of the generic status lines keyguard's status view  -->
+    <dimen name="kg_status_line_font_size">13dp</dimen>
+
+    <!-- Size of margin on the right of keyguard's status view -->
+    <dimen name="kg_status_line_font_right_margin">16dp</dimen>
+
+    <!-- Top margin for the clock view -->
+    <dimen name="kg_clock_top_margin">-16dp</dimen>
+
+    <!-- Horizontal gap between keys in PIN and SIM PIN numeric keyboards in keyguard -->
+    <dimen name="kg_key_horizontal_gap">0dp</dimen>
+
+    <!-- Horizontal gap between keys in PIN and SIM PIN numeric keyboards in keyguard -->
+    <dimen name="kg_key_vertical_gap">0dp</dimen>
+
+    <!-- Horizontal gap between keys in PIN and SIM PIN numeric keyboards in keyguard -->
+    <dimen name="kg_pin_key_height">60dp</dimen>
+
+    <!-- Space reserved at the bottom of secure views (pin/pattern/password/SIM pin/SIM puk) -->
+    <dimen name="kg_secure_padding_height">46dp</dimen>
+
+    <!-- The height of the runway lights strip -->
+    <dimen name="kg_runway_lights_height">7dp</dimen>
+
+    <!-- The height of the runway lights strip -->
+    <dimen name="kg_runway_lights_vertical_padding">2dp</dimen>
+
+    <!-- Horizontal padding for the widget pager -->
+    <dimen name="kg_widget_pager_horizontal_padding">16dp</dimen>
+
+    <!-- Top padding for the widget pager -->
+    <dimen name="kg_widget_pager_top_padding">0dp</dimen>
+
+    <!-- Bottom padding for the widget pager -->
+    <dimen name="kg_widget_pager_bottom_padding">64dp</dimen>
+
+    <!-- Top margin for the runway lights. We add a negative margin in large
+        devices to account for the widget pager padding -->
+    <dimen name="kg_runway_lights_top_margin">0dp</dimen>
+
+    <!-- Touch slop for the global toggle accessibility gesture -->
+    <dimen name="accessibility_touch_slop">80dip</dimen>
+
+    <!-- Width of the outline stroke used by the accessibility screen magnification indicator -->
+    <dimen name="accessibility_magnification_indicator_width">4dip</dimen>
+
+    <!-- Width of the outline stroke used by the accessibility focus rectangle -->
+    <dimen name="accessibility_focus_highlight_stroke_width">4dp</dimen>
+
+    <!-- padding of fullscreen magnification thumbnail -->
+    <dimen name="accessibility_magnification_thumbnail_padding">12dp</dimen>
+
+    <!-- width of the border of the magnification thumbnail -->
+    <dimen name="accessibility_magnification_thumbnail_container_stroke_width">4dp</dimen>
+
+    <!-- The distance from the edge within which the gesture is considered to be at the edge -->
+    <dimen name="accessibility_fullscreen_magnification_gesture_edge_slop">12dp</dimen>
+
+    <!-- The padding ratio of the Accessibility icon foreground drawable -->
+    <item name="accessibility_icon_foreground_padding_ratio" type="dimen">21.88%</item>
+
+    <!-- The minimum window size of the accessibility window magnifier -->
+    <dimen name="accessibility_window_magnifier_min_size">122dp</dimen>
+
+    <!-- The accessibility autoclick panel button spacing -->
+    <dimen name="accessibility_autoclick_type_panel_button_spacing">8dp</dimen>
+
+    <!-- The accessibility autoclick panel button width and height -->
+    <dimen name="accessibility_autoclick_type_panel_button_size">36dp</dimen>
+
+    <!-- The accessibility autoclick panel divider width -->
+    <dimen name="accessibility_autoclick_type_panel_divider_width">1dp</dimen>
+
+    <!-- The accessibility autoclick panel divider height -->
+    <dimen name="accessibility_autoclick_type_panel_divider_height">24dp</dimen>
+
+    <!-- The accessibility autoclick scroll panel button width and height -->
+    <dimen name="accessibility_autoclick_scroll_panel_button_size">36dp</dimen>
+
+    <!-- The elevation for autoclick type panel when it is resting. -->
+    <dimen name="accessibility_autoclick_panel_resting_elevation">6dp</dimen>
+
+    <!-- The elevation for autoclick type panel when it is hovered. -->
+    <dimen name="accessibility_autoclick_panel_hover_elevation">8dp</dimen>
+
+    <!-- Margin around the various security views -->
+    <dimen name="keyguard_muliuser_selector_margin">8dp</dimen>
+
+    <!-- Stroke width of the frame for the circular avatars. -->
+    <dimen name="keyguard_avatar_frame_stroke_width">2dp</dimen>
+
+    <!-- Shadow radius under the frame for the circular avatars. -->
+    <dimen name="keyguard_avatar_frame_shadow_radius">1dp</dimen>
+
+    <!-- Size of the avator on hte multiuser lockscreen. -->
+    <dimen name="keyguard_avatar_size">66dp</dimen>
+
+    <!-- Size of the text under the avator on the multiuser lockscreen. -->
+    <dimen name="keyguard_avatar_name_size">10sp</dimen>
+
+    <!-- Size of the region along the edge of the screen that will accept
+         swipes to scroll the widget area. -->
+    <dimen name="kg_edge_swipe_region_size">24dp</dimen>
+
+    <!-- If the height if keyguard drops below this threshold (most likely
+    due to the appearance of the IME), then drop the multiuser selector. -->
+    <dimen name="kg_squashed_layout_threshold">600dp</dimen>
+
+    <!-- The height of widgets which do not support vertical resizing. This is only
+    used on tablets; on phones, this size is determined by the space left by the
+    security mode. -->
+    <dimen name="kg_small_widget_height">160dp</dimen>
+
+    <!-- Rounded corner radius for video subtitles. -->
+    <dimen name="subtitle_corner_radius">2dp</dimen>
+
+    <!-- Shadow radius for video subtitles. -->
+    <dimen name="subtitle_shadow_radius">2dp</dimen>
+
+    <!-- Shadow offset for video subtitles. -->
+    <dimen name="subtitle_shadow_offset">2dp</dimen>
+
+    <!-- Outline width for video subtitles. -->
+    <dimen name="subtitle_outline_width">2dp</dimen>
+
+    <!-- Minimum size of the fast scroller thumb's touch target. -->
+    <dimen name="fast_scroller_minimum_touch_target">48dp</dimen>
+
+    <!-- width of ImmersiveModeConfirmation (-1 for match_parent) -->
+    <dimen name="immersive_mode_cling_width">-1px</dimen>
+
+    <dimen name="resolver_max_width">480dp</dimen>
+
+    <!-- Tile Stroke width -->
+    <dimen name="config_qsTileStrokeWidthActive">-1dp</dimen>
+    <dimen name="config_qsTileStrokeWidthInactive">-1dp</dimen>
+
+    <!-- Amount to reduce the size of the circular mask by (to compensate for
+         aliasing effects). This is only used on circular displays. -->
+    <dimen name="circular_display_mask_thickness">1px</dimen>
+
+    <!-- The width of the round scrollbar -->
+    <dimen name="round_scrollbar_width">5dp</dimen>
+
+    <dimen name="lock_pattern_dot_line_width">22dp</dimen>
+    <dimen name="lock_pattern_dot_size">14dp</dimen>
+    <dimen name="lock_pattern_dot_size_activated">30dp</dimen>
+    <!-- How much of the cell space is classified as hit areas [0..1] where 1 means that hit area is
+         a circle with diameter equals to cell minimum side min(width, height). -->
+    <item type="dimen" format="float" name="lock_pattern_dot_hit_factor">0.6</item>
+    <!-- Width of a gradient applied to a lock pattern line while its disappearing animation. -->
+    <dimen name="lock_pattern_fade_away_gradient_width">8dp</dimen>
+    <!-- Parameters applied to line disappearing animation in LockPatternView in milliseconds. -->
+    <integer name="lock_pattern_line_fade_out_duration">500</integer>
+    <integer name="lock_pattern_line_fade_out_delay">150</integer>
+    <!-- Parameters applied to fade pattern animation in LockPatternView in milliseconds. -->
+    <integer name="lock_pattern_fade_pattern_duration">200</integer>
+    <integer name="lock_pattern_fade_pattern_delay">2300</integer>
+
+    <dimen name="text_handle_min_size">40dp</dimen>
+
+    <!-- Lighting and shadow properties -->
+    <dimen name="light_y">0dp</dimen>
+    <dimen name="light_z">500dp</dimen>
+    <dimen name="light_radius">800dp</dimen>
+    <item type="dimen" format="float" name="ambient_shadow_alpha">0.039</item>
+    <item type="dimen" format="float" name="spot_shadow_alpha">0.19</item>
+
+    <!-- Floating toolbar dimensions -->
+    <dimen name="floating_toolbar_height">48dp</dimen>
+    <dimen name="floating_toolbar_menu_image_width">24dp</dimen>
+    <dimen name="floating_toolbar_menu_image_button_width">56dp</dimen>
+    <dimen name="floating_toolbar_menu_image_button_vertical_padding">12dp</dimen>
+    <dimen name="floating_toolbar_menu_button_side_padding">11dp</dimen>
+    <dimen name="floating_toolbar_overflow_image_button_width">60dp</dimen>
+    <dimen name="floating_toolbar_overflow_side_padding">18dp</dimen>
+    <dimen name="floating_toolbar_text_size">14sp</dimen>
+    <dimen name="floating_toolbar_menu_button_minimum_width">48dp</dimen>
+    <dimen name="floating_toolbar_preferred_width">400dp</dimen>
+    <dimen name="floating_toolbar_minimum_overflow_height">96dp</dimen>
+    <dimen name="floating_toolbar_maximum_overflow_height">192dp</dimen>
+    <dimen name="floating_toolbar_horizontal_margin">16dp</dimen>
+    <dimen name="floating_toolbar_vertical_margin">8dp</dimen>
+    <dimen name="content_rect_bottom_clip_allowance">20dp</dimen>
+    <dimen name="floating_toolbar_icon_text_spacing">8dp</dimen>
+
+    <!-- Magnifier dimensions -->
+    <dimen name="default_magnifier_width">100dp</dimen>
+    <dimen name="default_magnifier_height">48dp</dimen>
+    <dimen name="default_magnifier_elevation">4dp</dimen>
+    <dimen name="default_magnifier_corner_radius">2dp</dimen>
+    <dimen name="default_magnifier_vertical_offset">-42dp</dimen>
+    <dimen name="default_magnifier_horizontal_offset">0dp</dimen>
+    <item type="dimen" format="float" name="default_magnifier_zoom">1.25</item>
+
+    <item type="dimen" name="aerr_padding_list_top">15dp</item>
+    <item type="dimen" name="aerr_padding_list_bottom">8dp</item>
+
+    <item type="fraction" name="docked_stack_divider_fixed_ratio">34.15%</item>
+
+    <!-- The default minimal size of a resizable task, in both dimensions. -->
+    <dimen name="default_minimal_size_resizable_task">220dp</dimen>
+
+    <!-- Height of a task when in minimized mode from the top when launcher is resizable. -->
+    <dimen name="task_height_of_minimized_mode">80dp</dimen>
+
+    <!-- Minimum "smallest width" of the display for cascading menus to be enabled. -->
+    <dimen name="cascading_menus_min_smallest_width">720dp</dimen>
+
+    <!-- Tooltip dimensions. -->
+    <!-- Vertical offset from the edge of the anchor view for a touch-triggered tooltip. -->
+    <dimen name="tooltip_y_offset_touch">16dp</dimen>
+    <!-- Vertical offset from the edge of the anchor view for a non-touch-triggered tooltip. -->
+    <dimen name="tooltip_y_offset_non_touch">0dp</dimen>
+    <!-- The tooltip does not get closer than this to the window edge -->
+    <dimen name="tooltip_margin">8dp</dimen>
+    <!-- Left/right padding of the tooltip text. -->
+    <dimen name="tooltip_horizontal_padding">16dp</dimen>
+    <!-- Top/bottom padding of the tooltip text. -->
+    <dimen name="tooltip_vertical_padding">6.5dp</dimen>
+    <!-- Border corner radius of the tooltip window. -->
+    <dimen name="tooltip_corner_radius">2dp</dimen>
+    <!-- View with the height equal or above this threshold will have a tooltip anchored
+    to the mouse/touch position -->
+    <dimen name="tooltip_precise_anchor_threshold">96dp</dimen>
+    <!-- Extra tooltip offset used when anchoring to the mouse/touch position -->
+    <dimen name="tooltip_precise_anchor_extra_offset">8dp</dimen>
+    <dimen name="tooltip_font_size">14sp</dimen>
+
+    <!-- The max amount of scroll ItemTouchHelper will trigger if dragged view is out of
+         RecyclerView's bounds.-->
+    <dimen name="item_touch_helper_max_drag_scroll_per_frame">20dp</dimen>
+    <dimen name="item_touch_helper_swipe_escape_velocity">120dp</dimen>
+    <dimen name="item_touch_helper_swipe_escape_max_velocity">800dp</dimen>
+
+    <!-- The maximum size of the small notification icon. -->
+    <dimen name="notification_small_icon_size">48dp</dimen>
+    <!-- The maximum height of any image in a collapsed remote view. This value is determined by the maximum notification height -->
+    <dimen name="notification_collapsed_custom_view_max_image_height">48dp</dimen>
+    <!-- The maximum height of any image in a collapsed remote view. This value is determined by the maximum notification height -->
+    <dimen name="notification_hun_custom_view_max_image_height">96dp</dimen>
+    <!-- The maximum height of any image in a collapsed remote view. This value is determined by the maximum notification height -->
+    <dimen name="notification_expanded_custom_view_max_image_height">318dp</dimen>
+    <!-- The maximum width of any image in a  remote view. This value is determined a maximum notification width -->
+    <dimen name="notification_custom_view_max_image_width">320dp</dimen>
+    <dimen name="notification_bubble_size">60dp</dimen>
+    <!-- The maximum height of a big picture in a notification. This value is determined by the maximum notification height ~ notification_max_height - notification_2025_header_height -->
+    <dimen name="notification_big_picture_max_height">284dp</dimen>
+    <!-- The maximum width of a big picture in a notification. The images will be reduced to that width in case they are bigger. This value is determined by the standard panel size -->
+    <dimen name="notification_big_picture_max_width">320dp</dimen>
+    <!-- The size of the right icon -->
+    <dimen name="notification_right_icon_size">48dp</dimen>
+    <!-- The margin between the right icon and the content. (2025 redesign version) -->
+    <dimen name="notification_2025_right_icon_content_margin">16dp</dimen>
+    <!-- The top margin of the right icon in the "big" notification states -->
+    <!--  TODO(b/181048615): Move the large icon below the expander in big states  -->
+    <dimen name="notification_right_icon_big_margin_top">16dp</dimen>
+    <!-- The size of the left icon (2025 redesign version) -->
+    <dimen name="notification_2025_left_icon_size">@dimen/notification_2025_icon_circle_size</dimen>
+    <!-- The alpha of a disabled notification button -->
+    <item type="dimen" format="float" name="notification_action_disabled_alpha">0.5</item>
+    <!-- The maximum size of Person avatar image in MessagingStyle notifications.
+         This is bigger than displayed because listeners can use it for other displays
+         e.g. wearables. -->
+    <dimen name="notification_person_icon_max_size">144dp</dimen>
+    <!-- The size of the progress bar icon -->
+    <dimen name="notification_progress_icon_size">20dp</dimen>
+    <!-- The size of the progress tracker width -->
+    <dimen name="notification_progress_tracker_width">40dp</dimen>
+    <!-- The size of the progress tracker height -->
+    <dimen name="notification_progress_tracker_height">20dp</dimen>
+    <!-- The gap between segments in the notification progress bar -->
+    <dimen name="notification_progress_segSeg_gap">4dp</dimen>
+    <!-- The gap between a segment and a point in the notification progress bar -->
+    <dimen name="notification_progress_segPoint_gap">4dp</dimen>
+    <!-- The minimum required drawing width of the notification progress bar segments -->
+    <dimen name="notification_progress_segments_min_width">16dp</dimen>
+    <!-- The height of the notification progress bar segments -->
+    <dimen name="notification_progress_segments_height">6dp</dimen>
+    <!-- The height of the notification progress bar faded segments -->
+    <dimen name="notification_progress_segments_faded_height">2dp</dimen>
+    <!-- The corner radius of the notification progress bar segments -->
+    <dimen name="notification_progress_segments_corner_radius">16dp</dimen>
+    <!-- The radius of the notification progress bar points -->
+    <dimen name="notification_progress_points_radius">6dp</dimen>
+    <!-- The corner radius of the notification progress bar points drawn as rects -->
+    <dimen name="notification_progress_points_corner_radius">2dp</dimen>
+    <!-- The inset of the notification progress bar points drawn as rects -->
+    <dimen name="notification_progress_points_inset">0dp</dimen>
+
+    <!-- The maximum size of the grayscale icon -->
+    <dimen name="notification_grayscale_icon_max_size">256dp</dimen>
+
+    <dimen name="messaging_avatar_size">48dp</dimen>
+    <!-- size of the face pile icons (2025 redesign version) -->
+    <dimen name="notification_2025_face_pile_avatar_size">24dp</dimen>
+    <!-- size of the compact face pile -->
+    <dimen name="conversation_compact_face_pile_size">24dp</dimen>
+    <!-- size of the face pile avatar -->
+    <dimen name="conversation_compact_face_pile_avatar_size">17dp</dimen>
+    <!-- size of the face pile protection -->
+    <dimen name="conversation_compact_face_pile_protection_width">1dp</dimen>
+    <!-- The stroke width of the ring used to visually mark a conversation as important -->
+    <dimen name="importance_ring_stroke_width">2dp</dimen>
+    <!-- The maximum stroke width used for the animation shown when a conversation is marked as important -->
+    <dimen name="importance_ring_anim_max_stroke_width">10dp</dimen>
+    <!-- The size of the importance ring -->
+    <dimen name="importance_ring_size">20dp</dimen>
+
+    <!-- The spacing around the app icon badge shown next to the conversation icon -->
+    <dimen name="notification_2025_conversation_icon_badge_padding">2dp</dimen>
+
+    <!-- Top and start margin for the app icon badge shown next to the conversation icon, to align
+        it to the bottom end corner.
+        40dp (conversation icon size) - 16dp (actual size of badge) - 2dp (badge padding) -->
+    <dimen name="notification_2025_conversation_icon_badge_position">22dp</dimen>
+
+    <!-- The size of the app icon badge shown next to the conversation icon, including its padding.
+        The actual size of the icon is 16dp, plus 2dp for each side for the padding. -->
+    <dimen name="notification_2025_conversation_icon_badge_size">20dp</dimen>
+
+    <!-- Padding between text and sender when singleline -->
+    <dimen name="messaging_group_singleline_sender_padding_end">4dp</dimen>
+
+    <dimen name="messaging_group_sending_progress_size">24dp</dimen>
+
+    <!-- Max width/height of the autofill data set picker as a fraction of the screen width/height -->
+    <dimen name="autofill_dataset_picker_max_width">90%</dimen>
+    <dimen name="autofill_dataset_picker_max_height">90%</dimen>
+
+    <!-- Autofill save dialog padding -->
+    <dimen name="autofill_save_outer_margin">24dp</dimen>
+    <dimen name="autofill_save_outer_top_padding">16dp</dimen>
+    <dimen name="autofill_elevation">32dp</dimen>
+    <dimen name="autofill_save_inner_padding">16dp</dimen>
+    <dimen name="autofill_save_icon_size">32dp</dimen>
+    <dimen name="autofill_save_icon_max_height">56dp</dimen>
+    <dimen name="autofill_save_title_start_padding">8dp</dimen>
+    <dimen name="autofill_save_scroll_view_top_margin">16dp</dimen>
+    <dimen name="autofill_save_button_bar_padding">16dp</dimen>
+    <dimen name="autofill_dialog_corner_radius">24dp</dimen>
+    <dimen name="autofill_button_bar_spacer_width">12dp</dimen>
+    <dimen name="autofill_button_bar_spacer_height">4dp</dimen>
+
+    <!-- How much extra space should be left around the autofill dialog -->
+    <dimen name="autofill_dialog_offset">72dp</dimen>
+
+    <!-- The minimum horizontal margin for the autofill dialog. -->
+    <dimen name="autofill_dialog_min_margin_horizontal">0dp</dimen>
+
+    <!-- Max height of the the autofill save custom subtitle as a fraction of the screen width/height -->
+    <dimen name="autofill_save_custom_subtitle_max_height">20%</dimen>
+
+    <!-- Maximum number of datasets that are visible in the UX picker without scrolling -->
+    <integer name="autofill_max_visible_datasets">3</integer>
+
+    <!-- Size of an icon in the Autofill fill dialog -->
+    <dimen name="autofill_dialog_icon_size">32dp</dimen>
+
+    <!-- The max height of an icon in the Autofill fill dialog. -->
+    <dimen name="autofill_dialog_icon_max_height">56dp</dimen>
+
+    <!-- The max width of the Autofill fill dialog. -->
+    <dimen name="autofill_dialog_max_width">640dp</dimen>
+
+    <!-- Size of a slice shortcut view -->
+    <dimen name="slice_shortcut_size">56dp</dimen>
+    <!-- Size of action icons in a slice -->
+    <dimen name="slice_icon_size">24dp</dimen>
+    <!-- Standard padding used in a slice view -->
+    <dimen name="slice_padding">16dp</dimen>
+
+    <!-- Default dialog corner radius -->
+    <dimen name="dialog_corner_radius">2dp</dimen>
+
+    <!-- Size of thumbnail used in the cross profile apps animation -->
+    <dimen name="cross_profile_apps_thumbnail_size">72dp</dimen>
+
+    <!-- Padding between the title and content in the harmful app dialog -->
+    <dimen name="harmful_app_padding_top">10dp</dimen>
+    <!-- Bottom padding for the "app name" section of the harmful app dialog -->
+    <dimen name="harmful_app_name_padding_bottom">20dp</dimen>
+    <!-- Left padding for the "app name" section of the harmful app dialog -->
+    <dimen name="harmful_app_name_padding_left">24dp</dimen>
+    <!-- Right padding for the "app name" section of the harmful app dialog -->
+    <dimen name="harmful_app_name_padding_right">24dp</dimen>
+    <!-- Top padding for the "app name" section of the harmful app dialog -->
+    <dimen name="harmful_app_name_padding_top">8dp</dimen>
+    <!-- Padding between the icon and app name in the harmful app dialog -->
+    <dimen name="harmful_app_icon_name_padding">20dp</dimen>
+    <!-- The size of the icon on the harmful app dialog -->
+    <dimen name="harmful_app_icon_size">44dp</dimen>
+    <!-- Left padding for the message section of the harmful app dialog -->
+    <dimen name="harmful_app_message_padding_left">24dp</dimen>
+    <!-- Right padding for the message section of the harmful app dialog -->
+    <dimen name="harmful_app_message_padding_right">24dp</dimen>
+    <!-- Bottom padding for the message section of the harmful app dialog -->
+    <dimen name="harmful_app_message_padding_bottom">24dp</dimen>
+    <!-- Line spacing modifier for the message field of the harmful app dialog -->
+    <item name="harmful_app_message_line_spacing_modifier" type="dimen">1.22</item>
+
+    <dimen name="seekbar_thumb_exclusion_max_size">48dp</dimen>
+
+    <!-- chooser/resolver (sharesheet) spacing -->
+    <dimen name="chooser_width">412dp</dimen>
+    <dimen name="chooser_corner_radius">28dp</dimen>
+    <dimen name="chooser_row_text_option_translate">25dp</dimen>
+    <dimen name="chooser_view_spacing">18dp</dimen>
+    <dimen name="chooser_edge_margin_thin">16dp</dimen>
+    <dimen name="chooser_edge_margin_normal">24dp</dimen>
+    <dimen name="chooser_preview_image_font_size">20sp</dimen>
+    <dimen name="chooser_preview_image_border">1dp</dimen>
+    <dimen name="chooser_preview_image_max_dimen">200dp</dimen>
+    <dimen name="chooser_preview_width">-1px</dimen>
+    <dimen name="chooser_header_scroll_elevation">4dp</dimen>
+    <dimen name="chooser_max_collapsed_height">288dp</dimen>
+    <dimen name="chooser_direct_share_label_placeholder_max_width">72dp</dimen>
+    <dimen name="chooser_icon_size">56dp</dimen>
+    <dimen name="chooser_badge_size">22dp</dimen>
+    <dimen name="resolver_icon_size">32dp</dimen>
+    <dimen name="resolver_button_bar_spacing">0dp</dimen>
+    <dimen name="resolver_badge_size">18dp</dimen>
+    <dimen name="resolver_icon_margin">8dp</dimen>
+    <dimen name="resolver_small_margin">18dp</dimen>
+    <dimen name="resolver_edge_margin">24dp</dimen>
+    <dimen name="resolver_elevation">1dp</dimen>
+    <dimen name="resolver_empty_state_height">212dp</dimen>
+    <dimen name="resolver_empty_state_height_with_tabs">268dp</dimen>
+    <dimen name="resolver_max_collapsed_height">192dp</dimen>
+    <dimen name="resolver_max_collapsed_height_with_tabs">268dp</dimen>
+    <dimen name="resolver_max_collapsed_height_with_default">144dp</dimen>
+    <dimen name="resolver_max_collapsed_height_with_default_with_tabs">300dp</dimen>
+    <dimen name="resolver_tab_text_size">14sp</dimen>
+    <dimen name="resolver_title_padding_bottom">0dp</dimen>
+    <dimen name="resolver_empty_state_container_padding_top">48dp</dimen>
+    <dimen name="resolver_empty_state_container_padding_bottom">8dp</dimen>
+    <dimen name="resolver_profile_tab_margin">4dp</dimen>
+
+    <dimen name="chooser_action_button_icon_size">18dp</dimen>
+
+    <!-- For main built-in Waterfall Display -->
+    <dimen name="waterfall_display_left_edge_size">0px</dimen>
+    <dimen name="waterfall_display_top_edge_size">0px</dimen>
+    <dimen name="waterfall_display_right_edge_size">0px</dimen>
+    <dimen name="waterfall_display_bottom_edge_size">0px</dimen>
+
+    <dimen name="default_background_blur_radius">100dp</dimen>
+    <!-- The maximum height of a thumbnail in a ThumbnailTemplate. The image will be reduced to that height in case they are bigger. -->
+    <dimen name="controls_thumbnail_image_max_height">140dp</dimen>
+    <!-- The maximum width of a thumbnail in a ThumbnailTemplate. The image will be reduced to that width in case they are bigger.-->
+    <dimen name="controls_thumbnail_image_max_width">280dp</dimen>
+
+    <!-- System-provided radius for the background view of app widgets. The resolved value of this resource may change at runtime. -->
+    <dimen name="system_app_widget_background_radius" android:featureFlag="!android.appwidget.flags.use_smaller_app_widget_system_radius">28dp</dimen>
+    <dimen name="system_app_widget_background_radius" android:featureFlag="android.appwidget.flags.use_smaller_app_widget_system_radius">24dp</dimen>
+    <!-- System-provided radius for inner views on app widgets that are positioned 8dp within the widget background view. The resolved value of this resource may change at runtime. -->
+    <dimen name="system_app_widget_inner_radius" android:featureFlag="!android.appwidget.flags.use_smaller_app_widget_system_radius">20dp</dimen>
+    <!-- System-provided radius for inner views on app widgets that are positioned 8dp within the widget background view. The resolved value of this resource may change at runtime. -->
+    <dimen name="system_app_widget_inner_radius" android:featureFlag="android.appwidget.flags.use_smaller_app_widget_system_radius">16dp</dimen>
+    <!-- System-provided padding for inner views on app widgets. The resolved value of this resource may change at runtime. @removed -->
+    <dimen name="__removed_system_app_widget_internal_padding">16dp</dimen>
+
+    <!-- The width/height of the icon view on staring surface. -->
+    <dimen name="starting_surface_icon_size">160dp</dimen>
+    <!-- The default width/height of the icon on the spec of adaptive icon drawable. -->
+    <dimen name="starting_surface_default_icon_size">108dp</dimen>
+
+    <!-- For secondary built-in Waterfall Display -->
+    <dimen name="secondary_waterfall_display_left_edge_size">0px</dimen>
+    <dimen name="secondary_waterfall_display_top_edge_size">0px</dimen>
+    <dimen name="secondary_waterfall_display_right_edge_size">0px</dimen>
+    <dimen name="secondary_waterfall_display_bottom_edge_size">0px</dimen>
+
+    <!-- Rounded corner settings for secondary built-in display -->
+    <dimen name="secondary_rounded_corner_radius">0px</dimen>
+    <dimen name="secondary_rounded_corner_radius_top">0px</dimen>
+    <dimen name="secondary_rounded_corner_radius_bottom">0px</dimen>
+    <dimen name="secondary_rounded_corner_radius_adjustment">0px</dimen>
+    <dimen name="secondary_rounded_corner_radius_top_adjustment">0px</dimen>
+    <dimen name="secondary_rounded_corner_radius_bottom_adjustment">0px</dimen>
+
+    <!-- Default size for user icons (a.k.a. avatar images) -->
+    <dimen name="user_icon_size">190dp</dimen>
+
+    <!-- Dimensions for the translations of the default dialog animation. -->
+    <dimen name="popup_enter_animation_from_y_delta">20dp</dimen>
+    <dimen name="popup_exit_animation_to_y_delta">-10dp</dimen>
+
+    <!-- Dimensions for the activity embedding divider. -->
+    <dimen name="activity_embedding_divider_handle_width">4dp</dimen>
+    <dimen name="activity_embedding_divider_handle_height">48dp</dimen>
+    <dimen name="activity_embedding_divider_handle_radius">2dp</dimen>
+    <dimen name="activity_embedding_divider_handle_width_pressed">12dp</dimen>
+    <dimen name="activity_embedding_divider_handle_height_pressed">53dp</dimen>
+    <dimen name="activity_embedding_divider_handle_radius_pressed">6dp</dimen>
+    <dimen name="activity_embedding_divider_touch_target_width">24dp</dimen>
+    <dimen name="activity_embedding_divider_touch_target_height">64dp</dimen>
+
+    <!-- Default handwriting bounds offsets for editors. -->
+    <dimen name="handwriting_bounds_offset_left">10dp</dimen>
+    <dimen name="handwriting_bounds_offset_top">40dp</dimen>
+    <dimen name="handwriting_bounds_offset_right">10dp</dimen>
+    <dimen name="handwriting_bounds_offset_bottom">40dp</dimen>
+
+    <!-- The threshold for full back swipe progress. -->
+    <dimen name="navigation_edge_action_progress_threshold">412dp</dimen>
+    <!-- The non-linear progress interval when the screen is wider than the
+        navigation_edge_action_progress_threshold. -->
+    <item name="back_progress_non_linear_factor" format="float" type="dimen">0.2</item>
+
+    <!-- The maximum width for a context menu icon -->
+    <dimen name="list_menu_item_icon_max_width">24dp</dimen>
+
+    <!-- Default height of desktop view's header for desktop tasks on launch. -->
+    <dimen name="desktop_view_default_header_height">40dp</dimen>
+    <!-- Default height of desktop view's large header for desktop tasks on launch. -->
+    <dimen name="desktop_view_default_large_header_height">48dp</dimen>
+
+    <!-- The cascading offset in desktop mode. -->
+    <dimen name="desktop_mode_cascading_offset">60dp</dimen>
+
+    <!-- Default height of taskbar for Launcher.   -->
+    <dimen name="taskbar_stashed_size">24dp</dimen>
+
+    <!-- App Lock -->
+    <dimen name="app_lock_button_padding">10dp</dimen>
+     <!-- Max Width of App Lock dialog -->
+    <dimen name="app_lock_dialog_max_width">640dp</dimen>
+    <dimen name="app_lock_edu_button_min_height">48dp</dimen>
+    <!-- A large value to prevent the education dialog from collapsing. -->
+    <dimen name="app_lock_edu_dialog_max_collapsed_height">2000dp</dimen>
+    <dimen name="app_lock_font_size_large">24sp</dimen>
+    <dimen name="app_lock_font_size_medium">14sp</dimen>
+    <dimen name="app_lock_icon_size_small">24dp</dimen>
+    <dimen name="app_lock_item_icon_size">42dp</dimen>
+    <dimen name="app_lock_item_margin">12dp</dimen>
+    <dimen name="app_lock_item_margin_small">8dp</dimen>
+    <dimen name="app_lock_line_height_small">20sp</dimen>
+    <dimen name="app_lock_line_height_medium">24sp</dimen>
+    <dimen name="app_lock_line_height_large">32sp</dimen>
+    <dimen name="app_lock_margin_extra_small">8dp</dimen>
+    <dimen name="app_lock_margin_small">12dp</dimen>
+    <dimen name="app_lock_margin_medium">16dp</dimen>
+    <dimen name="app_lock_margin_large">24dp</dimen>
+    <dimen name="app_lock_padding_extra_small">8dp</dimen>
+    <dimen name="app_lock_padding_large">32dp</dimen>
+    <dimen name="app_lock_padding_small">16dp</dimen>
+    <dimen name="app_lock_padding_extra_large">40dp</dimen>
+    <dimen name="app_lock_permission_review_app_list_expanded_height">320dp</dimen>
+    <dimen name="app_lock_pill_radius">100dp</dimen>
+    <dimen name="app_lock_top_margin">24sp</dimen>
+</resources>

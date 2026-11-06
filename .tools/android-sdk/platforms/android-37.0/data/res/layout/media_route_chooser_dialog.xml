@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2013 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical"
+              android:divider="?android:attr/dividerHorizontal"
+              android:showDividers="middle">
+    <!-- Cast to others button. -->
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="8dp" >
+
+        <Button android:id="@+id/media_route_cast_to_others_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/media_route_cast_to_other_vertical_padding"
+                android:paddingBottom="@dimen/media_route_cast_to_other_vertical_padding"
+                android:minHeight="48dp"
+                android:layout_gravity="start|center_vertical"
+                style="@style/Widget.DeviceDefault.Button.Colored"
+                android:background="@drawable/media_route_chip_background"
+                android:paddingStart="?android:attr/listPreferredItemPaddingStart"
+                android:paddingEnd="?android:attr/listPreferredItemPaddingEnd"
+                android:text="@string/media_route_chooser_share_cast_others"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="?android:attr/textColorPrimary"
+                android:drawableStart="@android:drawable/ic_media_route_cast_groups"
+                android:drawablePadding="8dp"
+                android:drawableTint="?android:attr/textColorPrimary"
+                android:visibility="gone" />
+    </LinearLayout>
+
+    <!-- List of routes. -->
+    <ListView android:id="@+id/media_route_list"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_weight="1" />
+
+    <!-- Content to show when list is empty. -->
+    <LinearLayout android:id="@android:id/empty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:visibility="gone">
+        <ProgressBar android:id="@+id/media_route_progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" />
+        <TextView android:id="@+id/empty_subtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:paddingStart="16dp"
+            android:text="@string/media_route_chooser_searching" />
+    </LinearLayout>
+
+    <!-- Settings button. -->
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  style="?attr/buttonBarStyle">
+        <Button android:id="@+id/media_route_extended_settings_button"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                style="?attr/buttonBarButtonStyle"
+                android:gravity="center"
+                android:text="@string/media_route_chooser_extended_settings"
+                android:visibility="gone" />
+    </LinearLayout>
+</LinearLayout>

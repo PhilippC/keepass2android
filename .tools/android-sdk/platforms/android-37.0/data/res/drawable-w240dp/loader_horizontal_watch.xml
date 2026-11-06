@@ -1,0 +1,104 @@
+<!--
+  ~ Copyright (C) 2025 The Android Open Source Project
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~      http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<animated-vector xmlns:android="http://schemas.android.com/apk/res/android" xmlns:aapt="http://schemas.android.com/aapt">
+    <aapt:attr name="android:drawable">
+        <vector android:height="17dp" android:width="82dp" android:viewportHeight="17" android:viewportWidth="82">
+            <group android:name="_R_G">
+                <group android:name="_R_G_L_1_G" android:translateX="41" android:translateY="8.5">
+                    <path android:name="_R_G_L_1_G_D_0_P_0" android:fillColor="#000000" android:fillAlpha="1" android:fillType="nonZero" android:pathData=" M41 -8.5 C41,-8.5 41,8.5 41,8.5 C41,8.5 -41,8.5 -41,8.5 C-41,8.5 -41,-8.5 -41,-8.5 C-41,-8.5 41,-8.5 41,-8.5c "/>
+                </group>
+                <group android:name="_R_G_L_0_G" android:translateX="-362.5" android:translateY="-69" android:pivotX="403.5" android:pivotY="77.5" android:scaleX="0.1" android:scaleY="0.1">
+                    <group android:name="_R_G_L_0_G_L_6_G" android:translateX="-291.64799999999997" android:translateY="-414.141" android:pivotX="695.448" android:pivotY="-412.359" android:rotation="28.7" android:scaleY="0">
+                        <path android:name="_R_G_L_0_G_L_6_G_D_0_P_0" android:fillColor="#303030" android:fillAlpha="1" android:fillType="nonZero" android:pathData=" M244.28 442.36 C239.4,442.36 234.45,441.17 229.88,438.66 C79.87,356.38 -46.26,235.46 -134.87,88.96 C-179.66,14.91 -214.28,-64.74 -237.78,-147.79 C-262.02,-233.47 -274.31,-322.49 -274.31,-412.36 C-274.31,-428.93 -260.88,-442.36 -244.31,-442.36 C-227.74,-442.36 -214.31,-428.93 -214.31,-412.36 C-214.31,-328.01 -202.78,-244.49 -180.05,-164.12 C-158.01,-86.24 -125.54,-11.54 -83.53,57.91 C-0.38,195.38 117.97,308.85 258.73,386.05 C273.26,394.02 278.58,412.26 270.61,426.78 C265.15,436.73 254.88,442.36 244.28,442.36c "/>
+                    </group>
+                    <group android:name="_R_G_L_0_G_L_5_G" android:translateX="923.0530000000001" android:translateY="-359.029" android:pivotX="-519.253" android:pivotY="-467.471" android:rotation="28.7">
+                        <path android:name="_R_G_L_0_G_L_5_G_D_0_P_0" android:fillColor="#303030" android:fillAlpha="1" android:fillType="nonZero" android:pathData=" M-421.02 497.47 C-436.2,497.47 -449.23,485.99 -450.83,470.56 C-452.53,454.08 -440.56,439.34 -424.08,437.63 C-201.54,414.57 4.18,310.19 155.19,143.73 C229.54,61.77 287.7,-31.75 328.04,-134.22 C369.81,-240.3 390.99,-352.42 390.99,-467.47 C390.99,-484.04 404.42,-497.47 420.99,-497.47 C437.56,-497.47 450.99,-484.04 450.99,-467.47 C450.99,-226.02 361.72,5.35 199.63,184.04 C38.67,361.47 -180.63,472.73 -417.89,497.31 C-418.94,497.42 -419.99,497.47 -421.02,497.47c "/>
+                    </group>
+                    <group android:name="_R_G_L_0_G_L_2_G" android:translateX="222.54600000000002" android:translateY="77.21400000000006" android:pivotX="181.254" android:pivotY="-903.714" android:rotation="28.7" android:scaleY="0">
+                        <path android:name="_R_G_L_0_G_L_2_G_D_0_P_0" android:fillColor="#ffffff" android:fillAlpha="1" android:fillType="nonZero" android:pathData=" M181.26 66.28 C181.25,66.28 181.25,66.28 181.25,66.28 C51.64,66.25 -74.22,41.06 -192.83,-8.6 C-208.12,-15 -215.32,-32.58 -208.92,-47.86 C-202.52,-63.15 -184.94,-70.35 -169.66,-63.95 C-58.42,-17.38 59.64,6.25 181.26,6.28 C197.83,6.29 211.26,19.72 211.26,36.29 C211.25,52.86 197.82,66.28 181.26,66.28c "/>
+                    </group>
+                    <group android:name="_R_G_L_0_G_L_0_G" android:translateX="403.5" android:translateY="77.5">
+                        <path android:name="_R_G_L_0_G_L_0_G_D_0_P_0" android:fillColor="#000000" android:fillAlpha="1" android:fillType="nonZero" android:pathData=" M-630.5 -255.5 C-630.5,-255.5 -630.5,255.5 -630.5,255.5 C-630.5,255.5 630.5,255.5 630.5,255.5 C630.5,255.5 630.5,-255.5 630.5,-255.5 C630.5,-255.5 -630.5,-255.5 -630.5,-255.5c  M374 -8.88 C255.5,40.59 128.4,66.04 0,66 C-128.4,65.95 -255.6,40.42 -374,-9.14 C-389.3,-15.53 -396.5,-33.11 -390.1,-48.39 C-383.7,-63.68 -366.2,-70.88 -350.9,-64.49 C-239.7,-18 -120.5,5.96 0,6 C120.4,6.04 239.7,-17.84 350.9,-64.25 C366.2,-70.63 383.7,-63.41 390.1,-48.12 C396.5,-32.83 389.3,-15.26 374,-8.88c "/>
+                    </group>
+                </group>
+            </group>
+            <group android:name="time_group"/>
+        </vector>
+    </aapt:attr>
+    <target android:name="_R_G_L_0_G_L_6_G">
+        <aapt:attr name="android:animation">
+            <set android:ordering="together">
+                <objectAnimator android:repeatCount="infinite" android:propertyName="rotation" android:duration="983" android:startOffset="0" android:valueFrom="28.7" android:valueTo="-51.4" android:valueType="floatType">
+                    <aapt:attr name="android:interpolator">
+                        <pathInterpolator android:pathData="M 0.0,0.0 c0.402,0.136 0.202,0.847 1.0,1.0"/>
+                    </aapt:attr>
+                </objectAnimator>
+            </set>
+        </aapt:attr>
+    </target>
+    <target android:name="_R_G_L_0_G_L_6_G">
+        <aapt:attr name="android:animation">
+            <set android:ordering="together">
+                <objectAnimator android:repeatCount="infinite" android:propertyName="scaleY" android:duration="0" android:startOffset="333" android:valueFrom="0" android:valueTo="1" android:valueType="floatType"/>
+            </set>
+        </aapt:attr>
+    </target>
+    <target android:name="_R_G_L_0_G_L_5_G">
+        <aapt:attr name="android:animation">
+            <set android:ordering="together">
+                <objectAnimator android:repeatCount="infinite" android:propertyName="rotation" android:duration="983" android:startOffset="0" android:valueFrom="28.7" android:valueTo="-51.4" android:valueType="floatType">
+                    <aapt:attr name="android:interpolator">
+                        <pathInterpolator android:pathData="M 0.0,0.0 c0.402,0.136 0.202,0.847 1.0,1.0"/>
+                    </aapt:attr>
+                </objectAnimator>
+            </set>
+        </aapt:attr>
+    </target>
+    <target android:name="_R_G_L_0_G_L_5_G">
+        <aapt:attr name="android:animation">
+            <set android:ordering="together">
+                <objectAnimator android:repeatCount="infinite" android:propertyName="scaleY" android:duration="0" android:startOffset="0" android:valueFrom="0" android:valueTo="1" android:valueType="floatType"/>
+            </set>
+        </aapt:attr>
+    </target>
+    <target android:name="_R_G_L_0_G_L_2_G">
+        <aapt:attr name="android:animation">
+            <set android:ordering="together">
+                <objectAnimator android:repeatCount="infinite" android:propertyName="rotation" android:duration="983" android:startOffset="0" android:valueFrom="28.7" android:valueTo="-51.4" android:valueType="floatType">
+                    <aapt:attr name="android:interpolator">
+                        <pathInterpolator android:pathData="M 0.0,0.0 c0.402,0.136 0.202,0.847 1.0,1.0"/>
+                    </aapt:attr>
+                </objectAnimator>
+            </set>
+        </aapt:attr>
+    </target>
+    <target android:name="_R_G_L_0_G_L_2_G">
+        <aapt:attr name="android:animation">
+            <set android:ordering="together">
+                <objectAnimator android:repeatCount="infinite" android:propertyName="scaleY" android:duration="0" android:startOffset="133" android:valueFrom="0" android:valueTo="1" android:valueType="floatType"/>
+            </set>
+        </aapt:attr>
+    </target>
+    <target android:name="time_group">
+        <aapt:attr name="android:animation">
+            <set android:ordering="together">
+                <objectAnimator android:repeatCount="infinite" android:propertyName="translateX" android:duration="1000" android:startOffset="0" android:valueFrom="0" android:valueTo="1" android:valueType="floatType"/>
+            </set>
+        </aapt:attr>
+    </target>
+</animated-vector>
+

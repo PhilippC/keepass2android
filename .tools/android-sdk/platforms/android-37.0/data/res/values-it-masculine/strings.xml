@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+/* //device/apps/common/assets/res/any/strings.xml
+**
+** Copyright 2006, The Android Open Source Project
+**
+** Licensed under the Apache License, Version 2.0 (the "License");
+** you may not use this file except in compliance with the License.
+** You may obtain a copy of the License at
+**
+**     http://www.apache.org/licenses/LICENSE-2.0
+**
+** Unless required by applicable law or agreed to in writing, software
+** distributed under the License is distributed on an "AS IS" BASIS,
+** WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+** See the License for the specific language governing permissions and
+** limitations under the License.
+*/
+ -->
+
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="page_size_compat_elf_warning_4kb" msgid="5005239480522831311">"Questo avviso viene visualizzato perché si tratta di un\'app di cui è possibile eseguire il debug che è attualmente in fase di test. Se non sei tu lo sviluppatore dell\'app, parlane con lo sviluppatore e chiedi un\'app di cui è possibile eseguire il debug. &lt;br&gt;&lt;br&gt; Questa app non è compatibile con dimensioni pagina di 16 kB. Controllo allineamento ELF non riuscito. Segui la procedura su &lt;a href=\"https://developer.android.com/16kb-page-size\"&gt;https://developer.android.com/16kb-page-size&lt;/a&gt; &lt;br&gt;&lt;br&gt; Le seguenti librerie non sono allineate con dimensioni pagina di 16 kB: &lt;br&gt;&lt;br&gt;"</string>
+    <string name="relationTypeSpouse" msgid="6916682664436031703">"Marito"</string>
+    <string name="satellite_sos_not_provisioned_notification_summary" msgid="3127320958911180629">"Assicurati di essere connesso a internet attiva e prova a ripetere la configurazione"</string>
+</resources>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2016 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<!-- These resources are around just to allow their values to be customized
+     for different hardware and product builds, only for Material theme.  Do not translate.
+
+     NOTE: The naming convention is "config_camelCaseValue".  -->
+
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <!-- True if the device supports action bars. -->
+    <bool name="config_windowActionBarSupported">true</bool>
+
+    <!-- True if the device should have titles by default. -->
+    <bool name="config_windowNoTitleDefault">false</bool>
+
+    <!-- The alert controller to use for alert dialogs. -->
+    <integer name="config_alertDialogController">0</integer>
+
+    <!-- True if preference fragment should clip to padding. -->
+    <bool name="config_preferenceFragmentClipToPadding">true</bool>
+
+    <!-- The amount to offset when scrolling to a selection in an AlertDialog -->
+    <dimen name="config_alertDialogSelectionScrollOffset">0dp</dimen>
+
+    <!-- Style the scrollbars accoridngly. -->
+    <drawable name="config_scrollbarThumbVertical">@drawable/scrollbar_handle_material</drawable>
+    <drawable name="config_scrollbarTrackVertical">@null</drawable>
+
+    <!--
+         Material motion physics configs
+         values from https://carbon.googleplex.com/google-material-3/pages/motion/how-it-works/1d566b15-2923-4e40-bd1e-25a867b96cbb#7520e861-2251-4ddb-af33-59df0d233d21
+    -->
+    <!-- standard -->
+    <item name="config_motionStandardFastSpatialDamping" format="float" type="dimen">1.0</item>
+    <integer name="config_motionStandardFastSpatialStiffness">1400</integer>
+    <item name="config_motionStandardFastEffectDamping" format="float" type="dimen">1.0</item>
+    <integer name="config_motionStandardFastEffectStiffness">3800</integer>
+
+    <item name="config_motionStandardDefaultSpatialDamping" format="float" type="dimen">1.0</item>
+    <integer name="config_motionStandardDefaultSpatialStiffness">700</integer>
+    <item name="config_motionStandardDefaultEffectDamping" format="float" type="dimen">1.0</item>
+    <integer name="config_motionStandardDefaultEffectStiffness">1600</integer>
+
+    <item name="config_motionStandardSlowSpatialDamping" format="float" type="dimen">1.0</item>
+    <integer name="config_motionStandardSlowSpatialStiffness">300</integer>
+    <item name="config_motionStandardSlowEffectDamping" format="float" type="dimen">1.0</item>
+    <integer name="config_motionStandardSlowEffectStiffness">800</integer>
+
+
+    <!-- expressive -->
+    <item name="config_motionExpressiveFastSpatialDamping" format="float" type="dimen">0.6</item>
+    <integer name="config_motionExpressiveFastSpatialStiffness">800</integer>
+    <item name="config_motionExpressiveFastEffectDamping" format="float" type="dimen">1.0</item>
+    <integer name="config_motionExpressiveFastEffectStiffness">3800</integer>
+
+    <item name="config_motionExpressiveDefaultSpatialDamping" format="float" type="dimen">0.8</item>
+    <integer name="config_motionExpressiveDefaultSpatialStiffness">380</integer>
+    <item name="config_motionExpressiveDefaultEffectDamping" format="float" type="dimen">1.0</item>
+    <integer name="config_motionExpressiveDefaultEffectStiffness">1600</integer>
+
+    <item name="config_motionExpressiveSlowSpatialDamping" format="float" type="dimen">0.8</item>
+    <integer name="config_motionExpressiveSlowSpatialStiffness">200</integer>
+    <item name="config_motionExpressiveSlowEffectDamping" format="float" type="dimen">1.0</item>
+    <integer name="config_motionExpressiveSlowEffectStiffness">800</integer>
+
+    <!--
+        Material rounded corner configs
+        Values from https://carbon.googleplex.com/google-material-3/tokens/designSystems/20543ce18892f7d9/tokenSets/21c40db4e4f5af15
+    -->
+    <dimen name="config_shapeCornerRadiusXsmall">4dp</dimen>
+    <dimen name="config_shapeCornerRadiusSmall">8dp</dimen>
+    <dimen name="config_shapeCornerRadiusMedium">12dp</dimen>
+    <dimen name="config_shapeCornerRadiusLarge">16dp</dimen>
+    <dimen name="config_shapeCornerRadiusXlarge">28dp</dimen>
+</resources>

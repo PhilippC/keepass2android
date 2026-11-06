@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<!-- Copyright 2025 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="180dp"
+    android:height="184dp"
+    android:viewportHeight="184"
+    android:viewportWidth="180">
+
+    <!-- Shadow shape: 4px down-->
+    <path
+        android:fillColor="#11000000"
+        android:pathData="M24.5459 130.067C-8.18197 117.159 -8.18195 70.841 24.5459 57.9333L29.957
+        55.7992C39.949 51.8584 47.8584 43.949 51.7992 33.957L53.9333 28.5459C66.841
+        -4.18197 113.159 -4.18195 126.067 28.5459L128.201 33.957C132.142 43.949 140.051
+        51.8584 150.043 55.7992L155.454 57.9333C188.182 70.841 188.182 117.159 155.454
+        130.067L150.043 132.201C140.051 136.142 132.142 144.051 128.201 154.043L126.067
+        159.454C113.159 192.182 66.841 192.182 53.9333 159.454L51.7992 154.043C47.8584
+        144.051 39.949 136.142 29.957 132.201L24.5459 130.067Z" />
+
+    <!-- Main shape -->
+    <path
+        android:fillColor="@color/materialColorSurface"
+        android:pathData="M24.5459 126.067C-8.18197 113.159 -8.18195 66.841 24.5459 53.9333L29.957
+        51.7992C39.949 47.8584 47.8584 39.949 51.7992 29.957L53.9333 24.5459C66.841
+        -8.18197 113.159 -8.18195 126.067 24.5459L128.201 29.957C132.142 39.949 140.051
+        47.8584 150.043 51.7992L155.454 53.9333C188.182 66.841 188.182 113.159 155.454
+        126.067L150.043 128.201C140.051 132.142 132.142 140.051 128.201 150.043L126.067
+        155.454C113.159 188.182 66.841 188.182 53.9333 155.454L51.7992 150.043C47.8584
+        140.051 39.949 132.142 29.957 128.201L24.5459 126.067Z"
+        android:strokeColor="@color/materialColorOutlineVariant"
+        android:strokeWidth="1" />
+</vector>

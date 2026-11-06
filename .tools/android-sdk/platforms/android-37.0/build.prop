@@ -1,0 +1,107 @@
+####################################
+# from generate-common-build-props
+# These properties identify this partition image.
+####################################
+ro.product.system.brand=Android
+ro.product.system.device=mainline_x86
+ro.product.system.manufacturer=unknown
+ro.product.system.model=sdk
+ro.product.system.name=sdk
+ro.system.product.cpu.abilist=x86
+ro.system.product.cpu.abilist32=x86
+ro.system.product.cpu.abilist64=
+ro.system.build.date=Tue May 26 16:52:15 PDT 2026
+ro.system.build.date.utc=1779839535
+ro.system.build.fingerprint=Android/sdk/mainline_x86:17/CP21.260330.011/15499021:userdebug/test-keys
+ro.system.build.id=CP21.260330.011
+ro.system.build.uuid=IWh0l81rmwI_Ly8Ie8sEmpZfiS0jlN4yLIwnSK3sYyQ
+ro.system.build.tags=test-keys
+ro.system.build.type=userdebug
+ro.system.build.version.incremental=15499021
+ro.system.build.version.release=17
+ro.system.build.version.release_or_codename=17
+ro.system.build.version.sdk=37
+ro.system.build.version.sdk_full=37.0
+####################################
+# from gen_build_prop.py:generate_build_info
+####################################
+# begin build properties
+ro.build.id=CP21.260330.011
+ro.build.uuid=IWh0l81rmwI_Ly8Ie8sEmpZfiS0jlN4yLIwnSK3sYyQ
+ro.build.display.id=sdk-userdebug 17 CP21.260330.011 15499021 test-keys
+ro.build.version.incremental=15499021
+ro.build.version.sdk=37
+ro.build.version.sdk_full=37.0
+ro.build.version.preview_sdk=0
+ro.build.version.preview_sdk_fingerprint=REL
+ro.build.version.codename=REL
+ro.build.version.all_codenames=REL
+ro.build.version.known_codenames=Base,Base11,Cupcake,Donut,Eclair,Eclair01,EclairMr1,Froyo,Gingerbread,GingerbreadMr1,Honeycomb,HoneycombMr1,HoneycombMr2,IceCreamSandwich,IceCreamSandwichMr1,JellyBean,JellyBeanMr1,JellyBeanMr2,Kitkat,KitkatWatch,Lollipop,LollipopMr1,M,N,NMr1,O,OMr1,P,Q,R,S,Sv2,Tiramisu,UpsideDownCake,VanillaIceCream,Baklava,CANARY,CinnamonBun
+ro.build.version.release=17
+ro.build.version.release_or_codename=17
+ro.build.version.release_or_preview_display=17
+ro.build.version.security_patch=2026-05-05
+ro.build.version.base_os=
+ro.build.version.min_supported_target_sdk=28
+ro.build.date=Tue May 26 16:52:15 PDT 2026
+ro.build.date.utc=1779839535
+ro.build.type=userdebug
+ro.build.user=android-build
+ro.build.host=b1aeb9d5a967
+ro.build.tags=test-keys
+ro.build.flavor=sdk-userdebug
+# ro.product.cpu.abi and ro.product.cpu.abi2 are obsolete,
+# use ro.product.cpu.abilist instead.
+ro.product.cpu.abi=x86
+ro.product.locale=en-US
+ro.wifi.channels=
+# Do not try to parse description or thumbprint
+ro.build.description=sdk-userdebug 17 CP21.260330.011 15499021 test-keys
+# end build properties
+####################################
+# from variable ADDITIONAL_SYSTEM_PROPERTIES
+####################################
+ro.treble.enabled=true
+ro.llndk.api_level=202604
+ro.actionable_compatible_property.enabled=true
+persist.debug.dalvik.vm.core_platform_api_policy=just-warn
+ro.postinstall.fstab.prefix=/system
+ro.secure=1
+security.perf_harden=1
+ro.allow.mock.location=0
+dalvik.vm.lockprof.threshold=500
+ro.debuggable=1
+xmpp.auto-presence=true
+ro.config.nocheckin=yes
+net.bt.name=Android
+ro.force.debuggable=0
+####################################
+# from variable PRODUCT_SYSTEM_PROPERTIES
+####################################
+dalvik.vm.image-dex2oat-Xms=64m
+dalvik.vm.image-dex2oat-Xmx=512m
+dalvik.vm.dex2oat-Xms=64m
+dalvik.vm.dex2oat-Xmx=512m
+apexd.config.compressed_apex=true
+####################################
+# from variable PRODUCT_SYSTEM_DEFAULT_PROPERTIES
+####################################
+# Auto-added by post_process_props.py
+persist.sys.usb.config=adb
+####################################
+# Adding footer from :applied_backported_fixes
+# with path out/soong/.intermediates/build/make/backported_fixes/applied_backported_fixes/gen/applied_backported_fixes.prop
+####################################
+# The following backported fixes have been applied
+# https://issuetracker.google.com/issues/350037023 with alias 1
+# https://issuetracker.google.com/issues/385124056 with alias 4
+# https://issuetracker.google.com/issues/398591036 with alias 5
+# https://issuetracker.google.com/issues/452390376 with alias 6
+ro.build.backported_fixes.alias_bitset.long_list=114
+# end of file
+ro.build.user=generic
+ro.build.host=generic
+ro.product.brand=generic
+ro.product.manufacturer=generic
+ro.product.device=generic
+ro.build.product=generic

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright (C) 2025 The Android Open Source Project
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~      http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+-->
+<resources>
+    <color name="semanticGreenContainerLow">#84FAB1</color>
+    <color name="semanticGreenOnContainerLow">#00522D</color>
+    <color name="semanticGreenContainer">#26A565</color>
+    <color name="semanticGreenOnContainer">#00210F</color>
+    <color name="semanticGreenOnContainerVariant">#FFFFFF</color>
+    <color name="semanticGreenContainerHigh">#00894F</color>
+    <color name="semanticGreenOnContainerHigh">#FFFFFF</color>
+    <color name="semanticGreenOnSurface">#00210F</color>
+    <color name="semanticGreenOnSurfaceVariant">#007241</color>
+    <color name="semanticGreenSurfaceContainerLow">#D6FDDE</color>
+    <color name="semanticGreenSurfaceContainer">#D0F8D9</color>
+    <color name="semanticGreenSurfaceContainerHigh">#CBF2D3</color>
+    <color name="semanticGreenSurfaceContainerHighest">#C5ECCE</color>
+    <color name="semanticYellowContainerLow">#FFDF93</color>
+    <color name="semanticYellowOnContainerLow">#594400</color>
+    <color name="semanticYellowContainer">#F5BF00</color>
+    <color name="semanticYellowOnContainer">#241A00</color>
+    <color name="semanticYellowContainerHigh">#F5BF00</color>
+    <color name="semanticYellowOnContainerHigh">#241A00</color>
+    <color name="semanticYellowOnSurface">#241A00</color>
+    <color name="semanticYellowOnSurfaceVariant">#7C5F00</color>
+    <color name="semanticYellowSurfaceContainerLow">#FFF2DB</color>
+    <color name="semanticYellowSurfaceContainer">#FFECC4</color>
+    <color name="semanticYellowSurfaceContainerHigh">#FFE6AD</color>
+    <color name="semanticYellowSurfaceContainerHighest">#FAE0A6</color>
+    <color name="semanticRedContainerLow">#FFDAD6</color>
+    <color name="semanticRedOnContainerLow">#910A0E</color>
+    <color name="semanticRedContainer">#F95A4F</color>
+    <color name="semanticRedOnContainer">#410002</color>
+    <color name="semanticRedOnContainerVariant">#FFFFFF</color>
+    <color name="semanticRedContainerHigh">#D64138</color>
+    <color name="semanticRedOnContainerHigh">#FFFFFF</color>
+    <color name="semanticRedOnSurface">#410002</color>
+    <color name="semanticRedOnSurfaceVariant">#BA2D27</color>
+    <color name="semanticRedSurfaceContainerLow">#FFF0EE</color>
+    <color name="semanticRedSurfaceContainer">#FFE9E6</color>
+    <color name="semanticRedSurfaceContainerHigh">#FFE2DE</color>
+    <color name="semanticRedSurfaceContainerHighest">#FFDAD6</color>
+    <color name="semanticBlueContainerLow">#D5E3FF</color>
+    <color name="semanticBlueOnContainerLow">#00429B</color>
+    <color name="semanticBlueContainer">#4E8FF8</color>
+    <color name="semanticBlueOnContainer">#001945</color>
+    <color name="semanticBlueOnContainerVariant">#FFFFFF</color>
+    <color name="semanticBlueContainerHigh">#2972E9</color>
+    <color name="semanticBlueOnContainerHigh">#FFFFFF</color>
+    <color name="semanticBlueOnSurface">#001945</color>
+    <color name="semanticBlueOnSurfaceVariant">#0A5DD1</color>
+    <color name="semanticBlueSurfaceContainerLow">#DEE8FF</color>
+    <color name="semanticBlueSurfaceContainer">#E7EEFF</color>
+    <color name="semanticBlueSurfaceContainerHigh">#DEE8FF</color>
+    <color name="semanticBlueSurfaceContainerHighest">#D5E3FF</color>
+</resources>

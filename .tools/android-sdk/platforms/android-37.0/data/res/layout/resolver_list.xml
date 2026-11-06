@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/*
+* Copyright 2012, The Android Open Source Project
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*     http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+-->
+<com.android.internal.widget.ResolverDrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:maxWidth="@dimen/resolver_max_width"
+    android:maxCollapsedHeight="@dimen/resolver_max_collapsed_height"
+    android:maxCollapsedHeightSmall="56dp"
+    android:ignoreOffsetTopLimit="@id/title_container"
+    android:id="@id/contentPanel">
+
+    <RelativeLayout
+        android:id="@+id/title_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alwaysShow="true"
+        android:elevation="@dimen/resolver_elevation"
+        android:paddingTop="@dimen/resolver_small_margin"
+        android:paddingStart="@dimen/resolver_edge_margin"
+        android:paddingEnd="@dimen/resolver_edge_margin"
+        android:paddingBottom="@dimen/resolver_title_padding_bottom"
+        android:background="@drawable/bottomsheet_background">
+
+        <TextView
+            android:id="@+id/profile_button"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_marginEnd="8dp"
+            android:visibility="gone"
+            style="?attr/borderlessButtonStyle"
+            android:textAppearance="?attr/textAppearanceButton"
+            android:textColor="?attr/colorAccent"
+            android:gravity="center_vertical"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:singleLine="true" />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/profile_button"
+            android:layout_alignParentStart="true"
+            android:accessibilityHeading="true"
+            android:textColor="@color/materialColorOnSurface"
+            android:fontFamily="@android:string/config_headlineFontFamilyMedium"
+            android:textSize="16sp"
+            android:gravity="start|center_vertical" />
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/divider"
+        android:layout_alwaysShow="true"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="?attr/colorBackground"
+        android:foreground="?attr/dividerVertical" />
+
+    <FrameLayout
+        android:id="@+id/stub"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorBackground"/>
+
+    <TabHost
+        android:id="@+id/profile_tabhost"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:accessibilityTraversalAfter="@id/title"
+        android:background="?attr/colorBackground">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <!-- horizontal padding = 8dp content padding - 4dp margin that tab buttons have. -->
+            <TabWidget
+                android:id="@android:id/tabs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:tabStripEnabled="false"
+                android:paddingHorizontal="4dp"
+                android:visibility="gone" />
+            <FrameLayout
+                android:id="@android:id/tabcontent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <com.android.internal.app.ResolverViewPager
+                    android:id="@+id/profile_pager"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </FrameLayout>
+        </LinearLayout>
+    </TabHost>
+    <LinearLayout
+        android:id="@+id/button_bar_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alwaysShow="true"
+        android:orientation="vertical"
+        android:background="?attr/colorBackground"
+        android:layout_ignoreOffset="true">
+        <View
+            android:id="@+id/resolver_button_bar_divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="?attr/colorBackground"
+            android:foreground="?attr/dividerVertical" />
+        <LinearLayout
+            android:id="@+id/button_bar"
+            android:visibility="gone"
+            style="?attr/buttonBarStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_ignoreOffset="true"
+            android:layout_hasNestedScrollIndicator="true"
+            android:gravity="end|center_vertical"
+            android:orientation="horizontal"
+            android:layoutDirection="locale"
+            android:measureWithLargestChild="true"
+            android:paddingTop="@dimen/resolver_button_bar_spacing"
+            android:paddingBottom="@dimen/resolver_button_bar_spacing"
+            android:paddingStart="@dimen/resolver_edge_margin"
+            android:paddingEnd="@dimen/resolver_small_margin"
+            android:elevation="@dimen/resolver_elevation">
+
+            <Button
+                android:id="@+id/button_once"
+                android:layout_width="wrap_content"
+                android:layout_gravity="start"
+                android:maxLines="2"
+                style="?attr/buttonBarButtonStyle"
+                android:fontFamily="@android:string/config_headlineFontFamilyMedium"
+                android:layout_height="wrap_content"
+                android:textAllCaps="false"
+                android:enabled="false"
+                android:text="@string/activity_resolver_use_once"
+                android:onClick="onButtonClick" />
+
+            <Button
+                android:id="@+id/button_always"
+                android:layout_width="wrap_content"
+                android:layout_gravity="end"
+                android:maxLines="2"
+                style="?attr/buttonBarButtonStyle"
+                android:fontFamily="@android:string/config_headlineFontFamilyMedium"
+                android:textAllCaps="false"
+                android:layout_height="wrap_content"
+                android:enabled="false"
+                android:text="@string/activity_resolver_use_always"
+                android:onClick="onButtonClick" />
+        </LinearLayout>
+    </LinearLayout>
+</com.android.internal.widget.ResolverDrawerLayout>

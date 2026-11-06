@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (C) 2025 The Android Open Source Project
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~      http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License
+  -->
+
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/actions_container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom"
+    android:layout_marginBottom="@dimen/notification_2025_action_list_margin_bottom"
+    android:minHeight="@dimen/notification_2025_action_list_min_height"
+    >
+
+    <LinearLayout
+        android:id="@+id/actions_container_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="end"
+        android:layout_gravity="bottom"
+        android:orientation="horizontal"
+        android:background="@color/notification_action_list_background_color"
+        >
+
+        <com.android.internal.widget.NotificationActionListLayout
+            android:id="@+id/actions"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:minHeight="@dimen/notification_2025_action_list_height"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:visibility="gone"
+            >
+            <!-- actions will be added here -->
+        </com.android.internal.widget.NotificationActionListLayout>
+
+        <!--
+        This nested linear layout exists to ensure that if the neither of the contained
+        actions is visible we have some minimum padding at the end of the actions is present,
+        then there will be 12dp of padding at the end of the actions list.
+
+        The end padding exists to match the bottom margin of the actions, for symmetry when the icon
+        is shown in the corner of the notification.
+        -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:paddingEnd="@dimen/notification_2025_action_list_margin_bottom"
+            android:minWidth="@dimen/snooze_and_bubble_gone_padding_end"
+            >
+            <ImageView
+                android:id="@+id/snooze_button"
+                android:layout_width="@dimen/notification_2025_actions_icon_size"
+                android:layout_height="@dimen/notification_2025_actions_icon_size"
+                android:layout_gravity="center_vertical|end"
+                android:visibility="gone"
+                android:scaleType="centerInside"
+                />
+
+            <ImageView
+                android:id="@+id/bubble_button"
+                android:layout_width="@dimen/notification_2025_actions_icon_size"
+                android:layout_height="@dimen/notification_2025_actions_icon_size"
+                android:layout_gravity="center_vertical|end"
+                android:visibility="gone"
+                android:scaleType="centerInside"
+                />
+        </LinearLayout>
+    </LinearLayout>
+</FrameLayout>

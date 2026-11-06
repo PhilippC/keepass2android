@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ * Copyright (c) 2025, The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+*/
+-->
+<resources>
+    <!--
+        The dimensions in this file are all 1.5x of their original value in the values/dimens.xml
+        file.
+        If adding new dimension resources, please add them here with 1.5x of their original value.
+    -->
+
+    <!-- The default height of the status bar used in {@link SystemBarUtils#getStatusBarHeight} to
+         calculate the status bar height. -->
+    <dimen name="status_bar_height_default">36dp</dimen>
+    <!-- Height of the status bar.
+         Do not read this dimen directly. Use {@link SystemBarUtils#getStatusBarHeight} instead.
+         -->
+    <dimen name="status_bar_height">@dimen/status_bar_height_portrait</dimen>
+    <!-- Height of the status bar in portrait.
+         Do not read this dimen directly. Use {@link SystemBarUtils#getStatusBarHeight} instead.
+         -->
+    <dimen name="status_bar_height_portrait">36dp</dimen>
+    <!-- Height of the status bar in landscape.
+         Do not read this dimen directly. Use {@link SystemBarUtils#getStatusBarHeight} instead.
+         -->
+    <dimen name="status_bar_height_landscape">@dimen/status_bar_height_portrait</dimen>
+
+    <!-- Original dp height of notification icons in the status bar  -->
+    <dimen name="status_bar_icon_size">33dip</dimen>
+    <!-- New sp height of notification icons in the status bar  -->
+    <dimen name="status_bar_icon_size_sp">33sp</dimen>
+    <!-- Desired size of system icons in status bar. -->
+    <dimen name="status_bar_system_icon_size">22.5dp</dimen>
+    <!-- Intrinsic size of most system icons in status bar. This is the default value that
+         is used if a Drawable reports an intrinsic size of 0. -->
+    <dimen name="status_bar_system_icon_intrinsic_size">25.5dp</dimen>
+    <!-- Size of the giant number (unread count) in the notifications -->
+    <dimen name="status_bar_content_number_size">72sp</dimen>
+    <!-- Margin at the edge of the screen to ignore touch events for in the windowshade. -->
+    <dimen name="status_bar_edge_ignore">7.5dp</dimen>
+
+    <!-- The maximum size of the small notification icon. -->
+    <dimen name="notification_small_icon_size">72dp</dimen>
+    <!-- The maximum size of the small notification icon on low memory devices. -->
+    <dimen name="notification_small_icon_size_low_ram">@dimen/notification_small_icon_size</dimen>
+</resources>
