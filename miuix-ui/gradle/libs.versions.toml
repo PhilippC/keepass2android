@@ -5,10 +5,12 @@ composeMultiplatform = "1.12.2"
 androidxActivity = "1.13.0"
 miuix = "0.9.4"
 kotlinxSerializationJson = "1.9.0"
+keepassJava2 = "2.2.2"
 
 [libraries]
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidxActivity" }
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
+keepassjava2 = { module = "org.linguafranca.pwdb:KeePassJava2-dom", version.ref = "keepassJava2" }
 miuix-ui = { module = "top.yukonga.miuix.kmp:miuix-ui", version.ref = "miuix" }
 miuix-icons = { module = "top.yukonga.miuix.kmp:miuix-icons", version.ref = "miuix" }
 miuix-preference = { module = "top.yukonga.miuix.kmp:miuix-preference", version.ref = "miuix" }
