@@ -86,7 +86,7 @@ private fun FieldRow(
                     .background(colors.secondaryContainer, RoundedCornerShape(50)),
                 contentAlignment = Alignment.Center,
             ) {
-                Icon(fieldIcon(field), null, tint = colors.onSecondaryContainer, modifier = Modifier.size(20.dp))
+                Icon(fieldIcon(field), null, tint = colors.primary, modifier = Modifier.size(20.dp))
             }
         },
         endActions = {
@@ -199,7 +199,7 @@ fun EntryScreen(
                                             Icon(
                                                 MiuixIcons.Timer,
                                                 null,
-                                                tint = colors.onTertiaryContainer,
+                                                tint = colors.primary,
                                                 modifier = Modifier.size(20.dp),
                                             )
                                         }
