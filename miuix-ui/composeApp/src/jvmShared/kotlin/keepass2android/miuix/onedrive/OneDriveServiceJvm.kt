@@ -5,8 +5,15 @@ import java.io.IOException
 import java.net.HttpURLConnection
 import java.net.URL
 import java.net.URLEncoder
+import androidx.compose.runtime.mutableStateOf
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.ensureActive
+import kotlinx.coroutines.currentCoroutineContext
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.contentOrNull
@@ -51,10 +58,41 @@ actual object OneDriveService {
         }
     }
 
-    actual suspend fun signIn(
-        onCode: (verifyUrl: String, userCode: String) -> Unit,
-        isCancelled: () -> Boolean,
-    ): Unit = withContext(Dispatchers.Default) {
+    private val signInScope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
+    private var signInJob: Job? = null
+    private val signInStateInternal = mutableStateOf<OneDriveSignInState>(OneDriveSignInState.Idle)
+
+    actual val signInState: OneDriveSignInState get() = signInStateInternal.value
+
+    actual fun startSignIn() {
+        if (signInStateInternal.value is OneDriveSignInState.Pending) return
+        signInJob?.cancel()
+        signInJob = signInScope.launch {
+            try {
+                doSignIn()
+            } catch (e: Exception) {
+                if (signInStateInternal.value !is OneDriveSignInState.Success) {
+                    signInStateInternal.value = OneDriveSignInState.Failed(e.message ?: "登录失败")
+                }
+            }
+        }
+    }
+
+    actual fun cancelSignIn() {
+        signInJob?.cancel()
+        signInJob = null
+        if (signInStateInternal.value !is OneDriveSignInState.Success) {
+            signInStateInternal.value = OneDriveSignInState.Idle
+        }
+    }
+
+    actual fun ackSignIn() {
+        if (signInStateInternal.value is OneDriveSignInState.Success) {
+            signInStateInternal.value = OneDriveSignInState.Idle
+        }
+    }
+
+    private suspend fun doSignIn() {
         check(clientId.isNotBlank()) { "未配置 Client ID" }
         val (startCode, startBody) = postForm(
             "$AUTHORITY/devicecode",
@@ -67,10 +105,10 @@ actual object OneDriveService {
         val verifyUrl = start.str("verification_uri") ?: "https://microsoft.com/devicelogin"
         var interval = start["interval"]?.jsonPrimitive?.longOrNull ?: 5L
         val deadline = System.currentTimeMillis() + (start["expires_in"]?.jsonPrimitive?.longOrNull ?: 900L) * 1000
-        onCode(verifyUrl, userCode)
+        signInStateInternal.value = OneDriveSignInState.Pending(verifyUrl, userCode)
 
         while (System.currentTimeMillis() < deadline) {
-            if (isCancelled()) throw IOException("已取消登录")
+            currentCoroutineContext().ensureActive()
             delay(interval * 1000)
             val (code, body) = postForm(
                 "$AUTHORITY/token",
@@ -85,7 +123,8 @@ actual object OneDriveService {
                 accessToken = obj.str("access_token") ?: throw IOException("授权响应无效")
                 refreshToken = obj.str("refresh_token") ?: throw IOException("授权响应无效")
                 persistSession()
-                return@withContext
+                signInStateInternal.value = OneDriveSignInState.Success
+                return
             }
             when (obj?.str("error")) {
                 "authorization_pending" -> Unit

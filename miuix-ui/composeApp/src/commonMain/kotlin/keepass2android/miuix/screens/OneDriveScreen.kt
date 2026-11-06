@@ -49,6 +49,7 @@ import top.yukonga.miuix.kmp.icon.extended.Folder
 import top.yukonga.miuix.kmp.icon.extended.Refresh
 import top.yukonga.miuix.kmp.theme.MiuixTheme
 import keepass2android.miuix.data.RecentDatabase
+import keepass2android.miuix.onedrive.OneDriveSignInState
 import keepass2android.miuix.onedrive.OneDriveItem
 import keepass2android.miuix.onedrive.OneDriveService
 
@@ -74,9 +75,7 @@ fun OneDriveScreen(
     var signedIn by remember { mutableStateOf(false) }
     var account by remember { mutableStateOf("") }
 
-    // 登录状态
-    var signInRunning by remember { mutableStateOf(false) }
-    var signInCancelled by remember { mutableStateOf(false) }
+    // 登录状态（流程状态保存在 OneDriveService 中，切出应用/切换页面不丢失）
     var codeCopied by remember { mutableStateOf(false) }
     val clipboardManager = LocalClipboardManager.current
 
@@ -86,8 +85,6 @@ fun OneDriveScreen(
             codeCopied = false
         }
     }
-    var verifyUrl by remember { mutableStateOf("https://microsoft.com/devicelogin") }
-    var userCode by remember { mutableStateOf("") }
 
     // 文件浏览状态
     val folderStack = remember { mutableStateListOf<OneDriveItem>() }
@@ -141,27 +138,12 @@ fun OneDriveScreen(
         folderStack.clear()
     }
 
-    fun startSignIn() {
-        scope.launch {
-            signInRunning = true
-            signInCancelled = false
-            error = null
-            try {
-                OneDriveService.signIn(
-                    onCode = { url, code ->
-                        verifyUrl = url
-                        userCode = code
-                    },
-                    isCancelled = { signInCancelled },
-                )
-                signedIn = true
-                account = runCatching { OneDriveService.accountName() }.getOrDefault("OneDrive 账号")
-                refreshFolder()
-            } catch (e: Exception) {
-                if (!signInCancelled) error = e.message ?: "登录失败"
-            }
-            signInRunning = false
-            userCode = ""
+    LaunchedEffect(OneDriveService.signInState) {
+        if (OneDriveService.signInState is OneDriveSignInState.Success && !signedIn) {
+            signedIn = true
+            account = runCatching { OneDriveService.accountName() }.getOrDefault("OneDrive 账号")
+            refreshFolder()
+            OneDriveService.ackSignIn()
         }
     }
 
@@ -264,13 +246,14 @@ fun OneDriveScreen(
                 }
             } else if (!signedIn) {
                 item {
-                    if (signInRunning && userCode.isNotEmpty()) {
+                    when (val signIn = OneDriveService.signInState) {
+                        is OneDriveSignInState.Pending -> {
                         Card {
                             Column(modifier = Modifier.padding(14.dp), horizontalAlignment = Alignment.CenterHorizontally) {
                                 Text("第一步：点击下方按钮打开授权页面", fontSize = 13.sp, color = colors.onSurfaceVariantSummary)
                                 Spacer(Modifier.height(10.dp))
                                 Button(
-                                    onClick = { onOpenUrl(verifyUrl) },
+                                    onClick = { onOpenUrl(signIn.verifyUrl) },
                                     modifier = Modifier.fillMaxWidth(),
                                     colors = ButtonDefaults.buttonColorsPrimary(),
                                 ) {
@@ -279,21 +262,22 @@ fun OneDriveScreen(
                                 Spacer(Modifier.height(14.dp))
                                 Text("第二步：在页面中输入此代码", fontSize = 13.sp, color = colors.onSurfaceVariantSummary)
                                 Spacer(Modifier.height(6.dp))
-                                Text(userCode, fontSize = 28.sp, fontWeight = FontWeight.Bold, color = colors.onSurface)
+                                Text(signIn.userCode, fontSize = 28.sp, fontWeight = FontWeight.Bold, color = colors.onSurface)
                                 TextButton(
                                     text = if (codeCopied) "已复制" else "复制代码",
                                     onClick = {
-                                        clipboardManager.setText(AnnotatedString(userCode))
+                                        clipboardManager.setText(AnnotatedString(signIn.userCode))
                                         codeCopied = true
                                     },
                                 )
                                 Spacer(Modifier.height(10.dp))
                                 Text("等待授权中…", fontSize = 13.sp, color = colors.onSurfaceVariantSummary)
                                 Spacer(Modifier.height(12.dp))
-                                TextButton(text = "取消", onClick = { signInCancelled = true })
+                                TextButton(text = "取消", onClick = { OneDriveService.cancelSignIn() })
                             }
                         }
-                    } else {
+                        }
+                        else -> {
                         Card {
                             Column(modifier = Modifier.padding(14.dp), horizontalAlignment = Alignment.CenterHorizontally) {
                                 Icon(MiuixIcons.CloudFill, null, tint = colors.primary, modifier = Modifier.size(40.dp))
@@ -305,15 +289,20 @@ fun OneDriveScreen(
                                     fontSize = 13.sp,
                                     color = colors.onSurfaceVariantSummary,
                                 )
+                                if (signIn is OneDriveSignInState.Failed) {
+                                    Spacer(Modifier.height(8.dp))
+                                    Text(signIn.message, fontSize = 13.sp, color = colors.error)
+                                }
                                 Spacer(Modifier.height(14.dp))
                                 Button(
-                                    onClick = ::startSignIn,
+                                    onClick = { OneDriveService.startSignIn() },
                                     modifier = Modifier.fillMaxWidth(),
                                     colors = ButtonDefaults.buttonColorsPrimary(),
                                 ) {
                                     Text("登录 OneDrive")
                                 }
                             }
+                        }
                         }
                     }
                 }

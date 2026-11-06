@@ -1,5 +1,13 @@
 package keepass2android.miuix.onedrive
 
+/** 设备码登录流程状态（保存在服务单例中，跨界面/切出应用不丢失） */
+sealed interface OneDriveSignInState {
+    data object Idle : OneDriveSignInState
+    data class Pending(val verifyUrl: String, val userCode: String) : OneDriveSignInState
+    data object Success : OneDriveSignInState
+    data class Failed(val message: String) : OneDriveSignInState
+}
+
 expect class OneDriveItem(id: String, name: String, isFolder: Boolean, sizeBytes: Long) {
     val id: String
     val name: String
@@ -15,11 +23,20 @@ expect object OneDriveService {
     /** 是否已登录（本地存在会话） */
     val isSignedIn: Boolean
 
+    /** 当前登录流程状态（可观察） */
+    val signInState: OneDriveSignInState
+
     /** 初始化：注入 Client ID 与缓存目录，并尝试恢复会话 */
     fun init(cacheDirPath: String, clientId: String)
 
-    /** 设备码登录：先回调 onCode(验证网址, 用户代码)，然后阻塞轮询直到授权完成/失败 */
-    suspend fun signIn(onCode: (verifyUrl: String, userCode: String) -> Unit, isCancelled: () -> Boolean)
+    /** 开始设备码登录（后台轮询，与本界面生命周期无关） */
+    fun startSignIn()
+
+    /** 取消登录 */
+    fun cancelSignIn()
+
+    /** 确认登录成功，状态复位 */
+    fun ackSignIn()
 
     /** 退出登录并清除本地会话 */
     fun signOut()
