@@ -38,7 +38,6 @@ import keepass2android.miuix.screens.FavoritesScreen
 import keepass2android.miuix.screens.OpenDatabaseChooserScreen
 import keepass2android.miuix.screens.GeneratePasswordScreen
 import keepass2android.miuix.screens.GroupScreen
-import keepass2android.miuix.screens.LocalFilesScreen
 import keepass2android.miuix.screens.OneDriveScreen
 import keepass2android.miuix.screens.SettingsScreen
 import keepass2android.miuix.screens.StartScreen
@@ -57,7 +56,6 @@ sealed interface Screen {
         val keyFileName: String? = null,
         val keyFilePath: String? = null,
     ) : Screen
-    data class LocalFiles(val forKeyFile: Boolean) : Screen
     data class Group(val groupId: Int) : Screen
     data object Favorites : Screen
     data class Entry(val entryId: Int) : Screen
@@ -89,8 +87,6 @@ fun App(
     oneDriveClientId: String,
     onOpenUrl: (String) -> Unit = {},
     onPickFile: (forKeyFile: Boolean, onResult: (name: String, path: String, size: Long) -> Unit) -> Unit = { _, _ -> },
-    storageGranted: androidx.compose.runtime.State<Boolean> = androidx.compose.runtime.mutableStateOf(true),
-    requestStorageAccess: () -> Unit = {},
     loadRecents: () -> List<RecentDatabase> = { DemoData.recentDatabases },
     saveRecents: (List<RecentDatabase>) -> Unit = {},
     onCreateFile: (suggestedName: String, onResult: (name: String, path: String) -> Unit) -> Unit = { _, _ -> },
@@ -203,43 +199,7 @@ fun App(
                                     )
                                 }
                             },
-                            onOpenLocalFiles = { navigate(Screen.LocalFiles(forKeyFile = false)) },
                             onOpenOneDrive = { navigate(Screen.OneDrive) },
-                        )
-
-                        is Screen.LocalFiles -> LocalFilesScreen(
-                            forKeyFile = screen.forKeyFile,
-                            storageGranted = storageGranted.value,
-                            onRequestStorage = requestStorageAccess,
-                            onBack = ::back,
-                            onPickFile = { entry ->
-                                if (screen.forKeyFile) {
-                                    // 密钥文件：更新返回栈中下层的 Unlock/CreateDatabase 参数后返回
-                                    val idx = backStack.indexOfFirst {
-                                        it is Screen.Unlock || it is Screen.CreateDatabase
-                                    }
-                                    if (idx >= 0) {
-                                        backStack[idx] = when (val target = backStack[idx]) {
-                                            is Screen.Unlock -> target.copy(
-                                                keyFileName = entry.name,
-                                                keyFilePath = entry.path,
-                                            )
-                                            is Screen.CreateDatabase -> target.copy(
-                                                keyFileName = entry.name,
-                                                keyFilePath = entry.path,
-                                            )
-                                            else -> target
-                                        }
-                                    }
-                                    back()
-                                } else {
-                                    navigate(
-                                        Screen.Unlock(
-                                            RecentDatabase(entry.name, "本地文件 · ${humanSize(entry.size)}", entry.path),
-                                        ),
-                                    )
-                                }
-                            },
                         )
 
                         is Screen.CreateDatabase -> CreateDatabaseScreen(

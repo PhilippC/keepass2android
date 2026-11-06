@@ -95,61 +95,10 @@ class MainActivity : FragmentActivity() {
                 .setTitle("无法打开系统文件选择器")
                 .setMessage(
                     "错误：${error?.javaClass?.simpleName}\n${error?.message}\n\n" +
-                        "可改用「打开数据库 → 本地文件浏览器」代替，" +
-                        "或检查系统「文件管理」应用是否被禁用。",
+                        "请检查系统「文件管理」应用是否被禁用，或改用 OneDrive 打开数据库。",
                 )
                 .setPositiveButton("知道了", null)
                 .show()
-        }
-    }
-
-    // 「所有文件访问」授权状态，onResume 时刷新（从设置页返回后自动更新界面）
-    private val storageGranted = androidx.compose.runtime.mutableStateOf(false)
-
-    override fun onResume() {
-        super.onResume()
-        storageGranted.value = isFileAccessGranted()
-    }
-
-    private fun isFileAccessGranted(): Boolean =
-        if (android.os.Build.VERSION.SDK_INT >= 30) {
-            android.os.Environment.isExternalStorageManager()
-        } else {
-            ContextCompat.checkSelfPermission(
-                this,
-                android.Manifest.permission.READ_EXTERNAL_STORAGE,
-            ) == android.content.pm.PackageManager.PERMISSION_GRANTED
-        }
-
-    fun requestStorageAccess() {
-        if (android.os.Build.VERSION.SDK_INT < 30) {
-            // Android 10 及以下：运行时申请存储权限
-            runCatching {
-                androidx.core.app.ActivityCompat.requestPermissions(
-                    this,
-                    arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE),
-                    1001,
-                )
-            }
-            return
-        }
-        val settingsIntent = android.content.Intent(
-            android.provider.Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION,
-            android.net.Uri.parse("package:$packageName"),
-        )
-        val opened = runCatching { startActivity(settingsIntent) }
-        if (opened.isFailure) {
-            runCatching {
-                startActivity(
-                    android.content.Intent(android.provider.Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION),
-                )
-            }.onFailure {
-                android.widget.Toast.makeText(
-                    this,
-                    "无法打开权限设置页，请手动前往 系统设置 → 应用管理 → 本应用 → 权限",
-                    android.widget.Toast.LENGTH_LONG,
-                ).show()
-            }
         }
     }
 
@@ -261,9 +210,7 @@ class MainActivity : FragmentActivity() {
                         )
                     }
                 },
-                storageGranted = storageGranted,
                 onPickFile = ::pickFile,
-                requestStorageAccess = ::requestStorageAccess,
                 loadRecents = ::loadRecents,
                 saveRecents = ::saveRecents,
                 onCreateFile = ::createFile,
