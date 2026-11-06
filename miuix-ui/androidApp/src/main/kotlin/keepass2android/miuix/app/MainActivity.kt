@@ -13,6 +13,31 @@ import keepass2android.miuix.App
 
 class MainActivity : FragmentActivity() {
 
+    private val prefs by lazy { getSharedPreferences("miuix_app", MODE_PRIVATE) }
+
+    private fun loadRecents(): List<keepass2android.miuix.data.RecentDatabase> {
+        val raw = prefs.getString("recent_databases", null) ?: return keepass2android.miuix.data.DemoData.recentDatabases
+        val decoder = java.util.Base64.getDecoder()
+        return raw.lineSequence().filter { it.isNotBlank() }.mapNotNull { line ->
+            val parts = line.split("|")
+            if (parts.size != 3) return@mapNotNull null
+            runCatching {
+                fun dec(s: String) = String(decoder.decode(s), Charsets.UTF_8)
+                keepass2android.miuix.data.RecentDatabase(dec(parts[0]), dec(parts[1]), dec(parts[2]).ifEmpty { null })
+            }.getOrNull()
+        }.toList()
+    }
+
+    private fun saveRecents(recents: List<keepass2android.miuix.data.RecentDatabase>) {
+        val encoder = java.util.Base64.getEncoder()
+        val raw = recents.joinToString("\n") {
+            "${encoder.encodeToString(it.name.toByteArray(Charsets.UTF_8))}|" +
+                "${encoder.encodeToString(it.path.toByteArray(Charsets.UTF_8))}|" +
+                encoder.encodeToString((it.realPath ?: "").toByteArray(Charsets.UTF_8))
+        }
+        prefs.edit().putString("recent_databases", raw).apply()
+    }
+
     private var filePickCallback: ((name: String, path: String, size: Long) -> Unit)? = null
 
     private val openDocument = registerForActivityResult(ActivityResultContracts.OpenDocument()) { uri ->
@@ -158,6 +183,8 @@ class MainActivity : FragmentActivity() {
                     }
                 },
                 onPickFile = ::pickFile,
+                loadRecents = ::loadRecents,
+                saveRecents = ::saveRecents,
                 onCreateFile = ::createFile,
                 commitFile = ::commitFile,
                 defaultDatabasePath = File(

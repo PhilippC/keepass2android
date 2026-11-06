@@ -84,6 +84,8 @@ fun App(
     oneDriveClientId: String,
     onOpenUrl: (String) -> Unit = {},
     onPickFile: (onResult: (name: String, path: String, size: Long) -> Unit) -> Unit = {},
+    loadRecents: () -> List<RecentDatabase> = { DemoData.recentDatabases },
+    saveRecents: (List<RecentDatabase>) -> Unit = {},
     onCreateFile: (suggestedName: String, onResult: (name: String, path: String) -> Unit) -> Unit = { _, _ -> },
     commitFile: (path: String, onDone: (Boolean) -> Unit) -> Unit = { _, onDone -> onDone(true) },
     defaultDatabasePath: String = "",
@@ -151,6 +153,8 @@ fun App(
                 ) { screen ->
                     when (screen) {
                         Screen.Start -> StartScreen(
+                            loadRecents = loadRecents,
+                            saveRecents = saveRecents,
                             onPickDatabase = {
                                 onPickFile { name, path, size ->
                                     navigate(

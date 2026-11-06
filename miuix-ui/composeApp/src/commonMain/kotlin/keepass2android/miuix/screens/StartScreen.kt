@@ -58,6 +58,8 @@ import keepass2android.miuix.data.RecentDatabase
 
 @Composable
 fun StartScreen(
+    loadRecents: () -> List<RecentDatabase> = { DemoData.recentDatabases },
+    saveRecents: (List<RecentDatabase>) -> Unit = {},
     onPickDatabase: () -> Unit,
     onOpenDatabase: () -> Unit,
     onCreateDatabase: () -> Unit = {},
@@ -66,7 +68,7 @@ fun StartScreen(
     val scrollBehavior = MiuixScrollBehavior()
     val colors = MiuixTheme.colorScheme
     val recents = remember {
-        mutableStateListOf<RecentDatabase>().apply { addAll(DemoData.recentDatabases) }
+        mutableStateListOf<RecentDatabase>().apply { addAll(loadRecents()) }
     }
     var pendingDelete by remember { mutableStateOf<RecentDatabase?>(null) }
 
@@ -206,6 +208,7 @@ fun StartScreen(
                                     text = "删除",
                                     onClick = {
                                         pendingDelete?.let { recents.remove(it) }
+                                        saveRecents(recents.toList())
                                         pendingDelete = null
                                     },
                                     colors = top.yukonga.miuix.kmp.basic.ButtonDefaults.textButtonColors(
@@ -239,6 +242,7 @@ private fun RecentCard(
             .fillMaxWidth()
             .padding(bottom = 12.dp),
     ) {
+        // 右划 → 左侧删除区
         Box(
             modifier = Modifier
                 .matchParentSize()
@@ -254,6 +258,22 @@ private fun RecentCard(
                 Text("删除", color = colors.onPrimary)
             }
         }
+        // 左划 → 右侧删除区
+        Box(
+            modifier = Modifier
+                .matchParentSize()
+                .background(colors.error, RoundedCornerShape(16.dp)),
+            contentAlignment = Alignment.CenterEnd,
+        ) {
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier.padding(end = 24.dp),
+            ) {
+                Text("删除", color = colors.onPrimary)
+                Spacer(Modifier.width(6.dp))
+                Icon(MiuixIcons.Delete, null, tint = colors.onPrimary, modifier = Modifier.size(20.dp))
+            }
+        }
         Card(
             modifier = Modifier
                 .fillMaxWidth()
@@ -263,11 +283,11 @@ private fun RecentCard(
                         onHorizontalDrag = { change, dragAmount ->
                             change.consume()
                             scope.launch {
-                                offsetX.snapTo((offsetX.value + dragAmount).coerceIn(0f, thresholdPx * 1.8f))
+                                offsetX.snapTo((offsetX.value + dragAmount).coerceIn(-thresholdPx * 1.8f, thresholdPx * 1.8f))
                             }
                         },
                         onDragEnd = {
-                            if (offsetX.value >= thresholdPx) {
+                            if (offsetX.value >= thresholdPx || offsetX.value <= -thresholdPx) {
                                 scope.launch { offsetX.animateTo(0f) }
                                 onSwipeDelete()
                             } else {
