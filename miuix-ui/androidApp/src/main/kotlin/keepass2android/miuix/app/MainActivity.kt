@@ -17,7 +17,20 @@ class MainActivity : ComponentActivity() {
             ).metaData?.getString("onedrive_client_id").orEmpty()
         }.getOrDefault("")
         setContent {
-            App(cacheDirPath = cacheDir.absolutePath, oneDriveClientId = clientId)
+            App(
+                cacheDirPath = cacheDir.absolutePath,
+                oneDriveClientId = clientId,
+                onOpenUrl = { url ->
+                    runCatching {
+                        startActivity(
+                            android.content.Intent(
+                                android.content.Intent.ACTION_VIEW,
+                                android.net.Uri.parse(url),
+                            )
+                        )
+                    }
+                },
+            )
         }
     }
 }
