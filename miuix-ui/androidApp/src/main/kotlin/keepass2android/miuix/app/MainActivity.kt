@@ -38,6 +38,71 @@ class MainActivity : FragmentActivity() {
         prefs.edit().putString("recent_databases", raw).apply()
     }
 
+    private var filePickCallback: ((name: String, path: String, size: Long) -> Unit)? = null
+
+    private val openDocument = registerForActivityResult(ActivityResultContracts.OpenDocument()) { uri ->
+        handlePickedUri(uri)
+    }
+
+    private val getContent = registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
+        handlePickedUri(uri)
+    }
+
+    private fun handlePickedUri(uri: android.net.Uri?) {
+        val callback = filePickCallback
+        filePickCallback = null
+        if (uri == null || callback == null) return
+        var name = uri.lastPathSegment?.substringAfterLast('/') ?: "database.kdbx"
+        var reportedSize = -1L
+        runCatching {
+            contentResolver.query(
+                uri,
+                arrayOf(android.provider.OpenableColumns.DISPLAY_NAME, android.provider.OpenableColumns.SIZE),
+                null,
+                null,
+                null,
+            )?.use { cursor ->
+                if (cursor.moveToFirst()) {
+                    cursor.getString(0)?.let { name = it }
+                    if (!cursor.isNull(1)) reportedSize = cursor.getLong(1)
+                }
+            }
+        }
+        runCatching {
+            val target = File(cacheDir, name.replace('/', '_'))
+            contentResolver.openInputStream(uri)?.use { input ->
+                target.outputStream().use { output -> input.copyTo(output) }
+            }
+            callback(name, target.absolutePath, if (reportedSize >= 0) reportedSize else target.length())
+        }
+    }
+
+    fun pickFile(forKeyFile: Boolean, onResult: (name: String, path: String, size: Long) -> Unit) {
+        filePickCallback = onResult
+        val direct = runCatching { openDocument.launch(arrayOf("*/*")) }
+        if (direct.isFailure) {
+            val fallback = runCatching { getContent.launch("*/*") }
+            if (fallback.isFailure) {
+                filePickCallback = null
+                showPickError(direct.exceptionOrNull() ?: fallback.exceptionOrNull())
+            }
+        }
+    }
+
+    private fun showPickError(error: Throwable?) {
+        runCatching {
+            android.app.AlertDialog.Builder(this)
+                .setTitle("无法打开系统文件选择器")
+                .setMessage(
+                    "错误：${error?.javaClass?.simpleName}\n${error?.message}\n\n" +
+                        "可改用「打开数据库 → 本地文件浏览器」代替，" +
+                        "或检查系统「文件管理」应用是否被禁用。",
+                )
+                .setPositiveButton("知道了", null)
+                .show()
+        }
+    }
+
     // 「所有文件访问」授权状态，onResume 时刷新（从设置页返回后自动更新界面）
     private val storageGranted = androidx.compose.runtime.mutableStateOf(false)
 
@@ -197,6 +262,7 @@ class MainActivity : FragmentActivity() {
                     }
                 },
                 storageGranted = storageGranted,
+                onPickFile = ::pickFile,
                 requestStorageAccess = ::requestStorageAccess,
                 loadRecents = ::loadRecents,
                 saveRecents = ::saveRecents,

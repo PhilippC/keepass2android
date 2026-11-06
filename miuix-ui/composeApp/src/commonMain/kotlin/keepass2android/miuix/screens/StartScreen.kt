@@ -50,6 +50,7 @@ import top.yukonga.miuix.kmp.icon.extended.Back
 import top.yukonga.miuix.kmp.icon.extended.CloudFill
 import top.yukonga.miuix.kmp.icon.extended.Delete
 import top.yukonga.miuix.kmp.icon.extended.File
+import top.yukonga.miuix.kmp.icon.extended.Folder
 import top.yukonga.miuix.kmp.icon.extended.Lock
 import top.yukonga.miuix.kmp.icon.extended.Settings
 import top.yukonga.miuix.kmp.theme.MiuixTheme
@@ -318,6 +319,7 @@ private fun RecentCard(
 fun OpenDatabaseChooserScreen(
     onBack: () -> Unit,
     onPickDatabase: () -> Unit,
+    onOpenLocalFiles: () -> Unit,
     onOpenOneDrive: () -> Unit,
 ) {
     val colors = MiuixTheme.colorScheme
@@ -393,6 +395,33 @@ fun OpenDatabaseChooserScreen(
                         Column(modifier = Modifier.padding(start = 14.dp)) {
                             Text("OneDrive", color = colors.onSurface)
                             Text("登录账号浏览云端的 .kdbx 与密钥文件", fontSize = 12.sp, color = colors.onSurfaceVariantSummary)
+                        }
+                    }
+                }
+            }
+
+            item {
+                Card(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(bottom = 12.dp),
+                    onClick = onOpenLocalFiles,
+                ) {
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        modifier = Modifier.padding(vertical = 4.dp),
+                    ) {
+                        Box(
+                            modifier = Modifier
+                                .size(44.dp)
+                                .background(colors.primaryContainer, RoundedCornerShape(12.dp)),
+                            contentAlignment = Alignment.Center,
+                        ) {
+                            Icon(MiuixIcons.Folder, null, tint = colors.onPrimaryContainer, modifier = Modifier.size(22.dp))
+                        }
+                        Column(modifier = Modifier.padding(start = 14.dp)) {
+                            Text("本地文件浏览器", color = colors.onSurface)
+                            Text("内置浏览本地存储（系统选择器不可用时的备用方式）", fontSize = 12.sp, color = colors.onSurfaceVariantSummary)
                         }
                     }
                 }

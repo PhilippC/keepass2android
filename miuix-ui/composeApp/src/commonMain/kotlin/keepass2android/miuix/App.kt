@@ -88,6 +88,7 @@ fun App(
     cacheDirPath: String,
     oneDriveClientId: String,
     onOpenUrl: (String) -> Unit = {},
+    onPickFile: (forKeyFile: Boolean, onResult: (name: String, path: String, size: Long) -> Unit) -> Unit = { _, _ -> },
     storageGranted: androidx.compose.runtime.State<Boolean> = androidx.compose.runtime.mutableStateOf(true),
     requestStorageAccess: () -> Unit = {},
     loadRecents: () -> List<RecentDatabase> = { DemoData.recentDatabases },
@@ -121,6 +122,22 @@ fun App(
 
     fun back() {
         if (backStack.size > 1) backStack.removeAt(backStack.lastIndex)
+    }
+
+    // 通过外部系统选择器选密钥文件：回调结果写回返回栈下层的 Unlock/CreateDatabase 参数
+    val pickKeyFile: () -> Unit = {
+        onPickFile(true) { name, path, _ ->
+            val idx = backStack.indexOfFirst {
+                it is Screen.Unlock || it is Screen.CreateDatabase
+            }
+            if (idx >= 0) {
+                backStack[idx] = when (val target = backStack[idx]) {
+                    is Screen.Unlock -> target.copy(keyFileName = name, keyFilePath = path)
+                    is Screen.CreateDatabase -> target.copy(keyFileName = name, keyFilePath = path)
+                    else -> target
+                }
+            }
+        }
     }
 
     fun switchTab(tab: Screen) {
@@ -161,7 +178,15 @@ fun App(
                         Screen.Start -> StartScreen(
                             loadRecents = loadRecents,
                             saveRecents = saveRecents,
-                            onPickDatabase = { navigate(Screen.LocalFiles(forKeyFile = false)) },
+                            onPickDatabase = {
+                                onPickFile(false) { name, path, size ->
+                                    navigate(
+                                        Screen.Unlock(
+                                            RecentDatabase(name, "本地文件 · ${humanSize(size)}", path),
+                                        )
+                                    )
+                                }
+                            },
                             onOpenDatabase = { navigate(Screen.OpenDatabase) },
                             onCreateDatabase = { navigate(Screen.CreateDatabase()) },
                             onSettings = { navigate(Screen.Settings) },
@@ -169,7 +194,16 @@ fun App(
 
                         Screen.OpenDatabase -> OpenDatabaseChooserScreen(
                             onBack = ::back,
-                            onPickDatabase = { navigate(Screen.LocalFiles(forKeyFile = false)) },
+                            onPickDatabase = {
+                                onPickFile(false) { name, path, size ->
+                                    navigate(
+                                        Screen.Unlock(
+                                            RecentDatabase(name, "本地文件 · ${humanSize(size)}", path),
+                                        )
+                                    )
+                                }
+                            },
+                            onOpenLocalFiles = { navigate(Screen.LocalFiles(forKeyFile = false)) },
                             onOpenOneDrive = { navigate(Screen.OneDrive) },
                         )
 
@@ -212,7 +246,7 @@ fun App(
                             defaultPath = defaultDatabasePath.ifBlank { "$cacheDirPath/keepass.kdbx" },
                             keyFileName = screen.keyFileName,
                             keyFilePath = screen.keyFilePath,
-                            onPickKeyFile = { navigate(Screen.LocalFiles(forKeyFile = true)) },
+                            onPickKeyFile = pickKeyFile,
                             onCreateFile = onCreateFile,
                             onBack = ::back,
                             onCreated = { database ->
@@ -234,7 +268,7 @@ fun App(
                             database = screen.database,
                             keyFileName = screen.keyFileName,
                             keyFilePath = screen.keyFilePath,
-                            onPickKeyFile = { navigate(Screen.LocalFiles(forKeyFile = true)) },
+                            onPickKeyFile = pickKeyFile,
                             hasQuickUnlock = hasQuickUnlock,
                             quickUnlock = quickUnlock,
                             saveQuickUnlock = saveQuickUnlock,
