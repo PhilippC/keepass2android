@@ -30,6 +30,7 @@ import top.yukonga.miuix.kmp.theme.lightColorScheme
 import keepass2android.miuix.data.DemoData
 import keepass2android.miuix.data.KpEntry
 import keepass2android.miuix.data.RecentDatabase
+import keepass2android.miuix.onedrive.OneDriveDefaults
 import keepass2android.miuix.screens.EntryScreen
 import keepass2android.miuix.screens.FavoritesScreen
 import keepass2android.miuix.screens.GeneratePasswordScreen
@@ -64,6 +65,7 @@ private val tabs = listOf(
 
 @Composable
 fun App(cacheDirPath: String, oneDriveClientId: String) {
+    val effectiveOneDriveClientId = oneDriveClientId.ifBlank { OneDriveDefaults.ClientId }
     val systemDark = isSystemInDarkTheme()
     var themeMode by remember { mutableStateOf(ThemeMode.System) }
     val isDark = when (themeMode) {
@@ -130,7 +132,7 @@ fun App(cacheDirPath: String, oneDriveClientId: String) {
 
                         Screen.OneDrive -> OneDriveScreen(
                             cacheDirPath = cacheDirPath,
-                            clientId = oneDriveClientId,
+                            clientId = effectiveOneDriveClientId,
                             onBack = ::back,
                             onFetched = { database, keyFileName ->
                                 navigate(Screen.Unlock(database, keyFileName))
