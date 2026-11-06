@@ -27,9 +27,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import top.yukonga.miuix.kmp.basic.Button
 import top.yukonga.miuix.kmp.basic.ButtonDefaults
 import top.yukonga.miuix.kmp.basic.Card
@@ -38,7 +36,6 @@ import top.yukonga.miuix.kmp.basic.IconButton
 import top.yukonga.miuix.kmp.basic.Scaffold
 import top.yukonga.miuix.kmp.basic.Text
 import top.yukonga.miuix.kmp.basic.TextButton
-import top.yukonga.miuix.kmp.basic.TextField
 import top.yukonga.miuix.kmp.basic.TopAppBar
 import top.yukonga.miuix.kmp.icon.MiuixIcons
 import top.yukonga.miuix.kmp.icon.extended.Back
@@ -46,13 +43,11 @@ import top.yukonga.miuix.kmp.icon.extended.CloudFill
 import top.yukonga.miuix.kmp.icon.extended.Download
 import top.yukonga.miuix.kmp.icon.extended.File
 import top.yukonga.miuix.kmp.icon.extended.Folder
-import top.yukonga.miuix.kmp.icon.extended.Lock
 import top.yukonga.miuix.kmp.icon.extended.Refresh
 import top.yukonga.miuix.kmp.theme.MiuixTheme
 import keepass2android.miuix.data.RecentDatabase
 import keepass2android.miuix.onedrive.OneDriveItem
 import keepass2android.miuix.onedrive.OneDriveService
-import keepass2android.miuix.onedrive.fetchOneDriveSharedFile
 
 private fun humanSize(bytes: Long): String = when {
     bytes >= 1 shl 20 -> "%.1f MB".format(bytes / 1048576.0)
@@ -64,6 +59,7 @@ private fun humanSize(bytes: Long): String = when {
 fun OneDriveScreen(
     cacheDirPath: String,
     clientId: String,
+    onOpenUrl: (String) -> Unit,
     onBack: () -> Unit,
     onFetched: (database: RecentDatabase, keyFileName: String?) -> Unit,
 ) {
@@ -89,11 +85,6 @@ fun OneDriveScreen(
     var status by remember { mutableStateOf<String?>(null) }
     var error by remember { mutableStateOf<String?>(null) }
     var keyFileName by remember { mutableStateOf<String?>(null) }
-
-    // 分享链接模式
-    var dbLink by remember { mutableStateOf("") }
-    var keyLink by remember { mutableStateOf("") }
-    var linkFetching by remember { mutableStateOf(false) }
 
     LaunchedEffect(clientId) {
         OneDriveService.init(cacheDirPath, clientId)
@@ -192,34 +183,6 @@ fun OneDriveScreen(
         }
     }
 
-    fun fetchByLink() {
-        val link = dbLink.trim()
-        if (link.isEmpty() || linkFetching) return
-        scope.launch {
-            linkFetching = true
-            error = null
-            try {
-                status = "正在下载数据库文件…"
-                val dbFile = withContext(Dispatchers.Default) {
-                    fetchOneDriveSharedFile(link, cacheDirPath, "database.kdbx")
-                }
-                var keyName: String? = keyFileName
-                if (keyLink.isNotBlank()) {
-                    status = "正在下载密钥文件…"
-                    keyName = withContext(Dispatchers.Default) {
-                        fetchOneDriveSharedFile(keyLink.trim(), cacheDirPath, "keyfile.keyx").name
-                    }
-                }
-                status = null
-                onFetched(RecentDatabase(dbFile.name, "OneDrive · ${humanSize(dbFile.sizeBytes)}"), keyName)
-            } catch (e: Exception) {
-                status = null
-                error = e.message ?: "下载失败，请稍后重试"
-            }
-            linkFetching = false
-        }
-    }
-
     fun onItemClick(item: OneDriveItem) {
         if (item.isFolder) {
             enterFolder(item)
@@ -292,10 +255,18 @@ fun OneDriveScreen(
                     if (signInRunning && userCode.isNotEmpty()) {
                         Card {
                             Column(modifier = Modifier.padding(14.dp), horizontalAlignment = Alignment.CenterHorizontally) {
-                                Text("打开以下网址并输入代码完成登录", fontSize = 13.sp, color = colors.onSurfaceVariantSummary)
-                                Spacer(Modifier.height(6.dp))
-                                Text(verifyUrl, fontSize = 15.sp, fontWeight = FontWeight.SemiBold, color = colors.primary)
+                                Text("第一步：点击下方按钮打开授权页面", fontSize = 13.sp, color = colors.onSurfaceVariantSummary)
                                 Spacer(Modifier.height(10.dp))
+                                Button(
+                                    onClick = { onOpenUrl(verifyUrl) },
+                                    modifier = Modifier.fillMaxWidth(),
+                                    colors = ButtonDefaults.buttonColorsPrimary(),
+                                ) {
+                                    Text("打开授权页面")
+                                }
+                                Spacer(Modifier.height(14.dp))
+                                Text("第二步：在页面中输入此代码", fontSize = 13.sp, color = colors.onSurfaceVariantSummary)
+                                Spacer(Modifier.height(6.dp))
                                 Text(userCode, fontSize = 28.sp, fontWeight = FontWeight.Bold, color = colors.onSurface)
                                 Spacer(Modifier.height(10.dp))
                                 Text("等待授权中…", fontSize = 13.sp, color = colors.onSurfaceVariantSummary)
@@ -416,44 +387,6 @@ fun OneDriveScreen(
                             }
                         }
                     }
-                }
-            }
-
-            item {
-                Spacer(Modifier.height(20.dp))
-                Text(
-                    "或粘贴 OneDrive 分享链接（无需登录）",
-                    fontSize = 13.sp,
-                    color = colors.onSurfaceVariantSummary,
-                    modifier = Modifier.padding(start = 4.dp, bottom = 8.dp),
-                )
-                Card {
-                    TextField(
-                        value = dbLink,
-                        onValueChange = { dbLink = it },
-                        label = "数据库分享链接（.kdbx）",
-                        leadingIcon = { Icon(MiuixIcons.Download, null, tint = colors.primary) },
-                        singleLine = true,
-                    )
-                }
-                Spacer(Modifier.height(10.dp))
-                Card {
-                    TextField(
-                        value = keyLink,
-                        onValueChange = { keyLink = it },
-                        label = "密钥文件链接（可选，.keyx / .key）",
-                        leadingIcon = { Icon(MiuixIcons.Lock, null, tint = colors.primary) },
-                        singleLine = true,
-                    )
-                }
-                Spacer(Modifier.height(16.dp))
-                Button(
-                    onClick = ::fetchByLink,
-                    enabled = !linkFetching && dbLink.isNotBlank(),
-                    modifier = Modifier.fillMaxWidth(),
-                    colors = ButtonDefaults.buttonColorsPrimary(),
-                ) {
-                    Text(if (linkFetching) "获取中…" else "获取并打开")
                 }
             }
         }

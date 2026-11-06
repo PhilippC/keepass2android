@@ -15,6 +15,9 @@ fun main() = application {
             cacheDirPath = System.getProperty("java.io.tmpdir") ?: ".",
             oneDriveClientId = System.getenv("ONEDRIVE_CLIENT_ID")
                 ?: System.getProperty("onedrive.clientId") ?: "",
+            onOpenUrl = { url ->
+                runCatching { java.awt.Desktop.getDesktop().browse(java.net.URI(url)) }
+            },
         )
     }
 }

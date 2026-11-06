@@ -5,9 +5,3 @@ expect class OneDriveFile(name: String, path: String, sizeBytes: Long) {
     val path: String
     val sizeBytes: Long
 }
-
-expect fun fetchOneDriveSharedFile(
-    shareLink: String,
-    targetDir: String,
-    fallbackName: String,
-): OneDriveFile
