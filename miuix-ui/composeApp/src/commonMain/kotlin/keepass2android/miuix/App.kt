@@ -63,8 +63,19 @@ private val tabs = listOf(
     Tab(Screen.Settings, "设置", MiuixIcons.Settings),
 )
 
+private fun humanSize(bytes: Long): String = when {
+    bytes >= 1 shl 20 -> "%.1f MB".format(bytes / 1048576.0)
+    bytes >= 1 shl 10 -> "%.1f KB".format(bytes / 1024.0)
+    else -> "$bytes B"
+}
+
 @Composable
-fun App(cacheDirPath: String, oneDriveClientId: String, onOpenUrl: (String) -> Unit = {}) {
+fun App(
+    cacheDirPath: String,
+    oneDriveClientId: String,
+    onOpenUrl: (String) -> Unit = {},
+    onPickFile: (onResult: (name: String, path: String, size: Long) -> Unit) -> Unit = {},
+) {
     val effectiveOneDriveClientId = oneDriveClientId.ifBlank { OneDriveDefaults.ClientId }
     val systemDark = isSystemInDarkTheme()
     var themeMode by remember { mutableStateOf(ThemeMode.System) }
@@ -125,6 +136,11 @@ fun App(cacheDirPath: String, oneDriveClientId: String, onOpenUrl: (String) -> U
                 ) { screen ->
                     when (screen) {
                         Screen.Start -> StartScreen(
+                            onPickDatabase = {
+                                onPickFile { name, _, size ->
+                                    navigate(Screen.Unlock(RecentDatabase(name, "本地文件 · ${humanSize(size)}"), null))
+                                }
+                            },
                             onOpenDatabase = { navigate(Screen.Unlock(DemoData.recentDatabases.first())) },
                             onOpenOneDrive = { navigate(Screen.OneDrive) },
                             onSettings = { navigate(Screen.Settings) },
@@ -143,6 +159,7 @@ fun App(cacheDirPath: String, oneDriveClientId: String, onOpenUrl: (String) -> U
                         is Screen.Unlock -> UnlockScreen(
                             database = screen.database,
                             keyFileName = screen.keyFileName,
+                            onPickFile = onPickFile,
                             onBack = ::back,
                             onUnlocked = { navigate(Screen.Group(0)) },
                         )

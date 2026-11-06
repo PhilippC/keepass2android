@@ -125,7 +125,7 @@ fun SettingsScreen(
                 Card(modifier = Modifier.fillMaxWidth()) {
                     ArrowPreference(
                         title = "版本",
-                        summary = "1.0.0-miuix-prototype",
+                        summary = "1.0.0",
                         onClick = { /* 原型未实现 */ },
                     )
                     ArrowPreference(

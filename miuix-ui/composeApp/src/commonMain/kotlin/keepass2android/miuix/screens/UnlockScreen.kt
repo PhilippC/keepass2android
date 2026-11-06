@@ -24,6 +24,7 @@ import top.yukonga.miuix.kmp.basic.IconButton
 import top.yukonga.miuix.kmp.basic.Scaffold
 import top.yukonga.miuix.kmp.basic.Text
 import top.yukonga.miuix.kmp.basic.TextField
+import top.yukonga.miuix.kmp.basic.TextButton
 import top.yukonga.miuix.kmp.basic.TopAppBar
 import top.yukonga.miuix.kmp.icon.MiuixIcons
 import top.yukonga.miuix.kmp.icon.extended.Back
@@ -38,6 +39,7 @@ import keepass2android.miuix.data.RecentDatabase
 fun UnlockScreen(
     database: RecentDatabase,
     keyFileName: String?,
+    onPickFile: ((onResult: (name: String, path: String, size: Long) -> Unit) -> Unit)? = null,
     onBack: () -> Unit,
     onUnlocked: () -> Unit,
 ) {
@@ -47,6 +49,7 @@ fun UnlockScreen(
     var biometric by remember { mutableStateOf(true) }
     var rememberKeyFile by remember { mutableStateOf(false) }
     var error by remember { mutableStateOf(false) }
+    var keyName by remember(database) { mutableStateOf(keyFileName) }
 
     Scaffold(
         topBar = {
@@ -67,14 +70,23 @@ fun UnlockScreen(
                 .padding(PaddingValues(start = 16.dp, end = 16.dp, top = padding.calculateTopPadding() + 8.dp)),
         ) {
             Text(database.path, color = colors.onSurfaceVariantSummary, modifier = Modifier.padding(bottom = 4.dp))
-            if (keyFileName != null) {
+            if (keyName != null) {
                 Text(
-                    "密钥文件：$keyFileName",
+                    "密钥文件：$keyName",
                     color = colors.onSurfaceVariantSummary,
                     modifier = Modifier.padding(bottom = 16.dp),
                 )
             } else {
-                Spacer(Modifier.height(12.dp))
+                Spacer(Modifier.height(8.dp))
+                TextButton(
+                    text = "选择密钥文件（可选）",
+                    onClick = { onPickFile?.invoke { name, _, _ -> keyName = name } },
+                    colors = top.yukonga.miuix.kmp.basic.ButtonDefaults.textButtonColors(
+                        color = colors.secondaryContainer,
+                        textColor = colors.primary,
+                    ),
+                )
+                Spacer(Modifier.height(4.dp))
             }
 
             Card {
@@ -100,7 +112,7 @@ fun UnlockScreen(
 
             if (error) {
                 Text(
-                    "密码错误，请重试。",
+                    "请输入主密码。",
                     color = colors.error,
                     modifier = Modifier.padding(start = 16.dp, top = 10.dp),
                 )
@@ -138,12 +150,6 @@ fun UnlockScreen(
             ) {
                 Text("解锁")
             }
-
-            Text(
-                "原型提示：输入任意密码即可解锁演示数据库",
-                color = colors.onSurfaceVariantSummary,
-                modifier = Modifier.padding(top = 14.dp, start = 16.dp),
-            )
 
             Spacer(Modifier.height(padding.calculateBottomPadding() + 32.dp))
         }

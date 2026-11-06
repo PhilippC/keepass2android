@@ -38,6 +38,7 @@ import keepass2android.miuix.data.DemoData
 
 @Composable
 fun StartScreen(
+    onPickDatabase: () -> Unit,
     onOpenDatabase: () -> Unit,
     onOpenOneDrive: () -> Unit,
     onSettings: () -> Unit,
@@ -49,7 +50,7 @@ fun StartScreen(
         topBar = {
             TopAppBar(
                 title = "KeePass2Android",
-                subtitle = "miuix 界面原型",
+                subtitle = "安全密码管理",
                 scrollBehavior = scrollBehavior,
                 actions = {
                     IconButton(onClick = onSettings, modifier = Modifier.padding(end = 12.dp)) {
@@ -73,7 +74,7 @@ fun StartScreen(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(top = 8.dp, bottom = 12.dp),
-                    onClick = onOpenDatabase,
+                    onClick = onPickDatabase,
                 ) {
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
@@ -101,7 +102,7 @@ fun StartScreen(
                             Text("打开数据库", fontSize = 19.sp, fontWeight = FontWeight.SemiBold, color = colors.onSurface)
                             Spacer(Modifier.height(3.dp))
                             Text(
-                                "输入主密码解锁你的密码库",
+                                "选择本地 .kdbx 文件解锁密码库",
                                 fontSize = 13.sp,
                                 color = colors.onSurfaceVariantSummary,
                             )
@@ -131,7 +132,7 @@ fun StartScreen(
                         }
                         Column(modifier = Modifier.padding(start = 14.dp)) {
                             Text("从 OneDrive 获取", color = colors.onSurface)
-                            Text("粘贴分享链接获取 .kdbx 与密钥文件", fontSize = 12.sp, color = colors.onSurfaceVariantSummary)
+                            Text("登录账号浏览云端的 .kdbx 与密钥文件", fontSize = 12.sp, color = colors.onSurfaceVariantSummary)
                         }
                     }
                 }

@@ -8,7 +8,7 @@ import androidx.compose.ui.window.rememberWindowState
 fun main() = application {
     Window(
         onCloseRequest = ::exitApplication,
-        title = "KeePass2Android · miuix 原型",
+        title = "KeePass2Android",
         state = rememberWindowState(width = 420.dp, height = 780.dp),
     ) {
         App(
@@ -17,6 +17,18 @@ fun main() = application {
                 ?: System.getProperty("onedrive.clientId") ?: "",
             onOpenUrl = { url ->
                 runCatching { java.awt.Desktop.getDesktop().browse(java.net.URI(url)) }
+            },
+            onPickFile = { onResult ->
+                runCatching {
+                    javax.swing.SwingUtilities.invokeAndWait {
+                        val chooser = javax.swing.JFileChooser()
+                        if (chooser.showOpenDialog(null) == javax.swing.JFileChooser.APPROVE_OPTION) {
+                            chooser.selectedFile?.let { file ->
+                                onResult(file.name, file.absolutePath, file.length())
+                            }
+                        }
+                    }
+                }
             },
         )
     }
