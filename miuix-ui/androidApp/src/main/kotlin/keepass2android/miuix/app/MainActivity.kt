@@ -41,9 +41,18 @@ class MainActivity : FragmentActivity() {
     private var filePickCallback: ((name: String, path: String, size: Long) -> Unit)? = null
 
     private val openDocument = registerForActivityResult(ActivityResultContracts.OpenDocument()) { uri ->
+        handlePickedUri(uri)
+    }
+
+    // 部分机型的系统文件管理器（DocumentsUI）被禁用时 ACTION_OPEN_DOCUMENT 会失败，回退到 GET_CONTENT
+    private val getContent = registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
+        handlePickedUri(uri)
+    }
+
+    private fun handlePickedUri(uri: android.net.Uri?) {
         val callback = filePickCallback
         filePickCallback = null
-        if (uri == null || callback == null) return@registerForActivityResult
+        if (uri == null || callback == null) return
         var name = uri.lastPathSegment?.substringAfterLast('/') ?: "database.kdbx"
         var reportedSize = -1L
         runCatching {
@@ -71,7 +80,22 @@ class MainActivity : FragmentActivity() {
 
     fun pickFile(onResult: (name: String, path: String, size: Long) -> Unit) {
         filePickCallback = onResult
-        runCatching { openDocument.launch(arrayOf("*/*")) }.onFailure { filePickCallback = null }
+        val openedDirectly = runCatching {
+            openDocument.launch(arrayOf("*/*"))
+        }.onFailure {
+            android.util.Log.e("MainActivity", "ACTION_OPEN_DOCUMENT 启动失败", it)
+        }.isSuccess
+        if (!openedDirectly) {
+            val fallback = runCatching { getContent.launch("*/*") }
+            if (fallback.isFailure) {
+                filePickCallback = null
+                android.widget.Toast.makeText(
+                    this,
+                    "无法打开文件选择器，请检查系统「文件管理」是否被禁用",
+                    android.widget.Toast.LENGTH_LONG,
+                ).show()
+            }
+        }
     }
 
     private var createFileCallback: ((name: String, path: String) -> Unit)? = null
