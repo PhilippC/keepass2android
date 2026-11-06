@@ -51,7 +51,7 @@ private fun EntryIcon(icon: androidx.compose.ui.graphics.vector.ImageVector, mod
             .background(colors.primaryContainer, RoundedCornerShape(50)),
         contentAlignment = Alignment.Center,
     ) {
-        Icon(icon, null, tint = colors.primary, modifier = Modifier.size(20.dp))
+        Icon(icon, null, tint = colors.onPrimaryContainer, modifier = Modifier.size(20.dp))
     }
 }
 

@@ -170,7 +170,7 @@ fun EntryScreen(
                                     Icon(
                                         entry.icon,
                                         null,
-                                        tint = colors.primary,
+                                        tint = colors.onPrimaryContainer,
                                         modifier = Modifier.size(28.dp),
                                     )
                                 }
@@ -199,7 +199,7 @@ fun EntryScreen(
                                             Icon(
                                                 MiuixIcons.Timer,
                                                 null,
-                                                tint = colors.primary,
+                                                tint = colors.onTertiaryContainer,
                                                 modifier = Modifier.size(20.dp),
                                             )
                                         }

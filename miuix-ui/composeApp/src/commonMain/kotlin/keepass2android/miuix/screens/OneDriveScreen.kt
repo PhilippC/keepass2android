@@ -318,7 +318,7 @@ fun OneDriveScreen(
                                     .background(colors.primaryContainer, RoundedCornerShape(12.dp)),
                                 contentAlignment = Alignment.Center,
                             ) {
-                                Icon(MiuixIcons.CloudFill, null, tint = colors.primary, modifier = Modifier.size(22.dp))
+                                Icon(MiuixIcons.CloudFill, null, tint = colors.onPrimaryContainer, modifier = Modifier.size(22.dp))
                             }
                             Column(modifier = Modifier.padding(start = 12.dp).weight(1f)) {
                                 Text(account, color = colors.onSurface)

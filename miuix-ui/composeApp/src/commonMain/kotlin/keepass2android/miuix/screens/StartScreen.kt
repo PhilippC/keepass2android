@@ -128,7 +128,7 @@ fun StartScreen(
                                 .background(colors.primaryContainer, RoundedCornerShape(12.dp)),
                             contentAlignment = Alignment.Center,
                         ) {
-                            Icon(MiuixIcons.CloudFill, null, tint = colors.primary, modifier = Modifier.size(22.dp))
+                            Icon(MiuixIcons.CloudFill, null, tint = colors.onPrimaryContainer, modifier = Modifier.size(22.dp))
                         }
                         Column(modifier = Modifier.padding(start = 14.dp)) {
                             Text("从 OneDrive 获取", color = colors.onSurface)
@@ -155,7 +155,7 @@ fun StartScreen(
                                 .background(colors.primaryContainer, RoundedCornerShape(12.dp)),
                             contentAlignment = Alignment.Center,
                         ) {
-                            Icon(MiuixIcons.File, null, tint = colors.primary, modifier = Modifier.size(22.dp))
+                            Icon(MiuixIcons.File, null, tint = colors.onPrimaryContainer, modifier = Modifier.size(22.dp))
                         }
                         Column(modifier = Modifier.padding(start = 14.dp)) {
                             Text("创建新数据库", color = colors.onSurface)
@@ -195,7 +195,7 @@ fun StartScreen(
                             onClick = onOpenDatabase,
                             colors = top.yukonga.miuix.kmp.basic.ButtonDefaults.textButtonColors(
                                 color = colors.primaryContainer,
-                                textColor = colors.primary,
+                                textColor = colors.onPrimaryContainer,
                             ),
                         )
                     }
