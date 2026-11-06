@@ -258,22 +258,6 @@ private fun RecentCard(
                 Text("删除", color = colors.onPrimary)
             }
         }
-        // 左划 → 右侧删除区
-        Box(
-            modifier = Modifier
-                .matchParentSize()
-                .background(colors.error, RoundedCornerShape(16.dp)),
-            contentAlignment = Alignment.CenterEnd,
-        ) {
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier.padding(end = 24.dp),
-            ) {
-                Text("删除", color = colors.onPrimary)
-                Spacer(Modifier.width(6.dp))
-                Icon(MiuixIcons.Delete, null, tint = colors.onPrimary, modifier = Modifier.size(20.dp))
-            }
-        }
         Card(
             modifier = Modifier
                 .fillMaxWidth()
@@ -283,11 +267,11 @@ private fun RecentCard(
                         onHorizontalDrag = { change, dragAmount ->
                             change.consume()
                             scope.launch {
-                                offsetX.snapTo((offsetX.value + dragAmount).coerceIn(-thresholdPx * 1.8f, thresholdPx * 1.8f))
+                                offsetX.snapTo((offsetX.value + dragAmount).coerceIn(0f, thresholdPx * 1.8f))
                             }
                         },
                         onDragEnd = {
-                            if (offsetX.value >= thresholdPx || offsetX.value <= -thresholdPx) {
+                            if (offsetX.value >= thresholdPx) {
                                 scope.launch { offsetX.animateTo(0f) }
                                 onSwipeDelete()
                             } else {
