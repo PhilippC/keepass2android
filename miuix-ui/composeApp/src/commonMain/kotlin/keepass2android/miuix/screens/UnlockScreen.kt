@@ -172,6 +172,11 @@ fun UnlockScreen(
                         }
                     },
                     singleLine = true,
+                    visualTransformation = if (showPassword) {
+                        androidx.compose.ui.text.input.VisualTransformation.None
+                    } else {
+                        androidx.compose.ui.text.input.PasswordVisualTransformation()
+                    },
                 )
             }
 
