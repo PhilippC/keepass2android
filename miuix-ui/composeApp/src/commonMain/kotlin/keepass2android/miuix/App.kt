@@ -89,6 +89,8 @@ fun App(
     onPickFile: (forKeyFile: Boolean, onResult: (name: String, path: String, size: Long) -> Unit) -> Unit = { _, _ -> },
     loadRecents: () -> List<RecentDatabase> = { DemoData.recentDatabases },
     saveRecents: (List<RecentDatabase>) -> Unit = {},
+    addRecent: (RecentDatabase) -> Unit = {},
+    lastOpened: RecentDatabase? = null,
     onCreateFile: (suggestedName: String, onResult: (name: String, path: String) -> Unit) -> Unit = { _, _ -> },
     commitFile: (path: String, onDone: (Boolean) -> Unit) -> Unit = { _, onDone -> onDone(true) },
     defaultDatabasePath: String = "",
@@ -105,7 +107,12 @@ fun App(
         ThemeMode.Dark -> true
     }
 
-    val backStack = remember { mutableStateListOf<Screen>(Screen.Start) }
+    // 退出应用后再次打开时，默认进入最近使用过的数据库的解锁页
+    val backStack = remember {
+        mutableStateListOf<Screen>(Screen.Start).apply {
+            if (lastOpened != null) add(Screen.Unlock(lastOpened))
+        }
+    }
     val current = backStack.last()
     val extraEntries = remember { mutableStateListOf<KpEntry>() }
 
@@ -183,6 +190,7 @@ fun App(
                                     )
                                 }
                             },
+                            onOpenRecent = { navigate(Screen.Unlock(it)) },
                             onOpenDatabase = { navigate(Screen.OpenDatabase) },
                             onCreateDatabase = { navigate(Screen.CreateDatabase()) },
                             onSettings = { navigate(Screen.Settings) },
@@ -233,7 +241,10 @@ fun App(
                             quickUnlock = quickUnlock,
                             saveQuickUnlock = saveQuickUnlock,
                             onBack = ::back,
-                            onUnlocked = { navigate(Screen.Group(0)) },
+                            onUnlocked = {
+                                addRecent(screen.database)
+                                navigate(Screen.Group(0))
+                            },
                         )
 
                         is Screen.Group -> GroupScreen(

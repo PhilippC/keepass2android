@@ -61,6 +61,7 @@ fun StartScreen(
     loadRecents: () -> List<RecentDatabase> = { DemoData.recentDatabases },
     saveRecents: (List<RecentDatabase>) -> Unit = {},
     onPickDatabase: () -> Unit,
+    onOpenRecent: (RecentDatabase) -> Unit = {},
     onOpenDatabase: () -> Unit,
     onCreateDatabase: () -> Unit = {},
     onSettings: () -> Unit,
@@ -170,7 +171,7 @@ fun StartScreen(
                     val db = recents[index]
                     RecentCard(
                         db = db,
-                        onClick = onOpenDatabase,
+                        onClick = { onOpenRecent(db) },
                         onSwipeDelete = { pendingDelete = db },
                     )
                 }

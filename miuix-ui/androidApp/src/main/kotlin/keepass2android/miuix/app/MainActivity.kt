@@ -15,8 +15,9 @@ class MainActivity : FragmentActivity() {
 
     private val prefs by lazy { getSharedPreferences("miuix_app", MODE_PRIVATE) }
 
-    private fun loadRecents(): List<keepass2android.miuix.data.RecentDatabase> {
-        val raw = prefs.getString("recent_databases", null) ?: return keepass2android.miuix.data.DemoData.recentDatabases
+    /** 仅返回真实保存的最近记录（无记录时为空列表） */
+    private fun loadRecentsRaw(): List<keepass2android.miuix.data.RecentDatabase> {
+        val raw = prefs.getString("recent_databases", null) ?: return emptyList()
         val decoder = java.util.Base64.getDecoder()
         return raw.lineSequence().filter { it.isNotBlank() }.mapNotNull { line ->
             val parts = line.split("|")
@@ -26,6 +27,15 @@ class MainActivity : FragmentActivity() {
                 keepass2android.miuix.data.RecentDatabase(dec(parts[0]), dec(parts[1]), dec(parts[2]).ifEmpty { null })
             }.getOrNull()
         }.toList()
+    }
+
+    private fun loadRecents(): List<keepass2android.miuix.data.RecentDatabase> =
+        loadRecentsRaw().ifEmpty { keepass2android.miuix.data.DemoData.recentDatabases }
+
+    private fun addRecent(database: keepass2android.miuix.data.RecentDatabase) {
+        val key = database.realPath ?: database.path
+        val recents = loadRecentsRaw().filterNot { (it.realPath ?: it.path) == key }
+        saveRecents((listOf(database) + recents).take(20))
     }
 
     private fun saveRecents(recents: List<keepass2android.miuix.data.RecentDatabase>) {
@@ -213,6 +223,8 @@ class MainActivity : FragmentActivity() {
                 onPickFile = ::pickFile,
                 loadRecents = ::loadRecents,
                 saveRecents = ::saveRecents,
+                addRecent = ::addRecent,
+                lastOpened = loadRecentsRaw().firstOrNull(),
                 onCreateFile = ::createFile,
                 commitFile = ::commitFile,
                 defaultDatabasePath = File(
