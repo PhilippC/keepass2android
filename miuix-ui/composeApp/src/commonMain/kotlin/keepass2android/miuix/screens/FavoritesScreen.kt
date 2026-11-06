@@ -21,7 +21,7 @@ import top.yukonga.miuix.kmp.basic.TopAppBar
 import top.yukonga.miuix.kmp.icon.MiuixIcons
 import top.yukonga.miuix.kmp.icon.extended.Back
 import top.yukonga.miuix.kmp.theme.MiuixTheme
-import keepass2android.miuix.data.DemoData
+import keepass2android.miuix.data.DatabaseState
 import keepass2android.miuix.data.KpEntry
 
 @Composable
@@ -33,7 +33,7 @@ fun FavoritesScreen(
     val colors = MiuixTheme.colorScheme
     val scrollBehavior = MiuixScrollBehavior()
     val favorites = remember(extraEntries) {
-        (DemoData.entries + extraEntries).filter { it.isFavorite }
+        (DatabaseState.entries + extraEntries).filter { it.isFavorite }
     }
 
     Scaffold(

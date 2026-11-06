@@ -13,9 +13,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import kotlinx.coroutines.launch
 import top.yukonga.miuix.kmp.basic.Button
 import top.yukonga.miuix.kmp.basic.ButtonDefaults
 import top.yukonga.miuix.kmp.basic.Card
@@ -33,23 +35,55 @@ import top.yukonga.miuix.kmp.icon.extended.Lock
 import top.yukonga.miuix.kmp.icon.extended.Show
 import top.yukonga.miuix.kmp.preference.SwitchPreference
 import top.yukonga.miuix.kmp.theme.MiuixTheme
+import keepass2android.miuix.data.DatabaseState
 import keepass2android.miuix.data.RecentDatabase
+import keepass2android.miuix.kdbx.KdbxEngine
 
 @Composable
 fun UnlockScreen(
     database: RecentDatabase,
     keyFileName: String?,
+    keyFilePath: String? = null,
     onPickFile: ((onResult: (name: String, path: String, size: Long) -> Unit) -> Unit)? = null,
     onBack: () -> Unit,
     onUnlocked: () -> Unit,
 ) {
     val colors = MiuixTheme.colorScheme
+    val scope = rememberCoroutineScope()
     var password by remember { mutableStateOf("") }
     var showPassword by remember { mutableStateOf(false) }
     var biometric by remember { mutableStateOf(true) }
     var rememberKeyFile by remember { mutableStateOf(false) }
     var error by remember { mutableStateOf(false) }
     var keyName by remember(database) { mutableStateOf(keyFileName) }
+    var keyPath by remember(database) { mutableStateOf(keyFilePath) }
+    var unlocking by remember { mutableStateOf(false) }
+    var unlockError by remember { mutableStateOf<String?>(null) }
+
+    fun unlock() {
+        if (unlocking) return
+        if (password.isEmpty() && keyPath == null) {
+            error = true
+            return
+        }
+        val realPath = database.realPath
+        if (realPath == null) {
+            onUnlocked()
+            return
+        }
+        scope.launch {
+            unlocking = true
+            unlockError = null
+            try {
+                val content = KdbxEngine.unlock(realPath, password, keyPath)
+                DatabaseState.loadReal(content.groups, content.entries)
+                onUnlocked()
+            } catch (e: Exception) {
+                unlockError = e.message ?: "解锁失败"
+            }
+            unlocking = false
+        }
+    }
 
     Scaffold(
         topBar = {
@@ -80,7 +114,10 @@ fun UnlockScreen(
                 Spacer(Modifier.height(8.dp))
                 TextButton(
                     text = "选择密钥文件（可选）",
-                    onClick = { onPickFile?.invoke { name, _, _ -> keyName = name } },
+                    onClick = { onPickFile?.invoke { name, path, _ ->
+                        keyName = name
+                        keyPath = path
+                    } },
                     colors = top.yukonga.miuix.kmp.basic.ButtonDefaults.textButtonColors(
                         color = colors.secondaryContainer,
                         textColor = colors.primary,
@@ -112,7 +149,14 @@ fun UnlockScreen(
 
             if (error) {
                 Text(
-                    "请输入主密码。",
+                    if (keyPath == null) "请输入主密码。" else "请输入主密码或选择密钥文件。",
+                    color = colors.error,
+                    modifier = Modifier.padding(start = 16.dp, top = 10.dp),
+                )
+            }
+            unlockError?.let {
+                Text(
+                    it,
                     color = colors.error,
                     modifier = Modifier.padding(start = 16.dp, top = 10.dp),
                 )
@@ -138,17 +182,12 @@ fun UnlockScreen(
             Spacer(Modifier.height(24.dp))
 
             Button(
-                onClick = {
-                    if (password.isEmpty()) {
-                        error = true
-                    } else {
-                        onUnlocked()
-                    }
-                },
+                onClick = ::unlock,
+                enabled = !unlocking,
                 modifier = Modifier.fillMaxWidth(),
                 colors = ButtonDefaults.buttonColorsPrimary(),
             ) {
-                Text("解锁")
+                Text(if (unlocking) "解锁中…" else "解锁")
             }
 
             Spacer(Modifier.height(padding.calculateBottomPadding() + 32.dp))

@@ -27,6 +27,7 @@ import top.yukonga.miuix.kmp.icon.extended.Settings
 import top.yukonga.miuix.kmp.theme.MiuixTheme
 import top.yukonga.miuix.kmp.theme.darkColorScheme
 import top.yukonga.miuix.kmp.theme.lightColorScheme
+import keepass2android.miuix.data.DatabaseState
 import keepass2android.miuix.data.DemoData
 import keepass2android.miuix.data.KpEntry
 import keepass2android.miuix.data.RecentDatabase
@@ -42,7 +43,11 @@ import keepass2android.miuix.screens.UnlockScreen
 
 sealed interface Screen {
     data object Start : Screen
-    data class Unlock(val database: RecentDatabase, val keyFileName: String? = null) : Screen
+    data class Unlock(
+        val database: RecentDatabase,
+        val keyFileName: String? = null,
+        val keyFilePath: String? = null,
+    ) : Screen
     data object OneDrive : Screen
     data class Group(val groupId: Int) : Screen
     data object Favorites : Screen
@@ -137,8 +142,12 @@ fun App(
                     when (screen) {
                         Screen.Start -> StartScreen(
                             onPickDatabase = {
-                                onPickFile { name, _, size ->
-                                    navigate(Screen.Unlock(RecentDatabase(name, "本地文件 · ${humanSize(size)}"), null))
+                                onPickFile { name, path, size ->
+                                    navigate(
+                                        Screen.Unlock(
+                                            RecentDatabase(name, "本地文件 · ${humanSize(size)}", path),
+                                        )
+                                    )
                                 }
                             },
                             onOpenDatabase = { navigate(Screen.Unlock(DemoData.recentDatabases.first())) },
@@ -151,14 +160,15 @@ fun App(
                             clientId = effectiveOneDriveClientId,
                             onOpenUrl = onOpenUrl,
                             onBack = ::back,
-                            onFetched = { database, keyFileName ->
-                                navigate(Screen.Unlock(database, keyFileName))
+                            onFetched = { database, keyFileName, keyFilePath ->
+                                navigate(Screen.Unlock(database, keyFileName, keyFilePath))
                             },
                         )
 
                         is Screen.Unlock -> UnlockScreen(
                             database = screen.database,
                             keyFileName = screen.keyFileName,
+                            keyFilePath = screen.keyFilePath,
                             onPickFile = onPickFile,
                             onBack = ::back,
                             onUnlocked = { navigate(Screen.Group(0)) },
@@ -192,7 +202,7 @@ fun App(
                         )
 
                         is Screen.Entry -> EntryScreen(
-                            entry = DemoData.findEntry(screen.entryId)
+                            entry = DatabaseState.findEntry(screen.entryId)
                                 ?: extraEntries.firstOrNull { it.id == screen.entryId },
                             onBack = ::back,
                             onGeneratePassword = { navigate(Screen.GeneratePassword) },

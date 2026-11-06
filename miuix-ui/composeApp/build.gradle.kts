@@ -28,6 +28,9 @@ kotlin {
 
         val jvmShared by creating {
             dependsOn(commonMain)
+            dependencies {
+                implementation(libs.keepassjava2)
+            }
         }
         androidMain.get().dependsOn(jvmShared)
 

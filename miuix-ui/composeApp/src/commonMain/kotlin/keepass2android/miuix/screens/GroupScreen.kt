@@ -39,7 +39,7 @@ import top.yukonga.miuix.kmp.icon.extended.Folder
 import top.yukonga.miuix.kmp.icon.extended.Search
 import top.yukonga.miuix.kmp.icon.extended.Tune
 import top.yukonga.miuix.kmp.theme.MiuixTheme
-import keepass2android.miuix.data.DemoData
+import keepass2android.miuix.data.DatabaseState
 import keepass2android.miuix.data.KpEntry
 
 @Composable
@@ -78,10 +78,10 @@ fun GroupScreen(
     val colors = MiuixTheme.colorScheme
     val scrollBehavior = MiuixScrollBehavior()
     var query by rememberSaveable { mutableStateOf("") }
-    val group = remember(groupId) { DemoData.findGroup(groupId) }
-    val subgroups = remember(groupId) { DemoData.subgroupsOf(groupId) }
+    val group = remember(groupId) { DatabaseState.findGroup(groupId) }
+    val subgroups = remember(groupId) { DatabaseState.subgroupsOf(groupId) }
     val entries = remember(groupId, extraEntries) {
-        DemoData.entriesOf(groupId) + extraEntries.filter { it.groupId == groupId }
+        DatabaseState.entriesOf(groupId) + extraEntries.filter { it.groupId == groupId }
     }
 
     Scaffold(
@@ -147,7 +147,7 @@ fun GroupScreen(
                             subgroups.forEachIndexed { index, subgroup ->
                                 BasicComponent(
                                     title = subgroup.title,
-                                    summary = "${DemoData.entryCountRecursive(subgroup.id)} 个条目",
+                                    summary = "${DatabaseState.entryCountRecursive(subgroup.id)} 个条目",
                                     startAction = {
                                         Box(
                                             modifier = Modifier

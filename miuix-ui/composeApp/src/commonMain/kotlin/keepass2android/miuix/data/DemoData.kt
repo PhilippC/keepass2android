@@ -38,6 +38,7 @@ data class KpGroup(
 data class RecentDatabase(
     val name: String,
     val path: String,
+    val realPath: String? = null,
 )
 
 object DemoData {

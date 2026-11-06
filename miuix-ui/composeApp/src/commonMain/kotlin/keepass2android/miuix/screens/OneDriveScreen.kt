@@ -65,7 +65,7 @@ fun OneDriveScreen(
     clientId: String,
     onOpenUrl: (String) -> Unit,
     onBack: () -> Unit,
-    onFetched: (database: RecentDatabase, keyFileName: String?) -> Unit,
+    onFetched: (database: RecentDatabase, keyFileName: String?, keyFilePath: String?) -> Unit,
 ) {
     val colors = MiuixTheme.colorScheme
     val scope = rememberCoroutineScope()
@@ -94,6 +94,7 @@ fun OneDriveScreen(
     var status by remember { mutableStateOf<String?>(null) }
     var error by remember { mutableStateOf<String?>(null) }
     var keyFileName by remember { mutableStateOf<String?>(null) }
+    var keyPath by remember { mutableStateOf<String?>(null) }
 
     LaunchedEffect(clientId) {
         OneDriveService.init(cacheDirPath, clientId)
@@ -154,7 +155,7 @@ fun OneDriveScreen(
             try {
                 val file = OneDriveService.downloadItem(item, cacheDirPath, "database.kdbx")
                 status = null
-                onFetched(RecentDatabase(file.name, "OneDrive · ${humanSize(file.sizeBytes)}"), keyFileName)
+                onFetched(RecentDatabase(file.name, "OneDrive · ${humanSize(file.sizeBytes)}", file.path), keyFileName, keyPath)
             } catch (e: Exception) {
                 status = null
                 error = e.message ?: "下载失败"
@@ -170,6 +171,7 @@ fun OneDriveScreen(
                 val file = OneDriveService.downloadItem(item, cacheDirPath, "keyfile.keyx")
                 status = null
                 keyFileName = file.name
+                keyPath = file.path
             } catch (e: Exception) {
                 status = null
                 error = e.message ?: "下载失败"
