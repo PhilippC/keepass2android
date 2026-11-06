@@ -15,4 +15,10 @@ expect object KdbxEngine {
      * 失败时抛出 IOException，message 为可直接展示的中文提示。
      */
     suspend fun unlock(filePath: String, password: String, keyFilePath: String?): KdbxContent
+
+    /**
+     * 创建一个新的空 .kdbx 数据库。
+     * 失败时抛出 IOException，message 为可直接展示的中文提示。
+     */
+    suspend fun create(filePath: String, password: String, keyFilePath: String?)
 }

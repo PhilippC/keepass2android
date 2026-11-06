@@ -41,6 +41,7 @@ fun StartScreen(
     onPickDatabase: () -> Unit,
     onOpenDatabase: () -> Unit,
     onOpenOneDrive: () -> Unit,
+    onCreateDatabase: () -> Unit = {},
     onSettings: () -> Unit,
 ) {
     val scrollBehavior = MiuixScrollBehavior()
@@ -143,7 +144,7 @@ fun StartScreen(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(bottom = 16.dp),
-                    onClick = { /* 原型未实现 */ },
+                    onClick = onCreateDatabase,
                 ) {
                     Row(
                         verticalAlignment = Alignment.CenterVertically,

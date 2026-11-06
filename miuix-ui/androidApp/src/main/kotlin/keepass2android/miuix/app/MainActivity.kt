@@ -49,6 +49,45 @@ class MainActivity : FragmentActivity() {
         runCatching { openDocument.launch(arrayOf("*/*")) }.onFailure { filePickCallback = null }
     }
 
+    private var createFileCallback: ((name: String, path: String) -> Unit)? = null
+    private var pendingExport: Pair<android.net.Uri, File>? = null
+
+    private val createDocument = registerForActivityResult(ActivityResultContracts.CreateDocument("application/octet-stream")) { uri ->
+        val callback = createFileCallback
+        createFileCallback = null
+        if (uri == null || callback == null) return@registerForActivityResult
+        var name = uri.lastPathSegment?.substringAfterLast('/') ?: "keepass.kdbx"
+        runCatching {
+            contentResolver.query(uri, arrayOf(android.provider.OpenableColumns.DISPLAY_NAME), null, null, null)?.use { cursor ->
+                if (cursor.moveToFirst()) cursor.getString(0)?.let { name = it }
+            }
+        }
+        // 引擎先写临时文件，创建成功后再由 commitFile 回写到 SAF 目标
+        val temp = File(cacheDir, "create-${System.currentTimeMillis()}-${name.replace('/', '_')}")
+        pendingExport = uri to temp
+        callback(name, temp.absolutePath)
+    }
+
+    fun createFile(suggestedName: String, onResult: (name: String, path: String) -> Unit) {
+        createFileCallback = onResult
+        runCatching { createDocument.launch(suggestedName) }.onFailure { createFileCallback = null }
+    }
+
+    fun commitFile(path: String, onDone: (Boolean) -> Unit) {
+        val pending = pendingExport
+        if (pending == null || pending.second.absolutePath != path) {
+            onDone(true)
+            return
+        }
+        pendingExport = null
+        runCatching {
+            contentResolver.openOutputStream(pending.first)?.use { output ->
+                pending.second.inputStream().use { input -> input.copyTo(output) }
+            } ?: error("无法写入目标位置")
+            pending.second.delete()
+        }.onSuccess { onDone(true) }.onFailure { onDone(false) }
+    }
+
     private fun biometricAvailable(): Boolean =
         BiometricManager.from(this)
             .canAuthenticate(BiometricManager.Authenticators.BIOMETRIC_WEAK) == BiometricManager.BIOMETRIC_SUCCESS
@@ -119,6 +158,12 @@ class MainActivity : FragmentActivity() {
                     }
                 },
                 onPickFile = ::pickFile,
+                onCreateFile = ::createFile,
+                commitFile = ::commitFile,
+                defaultDatabasePath = File(
+                    getExternalFilesDir(null) ?: filesDir,
+                    "keepass.kdbx",
+                ).absolutePath,
                 hasQuickUnlock = ::hasQuickUnlock,
                 quickUnlock = ::quickUnlock,
                 saveQuickUnlock = { path, password, keyPath ->

@@ -76,6 +76,32 @@ actual object KdbxEngine {
         }
     }
 
+    actual suspend fun create(
+        filePath: String,
+        password: String,
+        keyFilePath: String?,
+    ): Unit = withContext(Dispatchers.IO) {
+        if (password.isEmpty()) throw IOException("请输入主密码")
+        val file = File(filePath)
+        file.parentFile?.mkdirs()
+        val creds = if (keyFilePath != null) {
+            val keyFile = File(keyFilePath)
+            if (!keyFile.exists()) throw IOException("密钥文件不存在")
+            KdbxCreds(password.toByteArray(Charsets.UTF_8), keyFile.inputStream())
+        } else {
+            KdbxCreds(password.toByteArray(Charsets.UTF_8))
+        }
+        try {
+            val db = DomDatabaseWrapper()
+            db.name = file.nameWithoutExtension
+            file.outputStream().use { output -> db.save(creds, output) }
+        } catch (e: IOException) {
+            throw e
+        } catch (e: Exception) {
+            throw IOException("创建数据库失败：${e.message ?: "未知错误"}")
+        }
+    }
+
     private fun convert(id: Int, groupId: Int, entry: DomEntryWrapper): KpEntry {
         val title = entry.getProperty("Title") ?: ""
         val userName = entry.getProperty("UserName") ?: ""

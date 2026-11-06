@@ -32,6 +32,7 @@ import keepass2android.miuix.data.DemoData
 import keepass2android.miuix.data.KpEntry
 import keepass2android.miuix.data.RecentDatabase
 import keepass2android.miuix.onedrive.OneDriveDefaults
+import keepass2android.miuix.screens.CreateDatabaseScreen
 import keepass2android.miuix.screens.EntryScreen
 import keepass2android.miuix.screens.FavoritesScreen
 import keepass2android.miuix.screens.GeneratePasswordScreen
@@ -49,6 +50,7 @@ sealed interface Screen {
         val keyFilePath: String? = null,
     ) : Screen
     data object OneDrive : Screen
+    data object CreateDatabase : Screen
     data class Group(val groupId: Int) : Screen
     data object Favorites : Screen
     data class Entry(val entryId: Int) : Screen
@@ -80,6 +82,9 @@ fun App(
     oneDriveClientId: String,
     onOpenUrl: (String) -> Unit = {},
     onPickFile: (onResult: (name: String, path: String, size: Long) -> Unit) -> Unit = {},
+    onCreateFile: (suggestedName: String, onResult: (name: String, path: String) -> Unit) -> Unit = { _, _ -> },
+    commitFile: (path: String, onDone: (Boolean) -> Unit) -> Unit = { _, onDone -> onDone(true) },
+    defaultDatabasePath: String = "",
     hasQuickUnlock: (dbPath: String) -> Boolean = { false },
     quickUnlock: (dbPath: String, onSuccess: (password: String, keyFilePath: String?) -> Unit, onError: (String) -> Unit) -> Unit = { _, _, _ -> },
     saveQuickUnlock: (dbPath: String, password: String, keyFilePath: String?) -> Unit = { _, _, _ -> },
@@ -155,7 +160,18 @@ fun App(
                             },
                             onOpenDatabase = { navigate(Screen.Unlock(DemoData.recentDatabases.first())) },
                             onOpenOneDrive = { navigate(Screen.OneDrive) },
+                            onCreateDatabase = { navigate(Screen.CreateDatabase) },
                             onSettings = { navigate(Screen.Settings) },
+                        )
+
+                        Screen.CreateDatabase -> CreateDatabaseScreen(
+                            defaultPath = defaultDatabasePath.ifBlank { "$cacheDirPath/keepass.kdbx" },
+                            onPickFile = onPickFile,
+                            onCreateFile = onCreateFile,
+                            onBack = ::back,
+                            onCreated = { database ->
+                                commitFile(database.realPath ?: "") { navigate(Screen.Unlock(database)) }
+                            },
                         )
 
                         Screen.OneDrive -> OneDriveScreen(
