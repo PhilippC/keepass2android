@@ -38,51 +38,13 @@ class MainActivity : FragmentActivity() {
         prefs.edit().putString("recent_databases", raw).apply()
     }
 
-    private var filePickCallback: ((name: String, path: String, size: Long) -> Unit)? = null
-    private var filePickForKeyFile = false
+    // 「所有文件访问」授权状态，onResume 时刷新（从设置页返回后自动更新界面）
+    private val storageGranted = androidx.compose.runtime.mutableStateOf(false)
 
-    private val filePickerLauncher =
-        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            val callback = filePickCallback
-            filePickCallback = null
-            if (result.resultCode != RESULT_OK || callback == null) return@registerForActivityResult
-            val data = result.data ?: return@registerForActivityResult
-            val path = data.getStringExtra("path") ?: return@registerForActivityResult
-            callback(
-                data.getStringExtra("name") ?: "file",
-                path,
-                data.getLongExtra("size", -1L),
-            )
-        }
-
-    // 从「所有文件访问」设置页返回后，若已授权则继续打开文件浏览器
-    private val allFilesAccessLauncher =
-        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
-            if (isFileAccessGranted()) {
-                launchFilePicker()
-            } else {
-                filePickCallback = null
-                android.widget.Toast.makeText(
-                    this,
-                    "未授予「所有文件访问」权限，无法浏览本地文件",
-                    android.widget.Toast.LENGTH_LONG,
-                ).show()
-            }
-        }
-
-    private val legacyStoragePermissionLauncher =
-        registerForActivityResult(ActivityResultContracts.RequestPermission()) { granted ->
-            if (granted && filePickCallback != null) {
-                launchFilePicker()
-            } else {
-                filePickCallback = null
-                android.widget.Toast.makeText(
-                    this,
-                    "未授予存储权限，无法浏览本地文件",
-                    android.widget.Toast.LENGTH_LONG,
-                ).show()
-            }
-        }
+    override fun onResume() {
+        super.onResume()
+        storageGranted.value = isFileAccessGranted()
+    }
 
     private fun isFileAccessGranted(): Boolean =
         if (android.os.Build.VERSION.SDK_INT >= 30) {
@@ -94,42 +56,35 @@ class MainActivity : FragmentActivity() {
             ) == android.content.pm.PackageManager.PERMISSION_GRANTED
         }
 
-    private fun launchFilePicker() {
-        val mode = if (filePickForKeyFile) FilePickerActivity.MODE_KEY_FILE else FilePickerActivity.MODE_DATABASE
-        val intent = android.content.Intent(this, FilePickerActivity::class.java)
-            .putExtra(FilePickerActivity.EXTRA_MODE, mode)
-        runCatching { filePickerLauncher.launch(intent) }.onFailure { filePickCallback = null }
-    }
-
-    fun pickFile(forKeyFile: Boolean, onResult: (name: String, path: String, size: Long) -> Unit) {
-        filePickCallback = onResult
-        filePickForKeyFile = forKeyFile
-        if (isFileAccessGranted()) {
-            launchFilePicker()
-        } else if (android.os.Build.VERSION.SDK_INT >= 30) {
-            // Android 11+：跳转系统设置页申请「所有文件访问」
-            val settingsIntent = android.content.Intent(
-                android.provider.Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION,
-                android.net.Uri.parse("package:$packageName"),
-            )
-            val launched = runCatching { allFilesAccessLauncher.launch(settingsIntent) }.isSuccess
-            if (!launched) {
-                runCatching {
-                    allFilesAccessLauncher.launch(
-                        android.content.Intent(android.provider.Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION),
-                    )
-                }.onFailure {
-                    filePickCallback = null
-                    android.widget.Toast.makeText(
-                        this,
-                        "无法打开权限设置页，请手动在系统设置中授予本应用「所有文件访问」",
-                        android.widget.Toast.LENGTH_LONG,
-                    ).show()
-                }
-            }
-        } else {
+    fun requestStorageAccess() {
+        if (android.os.Build.VERSION.SDK_INT < 30) {
             // Android 10 及以下：运行时申请存储权限
-            legacyStoragePermissionLauncher.launch(android.Manifest.permission.READ_EXTERNAL_STORAGE)
+            runCatching {
+                androidx.core.app.ActivityCompat.requestPermissions(
+                    this,
+                    arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE),
+                    1001,
+                )
+            }
+            return
+        }
+        val settingsIntent = android.content.Intent(
+            android.provider.Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION,
+            android.net.Uri.parse("package:$packageName"),
+        )
+        val opened = runCatching { startActivity(settingsIntent) }
+        if (opened.isFailure) {
+            runCatching {
+                startActivity(
+                    android.content.Intent(android.provider.Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION),
+                )
+            }.onFailure {
+                android.widget.Toast.makeText(
+                    this,
+                    "无法打开权限设置页，请手动前往 系统设置 → 应用管理 → 本应用 → 权限",
+                    android.widget.Toast.LENGTH_LONG,
+                ).show()
+            }
         }
     }
 
@@ -241,7 +196,8 @@ class MainActivity : FragmentActivity() {
                         )
                     }
                 },
-                onPickFile = ::pickFile,
+                storageGranted = storageGranted,
+                requestStorageAccess = ::requestStorageAccess,
                 loadRecents = ::loadRecents,
                 saveRecents = ::saveRecents,
                 onCreateFile = ::createFile,

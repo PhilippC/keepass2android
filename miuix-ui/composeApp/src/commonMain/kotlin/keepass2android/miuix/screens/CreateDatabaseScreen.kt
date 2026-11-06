@@ -41,7 +41,9 @@ import keepass2android.miuix.kdbx.KdbxEngine
 @Composable
 fun CreateDatabaseScreen(
     defaultPath: String,
-    onPickFile: ((onResult: (name: String, path: String, size: Long) -> Unit) -> Unit)? = null,
+    keyFileName: String? = null,
+    keyFilePath: String? = null,
+    onPickKeyFile: () -> Unit = {},
     onCreateFile: (suggestedName: String, onResult: (name: String, path: String) -> Unit) -> Unit = { _, _ -> },
     onBack: () -> Unit,
     onCreated: (RecentDatabase) -> Unit,
@@ -53,9 +55,9 @@ fun CreateDatabaseScreen(
     var password by remember { mutableStateOf("") }
     var confirmPassword by remember { mutableStateOf("") }
     var showPassword by remember { mutableStateOf(false) }
-    var useKeyFile by remember { mutableStateOf(false) }
-    var keyName by remember { mutableStateOf<String?>(null) }
-    var keyPath by remember { mutableStateOf<String?>(null) }
+    var useKeyFile by remember { mutableStateOf(keyFilePath != null) }
+    var keyName by remember { mutableStateOf(keyFileName) }
+    var keyPath by remember { mutableStateOf(keyFilePath) }
     var creating by remember { mutableStateOf(false) }
     var errorMsg by remember { mutableStateOf<String?>(null) }
 
@@ -185,12 +187,7 @@ fun CreateDatabaseScreen(
                             Text("已选择：$keyName", fontSize = 13.sp, color = colors.onSurface)
                         }
                         Spacer(Modifier.height(6.dp))
-                        TextButton(text = "选择密钥文件", onClick = {
-                            onPickFile?.invoke { name, path, _ ->
-                                keyName = name
-                                keyPath = path
-                            }
-                        })
+                        TextButton(text = "选择密钥文件", onClick = onPickKeyFile)
                     }
                 }
             }

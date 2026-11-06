@@ -38,6 +38,7 @@ import keepass2android.miuix.screens.FavoritesScreen
 import keepass2android.miuix.screens.OpenDatabaseChooserScreen
 import keepass2android.miuix.screens.GeneratePasswordScreen
 import keepass2android.miuix.screens.GroupScreen
+import keepass2android.miuix.screens.LocalFilesScreen
 import keepass2android.miuix.screens.OneDriveScreen
 import keepass2android.miuix.screens.SettingsScreen
 import keepass2android.miuix.screens.StartScreen
@@ -52,7 +53,11 @@ sealed interface Screen {
     ) : Screen
     data object OneDrive : Screen
     data object OpenDatabase : Screen
-    data object CreateDatabase : Screen
+    data class CreateDatabase(
+        val keyFileName: String? = null,
+        val keyFilePath: String? = null,
+    ) : Screen
+    data class LocalFiles(val forKeyFile: Boolean) : Screen
     data class Group(val groupId: Int) : Screen
     data object Favorites : Screen
     data class Entry(val entryId: Int) : Screen
@@ -83,7 +88,8 @@ fun App(
     cacheDirPath: String,
     oneDriveClientId: String,
     onOpenUrl: (String) -> Unit = {},
-    onPickFile: (forKeyFile: Boolean, onResult: (name: String, path: String, size: Long) -> Unit) -> Unit = { _, _ -> },
+    storageGranted: androidx.compose.runtime.State<Boolean> = androidx.compose.runtime.mutableStateOf(true),
+    requestStorageAccess: () -> Unit = {},
     loadRecents: () -> List<RecentDatabase> = { DemoData.recentDatabases },
     saveRecents: (List<RecentDatabase>) -> Unit = {},
     onCreateFile: (suggestedName: String, onResult: (name: String, path: String) -> Unit) -> Unit = { _, _ -> },
@@ -116,11 +122,6 @@ fun App(
     fun back() {
         if (backStack.size > 1) backStack.removeAt(backStack.lastIndex)
     }
-
-    val pickDatabaseFile: ((onResult: (name: String, path: String, size: Long) -> Unit) -> Unit) =
-        { onResult -> onPickFile(false, onResult) }
-    val pickKeyFile: ((onResult: (name: String, path: String, size: Long) -> Unit) -> Unit) =
-        { onResult -> onPickFile(true, onResult) }
 
     fun switchTab(tab: Screen) {
         if (current == tab) return
@@ -160,37 +161,58 @@ fun App(
                         Screen.Start -> StartScreen(
                             loadRecents = loadRecents,
                             saveRecents = saveRecents,
-                            onPickDatabase = {
-                                pickDatabaseFile { name, path, size ->
-                                    navigate(
-                                        Screen.Unlock(
-                                            RecentDatabase(name, "本地文件 · ${humanSize(size)}", path),
-                                        )
-                                    )
-                                }
-                            },
+                            onPickDatabase = { navigate(Screen.LocalFiles(forKeyFile = false)) },
                             onOpenDatabase = { navigate(Screen.OpenDatabase) },
-                            onCreateDatabase = { navigate(Screen.CreateDatabase) },
+                            onCreateDatabase = { navigate(Screen.CreateDatabase()) },
                             onSettings = { navigate(Screen.Settings) },
                         )
 
                         Screen.OpenDatabase -> OpenDatabaseChooserScreen(
                             onBack = ::back,
-                            onPickDatabase = {
-                                pickDatabaseFile { name, path, size ->
-                                    navigate(
-                                        Screen.Unlock(
-                                            RecentDatabase(name, "本地文件 · ${humanSize(size)}", path),
-                                        )
-                                    )
-                                }
-                            },
+                            onPickDatabase = { navigate(Screen.LocalFiles(forKeyFile = false)) },
                             onOpenOneDrive = { navigate(Screen.OneDrive) },
                         )
 
-                        Screen.CreateDatabase -> CreateDatabaseScreen(
+                        is Screen.LocalFiles -> LocalFilesScreen(
+                            forKeyFile = screen.forKeyFile,
+                            storageGranted = storageGranted.value,
+                            onRequestStorage = requestStorageAccess,
+                            onBack = ::back,
+                            onPickFile = { entry ->
+                                if (screen.forKeyFile) {
+                                    // 密钥文件：更新返回栈中下层的 Unlock/CreateDatabase 参数后返回
+                                    val idx = backStack.indexOfFirst {
+                                        it is Screen.Unlock || it is Screen.CreateDatabase
+                                    }
+                                    if (idx >= 0) {
+                                        backStack[idx] = when (val target = backStack[idx]) {
+                                            is Screen.Unlock -> target.copy(
+                                                keyFileName = entry.name,
+                                                keyFilePath = entry.path,
+                                            )
+                                            is Screen.CreateDatabase -> target.copy(
+                                                keyFileName = entry.name,
+                                                keyFilePath = entry.path,
+                                            )
+                                            else -> target
+                                        }
+                                    }
+                                    back()
+                                } else {
+                                    navigate(
+                                        Screen.Unlock(
+                                            RecentDatabase(entry.name, "本地文件 · ${humanSize(entry.size)}", entry.path),
+                                        ),
+                                    )
+                                }
+                            },
+                        )
+
+                        is Screen.CreateDatabase -> CreateDatabaseScreen(
                             defaultPath = defaultDatabasePath.ifBlank { "$cacheDirPath/keepass.kdbx" },
-                            onPickFile = pickKeyFile,
+                            keyFileName = screen.keyFileName,
+                            keyFilePath = screen.keyFilePath,
+                            onPickKeyFile = { navigate(Screen.LocalFiles(forKeyFile = true)) },
                             onCreateFile = onCreateFile,
                             onBack = ::back,
                             onCreated = { database ->
@@ -212,7 +234,7 @@ fun App(
                             database = screen.database,
                             keyFileName = screen.keyFileName,
                             keyFilePath = screen.keyFilePath,
-                            onPickFile = pickKeyFile,
+                            onPickKeyFile = { navigate(Screen.LocalFiles(forKeyFile = true)) },
                             hasQuickUnlock = hasQuickUnlock,
                             quickUnlock = quickUnlock,
                             saveQuickUnlock = saveQuickUnlock,

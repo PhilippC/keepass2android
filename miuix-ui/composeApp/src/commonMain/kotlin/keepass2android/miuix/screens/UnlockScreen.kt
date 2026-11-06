@@ -45,7 +45,7 @@ fun UnlockScreen(
     database: RecentDatabase,
     keyFileName: String?,
     keyFilePath: String? = null,
-    onPickFile: ((onResult: (name: String, path: String, size: Long) -> Unit) -> Unit)? = null,
+    onPickKeyFile: () -> Unit = {},
     hasQuickUnlock: (dbPath: String) -> Boolean = { false },
     quickUnlock: (dbPath: String, onSuccess: (password: String, keyFilePath: String?) -> Unit, onError: (String) -> Unit) -> Unit = { _, _, _ -> },
     saveQuickUnlock: (dbPath: String, password: String, keyFilePath: String?) -> Unit = { _, _, _ -> },
@@ -124,10 +124,7 @@ fun UnlockScreen(
                 Spacer(Modifier.height(8.dp))
                 TextButton(
                     text = "选择密钥文件（可选）",
-                    onClick = { onPickFile?.invoke { name, path, _ ->
-                        keyName = name
-                        keyPath = path
-                    } },
+                    onClick = onPickKeyFile,
                     colors = top.yukonga.miuix.kmp.basic.ButtonDefaults.textButtonColors(
                         color = colors.secondaryContainer,
                         textColor = colors.primary,
