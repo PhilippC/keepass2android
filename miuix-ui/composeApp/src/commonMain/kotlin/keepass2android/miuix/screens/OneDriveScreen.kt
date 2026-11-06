@@ -24,9 +24,12 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalClipboardManager
+import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import top.yukonga.miuix.kmp.basic.Button
 import top.yukonga.miuix.kmp.basic.ButtonDefaults
@@ -74,6 +77,15 @@ fun OneDriveScreen(
     // 登录状态
     var signInRunning by remember { mutableStateOf(false) }
     var signInCancelled by remember { mutableStateOf(false) }
+    var codeCopied by remember { mutableStateOf(false) }
+    val clipboardManager = LocalClipboardManager.current
+
+    LaunchedEffect(codeCopied) {
+        if (codeCopied) {
+            delay(2500)
+            codeCopied = false
+        }
+    }
     var verifyUrl by remember { mutableStateOf("https://microsoft.com/devicelogin") }
     var userCode by remember { mutableStateOf("") }
 
@@ -268,6 +280,13 @@ fun OneDriveScreen(
                                 Text("第二步：在页面中输入此代码", fontSize = 13.sp, color = colors.onSurfaceVariantSummary)
                                 Spacer(Modifier.height(6.dp))
                                 Text(userCode, fontSize = 28.sp, fontWeight = FontWeight.Bold, color = colors.onSurface)
+                                TextButton(
+                                    text = if (codeCopied) "已复制" else "复制代码",
+                                    onClick = {
+                                        clipboardManager.setText(AnnotatedString(userCode))
+                                        codeCopied = true
+                                    },
+                                )
                                 Spacer(Modifier.height(10.dp))
                                 Text("等待授权中…", fontSize = 13.sp, color = colors.onSurfaceVariantSummary)
                                 Spacer(Modifier.height(12.dp))
