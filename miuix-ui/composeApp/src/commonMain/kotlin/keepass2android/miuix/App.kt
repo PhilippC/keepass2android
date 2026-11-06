@@ -35,6 +35,7 @@ import keepass2android.miuix.onedrive.OneDriveDefaults
 import keepass2android.miuix.screens.CreateDatabaseScreen
 import keepass2android.miuix.screens.EntryScreen
 import keepass2android.miuix.screens.FavoritesScreen
+import keepass2android.miuix.screens.OpenDatabaseChooserScreen
 import keepass2android.miuix.screens.GeneratePasswordScreen
 import keepass2android.miuix.screens.GroupScreen
 import keepass2android.miuix.screens.OneDriveScreen
@@ -50,6 +51,7 @@ sealed interface Screen {
         val keyFilePath: String? = null,
     ) : Screen
     data object OneDrive : Screen
+    data object OpenDatabase : Screen
     data object CreateDatabase : Screen
     data class Group(val groupId: Int) : Screen
     data object Favorites : Screen
@@ -158,10 +160,23 @@ fun App(
                                     )
                                 }
                             },
-                            onOpenDatabase = { navigate(Screen.Unlock(DemoData.recentDatabases.first())) },
-                            onOpenOneDrive = { navigate(Screen.OneDrive) },
+                            onOpenDatabase = { navigate(Screen.OpenDatabase) },
                             onCreateDatabase = { navigate(Screen.CreateDatabase) },
                             onSettings = { navigate(Screen.Settings) },
+                        )
+
+                        Screen.OpenDatabase -> OpenDatabaseChooserScreen(
+                            onBack = ::back,
+                            onPickDatabase = {
+                                onPickFile { name, path, size ->
+                                    navigate(
+                                        Screen.Unlock(
+                                            RecentDatabase(name, "本地文件 · ${humanSize(size)}", path),
+                                        )
+                                    )
+                                }
+                            },
+                            onOpenOneDrive = { navigate(Screen.OneDrive) },
                         )
 
                         Screen.CreateDatabase -> CreateDatabaseScreen(
