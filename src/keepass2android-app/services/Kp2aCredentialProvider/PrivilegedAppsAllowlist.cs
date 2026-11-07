@@ -248,7 +248,7 @@ namespace keepass2android.services.Kp2aCredentialProvider
     /// Includes the current signers and the signing certificate history, so that the entry matches
     /// regardless of which of these the allowlist check in CallingAppInfo.GetOrigin uses.
     /// </summary>
-    private static List<string> GetFingerprints(SigningInfo? signingInfo)
+    internal static List<string> GetFingerprints(SigningInfo? signingInfo)
     {
       var result = new List<string>();
       if (signingInfo == null || !OperatingSystem.IsAndroidVersionAtLeast(28))

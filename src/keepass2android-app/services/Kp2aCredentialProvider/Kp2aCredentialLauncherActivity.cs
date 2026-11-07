@@ -104,6 +104,9 @@ namespace keepass2android.services.Kp2aCredentialProvider
     /// <summary>True while a child activity (unlock, create entry) is running and its result will arrive in OnActivityResult.</summary>
     private bool _waitingForActivityResult;
 
+    /// <summary>True if the calling app was verified via assetlinks.json and should be pinned to a new passkey entry.</summary>
+    private bool _pinCallerAppToNewEntry;
+
     protected override void OnCreate(Bundle? savedInstanceState)
     {
       base.OnCreate(savedInstanceState);
@@ -799,6 +802,14 @@ namespace keepass2android.services.Kp2aCredentialProvider
 
       var passkeyFieldsJson = PasskeyStorage.CreatePasskeyFieldsJson(creationOptions.RelyingPartyEntity.Id, creationOptions.UserEntity.Name, passkey);
 
+      // If the calling app was verified via assetlinks.json in HandleCreatePasskeyRequest, pin it to the new entry, so
+      // later requests from this app are accepted without checking again. Not if the user only confirmed an unverified app.
+      var callerApp = GetNativeCallerApp(createRequest.CallingAppInfo);
+      if (callerApp != null && _pinCallerAppToNewEntry)
+      {
+        PasskeyAppPins.AddPinFields(passkeyFieldsJson, callerApp);
+      }
+
       var forwardIntent = BuildLaunchIntentToCreatePasskey(passkeyFieldsJson);
 
       // Build the response JSON we'll need once the entry has been created.
@@ -887,6 +898,105 @@ namespace keepass2android.services.Kp2aCredentialProvider
       return true;
     }
 
+    /// <summary>
+    /// Returns the calling app (package name and signing certificates) if it is a regular app, i.e. not a privileged
+    /// browser acting on behalf of a website. Returns null for privileged browsers and if the caller is unknown.
+    /// </summary>
+    private PrivilegedApp? GetNativeCallerApp(CallingAppInfo? callingAppInfo)
+    {
+      if (callingAppInfo == null || string.IsNullOrEmpty(callingAppInfo.PackageName))
+        return null;
+      if (PasskeyOriginHelper.GetOriginFromPrivilegedCaller(this, callingAppInfo) != null)
+        return null;
+      var fingerprints = PrivilegedAppsAllowlist.GetFingerprints(callingAppInfo.SigningInfo);
+      return fingerprints.Count > 0 ? new PrivilegedApp(callingAppInfo.PackageName, fingerprints) : null;
+    }
+
+    /// <summary>
+    /// For regular apps (not privileged browsers): checks that the app may use passkeys for the relying party.
+    /// Apps already pinned to <paramref name="entry"/> are accepted without further checks. Otherwise the relying party's
+    /// assetlinks.json must list the app. If it can't be retrieved, the user is asked whether to continue anyway.
+    /// Only after a successful check (not after the user's confirmation) the app is pinned, and only to new passkeys
+    /// (entry null), in <see cref="PreparePasskeyCreationAndLaunchEntryCreation"/>. Existing entries are not modified.
+    /// Returns false if no (asynchronous) check is needed. Otherwise the check is started and later either
+    /// <paramref name="continueRequest"/>, <paramref name="rejectRequest"/> or <paramref name="cancelRequest"/> is called.
+    /// </summary>
+    private bool VerifyCallingApp(CallingAppInfo? callingAppInfo, string relyingPartyId, PwEntry? entry,
+      System.Action continueRequest, System.Action<string> rejectRequest, System.Action cancelRequest)
+    {
+      var app = GetNativeCallerApp(callingAppInfo);
+      if (app == null)
+        return false;
+      if (entry != null && PasskeyAppPins.IsPinned(entry, app))
+        return false;
+
+      _ = VerifyCallingAppAsync(app, relyingPartyId, entry, continueRequest, rejectRequest, cancelRequest);
+      return true;
+    }
+
+    private async Task VerifyCallingAppAsync(PrivilegedApp app, string relyingPartyId, PwEntry? entry,
+      System.Action continueRequest, System.Action<string> rejectRequest, System.Action cancelRequest)
+    {
+      AppLinkResult result;
+      try
+      {
+        result = await AppLinkVerifier.VerifyAsync(relyingPartyId, app);
+      }
+      catch (Exception e)
+      {
+        Kp2aLog.Log($"Kp2aCredentialLauncherActivity: app link verification failed: {e.Message}");
+        result = AppLinkResult.Unreachable;
+      }
+
+      if (IsFinishing || IsDestroyed)
+        return;
+
+      var appLabel = PrivilegedAppsAllowlist.GetAppLabel(this, app.PackageName);
+
+      switch (result)
+      {
+        case AppLinkResult.Linked:
+          // Existing entries are not changed: saving the database can take long and cause sync conflicts, while
+          // checking again next time is fast.
+          if (entry == null)
+            _pinCallerAppToNewEntry = true;
+          continueRequest();
+          break;
+        case AppLinkResult.NotLinked:
+          var message = GetString(Resource.String.passkey_app_not_linked, appLabel, relyingPartyId);
+          Toast.MakeText(this, message, ToastLength.Long)?.Show();
+          rejectRequest(message);
+          break;
+        default:
+          var builder = new MaterialAlertDialogBuilder(this);
+          builder.SetTitle(GetString(Resource.String.passkey_app_unverified_title));
+          builder.SetMessage(GetString(Resource.String.passkey_app_unverified_message, appLabel, app.PackageName, relyingPartyId));
+          // Not pinned: the app will be checked again next time
+          builder.SetPositiveButton(GetString(Resource.String.passkey_app_unverified_continue), (_, _) => continueRequest());
+          builder.SetNegativeButton(GetString(Android.Resource.String.Cancel), (_, _) => cancelRequest());
+          var dialog = builder.Create();
+          dialog.CancelEvent += (_, _) => cancelRequest();
+          dialog.Show();
+          break;
+      }
+    }
+
+    private static PwEntry? FindEntry(string? entryId)
+    {
+      if (string.IsNullOrEmpty(entryId))
+        return null;
+      var entryUuid = new PwUuid(MemUtil.HexStringToByteArray(entryId));
+      var lastOpenedEntry = App.Kp2a.LastOpenedEntry;
+      if (lastOpenedEntry != null && entryUuid.Equals(lastOpenedEntry.Uuid))
+        return lastOpenedEntry.Entry;
+      foreach (Database db in App.Kp2a.OpenDatabases)
+      {
+        if (db.EntriesById.TryGetValue(entryUuid, out var entry))
+          return entry;
+      }
+      return null;
+    }
+
     #endregion
 
 
@@ -897,7 +1007,8 @@ namespace keepass2android.services.Kp2aCredentialProvider
     /// If user verification is required, shows device credential/biometric prompt first.
     /// </summary>
     /// <param name="browserCheckDone">True if the user was already asked about adding an unknown browser.</param>
-    private void HandleCreatePasskeyRequest(Intent requestIntent, bool browserCheckDone = false)
+    /// <param name="appCheckDone">True if the calling app has already been verified (see <see cref="VerifyCallingApp"/>).</param>
+    private void HandleCreatePasskeyRequest(Intent requestIntent, bool browserCheckDone = false, bool appCheckDone = false)
     {
       try
       {
@@ -922,6 +1033,15 @@ namespace keepass2android.services.Kp2aCredentialProvider
 
         var clientDataHash = passkeyRequest.GetClientDataHash();
         _passkeyCreationOptions = new PublicKeyCredentialCreationOptions(requestJson, clientDataHash);
+
+        if (!appCheckDone && VerifyCallingApp(createRequest.CallingAppInfo, _passkeyCreationOptions.RelyingPartyEntity.Id, entry: null,
+              continueRequest: () => HandleCreatePasskeyRequest(requestIntent, browserCheckDone: true, appCheckDone: true),
+              rejectRequest: SetUpFailureResponseForCreateAndFinish,
+              cancelRequest: SetUpCancellationResponseForCreateAndFinish))
+        {
+          return;
+        }
+
         var uvRequired = _passkeyCreationOptions.UserVerificationRequirement == Kp2aPasskey.Core.UserVerificationRequirement.Required
           || (PasskeyPreferences.GetForceUserVerificationWhenPreferred(this)
               && _passkeyCreationOptions.UserVerificationRequirement == Kp2aPasskey.Core.UserVerificationRequirement.Preferred);
@@ -1062,7 +1182,8 @@ namespace keepass2android.services.Kp2aCredentialProvider
     /// Unlocks the database first if needed. If user verification is required, shows device credential/biometric prompt.
     /// </summary>
     /// <param name="browserCheckDone">True if the user was already asked about adding an unknown browser.</param>
-    private void HandleGetPasskeyForEntryRequest(Intent requestIntent, bool browserCheckDone = false)
+    /// <param name="appCheckDone">True if the calling app has already been verified (see <see cref="VerifyCallingApp"/>).</param>
+    private void HandleGetPasskeyForEntryRequest(Intent requestIntent, bool browserCheckDone = false, bool appCheckDone = false)
     {
       // Check if database is locked and launch unlock flow if needed
       if (!App.Kp2a.DatabaseIsUnlocked)
@@ -1078,6 +1199,22 @@ namespace keepass2android.services.Kp2aCredentialProvider
             cancelRequest: SetUpCancellationResponseForGetAndFinish))
       {
         return;
+      }
+
+      if (!appCheckDone)
+      {
+        // If entry or passkey are missing, ReturnPasskeyForEntryAndFinish fails anyway.
+        var entry = FindEntry(requestIntent.GetStringExtra(Strings.ExtraEntryId));
+        var passkey = entry == null ? null : PasskeyStorage.RetrievePasskey(entry);
+        if (entry != null && passkey != null
+            && VerifyCallingApp(PendingIntentHandler.RetrieveProviderGetCredentialRequest(requestIntent)?.CallingAppInfo,
+              passkey.RelyingParty ?? "", entry,
+              continueRequest: () => HandleGetPasskeyForEntryRequest(requestIntent, browserCheckDone: true, appCheckDone: true),
+              rejectRequest: SetUpFailureResponseForGetAndFinish,
+              cancelRequest: SetUpCancellationResponseForGetAndFinish))
+        {
+          return;
+        }
       }
 
       var requestJson = requestIntent.GetStringExtra(ExtraRequestJson);
@@ -1151,27 +1288,7 @@ namespace keepass2android.services.Kp2aCredentialProvider
           return;
         }
 
-        var entryUuid = new PwUuid(MemUtil.HexStringToByteArray(entryId));
-
-        // Find the entry in open databases
-        PwEntry? foundEntry = null;
-        var lastOpenedEntry = App.Kp2a.LastOpenedEntry;
-        if (lastOpenedEntry != null && entryUuid.Equals(lastOpenedEntry.Uuid))
-        {
-          foundEntry = lastOpenedEntry.Entry;
-        }
-        else
-        {
-          foreach (Database db in App.Kp2a.OpenDatabases)
-          {
-            if (db.EntriesById.TryGetValue(entryUuid, out var resultEntry))
-            {
-              foundEntry = resultEntry;
-              break;
-            }
-          }
-        }
-
+        var foundEntry = FindEntry(entryId);
         if (foundEntry == null)
         {
           SetUpNoCredentialResponseForGetAndFinish();
