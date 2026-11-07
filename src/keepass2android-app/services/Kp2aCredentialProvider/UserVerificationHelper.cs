@@ -22,7 +22,7 @@ using Android.Content;
 using Android.OS;
 using AndroidX.Biometric;
 using AndroidX.Fragment.App;
-using Java.Util.Concurrent;
+using AndroidX.Core.Content;
 using Keepass2android;
 
 namespace keepass2android.services.Kp2aCredentialProvider
@@ -71,7 +71,8 @@ namespace keepass2android.services.Kp2aCredentialProvider
       Action onSuccess,
       Action? onCancelOrError)
     {
-      var executor = Executors.NewSingleThreadExecutor();
+      // Deliver callbacks on the main thread; avoids creating (and leaking) a new thread pool per call.
+      var executor = ContextCompat.GetMainExecutor(activity);
       var callback = new BiometricCallback(onSuccess, onCancelOrError);
 
       var promptInfo = new BiometricPrompt.PromptInfo.Builder()
@@ -123,6 +124,8 @@ namespace keepass2android.services.Kp2aCredentialProvider
 
       private static void RunOnMain(Action action)
       {
+        // Callbacks already arrive on the main thread (main executor). Still post the action so that
+        // it runs after BiometricPrompt has finished handling the result (e.g. dismissing its fragment).
         var handler = new Handler(Looper.MainLooper!);
         handler.Post(action);
       }
