@@ -294,7 +294,8 @@ namespace keepass2android.services.Kp2aCredentialProvider
       IOutcomeReceiver callback
     )
     {
-      // ignored
+      // nothing to clear (no session state is kept), but the caller must be informed to not wait forever.
+      callback.OnResult(null);
     }
   }
 }
