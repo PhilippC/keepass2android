@@ -81,6 +81,9 @@ namespace keepass2android.services.Kp2aCredentialProvider
     // Key inside _passkeyResponseData
     private const string PasskeyDataKeyCredentialId = "credentialId";
 
+    // Error messages returned to Credential Manager. Details are only written to the log.
+    private const string InvalidRequestMessage = "Invalid passkey request";
+
     // ViewModel-style state variables for passkey operations
     private PublicKeyCredentialCreationOptions? _passkeyCreationOptions;
     private string? _passkeyRequestJson;
@@ -997,6 +1000,41 @@ namespace keepass2android.services.Kp2aCredentialProvider
       return null;
     }
 
+    /// <summary>
+    /// Parses caller-supplied creation options. Returns null (and logs the details) if the JSON is malformed.
+    /// </summary>
+    private static PublicKeyCredentialCreationOptions? TryParseCreationOptions(string requestJson, byte[]? clientDataHash)
+    {
+      try
+      {
+        var options = new PublicKeyCredentialCreationOptions(requestJson, clientDataHash);
+        if (string.IsNullOrEmpty(options.RelyingPartyEntity?.Id))
+          throw new InvalidOperationException("Missing rp.id");
+        return options;
+      }
+      catch (Exception e)
+      {
+        Kp2aLog.Log($"Kp2aCredentialLauncherActivity: invalid passkey creation request: {e.GetType().Name}: {e.Message}");
+        return null;
+      }
+    }
+
+    /// <summary>
+    /// Parses caller-supplied request options. Returns null (and logs the details) if the JSON is malformed.
+    /// </summary>
+    private static PublicKeyCredentialRequestOptions? TryParseRequestOptions(string requestJson)
+    {
+      try
+      {
+        return new PublicKeyCredentialRequestOptions(requestJson);
+      }
+      catch (Exception e)
+      {
+        Kp2aLog.Log($"Kp2aCredentialLauncherActivity: invalid passkey get request: {e.GetType().Name}: {e.Message}");
+        return null;
+      }
+    }
+
     #endregion
 
 
@@ -1024,15 +1062,22 @@ namespace keepass2android.services.Kp2aCredentialProvider
           throw new InvalidOperationException("Missing request JSON");
         }
 
+        // Parse the caller-supplied JSON before showing any dialog. Malformed input must result in an error
+        // response to Credential Manager, not in a crash.
+        var creationOptions = TryParseCreationOptions(requestJson, passkeyRequest.GetClientDataHash());
+        if (creationOptions == null)
+        {
+          SetUpFailureResponseForCreateAndFinish(InvalidRequestMessage);
+          return;
+        }
+        _passkeyCreationOptions = creationOptions;
+
         if (!browserCheckDone && AskToAddUnknownBrowser(createRequest.CallingAppInfo,
               continueRequest: () => HandleCreatePasskeyRequest(requestIntent, browserCheckDone: true),
               cancelRequest: SetUpCancellationResponseForCreateAndFinish))
         {
           return;
         }
-
-        var clientDataHash = passkeyRequest.GetClientDataHash();
-        _passkeyCreationOptions = new PublicKeyCredentialCreationOptions(requestJson, clientDataHash);
 
         if (!appCheckDone && VerifyCallingApp(createRequest.CallingAppInfo, _passkeyCreationOptions.RelyingPartyEntity.Id, entry: null,
               continueRequest: () => HandleCreatePasskeyRequest(requestIntent, browserCheckDone: true, appCheckDone: true),
@@ -1224,7 +1269,12 @@ namespace keepass2android.services.Kp2aCredentialProvider
         return;
       }
 
-      var requestOptions = new PublicKeyCredentialRequestOptions(requestJson);
+      var requestOptions = TryParseRequestOptions(requestJson);
+      if (requestOptions == null)
+      {
+        SetUpFailureResponseForGetAndFinish(InvalidRequestMessage);
+        return;
+      }
       var uvRequired = requestOptions.UserVerificationRequirement == Kp2aPasskey.Core.UserVerificationRequirement.Required
         || (PasskeyPreferences.GetForceUserVerificationWhenPreferred(this)
             && requestOptions.UserVerificationRequirement == Kp2aPasskey.Core.UserVerificationRequirement.Preferred);
@@ -1304,7 +1354,12 @@ namespace keepass2android.services.Kp2aCredentialProvider
         }
 
         // Parse request options and delegate to shared assertion builder
-        var requestOptions = new PublicKeyCredentialRequestOptions(requestJson);
+        var requestOptions = TryParseRequestOptions(requestJson);
+        if (requestOptions == null)
+        {
+          SetUpFailureResponseForGetAndFinish(InvalidRequestMessage);
+          return;
+        }
 
         BuildAndReturnAssertionFromPasskeyAndFinish(passkey, getRequest?.CallingAppInfo, requestOptions, passkeyOption, userVerified);
       }
