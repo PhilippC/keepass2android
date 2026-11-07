@@ -34,12 +34,23 @@ namespace keepass2android.services.Kp2aCredentialProvider
   public static class UserVerificationHelper
   {
     /// <summary>
-    /// Returns true if the device can show biometric or device credential authentication.
+    /// Authenticators accepted for user verification: Class 3 (strong) biometrics or the device credential
+    /// (PIN/pattern/password). Class 2 (weak) biometrics are not accepted.
+    /// </summary>
+    private const int AllowedAuthenticators =
+      BiometricManager.Authenticators.BiometricStrong | BiometricManager.Authenticators.DeviceCredential;
+
+    /// <summary>
+    /// Returns true if the device can show strong biometric or device credential authentication.
     /// </summary>
     public static bool CanAuthenticate(Context context)
     {
+      // BIOMETRIC_STRONG | DEVICE_CREDENTIAL is not supported by BiometricPrompt before API 30.
+      // Passkeys (Credential Manager) are not available on these versions anyway.
+      if (!OperatingSystem.IsAndroidVersionAtLeast(30))
+        return false;
       var biometricManager = BiometricManager.From(context);
-      var result = biometricManager.CanAuthenticate(BiometricManager.Authenticators.BiometricWeak | BiometricManager.Authenticators.DeviceCredential);
+      var result = biometricManager.CanAuthenticate(AllowedAuthenticators);
       return result == BiometricManager.BiometricSuccess;
     }
 
@@ -67,7 +78,7 @@ namespace keepass2android.services.Kp2aCredentialProvider
         .SetTitle(title)
         .SetSubtitle(subtitle ?? "")
         .SetConfirmationRequired(false)
-        .SetDeviceCredentialAllowed(true)
+        .SetAllowedAuthenticators(AllowedAuthenticators)
         .Build();
 
       var biometricPrompt = new BiometricPrompt(activity, executor, callback);
