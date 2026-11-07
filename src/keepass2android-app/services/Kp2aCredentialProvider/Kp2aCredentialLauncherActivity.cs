@@ -339,11 +339,14 @@ namespace keepass2android.services.Kp2aCredentialProvider
           catch (Exception ex)
           {
             Kp2aLog.Log($"Kp2aCredentialLauncherActivity: Error creating passkey response: {ex.Message}");
+            // The entry has already been saved at this point, so tell the user it won't work.
+            Toast.MakeText(this, GetString(Resource.String.passkey_create_failed, ex.Message), ToastLength.Long)?.Show();
             PendingIntentHandler.SetCreateCredentialException(
               result,
               new CreateCredentialUnknownException(ex.Message)
             );
-            SetResult(Result.Canceled, result);
+            // Result.Ok is required, otherwise Credential Manager drops the exception and reports a cancellation.
+            SetResult(Result.Ok, result);
           }
           finally
           {
