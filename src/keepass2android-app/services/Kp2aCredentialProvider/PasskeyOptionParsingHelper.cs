@@ -21,7 +21,7 @@ using AndroidX.Credentials.Provider;
 
 namespace keepass2android.services.Kp2aCredentialProvider
 {
-  public class PasskeyOptionParsingHelper
+  public static class PasskeyOptionParsingHelper
   {
     /// <summary>
     /// Extract clientDataHash from GetPublicKeyCredentialOption
