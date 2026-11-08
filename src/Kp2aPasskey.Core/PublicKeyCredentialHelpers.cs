@@ -37,17 +37,6 @@ namespace Kp2aPasskey.Core
 
   public static class UserVerificationRequirementExtensions
   {
-    public static string ToWebAuthnString(this UserVerificationRequirement value)
-    {
-      return value switch
-      {
-        UserVerificationRequirement.Required => "required",
-        UserVerificationRequirement.Preferred => "preferred",
-        UserVerificationRequirement.Discouraged => "discouraged",
-        _ => "preferred"
-      };
-    }
-
     public static UserVerificationRequirement FromString(string? value)
     {
       if (string.IsNullOrEmpty(value)) return UserVerificationRequirement.Preferred;

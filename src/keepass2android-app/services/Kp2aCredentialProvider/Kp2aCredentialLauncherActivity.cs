@@ -63,8 +63,6 @@ namespace keepass2android.services.Kp2aCredentialProvider
     public const int CredentialRequestTypeGetPasskeyForEntry = 6;
 
     // Intent extra keys
-    public const string ExtraRelyingPartyId = "extra_relying_party_id";
-    public const string ExtraRequestJson = "extra_request_json";
 
     private const int CreateEntryRequestCode = 100;
     private const int UnlockRequestCode = 300;
@@ -168,7 +166,7 @@ namespace keepass2android.services.Kp2aCredentialProvider
           case CredentialRequestTypeUnlockForGetCredentials:
             // The database was (and probably still is) locked when the onBeginGetCredentialRequest came in. We're supposed to unlock the database and then return matching entries.
             //We can use the same workflow for get-password as well as get-passkey requests.
-            HandleUnlockForGetCredentialsRequest(intent);
+            HandleUnlockForGetCredentialsRequest();
             break;
           case CredentialRequestTypeGetPasswordForEntry:
             // After we (or the service) have returned entries for Android's credential UI (see GetCredentialHelper), the user has clicked one of these.
@@ -237,7 +235,7 @@ namespace keepass2android.services.Kp2aCredentialProvider
       }
     }
 
-    private void HandleUnlockForGetCredentialsRequest(Intent requestIntent)
+    private void HandleUnlockForGetCredentialsRequest()
     {
       _pendingOperation = PendingOperation.UnlockForGetCredentials;
       LaunchUnlockDatabase();

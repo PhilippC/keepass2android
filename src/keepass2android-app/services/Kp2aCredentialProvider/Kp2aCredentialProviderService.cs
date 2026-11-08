@@ -39,9 +39,7 @@ namespace keepass2android.services.Kp2aCredentialProvider
   [System.Runtime.Versioning.SupportedOSPlatform("android31.0")]
   public class Kp2aCredentialProviderService : CredentialProviderService
   {
-    private const string TAG = "Kp2aCredentialProviderService";
     private Icon? _defaultIcon;
-    private bool _isAutoSelectAllowed = false;
 
     private Icon DefaultIcon
     {
@@ -139,7 +137,6 @@ namespace keepass2android.services.Kp2aCredentialProvider
           null, // ClientDataHash is not available in BeginCreatePublicKeyCredentialRequest
           () => PasskeyOriginHelper.GetOriginFromPrivilegedCaller(this, request.CallingAppInfo)
         );
-        var relyingPartyId = creationOptions.RelyingPartyEntity.Id;
 
 
         // Search for existing passkeys with this relying party
@@ -157,9 +154,7 @@ namespace keepass2android.services.Kp2aCredentialProvider
                   .PutExtra(
                     Kp2aCredentialLauncherActivity.CredentialRequestTypeKey,
                     Kp2aCredentialLauncherActivity.CredentialRequestTypeCreatePasskey
-                  )
-                  .PutExtra(Kp2aCredentialLauncherActivity.ExtraRelyingPartyId, relyingPartyId)
-                  .PutExtra(Kp2aCredentialLauncherActivity.ExtraRequestJson, request.RequestJson),
+                  ),
                 (int)PendingIntentFlags.UpdateCurrent,
                 true
               )!
@@ -187,9 +182,7 @@ namespace keepass2android.services.Kp2aCredentialProvider
                   .PutExtra(
                     Kp2aCredentialLauncherActivity.CredentialRequestTypeKey,
                     Kp2aCredentialLauncherActivity.CredentialRequestTypeCreatePasskey
-                  )
-                  .PutExtra(Kp2aCredentialLauncherActivity.ExtraRelyingPartyId, relyingPartyId)
-                  .PutExtra(Kp2aCredentialLauncherActivity.ExtraRequestJson, request.RequestJson),
+                  ),
                 (int)PendingIntentFlags.UpdateCurrent,
                 true
               )!
@@ -256,7 +249,7 @@ namespace keepass2android.services.Kp2aCredentialProvider
           else if (option is BeginGetPublicKeyCredentialOption passkeyOption)
           {
             hasKnownOption = true;
-            GetCredentialHelper.AddMatchingPasskeyEntries(this, request.CallingAppInfo, passkeyOption, responseBuilder, _isAutoSelectAllowed);
+            GetCredentialHelper.AddMatchingPasskeyEntries(this, request.CallingAppInfo, passkeyOption, responseBuilder);
           }
         }
 

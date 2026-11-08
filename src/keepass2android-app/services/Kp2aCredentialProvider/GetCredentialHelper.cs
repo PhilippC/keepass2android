@@ -160,9 +160,7 @@ namespace keepass2android.services.Kp2aCredentialProvider
                       Kp2aCredentialLauncherActivity.CredentialRequestTypeKey,
                       Kp2aCredentialLauncherActivity.CredentialRequestTypeGetPasskeyForEntry
                     )
-                    .PutExtra(Strings.ExtraEntryId, entry.Uuid.ToHexString())
-                    .PutExtra(Kp2aCredentialLauncherActivity.ExtraRelyingPartyId, relyingPartyId)
-                    .PutExtra(Kp2aCredentialLauncherActivity.ExtraRequestJson, option.RequestJson),
+                    .PutExtra(Strings.ExtraEntryId, entry.Uuid.ToHexString()),
                   (int)PendingIntentFlags.UpdateCurrent,
                   true
                 )!,
