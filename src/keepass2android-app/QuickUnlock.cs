@@ -250,6 +250,7 @@ namespace keepass2android
     {
       Kp2aLog.Log("OnFingerprintAuthSucceeded");
       _biometryIdentifier.StopListening();
+      App.Kp2a.OnUserVerificationSucceeded();
       var btn = FindViewById<ImageButton>(Resource.Id.fingerprintbtn);
 
       btn.SetImageResource(Resource.Drawable.ic_fingerprint_success);

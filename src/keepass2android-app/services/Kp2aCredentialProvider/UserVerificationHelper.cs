@@ -100,7 +100,11 @@ namespace keepass2android.services.Kp2aCredentialProvider
       public override void OnAuthenticationSucceeded(BiometricPrompt.AuthenticationResult result)
       {
         base.OnAuthenticationSucceeded(result);
-        RunOnMain(() => _onSuccess());
+        RunOnMain(() =>
+        {
+          App.Kp2a.OnUserVerificationSucceeded();
+          _onSuccess();
+        });
       }
 
       public override void OnAuthenticationError(int errorCode, Java.Lang.ICharSequence? errString)

@@ -125,8 +125,36 @@ namespace keepass2android
   /// </summary>
   public class Kp2aApp : IKp2aApp, ICacheSupervisor
   {
+    /// <summary>
+    /// Time (SystemClock.ElapsedRealtime, ms) of the last successful user verification, or null: a biometric
+    /// database unlock or a passkey user verification prompt (strong biometric or device credential).
+    /// Cleared when the database is locked.
+    /// </summary>
+    private long? _lastUserVerificationElapsedMs;
+
+    /// <summary>
+    /// Records a successful user verification (biometric unlock on the password or QuickUnlock screen, or the
+    /// user verification prompt).
+    /// </summary>
+    public void OnUserVerificationSucceeded()
+    {
+      _lastUserVerificationElapsedMs = SystemClock.ElapsedRealtime();
+    }
+
+    /// <summary>
+    /// True if the user was verified within <paramref name="maxAge"/> and the database has not been locked since.
+    /// </summary>
+    public bool WasUserVerifiedWithin(TimeSpan maxAge)
+    {
+      if (_lastUserVerificationElapsedMs == null)
+        return false;
+      var age = SystemClock.ElapsedRealtime() - _lastUserVerificationElapsedMs.Value;
+      return age >= 0 && age <= (long)maxAge.TotalMilliseconds;
+    }
+
     public void Lock(bool allowQuickUnlock = true, bool lockWasTriggeredByTimeout = false)
     {
+      _lastUserVerificationElapsedMs = null;
       if (OpenDatabases.Any())
       {
         if (QuickUnlockEnabled && allowQuickUnlock &&

@@ -1089,9 +1089,9 @@ namespace keepass2android.services.Kp2aCredentialProvider
 
         var uvDecision = DecideUserVerification(_passkeyCreationOptions.UserVerificationRequirement);
 
-        if (uvDecision == UserVerificationDecision.Skip)
+        if (uvDecision == UserVerificationDecision.Skip || uvDecision == UserVerificationDecision.AlreadyVerified)
         {
-          _userVerifiedForCreate = false;
+          _userVerifiedForCreate = uvDecision == UserVerificationDecision.AlreadyVerified;
           PreparePasskeyCreationAndLaunchEntryCreation(requestIntent);
           return;
         }
@@ -1134,13 +1134,21 @@ namespace keepass2android.services.Kp2aCredentialProvider
     {
       Skip,
       Prompt,
+      AlreadyVerified,
       Unavailable
     }
 
     /// <summary>
+    /// A user verification (biometric database unlock or UV prompt) within this time is reused, so the user is not asked twice.
+    /// </summary>
+    private static readonly TimeSpan RecentUserVerificationMaxAge = TimeSpan.FromSeconds(60);
+
+    /// <summary>
     /// Decides whether to show the user verification prompt. "required" always prompts. "preferred" prompts if the
-    /// force-UV setting is on (default). Without a screen lock, "preferred" falls back to no verification (UV=0)
-    /// instead of failing; only "required" is refused then.
+    /// force-UV setting is on (default). A user verification within the last 60 s (biometric database unlock or
+    /// UV prompt) replaces the prompt.
+    /// Without a screen lock, "preferred" falls back to no verification (UV=0) instead of failing; only "required"
+    /// is refused then.
     /// </summary>
     private UserVerificationDecision DecideUserVerification(Kp2aPasskey.Core.UserVerificationRequirement requirement)
     {
@@ -1150,6 +1158,8 @@ namespace keepass2android.services.Kp2aCredentialProvider
             && PasskeyPreferences.GetForceUserVerificationWhenPreferred(this));
       if (!wanted)
         return UserVerificationDecision.Skip;
+      if (App.Kp2a.WasUserVerifiedWithin(RecentUserVerificationMaxAge))
+        return UserVerificationDecision.AlreadyVerified;
       if (UserVerificationHelper.CanAuthenticate(this))
         return UserVerificationDecision.Prompt;
       return required ? UserVerificationDecision.Unavailable : UserVerificationDecision.Skip;
@@ -1288,9 +1298,9 @@ namespace keepass2android.services.Kp2aCredentialProvider
       var requestOptions = request.RequestOptions;
       var uvDecision = DecideUserVerification(requestOptions.UserVerificationRequirement);
 
-      if (uvDecision == UserVerificationDecision.Skip)
+      if (uvDecision == UserVerificationDecision.Skip || uvDecision == UserVerificationDecision.AlreadyVerified)
       {
-        ReturnPasskeyAssertionAndFinish(request, userVerified: false);
+        ReturnPasskeyAssertionAndFinish(request, userVerified: uvDecision == UserVerificationDecision.AlreadyVerified);
         return;
       }
 
