@@ -172,7 +172,7 @@ namespace keepass2android.services.Kp2aCredentialProvider
         else if (currentDb?.CanWrite == false)
         {
           // Database is read-only, cannot create passkeys
-          throw new Exception("Cannot register passkey in read-only database");
+          throw new InvalidOperationException("Cannot register passkey in read-only database");
         }
         else
         {
@@ -262,7 +262,7 @@ namespace keepass2android.services.Kp2aCredentialProvider
 
         if (!hasKnownOption)
         {
-          throw new Exception("Unknown type of beginGetCredentialOption");
+          throw new NotSupportedException("Unknown type of beginGetCredentialOption");
         }
 
         responseBuilder.AddAction(
