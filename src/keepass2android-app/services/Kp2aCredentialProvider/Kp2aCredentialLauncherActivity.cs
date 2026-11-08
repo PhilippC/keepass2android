@@ -785,8 +785,7 @@ namespace keepass2android.services.Kp2aCredentialProvider
       var requestedAlgorithms = creationOptions.PubKeyCredParams.Select(p => p.Alg).ToList();
 
       // Generate credential ID (16 random bytes)
-      var credentialId = new byte[16];
-      new System.Security.Cryptography.RNGCryptoServiceProvider().GetBytes(credentialId);
+      var credentialId = System.Security.Cryptography.RandomNumberGenerator.GetBytes(16);
 
       // Generate key pair
       var keyPairResult = PasskeyCryptoHelper.GenerateKeyPair(requestedAlgorithms);
