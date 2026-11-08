@@ -1387,18 +1387,18 @@
 
   <!-- Passkey Settings Screen -->
   <string name="pref_passkeys_screen_summary">Configure passkey backup behavior</string>
-  <string name="pref_passkeys_backup_category_title">Sync &amp; backup (new passkeys only)</string>
+  <string name="pref_passkeys_backup_category_title">Sync &amp; backup</string>
   <string name="pref_passkeys_uv_category_title">User Verification</string>
   <string name="passkeys_uv_setting_change_subtitle">Confirm your identity to change this setting.</string>
 
   <!-- Passkey Backup Settings -->
   <string name="passkeys_backup_eligibility_key" translatable="false">passkeys_backup_eligibility_key</string>
-  <string name="passkeys_backup_eligibility_title">Allow syncing of new passkeys</string>
-  <string name="passkeys_backup_eligibility_summary">Tells websites that new passkeys may be copied to other devices, e.g. by syncing your database. Some websites treat such passkeys differently. Applies only to passkeys created from now on; existing passkeys keep the setting they were created with.</string>
+  <string name="passkeys_backup_eligibility_title">Allow syncing of passkeys</string>
+  <string name="passkeys_backup_eligibility_summary">Tells websites that passkeys may be copied to other devices, e.g. by syncing your database. Some websites treat such passkeys differently.</string>
   
   <string name="passkeys_backup_state_key" translatable="false">passkeys_backup_state_key</string>
-  <string name="passkeys_backup_state_title">Report new passkeys as synced</string>
-  <string name="passkeys_backup_state_summary">Tells websites that new passkeys are already backed up or synced to other devices. Enable if you sync or back up your database. Applies only to passkeys created from now on.</string>
+  <string name="passkeys_backup_state_title">Report passkeys as synced</string>
+  <string name="passkeys_backup_state_summary">Tells websites that passkeys are backed up or synced to other devices. Enable if you sync or back up your database.</string>
 
   <!-- Passkey User Verification -->
   <string name="passkeys_force_user_verification_when_preferred_key" translatable="false">passkeys_force_user_verification_when_preferred_key</string>
