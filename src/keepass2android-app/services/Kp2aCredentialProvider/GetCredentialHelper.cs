@@ -183,9 +183,7 @@ namespace keepass2android.services.Kp2aCredentialProvider
         {
           // No passkeys found for this RP — show a generic "search all passkeys" entry.
           // This allows unlocking a closed database or manual entry selection.
-          responseBuilder.AddAuthenticationAction(
-            CreateAuthenticationAction(context)
-          ).Build();
+          responseBuilder.AddAuthenticationAction(CreateAuthenticationAction(context));
         }
       }
       catch (Exception e)
