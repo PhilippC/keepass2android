@@ -128,12 +128,18 @@ namespace keepass2android
       string strGroupName = _app.GetResourceString(UiStringKey.search_results);
       PwGroup pgResults = new PwGroup(true, true, strGroupName, PwIcon.EMailSearch) { IsVirtual = true };
 
+      // An empty relying party must never match: otherwise every entry without a passkey
+      // (ReadSafe returns "" for missing fields) would be returned.
+      if (string.IsNullOrWhiteSpace(relyingParty))
+        return pgResults;
+
       foreach (PwEntry entry in database.EntriesById.Values)
       {
         if (!entry.GetSearchingEnabled())
           continue;
         var storedRp = entry.Strings.ReadSafe("KPEX_PASSKEY_RELYING_PARTY");
-        // Log every entry that has the field so mismatches are visible in logcat
+        if (string.IsNullOrWhiteSpace(storedRp))
+          continue;
         if (string.Equals(storedRp, relyingParty, StringComparison.OrdinalIgnoreCase))
           pgResults.AddEntry(entry, false);
       }
