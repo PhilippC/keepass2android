@@ -25,8 +25,22 @@ namespace keepass2android
   public static class PasskeyPreferences
   {
     /// <summary>
+    /// Backup Eligibility (BE) flag used for passkey entries that have no stored KPEX_PASSKEY_FLAG_BE field
+    /// (e.g. created by older versions or other apps). WebAuthn requires BE to stay constant over a credential's
+    /// lifetime, so this must NOT depend on a user-changeable preference. Matches KeePassXC's DEFAULT_BE_FLAG.
+    /// </summary>
+    public const bool BackupEligibilityForEntriesWithoutFlags = true;
+
+    /// <summary>
+    /// Backup State (BS) flag used for passkey entries that have no stored KPEX_PASSKEY_FLAG_BS field.
+    /// Matches KeePassXC's DEFAULT_BS_FLAG. Callers must still force BS to false if BE is false.
+    /// </summary>
+    public const bool BackupStateForEntriesWithoutFlags = true;
+
+    /// <summary>
     /// Get the backup eligibility preference value.
     /// Determines whether new passkeys should be marked as eligible for backup.
+    /// Only use this when creating a passkey; the value is stored in the entry at creation time.
     /// </summary>
     public static bool GetBackupEligibility(Context context)
     {
@@ -40,6 +54,7 @@ namespace keepass2android
     /// <summary>
     /// Get the backup state preference value.
     /// Determines whether new passkeys should be marked as currently backed up.
+    /// Only use this when creating a passkey; the value is stored in the entry at creation time.
     /// Note: This only returns true if backup eligibility is also enabled.
     /// </summary>
     public static bool GetBackupState(Context context)

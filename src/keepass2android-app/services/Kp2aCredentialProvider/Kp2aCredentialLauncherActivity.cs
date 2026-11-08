@@ -434,8 +434,8 @@ namespace keepass2android.services.Kp2aCredentialProvider
       // Build public key encodings (CBOR for credential, X.509 SPKI for Android)
       var (credentialPublicKeyCbor, publicKeySpki) = BuildPublicKeyEncodings(publicKey, keyTypeId);
 
-      var beFlag = passkey.BackupEligibility ?? PasskeyPreferences.GetBackupEligibility(this);
-      var bsFlag = passkey.BackupState ?? PasskeyPreferences.GetBackupState(this);
+      var beFlag = passkey.BackupEligibility ?? PasskeyPreferences.BackupEligibilityForEntriesWithoutFlags;
+      var bsFlag = beFlag && (passkey.BackupState ?? PasskeyPreferences.BackupStateForEntriesWithoutFlags);
 
       // Build attestation response
       var attestationResponse = new AuthenticatorAttestationResponse(
@@ -1191,8 +1191,8 @@ namespace keepass2android.services.Kp2aCredentialProvider
         ClientDataBuildResponse.RequestType.Get,
         requestOptions.Challenge);
 
-      var assertionBe = passkey.BackupEligibility ?? PasskeyPreferences.GetBackupEligibility(this);
-      var assertionBs = passkey.BackupState ?? PasskeyPreferences.GetBackupState(this);
+      var assertionBe = passkey.BackupEligibility ?? PasskeyPreferences.BackupEligibilityForEntriesWithoutFlags;
+      var assertionBs = assertionBe && (passkey.BackupState ?? PasskeyPreferences.BackupStateForEntriesWithoutFlags);
 
       // Build assertion response
       var assertionResponse = new AuthenticatorAssertionResponse(
