@@ -51,7 +51,6 @@ using keepass2android.Utils;
 using KeePassLib.Keys;
 using KeePassLib.Serialization;
 using FragmentManager = AndroidX.Fragment.App.FragmentManager;
-using AndroidX.Fragment.App;
 using keepass2android.services.Kp2aCredentialProvider;
 
 namespace keepass2android
@@ -743,9 +742,7 @@ namespace keepass2android
                   .Apply();
                 ((SwitchPreferenceCompat)sender).Checked = boolValue;
               },
-              onCancelOrError: () =>
-              {
-              }
+              onCancelOrError: null
             );
           };
 
