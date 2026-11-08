@@ -250,7 +250,11 @@ namespace keepass2android.services.Kp2aCredentialProvider
     private void LaunchUnlockDatabase()
     {
       var forwardIntent = new Intent(this, typeof(SelectCurrentDbActivity));
-      new UnlockThenCloseWithResultTask(true) { ResultCode = (int)Result.Ok }.ToIntent(forwardIntent);
+      // If the app is locked, return right after unlocking (e.g. QuickUnlock) instead of leaving the user on the
+      // database list. If a database is already unlocked, the user tapped the unlock action because they need another
+      // database, so show the list.
+      bool explicitlySelectDatabase = App.Kp2a.DatabaseIsUnlocked;
+      new UnlockThenCloseWithResultTask(explicitlySelectDatabase) { ResultCode = (int)Result.Ok }.ToIntent(forwardIntent);
       StartChildActivityForResult(forwardIntent, UnlockRequestCode);
     }
 
