@@ -21,6 +21,7 @@
 using System;
 using System.Collections.Generic;
 using Org.Json;
+using keepass2android.services.Kp2aCredentialProvider.Passkey;
 
 namespace Kp2aPasskey.Core
 {
@@ -313,18 +314,24 @@ namespace Kp2aPasskey.Core
         Android.Util.Base64Flags.UrlSafe | Android.Util.Base64Flags.NoPadding
       );
 
-      // Parse pubKeyCredParams
-      var pubKeyCredParamsJson = Json.GetJSONArray("pubKeyCredParams");
+      // Parse pubKeyCredParams. Per spec, an empty list means ES256 (-7) and RS256 (-257), and entries
+      // with a type other than "public-key" are ignored.
+      var pubKeyCredParamsJson = Json.OptJSONArray("pubKeyCredParams");
       var pubKeyCredParamsList = new List<PublicKeyCredentialParameters>();
-      for (int i = 0; i < pubKeyCredParamsJson.Length(); i++)
+      if (pubKeyCredParamsJson == null || pubKeyCredParamsJson.Length() == 0)
       {
-        var e = pubKeyCredParamsJson.GetJSONObject(i);
-        pubKeyCredParamsList.Add(
-          new PublicKeyCredentialParameters(
-            e.GetString("type"),
-            e.GetLong("alg")
-          )
-        );
+        pubKeyCredParamsList.Add(new PublicKeyCredentialParameters("public-key", PasskeyCryptoHelper.CoseAlgEs256));
+        pubKeyCredParamsList.Add(new PublicKeyCredentialParameters("public-key", PasskeyCryptoHelper.CoseAlgRs256));
+      }
+      else
+      {
+        for (int i = 0; i < pubKeyCredParamsJson.Length(); i++)
+        {
+          var e = pubKeyCredParamsJson.GetJSONObject(i);
+          if (e.OptString("type", "") != "public-key")
+            continue;
+          pubKeyCredParamsList.Add(new PublicKeyCredentialParameters("public-key", e.GetLong("alg")));
+        }
       }
       PubKeyCredParams = pubKeyCredParamsList;
 
