@@ -90,14 +90,14 @@ namespace Kp2aPasskey.Core
     /// <summary>
     /// Determines the relying party id per WebAuthn: the explicitly given rpId if present, otherwise the
     /// effective domain of the caller origin. Throws <see cref="PasskeyRequestValidationException"/> if
-    /// neither is available.
+    /// neither is available. <paramref name="getCallerOrigin"/> is only called if the request has no rpId.
     /// </summary>
-    public static string ResolveRpId(string? requestedRpId, string? callerOrigin)
+    public static string ResolveRpId(string? requestedRpId, Func<string?>? getCallerOrigin)
     {
       if (!string.IsNullOrWhiteSpace(requestedRpId))
         return requestedRpId;
 
-      var effectiveDomain = TryGetEffectiveDomain(callerOrigin);
+      var effectiveDomain = TryGetEffectiveDomain(getCallerOrigin?.Invoke());
       if (effectiveDomain != null)
         return effectiveDomain;
 
@@ -146,10 +146,10 @@ namespace Kp2aPasskey.Core
       UserVerificationRequirementExtensions.FromString(UserVerification);
 
     /// <param name="requestJson">The caller-supplied request JSON.</param>
-    /// <param name="callerOrigin">The verified caller origin, if known. Used to derive the rpId if the
-    /// request does not contain one. If null and the request has no rpId,
-    /// <see cref="PasskeyRequestValidationException"/> is thrown.</param>
-    public PublicKeyCredentialRequestOptions(string requestJson, string? callerOrigin = null)
+    /// <param name="getCallerOrigin">Returns the verified web origin of the caller (privileged browser), or null.
+    /// Only called if the request has no rpId; the rpId is then derived from the origin. If no rpId can be
+    /// determined, <see cref="PasskeyRequestValidationException"/> is thrown.</param>
+    public PublicKeyCredentialRequestOptions(string requestJson, Func<string?>? getCallerOrigin = null)
     {
       Json = new JSONObject(requestJson);
       Challenge = Android.Util.Base64.Decode(
@@ -158,7 +158,7 @@ namespace Kp2aPasskey.Core
       );
       Timeout = Json.OptLong("timeout", 0);
       RpId = WebAuthnRequestParsing.ResolveRpId(
-        WebAuthnRequestParsing.OptStringOrNull(Json, "rpId"), callerOrigin);
+        WebAuthnRequestParsing.OptStringOrNull(Json, "rpId"), getCallerOrigin);
       UserVerification = Json.OptString("userVerification", "preferred");
       AllowCredentials = ParseAllowCredentials(Json);
       AllowCredentialsSpecified = IsAllowCredentialsSpecified(Json);
@@ -275,10 +275,10 @@ namespace Kp2aPasskey.Core
 
     /// <param name="requestJson">The caller-supplied request JSON.</param>
     /// <param name="clientDataHash">The caller-supplied clientDataHash, if any.</param>
-    /// <param name="callerOrigin">The verified caller origin, if known. Used to derive rp.id if the
-    /// request does not contain one. If null and the request has no rp.id,
-    /// <see cref="PasskeyRequestValidationException"/> is thrown.</param>
-    public PublicKeyCredentialCreationOptions(string requestJson, byte[]? clientDataHash, string? callerOrigin = null)
+    /// <param name="getCallerOrigin">Returns the verified web origin of the caller (privileged browser), or null.
+    /// Only called if the request has no rp.id; rp.id is then derived from the origin. If no rp.id can be
+    /// determined, <see cref="PasskeyRequestValidationException"/> is thrown.</param>
+    public PublicKeyCredentialCreationOptions(string requestJson, byte[]? clientDataHash, Func<string?>? getCallerOrigin = null)
     {
       Json = new JSONObject(requestJson);
       ClientDataHash = clientDataHash;
@@ -287,7 +287,7 @@ namespace Kp2aPasskey.Core
       var rpJson = Json.GetJSONObject("rp");
       RelyingPartyEntity = new PublicKeyCredentialRpEntity(
         rpJson.GetString("name"),
-        WebAuthnRequestParsing.ResolveRpId(WebAuthnRequestParsing.OptStringOrNull(rpJson, "id"), callerOrigin)
+        WebAuthnRequestParsing.ResolveRpId(WebAuthnRequestParsing.OptStringOrNull(rpJson, "id"), getCallerOrigin)
       );
 
       // Parse user

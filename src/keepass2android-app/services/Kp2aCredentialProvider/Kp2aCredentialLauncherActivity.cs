@@ -526,9 +526,11 @@ namespace keepass2android.services.Kp2aCredentialProvider
       {
         try
         {
+          var savedOrigin = _passkeyOrigin;
           _passkeyCreationOptions = new PublicKeyCredentialCreationOptions(
             _passkeyRequestJson,
-            _passkeyClientDataHash
+            _passkeyClientDataHash,
+            () => savedOrigin
           );
         }
         catch (Exception ex)
@@ -663,7 +665,7 @@ namespace keepass2android.services.Kp2aCredentialProvider
               if (option is BeginGetPasswordOption passwordOption && callingPackage != null)
                 GetCredentialHelper.AddMatchingPasswordEntries(this, callingPackage, passwordOption, response);
               else if (option is BeginGetPublicKeyCredentialOption passkeyOption)
-                GetCredentialHelper.AddMatchingPasskeyEntries(this, passkeyOption, response);
+                GetCredentialHelper.AddMatchingPasskeyEntries(this, getRequest.CallingAppInfo, passkeyOption, response);
             }
             var result = new Intent();
             PendingIntentHandler.SetBeginGetCredentialResponse(result, response.Build());
@@ -778,7 +780,7 @@ namespace keepass2android.services.Kp2aCredentialProvider
       var clientDataHash = callerOrigin.ClientDataHash;
 
       var creationOptions = _passkeyCreationOptions
-        ?? new PublicKeyCredentialCreationOptions(requestJson, clientDataHash);
+        ?? new PublicKeyCredentialCreationOptions(requestJson, clientDataHash, () => callerOrigin.Origin);
 
       var requestedAlgorithms = creationOptions.PubKeyCredParams.Select(p => p.Alg).ToList();
 
@@ -1008,11 +1010,13 @@ namespace keepass2android.services.Kp2aCredentialProvider
     /// <summary>
     /// Parses caller-supplied creation options. Returns null (and logs the details) if the JSON is malformed.
     /// </summary>
-    private static PublicKeyCredentialCreationOptions? TryParseCreationOptions(string requestJson, byte[]? clientDataHash)
+    private PublicKeyCredentialCreationOptions? TryParseCreationOptions(string requestJson, byte[]? clientDataHash,
+      CallingAppInfo? callingAppInfo)
     {
       try
       {
-        var options = new PublicKeyCredentialCreationOptions(requestJson, clientDataHash);
+        var options = new PublicKeyCredentialCreationOptions(requestJson, clientDataHash,
+          () => PasskeyOriginHelper.GetOriginFromPrivilegedCaller(this, callingAppInfo));
         if (string.IsNullOrEmpty(options.RelyingPartyEntity?.Id))
           throw new InvalidOperationException("Missing rp.id");
         return options;
@@ -1027,11 +1031,12 @@ namespace keepass2android.services.Kp2aCredentialProvider
     /// <summary>
     /// Parses caller-supplied request options. Returns null (and logs the details) if the JSON is malformed.
     /// </summary>
-    private static PublicKeyCredentialRequestOptions? TryParseRequestOptions(string requestJson)
+    private PublicKeyCredentialRequestOptions? TryParseRequestOptions(string requestJson, CallingAppInfo? callingAppInfo)
     {
       try
       {
-        return new PublicKeyCredentialRequestOptions(requestJson);
+        return new PublicKeyCredentialRequestOptions(requestJson,
+          () => PasskeyOriginHelper.GetOriginFromPrivilegedCaller(this, callingAppInfo));
       }
       catch (Exception e)
       {
@@ -1069,7 +1074,7 @@ namespace keepass2android.services.Kp2aCredentialProvider
 
         // Parse the caller-supplied JSON before showing any dialog. Malformed input must result in an error
         // response to Credential Manager, not in a crash.
-        var creationOptions = TryParseCreationOptions(requestJson, passkeyRequest.GetClientDataHash());
+        var creationOptions = TryParseCreationOptions(requestJson, passkeyRequest.GetClientDataHash(), createRequest.CallingAppInfo);
         if (creationOptions == null)
         {
           SetUpFailureResponseForCreateAndFinish(InvalidRequestMessage);
@@ -1371,7 +1376,7 @@ namespace keepass2android.services.Kp2aCredentialProvider
           return null;
         }
 
-        var requestOptions = TryParseRequestOptions(requestJson);
+        var requestOptions = TryParseRequestOptions(requestJson, getRequest.CallingAppInfo);
         if (requestOptions == null)
         {
           SetUpFailureResponseForGetAndFinish(InvalidRequestMessage);

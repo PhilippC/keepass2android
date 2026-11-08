@@ -136,7 +136,8 @@ namespace keepass2android.services.Kp2aCredentialProvider
       {
         var creationOptions = new PublicKeyCredentialCreationOptions(
           request.RequestJson!,
-          null // ClientDataHash is not available in BeginCreatePublicKeyCredentialRequest
+          null, // ClientDataHash is not available in BeginCreatePublicKeyCredentialRequest
+          () => PasskeyOriginHelper.GetOriginFromPrivilegedCaller(this, request.CallingAppInfo)
         );
         var relyingPartyId = creationOptions.RelyingPartyEntity.Id;
 
@@ -255,7 +256,7 @@ namespace keepass2android.services.Kp2aCredentialProvider
           else if (option is BeginGetPublicKeyCredentialOption passkeyOption)
           {
             hasKnownOption = true;
-            GetCredentialHelper.AddMatchingPasskeyEntries(this, passkeyOption, responseBuilder, _isAutoSelectAllowed);
+            GetCredentialHelper.AddMatchingPasskeyEntries(this, request.CallingAppInfo, passkeyOption, responseBuilder, _isAutoSelectAllowed);
           }
         }
 

@@ -100,6 +100,7 @@ namespace keepass2android.services.Kp2aCredentialProvider
     /// </summary>
     public static void AddMatchingPasskeyEntries(
       Context context,
+      CallingAppInfo? callingAppInfo,
       BeginGetPublicKeyCredentialOption option,
       BeginGetCredentialResponse.Builder responseBuilder,
       bool isAutoSelectAllowed = false
@@ -107,7 +108,8 @@ namespace keepass2android.services.Kp2aCredentialProvider
     {
       try
       {
-        var requestOptions = new PublicKeyCredentialRequestOptions(option.RequestJson);
+        var requestOptions = new PublicKeyCredentialRequestOptions(option.RequestJson,
+          () => PasskeyOriginHelper.GetOriginFromPrivilegedCaller(context, callingAppInfo));
         var relyingPartyId = requestOptions.RpId;
 
         // Search directly by the KPEX_PASSKEY_RELYING_PARTY extra field — no pseudo-URL needed.
