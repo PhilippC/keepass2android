@@ -707,8 +707,26 @@ namespace keepass2android
             var context = RequireContext();
             var boolValue = (bool)args.NewValue;
 
-            if (!UserVerificationHelper.CanAuthenticate(context))
-              return; // no biometric hardware — allow change directly
+            var canAuthenticate = UserVerificationHelper.CanAuthenticate(context);
+
+            if (boolValue)
+            {
+              if (!canAuthenticate)
+              {
+                // enabling would make every passkey request fail because user verification is impossible.
+                args.Handled = false;
+                new MaterialAlertDialogBuilder(context)
+                  .SetTitle(GetString(Resource.String.passkeys_force_user_verification_when_preferred_title))
+                  .SetMessage(GetString(Resource.String.passkeys_force_uv_not_available))
+                  .SetPositiveButton(GetString(Android.Resource.String.Ok), (_, _) => { })
+                  .Show();
+              }
+              // making the setting stricter does not require verification.
+              return;
+            }
+
+            if (!canAuthenticate)
+              return; // no screen lock / strong biometric — verification impossible, allow disabling directly
 
             // reject any change for now. If the (async) user verification succeeds, we'll update the value.
             args.Handled = false;

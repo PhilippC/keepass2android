@@ -245,8 +245,10 @@ namespace keepass2android.services.Kp2aCredentialProvider
             var callingPackage = request.CallingAppInfo?.PackageName;
             if (callingPackage == null)
             {
-              callback.OnError(new NoCredentialException().JavaCast<Java.Lang.Object>());
-              return;
+              // cannot match passwords without the calling package. Skip only this option,
+              // other (e.g. passkey) options of the same request are still processed.
+              Kp2aLog.Log("Kp2aCredentialProviderService: no calling package for password option, skipping it.");
+              continue;
             }
             GetCredentialHelper.AddMatchingPasswordEntries(this, callingPackage, passwordOption, responseBuilder);
           }
@@ -292,7 +294,8 @@ namespace keepass2android.services.Kp2aCredentialProvider
       IOutcomeReceiver callback
     )
     {
-      // ignored
+      // nothing to clear (no session state is kept), but the caller must be informed to not wait forever.
+      callback.OnResult(null);
     }
   }
 }

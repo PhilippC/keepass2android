@@ -1404,6 +1404,7 @@
   <string name="passkeys_force_user_verification_when_preferred_key" translatable="false">passkeys_force_user_verification_when_preferred_key</string>
   <string name="passkeys_force_user_verification_when_preferred_title">Force user verification when preferred</string>
   <string name="passkeys_force_user_verification_when_preferred_summary">When a site requests \"preferred\" user verification, still require biometric or device lock before using a passkey.</string>
+  <string name="passkeys_force_uv_not_available">This option requires a screen lock (PIN, pattern or password) or a strong biometric on this device. Without it, passkeys could not be used anymore. Please set up a screen lock first.</string>
   <string name="passkey_user_verification_required_title">User verification required</string>
   <string name="passkey_user_verification_required_description">Confirm your identity to use this passkey.</string>
 
