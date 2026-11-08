@@ -1249,9 +1249,13 @@ namespace keepass2android
     private readonly LifecycleAwareActivity _parentActivity;
     private const string TitleTag = "settingsActivityTitle";
 
-    public SettingsFragmentManager(LifecycleAwareActivity parentActivity)
+    private readonly Func<AndroidX.Fragment.App.Fragment> _createInitialFragment;
+
+    /// <param name="createInitialFragment">Creates the fragment shown first. Defaults to the main preference screen.</param>
+    public SettingsFragmentManager(LifecycleAwareActivity parentActivity, Func<AndroidX.Fragment.App.Fragment>? createInitialFragment = null)
     {
       _parentActivity = parentActivity;
+      _createInitialFragment = createInitialFragment ?? (() => new MainPreferenceFragment());
       _parentActivity.OnCreateListener = OnCreate;
       _parentActivity.OnSaveInstanceStateListener = OnSaveInstanceState;
       _parentActivity.OnSupportNavigateUpListener = OnSupportNavigateUp;
@@ -1268,7 +1272,7 @@ namespace keepass2android
       {
         _parentActivity.SupportFragmentManager
             .BeginTransaction()
-            .Replace(Resource.Id.settings, new MainPreferenceFragment())
+            .Replace(Resource.Id.settings, _createInitialFragment())
             .Commit();
       }
       else
@@ -1339,7 +1343,7 @@ namespace keepass2android
   /// <summary>
   /// Activity to configure the application, without database settings. Does not require an unlocked database, or close when the database is locked
   /// </summary>
-  [Activity(Label = "@string/app_name", Name = "keepass2android.AppSettingsActivity", Theme = "@style/Kp2aTheme_BlueActionBar", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden, Exported = true)]
+  [Activity(Label = "@string/app_name", Theme = "@style/Kp2aTheme_BlueActionBar", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden)]
   public class AppSettingsActivity : LockingActivity, PreferenceFragmentCompat.IOnPreferenceStartFragmentCallback, FragmentManager.IOnBackStackChangedListener
   {
     private ActivityDesign _design;
@@ -1349,7 +1353,7 @@ namespace keepass2android
     public AppSettingsActivity()
     {
       _design = new ActivityDesign(this);
-      settingsFragmentManager = new SettingsFragmentManager(this);
+      settingsFragmentManager = new SettingsFragmentManager(this, CreateInitialFragment);
       //TODO adding this makes the app crash on back (https://github.com/dotnet/android-libraries/issues/1055)
       //We need this in order to update the activity title to the re-activated preference
       //SupportFragmentManager.AddOnBackStackChangedListener(this);
@@ -1370,6 +1374,11 @@ namespace keepass2android
 
     public SettingsFragmentManager settingsFragmentManager;
 
+    /// <summary>
+    /// The preference screen shown when the activity is started.
+    /// </summary>
+    protected virtual AndroidX.Fragment.App.Fragment CreateInitialFragment() => new MainPreferenceFragment();
+
 
     public bool OnPreferenceStartFragment(PreferenceFragmentCompat caller, Preference pref)
     {
@@ -1379,6 +1388,24 @@ namespace keepass2android
     public void OnBackStackChanged()
     {
       settingsFragmentManager.OnBackStackChanged();
+    }
+  }
+
+  /// <summary>
+  /// Opens the passkey settings directly. Referenced as settingsActivity in credentials_provider.xml, so the
+  /// system's Credential Manager settings can open it. It must be exported for that, which is why this is a
+  /// separate activity: AppSettingsActivity itself stays non-exported.
+  /// </summary>
+  [Activity(Label = "@string/Passkey_prefs", Name = "keepass2android.PasskeySettingsActivity", Theme = "@style/Kp2aTheme_BlueActionBar", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden, Exported = true)]
+  public class PasskeySettingsActivity : AppSettingsActivity
+  {
+    protected override AndroidX.Fragment.App.Fragment CreateInitialFragment() => new PasskeyPreferenceFragment();
+
+    protected override void OnCreate(Bundle savedInstanceState)
+    {
+      base.OnCreate(savedInstanceState);
+      if (savedInstanceState == null)
+        SetTitle(Resource.String.Passkey_prefs);
     }
   }
 
