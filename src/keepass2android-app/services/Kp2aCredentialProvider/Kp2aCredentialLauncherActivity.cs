@@ -81,6 +81,9 @@ namespace keepass2android.services.Kp2aCredentialProvider
     // Key inside _passkeyResponseData
     private const string PasskeyDataKeyCredentialId = "credentialId";
 
+    // Error messages returned to Credential Manager. Details are only written to the log.
+    private const string InvalidRequestMessage = "Invalid passkey request";
+
     // ViewModel-style state variables for passkey operations
     private PublicKeyCredentialCreationOptions? _passkeyCreationOptions;
     private string? _passkeyRequestJson;
@@ -997,6 +1000,41 @@ namespace keepass2android.services.Kp2aCredentialProvider
       return null;
     }
 
+    /// <summary>
+    /// Parses caller-supplied creation options. Returns null (and logs the details) if the JSON is malformed.
+    /// </summary>
+    private static PublicKeyCredentialCreationOptions? TryParseCreationOptions(string requestJson, byte[]? clientDataHash)
+    {
+      try
+      {
+        var options = new PublicKeyCredentialCreationOptions(requestJson, clientDataHash);
+        if (string.IsNullOrEmpty(options.RelyingPartyEntity?.Id))
+          throw new InvalidOperationException("Missing rp.id");
+        return options;
+      }
+      catch (Exception e)
+      {
+        Kp2aLog.Log($"Kp2aCredentialLauncherActivity: invalid passkey creation request: {e.GetType().Name}: {e.Message}");
+        return null;
+      }
+    }
+
+    /// <summary>
+    /// Parses caller-supplied request options. Returns null (and logs the details) if the JSON is malformed.
+    /// </summary>
+    private static PublicKeyCredentialRequestOptions? TryParseRequestOptions(string requestJson)
+    {
+      try
+      {
+        return new PublicKeyCredentialRequestOptions(requestJson);
+      }
+      catch (Exception e)
+      {
+        Kp2aLog.Log($"Kp2aCredentialLauncherActivity: invalid passkey get request: {e.GetType().Name}: {e.Message}");
+        return null;
+      }
+    }
+
     #endregion
 
 
@@ -1024,15 +1062,22 @@ namespace keepass2android.services.Kp2aCredentialProvider
           throw new InvalidOperationException("Missing request JSON");
         }
 
+        // Parse the caller-supplied JSON before showing any dialog. Malformed input must result in an error
+        // response to Credential Manager, not in a crash.
+        var creationOptions = TryParseCreationOptions(requestJson, passkeyRequest.GetClientDataHash());
+        if (creationOptions == null)
+        {
+          SetUpFailureResponseForCreateAndFinish(InvalidRequestMessage);
+          return;
+        }
+        _passkeyCreationOptions = creationOptions;
+
         if (!browserCheckDone && AskToAddUnknownBrowser(createRequest.CallingAppInfo,
               continueRequest: () => HandleCreatePasskeyRequest(requestIntent, browserCheckDone: true),
               cancelRequest: SetUpCancellationResponseForCreateAndFinish))
         {
           return;
         }
-
-        var clientDataHash = passkeyRequest.GetClientDataHash();
-        _passkeyCreationOptions = new PublicKeyCredentialCreationOptions(requestJson, clientDataHash);
 
         if (!appCheckDone && VerifyCallingApp(createRequest.CallingAppInfo, _passkeyCreationOptions.RelyingPartyEntity.Id, entry: null,
               continueRequest: () => HandleCreatePasskeyRequest(requestIntent, browserCheckDone: true, appCheckDone: true),
@@ -1193,45 +1238,38 @@ namespace keepass2android.services.Kp2aCredentialProvider
         return;
       }
 
+      // All checks and the user verification decision are based on the final request, i.e. the JSON that will be signed
+      // (not on the request JSON from the Begin-Get phase which was stored in the PendingIntent).
+      var request = ValidateFinalGetRequestOrFinish(requestIntent);
+      if (request == null)
+        return;
+
       if (!browserCheckDone && AskToAddUnknownBrowser(
-            PendingIntentHandler.RetrieveProviderGetCredentialRequest(requestIntent)?.CallingAppInfo,
+            request.CallingAppInfo,
             continueRequest: () => HandleGetPasskeyForEntryRequest(requestIntent, browserCheckDone: true),
             cancelRequest: SetUpCancellationResponseForGetAndFinish))
       {
         return;
       }
 
-      if (!appCheckDone)
+      if (!appCheckDone
+          && VerifyCallingApp(request.CallingAppInfo,
+            request.Passkey.RelyingParty, request.Entry,
+            continueRequest: () => HandleGetPasskeyForEntryRequest(requestIntent, browserCheckDone: true, appCheckDone: true),
+            rejectRequest: SetUpFailureResponseForGetAndFinish,
+            cancelRequest: SetUpCancellationResponseForGetAndFinish))
       {
-        // If entry or passkey are missing, ReturnPasskeyForEntryAndFinish fails anyway.
-        var entry = FindEntry(requestIntent.GetStringExtra(Strings.ExtraEntryId));
-        var passkey = entry == null ? null : PasskeyStorage.RetrievePasskey(entry);
-        if (entry != null && passkey != null
-            && VerifyCallingApp(PendingIntentHandler.RetrieveProviderGetCredentialRequest(requestIntent)?.CallingAppInfo,
-              passkey.RelyingParty ?? "", entry,
-              continueRequest: () => HandleGetPasskeyForEntryRequest(requestIntent, browserCheckDone: true, appCheckDone: true),
-              rejectRequest: SetUpFailureResponseForGetAndFinish,
-              cancelRequest: SetUpCancellationResponseForGetAndFinish))
-        {
-          return;
-        }
-      }
-
-      var requestJson = requestIntent.GetStringExtra(ExtraRequestJson);
-      if (string.IsNullOrEmpty(requestJson))
-      {
-        ReturnPasskeyForEntryAndFinish(requestIntent, userVerified: false);
         return;
       }
 
-      var requestOptions = new PublicKeyCredentialRequestOptions(requestJson);
+      var requestOptions = request.RequestOptions;
       var uvRequired = requestOptions.UserVerificationRequirement == Kp2aPasskey.Core.UserVerificationRequirement.Required
         || (PasskeyPreferences.GetForceUserVerificationWhenPreferred(this)
             && requestOptions.UserVerificationRequirement == Kp2aPasskey.Core.UserVerificationRequirement.Preferred);
 
       if (!uvRequired)
       {
-        ReturnPasskeyForEntryAndFinish(requestIntent, userVerified: false);
+        ReturnPasskeyAssertionAndFinish(request, userVerified: false);
         return;
       }
 
@@ -1249,69 +1287,147 @@ namespace keepass2android.services.Kp2aCredentialProvider
         subtitle,
         onSuccess: () =>
         {
-          ReturnPasskeyForEntryAndFinish(requestIntent, userVerified: true);
+          ReturnPasskeyAssertionAndFinish(request, userVerified: true);
         },
         onCancelOrError: SetUpCancellationResponseForGetAndFinish);
     }
 
     /// <summary>
-    /// Builds and returns the passkey assertion response for a specific entry.
-    /// Database must already be unlocked before calling this.
-    /// <param name="userVerified">True if the user completed device credential/biometric verification.</param>
+    /// The final get request for a passkey entry, validated against the entry's passkey.
     /// </summary>
-    private void ReturnPasskeyForEntryAndFinish(Intent requestIntent, bool userVerified)
+    private sealed record ValidatedPasskeyGetRequest(
+      CallingAppInfo? CallingAppInfo,
+      GetPublicKeyCredentialOption PasskeyOption,
+      PublicKeyCredentialRequestOptions RequestOptions,
+      PwEntry Entry,
+      PasskeyData Passkey);
+
+    /// <summary>
+    /// Retrieves the final get request from <paramref name="requestIntent"/>, parses it and checks it against the passkey
+    /// of the selected entry: the relying party must match the request's rpId and, if the request contains a non-empty
+    /// allowCredentials list, the credential ID must be contained in it.
+    /// Database must already be unlocked before calling this.
+    /// On failure, sets an error response, finishes the activity and returns null.
+    /// </summary>
+    private ValidatedPasskeyGetRequest? ValidateFinalGetRequestOrFinish(Intent requestIntent)
     {
       try
       {
         var getRequest = PendingIntentHandler.RetrieveProviderGetCredentialRequest(requestIntent);
         var options = getRequest?.CredentialOptions;
-
-        if (options == null || options.Count == 0)
+        if (getRequest == null || options == null || options.Count == 0)
         {
           SetUpFailureResponseForGetAndFinish("No credential options found");
-          return;
+          return null;
         }
 
-        var option = options.FirstOrDefault(o => o is GetPublicKeyCredentialOption);
-        if (!(option is GetPublicKeyCredentialOption passkeyOption))
+        if (options.FirstOrDefault(o => o is GetPublicKeyCredentialOption) is not GetPublicKeyCredentialOption passkeyOption)
         {
           SetUpFailureResponseForGetAndFinish("Invalid credential option type");
-          return;
+          return null;
         }
 
-        var entryId = requestIntent.GetStringExtra(Strings.ExtraEntryId);
         var requestJson = passkeyOption.RequestJson;
-
-        if (string.IsNullOrEmpty(entryId) || string.IsNullOrEmpty(requestJson))
+        if (string.IsNullOrEmpty(requestJson))
         {
-          SetUpFailureResponseForGetAndFinish("Missing entry ID or request JSON");
-          return;
+          Kp2aLog.Log("Kp2aCredentialLauncherActivity: final passkey get request has no request JSON");
+          SetUpFailureResponseForGetAndFinish(InvalidRequestMessage);
+          return null;
         }
 
-        var foundEntry = FindEntry(entryId);
-        if (foundEntry == null)
+        var requestOptions = TryParseRequestOptions(requestJson);
+        if (requestOptions == null)
+        {
+          SetUpFailureResponseForGetAndFinish(InvalidRequestMessage);
+          return null;
+        }
+
+        var entry = FindEntry(requestIntent.GetStringExtra(Strings.ExtraEntryId));
+        if (entry == null)
         {
           SetUpNoCredentialResponseForGetAndFinish();
-          return;
+          return null;
         }
 
-        // Retrieve passkey data from entry
-        var passkey = PasskeyStorage.RetrievePasskey(foundEntry);
+        var passkey = PasskeyStorage.RetrievePasskey(entry);
         if (passkey == null)
         {
           SetUpFailureResponseForGetAndFinish("Entry does not contain passkey data");
-          return;
+          return null;
         }
 
-        // Parse request options and delegate to shared assertion builder
-        var requestOptions = new PublicKeyCredentialRequestOptions(requestJson);
+        // The assertion is signed for requestOptions.RpId. It must be the relying party the passkey was created for.
+        if (string.IsNullOrEmpty(passkey.RelyingParty)
+            || !string.Equals(passkey.RelyingParty, requestOptions.RpId, StringComparison.Ordinal))
+        {
+          Kp2aLog.Log($"Kp2aCredentialLauncherActivity: refusing passkey get request: rpId '{requestOptions.RpId}' "
+                      + $"does not match the passkey's relying party '{passkey.RelyingParty}'");
+          SetUpFailureResponseForGetAndFinish("Relying party does not match the selected passkey");
+          return null;
+        }
 
-        BuildAndReturnAssertionFromPasskeyAndFinish(passkey, getRequest?.CallingAppInfo, requestOptions, passkeyOption, userVerified);
+        if (!IsCredentialAllowedByRequest(requestOptions, passkey.CredentialId))
+        {
+          Kp2aLog.Log("Kp2aCredentialLauncherActivity: refusing passkey get request: credential ID not in allowCredentials");
+          SetUpFailureResponseForGetAndFinish("Selected passkey is not allowed by the request");
+          return null;
+        }
+
+        return new ValidatedPasskeyGetRequest(getRequest.CallingAppInfo, passkeyOption, requestOptions, entry, passkey);
       }
       catch (Exception e)
       {
-        Kp2aLog.Log($"Kp2aCredentialLauncherActivity: Error retrieving passkey. {e.Message}");
-        SetUpFailureResponseForGetAndFinish($"Passkey retrieval failed: {e.Message}");
+        Kp2aLog.Log($"Kp2aCredentialLauncherActivity: Error processing passkey get request: {e.GetType().Name}: {e.Message}");
+        SetUpFailureResponseForGetAndFinish(InvalidRequestMessage);
+        return null;
+      }
+    }
+
+    /// <summary>
+    /// Returns true if the request does not restrict the credentials (no or empty allowCredentials list) or if
+    /// <paramref name="credentialIdBase64"/> is contained in allowCredentials.
+    /// </summary>
+    private static bool IsCredentialAllowedByRequest(PublicKeyCredentialRequestOptions requestOptions, string? credentialIdBase64)
+    {
+      // Check the raw JSON: entries which can't be parsed are dropped from requestOptions.AllowCredentials, but a
+      // non-empty list in the request must never be treated as "no restriction".
+      var allowCredentialsJson = requestOptions.Json.OptJSONArray("allowCredentials");
+      if (allowCredentialsJson == null || allowCredentialsJson.Length() == 0)
+        return true;
+
+      if (string.IsNullOrEmpty(credentialIdBase64))
+        return false;
+
+      byte[]? credentialId;
+      try
+      {
+        credentialId = Base64.Decode(credentialIdBase64, Base64Flags.UrlSafe | Base64Flags.NoPadding);
+      }
+      catch (Exception)
+      {
+        return false;
+      }
+      if (credentialId == null || credentialId.Length == 0)
+        return false;
+
+      return requestOptions.AllowCredentials.Any(d => d.Id != null && d.Id.AsSpan().SequenceEqual(credentialId));
+    }
+
+    /// <summary>
+    /// Builds and returns the passkey assertion response for a validated request.
+    /// <param name="userVerified">True if the user was verified in this flow.</param>
+    /// </summary>
+    private void ReturnPasskeyAssertionAndFinish(ValidatedPasskeyGetRequest request, bool userVerified)
+    {
+      try
+      {
+        BuildAndReturnAssertionFromPasskeyAndFinish(request.Passkey, request.CallingAppInfo, request.RequestOptions,
+          request.PasskeyOption, userVerified);
+      }
+      catch (Exception e)
+      {
+        Kp2aLog.Log($"Kp2aCredentialLauncherActivity: Error retrieving passkey. {e.GetType().Name}: {e.Message}");
+        SetUpFailureResponseForGetAndFinish("Passkey retrieval failed");
       }
     }
 
