@@ -814,7 +814,9 @@ namespace keepass2android.services.Kp2aCredentialProvider
 
       var origin = callerOrigin.Origin;
 
-      var passkeyFieldsJson = PasskeyStorage.CreatePasskeyFieldsJson(creationOptions.RelyingPartyEntity.Id, creationOptions.UserEntity.Name, passkey);
+      var passkeyFieldsJson = PasskeyStorage.CreatePasskeyFieldsJson(
+        GetString(Resource.String.passkey_entry_title, creationOptions.RelyingPartyEntity.Id),
+        creationOptions.RelyingPartyEntity.Id, creationOptions.UserEntity.Name, passkey);
 
       // If the calling app was verified via assetlinks.json in HandleCreatePasskeyRequest, pin it to the new entry, so
       // later requests from this app are accepted without checking again. Not if the user only confirmed an unverified app.

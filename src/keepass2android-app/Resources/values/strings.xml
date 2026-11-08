@@ -1382,6 +1382,8 @@
   <string name="credential_provider_password_creation_description">Save password in new entry</string>
   <string name="credential_provider_locked_database_description">Database is locked. Tap to unlock.</string>
   <string name="credential_provider_passkey_creation_description">Save passkey</string>
+  <string name="passkey_entry_title">Passkey for %1$s</string>
+  <string name="passkey_unknown_username">Unknown</string>
   <string name="open_app_name">Open %1$s</string>
   <string name="manage_credentials">Manage credentials</string>
 

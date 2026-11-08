@@ -142,7 +142,7 @@ namespace keepass2android.services.Kp2aCredentialProvider
             var passkeyUsername = PasskeyStorage.GetUsername(entry);
             if (string.IsNullOrEmpty(passkeyUsername))
               passkeyUsername = entry.Strings.ReadSafe(PwDefs.UserNameField);
-            if (string.IsNullOrEmpty(passkeyUsername)) passkeyUsername = "Unknown";
+            if (string.IsNullOrEmpty(passkeyUsername)) passkeyUsername = context.GetString(Resource.String.passkey_unknown_username);
 
             // Use a random request code per PendingIntent. FLAG_UPDATE_CURRENT only matches a
             // prior PendingIntent when the request code is the same, so a random code guarantees
