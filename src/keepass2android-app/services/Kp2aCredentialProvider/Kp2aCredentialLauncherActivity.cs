@@ -457,7 +457,8 @@ namespace keepass2android.services.Kp2aCredentialProvider
       );
 
       // Create FIDO credential and set response
-      var credentialResponse = CreateFidoAttestationResponse(passkey.CredentialId, attestationResponse);
+      var credentialResponse = CreateFidoAttestationResponse(passkey.CredentialId, attestationResponse,
+        creationOptions.CredPropsRequested);
       _userVerifiedForCreate = false; // clear after use
       return credentialResponse;
 
@@ -605,12 +606,22 @@ namespace keepass2android.services.Kp2aCredentialProvider
 
     private CreatePublicKeyCredentialResponse CreateFidoAttestationResponse(
       string credentialIdBase64,
-      AuthenticatorAttestationResponse attestationResponse
+      AuthenticatorAttestationResponse attestationResponse,
+      bool credPropsRequested
     )
     {
+      JSONObject? extensionResults = null;
+      if (credPropsRequested)
+      {
+        // All Kp2a passkeys are discoverable (resident) credentials.
+        extensionResults = new JSONObject();
+        extensionResults.Put("credProps", new JSONObject().Put("rk", true));
+      }
+
       var fidoCredential = new FidoPublicKeyCredential(
         id: credentialIdBase64,
-        response: attestationResponse.ToJson()
+        response: attestationResponse.ToJson(),
+        clientExtensionResults: extensionResults
       );
 
       var responseJson = fidoCredential.ToJson();

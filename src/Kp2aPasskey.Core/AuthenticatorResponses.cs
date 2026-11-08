@@ -375,7 +375,8 @@ namespace keepass2android.services.Kp2aCredentialProvider.Passkey
   /// <summary>
   /// FIDO Public Key Credential wrapper.
   /// </summary>
-  public class FidoPublicKeyCredential(string id, JSONObject response, string authenticatorAttachment = "platform")
+  public class FidoPublicKeyCredential(string id, JSONObject response, string authenticatorAttachment = "platform",
+    JSONObject? clientExtensionResults = null)
   {
 
     public string ToJson()
@@ -386,7 +387,7 @@ namespace keepass2android.services.Kp2aCredentialProvider.Passkey
       json.Put("type", "public-key");
       json.Put("authenticatorAttachment", authenticatorAttachment);
       json.Put("response", response);
-      json.Put("clientExtensionResults", new JSONObject());
+      json.Put("clientExtensionResults", clientExtensionResults ?? new JSONObject());
 
       return json.ToString();
     }

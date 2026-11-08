@@ -264,6 +264,11 @@ namespace Kp2aPasskey.Core
     public long Timeout { get; }
     public List<PublicKeyCredentialDescriptor> ExcludeCredentials { get; }
     public AuthenticatorSelectionCriteria AuthenticatorSelection { get; }
+
+    /// <summary>
+    /// True if the request asks for the credProps extension (https://www.w3.org/TR/webauthn-3/#sctn-authenticator-credential-properties-extension).
+    /// </summary>
+    public bool CredPropsRequested => Json.OptJSONObject("extensions")?.OptBoolean("credProps", false) ?? false;
     public string Attestation { get; }
     public byte[]? ClientDataHash { get; }
 
