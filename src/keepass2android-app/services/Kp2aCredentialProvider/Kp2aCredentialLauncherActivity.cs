@@ -658,7 +658,7 @@ namespace keepass2android.services.Kp2aCredentialProvider
           if (resultCode == Result.Ok && App.Kp2a.DatabaseIsUnlocked)
             HandleGetPasskeyForEntryRequest(thisIntent); // re-enter to run UV if required
           else
-            Finish(); // unlock was cancelled or failed
+            SetUpCancellationResponseForGetAndFinish(); // unlock was cancelled or failed
           return;
         }
 
