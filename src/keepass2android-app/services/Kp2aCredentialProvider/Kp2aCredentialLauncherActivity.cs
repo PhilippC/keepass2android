@@ -1387,7 +1387,7 @@ namespace keepass2android.services.Kp2aCredentialProvider
           return null;
         }
 
-        if (!IsCredentialAllowedByRequest(requestOptions, passkey.CredentialId))
+        if (!requestOptions.IsCredentialAllowed(passkey.CredentialId))
         {
           Kp2aLog.Log("Kp2aCredentialLauncherActivity: refusing passkey get request: credential ID not in allowCredentials");
           SetUpFailureResponseForGetAndFinish("Selected passkey is not allowed by the request");
@@ -1402,36 +1402,6 @@ namespace keepass2android.services.Kp2aCredentialProvider
         SetUpFailureResponseForGetAndFinish(InvalidRequestMessage);
         return null;
       }
-    }
-
-    /// <summary>
-    /// Returns true if the request does not restrict the credentials (no or empty allowCredentials list) or if
-    /// <paramref name="credentialIdBase64"/> is contained in allowCredentials.
-    /// </summary>
-    private static bool IsCredentialAllowedByRequest(PublicKeyCredentialRequestOptions requestOptions, string? credentialIdBase64)
-    {
-      // Check the raw JSON: entries which can't be parsed are dropped from requestOptions.AllowCredentials, but a
-      // non-empty list in the request must never be treated as "no restriction".
-      var allowCredentialsJson = requestOptions.Json.OptJSONArray("allowCredentials");
-      if (allowCredentialsJson == null || allowCredentialsJson.Length() == 0)
-        return true;
-
-      if (string.IsNullOrEmpty(credentialIdBase64))
-        return false;
-
-      byte[]? credentialId;
-      try
-      {
-        credentialId = Base64.Decode(credentialIdBase64, Base64Flags.UrlSafe | Base64Flags.NoPadding);
-      }
-      catch (Exception)
-      {
-        return false;
-      }
-      if (credentialId == null || credentialId.Length == 0)
-        return false;
-
-      return requestOptions.AllowCredentials.Any(d => d.Id != null && d.Id.AsSpan().SequenceEqual(credentialId));
     }
 
     /// <summary>

@@ -109,7 +109,6 @@ namespace keepass2android.services.Kp2aCredentialProvider
       {
         var requestOptions = new PublicKeyCredentialRequestOptions(option.RequestJson);
         var relyingPartyId = requestOptions.RpId;
-        var allowCredentials = requestOptions.AllowCredentials;
 
         // Search directly by the KPEX_PASSKEY_RELYING_PARTY extra field — no pseudo-URL needed.
         var foundEntries = new List<PwEntry>();
@@ -123,9 +122,11 @@ namespace keepass2android.services.Kp2aCredentialProvider
         }
 
         // Filter by allowCredentials if specified
-        if (allowCredentials.Count > 0)
+        if (requestOptions.AllowCredentialsSpecified)
         {
-          foundEntries = FilterEntriesByAllowCredentials(foundEntries, allowCredentials);
+          foundEntries = foundEntries
+            .Where(entry => requestOptions.IsCredentialAllowed(PasskeyStorage.RetrievePasskey(entry)?.CredentialId))
+            .ToList();
         }
 
         if (foundEntries.Count > 0)
@@ -136,7 +137,7 @@ namespace keepass2android.services.Kp2aCredentialProvider
             // This is an Android design decision which we respect (no pseudo-different usernames or so)
 
             // The passkey username (account name at the RP) is shown as the primary label.
-            var passkeyUsername = entry.Strings.ReadSafe(PasskeyStorage.FIELD_USERNAME);
+            var passkeyUsername = PasskeyStorage.GetUsername(entry);
             if (string.IsNullOrEmpty(passkeyUsername))
               passkeyUsername = entry.Strings.ReadSafe(PwDefs.UserNameField);
             if (string.IsNullOrEmpty(passkeyUsername)) passkeyUsername = "Unknown";
@@ -189,47 +190,6 @@ namespace keepass2android.services.Kp2aCredentialProvider
       {
         Kp2aLog.Log($"Error handling passkey get request {e.Message}");
       }
-    }
-
-    /// <summary>
-    /// Filters entries to only those whose credential ID matches one in allowCredentials list.
-    /// </summary>
-    private static List<PwEntry> FilterEntriesByAllowCredentials(
-      List<PwEntry> entries,
-      List<PublicKeyCredentialDescriptor> allowCredentials
-    )
-    {
-      var filtered = new List<PwEntry>();
-
-      // Convert allowCredentials IDs to base64url strings for comparison
-      var allowedCredentialIds = new HashSet<string>();
-      foreach (var descriptor in allowCredentials)
-      {
-        // Convert the byte array to base64url string (URL-safe, no padding)
-        var credentialIdBase64 = Base64.EncodeToString(
-          descriptor.Id,
-          Base64Flags.UrlSafe | Base64Flags.NoPadding | Base64Flags.NoWrap
-        );
-        if (!string.IsNullOrEmpty(credentialIdBase64))
-        {
-          allowedCredentialIds.Add(credentialIdBase64);
-        }
-      }
-
-      // Filter entries
-      foreach (var entry in entries)
-      {
-        var passkey = Kp2aPasskey.Core.PasskeyStorage.RetrievePasskey(entry);
-        if (passkey == null)
-        {
-          continue;
-        }
-        bool match = allowedCredentialIds.Contains(passkey.CredentialId);
-        if (match)
-          filtered.Add(entry);
-      }
-
-      return filtered;
     }
 
 

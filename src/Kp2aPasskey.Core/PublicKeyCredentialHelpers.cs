@@ -161,51 +161,90 @@ namespace Kp2aPasskey.Core
         WebAuthnRequestParsing.OptStringOrNull(Json, "rpId"), callerOrigin);
       UserVerification = Json.OptString("userVerification", "preferred");
       AllowCredentials = ParseAllowCredentials(Json);
+      AllowCredentialsSpecified = IsAllowCredentialsSpecified(Json);
+    }
+
+    /// <summary>
+    /// True if the request restricts the credentials, i.e. allowCredentials is a non-empty list (or present but
+    /// malformed). Then only credentials in <see cref="AllowCredentials"/> may be used, even if that list ended up
+    /// empty because no descriptor could be parsed (fail closed).
+    /// </summary>
+    public bool AllowCredentialsSpecified { get; }
+
+    /// <summary>
+    /// Returns true if the credential with the given stored ID (base64url) may be used for this request.
+    /// </summary>
+    public bool IsCredentialAllowed(string? credentialIdBase64Url)
+    {
+      if (!AllowCredentialsSpecified)
+        return true;
+      if (string.IsNullOrEmpty(credentialIdBase64Url))
+        return false;
+
+      byte[]? credentialId;
+      try
+      {
+        credentialId = Android.Util.Base64.Decode(credentialIdBase64Url, Android.Util.Base64Flags.UrlSafe);
+      }
+      catch (Exception)
+      {
+        return false;
+      }
+      if (credentialId == null || credentialId.Length == 0)
+        return false;
+
+      return AllowCredentials.Any(d => d.Id != null && d.Id.AsSpan().SequenceEqual(credentialId));
+    }
+
+    private static bool IsAllowCredentialsSpecified(JSONObject json)
+    {
+      if (!json.Has("allowCredentials") || json.IsNull("allowCredentials"))
+        return false;
+      var array = json.OptJSONArray("allowCredentials");
+      // Not an array: malformed, treat as restricting.
+      return array == null || array.Length() > 0;
     }
 
     private static List<PublicKeyCredentialDescriptor> ParseAllowCredentials(JSONObject json)
     {
       var allowCredentials = new List<PublicKeyCredentialDescriptor>();
-      try
+      var allowCredentialsArray = json.OptJSONArray("allowCredentials");
+      if (allowCredentialsArray == null)
+        return allowCredentials;
+
+      for (int i = 0; i < allowCredentialsArray.Length(); i++)
       {
-        var allowCredentialsArray = json.OptJSONArray("allowCredentials");
-        if (allowCredentialsArray != null)
+        // A malformed descriptor is skipped on its own; filtering stays active (see AllowCredentialsSpecified).
+        try
         {
-          for (int i = 0; i < allowCredentialsArray.Length(); i++)
+          var credentialJson = allowCredentialsArray.GetJSONObject(i);
+          var type = credentialJson.OptString("type", "public-key");
+          if (type != "public-key") continue;
+
+          var id = Android.Util.Base64.Decode(credentialJson.GetString("id"), Android.Util.Base64Flags.UrlSafe);
+          if (id == null || id.Length == 0) continue;
+
+          // Parse optional transports array
+          var transports = new List<string>();
+          var transportsArray = credentialJson.OptJSONArray("transports");
+          if (transportsArray != null)
           {
-            var credentialJson = allowCredentialsArray.GetJSONObject(i);
-            var type = credentialJson?.OptString("type", "public-key") ?? "public-key";
-            var idBase64 = credentialJson?.GetString("id");
-            if (idBase64 == null) continue;
-
-            var id = Android.Util.Base64.Decode(
-              idBase64,
-              Android.Util.Base64Flags.UrlSafe | Android.Util.Base64Flags.NoPadding
-            );
-            if (id == null) continue;
-
-            // Parse optional transports array
-            var transports = new List<string>();
-            var transportsArray = credentialJson.OptJSONArray("transports");
-            if (transportsArray != null)
+            for (int j = 0; j < transportsArray.Length(); j++)
             {
-              for (int j = 0; j < transportsArray.Length(); j++)
+              var transport = transportsArray.OptString(j, null);
+              if (transport != null)
               {
-                var transport = transportsArray.GetString(j);
-                if (transport != null)
-                {
-                  transports.Add(transport);
-                }
+                transports.Add(transport);
               }
             }
-
-            allowCredentials.Add(new PublicKeyCredentialDescriptor(type, id, transports));
           }
+
+          allowCredentials.Add(new PublicKeyCredentialDescriptor(type, id, transports));
         }
-      }
-      catch (Exception)
-      {
-        // If parsing fails, return empty list (no filtering)
+        catch (Exception)
+        {
+          // skip this descriptor
+        }
       }
       return allowCredentials;
     }
