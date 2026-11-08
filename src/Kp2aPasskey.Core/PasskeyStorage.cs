@@ -70,6 +70,63 @@ namespace Kp2aPasskey.Core
         passkeyFieldsJson.Put(PasskeyStorage.FIELD_FLAG_BS, passkey.BackupState.Value ? "1" : "0");
       return passkeyFieldsJson;
     }
+
+    // Alternative field names written by StrongBox. KeePassXC reads them with priority over the
+    // KPEX_* names (see KeePassXC src/browser/PasskeyUtils.cpp: getCredentialIdFromEntry /
+    // getUsernameFromEntry, constants in src/core/EntryAttributes.cpp). Kp2a mirrors that
+    // precedence for reading but never writes these fields.
+    public const string FIELD_GENERATED_USER_ID = "KPEX_PASSKEY_GENERATED_USER_ID";
+    public const string FIELD_KPXC_USERNAME = "KPXC_PASSKEY_USERNAME";
+
+    // KeePassXC treats every attribute starting with this prefix as a passkey attribute
+    // (EntryAttributes::isPasskeyAttribute / hasPasskey / removePasskeyAttributes).
+    public const string PASSKEY_FIELD_PREFIX = "KPEX_PASSKEY";
+
+    /// <summary>
+    /// Returns the name of the first field in <paramref name="candidates"/> that exists in the
+    /// entry with a non-empty value, or null if none does. Candidates are given in priority order.
+    /// </summary>
+    private static string? FindField(PwEntry entry, params string[] candidates)
+    {
+      foreach (var key in candidates)
+      {
+        if (!string.IsNullOrEmpty(entry.Strings.ReadSafe(key)))
+          return key;
+      }
+      return null;
+    }
+
+    /// <summary>
+    /// Name of the field holding the credential ID. Same precedence as KeePassXC:
+    /// KPEX_PASSKEY_GENERATED_USER_ID (StrongBox) first, then KPEX_PASSKEY_CREDENTIAL_ID.
+    /// </summary>
+    public static string? GetCredentialIdField(PwEntry entry) =>
+      FindField(entry, FIELD_GENERATED_USER_ID, FIELD_CREDENTIAL_ID);
+
+    /// <summary>
+    /// Name of the field holding the passkey username. Same precedence as KeePassXC:
+    /// KPXC_PASSKEY_USERNAME (StrongBox) first, then KPEX_PASSKEY_USERNAME.
+    /// </summary>
+    public static string? GetUsernameField(PwEntry entry) =>
+      FindField(entry, FIELD_KPXC_USERNAME, FIELD_USERNAME);
+
+    /// <summary>Credential ID of the passkey in the entry (base64url), or "" if none.</summary>
+    public static string GetCredentialId(PwEntry entry)
+    {
+      var key = GetCredentialIdField(entry);
+      return key == null ? "" : entry.Strings.ReadSafe(key);
+    }
+
+    /// <summary>
+    /// Passkey username (account name at the RP), or "" if none. Does not fall back to the
+    /// standard UserName field; callers decide about that.
+    /// </summary>
+    public static string GetUsername(PwEntry entry)
+    {
+      var key = GetUsernameField(entry);
+      return key == null ? "" : entry.Strings.ReadSafe(key);
+    }
+
     /// <summary>
     /// Retrieve passkey data from a KeePass entry
     /// </summary>
@@ -78,42 +135,25 @@ namespace Kp2aPasskey.Core
       if (entry == null)
         return null;
 
-      // Check if entry contains passkey data (must have at minimum private key and credential ID)
-      if (!entry.Strings.Exists(FIELD_PRIVATE_KEY) ||
-          !entry.Strings.Exists(FIELD_CREDENTIAL_ID))
-      {
-        return null;
-      }
-
-      var username = entry.Strings.ReadSafe(FIELD_USERNAME);
-      if (string.IsNullOrEmpty(username))
-      {
-        // fallback to Strongbox compatible field:
-        username = entry.Strings.ReadSafe("KPXC_PASSKEY_USERNAME");
-      }
-
       var privateKeyPem = entry.Strings.ReadSafe(FIELD_PRIVATE_KEY);
-      var credentialId = entry.Strings.ReadSafe(FIELD_CREDENTIAL_ID);
-      if (string.IsNullOrEmpty(credentialId))
-      {
-        // fallback to Strongbox compatible field:
-        credentialId = entry.Strings.ReadSafe("KPEX_PASSKEY_GENERATED_USER_ID");
-      }
-
-
-
+      var credentialId = GetCredentialId(entry);
       var userHandle = entry.Strings.ReadSafe(FIELD_USER_HANDLE);
       var relyingParty = entry.Strings.ReadSafe(FIELD_RELYING_PARTY);
 
-      // All required fields must be present
-      if (string.IsNullOrEmpty(username) ||
-          string.IsNullOrEmpty(privateKeyPem) ||
+      // Required for signing an assertion. (KeePassXC only knows the KPEX names for these.)
+      if (string.IsNullOrEmpty(privateKeyPem) ||
           string.IsNullOrEmpty(credentialId) ||
           string.IsNullOrEmpty(userHandle) ||
           string.IsNullOrEmpty(relyingParty))
       {
         return null;
       }
+
+      // The username is informational only (KeePassXC does not require it either), so fall back
+      // to the entry's standard UserName field instead of rejecting the passkey.
+      var username = GetUsername(entry);
+      if (string.IsNullOrEmpty(username))
+        username = entry.Strings.ReadSafe(PwDefs.UserNameField);
 
       var passkey = new PasskeyData
       {
@@ -124,7 +164,7 @@ namespace Kp2aPasskey.Core
         RelyingParty = relyingParty
       };
 
-      // Parse optional boolean fields
+      // Parse optional boolean fields ("1" or "true", like KeePassXC)
       var backupEligibleStr = entry.Strings.ReadSafe(FIELD_FLAG_BE);
       if (!string.IsNullOrEmpty(backupEligibleStr))
         passkey.BackupEligibility = ParseBool(backupEligibleStr);
@@ -136,6 +176,10 @@ namespace Kp2aPasskey.Core
       return passkey;
     }
 
+    private static bool IsPasskeyField(string key) =>
+      key.StartsWith(PASSKEY_FIELD_PREFIX, StringComparison.Ordinal) ||
+      key == FIELD_KPXC_USERNAME;
+
     private static bool ParseBool(string value) =>
       value == "1" || string.Equals(value, "true", StringComparison.OrdinalIgnoreCase);
 
@@ -144,13 +188,11 @@ namespace Kp2aPasskey.Core
     /// </summary>
     public static bool HasPasskey(PwEntry entry)
     {
+      // Like KeePassXC's EntryAttributes::hasPasskey (any KPEX_PASSKEY* attribute), plus the
+      // StrongBox-only KPXC_PASSKEY_USERNAME and Kp2a's Passkey tag.
       return entry != null &&
              (entry.Tags.Contains(PASSKEY_TAG) ||
-              entry.Strings.Exists(FIELD_USERNAME) ||
-              entry.Strings.Exists(FIELD_PRIVATE_KEY) ||
-              entry.Strings.Exists(FIELD_CREDENTIAL_ID) ||
-              entry.Strings.Exists(FIELD_USER_HANDLE) ||
-              entry.Strings.Exists(FIELD_RELYING_PARTY));
+              entry.Strings.GetKeys().Any(IsPasskeyField));
     }
 
     /// <summary>
@@ -169,14 +211,10 @@ namespace Kp2aPasskey.Core
         entry.Tags = tags;
       }
 
-      // Remove all passkey fields
-      entry.Strings.Remove(FIELD_USERNAME);
-      entry.Strings.Remove(FIELD_PRIVATE_KEY);
-      entry.Strings.Remove(FIELD_CREDENTIAL_ID);
-      entry.Strings.Remove(FIELD_USER_HANDLE);
-      entry.Strings.Remove(FIELD_RELYING_PARTY);
-      entry.Strings.Remove(FIELD_FLAG_BE);
-      entry.Strings.Remove(FIELD_FLAG_BS);
+      // Remove all passkey fields (every KPEX_PASSKEY* field incl. StrongBox names, and
+      // KPXC_PASSKEY_USERNAME), like KeePassXC's removePasskeyAttributes
+      foreach (var key in entry.Strings.GetKeys().Where(IsPasskeyField).ToList())
+        entry.Strings.Remove(key);
     }
   }
 }
