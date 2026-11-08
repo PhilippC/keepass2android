@@ -24,9 +24,8 @@ namespace keepass2android.services.Kp2aCredentialProvider
   public static class PasskeyOptionParsingHelper
   {
     /// <summary>
-    /// Extract clientDataHash from GetPublicKeyCredentialOption
-    /// Returns null if not available (non-privileged app)
-    /// Tries multiple methods: JNI direct call, reflection, property access
+    /// Extracts the clientDataHash from a GetPublicKeyCredentialOption via JNI (there is no C# binding).
+    /// Returns null if not available.
     /// </summary>
     public static byte[]? ExtractClientDataHashFromOption(GetPublicKeyCredentialOption passkeyOption)
     {
