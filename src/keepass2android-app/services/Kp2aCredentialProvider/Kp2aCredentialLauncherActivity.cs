@@ -84,6 +84,11 @@ namespace keepass2android.services.Kp2aCredentialProvider
     // Error messages returned to Credential Manager. Details are only written to the log.
     private const string InvalidRequestMessage = "Invalid passkey request";
 
+    /// <summary>
+    /// Message returned to the calling app when creation fails. Exception details are only logged.
+    /// </summary>
+    internal const string PasskeyCreationFailedMessage = "Passkey creation failed";
+
     // ViewModel-style state variables for passkey operations
     private PublicKeyCredentialCreationOptions? _passkeyCreationOptions;
     private string? _passkeyRequestJson;
@@ -349,7 +354,7 @@ namespace keepass2android.services.Kp2aCredentialProvider
             Toast.MakeText(this, GetString(Resource.String.passkey_create_failed, ex.Message), ToastLength.Long)?.Show();
             PendingIntentHandler.SetCreateCredentialException(
               result,
-              new CreateCredentialUnknownException(ex.Message)
+              new CreateCredentialUnknownException(PasskeyCreationFailedMessage)
             );
             // Result.Ok is required, otherwise Credential Manager drops the exception and reports a cancellation.
             SetResult(Result.Ok, result);
@@ -1118,7 +1123,7 @@ namespace keepass2android.services.Kp2aCredentialProvider
             catch (Exception e)
             {
               Kp2aLog.Log($"Kp2aCredentialLauncherActivity: Error creating passkey: {e.Message}");
-              SetUpFailureResponseForCreateAndFinish(e.Message);
+              SetUpFailureResponseForCreateAndFinish(PasskeyCreationFailedMessage);
             }
           },
           onCancelOrError: SetUpCancellationResponseForCreateAndFinish);
@@ -1126,7 +1131,7 @@ namespace keepass2android.services.Kp2aCredentialProvider
       catch (Exception e)
       {
         Kp2aLog.Log($"Kp2aCredentialLauncherActivity: Error creating passkey: {e.Message}");
-        SetUpFailureResponseForCreateAndFinish(e.Message);
+        SetUpFailureResponseForCreateAndFinish(PasskeyCreationFailedMessage);
       }
     }
 

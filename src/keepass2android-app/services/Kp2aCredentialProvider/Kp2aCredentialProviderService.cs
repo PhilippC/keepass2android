@@ -81,7 +81,7 @@ namespace keepass2android.services.Kp2aCredentialProvider
       catch (Exception e)
       {
         Kp2aLog.Log($"Kp2aCredentialProviderService: onBeginCreateCredentialRequest error. {e.Message}");
-        callback.OnError(new CreateCredentialUnknownException(e.Message).JavaCast<Java.Lang.Object>());
+        callback.OnError(new CreateCredentialUnknownException(Kp2aCredentialLauncherActivity.PasskeyCreationFailedMessage).JavaCast<Java.Lang.Object>());
       }
     }
 
@@ -209,7 +209,7 @@ namespace keepass2android.services.Kp2aCredentialProvider
       catch (Exception e)
       {
         Kp2aLog.Log($"Kp2aCredentialProviderService: Error handling passkey creation request. {e.Message}");
-        callback.OnError(new CreateCredentialUnknownException(e.Message).JavaCast<Java.Lang.Object>());
+        callback.OnError(new CreateCredentialUnknownException(Kp2aCredentialLauncherActivity.PasskeyCreationFailedMessage).JavaCast<Java.Lang.Object>());
       }
     }
 
