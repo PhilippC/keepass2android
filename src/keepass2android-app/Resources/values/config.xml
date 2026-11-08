@@ -236,7 +236,7 @@
 	<string name="pref_periodic_background_sync_interval_default">15</string>
 	<bool name="passkeys_backup_eligibility_default">true</bool>
 	<bool name="passkeys_backup_state_default">true</bool>
-	<bool name="passkeys_force_user_verification_when_preferred_default">false</bool>
+	<bool name="passkeys_force_user_verification_when_preferred_default">true</bool>
 	
 
 </resources>

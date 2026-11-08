@@ -1087,18 +1087,16 @@ namespace keepass2android.services.Kp2aCredentialProvider
           return;
         }
 
-        var uvRequired = _passkeyCreationOptions.UserVerificationRequirement == Kp2aPasskey.Core.UserVerificationRequirement.Required
-          || (PasskeyPreferences.GetForceUserVerificationWhenPreferred(this)
-              && _passkeyCreationOptions.UserVerificationRequirement == Kp2aPasskey.Core.UserVerificationRequirement.Preferred);
+        var uvDecision = DecideUserVerification(_passkeyCreationOptions.UserVerificationRequirement);
 
-        if (!uvRequired)
+        if (uvDecision == UserVerificationDecision.Skip)
         {
           _userVerifiedForCreate = false;
           PreparePasskeyCreationAndLaunchEntryCreation(requestIntent);
           return;
         }
 
-        if (!UserVerificationHelper.CanAuthenticate(this))
+        if (uvDecision == UserVerificationDecision.Unavailable)
         {
           SetUpFailureResponseForCreateAndFinish("User verification required but not available on this device.");
           return;
@@ -1130,6 +1128,31 @@ namespace keepass2android.services.Kp2aCredentialProvider
         Kp2aLog.Log($"Kp2aCredentialLauncherActivity: Error creating passkey: {e.Message}");
         SetUpFailureResponseForCreateAndFinish(e.Message);
       }
+    }
+
+    private enum UserVerificationDecision
+    {
+      Skip,
+      Prompt,
+      Unavailable
+    }
+
+    /// <summary>
+    /// Decides whether to show the user verification prompt. "required" always prompts. "preferred" prompts if the
+    /// force-UV setting is on (default). Without a screen lock, "preferred" falls back to no verification (UV=0)
+    /// instead of failing; only "required" is refused then.
+    /// </summary>
+    private UserVerificationDecision DecideUserVerification(Kp2aPasskey.Core.UserVerificationRequirement requirement)
+    {
+      var required = requirement == Kp2aPasskey.Core.UserVerificationRequirement.Required;
+      var wanted = required
+        || (requirement == Kp2aPasskey.Core.UserVerificationRequirement.Preferred
+            && PasskeyPreferences.GetForceUserVerificationWhenPreferred(this));
+      if (!wanted)
+        return UserVerificationDecision.Skip;
+      if (UserVerificationHelper.CanAuthenticate(this))
+        return UserVerificationDecision.Prompt;
+      return required ? UserVerificationDecision.Unavailable : UserVerificationDecision.Skip;
     }
 
     private void SetUpCancellationResponseForCreateAndFinish()
@@ -1263,17 +1286,15 @@ namespace keepass2android.services.Kp2aCredentialProvider
       }
 
       var requestOptions = request.RequestOptions;
-      var uvRequired = requestOptions.UserVerificationRequirement == Kp2aPasskey.Core.UserVerificationRequirement.Required
-        || (PasskeyPreferences.GetForceUserVerificationWhenPreferred(this)
-            && requestOptions.UserVerificationRequirement == Kp2aPasskey.Core.UserVerificationRequirement.Preferred);
+      var uvDecision = DecideUserVerification(requestOptions.UserVerificationRequirement);
 
-      if (!uvRequired)
+      if (uvDecision == UserVerificationDecision.Skip)
       {
         ReturnPasskeyAssertionAndFinish(request, userVerified: false);
         return;
       }
 
-      if (!UserVerificationHelper.CanAuthenticate(this))
+      if (uvDecision == UserVerificationDecision.Unavailable)
       {
         SetUpFailureResponseForGetAndFinish("User verification required but not available on this device.");
         return;
