@@ -53,6 +53,7 @@ namespace keepass2android.services.Kp2aCredentialProvider
     WindowSoftInputMode = SoftInput.AdjustResize,
     Permission = "keepass2android." + AppNames.PackagePart + ".permission.Kp2aChooseAutofill"
   )]
+  [System.Runtime.Versioning.SupportedOSPlatform("android34.0")]
   public class Kp2aCredentialLauncherActivity : AndroidX.AppCompat.App.AppCompatActivity
   {
     public const string CredentialRequestTypeKey = "credential_request_type";

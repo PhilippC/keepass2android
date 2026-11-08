@@ -30,7 +30,7 @@ namespace keepass2android.services.Kp2aCredentialProvider
   /// <see cref="Kp2aCredentialLauncherActivity"/> (after-unlock path via
   /// <c>PendingOperation.UnlockForGetCredentials</c>).
   /// </summary>
-  [System.Runtime.Versioning.SupportedOSPlatform("android31.0")]
+  [System.Runtime.Versioning.SupportedOSPlatform("android34.0")]
   internal static class GetCredentialHelper
   {
     /// <summary>

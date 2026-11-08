@@ -36,7 +36,7 @@ namespace keepass2android.services.Kp2aCredentialProvider
   )]
   [IntentFilter(actions: ["android.service.credentials.CredentialProviderService"])]
   [MetaData(name: "android.credentials.provider", Resource = "@xml/credentials_provider")]
-  [System.Runtime.Versioning.SupportedOSPlatform("android31.0")]
+  [System.Runtime.Versioning.SupportedOSPlatform("android34.0")]
   public class Kp2aCredentialProviderService : CredentialProviderService
   {
     private Icon? _defaultIcon;
