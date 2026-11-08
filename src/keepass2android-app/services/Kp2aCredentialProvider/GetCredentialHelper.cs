@@ -1,4 +1,4 @@
-// This file is part of Keepass2Android, Copyright 2025 Philipp Crocoll.
+// This file is part of Keepass2Android, Copyright 2026 Philipp Crocoll.
 //
 //   Keepass2Android is free software: you can redistribute it and/or modify
 //   it under the terms of the GNU General Public License as published by
