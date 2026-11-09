@@ -38,7 +38,7 @@ using PeterO.Cbor;
 using AndroidKeyPair = Java.Security.KeyPair;
 using Exception = System.Exception;
 
-namespace keepass2android.services.Kp2aCredentialProvider.Passkey
+namespace Kp2aPasskey.Core
 {
   /// <summary>
   /// Wrapper for BouncyCastle Ed25519 private key to implement Java IPrivateKey interface

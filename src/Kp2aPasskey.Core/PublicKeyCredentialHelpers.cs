@@ -21,7 +21,6 @@
 using System;
 using System.Collections.Generic;
 using Org.Json;
-using keepass2android.services.Kp2aCredentialProvider.Passkey;
 
 namespace Kp2aPasskey.Core
 {

@@ -34,7 +34,6 @@ using Java.Security.Spec;
 using Java.Time;
 using Keepass2android.Pluginsdk;
 using keepass2android.services.AutofillBase;
-using keepass2android.services.Kp2aCredentialProvider.Passkey;
 using KeePassLib;
 using Kp2aPasskey.Core;
 using KeePassLib.Utility;

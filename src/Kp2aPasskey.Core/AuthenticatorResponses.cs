@@ -21,11 +21,10 @@
 using System.Security.Cryptography;
 using System.Text;
 using Android.Util;
-using Kp2aPasskey.Core;
 using Org.Json;
 using PeterO.Cbor;
 
-namespace keepass2android.services.Kp2aCredentialProvider.Passkey
+namespace Kp2aPasskey.Core
 {
   /// <summary>
   /// Builds authenticator data structure for FIDO2/WebAuthn protocol.

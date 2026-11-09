@@ -20,7 +20,7 @@
 
 using Android.Content;
 using AndroidX.Credentials.Provider;
-using keepass2android.services.Kp2aCredentialProvider.Passkey;
+using Kp2aPasskey.Core;
 
 namespace keepass2android.services.Kp2aCredentialProvider
 {

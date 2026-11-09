@@ -4,7 +4,7 @@
     <TargetFramework>net9.0-android</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <RootNamespace>keepass2android.services.Kp2aCredentialProvider.Passkey</RootNamespace>
+    <RootNamespace>Kp2aPasskey.Core</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
