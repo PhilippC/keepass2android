@@ -20,7 +20,7 @@
 
 using System.Linq;
 using System.Security.Cryptography;
-using Android.Util;
+using keepass2android;
 using Java.Lang;
 using Java.Security;
 using Java.Security.Spec;
@@ -137,7 +137,7 @@ namespace Kp2aPasskey.Core
 
       var errorMsg = $"No supported algorithm found. Requested: [{string.Join(", ", algorithmIds)}]. " +
         $"Supported: EdDSA(-8, may vary by device), ES256(-7), RS256(-257)";
-      Log.Error("PasskeyCryptoHelper", errorMsg);
+      Kp2aLog.Log("PasskeyCryptoHelper: " + errorMsg);
       return null;
     }
 
@@ -156,7 +156,7 @@ namespace Kp2aPasskey.Core
       }
       catch (Exception ex)
       {
-        Log.Error("PasskeyCryptoHelper", "Failed to generate EC key pair", ex);
+        Kp2aLog.Log($"PasskeyCryptoHelper: Failed to generate EC key pair: {ex}");
         return null;
       }
     }
@@ -174,7 +174,7 @@ namespace Kp2aPasskey.Core
       }
       catch (Exception ex)
       {
-        Log.Error("PasskeyCryptoHelper", "Failed to generate RSA key pair", ex);
+        Kp2aLog.Log($"PasskeyCryptoHelper: Failed to generate RSA key pair: {ex}");
         return null;
       }
     }
@@ -221,8 +221,7 @@ namespace Kp2aPasskey.Core
       }
       catch (Exception ex)
       {
-        Log.Error("PasskeyCryptoHelper",
-          $"Ed25519 generation failed (Android {Android.OS.Build.VERSION.SdkInt}): {ex.GetType().Name}: {ex.Message}", ex);
+        Kp2aLog.Log($"PasskeyCryptoHelper: Ed25519 generation failed (Android {Android.OS.Build.VERSION.SdkInt}): {ex}");
         return null;
       }
     }
@@ -281,7 +280,7 @@ namespace Kp2aPasskey.Core
       }
       catch (Exception ex)
       {
-        Log.Error("PasskeyCryptoHelper", $"Failed to sign data: {ex.Message}");
+        Kp2aLog.Log($"PasskeyCryptoHelper: Failed to sign data: {ex}");
         throw new Exception("Failed to sign data", ex);
       }
     }
