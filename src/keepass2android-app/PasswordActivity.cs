@@ -2023,7 +2023,7 @@ namespace keepass2android
         if (_biometricDec.Init())
         {
           btn.SetImageResource(Resource.Drawable.baseline_fingerprint_24);
-          _biometricDec.StartListening(new BiometricAuthCallbackAdapter(this, this));
+          _biometricDec.StartListening(this);
           return true;
         }
         else
