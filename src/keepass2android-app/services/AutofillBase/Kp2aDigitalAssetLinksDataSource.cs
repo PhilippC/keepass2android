@@ -35,7 +35,7 @@ namespace keepass2android.services.AutofillBase
       _ctx = ctx;
     }
 
-    static public bool IsTrustedBrowser(string packageName)
+    public static bool IsTrustedBrowser(string packageName)
     {
       return _trustedBrowsers.Contains(packageName);
     }

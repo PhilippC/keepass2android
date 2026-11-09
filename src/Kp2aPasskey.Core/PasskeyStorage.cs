@@ -78,9 +78,6 @@ namespace Kp2aPasskey.Core
     public const string FIELD_GENERATED_USER_ID = "KPEX_PASSKEY_GENERATED_USER_ID";
     public const string FIELD_KPXC_USERNAME = "KPXC_PASSKEY_USERNAME";
 
-    // KeePassXC treats every attribute starting with this prefix as a passkey attribute
-    // (EntryAttributes::isPasskeyAttribute / hasPasskey / removePasskeyAttributes).
-    public const string PASSKEY_FIELD_PREFIX = "KPEX_PASSKEY";
 
     /// <summary>
     /// Returns the name of the first field in <paramref name="candidates"/> that exists in the
@@ -176,45 +173,7 @@ namespace Kp2aPasskey.Core
       return passkey;
     }
 
-    private static bool IsPasskeyField(string key) =>
-      key.StartsWith(PASSKEY_FIELD_PREFIX, StringComparison.Ordinal) ||
-      key == FIELD_KPXC_USERNAME;
-
     private static bool ParseBool(string value) =>
       value == "1" || string.Equals(value, "true", StringComparison.OrdinalIgnoreCase);
-
-    /// <summary>
-    /// Check if an entry contains passkey data
-    /// </summary>
-    public static bool HasPasskey(PwEntry entry)
-    {
-      // Like KeePassXC's EntryAttributes::hasPasskey (any KPEX_PASSKEY* attribute), plus the
-      // StrongBox-only KPXC_PASSKEY_USERNAME and Kp2a's Passkey tag.
-      return entry != null &&
-             (entry.Tags.Contains(PASSKEY_TAG) ||
-              entry.Strings.GetKeys().Any(IsPasskeyField));
-    }
-
-    /// <summary>
-    /// Remove passkey data from an entry
-    /// </summary>
-    public static void RemovePasskey(PwEntry entry)
-    {
-      if (entry == null)
-        return;
-
-      // Remove tag
-      if (entry.Tags.Contains(PASSKEY_TAG))
-      {
-        var tags = new List<string>(entry.Tags);
-        tags.Remove(PASSKEY_TAG);
-        entry.Tags = tags;
-      }
-
-      // Remove all passkey fields (every KPEX_PASSKEY* field incl. StrongBox names, and
-      // KPXC_PASSKEY_USERNAME), like KeePassXC's removePasskeyAttributes
-      foreach (var key in entry.Strings.GetKeys().Where(IsPasskeyField).ToList())
-        entry.Strings.Remove(key);
-    }
   }
 }

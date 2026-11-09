@@ -53,6 +53,7 @@ namespace keepass2android.services.Kp2aCredentialProvider
     WindowSoftInputMode = SoftInput.AdjustResize,
     Permission = "keepass2android." + AppNames.PackagePart + ".permission.Kp2aChooseAutofill"
   )]
+  [System.Runtime.Versioning.SupportedOSPlatform("android34.0")]
   public class Kp2aCredentialLauncherActivity : AndroidX.AppCompat.App.AppCompatActivity
   {
     public const string CredentialRequestTypeKey = "credential_request_type";
@@ -63,8 +64,6 @@ namespace keepass2android.services.Kp2aCredentialProvider
     public const int CredentialRequestTypeGetPasskeyForEntry = 6;
 
     // Intent extra keys
-    public const string ExtraRelyingPartyId = "extra_relying_party_id";
-    public const string ExtraRequestJson = "extra_request_json";
 
     private const int CreateEntryRequestCode = 100;
     private const int UnlockRequestCode = 300;
@@ -89,7 +88,7 @@ namespace keepass2android.services.Kp2aCredentialProvider
     /// </summary>
     internal const string PasskeyCreationFailedMessage = "Passkey creation failed";
 
-    // ViewModel-style state variables for passkey operations
+    // State of the current passkey operation, kept across the child activities (saved in OnSaveInstanceState)
     private PublicKeyCredentialCreationOptions? _passkeyCreationOptions;
     private string? _passkeyRequestJson;
     private string? _passkeyOrigin;
@@ -99,8 +98,8 @@ namespace keepass2android.services.Kp2aCredentialProvider
     {
       None,
       UnlockForGetCredentials,       // Unlock so the Begin-Get picker can be (re-)populated with all credential types
-      CreatePasskey,                 // DB was open when creation started → awaiting CreateEntryRequestCode
-      GetPasskeyForEntryAfterUnlock, // Same as above, for a pre-selected entry
+      CreatePasskey,                 // Waiting for the new entry to be created (CreateEntryRequestCode)
+      GetPasskeyForEntryAfterUnlock, // Waiting for the unlock (UnlockRequestCode), then return the passkey of the selected entry
     }
 
     private PendingOperation _pendingOperation;
@@ -168,17 +167,17 @@ namespace keepass2android.services.Kp2aCredentialProvider
           case CredentialRequestTypeUnlockForGetCredentials:
             // The database was (and probably still is) locked when the onBeginGetCredentialRequest came in. We're supposed to unlock the database and then return matching entries.
             //We can use the same workflow for get-password as well as get-passkey requests.
-            HandleUnlockForGetCredentialsRequest(intent);
+            HandleUnlockForGetCredentialsRequest();
             break;
           case CredentialRequestTypeGetPasswordForEntry:
-            // After we (or the service) have returned entries for Android's credential UI (see GetCredentialHelper), the user has clicked one of these.
-            // The previously returned entries only contained username/display name/UUID but not the actual FIDO2 assertion response.
+            // The user picked one of the password entries returned for the credential UI (see GetCredentialHelper).
+            // Those only identify the entry; return its credentials now.
             HandleGetPasswordForEntryRequest(intent);
             break;
 
           case CredentialRequestTypeGetPasskeyForEntry:
-            // After we (or the service) have returned entries for Android's Passkey UI (see GetCredentialHelper), the user has clicked one of these.
-            // The previously returned entries only contained username/display name/UUID but not the actual FIDO2 assertion response.
+            // The user picked one of the passkey entries returned for the credential UI (see GetCredentialHelper).
+            // Those only identify the entry; build and return the FIDO2 assertion now.
             HandleGetPasskeyForEntryRequest(intent);
             break;
 
@@ -237,7 +236,7 @@ namespace keepass2android.services.Kp2aCredentialProvider
       }
     }
 
-    private void HandleUnlockForGetCredentialsRequest(Intent requestIntent)
+    private void HandleUnlockForGetCredentialsRequest()
     {
       _pendingOperation = PendingOperation.UnlockForGetCredentials;
       LaunchUnlockDatabase();
@@ -715,7 +714,7 @@ namespace keepass2android.services.Kp2aCredentialProvider
     }
 
     /// <summary>
-    /// If the request is null, send an unknown exception to client and finish the flow.
+    /// Sets up a failure response for a create request and finishes the activity.
     /// </summary>
     /// <param name="message">The error message to send to the client.</param>
     private void SetUpFailureResponseForCreateAndFinish(string? message = null)
@@ -796,8 +795,7 @@ namespace keepass2android.services.Kp2aCredentialProvider
       var requestedAlgorithms = creationOptions.PubKeyCredParams.Select(p => p.Alg).ToList();
 
       // Generate credential ID (16 random bytes)
-      var credentialId = new byte[16];
-      new System.Security.Cryptography.RNGCryptoServiceProvider().GetBytes(credentialId);
+      var credentialId = System.Security.Cryptography.RandomNumberGenerator.GetBytes(16);
 
       // Generate key pair
       var keyPairResult = PasskeyCryptoHelper.GenerateKeyPair(requestedAlgorithms);

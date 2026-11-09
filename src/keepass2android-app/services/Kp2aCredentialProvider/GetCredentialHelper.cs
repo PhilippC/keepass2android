@@ -1,4 +1,4 @@
-// This file is part of Keepass2Android, Copyright 2025 Philipp Crocoll.
+// This file is part of Keepass2Android, Copyright 2026 Philipp Crocoll.
 //
 //   Keepass2Android is free software: you can redistribute it and/or modify
 //   it under the terms of the GNU General Public License as published by
@@ -30,7 +30,7 @@ namespace keepass2android.services.Kp2aCredentialProvider
   /// <see cref="Kp2aCredentialLauncherActivity"/> (after-unlock path via
   /// <c>PendingOperation.UnlockForGetCredentials</c>).
   /// </summary>
-  [System.Runtime.Versioning.SupportedOSPlatform("android31.0")]
+  [System.Runtime.Versioning.SupportedOSPlatform("android34.0")]
   internal static class GetCredentialHelper
   {
     /// <summary>
@@ -160,9 +160,7 @@ namespace keepass2android.services.Kp2aCredentialProvider
                       Kp2aCredentialLauncherActivity.CredentialRequestTypeKey,
                       Kp2aCredentialLauncherActivity.CredentialRequestTypeGetPasskeyForEntry
                     )
-                    .PutExtra(Strings.ExtraEntryId, entry.Uuid.ToHexString())
-                    .PutExtra(Kp2aCredentialLauncherActivity.ExtraRelyingPartyId, relyingPartyId)
-                    .PutExtra(Kp2aCredentialLauncherActivity.ExtraRequestJson, option.RequestJson),
+                    .PutExtra(Strings.ExtraEntryId, entry.Uuid.ToHexString()),
                   (int)PendingIntentFlags.UpdateCurrent,
                   true
                 )!,

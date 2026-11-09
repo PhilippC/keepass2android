@@ -1,4 +1,9 @@
-// This file is part of Keepass2Android, Copyright 2025 Philipp Crocoll.
+// Derived from KeePassDX (https://github.com/Kunzisoft/KeePassDX), PreferencesUtil.kt.
+// Original work Copyright 2025 Jeremy Jamet / Kunzisoft.
+// Licensed under the GNU General Public License v3 or later.
+//
+// Modifications Copyright 2026 Philipp Crocoll.
+// This file is part of Keepass2Android.
 //
 //   Keepass2Android is free software: you can redistribute it and/or modify
 //   it under the terms of the GNU General Public License as published by
@@ -19,8 +24,7 @@ using Android.Preferences;
 namespace keepass2android
 {
   /// <summary>
-  /// Helper class for reading passkey-related preferences
-  /// Based on KeePassDX PreferencesUtil pattern
+  /// Helper class for reading passkey-related preferences (ported from KeePassDX's PreferencesUtil)
   /// </summary>
   public static class PasskeyPreferences
   {

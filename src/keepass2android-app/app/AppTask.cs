@@ -916,7 +916,7 @@ namespace keepass2android
 
       if (Tags != null && Tags.Count > 0)
       {
-        var existingTags = new System.Collections.Generic.List<string>(newEntry.Tags);
+        var existingTags = new List<string>(newEntry.Tags);
         foreach (var tag in Tags)
         {
           if (!existingTags.Contains(tag))
