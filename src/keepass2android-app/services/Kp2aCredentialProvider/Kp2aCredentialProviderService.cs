@@ -83,10 +83,20 @@ namespace keepass2android.services.Kp2aCredentialProvider
       }
     }
 
+    /// <summary>
+    /// Label of the create entry in the system sheet: the name of the open database, or the app name if it has no
+    /// name or several databases are open (the user picks the database later).
+    /// </summary>
+    private string GetCreateEntryAccountName()
+    {
+      var name = App.Kp2a.OpenDatabases.Count() == 1 ? App.Kp2a.CurrentDb?.KpDatabase?.Name : null;
+      return string.IsNullOrWhiteSpace(name) ? GetString(AppNames.AppNameResource)! : name;
+    }
+
     private void HandleCreatePasswordRequest(IOutcomeReceiver callback)
     {
       var currentDb = App.Kp2a.CurrentDb;
-      var accountName = currentDb?.KpDatabase?.Name ?? CreateDb.DefaultDbName;
+      var accountName = GetCreateEntryAccountName();
 
       callback.OnResult(
         new BeginCreateCredentialResponse.Builder()
@@ -123,10 +133,7 @@ namespace keepass2android.services.Kp2aCredentialProvider
     )
     {
       var currentDb = App.Kp2a.CurrentDb;
-      var databaseName = currentDb?.KpDatabase?.Name;
-      var accountName = string.IsNullOrWhiteSpace(databaseName)
-        ? GetString(AppNames.AppNameResource)
-        : databaseName;
+      var accountName = GetCreateEntryAccountName();
 
       var createEntries = new List<CreateEntry>();
 
