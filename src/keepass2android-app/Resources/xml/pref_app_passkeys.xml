@@ -5,6 +5,12 @@
   android:title="@string/Passkey_prefs"
   android:summary="@string/pref_passkeys_screen_summary">
 
+  <Preference
+    android:key="@string/passkeys_enable_provider_key"
+    android:title="@string/passkeys_enable_provider_title"
+    android:summary="@string/passkeys_enable_provider_summary"
+    app:iconSpaceReserved="false" />
+
   <PreferenceCategory
     android:title="@string/pref_passkeys_backup_category_title">
     

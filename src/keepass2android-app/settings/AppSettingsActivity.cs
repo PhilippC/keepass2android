@@ -433,6 +433,15 @@ namespace keepass2android
       public SettingsFragmentApp() : base(Resource.Xml.pref_app)
       {
       }
+
+      public override void OnCreatePreferences(Bundle savedInstanceState, string rootKey)
+      {
+        base.OnCreatePreferences(savedInstanceState, rootKey);
+        // The credential provider (and thus passkeys) requires Android 14.
+        var passkeyPrefs = FindPreference(GetString(Resource.String.Passkey_prefs_key));
+        if (passkeyPrefs != null)
+          passkeyPrefs.Visible = OperatingSystem.IsAndroidVersionAtLeast(34);
+      }
     }
     public class SecurityPreferenceFragment : PreferenceFragmentWithResource
     {
@@ -744,6 +753,22 @@ namespace keepass2android
               },
               onCancelOrError: null
             );
+          };
+
+        var enableProviderPref = FindPreference(GetString(Resource.String.passkeys_enable_provider_key));
+        if (enableProviderPref != null)
+          enableProviderPref.PreferenceClick += (_, _) =>
+          {
+            try
+            {
+              // Settings.ACTION_CREDENTIAL_PROVIDER (API 34)
+              StartActivity(new Intent("android.settings.CREDENTIAL_PROVIDER",
+                Android.Net.Uri.Parse("package:" + RequireContext().PackageName)));
+            }
+            catch (ActivityNotFoundException e)
+            {
+              Kp2aLog.Log("Credential provider settings not available: " + e.Message);
+            }
           };
 
         var privilegedAppsPref = FindPreference(GetString(Resource.String.passkeys_privileged_apps_key));

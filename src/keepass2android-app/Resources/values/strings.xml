@@ -1413,6 +1413,9 @@
   <!-- Passkey trusted (privileged) browsers -->
   <string name="pref_passkeys_browsers_category_title">Browsers</string>
   <string name="passkeys_privileged_apps_key" translatable="false">passkeys_privileged_apps_key</string>
+  <string name="passkeys_enable_provider_key" translatable="false">passkeys_enable_provider_key</string>
+  <string name="passkeys_enable_provider_title">Use as passkey provider</string>
+  <string name="passkeys_enable_provider_summary">Opens the Android settings for passwords and passkeys, where you can enable Keepass2Android.</string>
   <string name="passkeys_privileged_apps_title">Trusted browsers</string>
   <string name="passkeys_privileged_apps_summary">Browsers which may use passkeys for websites, in addition to the built-in list of known browsers. Only select browsers you trust: a trusted browser can use your passkeys for any website.</string>
   <string name="passkeys_privileged_apps_none">There are no browsers installed which are not already in the built-in list.</string>
