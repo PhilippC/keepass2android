@@ -148,30 +148,37 @@ namespace keepass2android.services.Kp2aCredentialProvider.Passkey
       Get
     }
 
-    private readonly JSONObject _clientDataJson;
+    private readonly string _clientDataJson;
 
     public ClientDataBuildResponse(RequestType type, byte[] challenge, string origin)
     {
-
-      // Build the client data JSON object
-      _clientDataJson = new JSONObject();
-      _clientDataJson.Put("type", type == RequestType.Create ? "webauthn.create" : "webauthn.get");
-      _clientDataJson.Put("challenge", Base64EncodeUrlSafe(challenge));
-      _clientDataJson.Put("origin", origin);
-      _clientDataJson.Put("crossOrigin", false);
+      // Serialized like the spec's CCDToString: fixed key order, no "\/" escaping (as Org.Json would do) and no
+      // escaping of non-ASCII characters, see https://www.w3.org/TR/webauthn-3/#clientdatajson-serialization
+      using var stream = new System.IO.MemoryStream();
+      using (var writer = new System.Text.Json.Utf8JsonWriter(stream,
+               new System.Text.Json.JsonWriterOptions { Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping }))
+      {
+        writer.WriteStartObject();
+        writer.WriteString("type", type == RequestType.Create ? "webauthn.create" : "webauthn.get");
+        writer.WriteString("challenge", Base64EncodeUrlSafe(challenge));
+        writer.WriteString("origin", origin);
+        writer.WriteBoolean("crossOrigin", false);
+        writer.WriteEndObject();
+      }
+      _clientDataJson = Encoding.UTF8.GetString(stream.ToArray());
     }
 
     public byte[] HashData()
     {
       // Hash the RAW JSON string (not base64-encoded)
       using var sha256 = SHA256.Create();
-      return sha256.ComputeHash(Encoding.UTF8.GetBytes(_clientDataJson.ToString()));
+      return sha256.ComputeHash(Encoding.UTF8.GetBytes(_clientDataJson));
     }
 
     public string BuildResponse()
     {
       // Return base64-encoded JSON (matching KeePassDX)
-      return Base64EncodeUrlSafe(Encoding.UTF8.GetBytes(_clientDataJson.ToString()));
+      return Base64EncodeUrlSafe(Encoding.UTF8.GetBytes(_clientDataJson));
     }
 
     private static string Base64EncodeUrlSafe(byte[] data)
