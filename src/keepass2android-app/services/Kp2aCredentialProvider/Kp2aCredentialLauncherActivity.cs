@@ -280,23 +280,13 @@ namespace keepass2android.services.Kp2aCredentialProvider
           SetUpFailureResponseForGetAndFinish();
           return;
         }
-        var entryUuid = new PwUuid(MemUtil.HexStringToByteArray(entryId));
-
-        var lastOpenedEntry = App.Kp2a.LastOpenedEntry;
-        if (lastOpenedEntry != null && entryUuid.Equals(lastOpenedEntry.Uuid))
+        var entry = FindEntry(entryId);
+        if (entry != null)
         {
-          SetupGetCredentialResponseForEntryAndFinish(lastOpenedEntry.Entry);
+          SetupGetCredentialResponseForEntryAndFinish(entry);
         }
         else
         {
-          foreach (Database db in App.Kp2a.OpenDatabases)
-          {
-            if (db.EntriesById.TryGetValue(entryUuid, out var resultEntry))
-            {
-              SetupGetCredentialResponseForEntryAndFinish(resultEntry);
-              return;
-            }
-          }
           //nothing found in open databases
           Toast.MakeText(this, Resource.String.credential_provider_entry_not_found, ToastLength.Long)?.Show();
           SetUpNoCredentialResponseForGetAndFinish();
@@ -768,14 +758,7 @@ namespace keepass2android.services.Kp2aCredentialProvider
     /// </summary>
     private void PreparePasskeyCreationAndLaunchEntryCreation(Intent requestIntent)
     {
-      var createRequest = PendingIntentHandler.RetrieveProviderCreateCredentialRequest(requestIntent);
-
-      if (createRequest == null || createRequest.CallingRequest is not CreatePublicKeyCredentialRequest passkeyRequest)
-        throw new InvalidOperationException("Unable to extract passkey create request from intent");
-
-      var requestJson = passkeyRequest.RequestJson;
-      if (string.IsNullOrEmpty(requestJson))
-        throw new InvalidOperationException("Missing request JSON");
+      var (createRequest, passkeyRequest, requestJson) = RetrievePasskeyCreateRequest(requestIntent);
 
       // Verify the caller: only privileged browsers (verified by signing certificate) may provide the origin
       // and a pre-computed clientDataHash. For all other callers, the clientDataHash is ignored.
@@ -995,6 +978,22 @@ namespace keepass2android.services.Kp2aCredentialProvider
       }
     }
 
+    /// <summary>
+    /// Extracts the passkey create request from the intent. Throws <see cref="InvalidOperationException"/> if it is
+    /// missing or has no request JSON.
+    /// </summary>
+    private static (ProviderCreateCredentialRequest createRequest, CreatePublicKeyCredentialRequest passkeyRequest, string requestJson)
+      RetrievePasskeyCreateRequest(Intent requestIntent)
+    {
+      var createRequest = PendingIntentHandler.RetrieveProviderCreateCredentialRequest(requestIntent);
+      if (createRequest?.CallingRequest is not CreatePublicKeyCredentialRequest passkeyRequest)
+        throw new InvalidOperationException("Unable to extract passkey create request from intent");
+      var requestJson = passkeyRequest.RequestJson;
+      if (string.IsNullOrEmpty(requestJson))
+        throw new InvalidOperationException("Missing request JSON");
+      return (createRequest, passkeyRequest, requestJson);
+    }
+
     private static PwEntry? FindEntry(string? entryId)
     {
       if (string.IsNullOrEmpty(entryId))
@@ -1003,12 +1002,7 @@ namespace keepass2android.services.Kp2aCredentialProvider
       var lastOpenedEntry = App.Kp2a.LastOpenedEntry;
       if (lastOpenedEntry != null && entryUuid.Equals(lastOpenedEntry.Uuid))
         return lastOpenedEntry.Entry;
-      foreach (Database db in App.Kp2a.OpenDatabases)
-      {
-        if (db.EntriesById.TryGetValue(entryUuid, out var entry))
-          return entry;
-      }
-      return null;
+      return App.Kp2a.FindStructureItem(entryUuid) as PwEntry;
     }
 
     /// <summary>
@@ -1064,17 +1058,7 @@ namespace keepass2android.services.Kp2aCredentialProvider
     {
       try
       {
-        var createRequest = PendingIntentHandler.RetrieveProviderCreateCredentialRequest(requestIntent);
-        if (createRequest?.CallingRequest is not CreatePublicKeyCredentialRequest passkeyRequest)
-        {
-          throw new InvalidOperationException("Unable to extract passkey create request from intent");
-        }
-
-        var requestJson = passkeyRequest.RequestJson;
-        if (string.IsNullOrEmpty(requestJson))
-        {
-          throw new InvalidOperationException("Missing request JSON");
-        }
+        var (createRequest, passkeyRequest, requestJson) = RetrievePasskeyCreateRequest(requestIntent);
 
         // Parse the caller-supplied JSON before showing any dialog. Malformed input must result in an error
         // response to Credential Manager, not in a crash.

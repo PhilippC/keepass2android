@@ -93,6 +93,26 @@ namespace keepass2android.services.Kp2aCredentialProvider
       return string.IsNullOrWhiteSpace(name) ? GetString(AppNames.AppNameResource)! : name;
     }
 
+    /// <summary>
+    /// Builds the entry shown in the system's save sheet; tapping it starts the launcher with <paramref name="requestType"/>.
+    /// </summary>
+    private CreateEntry BuildCreateEntry(string accountName, int requestType, int descriptionResId, Instant? lastUsedTime = null) =>
+      new CreateEntry.Builder(
+          accountName,
+          PendingIntentCompat.GetActivity(
+            this,
+            App.Kp2a.NextRequestCodeForCredentialProvider(),
+            new Intent(this, typeof(Kp2aCredentialLauncherActivity))
+              .PutExtra(Kp2aCredentialLauncherActivity.CredentialRequestTypeKey, requestType),
+            (int)PendingIntentFlags.UpdateCurrent,
+            true
+          )!
+        )
+        .SetIcon(DefaultIcon)
+        .SetDescription(GetString(descriptionResId))
+        .SetLastUsedTime(lastUsedTime)
+        .Build();
+
     private void HandleCreatePasswordRequest(IOutcomeReceiver callback)
     {
       var currentDb = App.Kp2a.CurrentDb;
@@ -100,29 +120,11 @@ namespace keepass2android.services.Kp2aCredentialProvider
 
       callback.OnResult(
         new BeginCreateCredentialResponse.Builder()
-          .AddCreateEntry(
-            new CreateEntry.Builder(
-              accountName,
-              PendingIntentCompat.GetActivity(
-                this,
-                App.Kp2a.NextRequestCodeForCredentialProvider(),
-                new Intent(this, typeof(Kp2aCredentialLauncherActivity)).PutExtra(
-                  Kp2aCredentialLauncherActivity.CredentialRequestTypeKey,
-                  Kp2aCredentialLauncherActivity.CredentialRequestTypeCreatePassword
-                ),
-                (int)PendingIntentFlags.UpdateCurrent,
-                true
-              )!
-            )
-              .SetIcon(DefaultIcon)
-              .SetDescription(
-                GetString(Resource.String.credential_provider_password_creation_description)
-              )
-              // Set the last used time to "now"
-              // so the active account is the default option in the system prompt.
-              .SetLastUsedTime(currentDb == null ? null : Instant.Now())
-              .Build()
-          )
+          .AddCreateEntry(BuildCreateEntry(accountName,
+            Kp2aCredentialLauncherActivity.CredentialRequestTypeCreatePassword,
+            Resource.String.credential_provider_password_creation_description,
+            // Set the last used time to "now" so the active account is the default option in the system prompt.
+            lastUsedTime: currentDb == null ? null : Instant.Now()))
           .Build()
       );
     }
@@ -160,25 +162,9 @@ namespace keepass2android.services.Kp2aCredentialProvider
         if (!App.Kp2a.DatabaseIsUnlocked)
         {
           // Database is locked, show unlock prompt
-          createEntries.Add(
-            new CreateEntry.Builder(
-              accountName,
-              PendingIntentCompat.GetActivity(
-                this,
-                App.Kp2a.NextRequestCodeForCredentialProvider(),
-                new Intent(this, typeof(Kp2aCredentialLauncherActivity))
-                  .PutExtra(
-                    Kp2aCredentialLauncherActivity.CredentialRequestTypeKey,
-                    Kp2aCredentialLauncherActivity.CredentialRequestTypeCreatePasskey
-                  ),
-                (int)PendingIntentFlags.UpdateCurrent,
-                true
-              )!
-            )
-              .SetIcon(DefaultIcon)
-              .SetDescription(GetString(Resource.String.credential_provider_locked_database_description))
-              .Build()
-          );
+          createEntries.Add(BuildCreateEntry(accountName,
+            Kp2aCredentialLauncherActivity.CredentialRequestTypeCreatePasskey,
+            Resource.String.credential_provider_locked_database_description));
         }
         else if (currentDb?.CanWrite == false)
         {
@@ -188,25 +174,9 @@ namespace keepass2android.services.Kp2aCredentialProvider
         else
         {
           // Database is open and writable, show create entry
-          createEntries.Add(
-            new CreateEntry.Builder(
-              accountName,
-              PendingIntentCompat.GetActivity(
-                this,
-                App.Kp2a.NextRequestCodeForCredentialProvider(),
-                new Intent(this, typeof(Kp2aCredentialLauncherActivity))
-                  .PutExtra(
-                    Kp2aCredentialLauncherActivity.CredentialRequestTypeKey,
-                    Kp2aCredentialLauncherActivity.CredentialRequestTypeCreatePasskey
-                  ),
-                (int)PendingIntentFlags.UpdateCurrent,
-                true
-              )!
-            )
-              .SetIcon(DefaultIcon)
-              .SetDescription(GetString(Resource.String.credential_provider_passkey_creation_description))
-              .Build()
-          );
+          createEntries.Add(BuildCreateEntry(accountName,
+            Kp2aCredentialLauncherActivity.CredentialRequestTypeCreatePasskey,
+            Resource.String.credential_provider_passkey_creation_description));
         }
 
         var responseBuilder = new BeginCreateCredentialResponse.Builder();
