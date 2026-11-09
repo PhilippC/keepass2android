@@ -35,18 +35,18 @@ namespace Kp2aPasskey.Core
   {
     // ExtraField keys for passkey storage — KPEX interop format
     // KPEX prefix (KeePass EXtension) is the established interop standard for passkey fields
-    public const string FIELD_USERNAME = "KPEX_PASSKEY_USERNAME";
-    public const string FIELD_PRIVATE_KEY = "KPEX_PASSKEY_PRIVATE_KEY_PEM";
-    public const string FIELD_CREDENTIAL_ID = "KPEX_PASSKEY_CREDENTIAL_ID";
-    public const string FIELD_USER_HANDLE = "KPEX_PASSKEY_USER_HANDLE";
-    public const string FIELD_RELYING_PARTY = "KPEX_PASSKEY_RELYING_PARTY";
-    public const string FIELD_FLAG_BE = "KPEX_PASSKEY_FLAG_BE";
-    public const string FIELD_FLAG_BS = "KPEX_PASSKEY_FLAG_BS";
-    public const string PASSKEY_TAG = "Passkey";
+    public const string FieldUsername = "KPEX_PASSKEY_USERNAME";
+    public const string FieldPrivateKey = "KPEX_PASSKEY_PRIVATE_KEY_PEM";
+    public const string FieldCredentialId = "KPEX_PASSKEY_CREDENTIAL_ID";
+    public const string FieldUserHandle = "KPEX_PASSKEY_USER_HANDLE";
+    public const string FieldRelyingParty = "KPEX_PASSKEY_RELYING_PARTY";
+    public const string FieldFlagBe = "KPEX_PASSKEY_FLAG_BE";
+    public const string FieldFlagBs = "KPEX_PASSKEY_FLAG_BS";
+    public const string PasskeyTag = "Passkey";
 
     // Fields that must be stored encrypted (ProtectInMemory) in the KeePass entry
     public static readonly IReadOnlyList<string> ProtectedFields =
-      [FIELD_PRIVATE_KEY, FIELD_CREDENTIAL_ID, FIELD_USER_HANDLE];
+      [FieldPrivateKey, FieldCredentialId, FieldUserHandle];
 
 
     /// <param name="title">Entry title (localized by the caller).</param>
@@ -60,15 +60,15 @@ namespace Kp2aPasskey.Core
       passkeyFieldsJson.Put(PwDefs.UrlField, relyingParty);
 
       // Add passkey extra fields
-      passkeyFieldsJson.Put(PasskeyStorage.FIELD_USERNAME, passkey.Username);
-      passkeyFieldsJson.Put(PasskeyStorage.FIELD_PRIVATE_KEY, passkey.PrivateKeyPem);
-      passkeyFieldsJson.Put(PasskeyStorage.FIELD_CREDENTIAL_ID, passkey.CredentialId);
-      passkeyFieldsJson.Put(PasskeyStorage.FIELD_USER_HANDLE, passkey.UserHandle);
-      passkeyFieldsJson.Put(PasskeyStorage.FIELD_RELYING_PARTY, passkey.RelyingParty);
+      passkeyFieldsJson.Put(PasskeyStorage.FieldUsername, passkey.Username);
+      passkeyFieldsJson.Put(PasskeyStorage.FieldPrivateKey, passkey.PrivateKeyPem);
+      passkeyFieldsJson.Put(PasskeyStorage.FieldCredentialId, passkey.CredentialId);
+      passkeyFieldsJson.Put(PasskeyStorage.FieldUserHandle, passkey.UserHandle);
+      passkeyFieldsJson.Put(PasskeyStorage.FieldRelyingParty, passkey.RelyingParty);
       if (passkey.BackupEligibility.HasValue)
-        passkeyFieldsJson.Put(PasskeyStorage.FIELD_FLAG_BE, passkey.BackupEligibility.Value ? "1" : "0");
+        passkeyFieldsJson.Put(PasskeyStorage.FieldFlagBe, passkey.BackupEligibility.Value ? "1" : "0");
       if (passkey.BackupState.HasValue)
-        passkeyFieldsJson.Put(PasskeyStorage.FIELD_FLAG_BS, passkey.BackupState.Value ? "1" : "0");
+        passkeyFieldsJson.Put(PasskeyStorage.FieldFlagBs, passkey.BackupState.Value ? "1" : "0");
       return passkeyFieldsJson;
     }
 
@@ -76,8 +76,8 @@ namespace Kp2aPasskey.Core
     // KPEX_* names (see KeePassXC src/browser/PasskeyUtils.cpp: getCredentialIdFromEntry /
     // getUsernameFromEntry, constants in src/core/EntryAttributes.cpp). Kp2a mirrors that
     // precedence for reading but never writes these fields.
-    public const string FIELD_GENERATED_USER_ID = "KPEX_PASSKEY_GENERATED_USER_ID";
-    public const string FIELD_KPXC_USERNAME = "KPXC_PASSKEY_USERNAME";
+    public const string FieldGeneratedUserId = "KPEX_PASSKEY_GENERATED_USER_ID";
+    public const string FieldKpxcUsername = "KPXC_PASSKEY_USERNAME";
 
 
     /// <summary>
@@ -99,14 +99,14 @@ namespace Kp2aPasskey.Core
     /// KPEX_PASSKEY_GENERATED_USER_ID (StrongBox) first, then KPEX_PASSKEY_CREDENTIAL_ID.
     /// </summary>
     public static string? GetCredentialIdField(PwEntry entry) =>
-      FindField(entry, FIELD_GENERATED_USER_ID, FIELD_CREDENTIAL_ID);
+      FindField(entry, FieldGeneratedUserId, FieldCredentialId);
 
     /// <summary>
     /// Name of the field holding the passkey username. Same precedence as KeePassXC:
     /// KPXC_PASSKEY_USERNAME (StrongBox) first, then KPEX_PASSKEY_USERNAME.
     /// </summary>
     public static string? GetUsernameField(PwEntry entry) =>
-      FindField(entry, FIELD_KPXC_USERNAME, FIELD_USERNAME);
+      FindField(entry, FieldKpxcUsername, FieldUsername);
 
     /// <summary>Credential ID of the passkey in the entry (base64url), or "" if none.</summary>
     public static string GetCredentialId(PwEntry entry)
@@ -133,10 +133,10 @@ namespace Kp2aPasskey.Core
       if (entry == null)
         return null;
 
-      var privateKeyPem = entry.Strings.ReadSafe(FIELD_PRIVATE_KEY);
+      var privateKeyPem = entry.Strings.ReadSafe(FieldPrivateKey);
       var credentialId = GetCredentialId(entry);
-      var userHandle = entry.Strings.ReadSafe(FIELD_USER_HANDLE);
-      var relyingParty = entry.Strings.ReadSafe(FIELD_RELYING_PARTY);
+      var userHandle = entry.Strings.ReadSafe(FieldUserHandle);
+      var relyingParty = entry.Strings.ReadSafe(FieldRelyingParty);
 
       // Required for signing an assertion. (KeePassXC only knows the KPEX names for these.)
       if (string.IsNullOrEmpty(privateKeyPem) ||
@@ -163,11 +163,11 @@ namespace Kp2aPasskey.Core
       };
 
       // Parse optional boolean fields ("1" or "true", like KeePassXC)
-      var backupEligibleStr = entry.Strings.ReadSafe(FIELD_FLAG_BE);
+      var backupEligibleStr = entry.Strings.ReadSafe(FieldFlagBe);
       if (!string.IsNullOrEmpty(backupEligibleStr))
         passkey.BackupEligibility = ParseBool(backupEligibleStr);
 
-      var backupStateStr = entry.Strings.ReadSafe(FIELD_FLAG_BS);
+      var backupStateStr = entry.Strings.ReadSafe(FieldFlagBs);
       if (!string.IsNullOrEmpty(backupStateStr))
         passkey.BackupState = ParseBool(backupStateStr);
 
