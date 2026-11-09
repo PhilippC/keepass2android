@@ -185,7 +185,8 @@ namespace keepass2android.services.Kp2aCredentialProvider
         {
           // No passkeys found for this RP — show a generic "search all passkeys" entry.
           // This allows unlocking a closed database or manual entry selection.
-          responseBuilder.AddAuthenticationAction(CreateAuthenticationAction(context));
+          responseBuilder.AddAuthenticationAction(CreateAuthenticationAction(context,
+            context.GetString(Resource.String.credential_provider_no_match_open_database)));
         }
       }
       catch (Exception e)
@@ -195,12 +196,13 @@ namespace keepass2android.services.Kp2aCredentialProvider
     }
 
 
-    public static AuthenticationAction CreateAuthenticationAction(Context context)
+    /// <param name="title">Shown on the action; defaults to the app name (used while the app is locked).</param>
+    public static AuthenticationAction CreateAuthenticationAction(Context context, string? title = null)
     {
       var action = new AuthenticationAction(
         // Providers that require unlocking the credentials before returning any credentialEntries,
         // must set up a pending intent that navigates the user to the app's unlock flow.
-        context.GetString(AppNames.AppNameResource),
+        title ?? context.GetString(AppNames.AppNameResource),
         PendingIntentCompat.GetActivity(
           context,
           App.Kp2a.RequestCodeForCredentialProvider,
