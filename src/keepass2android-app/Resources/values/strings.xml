@@ -1394,16 +1394,13 @@
   <string name="passkeys_uv_setting_change_subtitle">Confirm your identity to change this setting.</string>
 
   <!-- Passkey Backup Settings -->
-  <string name="passkeys_backup_eligibility_key" translatable="false">passkeys_backup_eligibility_key</string>
   <string name="passkeys_backup_eligibility_title">Allow syncing of passkeys</string>
   <string name="passkeys_backup_eligibility_summary">Tells websites that passkeys may be copied to other devices, e.g. by syncing your database. Some websites treat such passkeys differently.</string>
-  
-  <string name="passkeys_backup_state_key" translatable="false">passkeys_backup_state_key</string>
+
   <string name="passkeys_backup_state_title">Report passkeys as synced</string>
   <string name="passkeys_backup_state_summary">Tells websites that passkeys are backed up or synced to other devices. Enable if you sync or back up your database.</string>
 
   <!-- Passkey User Verification -->
-  <string name="passkeys_force_user_verification_when_preferred_key" translatable="false">passkeys_force_user_verification_when_preferred_key</string>
   <string name="passkeys_force_user_verification_when_preferred_title">Force user verification when preferred</string>
   <string name="passkeys_force_user_verification_when_preferred_summary">When a site requests \"preferred\" user verification, still require biometric or device lock before using a passkey.</string>
   <string name="passkeys_force_uv_not_available">This option requires a screen lock (PIN, pattern or password) or a strong biometric on this device. Without it, passkeys could not be used anymore. Please set up a screen lock first.</string>
@@ -1412,8 +1409,6 @@
 
   <!-- Passkey trusted (privileged) browsers -->
   <string name="pref_passkeys_browsers_category_title">Browsers</string>
-  <string name="passkeys_privileged_apps_key" translatable="false">passkeys_privileged_apps_key</string>
-  <string name="passkeys_enable_provider_key" translatable="false">passkeys_enable_provider_key</string>
   <string name="passkeys_enable_provider_title">Use as passkey provider</string>
   <string name="passkeys_enable_provider_summary">Opens the Android settings for passwords and passkeys, where you can enable Keepass2Android.</string>
   <string name="passkeys_privileged_apps_title">Trusted browsers</string>
