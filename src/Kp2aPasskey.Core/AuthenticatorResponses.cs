@@ -20,7 +20,6 @@
 
 using KeePassLib.Cryptography;
 using System.Text;
-using Android.Util;
 using Org.Json;
 using PeterO.Cbor;
 
@@ -159,7 +158,7 @@ namespace Kp2aPasskey.Core
       {
         writer.WriteStartObject();
         writer.WriteString("type", type == RequestType.Create ? "webauthn.create" : "webauthn.get");
-        writer.WriteString("challenge", Base64EncodeUrlSafe(challenge));
+        writer.WriteString("challenge", Base64Url.Encode(challenge));
         writer.WriteString("origin", origin);
         writer.WriteBoolean("crossOrigin", false);
         writer.WriteEndObject();
@@ -176,12 +175,7 @@ namespace Kp2aPasskey.Core
     public string BuildResponse()
     {
       // Return base64-encoded JSON (matching KeePassDX)
-      return Base64EncodeUrlSafe(Encoding.UTF8.GetBytes(_clientDataJson));
-    }
-
-    private static string Base64EncodeUrlSafe(byte[] data)
-    {
-      return Base64.EncodeToString(data, Base64Flags.UrlSafe | Base64Flags.NoPadding | Base64Flags.NoWrap);
+      return Base64Url.Encode(Encoding.UTF8.GetBytes(_clientDataJson));
     }
   }
 
@@ -278,20 +272,15 @@ namespace Kp2aPasskey.Core
 
       var json = new JSONObject();
       json.Put("clientDataJSON", clientDataResponse.BuildResponse());
-      json.Put("authenticatorData", Base64EncodeUrlSafe(authData));
+      json.Put("authenticatorData", Base64Url.Encode(authData));
       var transports = new JSONArray();
       transports.Put("internal");
       transports.Put("hybrid");
       json.Put("transports", transports);
-      json.Put("publicKey", Base64EncodeUrlSafe(publicKeySpki));
+      json.Put("publicKey", Base64Url.Encode(publicKeySpki));
       json.Put("publicKeyAlgorithm", publicKeyTypeId);
-      json.Put("attestationObject", Base64EncodeUrlSafe(attestationObject));
+      json.Put("attestationObject", Base64Url.Encode(attestationObject));
       return json;
-    }
-
-    private static string Base64EncodeUrlSafe(byte[] data)
-    {
-      return Base64.EncodeToString(data, Base64Flags.UrlSafe | Base64Flags.NoPadding | Base64Flags.NoWrap);
     }
   }
 
@@ -360,8 +349,8 @@ namespace Kp2aPasskey.Core
     {
       var json = new JSONObject();
       var clientDataJson = clientDataResponse.BuildResponse();
-      var authenticatorDataB64 = Base64EncodeUrlSafe(_authenticatorData);
-      var signatureB64 = Base64EncodeUrlSafe(_signature);
+      var authenticatorDataB64 = Base64Url.Encode(_authenticatorData);
+      var signatureB64 = Base64Url.Encode(_signature);
 
       json.Put("clientDataJSON", clientDataJson);
       json.Put("authenticatorData", authenticatorDataB64);
@@ -369,11 +358,6 @@ namespace Kp2aPasskey.Core
       json.Put("userHandle", _userHandle);
 
       return json;
-    }
-
-    private static string Base64EncodeUrlSafe(byte[] data)
-    {
-      return Base64.EncodeToString(data, Base64Flags.UrlSafe | Base64Flags.NoPadding | Base64Flags.NoWrap);
     }
   }
 

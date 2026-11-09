@@ -426,7 +426,7 @@ namespace keepass2android.services.Kp2aCredentialProvider
       var keyTypeId = passkeyData.OptLong("keyTypeId", -7);
 
       // Convert credential ID from base64
-      var credentialId = Base64.Decode(passkey.CredentialId, Base64Flags.UrlSafe | Base64Flags.NoPadding);
+      var credentialId = Base64Url.Decode(passkey.CredentialId);
 
       // Load public key from stored data
       var publicKey = LoadPublicKeyFromPasskeyData(passkeyData);
@@ -817,8 +817,8 @@ namespace keepass2android.services.Kp2aCredentialProvider
       {
         Username = creationOptions.UserEntity.Name,
         PrivateKeyPem = privateKeyPem,
-        CredentialId = Base64.EncodeToString(credentialId, Base64Flags.UrlSafe | Base64Flags.NoPadding | Base64Flags.NoWrap),
-        UserHandle = Base64.EncodeToString(creationOptions.UserEntity.Id, Base64Flags.UrlSafe | Base64Flags.NoPadding | Base64Flags.NoWrap),
+        CredentialId = Base64Url.Encode(credentialId),
+        UserHandle = Base64Url.Encode(creationOptions.UserEntity.Id),
         RelyingParty = creationOptions.RelyingPartyEntity.Id,
         BackupEligibility = PasskeyPreferences.GetBackupEligibility(this),
         BackupState = PasskeyPreferences.GetBackupState(this)

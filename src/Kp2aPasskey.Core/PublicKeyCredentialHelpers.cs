@@ -141,10 +141,7 @@ namespace Kp2aPasskey.Core
     public PublicKeyCredentialRequestOptions(string requestJson, Func<string?>? getCallerOrigin = null)
     {
       Json = new JSONObject(requestJson);
-      Challenge = Android.Util.Base64.Decode(
-        Json.GetString("challenge"),
-        Android.Util.Base64Flags.UrlSafe | Android.Util.Base64Flags.NoPadding
-      );
+      Challenge = Base64Url.Decode(Json.GetString("challenge"));
       Timeout = Json.OptLong("timeout", 0);
       RpId = WebAuthnRequestParsing.ResolveRpId(
         WebAuthnRequestParsing.OptStringOrNull(Json, "rpId"), getCallerOrigin);
@@ -179,7 +176,7 @@ namespace Kp2aPasskey.Core
       byte[]? credentialId;
       try
       {
-        credentialId = Android.Util.Base64.Decode(credentialIdBase64Url, Android.Util.Base64Flags.UrlSafe);
+        credentialId = Base64Url.Decode(credentialIdBase64Url);
       }
       catch (Exception)
       {
@@ -216,7 +213,7 @@ namespace Kp2aPasskey.Core
           var type = credentialJson.OptString("type", "public-key");
           if (type != "public-key") continue;
 
-          var id = Android.Util.Base64.Decode(credentialJson.GetString("id"), Android.Util.Base64Flags.UrlSafe);
+          var id = Base64Url.Decode(credentialJson.GetString("id"));
           if (id == null || id.Length == 0) continue;
 
           // Parse optional transports array
@@ -298,10 +295,7 @@ namespace Kp2aPasskey.Core
 
       // Parse user
       var userJson = Json.GetJSONObject("user");
-      var userId = Android.Util.Base64.Decode(
-        userJson.GetString("id"),
-        Android.Util.Base64Flags.UrlSafe | Android.Util.Base64Flags.NoPadding
-      );
+      var userId = Base64Url.Decode(userJson.GetString("id"));
       UserEntity = new PublicKeyCredentialUserEntity(
         userJson.GetString("name"),
         userId,
@@ -309,10 +303,7 @@ namespace Kp2aPasskey.Core
       );
 
       // Parse challenge
-      Challenge = Android.Util.Base64.Decode(
-        Json.GetString("challenge"),
-        Android.Util.Base64Flags.UrlSafe | Android.Util.Base64Flags.NoPadding
-      );
+      Challenge = Base64Url.Decode(Json.GetString("challenge"));
 
       // Parse pubKeyCredParams. Per spec, an empty list means ES256 (-7) and RS256 (-257), and entries
       // with a type other than "public-key" are ignored.

@@ -18,6 +18,7 @@ using Android.Runtime;
 using Android.Util;
 using AndroidX.Credentials;
 using AndroidX.Credentials.Provider;
+using Kp2aPasskey.Core;
 
 namespace keepass2android.services.Kp2aCredentialProvider
 {
@@ -110,10 +111,7 @@ namespace keepass2android.services.Kp2aCredentialProvider
         // signers[0].ToByteArray() returns the raw DER-encoded X.509 certificate bytes
         var certDer = signers[0].ToByteArray();
         var hash = KeePassLib.Cryptography.CryptoUtil.HashSha256(certDer);
-        var base64Hash = Base64.EncodeToString(
-          hash,
-          Base64Flags.UrlSafe | Base64Flags.NoPadding | Base64Flags.NoWrap
-        );
+        var base64Hash = Base64Url.Encode(hash);
 
         var origin = $"{AppKeyHashStringPrefix}{base64Hash}";
         Kp2aLog.Log($"GetOriginForCallingApp: {callingAppInfo.PackageName} -> {origin}");
