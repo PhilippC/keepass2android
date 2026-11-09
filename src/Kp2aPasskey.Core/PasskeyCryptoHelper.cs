@@ -485,15 +485,5 @@ namespace Kp2aPasskey.Core
 
       return bytes;
     }
-
-
-    /// <summary>
-    /// Compute SHA-256 hash of data
-    /// </summary>
-    public static byte[] HashSha256(byte[] data)
-    {
-      using var sha256 = SHA256.Create();
-      return sha256.ComputeHash(data);
-    }
   }
 }

@@ -109,8 +109,7 @@ namespace keepass2android.services.Kp2aCredentialProvider
 
         // signers[0].ToByteArray() returns the raw DER-encoded X.509 certificate bytes
         var certDer = signers[0].ToByteArray();
-        using var sha256 = System.Security.Cryptography.SHA256.Create();
-        var hash = sha256.ComputeHash(certDer);
+        var hash = KeePassLib.Cryptography.CryptoUtil.HashSha256(certDer);
         var base64Hash = Base64.EncodeToString(
           hash,
           Base64Flags.UrlSafe | Base64Flags.NoPadding | Base64Flags.NoWrap

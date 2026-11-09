@@ -18,7 +18,7 @@
 //   You should have received a copy of the GNU General Public License
 //   along with Keepass2Android.  If not, see <http://www.gnu.org/licenses/>.
 
-using System.Security.Cryptography;
+using KeePassLib.Cryptography;
 using System.Text;
 using Android.Util;
 using Org.Json;
@@ -101,7 +101,7 @@ namespace Kp2aPasskey.Core
 
       // Construct authenticator data: rpIdHash (32 bytes) + flags (1 byte) + signCount (4 bytes)
       // signCount is always 0 for keepass2android (we don't track signature counts)
-      return PasskeyCryptoHelper.HashSha256(relyingPartyId)
+      return CryptoUtil.HashSha256(relyingPartyId)
         .Concat([flags])
         .Concat("\0\0\0\0"u8.ToArray()) // signCount = 0 (big-endian). This is explicitly allowed per spec.
         .ToArray();
@@ -170,8 +170,7 @@ namespace Kp2aPasskey.Core
     public byte[] HashData()
     {
       // Hash the RAW JSON string (not base64-encoded)
-      using var sha256 = SHA256.Create();
-      return sha256.ComputeHash(Encoding.UTF8.GetBytes(_clientDataJson));
+      return CryptoUtil.HashSha256(Encoding.UTF8.GetBytes(_clientDataJson));
     }
 
     public string BuildResponse()
