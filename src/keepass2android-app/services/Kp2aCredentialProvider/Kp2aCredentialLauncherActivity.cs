@@ -77,9 +77,6 @@ namespace keepass2android.services.Kp2aCredentialProvider
     private const string BundleKeyWaitingForActivityResult = "waiting_for_activity_result";
 
     // Key inside _passkeyResponseData
-    private const string PasskeyDataKeyCredentialId = "credentialId";
-    private const string PasskeyDataKeyKeyTypeId = "keyTypeId";
-    private const string PasskeyDataKeyPublicKey = "publicKeyBase64";
 
     // Error messages returned to Credential Manager. Details are only written to the log.
     private const string InvalidRequestMessage = "Invalid passkey request";
@@ -411,19 +408,6 @@ namespace keepass2android.services.Kp2aCredentialProvider
         throw new InvalidOperationException("Passkey data not found in entry");
       }
 
-      if (passkey.CredentialId != passkeyData.OptString(PasskeyDataKeyCredentialId, ""))
-      {
-        throw new InvalidOperationException("Created entry does not contain the passkey generated for this request");
-      }
-      // Both fields are always written by CreatePasskeyResponseJson; GetLong/GetString throw if they are missing.
-      var keyTypeId = passkeyData.GetLong(PasskeyDataKeyKeyTypeId);
-
-      // Convert credential ID from base64
-      var credentialId = Base64Url.Decode(passkey.CredentialId);
-
-      // Load public key from stored data
-      var publicKey = DecodePublicKey(passkeyData.GetString(PasskeyDataKeyPublicKey), keyTypeId);
-
       // Build client data response. origin and clientDataHash were determined by PasskeyOriginHelper.ResolveCallerOrigin
       // when the request came in, so clientDataHash is only set for verified privileged callers.
       if (string.IsNullOrEmpty(origin))
@@ -435,31 +419,12 @@ namespace keepass2android.services.Kp2aCredentialProvider
         ClientDataBuildResponse.RequestType.Create,
         creationOptions.Challenge);
 
-      // Build public key encodings (CBOR for credential, X.509 SPKI for Android)
-      var (credentialPublicKeyCbor, publicKeySpki) = BuildPublicKeyEncodings(publicKey, keyTypeId);
-
-      var beFlag = passkey.BackupEligibility ?? PasskeyPreferences.BackupEligibilityForEntriesWithoutFlags;
-      var bsFlag = beFlag && (passkey.BackupState ?? PasskeyPreferences.BackupStateForEntriesWithoutFlags);
-
-      // Build attestation response
-      var attestationResponse = new AuthenticatorAttestationResponse(
-        requestOptions: creationOptions,
-        credentialId: credentialId,
-        credentialPublicKey: credentialPublicKeyCbor,
-        userPresent: true,
-        userVerified: _userVerifiedForCreate,
-        backupEligibility: beFlag,
-        backupState: bsFlag,
-        publicKeyTypeId: keyTypeId,
-        publicKeySpki: publicKeySpki,
-        clientDataResponse: clientDataResponse
-      );
-
-      // Create FIDO credential and set response
-      var credentialResponse = CreateFidoAttestationResponse(passkey.CredentialId, attestationResponse,
-        creationOptions.CredPropsRequested);
+      var (be, bs) = PasskeyResponseBuilder.ResolveBackupFlags(passkey,
+        PasskeyPreferences.BackupEligibilityForEntriesWithoutFlags, PasskeyPreferences.BackupStateForEntriesWithoutFlags);
+      var responseJson = PasskeyResponseBuilder.BuildRegistrationResponseJson(passkey, passkeyData, creationOptions,
+        clientDataResponse, _userVerifiedForCreate, be, bs);
       _userVerifiedForCreate = false; // clear after use
-      return credentialResponse;
+      return new CreatePublicKeyCredentialResponse(responseJson);
 
     }
 
@@ -540,89 +505,6 @@ namespace keepass2android.services.Kp2aCredentialProvider
           ClearPasskeyCreationState();
         }
       }
-    }
-
-    /// <summary>
-    /// Decodes an X.509 (SPKI) public key, standard base64, of the given COSE key type.
-    /// </summary>
-    private static IPublicKey DecodePublicKey(string publicKeyBase64, long keyTypeId)
-    {
-      if (string.IsNullOrEmpty(publicKeyBase64))
-      {
-        throw new InvalidOperationException("Public key not found in passkey data");
-      }
-
-      var publicKeyBytes = Base64.Decode(publicKeyBase64, Base64Flags.Default)!;
-      return keyTypeId switch
-      {
-        PasskeyCryptoHelper.CoseAlgEs256 => GeneratePublicKey("EC", publicKeyBytes),
-        PasskeyCryptoHelper.CoseAlgRs256 => GeneratePublicKey("RSA", publicKeyBytes),
-        // Java's Ed25519 KeyFactory requires the Keystore on Android, so use the wrapper.
-        PasskeyCryptoHelper.CoseAlgEd25519 => new Ed25519PublicKeyWrapper(publicKeyBytes),
-        _ => throw new NotSupportedException($"Unsupported key type {keyTypeId}")
-      };
-    }
-
-    private static IPublicKey GeneratePublicKey(string algorithm, byte[] x509EncodedKey) =>
-      KeyFactory.GetInstance(algorithm)?.GeneratePublic(new X509EncodedKeySpec(x509EncodedKey))
-      ?? throw new InvalidOperationException($"Failed to load {algorithm} public key");
-
-    private (byte[] credentialPublicKeyCbor, byte[] publicKeySpki) BuildPublicKeyEncodings(IPublicKey publicKey, long keyTypeId)
-    {
-      var coseKeyObject = PasskeyCryptoHelper.ConvertPublicKeyToMap(publicKey, keyTypeId);
-      if (coseKeyObject == null)
-      {
-        throw new InvalidOperationException("Failed to convert public key");
-      }
-
-      var credentialPublicKeyCbor = coseKeyObject.EncodeToBytes();
-
-      var publicKeySpki = publicKey?.GetEncoded();
-      if (publicKeySpki == null)
-      {
-        throw new InvalidOperationException("Failed to convert public key to X.509 format");
-      }
-
-      return (credentialPublicKeyCbor, publicKeySpki);
-    }
-
-    private CreatePublicKeyCredentialResponse CreateFidoAttestationResponse(
-      string credentialIdBase64,
-      AuthenticatorAttestationResponse attestationResponse,
-      bool credPropsRequested
-    )
-    {
-      JSONObject? extensionResults = null;
-      if (credPropsRequested)
-      {
-        // All Kp2a passkeys are discoverable (resident) credentials.
-        extensionResults = new JSONObject();
-        extensionResults.Put("credProps", new JSONObject().Put("rk", true));
-      }
-
-      var fidoCredential = new FidoPublicKeyCredential(
-        id: credentialIdBase64,
-        response: attestationResponse.ToJson(),
-        clientExtensionResults: extensionResults
-      );
-
-      var responseJson = fidoCredential.ToJson();
-      return new CreatePublicKeyCredentialResponse(responseJson);
-    }
-
-    private GetCredentialResponse CreateFidoAssertionResponse(
-      string credentialId,
-      AuthenticatorAssertionResponse assertionResponse,
-      IClientDataResponse clientDataResponse
-    )
-    {
-      var fidoCredential = new FidoPublicKeyCredential(
-        id: credentialId,
-        response: assertionResponse.ToJson(clientDataResponse)
-      );
-
-      var responseJson = fidoCredential.ToJson();
-      return new GetCredentialResponse(new PublicKeyCredential(responseJson));
     }
 
     /// <summary>
@@ -810,7 +692,7 @@ namespace keepass2android.services.Kp2aCredentialProvider
       var forwardIntent = BuildLaunchIntentToCreatePasskey(passkeyFieldsJson);
 
       // Build the response JSON we'll need once the entry has been created.
-      var passkeyResponseJson = CreatePasskeyResponseJson(keyPair, keyTypeId, passkey.CredentialId!);
+      var passkeyResponseJson = PasskeyResponseBuilder.CreatePendingRegistrationData(keyPair.Public!, keyTypeId, passkey.CredentialId!);
 
       // Persist state so OnActivityResult / ContinuePasskeyCreationAfterUnlock can reconstruct the response.
       _passkeyCreationOptions = creationOptions;
@@ -833,20 +715,6 @@ namespace keepass2android.services.Kp2aCredentialProvider
       forwardIntent.PutExtra(AppTask.AppTaskKey, nameof(CreateEntryThenCloseTask));
       forwardIntent.PutExtra(CreateEntryThenCloseTask.ShowUserNotificationsKey, "false");
       return forwardIntent;
-    }
-
-    /// <summary>
-    /// Data needed to build the response once the entry has been created. Saved in the instance state,
-    /// so it must not contain the private key.
-    /// </summary>
-    private JSONObject CreatePasskeyResponseJson(KeyPair keyPair, long keyTypeId, string credentialId)
-    {
-      var publicKeyBytes = keyPair.Public.GetEncoded();
-      var passkeyResponseJson = new JSONObject();
-      passkeyResponseJson.Put(PasskeyDataKeyPublicKey, Base64.EncodeToString(publicKeyBytes, Base64Flags.Default));
-      passkeyResponseJson.Put(PasskeyDataKeyKeyTypeId, keyTypeId);
-      passkeyResponseJson.Put(PasskeyDataKeyCredentialId, credentialId);
-      return passkeyResponseJson;
     }
 
     /// <summary>
@@ -1241,26 +1109,11 @@ namespace keepass2android.services.Kp2aCredentialProvider
         ClientDataBuildResponse.RequestType.Get,
         requestOptions.Challenge);
 
-      var assertionBe = passkey.BackupEligibility ?? PasskeyPreferences.BackupEligibilityForEntriesWithoutFlags;
-      var assertionBs = assertionBe && (passkey.BackupState ?? PasskeyPreferences.BackupStateForEntriesWithoutFlags);
-
-      // Build assertion response
-      var assertionResponse = new AuthenticatorAssertionResponse(
-        requestOptions: requestOptions,
-        userPresent: true,
-        userVerified: userVerified,
-        backupEligibility: assertionBe,
-        backupState: assertionBs,
-        userHandle: passkey.UserHandle,
-        privateKeyPem: passkey.PrivateKeyPem,
-        clientDataResponse: clientDataResponse
-      );
-
-      var getCredentialResponse = CreateFidoAssertionResponse(
-        passkey.CredentialId,
-        assertionResponse,
-        clientDataResponse
-      );
+      var (be, bs) = PasskeyResponseBuilder.ResolveBackupFlags(passkey,
+        PasskeyPreferences.BackupEligibilityForEntriesWithoutFlags, PasskeyPreferences.BackupStateForEntriesWithoutFlags);
+      var responseJson = PasskeyResponseBuilder.BuildAssertionResponseJson(passkey, requestOptions, clientDataResponse,
+        userVerified, be, bs);
+      var getCredentialResponse = new GetCredentialResponse(new PublicKeyCredential(responseJson));
 
       var result = new Intent();
       PendingIntentHandler.SetGetCredentialResponse(result, getCredentialResponse);
