@@ -258,6 +258,11 @@
   <string name="space">Διάστημα</string>
   <string name="search_label">Αναζήτηση</string>
   <string name="show_password">Εμφάνιση συνθηματικού</string>
+  <string name="hide_password">Απόκρυψη συνθηματικού</string>
+  <string name="hidden_protected_field">Κρυμμένο, %1$d χαρακτήρες</string>
+  <string name="browse">Εξερεύνηση</string>
+  <string name="select_icon">Επιλέξτε εικονίδιο</string>
+  <string name="selected">Επιλεγμένο</string>
   <string name="sort_menu">Ταξινόμηση κατά...</string>
   <string name="sort_name">Ταξινόμηση κατά όνομα</string>
   <string name="sort_db">Ταξινόμηση κατά ημερομηνία δημιουργίας</string>
@@ -373,8 +378,15 @@
   <string name="field_value">Τιμή πεδίου</string>
   <string name="protection">Προστατευμένο πεδίο</string>
   <string name="add_binary">Προσθήκη συνημμένου αρχείου</string>
+  <string name="attach_browse_file">Εξερεύνηση αρχείων</string>
+  <string name="attach_take_photo">Λήψη φωτογραφίας</string>
+  <string name="capture_photo_title"></string>
+  <string name="capture_flip_camera">Αναστροφή κάμερας</string>
+  <string name="camera_permission_required">Απαιτείται άδεια κάμερας για τη λήψη μιας φωτογραφίας.</string>
+  <string name="capture_attachment_size_warning">Επιλέξτε μέγεθος φωτογραφίας</string>
   <string name="capture_size_small">Μικρό</string>
   <string name="capture_size_medium">Μεσαίο</string>
+  <string name="capture_size_original">Αρχικό</string>
   <string name="add_extra_string">Προσθήκη πρόσθετου κειμένου</string>
   <string name="configure_totp">Ρύθμιση TOTP</string>
   <string name="totp_secret_key">Μυστικό κλειδί</string>
@@ -416,6 +428,8 @@
   <string name="show_local_backups">Εμφάνιση τοπικών αντιγράφων</string>
   <string name="AcceptAllServerCertificates_title">Πιστοποιητικά SSL</string>
   <string name="AcceptAllServerCertificates_summary">Καθορίστε τη συμπεριφορά αν αποτύχει η επικύρωση πιστοποιητικού. Σημείωση: μπορείτε να εγκαταστήσετε πιστοποιητικά στη συσκευή σας, εάν αποτύχει η επικύρωση!</string>
+  <string name="OneDriveBrokerMode_title">Σύνδεση συσκευής για OneDrive</string>
+  <string name="OneDriveBrokerMode_summary">Ελέγχει αν η είσοδος στο OneDrive γίνεται με σύνδεση συσκευής που χρησιμοποιεί τον διαχειριστή λογαριασμού της Microsoft. Αυτό απαιτείται σε συσκευές με προφίλ εργασίας InTune/Entra. Η αυτόματη ρύθμιση προσπαθεί πρώτα είσοδο με σύνδεση συσκευής, και αν αποτύχει, προσπαθεί με κανονική σύνδεση. Επιλέξτε \"Ποτέ\" αν η σύνδεση OneDrive αποτύχει κατ\' επανάληψη.</string>
   <string name="ClearOfflineCache_title">Εκκαθάριση προσωρινής μνήμης;</string>
   <string name="ClearOfflineCache_question">Διαγράφει όλα τα αρχεία βάσεων δεδομένων στην cache. Αλλαγές που έγιναν όσο δεν υπήρχε πρόσβαση στην πηγαία βάση δεδομένων και δεν έχουν συγχρονιστεί, θα χαθούν. Συνέχεια;</string>
   <string name="CheckForFileChangesOnSave_title">Έλεγχος για τροποποιήσεις</string>
@@ -499,7 +513,7 @@
   <string name="UseOnlineMode">Συγχρονισμός του αντιγράφου της cache με την πηγή</string>
   <string name="UseOfflineMode_Info">Η βάση δεδομένων φορτώνεται από την cache. Οι αλλαγές αποθηκεύονται μόνο στην cache και θα συγχρονιστούν όταν επιλέξετε Συγχρονισμός.</string>
   <string name="InOfflineMode">Λειτουργία στην cache μόνον</string>
-  <string name="ServerNotReachable">Δεν ήταν δυνατή η πρόσβαση στον διακομιστή. Παρακαλώ ελέγξτε τη σύνδεσή σας στο Διαδίκτυο και τη διεύθυνση του διακομιστή.</string>
+  <string name="ServerNotReachable">Δεν ήταν δυνατή η πρόσβαση στον διακομιστή. Ελέγξτε τη σύνδεσή σας στο Διαδίκτυο και τη διεύθυνση του διακομιστή.</string>
   <string name="SynchronizingCachedDatabase">Συγχρονισμός προσωρινού αντίγραφου βάσης δεδομένων…</string>
   <string name="DownloadingRemoteFile">Φόρτωση αρχείου πηγής...</string>
   <string name="UploadingFile">Αποθήκευση αρχείου...</string>
@@ -761,7 +775,7 @@
     <item>Ενημέρωση σε Target SDK έκδοση 36</item>
     <item>Βελτιώσεις στο χειρισμό URL για WebDav με μη-ASCII χαρακτήρες</item>
     <item>Βελτιώσεις στην αυθεντικοποίηση του OneDrive</item>
-    <item>Minor bug fixes</item>
+    <item>Μικρές διορθώσεις σφαλμάτων</item>
   </string-array>
   <string-array name="ChangeLog_1_15">
     <item>Προστέθηκε συγχρονισμός στο παρασκήνιο: το Keepass2Android χρησιμοποιεί τώρα το εσωτερικό αντίγραφο cache για φόρτωση και αποθήκευση της βάσης δεδομένων για να κάνει αυτές τις λειτουργίες πιο γρήγορα. Κατόπιν, ξεκινά ο συγχρονισμός με την απομακρυσμένη βάση δεδομένων. </item>
@@ -1214,6 +1228,11 @@ Initial public release
     <item>Παράβλεψη αποτυχιών επικύρωσης πιστοποιητικού</item>
     <item>Προειδοποίηση όταν αποτύχει η επικύρωση</item>
     <item>Να μην γίνονται αποδεκτά μη έγκυρα πιστοποιητικά</item>
+  </string-array>
+  <string-array name="OneDriveBrokerMode_options">
+    <item>Αυτόματα (συνιστάται)</item>
+    <item>Πάντα με σύνδεση συσκευής</item>
+    <item>Ποτέ με σύνδεση συσκευής</item>
   </string-array>
   <string name="ClearClipboardWarning">Βεβαιωθείτε ότι αυτό λειτουργεί στο σύστημά σας, αλλιώς χρησιμοποιήστε το ενσωματωμένο πληκτρολόγιο.</string>
   <string name="PluginDescription">Περιγραφή που παρέχεται από το πρόσθετο:</string>
