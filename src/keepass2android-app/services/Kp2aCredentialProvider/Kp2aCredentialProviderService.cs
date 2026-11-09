@@ -138,6 +138,15 @@ namespace keepass2android.services.Kp2aCredentialProvider
           () => PasskeyOriginHelper.GetOriginFromPrivilegedCaller(this, request.CallingAppInfo)
         );
 
+        // Refuse early (before the user picks Kp2a) if none of the requested algorithms is supported.
+        if (!creationOptions.PubKeyCredParams.Any(p => Passkey.PasskeyCryptoHelper.IsAlgorithmSupported(p.Alg)))
+        {
+          Kp2aLog.Log("Kp2aCredentialProviderService: no supported algorithm in create request. Requested: [" +
+                      string.Join(", ", creationOptions.PubKeyCredParams.Select(p => p.Alg)) + "]");
+          callback.OnError(new AndroidX.Credentials.Exceptions.PublicKeyCredential.CreatePublicKeyCredentialDomException(
+            new AndroidX.Credentials.Exceptions.DomErrors.NotSupportedError(), "No supported algorithm").JavaCast<Java.Lang.Object>());
+          return;
+        }
 
         // Search for existing passkeys with this relying party
 

@@ -71,6 +71,12 @@ namespace keepass2android.services.Kp2aCredentialProvider.Passkey
     public const long CoseAlgRs256 = -257; // RSASSA-PKCS1-v1_5 with SHA-256 (RS256_ALGORITHM)
     public const long CoseAlgEd25519 = -8; // EdDSA with Ed25519 (ED_DSA_ALGORITHM)
 
+    /// <summary>
+    /// True if <see cref="GenerateKeyPair"/> knows the algorithm. Ed25519 may still fail on some devices.
+    /// </summary>
+    public static bool IsAlgorithmSupported(long algorithmId) =>
+      algorithmId is CoseAlgEs256 or CoseAlgRs256 or CoseAlgEd25519;
+
     // COSE Key Common Parameter Labels (https://www.iana.org/assignments/cose/cose.xhtml#key-common-parameters)
     private const int CoseKeyKeytype = 1;   // Key Type
     private const int CoseKeyAlgorithm = 3;   // Key Algorithm
