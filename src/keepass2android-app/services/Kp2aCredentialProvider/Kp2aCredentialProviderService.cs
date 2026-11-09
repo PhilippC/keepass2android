@@ -105,7 +105,7 @@ namespace keepass2android.services.Kp2aCredentialProvider
               accountName,
               PendingIntentCompat.GetActivity(
                 this,
-                App.Kp2a.RequestCodeForCredentialProvider,
+                App.Kp2a.NextRequestCodeForCredentialProvider(),
                 new Intent(this, typeof(Kp2aCredentialLauncherActivity)).PutExtra(
                   Kp2aCredentialLauncherActivity.CredentialRequestTypeKey,
                   Kp2aCredentialLauncherActivity.CredentialRequestTypeCreatePassword
@@ -165,7 +165,7 @@ namespace keepass2android.services.Kp2aCredentialProvider
               accountName,
               PendingIntentCompat.GetActivity(
                 this,
-                App.Kp2a.RequestCodeForCredentialProvider,
+                App.Kp2a.NextRequestCodeForCredentialProvider(),
                 new Intent(this, typeof(Kp2aCredentialLauncherActivity))
                   .PutExtra(
                     Kp2aCredentialLauncherActivity.CredentialRequestTypeKey,
@@ -193,7 +193,7 @@ namespace keepass2android.services.Kp2aCredentialProvider
               accountName,
               PendingIntentCompat.GetActivity(
                 this,
-                App.Kp2a.RequestCodeForCredentialProvider,
+                App.Kp2a.NextRequestCodeForCredentialProvider(),
                 new Intent(this, typeof(Kp2aCredentialLauncherActivity))
                   .PutExtra(
                     Kp2aCredentialLauncherActivity.CredentialRequestTypeKey,
@@ -279,7 +279,7 @@ namespace keepass2android.services.Kp2aCredentialProvider
             GetString(Resource.String.open_app_name, GetString(AppNames.AppNameResource)!),
             PendingIntentCompat.GetActivity(
               this,
-              App.Kp2a.RequestCodeForCredentialProvider,
+              App.Kp2a.NextRequestCodeForCredentialProvider(),
               new Intent(this, typeof(KeePass)),
               (int)PendingIntentFlags.UpdateCurrent,
               true

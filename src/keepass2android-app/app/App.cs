@@ -1678,10 +1678,12 @@ namespace keepass2android
     }
 
     private readonly AtomicInteger requestCodeForCredentialProvider = new();
-    public int RequestCodeForCredentialProvider
-    {
-      get => requestCodeForCredentialProvider.IncrementAndGet();
-    }
+
+    /// <summary>
+    /// Returns a new request code for each PendingIntent of the credential provider, so that PendingIntents with
+    /// FLAG_UPDATE_CURRENT never replace each other.
+    /// </summary>
+    public int NextRequestCodeForCredentialProvider() => requestCodeForCredentialProvider.IncrementAndGet();
 
   }
 

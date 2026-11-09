@@ -70,8 +70,7 @@ namespace keepass2android.services.Kp2aCredentialProvider
             username,
             PendingIntentCompat.GetActivity(
               context,
-              // Use a random request code to ensure distinct PendingIntents for each entry
-              System.Security.Cryptography.RandomNumberGenerator.GetInt32(int.MaxValue),
+              App.Kp2a.NextRequestCodeForCredentialProvider(),
               new Intent(context, typeof(Kp2aCredentialLauncherActivity))
                 .PutExtra(
                   Kp2aCredentialLauncherActivity.CredentialRequestTypeKey,
@@ -148,17 +147,13 @@ namespace keepass2android.services.Kp2aCredentialProvider
               passkeyUsername = entry.Strings.ReadSafe(PwDefs.UserNameField);
             if (string.IsNullOrEmpty(passkeyUsername)) passkeyUsername = context.GetString(Resource.String.passkey_unknown_username);
 
-            // Use a random request code per PendingIntent. FLAG_UPDATE_CURRENT only matches a
-            // prior PendingIntent when the request code is the same, so a random code guarantees
-            // every entry gets a distinct PendingIntent even when entries share the same username.
-            var entryRequestCode = System.Security.Cryptography.RandomNumberGenerator.GetInt32(int.MaxValue);
             responseBuilder.AddCredentialEntry(
               new PublicKeyCredentialEntry.Builder(
                 context,
                 passkeyUsername,
                 PendingIntentCompat.GetActivity(
                   context,
-                  entryRequestCode,
+                  App.Kp2a.NextRequestCodeForCredentialProvider(),
                   new Intent(context, typeof(Kp2aCredentialLauncherActivity))
                     .PutExtra(
                       Kp2aCredentialLauncherActivity.CredentialRequestTypeKey,
@@ -205,7 +200,7 @@ namespace keepass2android.services.Kp2aCredentialProvider
         title ?? context.GetString(AppNames.AppNameResource),
         PendingIntentCompat.GetActivity(
           context,
-          App.Kp2a.RequestCodeForCredentialProvider,
+          App.Kp2a.NextRequestCodeForCredentialProvider(),
           new Intent(context, typeof(Kp2aCredentialLauncherActivity)).PutExtra(
             Kp2aCredentialLauncherActivity.CredentialRequestTypeKey,
             Kp2aCredentialLauncherActivity.CredentialRequestTypeUnlockForGetCredentials

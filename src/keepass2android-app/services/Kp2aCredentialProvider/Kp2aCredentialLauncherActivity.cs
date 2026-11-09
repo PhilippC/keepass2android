@@ -386,7 +386,7 @@ namespace keepass2android.services.Kp2aCredentialProvider
           result,
           new CreateCredentialCancellationException()
         );
-        SetResult(Result.Canceled, result);
+        SetResult(Result.Ok, result); // like all responses that carry an exception, see above
         // Clear the state on cancellation
         if (isPasskeyRequest)
         {
