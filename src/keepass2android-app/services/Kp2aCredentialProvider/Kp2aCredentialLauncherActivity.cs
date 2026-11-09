@@ -423,13 +423,14 @@ namespace keepass2android.services.Kp2aCredentialProvider
       {
         throw new InvalidOperationException("Created entry does not contain the passkey generated for this request");
       }
-      var keyTypeId = passkeyData.OptLong("keyTypeId", -7);
+      // Both fields are always written by CreatePasskeyResponseJson; GetLong/GetString throw if they are missing.
+      var keyTypeId = passkeyData.GetLong("keyTypeId");
 
       // Convert credential ID from base64
       var credentialId = Base64Url.Decode(passkey.CredentialId);
 
       // Load public key from stored data
-      var publicKey = LoadPublicKeyFromPasskeyData(passkeyData);
+      var publicKey = DecodePublicKey(passkeyData.GetString("publicKeyBase64"), keyTypeId);
 
       // Build client data response. origin and clientDataHash were determined by PasskeyOriginHelper.ResolveCallerOrigin
       // when the request came in, so clientDataHash is only set for verified privileged callers.
@@ -549,47 +550,30 @@ namespace keepass2android.services.Kp2aCredentialProvider
       }
     }
 
-    private IPublicKey LoadPublicKeyFromPasskeyData(JSONObject passkeyData)
+    /// <summary>
+    /// Decodes an X.509 (SPKI) public key, standard base64, of the given COSE key type.
+    /// </summary>
+    private static IPublicKey DecodePublicKey(string publicKeyBase64, long keyTypeId)
     {
-      var publicKeyBase64 = passkeyData.GetString("publicKeyBase64");
       if (string.IsNullOrEmpty(publicKeyBase64))
       {
         throw new InvalidOperationException("Public key not found in passkey data");
       }
 
-      var publicKeyBytes = Base64.Decode(publicKeyBase64, Base64Flags.Default);
-      var x509KeySpec = new X509EncodedKeySpec(publicKeyBytes);
-
-      // Try different key types: EC, RSA, Ed25519
-      // For Ed25519: use wrapper instead of KeyFactory (which requires Keystore on Android)
-      var keyTypes = new[] { "EC", "RSA" };
-      foreach (var keyType in keyTypes)
+      var publicKeyBytes = Base64.Decode(publicKeyBase64, Base64Flags.Default)!;
+      return keyTypeId switch
       {
-        try
-        {
-          var keyFactory = KeyFactory.GetInstance(keyType);
-          var publicKey = keyFactory.GeneratePublic(x509KeySpec);
-          if (publicKey != null)
-          {
-            return publicKey;
-          }
-        }
-        catch
-        {
-          // Try next key type
-        }
-      }
-
-      // Try Ed25519 using wrapper (Java's Ed25519 KeyFactory requires Keystore)
-      try
-      {
-        return new Ed25519PublicKeyWrapper(publicKeyBytes);
-      }
-      catch (Exception ex)
-      {
-        throw new InvalidOperationException($"Failed to load public key (tried EC, RSA, Ed25519): {ex.Message}");
-      }
+        PasskeyCryptoHelper.CoseAlgEs256 => GeneratePublicKey("EC", publicKeyBytes),
+        PasskeyCryptoHelper.CoseAlgRs256 => GeneratePublicKey("RSA", publicKeyBytes),
+        // Java's Ed25519 KeyFactory requires the Keystore on Android, so use the wrapper.
+        PasskeyCryptoHelper.CoseAlgEd25519 => new Ed25519PublicKeyWrapper(publicKeyBytes),
+        _ => throw new NotSupportedException($"Unsupported key type {keyTypeId}")
+      };
     }
+
+    private static IPublicKey GeneratePublicKey(string algorithm, byte[] x509EncodedKey) =>
+      KeyFactory.GetInstance(algorithm)?.GeneratePublic(new X509EncodedKeySpec(x509EncodedKey))
+      ?? throw new InvalidOperationException($"Failed to load {algorithm} public key");
 
     private (byte[] credentialPublicKeyCbor, byte[] publicKeySpki) BuildPublicKeyEncodings(IPublicKey publicKey, long keyTypeId)
     {
