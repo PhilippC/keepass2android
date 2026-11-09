@@ -721,13 +721,13 @@ namespace keepass2android.services.Kp2aCredentialProvider
     /// Sets up a failure response for a create request and finishes the activity.
     /// </summary>
     /// <param name="message">The error message to send to the client.</param>
-    private void SetUpFailureResponseForCreateAndFinish(string? message = null)
+    private void SetUpFailureResponseForCreateAndFinish(string? message = null) =>
+      SetUpFailureResponseForCreateAndFinish(new CreateCredentialUnknownException(message));
+
+    private void SetUpFailureResponseForCreateAndFinish(CreateCredentialException exception)
     {
       var result = new Intent();
-      PendingIntentHandler.SetCreateCredentialException(
-        result,
-        new CreateCredentialUnknownException(message)
-      );
+      PendingIntentHandler.SetCreateCredentialException(result, exception);
       SetResult(Result.Ok, result);
 
       if (!IsFinishing)
@@ -1112,6 +1112,15 @@ namespace keepass2android.services.Kp2aCredentialProvider
           return;
         }
 
+        // excludeCredentials: refuse with InvalidStateError if a listed passkey is already stored. Only checked if the
+        // databases are unlocked; the user has consented by choosing Kp2a.
+        if (HasExcludedCredential(_passkeyCreationOptions))
+        {
+          SetUpFailureResponseForCreateAndFinish(new AndroidX.Credentials.Exceptions.PublicKeyCredential.CreatePublicKeyCredentialDomException(
+            new AndroidX.Credentials.Exceptions.DomErrors.InvalidStateError(), "A passkey for this account already exists."));
+          return;
+        }
+
         var uvDecision = DecideUserVerification(_passkeyCreationOptions.UserVerificationRequirement);
 
         if (uvDecision == UserVerificationDecision.Skip || uvDecision == UserVerificationDecision.AlreadyVerified)
@@ -1153,6 +1162,15 @@ namespace keepass2android.services.Kp2aCredentialProvider
         Kp2aLog.Log($"Kp2aCredentialLauncherActivity: Error creating passkey: {e.Message}");
         SetUpFailureResponseForCreateAndFinish(PasskeyCreationFailedMessage);
       }
+    }
+
+    private static bool HasExcludedCredential(PublicKeyCredentialCreationOptions options)
+    {
+      if (options.ExcludeCredentials.Count == 0 || !App.Kp2a.DatabaseIsUnlocked)
+        return false;
+      return App.Kp2a.OpenDatabases
+        .SelectMany(db => db.SearchForRelyingParty(options.RelyingPartyEntity.Id)?.Entries ?? Enumerable.Empty<PwEntry>())
+        .Any(entry => options.IsCredentialExcluded(PasskeyStorage.RetrievePasskey(entry)?.CredentialId));
     }
 
     private enum UserVerificationDecision

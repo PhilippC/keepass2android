@@ -150,7 +150,7 @@ namespace Kp2aPasskey.Core
       RpId = WebAuthnRequestParsing.ResolveRpId(
         WebAuthnRequestParsing.OptStringOrNull(Json, "rpId"), getCallerOrigin);
       UserVerification = Json.OptString("userVerification", "preferred");
-      AllowCredentials = ParseAllowCredentials(Json);
+      AllowCredentials = ParseCredentialDescriptors(Json, "allowCredentials");
       AllowCredentialsSpecified = IsAllowCredentialsSpecified(Json);
     }
 
@@ -166,8 +166,14 @@ namespace Kp2aPasskey.Core
     /// </summary>
     public bool IsCredentialAllowed(string? credentialIdBase64Url)
     {
-      if (!AllowCredentialsSpecified)
-        return true;
+      return !AllowCredentialsSpecified || ContainsCredential(AllowCredentials, credentialIdBase64Url);
+    }
+
+    /// <summary>
+    /// Returns true if <paramref name="descriptors"/> contains the credential with the given stored ID (base64url).
+    /// </summary>
+    internal static bool ContainsCredential(List<PublicKeyCredentialDescriptor> descriptors, string? credentialIdBase64Url)
+    {
       if (string.IsNullOrEmpty(credentialIdBase64Url))
         return false;
 
@@ -183,7 +189,7 @@ namespace Kp2aPasskey.Core
       if (credentialId == null || credentialId.Length == 0)
         return false;
 
-      return AllowCredentials.Any(d => d.Id != null && d.Id.AsSpan().SequenceEqual(credentialId));
+      return descriptors.Any(d => d.Id != null && d.Id.AsSpan().SequenceEqual(credentialId));
     }
 
     private static bool IsAllowCredentialsSpecified(JSONObject json)
@@ -195,10 +201,10 @@ namespace Kp2aPasskey.Core
       return array == null || array.Length() > 0;
     }
 
-    private static List<PublicKeyCredentialDescriptor> ParseAllowCredentials(JSONObject json)
+    internal static List<PublicKeyCredentialDescriptor> ParseCredentialDescriptors(JSONObject json, string key)
     {
       var allowCredentials = new List<PublicKeyCredentialDescriptor>();
-      var allowCredentialsArray = json.OptJSONArray("allowCredentials");
+      var allowCredentialsArray = json.OptJSONArray(key);
       if (allowCredentialsArray == null)
         return allowCredentials;
 
@@ -261,6 +267,12 @@ namespace Kp2aPasskey.Core
     public bool CredPropsRequested => Json.OptJSONObject("extensions")?.OptBoolean("credProps", false) ?? false;
     public string Attestation { get; }
     public byte[]? ClientDataHash { get; }
+
+    /// <summary>
+    /// Returns true if the credential with the given stored ID (base64url) is listed in excludeCredentials.
+    /// </summary>
+    public bool IsCredentialExcluded(string? credentialIdBase64Url) =>
+      PublicKeyCredentialRequestOptions.ContainsCredential(ExcludeCredentials, credentialIdBase64Url);
 
     /// <summary>
     /// User verification requirement from authenticatorSelection; defaults to Preferred if unknown.
@@ -326,7 +338,7 @@ namespace Kp2aPasskey.Core
 
       // Parse optional fields
       Timeout = Json.OptLong("timeout", 0);
-      ExcludeCredentials = new List<PublicKeyCredentialDescriptor>();
+      ExcludeCredentials = PublicKeyCredentialRequestOptions.ParseCredentialDescriptors(Json, "excludeCredentials");
       AuthenticatorSelection = ParseAuthenticatorSelection(Json);
       Attestation = Json.OptString("attestation", "none");
     }
