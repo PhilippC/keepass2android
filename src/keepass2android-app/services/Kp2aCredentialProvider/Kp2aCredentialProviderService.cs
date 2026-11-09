@@ -253,7 +253,7 @@ namespace keepass2android.services.Kp2aCredentialProvider
               Kp2aLog.Log("Kp2aCredentialProviderService: no calling package for password option, skipping it.");
               continue;
             }
-            GetCredentialHelper.AddMatchingPasswordEntries(this, callingPackage, passwordOption, responseBuilder);
+            GetCredentialHelper.AddMatchingPasswordEntries(this, callingPackage, request.CallingAppInfo, passwordOption, responseBuilder);
           }
           else if (option is BeginGetPublicKeyCredentialOption passkeyOption)
           {

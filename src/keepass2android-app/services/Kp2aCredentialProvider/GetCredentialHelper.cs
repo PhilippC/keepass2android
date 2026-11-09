@@ -35,16 +35,20 @@ namespace keepass2android.services.Kp2aCredentialProvider
   {
     /// <summary>
     /// Searches the open databases for password entries matching <paramref name="callingPackage"/>
-    /// and adds a <see cref="PasswordCredentialEntry"/> for each one to <paramref name="responseBuilder"/>.
+    /// (or the website, for trusted browsers) and adds a <see cref="PasswordCredentialEntry"/> for each one to
+    /// <paramref name="responseBuilder"/>.
     /// </summary>
     public static void AddMatchingPasswordEntries(
       Context context,
       string callingPackage,
+      CallingAppInfo? callingAppInfo,
       BeginGetPasswordOption option,
       BeginGetCredentialResponse.Builder responseBuilder
     )
     {
-      var query = $"{KeePass.AndroidAppScheme}{callingPackage}";
+      // Trusted browsers: match the website, not the browser app.
+      var query = PasskeyOriginHelper.GetOriginFromPrivilegedCaller(context, callingAppInfo)
+                  ?? $"{KeePass.AndroidAppScheme}{callingPackage}";
       var searchResults = ShareUrlResults.GetSearchResultsForUrl(query);
       var foundEntries = searchResults?.Entries.ToList() ?? new List<PwEntry>();
 

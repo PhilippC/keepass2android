@@ -208,9 +208,12 @@ namespace keepass2android.services.Kp2aCredentialProvider
           var forwardIntent = new Intent(this, typeof(SelectCurrentDbActivity));
 
           Dictionary<string, string> outputFields = [];
-          if (callingPackage != null)
+          // Trusted browsers: store the website, not the browser app.
+          var url = PasskeyOriginHelper.GetOriginFromPrivilegedCaller(this, createRequest.CallingAppInfo)
+                    ?? (callingPackage != null ? $"{KeePass.AndroidAppScheme}{callingPackage}" : null);
+          if (url != null)
           {
-            outputFields.TryAdd(PwDefs.UrlField, $"{KeePass.AndroidAppScheme}{callingPackage}");
+            outputFields.TryAdd(PwDefs.UrlField, url);
           }
 
           outputFields.TryAdd(PwDefs.UserNameField, request.Id);
@@ -677,7 +680,7 @@ namespace keepass2android.services.Kp2aCredentialProvider
             foreach (var option in getRequest.BeginGetCredentialOptions)
             {
               if (option is BeginGetPasswordOption passwordOption && callingPackage != null)
-                GetCredentialHelper.AddMatchingPasswordEntries(this, callingPackage, passwordOption, response);
+                GetCredentialHelper.AddMatchingPasswordEntries(this, callingPackage, getRequest.CallingAppInfo, passwordOption, response);
               else if (option is BeginGetPublicKeyCredentialOption passkeyOption)
                 GetCredentialHelper.AddMatchingPasskeyEntries(this, getRequest.CallingAppInfo, passkeyOption, response);
             }
