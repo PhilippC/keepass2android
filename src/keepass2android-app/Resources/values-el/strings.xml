@@ -499,6 +499,7 @@
   <string name="UseOnlineMode">Συγχρονισμός του αντιγράφου της cache με την πηγή</string>
   <string name="UseOfflineMode_Info">Η βάση δεδομένων φορτώνεται από την cache. Οι αλλαγές αποθηκεύονται μόνο στην cache και θα συγχρονιστούν όταν επιλέξετε Συγχρονισμός.</string>
   <string name="InOfflineMode">Λειτουργία στην cache μόνον</string>
+  <string name="ServerNotReachable">Δεν ήταν δυνατή η πρόσβαση στον διακομιστή. Παρακαλώ ελέγξτε τη σύνδεσή σας στο Διαδίκτυο και τη διεύθυνση του διακομιστή.</string>
   <string name="SynchronizingCachedDatabase">Συγχρονισμός προσωρινού αντίγραφου βάσης δεδομένων…</string>
   <string name="DownloadingRemoteFile">Φόρτωση αρχείου πηγής...</string>
   <string name="UploadingFile">Αποθήκευση αρχείου...</string>
@@ -757,9 +758,9 @@
   <string name="cleartextTrafficPermitted_title">Να επιτρέπεται η διακίνηση μη κρυπτογραφημένου κειμένου στο WebDav</string>
   <string name="cleartextTrafficPermitted_summary">Οι συνδέσεις HTTP δεν είναι ασφαλείς. Ενεργοποιήστε αυτήν την επιλογή μόνο αν έχετε άλλα μέτρα ασφαλείας.</string>
   <string-array name="ChangeLog_1_15_net">
-    <item>Update to Target SDK version 36</item>
+    <item>Ενημέρωση σε Target SDK έκδοση 36</item>
     <item>Βελτιώσεις στο χειρισμό URL για WebDav με μη-ASCII χαρακτήρες</item>
-    <item>Improvements to OneDrive Authentication</item>
+    <item>Βελτιώσεις στην αυθεντικοποίηση του OneDrive</item>
     <item>Minor bug fixes</item>
   </string-array>
   <string-array name="ChangeLog_1_15">
