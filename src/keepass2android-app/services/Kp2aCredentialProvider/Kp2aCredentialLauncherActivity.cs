@@ -297,6 +297,7 @@ namespace keepass2android.services.Kp2aCredentialProvider
             }
           }
           //nothing found in open databases
+          Toast.MakeText(this, Resource.String.credential_provider_entry_not_found, ToastLength.Long)?.Show();
           SetUpNoCredentialResponseForGetAndFinish();
         }
       }
@@ -357,7 +358,7 @@ namespace keepass2android.services.Kp2aCredentialProvider
           {
             Kp2aLog.Log($"Kp2aCredentialLauncherActivity: Error creating passkey response: {ex.Message}");
             // The entry has already been saved at this point, so tell the user it won't work.
-            Toast.MakeText(this, GetString(Resource.String.passkey_create_failed, ex.Message), ToastLength.Long)?.Show();
+            Toast.MakeText(this, Resource.String.passkey_create_failed, ToastLength.Long)?.Show();
             PendingIntentHandler.SetCreateCredentialException(
               result,
               new CreateCredentialUnknownException(PasskeyCreationFailedMessage)
@@ -1135,6 +1136,7 @@ namespace keepass2android.services.Kp2aCredentialProvider
 
         if (uvDecision == UserVerificationDecision.Unavailable)
         {
+          Toast.MakeText(this, Resource.String.passkey_user_verification_unavailable, ToastLength.Long)?.Show();
           SetUpFailureResponseForCreateAndFinish("User verification required but not available on this device.");
           return;
         }
@@ -1352,6 +1354,7 @@ namespace keepass2android.services.Kp2aCredentialProvider
 
       if (uvDecision == UserVerificationDecision.Unavailable)
       {
+        Toast.MakeText(this, Resource.String.passkey_user_verification_unavailable, ToastLength.Long)?.Show();
         SetUpFailureResponseForGetAndFinish("User verification required but not available on this device.");
         return;
       }
@@ -1422,6 +1425,7 @@ namespace keepass2android.services.Kp2aCredentialProvider
         var entry = FindEntry(requestIntent.GetStringExtra(Strings.ExtraEntryId));
         if (entry == null)
         {
+          Toast.MakeText(this, Resource.String.credential_provider_entry_not_found, ToastLength.Long)?.Show();
           SetUpNoCredentialResponseForGetAndFinish();
           return null;
         }

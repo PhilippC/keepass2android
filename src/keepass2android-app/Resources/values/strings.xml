@@ -1421,7 +1421,9 @@
   <string name="passkey_unknown_browser_message">%1$s (%2$s) wants to use a passkey for a website, but it is not in the list of known browsers.\n\nOnly trust this browser if you are sure it is legitimate: a trusted browser can use your passkeys for any website.\n\nSigning certificate (SHA-256):\n%3$s</string>
   <string name="passkey_unknown_browser_add">Trust browser</string>
   <string name="passkey_request_interrupted">The request was interrupted. Please try again.</string>
-  <string name="passkey_create_failed">The passkey could not be registered: %1$s. The entry was saved to the database but will not work; you may delete it.</string>
+  <string name="passkey_create_failed">The passkey could not be registered. The entry was saved to the database but will not work; you may delete it.</string>
+  <string name="passkey_user_verification_unavailable">This website requires user verification. Set up a screen lock to use your passkey.</string>
+  <string name="credential_provider_entry_not_found">The entry was not found. Unlock the database that contains it and try again.</string>
   <string name="passkey_app_not_linked">%1$s is not allowed to use passkeys for %2$s: the website does not list this app as one of its apps.</string>
   <string name="passkey_app_unverified_title">App could not be verified</string>
   <string name="passkey_app_unverified_message">Keepass2Android could not check whether %1$s (%2$s) is allowed to use passkeys for %3$s, because the website\'s list of apps could not be loaded.\n\nOnly continue if you trust this app. It will be checked again next time.</string>
