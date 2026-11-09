@@ -49,12 +49,13 @@ namespace Kp2aPasskey.Core
       [FIELD_PRIVATE_KEY, FIELD_CREDENTIAL_ID, FIELD_USER_HANDLE];
 
 
-    public static JSONObject CreatePasskeyFieldsJson(string relyingParty, string username, PasskeyData passkey)
+    /// <param name="title">Entry title (localized by the caller).</param>
+    public static JSONObject CreatePasskeyFieldsJson(string title, string relyingParty, string username, PasskeyData passkey)
     {
       // Build AllFields JSON with passkey data in extra fields (compatible with KeePassDX/KeePassXC)
       // Start with standard entry fields
       var passkeyFieldsJson = new JSONObject();
-      passkeyFieldsJson.Put(PwDefs.TitleField, $"Passkey for {relyingParty}");
+      passkeyFieldsJson.Put(PwDefs.TitleField, title);
       passkeyFieldsJson.Put(PwDefs.UserNameField, username);
       passkeyFieldsJson.Put(PwDefs.UrlField, relyingParty);
 

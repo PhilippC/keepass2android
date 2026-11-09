@@ -1378,17 +1378,19 @@
   <string name="pref_periodic_background_sync_interval_title">Periodic background synchronization time interval</string>
   <string name="pref_periodic_background_sync_interval_summary">Set the interval for background synchronization in minutes.</string>
 
-  <string name="credential_provider_service_subtitle">Password credential provider</string>
-  <string name="credential_provider_password_creation_description">Save Password in new entry</string>
-  <string name="credential_provider_locked_database_description">Database is locked. Open Keepass2Android to unlock.</string>
-  <string name="credential_provider_passkey_creation_description">Save Passkey</string>
+  <string name="credential_provider_service_subtitle">Passwords and passkeys</string>
+  <string name="credential_provider_password_creation_description">Save password in new entry</string>
+  <string name="credential_provider_locked_database_description">Database is locked. Tap to unlock.</string>
+  <string name="credential_provider_passkey_creation_description">Save passkey</string>
+  <string name="passkey_entry_title">Passkey for %1$s</string>
+  <string name="passkey_unknown_username">Unknown</string>
   <string name="open_app_name">Open %1$s</string>
-  <string name="manage_credentials">Manage Credentials</string>
+  <string name="manage_credentials">Manage credentials</string>
 
   <!-- Passkey Settings Screen -->
-  <string name="pref_passkeys_screen_summary">Configure passkey backup behavior</string>
+  <string name="pref_passkeys_screen_summary">Sync, user verification and trusted browsers</string>
   <string name="pref_passkeys_backup_category_title">Sync &amp; backup</string>
-  <string name="pref_passkeys_uv_category_title">User Verification</string>
+  <string name="pref_passkeys_uv_category_title">User verification</string>
   <string name="passkeys_uv_setting_change_subtitle">Confirm your identity to change this setting.</string>
 
   <!-- Passkey Backup Settings -->

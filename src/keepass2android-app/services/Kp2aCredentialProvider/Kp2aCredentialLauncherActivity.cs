@@ -249,7 +249,11 @@ namespace keepass2android.services.Kp2aCredentialProvider
     private void LaunchUnlockDatabase()
     {
       var forwardIntent = new Intent(this, typeof(SelectCurrentDbActivity));
-      new UnlockThenCloseWithResultTask(true) { ResultCode = (int)Result.Ok }.ToIntent(forwardIntent);
+      // If the app is locked, return right after unlocking (e.g. QuickUnlock) instead of leaving the user on the
+      // database list. If a database is already unlocked, the user tapped the unlock action because they need another
+      // database, so show the list.
+      bool explicitlySelectDatabase = App.Kp2a.DatabaseIsUnlocked;
+      new UnlockThenCloseWithResultTask(explicitlySelectDatabase) { ResultCode = (int)Result.Ok }.ToIntent(forwardIntent);
       StartChildActivityForResult(forwardIntent, UnlockRequestCode);
     }
 
@@ -819,7 +823,9 @@ namespace keepass2android.services.Kp2aCredentialProvider
 
       var origin = callerOrigin.Origin;
 
-      var passkeyFieldsJson = PasskeyStorage.CreatePasskeyFieldsJson(creationOptions.RelyingPartyEntity.Id, creationOptions.UserEntity.Name, passkey);
+      var passkeyFieldsJson = PasskeyStorage.CreatePasskeyFieldsJson(
+        GetString(Resource.String.passkey_entry_title, creationOptions.RelyingPartyEntity.Id),
+        creationOptions.RelyingPartyEntity.Id, creationOptions.UserEntity.Name, passkey);
 
       // If the calling app was verified via assetlinks.json in HandleCreatePasskeyRequest, pin it to the new entry, so
       // later requests from this app are accepted without checking again. Not if the user only confirmed an unverified app.
