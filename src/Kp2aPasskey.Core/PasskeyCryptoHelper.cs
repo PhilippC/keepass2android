@@ -80,9 +80,11 @@ namespace Kp2aPasskey.Core
     // COSE Key Common Parameter Labels (https://www.iana.org/assignments/cose/cose.xhtml#key-common-parameters)
     private const int CoseKeyKeytype = 1;   // Key Type
     private const int CoseKeyAlgorithm = 3;   // Key Algorithm
-    private const int CoseKeyCurve = -1;  // Curve (EC2/OKP) or Modulus (RSA)
-    private const int CoseKeyX = -2;    // X-coordinate (EC2/OKP) or Public Exponent (RSA)
+    private const int CoseKeyCurve = -1;  // Curve (EC2/OKP)
+    private const int CoseKeyX = -2;    // X-coordinate (EC2/OKP)
     private const int CoseKeyY = -3;    // Y-coordinate (EC2)
+    private const int CoseKeyRsaN = -1; // Modulus (RSA)
+    private const int CoseKeyRsaE = -2; // Public exponent (RSA)
 
     // COSE Key Type Values (https://www.iana.org/assignments/cose/cose.xhtml#key-type)
     private const int CoseKtyOkp = 1;   // Octet Key Pair (Ed25519)
@@ -457,8 +459,8 @@ namespace Kp2aPasskey.Core
           return CBORObject.NewMap()
             .Add(CoseKeyKeytype, CoseKtyRsa)
             .Add(CoseKeyAlgorithm, (int)CoseAlgRs256)
-            .Add(CoseKeyCurve, n!)  // n: modulus
-            .Add(CoseKeyX, e!);   // e: exponent
+            .Add(CoseKeyRsaN, n!)
+            .Add(CoseKeyRsaE, e!);
         }
 
         throw new ArgumentException("Failed to extract RSA key specification");

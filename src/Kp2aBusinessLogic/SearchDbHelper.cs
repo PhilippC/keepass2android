@@ -137,7 +137,7 @@ namespace keepass2android
       {
         if (!entry.GetSearchingEnabled())
           continue;
-        var storedRp = entry.Strings.ReadSafe("KPEX_PASSKEY_RELYING_PARTY");
+        var storedRp = entry.Strings.ReadSafe(Kp2aPasskey.Core.PasskeyStorage.FieldRelyingParty);
         if (string.IsNullOrWhiteSpace(storedRp))
           continue;
         if (string.Equals(storedRp, relyingParty, StringComparison.OrdinalIgnoreCase))

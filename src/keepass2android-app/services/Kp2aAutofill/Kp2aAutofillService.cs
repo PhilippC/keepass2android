@@ -99,7 +99,7 @@ namespace keepass2android.services
           (System.Collections.ICollection)new string[] { });
       intent.PutExtra(Strings.ExtraProtectedFieldsList, jsonProtectedFields.ToString());
 
-      intent.PutExtra(AppTask.AppTaskKey, "CreateEntryThenCloseTask");
+      intent.PutExtra(AppTask.AppTaskKey, nameof(CreateEntryThenCloseTask));
       intent.PutExtra(CreateEntryThenCloseTask.ShowUserNotificationsKey, "false");
 
       StartActivity(intent);

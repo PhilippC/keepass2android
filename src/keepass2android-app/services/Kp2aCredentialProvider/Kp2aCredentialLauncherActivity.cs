@@ -78,6 +78,8 @@ namespace keepass2android.services.Kp2aCredentialProvider
 
     // Key inside _passkeyResponseData
     private const string PasskeyDataKeyCredentialId = "credentialId";
+    private const string PasskeyDataKeyKeyTypeId = "keyTypeId";
+    private const string PasskeyDataKeyPublicKey = "publicKeyBase64";
 
     // Error messages returned to Credential Manager. Details are only written to the log.
     private const string InvalidRequestMessage = "Invalid passkey request";
@@ -227,7 +229,7 @@ namespace keepass2android.services.Kp2aCredentialProvider
           );
           forwardIntent.PutExtra(Strings.ExtraProtectedFieldsList, jsonProtectedFields.ToString());
 
-          forwardIntent.PutExtra(AppTask.AppTaskKey, "CreateEntryThenCloseTask");
+          forwardIntent.PutExtra(AppTask.AppTaskKey, nameof(CreateEntryThenCloseTask));
           forwardIntent.PutExtra(CreateEntryThenCloseTask.ShowUserNotificationsKey, "false");
           StartChildActivityForResult(forwardIntent, CreateEntryRequestCode);
         }
@@ -424,13 +426,13 @@ namespace keepass2android.services.Kp2aCredentialProvider
         throw new InvalidOperationException("Created entry does not contain the passkey generated for this request");
       }
       // Both fields are always written by CreatePasskeyResponseJson; GetLong/GetString throw if they are missing.
-      var keyTypeId = passkeyData.GetLong("keyTypeId");
+      var keyTypeId = passkeyData.GetLong(PasskeyDataKeyKeyTypeId);
 
       // Convert credential ID from base64
       var credentialId = Base64Url.Decode(passkey.CredentialId);
 
       // Load public key from stored data
-      var publicKey = DecodePublicKey(passkeyData.GetString("publicKeyBase64"), keyTypeId);
+      var publicKey = DecodePublicKey(passkeyData.GetString(PasskeyDataKeyPublicKey), keyTypeId);
 
       // Build client data response. origin and clientDataHash were determined by PasskeyOriginHelper.ResolveCallerOrigin
       // when the request came in, so clientDataHash is only set for verified privileged callers.
@@ -845,7 +847,7 @@ namespace keepass2android.services.Kp2aCredentialProvider
       // Must use PutStringArrayListExtra — CreateEntryThenCloseTask.Setup reads these with GetStringArrayList
       forwardIntent.PutStringArrayListExtra(Strings.ExtraProtectedFieldsList, PasskeyStorage.ProtectedFields.ToList());
       forwardIntent.PutStringArrayListExtra(CreateEntryThenCloseTask.TagsKey, new List<string> { PasskeyStorage.PasskeyTag });
-      forwardIntent.PutExtra(AppTask.AppTaskKey, "CreateEntryThenCloseTask");
+      forwardIntent.PutExtra(AppTask.AppTaskKey, nameof(CreateEntryThenCloseTask));
       forwardIntent.PutExtra(CreateEntryThenCloseTask.ShowUserNotificationsKey, "false");
       return forwardIntent;
     }
@@ -858,8 +860,8 @@ namespace keepass2android.services.Kp2aCredentialProvider
     {
       var publicKeyBytes = keyPair.Public.GetEncoded();
       var passkeyResponseJson = new JSONObject();
-      passkeyResponseJson.Put("publicKeyBase64", Base64.EncodeToString(publicKeyBytes, Base64Flags.Default));
-      passkeyResponseJson.Put("keyTypeId", keyTypeId);
+      passkeyResponseJson.Put(PasskeyDataKeyPublicKey, Base64.EncodeToString(publicKeyBytes, Base64Flags.Default));
+      passkeyResponseJson.Put(PasskeyDataKeyKeyTypeId, keyTypeId);
       passkeyResponseJson.Put(PasskeyDataKeyCredentialId, credentialId);
       return passkeyResponseJson;
     }
