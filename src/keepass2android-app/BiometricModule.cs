@@ -158,7 +158,6 @@ namespace keepass2android
 
     private BiometricPrompt _biometricPrompt;
     private FragmentActivity _activity;
-    private BiometricAuthCallbackAdapter _biometricAuthCallbackAdapter;
 
     public BiometricCrypt(BiometricModule biometric, string keyId)
     {
@@ -186,14 +185,13 @@ namespace keepass2android
 
     public void StartListening(IBiometricAuthCallback callback)
     {
-      _biometricAuthCallbackAdapter = new BiometricAuthCallbackAdapter(callback, _activity);
-      StartListening(_biometricAuthCallbackAdapter);
+      StartListening(new BiometricAuthCallbackAdapter(callback, _activity));
     }
 
     public void StopListening()
     {
       Kp2aLog.Log("Fingerprint: StopListening " + (_biometricPrompt != null ? " having prompt " : " without prompt"));
-      _biometricAuthCallbackAdapter?.IgnoreNextError();
+      // The resulting ErrorCanceled is not reported to the callback, see BiometricAuthCallbackAdapter.
       _biometricPrompt?.CancelAuthentication();
     }
 
@@ -469,7 +467,6 @@ namespace keepass2android
   {
     private readonly IBiometricAuthCallback _callback;
     private readonly Context _context;
-    private bool _ignoreNextError;
 
     public BiometricAuthCallbackAdapter(IBiometricAuthCallback callback, Context context)
     {
@@ -485,9 +482,12 @@ namespace keepass2android
 
     public override void OnAuthenticationError(int errorCode, ICharSequence errString)
     {
-      if (_ignoreNextError)
+      // ErrorCanceled: canceled by the app (StopListening, e.g. in OnPause or on rotation) or by the system, not by
+      // the user (that is ErrorUserCanceled / ErrorNegativeButton). Nothing to tell the user. Note that after a
+      // rotation, androidx delivers the cancel of the old prompt to the callback of the new activity instance.
+      if (errorCode == BiometricPrompt.ErrorCanceled)
       {
-        _ignoreNextError = false;
+        Kp2aLog.Log("Fingerprint: authentication canceled (not by the user), not reported");
         return;
       }
       new Handler(Looper.MainLooper).Post(() => _callback.OnBiometricError(errString.ToString()));
@@ -497,11 +497,6 @@ namespace keepass2android
     public override void OnAuthenticationFailed()
     {
       new Handler(Looper.MainLooper).Post(() => _callback.OnBiometricAttemptFailed(_context.Resources.GetString(Resource.String.fingerprint_not_recognized)));
-    }
-
-    public void IgnoreNextError()
-    {
-      _ignoreNextError = true;
     }
   }
 

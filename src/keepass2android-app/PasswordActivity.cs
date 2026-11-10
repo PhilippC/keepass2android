@@ -979,6 +979,7 @@ namespace keepass2android
       try
       {
         var masterPassword = _biometricDec.DecryptStored(Database.GetFingerprintPrefKey(_ioConnection));
+        App.Kp2a.OnUserVerificationSucceeded();
         //first mask the password textedit before assigning the password:
         if (_showPassword)
         {
@@ -2015,7 +2016,7 @@ namespace keepass2android
         if (_biometricDec.Init())
         {
           btn.SetImageResource(Resource.Drawable.baseline_fingerprint_24);
-          _biometricDec.StartListening(new BiometricAuthCallbackAdapter(this, this));
+          _biometricDec.StartListening(this);
           return true;
         }
         else

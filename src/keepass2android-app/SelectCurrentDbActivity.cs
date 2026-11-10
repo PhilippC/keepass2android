@@ -452,6 +452,12 @@ namespace keepass2android
       return true;
     }
 
+    protected override void OnSaveInstanceState(Bundle outState)
+    {
+      base.OnSaveInstanceState(outState);
+      AppTask?.ToBundle(outState);
+    }
+
     protected override void OnResume()
     {
       _isForeground = true;
@@ -492,7 +498,7 @@ namespace keepass2android
         }
 
         //database(s) unlocked
-        if ((App.Kp2a.OpenDatabases.Count() == 1) || (AppTask is SearchUrlTask))
+        if (((App.Kp2a.OpenDatabases.Count() == 1) || (AppTask is SearchUrlTask)) && (AppTask?.ExplicitlySelectDatabase != true))
         {
           LaunchingOther = true;
           AppTask.LaunchFirstGroupActivity(this);

@@ -51,6 +51,7 @@ using keepass2android.Utils;
 using KeePassLib.Keys;
 using KeePassLib.Serialization;
 using FragmentManager = AndroidX.Fragment.App.FragmentManager;
+using keepass2android.services.Kp2aCredentialProvider;
 
 namespace keepass2android
 {
@@ -432,6 +433,15 @@ namespace keepass2android
       public SettingsFragmentApp() : base(Resource.Xml.pref_app)
       {
       }
+
+      public override void OnCreatePreferences(Bundle savedInstanceState, string rootKey)
+      {
+        base.OnCreatePreferences(savedInstanceState, rootKey);
+        // The credential provider (and thus passkeys) requires Android 14.
+        var passkeyPrefs = FindPreference(GetString(Resource.String.Passkey_prefs_key));
+        if (passkeyPrefs != null)
+          passkeyPrefs.Visible = OperatingSystem.IsAndroidVersionAtLeast(34);
+      }
     }
     public class SecurityPreferenceFragment : PreferenceFragmentWithResource
     {
@@ -691,6 +701,187 @@ namespace keepass2android
       }
     }
 
+    public class PasskeyPreferenceFragment : PreferenceFragmentWithResource
+    {
+      public PasskeyPreferenceFragment() : base(Resource.Xml.pref_app_passkeys)
+      {
+      }
+
+      public override void OnCreatePreferences(Bundle savedInstanceState, string rootKey)
+      {
+        base.OnCreatePreferences(savedInstanceState, rootKey);
+
+        var uvPref = FindPreference(GetString(Resource.String.passkeys_force_user_verification_when_preferred_key)) as SwitchPreferenceCompat;
+        if (uvPref != null)
+          uvPref.PreferenceChange += (sender, args) =>
+          {
+            var context = RequireContext();
+            var boolValue = (bool)args.NewValue;
+
+            var canAuthenticate = UserVerificationHelper.CanAuthenticate(context);
+
+            if (boolValue)
+            {
+              if (!canAuthenticate)
+              {
+                // enabling would make every passkey request fail because user verification is impossible.
+                args.Handled = false;
+                new MaterialAlertDialogBuilder(context)
+                  .SetTitle(GetString(Resource.String.passkeys_force_user_verification_when_preferred_title))
+                  .SetMessage(GetString(Resource.String.passkeys_force_uv_not_available))
+                  .SetPositiveButton(GetString(Android.Resource.String.Ok), (_, _) => { })
+                  .Show();
+              }
+              // making the setting stricter does not require verification.
+              return;
+            }
+
+            if (!canAuthenticate)
+              return; // no screen lock / strong biometric — verification impossible, allow disabling directly
+
+            // reject any change for now. If the (async) user verification succeeds, we'll update the value.
+            args.Handled = false;
+
+            UserVerificationHelper.ShowUserVerification(
+              RequireActivity(),
+              GetString(Resource.String.passkey_user_verification_required_title),
+              GetString(Resource.String.passkeys_uv_setting_change_subtitle),
+              onSuccess: () =>
+              {
+                PreferenceManager.GetDefaultSharedPreferences(context)
+                  .Edit()
+                  .PutBoolean(((Preference)sender).Key, boolValue)
+                  .Apply();
+                ((SwitchPreferenceCompat)sender).Checked = boolValue;
+              },
+              onCancelOrError: null
+            );
+          };
+
+        var enableProviderPref = FindPreference(GetString(Resource.String.passkeys_enable_provider_key));
+        if (enableProviderPref != null)
+          enableProviderPref.PreferenceClick += (_, _) =>
+            CredentialProviderStatus.TryOpenCredentialProviderSettings(RequireActivity());
+
+        var chromePref = FindPreference(GetString(Resource.String.passkeys_chrome_autofill_key));
+        if (chromePref != null)
+          chromePref.PreferenceClick += (_, _) =>
+          {
+            var chromePackage = CredentialProviderStatus.GetChromePackagesWithoutThirdPartyAutofill(RequireContext()).FirstOrDefault();
+            if (chromePackage != null)
+              CredentialProviderStatus.TryOpenChromeAutofillSettings(RequireActivity(), chromePackage);
+          };
+
+        var privilegedAppsPref = FindPreference(GetString(Resource.String.passkeys_privileged_apps_key));
+        if (privilegedAppsPref != null)
+        {
+          // reading signing certificates of installed apps requires API 28
+          privilegedAppsPref.Visible = OperatingSystem.IsAndroidVersionAtLeast(28);
+          privilegedAppsPref.PreferenceClick += (_, _) => ShowPrivilegedAppsDialog();
+        }
+      }
+
+      public override void OnResume()
+      {
+        base.OnResume();
+        // the user may come back from the system settings, so update the state each time
+        UpdateProviderState();
+      }
+
+      /// <summary>
+      /// Disables all passkey settings except the "enable provider" row if Keepass2Android is not enabled as
+      /// credential provider, and shows the Chrome hint if needed.
+      /// </summary>
+      private void UpdateProviderState()
+      {
+        var context = RequireContext();
+        var enableProviderKey = GetString(Resource.String.passkeys_enable_provider_key);
+        var chromeKey = GetString(Resource.String.passkeys_chrome_autofill_key);
+
+        // null means we can't tell. Don't lock the user out of the settings in that case.
+        bool? providerEnabled = CredentialProviderStatus.IsCredentialProviderEnabled(context);
+
+        var enableProviderPref = FindPreference(enableProviderKey);
+        if (enableProviderPref != null)
+        {
+          enableProviderPref.Summary = providerEnabled switch
+          {
+            true => GetString(Resource.String.passkeys_provider_enabled_summary),
+            false => GetString(Resource.String.passkeys_provider_not_enabled_summary),
+            null => GetString(Resource.String.passkeys_enable_provider_summary)
+          };
+        }
+
+        var screen = PreferenceScreen;
+        for (int i = 0; i < screen.PreferenceCount; i++)
+        {
+          var pref = screen.GetPreference(i);
+          if (pref.Key == enableProviderKey || pref.Key == chromeKey)
+            continue;
+          pref.Enabled = providerEnabled != false;
+        }
+
+        var chromePref = FindPreference(chromeKey);
+        if (chromePref != null)
+          chromePref.Visible = providerEnabled == true &&
+                               CredentialProviderStatus.GetChromePackagesWithoutThirdPartyAutofill(context).Any();
+      }
+
+      /// <summary>
+      /// Lets the user select which browsers are in the custom privileged apps allowlist.
+      /// Shows the browsers already in the custom list (even if no longer installed) and all installed browsers
+      /// which are not contained in the bundled allowlists.
+      /// </summary>
+      private void ShowPrivilegedAppsDialog()
+      {
+        var context = RequireContext();
+        var bundledApps = PrivilegedAppsAllowlist.GetBundledApps(context);
+        var customApps = PrivilegedAppsAllowlist.GetCustomApps(context);
+        var installedBrowsers = PrivilegedAppsAllowlist.GetInstalledBrowserPackages(context);
+
+        var candidates = customApps.Select(app => (App: app, Selected: true)).ToList();
+        foreach (var packageName in installedBrowsers)
+        {
+          if (candidates.Any(c => c.App.PackageName == packageName))
+            continue;
+          var app = PrivilegedAppsAllowlist.GetInstalledApp(context, packageName);
+          if (app == null || bundledApps.Any(bundled => bundled.Matches(app)))
+            continue;
+          candidates.Add((app, false));
+        }
+
+        var builder = new MaterialAlertDialogBuilder(context);
+        builder.SetTitle(GetString(Resource.String.passkeys_privileged_apps_title));
+        if (candidates.Count == 0)
+        {
+          builder.SetMessage(GetString(Resource.String.passkeys_privileged_apps_none));
+          builder.SetPositiveButton(GetString(Android.Resource.String.Ok), (_, _) => { });
+          builder.Show();
+          return;
+        }
+
+        string GetLabel(PrivilegedApp app)
+        {
+          if (!installedBrowsers.Contains(app.PackageName))
+            return GetString(Resource.String.passkeys_privileged_apps_not_installed, app.PackageName);
+          var label = PrivilegedAppsAllowlist.GetAppLabel(context, app.PackageName);
+          return label == app.PackageName ? label : $"{label} ({app.PackageName})";
+        }
+
+        candidates = candidates.OrderBy(c => GetLabel(c.App), StringComparer.CurrentCultureIgnoreCase).ToList();
+        var selected = candidates.Select(c => c.Selected).ToArray();
+        builder.SetMultiChoiceItems(candidates.Select(c => GetLabel(c.App)).ToArray(), selected,
+          (_, args) => selected[args.Which] = args.IsChecked);
+        builder.SetPositiveButton(GetString(Android.Resource.String.Ok), (_, _) =>
+        {
+          PrivilegedAppsAllowlist.SaveCustomApps(context, candidates.Where((_, i) => selected[i]).Select(c => c.App));
+        });
+        builder.SetNegativeButton(GetString(Android.Resource.String.Cancel), (_, _) => { });
+        builder.Show();
+      }
+
+    }
+
     public class DebugLogPreferenceFragment : PreferenceFragmentWithResource
     {
 
@@ -945,6 +1136,11 @@ namespace keepass2android
         {
           autofillPref.PreferenceClick += (sender, args) =>
           {
+            // On Android 14+, selecting the preferred service in "Passwords, passkeys & accounts" enables both the
+            // autofill service and the credential provider (passkeys). The autofill picker only sets the former.
+            if (CredentialProviderStatus.IsCredentialProviderEnabled(Context) != null
+                && CredentialProviderStatus.TryOpenCredentialProviderSettings(Activity))
+              return;
 
             var intent = new Intent(Android.Provider.Settings.ActionRequestSetAutofillService);
             if (((AutofillManager)Activity.GetSystemService(Java.Lang.Class.FromType(typeof(AutofillManager))))
@@ -1127,9 +1323,13 @@ namespace keepass2android
     private readonly LifecycleAwareActivity _parentActivity;
     private const string TitleTag = "settingsActivityTitle";
 
-    public SettingsFragmentManager(LifecycleAwareActivity parentActivity)
+    private readonly Func<AndroidX.Fragment.App.Fragment> _createInitialFragment;
+
+    /// <param name="createInitialFragment">Creates the fragment shown first. Defaults to the main preference screen.</param>
+    public SettingsFragmentManager(LifecycleAwareActivity parentActivity, Func<AndroidX.Fragment.App.Fragment>? createInitialFragment = null)
     {
       _parentActivity = parentActivity;
+      _createInitialFragment = createInitialFragment ?? (() => new MainPreferenceFragment());
       _parentActivity.OnCreateListener = OnCreate;
       _parentActivity.OnSaveInstanceStateListener = OnSaveInstanceState;
       _parentActivity.OnSupportNavigateUpListener = OnSupportNavigateUp;
@@ -1146,7 +1346,7 @@ namespace keepass2android
       {
         _parentActivity.SupportFragmentManager
             .BeginTransaction()
-            .Replace(Resource.Id.settings, new MainPreferenceFragment())
+            .Replace(Resource.Id.settings, _createInitialFragment())
             .Commit();
       }
       else
@@ -1227,7 +1427,7 @@ namespace keepass2android
     public AppSettingsActivity()
     {
       _design = new ActivityDesign(this);
-      settingsFragmentManager = new SettingsFragmentManager(this);
+      settingsFragmentManager = new SettingsFragmentManager(this, CreateInitialFragment);
       //TODO adding this makes the app crash on back (https://github.com/dotnet/android-libraries/issues/1055)
       //We need this in order to update the activity title to the re-activated preference
       //SupportFragmentManager.AddOnBackStackChangedListener(this);
@@ -1248,6 +1448,11 @@ namespace keepass2android
 
     public SettingsFragmentManager settingsFragmentManager;
 
+    /// <summary>
+    /// The preference screen shown when the activity is started.
+    /// </summary>
+    protected virtual AndroidX.Fragment.App.Fragment CreateInitialFragment() => new MainPreferenceFragment();
+
 
     public bool OnPreferenceStartFragment(PreferenceFragmentCompat caller, Preference pref)
     {
@@ -1257,6 +1462,24 @@ namespace keepass2android
     public void OnBackStackChanged()
     {
       settingsFragmentManager.OnBackStackChanged();
+    }
+  }
+
+  /// <summary>
+  /// Opens the passkey settings directly. Referenced as settingsActivity in credentials_provider.xml, so the
+  /// system's Credential Manager settings can open it. It must be exported for that, which is why this is a
+  /// separate activity: AppSettingsActivity itself stays non-exported.
+  /// </summary>
+  [Activity(Label = "@string/Passkey_prefs", Name = "keepass2android.PasskeySettingsActivity", Theme = "@style/Kp2aTheme_BlueActionBar", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden, Exported = true)]
+  public class PasskeySettingsActivity : AppSettingsActivity
+  {
+    protected override AndroidX.Fragment.App.Fragment CreateInitialFragment() => new PasskeyPreferenceFragment();
+
+    protected override void OnCreate(Bundle savedInstanceState)
+    {
+      base.OnCreate(savedInstanceState);
+      if (savedInstanceState == null)
+        SetTitle(Resource.String.Passkey_prefs);
     }
   }
 
