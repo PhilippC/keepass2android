@@ -543,6 +543,7 @@
   <string name="donate_missedbday_question">Ω, χάσατε τα γενέθλιά μου στις 10η Μαΐου! Αν σας αρέσει αυτή η εφαρμογή, γιατί δεν μου στέλνετε ένα μικρό δώρο γενεθλίων; Δεν είναι ακόμη πολύ αργά για να με κάνετε ευτυχισμένο! :-)</string>
   <string name="ok_donate">Πείτε μου περισσότερα!</string>
   <string name="no_thanks">Όχι, δεν το συμπαθώ τόσο πολύ</string>
+  <!-- %1$s (label) is not shown, only the price -->
   <string name="enter_http_login_title">Εισαγωγή δεδομένων WebDav:</string>
   <string name="enter_smb_login_title">Εισάγετε δεδομένα σύνδεσης Samba:</string>
   <string name="hint_http_url">Διεύθυνση φακέλου ή αρχείο (πχ mycloud.me.com/webdav/)</string>
