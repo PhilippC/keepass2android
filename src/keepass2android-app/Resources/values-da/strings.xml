@@ -524,6 +524,7 @@
   <string name="donate_missedbday_question">Åh, du gik glip af min fødselsdag d. 10. maj! Synes du om denne app, må du meget gerne sende mig en fødselsdagshilsen og en lille fødselsdagsgave. Det er endnu ikke for sent at gøre mig glad! :-)</string>
   <string name="ok_donate">Fortæl mig mere!</string>
   <string name="no_thanks">Nej, så meget synes jeg ikke om den</string>
+  <!-- %1$s (label) is not shown, only the price -->
   <string name="enter_http_login_title">Angiv WebDav-login:</string>
   <string name="enter_smb_login_title">Angiv SFTP-logindata:</string>
   <string name="hint_http_url">URL til mappe eller fil (f.eks.: mycloud.me.com/webdav/)</string>
