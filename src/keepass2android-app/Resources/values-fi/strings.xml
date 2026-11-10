@@ -509,6 +509,7 @@
   <string name="donate_missedbday_question">Voih! Unohdit syntymäpäiväni 10. toukokuuta ! Jos pidät tästä sovelluksesta niin etkö voisi lähettää minulle syntymäpäiväterveisiä ja pientä syntymäpäivälahjaa? Vielä ehdit tehdä minut onnelliseksi! :-)</string>
   <string name="ok_donate">Kerro lisää!</string>
   <string name="no_thanks">Ei, en pidä sitä niin paljon</string>
+  <!-- %1$s (label) is not shown, only the price -->
   <string name="enter_http_login_title">Syötä WebDav-kirjautumistiedot:</string>
   <string name="hint_http_url">Kansion tai tiedoston URL (esim. mycloud.me.com/webdav/)</string>
   <string name="enter_owncloud_login_title">Syötä OwnCloudin kirjautumistiedot:</string>
