@@ -84,7 +84,7 @@
   <string name="clipboard_timeout_summary">Čas před vyčištěním schránky po zkopírování jména nebo hesla</string>
   <string name="copy_username">Kopírovat uživatelské jméno do schránky</string>
   <string name="copy_password">Kopírovat heslo do schránky</string>
-  <string name="copy_totp">Zvolte pro kopírování TOTP do schránky</string>
+  <string name="copy_totp">Kopírovat TOTP do schránky</string>
   <string name="available_through_keyboard">K dispozici je klávesnice KP2A</string>
   <string name="app_language_pref_title">Jazyk aplikace</string>
   <string name="entry_is_available">je k dispozici</string>
@@ -99,10 +99,10 @@
   <string name="ellipsis">\u2026</string>
   <string name="copy_to_clipboard">Kopírovat do schránky</string>
   <string name="SystemLanguage">Jazyk systému</string>
-  <string name="fingerprint_description">Ověřte se po pokračování</string>
+  <string name="fingerprint_description">Pro pokračování se ověřte</string>
   <string name="fingerprint_fatal">Nebylo možné nastavit Biometrické odemknutí:</string>
   <string name="fingerprint_not_recognized">Biometrické ověření selhalo. Zkuste to prosím znovu</string>
-  <string name="fingerprint_success">Úspěšné biometrické ověření</string>
+  <string name="fingerprint_success">Biometrické ověření bylo úspěšné</string>
   <string name="fingerprint_os_error">Biometrické odemknutí vyžaduje Android 6.0 nebo vyšší.</string>
   <string name="fingerprint_hardware_error">Nebyl nalezen hardware pro biometrické ověření.</string>
   <string name="fingerprint_no_enrolled">Na tomto zařízení není nastaveno žádné biometrické ověření. Nejdříve přejděte do systémového nastavení.</string>
@@ -110,7 +110,7 @@
   <string name="enable_fingerprint_unlock">Povolit plné Biometrické odemknutí</string>
   <string name="enable_fingerprint_quickunlock">Povolit Biometrické odemknutí pro Rychlé odemknutí</string>
   <string name="password_based_quick_unlock_not_available">Rychlé odemknutí pomocí hesla není k dispozici</string>
-  <string name="password_based_quick_unlock_not_available_text">Funkce Rychlé odemknutí pomocí části hesla je blokována, protože na vašem zařízení není aktivováno zamykání obrazovky. Toto opatření slouží k vaší ochraně pro případ, že by někdo sledoval zadávání klíče pro Rychlé odemknutí.</string>
+  <string name="password_based_quick_unlock_not_available_text">Funkce Rychlé odemknutí pomocí části hesla je blokována, protože na vašem zařízení není aktivováno zamykání obrazovky. Toto opatření slouží k vaší ochraně pro případ, že by vás někdo sledoval zadávání klíče pro Rychlé odemknutí.</string>
   <string name="fingerprint_unlock_failed">Biometrické odemknutí selhalo. Dešifrovací klíč byl zneplatněn systémem Android. To se obvykle stává, pokud došlo ke změně biometrického ověření nebo bylo změněno bezpečnostní nastavení. </string>
   <string name="fingerprint_disabled_wrong_masterkey">Odemknutí databáze se nezdařilo: neplatný složený klíč. Biometrické odemknutí bylo zakázáno z důvodu pravděpodobného vypršení platnosti hlavního hesla. </string>
   <string name="fingerprint_reenable">Prosím, povolte znovu Biometrické odemknutí pro nové hlavní heslo.</string>
@@ -118,7 +118,7 @@
   <string name="FingerprintInitFailed">Nepodařilo se spustit biometrické ověření. </string>
   <string name="FingerprintSetupFailed">Šifrování dat se nezdařilo. K tomu může dojít, pokud přidáte nebo odstraníte otisky prstů v nastavení systému, zatímco Keepass2Android naslouchá otisku prstu.</string>
   <string name="enable_fingerprint_unlock_Info">Toto uloží vaše hlavní heslo na toto zařízení, zašifrované pomocí úložiště klíčů Android a chráněné Biometrickým ověřením. Toto umožní odemknutí databáze pouze biometricky.</string>
-  <string name="enable_fingerprint_quickunlock_Info">Umožní používat Biometrické ověření namísto rychlého odemknutí. Nevyžaduje uložení jakékoliv informace vztahující se k vašemu hlavnímu heslu.</string>
+  <string name="enable_fingerprint_quickunlock_Info">Umožní používat biometrické ověření namísto rychlého odemknutí s kódem. Nevyžaduje uložení jakékoliv informace vztahující se k vašemu hlavnímu heslu.</string>
   <string name="enter_filename">Zadejte název souboru databáze</string>
   <string name="entry_accessed">Poslední přístup</string>
   <string name="entry_cancel">Storno</string>
@@ -166,7 +166,7 @@
   <string name="hint_conf_pass">potvrdit heslo</string>
   <string name="hint_generated_password">vygenerované heslo</string>
   <string name="hint_group_name">Název skupiny</string>
-  <string name="hint_keyfile">Soubor klíče</string>
+  <string name="hint_keyfile">soubor klíče</string>
   <string name="hint_length">délka</string>
   <string name="hint_pass">heslo</string>
   <string name="hint_keyfile_path">Cesta k privátnímu klíči SSH</string>
@@ -193,7 +193,7 @@
   <string name="masktotp_title">Skrýt pole TOTP</string>
   <string name="masktotp_summary">Ve výchozím stavu skrývat pole TOTP</string>
   <string name="NoAutofillDisabling_title">Není možné vypnout automatické doplňování</string>
-  <string name="NoAutofillDisabling_summary">Po zapnutí nebude aplikace zobrazovat možnost vypnutí automatického doplňování pro určité záznamy.</string>
+  <string name="NoAutofillDisabling_summary">Po zapnutí nebude aplikace zobrazovat možnost vypnutí automatického doplňování pro jednotlivé záznamy.</string>
   <string name="menu_about">O aplikaci</string>
   <string name="menu_change_key">Změnit hlavní klíč</string>
   <string name="menu_copy_pass">Kopírovat heslo</string>
@@ -242,7 +242,7 @@
   <string name="rijndael">Rijndael (AES)</string>
   <string name="root">Kořen</string>
   <string name="AutoReturnFromQuery_title">Automatický návrat z obrazovky s dotazem</string>
-  <string name="AutoReturnFromQuery_summary">Při vyhledávání položky pro aplikaci nebo webovou stránku: automatický návrat z obrazovky dotazu při právě jedné odpovídající položce.</string>
+  <string name="AutoReturnFromQuery_summary">Při vyhledávání položky pro aplikaci nebo webovou stránku: automaticky se vrátit z obrazovky dotazu při právě jedné odpovídající položce.</string>
   <string name="KeyDerivFunc">Funkce pro odvození klíče</string>
   <string name="rounds">Počet zašifrování</string>
   <string name="rounds_explaination">Vyšší počet opakování šifrování zvýší bezpečnost proti hrubému útoku, ale může výrazně zpomalit načítání a ukládání.</string>
@@ -266,7 +266,7 @@
   <string name="special">Zvláštní znaky</string>
   <string name="special_extended">Rozšířené speciální</string>
   <string name="at_least_one_from_each_group">Alespoň jeden z každé skupiny</string>
-  <string name="exclude_lookalike">Vynechat podobné znaky</string>
+  <string name="exclude_lookalike">Vynechat podobně vypadající znaky</string>
   <string name="password_generation_profile">Profil</string>
   <string name="save_password_generation_profile_text">Zadejte jméno profilu pro uložení. Zadáním existujícího jména profil přepíšete.</string>
   <string name="hint_wordcount">Počet slov v heslové frázi</string>
@@ -307,16 +307,16 @@
   <string name="please_note">Upozornění</string>
   <string name="contributors">Přispěvatelé</string>
   <string name="regular_expression">Regulární výraz</string>
-  <string name="AlwaysMergeOnConflict_title">Při konfliktu sloučit</string>
-  <string name="AlwaysMergeOnConflict_summary">Při detekci změny vzdáleného souboru vždy provést sloučení lokálních změn se vzdálenými</string>
-  <string name="TanExpiresOnUse_title">Ověřovací kód TAN vyprší po prvním použití</string>
+  <string name="AlwaysMergeOnConflict_title">Při konfliktu vždy sloučit</string>
+  <string name="AlwaysMergeOnConflict_summary">Při detekci změny vzdáleného souboru vždy provést sloučení lokálních změn se vzdálenými.</string>
+  <string name="TanExpiresOnUse_title">Ověřovací kód TAN vyprší po použití</string>
   <string name="TanExpiresOnUse_summary">Při použití označovat vypršelé TAN položky</string>
   <string name="ShowUsernameInList_title">Zobrazit uživatelské jméno v seznamu</string>
   <string name="ShowUsernameInList_summary">Zobrazovat uživatelská jména pod názvy položek. Užitečné pro vícenásobné účty nebo TANy.</string>
   <string name="RememberRecentFiles_title">Zapamatovat databáze</string>
   <string name="RememberRecentFiles_summary">Pamatovat s naposledy otevřené databáze a zobrazit je na obrazovce Otevírání databáze.</string>
   <string name="NoDalVerification_title">Žádné ověření DAL</string>
-  <string name="NoDalVerification_summary">Zrušit kontrolu pokud doména a položka v aplikaci souhlasí.</string>
+  <string name="NoDalVerification_summary">Zrušit kontrolu pokud doména a balíček aplikace souhlasí</string>
   <string name="InlineSuggestions_title">Integrovat s klávesnicí</string>
   <string name="InlineSuggestions_summary">Zobrazuje návrhy automatického doplňování jako možnosti na klávesnici (pokud je podporováno metodou vstupu)</string>
   <string name="LogAutofillView_title">Zobrazit v protokolu Automatické vyplňování</string>
@@ -528,6 +528,7 @@
   <string name="donate_missedbday_question">Zmeškal jsi moje narozeniny 10. května! Pokud se vám líbí tato aplikace, proč mi neposlat nějaké blahopřání k narozeninám a malý dárek? Ještě není pozdě udělat mi radost! :-)</string>
   <string name="ok_donate">Chci vědět víc!</string>
   <string name="no_thanks">Ne, tak moc se mi to nelíbí</string>
+  <!-- %1$s (label) is not shown, only the price -->
   <string name="enter_http_login_title">Zadejte přihlašovací údaje pro WebDav:</string>
   <string name="enter_smb_login_title">Zadejte přihlašovací údaje pro Sambu:</string>
   <string name="hint_http_url">URL nebo adresář se souborem (např. mycloud.me.com/webdaw/)</string>
