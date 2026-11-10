@@ -97,6 +97,7 @@ namespace keepass2android.services.Kp2aCredentialProvider
       None,
       UnlockForGetCredentials,       // Unlock so the Begin-Get picker can be (re-)populated with all credential types
       CreatePasskey,                 // Waiting for the new entry to be created (CreateEntryRequestCode)
+      CreatePasskeyAfterUnlock,      // Waiting for the unlock (UnlockRequestCode), then handle the create request
       GetPasskeyForEntryAfterUnlock, // Waiting for the unlock (UnlockRequestCode), then return the passkey of the selected entry
     }
 
@@ -521,6 +522,15 @@ namespace keepass2android.services.Kp2aCredentialProvider
       if (thisIntent != null)
       {
 
+        if (_pendingOperation == PendingOperation.CreatePasskeyAfterUnlock)
+        {
+          if (resultCode == Result.Ok && App.Kp2a.DatabaseIsUnlocked)
+            HandleCreatePasskeyRequest(thisIntent);
+          else
+            SetUpCancellationResponseForCreateAndFinish(); // unlock was cancelled or failed
+          return;
+        }
+
         if (_pendingOperation == PendingOperation.GetPasskeyForEntryAfterUnlock)
         {
           if (resultCode == Result.Ok && App.Kp2a.DatabaseIsUnlocked)
@@ -942,6 +952,16 @@ namespace keepass2android.services.Kp2aCredentialProvider
         }
         _passkeyCreationOptions = creationOptions;
 
+        // Unlock first, then handle the request again: the excludeCredentials check needs the databases, and a
+        // biometric unlock counts as user verification (otherwise the user is asked for the UV prompt and then
+        // again for the unlock).
+        if (!App.Kp2a.DatabaseIsUnlocked)
+        {
+          _pendingOperation = PendingOperation.CreatePasskeyAfterUnlock;
+          LaunchUnlockDatabase();
+          return;
+        }
+
         if (!browserCheckDone && AskToAddUnknownBrowser(createRequest.CallingAppInfo,
               continueRequest: () => HandleCreatePasskeyRequest(requestIntent, browserCheckDone: true),
               cancelRequest: SetUpCancellationResponseForCreateAndFinish))
@@ -957,8 +977,8 @@ namespace keepass2android.services.Kp2aCredentialProvider
           return;
         }
 
-        // excludeCredentials: refuse with InvalidStateError if a listed passkey is already stored. Only checked if the
-        // databases are unlocked; the user has consented by choosing Kp2a.
+        // excludeCredentials: refuse with InvalidStateError if a listed passkey is already stored (the databases are
+        // unlocked at this point, see above); the user has consented by choosing Kp2a.
         if (HasExcludedCredential(_passkeyCreationOptions))
         {
           Kp2aLog.Log("Kp2aCredentialLauncherActivity: refusing passkey creation: a passkey in excludeCredentials is " +
@@ -1038,22 +1058,23 @@ namespace keepass2android.services.Kp2aCredentialProvider
     private static readonly TimeSpan RecentUserVerificationMaxAge = TimeSpan.FromSeconds(60);
 
     /// <summary>
-    /// Decides whether to show the user verification prompt. "required" always prompts. "preferred" prompts if the
-    /// force-UV setting is on (default). A user verification within the last 60 s (biometric database unlock or
-    /// UV prompt) replaces the prompt.
+    /// Decides whether to show the user verification prompt. A user verification within the last 60 s (biometric
+    /// database unlock or UV prompt) always counts (UV=1 without a prompt, whatever the request and the force-UV
+    /// setting: the flag only says that the user was verified). Otherwise "required" always prompts, "preferred"
+    /// prompts if the force-UV setting is on (default).
     /// Without a screen lock, "preferred" falls back to no verification (UV=0) instead of failing; only "required"
     /// is refused then.
     /// </summary>
     private UserVerificationDecision DecideUserVerification(Kp2aPasskey.Core.UserVerificationRequirement requirement)
     {
+      if (App.Kp2a.WasUserVerifiedWithin(RecentUserVerificationMaxAge))
+        return UserVerificationDecision.AlreadyVerified;
       var required = requirement == Kp2aPasskey.Core.UserVerificationRequirement.Required;
       var wanted = required
         || (requirement == Kp2aPasskey.Core.UserVerificationRequirement.Preferred
             && PasskeyPreferences.GetForceUserVerificationWhenPreferred(this));
       if (!wanted)
         return UserVerificationDecision.Skip;
-      if (App.Kp2a.WasUserVerifiedWithin(RecentUserVerificationMaxAge))
-        return UserVerificationDecision.AlreadyVerified;
       if (UserVerificationHelper.CanAuthenticate(this))
         return UserVerificationDecision.Prompt;
       return required ? UserVerificationDecision.Unavailable : UserVerificationDecision.Skip;
