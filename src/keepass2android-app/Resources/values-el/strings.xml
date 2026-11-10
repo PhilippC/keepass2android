@@ -1302,4 +1302,10 @@ Initial public release
   <string name="pref_enable_periodic_background_sync_summary">Αν ενεργοποιηθεί, η εφαρμογή θα συγχρονίζει περιοδικά τις ξεκλείδωτες βάσεις δεδομένων. Αυτό σέβεται τις ρυθμίσεις σύνδεσης δικτύου από πάνω.</string>
   <string name="pref_periodic_background_sync_interval_title">Χρονικό διάστημα για περιοδικό συγχρονισμό στο παρασκήνιο</string>
   <string name="pref_periodic_background_sync_interval_summary">Ορίστε το διάστημα για συγχρονισμό στο παρασκήνιο σε λεπτά.</string>
+  <!-- Passkey Settings Screen -->
+  <!-- Passkey Backup Settings -->
+  <!-- Passkey User Verification -->
+  <!-- Passkey trusted (privileged) browsers -->
+  <string name="passkey_provider_enable">Άνοιγμα ρυθμίσεων</string>
+  <string name="passkey_app_unverified_continue">Συνέχεια</string>
 </resources>
