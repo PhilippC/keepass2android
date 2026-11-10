@@ -102,4 +102,8 @@
   <string name="AutofillWarning_Intro">\"%2$s\" tətbiqinə \"%1$s\" domeni üçün kimlik məlumatlarını daxil edirsiniz.</string>
   <string name="AutofillWarning_trustAsBrowser">\"%1$s\" səyyahında həmişə qəbul et</string>
   <string name="english_ime_settings">Android klaviatura tənzimləmələri</string>
+  <!-- Passkey Settings Screen -->
+  <!-- Passkey Backup Settings -->
+  <!-- Passkey User Verification -->
+  <!-- Passkey trusted (privileged) browsers -->
 </resources>
