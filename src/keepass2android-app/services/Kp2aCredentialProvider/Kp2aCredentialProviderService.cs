@@ -62,6 +62,7 @@ namespace keepass2android.services.Kp2aCredentialProvider
     {
       try
       {
+        App.Kp2a.LockIfTimedOut();
         if (request is BeginCreatePasswordCredentialRequest)
         {
           HandleCreatePasswordRequest(callback);
@@ -201,6 +202,7 @@ namespace keepass2android.services.Kp2aCredentialProvider
     {
       try
       {
+        App.Kp2a.LockIfTimedOut();
         var appLocked = !App.Kp2a.DatabaseIsUnlocked;
         var responseBuilder = new BeginGetCredentialResponse.Builder();
 

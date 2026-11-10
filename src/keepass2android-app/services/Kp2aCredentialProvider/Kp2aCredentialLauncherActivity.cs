@@ -151,6 +151,10 @@ namespace keepass2android.services.Kp2aCredentialProvider
           return;
         }
 
+        // The timeout alarm may not have fired yet. Lock now, so the request takes the unlock path instead of being
+        // interrupted by the lock later (which also discards the pending task, e.g. the passkey entry to create).
+        App.Kp2a.LockIfTimedOut();
+
         switch (requestType)
         {
 
@@ -1064,6 +1068,27 @@ namespace keepass2android.services.Kp2aCredentialProvider
       PendingIntentHandler.SetGetCredentialException(result, new GetCredentialCancellationException());
       SetResult(Result.Ok, result);
       if (!IsFinishing) Finish();
+    }
+
+    protected override void OnResume()
+    {
+      base.OnResume();
+      // Like the LockingActivity screens: this screen counts as "in the app", so the app timeout must not run while
+      // it is shown. If the timeout expired while it was in the background (e.g. the user left during a dialog or
+      // the user verification prompt), lock and give up the request.
+      if (App.Kp2a.LockIfTimedOut() && !IsFinishing)
+      {
+        Kp2aLog.Log("Kp2aCredentialLauncherActivity: app timeout expired while in background, cancelling request");
+        CancelRequestAndFinish(Intent?.GetIntExtra(CredentialRequestTypeKey, 0) ?? 0);
+        return;
+      }
+      TimeoutHelper.ResumingApp();
+    }
+
+    protected override void OnPause()
+    {
+      base.OnPause();
+      TimeoutHelper.Pause(this);
     }
 
     private void CancelRequestAndFinish(int requestType)

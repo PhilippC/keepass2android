@@ -52,6 +52,7 @@ namespace keepass2android.services
 
     protected override Dictionary<PwEntryOutput, FilledAutofillFieldCollection<ViewNodeInputField>> GetSuggestedEntries(string query)
     {
+      App.Kp2a.LockIfTimedOut();
       if (!App.Kp2a.DatabaseIsUnlocked)
         return new Dictionary<PwEntryOutput, FilledAutofillFieldCollection<ViewNodeInputField>>();
       var foundEntries = (ShareUrlResults.GetSearchResultsForUrl(query)?.Entries ?? new PwObjectList<PwEntry>())

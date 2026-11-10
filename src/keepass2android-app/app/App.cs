@@ -1393,6 +1393,20 @@ namespace keepass2android
     /// </summary>
     public DateTime TimeoutTime { get; set; }
 
+    /// <summary>
+    /// Locks the database right away if the app timeout has expired. The timeout alarm may fire late (it is inexact
+    /// and does not wake the device), so code that uses the database without a <see cref="LockingActivity"/>
+    /// (credential provider, autofill) must call this first. Returns true if the database was locked.
+    /// </summary>
+    public bool LockIfTimedOut()
+    {
+      if (!DatabaseIsUnlocked || DateTime.Now <= TimeoutTime)
+        return false;
+      Kp2aLog.Log("App timeout expired, locking database");
+      Lock(true, lockWasTriggeredByTimeout: true);
+      return true;
+    }
+
     public void OnScreenOff()
     {
       if (PreferenceManager.GetDefaultSharedPreferences(LocaleManager.LocalizedAppContext)
