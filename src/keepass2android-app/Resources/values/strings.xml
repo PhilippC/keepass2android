@@ -808,6 +808,7 @@
   <string name="cleartextTrafficPermitted_title">Allow clear-text network traffic in WebDav</string>
   <string name="cleartextTrafficPermitted_summary">HTTP connections are not secure. Only enable this if you have other security measures in place.</string>
   <string-array name="ChangeLog_1_16">
+    <item>Added support for passkeys (Android 14 and later) 🎉. To get started, open Settings - Application - Passkey Settings.</item>
     <item>Switched to Google-Play billing for donations (for variants published on Google Play), as requested by Google</item>
     <item>Added built-in photo capture feature</item>
     <item>Improved compatibility with Talkback</item>
@@ -1437,6 +1438,13 @@
   <string name="pref_passkeys_browsers_category_title">Browsers</string>
   <string name="passkeys_enable_provider_title">Use as passkey provider</string>
   <string name="passkeys_enable_provider_summary">Opens the Android settings for passwords and passkeys, where you can enable Keepass2Android.</string>
+  <string name="passkeys_provider_enabled_summary">Keepass2Android is enabled for passwords and passkeys. Tap to open the Android settings.</string>
+  <string name="passkeys_provider_not_enabled_summary">Not enabled. Tap to open the Android settings for passwords and passkeys and select Keepass2Android as preferred service. If it is already selected, select \"None\" first and then Keepass2Android again.</string>
+  <string name="passkey_provider_hint">Keepass2Android now supports passkeys, but it is not enabled as passkey provider yet. Open the Android settings and select Keepass2Android as preferred service. If it is already selected, select \"None\" first and then Keepass2Android again.</string>
+  <string name="passkey_provider_enable">Open settings</string>
+  <string name="chrome_autofill_hint_title">Use Keepass2Android in Chrome</string>
+  <string name="chrome_autofill_hint">Chrome is set to fill passwords with Google Password Manager. To use Keepass2Android in Chrome, open Chrome\'s settings and select \"Autofill using another service\".</string>
+  <string name="chrome_autofill_open_settings">Open Chrome settings</string>
   <string name="passkeys_privileged_apps_title">Trusted browsers</string>
   <string name="passkeys_privileged_apps_summary">Browsers which may use passkeys for websites, in addition to the built-in list of known browsers. Only select browsers you trust: a trusted browser can use your passkeys for any website.</string>
   <string name="passkeys_privileged_apps_none">There are no browsers installed which are not already in the built-in list.</string>

@@ -761,17 +761,15 @@ namespace keepass2android
         var enableProviderPref = FindPreference(GetString(Resource.String.passkeys_enable_provider_key));
         if (enableProviderPref != null)
           enableProviderPref.PreferenceClick += (_, _) =>
+            CredentialProviderStatus.TryOpenCredentialProviderSettings(RequireActivity());
+
+        var chromePref = FindPreference(GetString(Resource.String.passkeys_chrome_autofill_key));
+        if (chromePref != null)
+          chromePref.PreferenceClick += (_, _) =>
           {
-            try
-            {
-              // Settings.ACTION_CREDENTIAL_PROVIDER (API 34)
-              StartActivity(new Intent("android.settings.CREDENTIAL_PROVIDER",
-                Android.Net.Uri.Parse("package:" + RequireContext().PackageName)));
-            }
-            catch (ActivityNotFoundException e)
-            {
-              Kp2aLog.Log("Credential provider settings not available: " + e.Message);
-            }
+            var chromePackage = CredentialProviderStatus.GetChromePackagesWithoutThirdPartyAutofill(RequireContext()).FirstOrDefault();
+            if (chromePackage != null)
+              CredentialProviderStatus.TryOpenChromeAutofillSettings(RequireActivity(), chromePackage);
           };
 
         var privilegedAppsPref = FindPreference(GetString(Resource.String.passkeys_privileged_apps_key));
@@ -781,6 +779,52 @@ namespace keepass2android
           privilegedAppsPref.Visible = OperatingSystem.IsAndroidVersionAtLeast(28);
           privilegedAppsPref.PreferenceClick += (_, _) => ShowPrivilegedAppsDialog();
         }
+      }
+
+      public override void OnResume()
+      {
+        base.OnResume();
+        // the user may come back from the system settings, so update the state each time
+        UpdateProviderState();
+      }
+
+      /// <summary>
+      /// Disables all passkey settings except the "enable provider" row if Keepass2Android is not enabled as
+      /// credential provider, and shows the Chrome hint if needed.
+      /// </summary>
+      private void UpdateProviderState()
+      {
+        var context = RequireContext();
+        var enableProviderKey = GetString(Resource.String.passkeys_enable_provider_key);
+        var chromeKey = GetString(Resource.String.passkeys_chrome_autofill_key);
+
+        // null means we can't tell. Don't lock the user out of the settings in that case.
+        bool? providerEnabled = CredentialProviderStatus.IsCredentialProviderEnabled(context);
+
+        var enableProviderPref = FindPreference(enableProviderKey);
+        if (enableProviderPref != null)
+        {
+          enableProviderPref.Summary = providerEnabled switch
+          {
+            true => GetString(Resource.String.passkeys_provider_enabled_summary),
+            false => GetString(Resource.String.passkeys_provider_not_enabled_summary),
+            null => GetString(Resource.String.passkeys_enable_provider_summary)
+          };
+        }
+
+        var screen = PreferenceScreen;
+        for (int i = 0; i < screen.PreferenceCount; i++)
+        {
+          var pref = screen.GetPreference(i);
+          if (pref.Key == enableProviderKey || pref.Key == chromeKey)
+            continue;
+          pref.Enabled = providerEnabled != false;
+        }
+
+        var chromePref = FindPreference(chromeKey);
+        if (chromePref != null)
+          chromePref.Visible = providerEnabled == true &&
+                               CredentialProviderStatus.GetChromePackagesWithoutThirdPartyAutofill(context).Any();
       }
 
       /// <summary>
@@ -1092,6 +1136,11 @@ namespace keepass2android
         {
           autofillPref.PreferenceClick += (sender, args) =>
           {
+            // On Android 14+, selecting the preferred service in "Passwords, passkeys & accounts" enables both the
+            // autofill service and the credential provider (passkeys). The autofill picker only sets the former.
+            if (CredentialProviderStatus.IsCredentialProviderEnabled(Context) != null
+                && CredentialProviderStatus.TryOpenCredentialProviderSettings(Activity))
+              return;
 
             var intent = new Intent(Android.Provider.Settings.ActionRequestSetAutofillService);
             if (((AutofillManager)Activity.GetSystemService(Java.Lang.Class.FromType(typeof(AutofillManager))))

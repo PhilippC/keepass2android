@@ -11,6 +11,14 @@
     android:summary="@string/passkeys_enable_provider_summary"
     app:iconSpaceReserved="false" />
 
+  <!-- only visible if Chrome is installed and set to use its built-in password manager -->
+  <Preference
+    android:key="@string/passkeys_chrome_autofill_key"
+    android:title="@string/chrome_autofill_hint_title"
+    android:summary="@string/chrome_autofill_hint"
+    app:isPreferenceVisible="false"
+    app:iconSpaceReserved="false" />
+
   <PreferenceCategory
     android:title="@string/pref_passkeys_backup_category_title">
     

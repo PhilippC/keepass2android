@@ -34,6 +34,7 @@ using keepass2android;
 using keepass2android.database.edit;
 using keepass2android.Io;
 using keepass2android.search;
+using keepass2android.services.Kp2aCredentialProvider;
 using keepass2android.view;
 using keepass2android.views;
 using KeePassLib;
@@ -65,10 +66,12 @@ namespace keepass2android
             { Resource.Id.cancel_insert_element, 20 },
             { Resource.Id.insert_element, 20 },
             //only use the same id if elements can be shown simultaneously!
-            { Resource.Id.dbreadonly_infotext, 14 },
-            { Resource.Id.child_db_infotext, 13 },
-            { Resource.Id.fingerprint_infotext, 12 },
-            { Resource.Id.autofill_infotext, 11 },
+            { Resource.Id.dbreadonly_infotext, 16 },
+            { Resource.Id.child_db_infotext, 15 },
+            { Resource.Id.fingerprint_infotext, 14 },
+            { Resource.Id.autofill_infotext, 13 },
+            { Resource.Id.passkey_provider_infotext, 12 },
+            { Resource.Id.chrome_autofill_infotext, 11 },
             { Resource.Id.notification_permission_infotext, 10 },
             { Resource.Id.notification_info_android8_infotext, 9 },
             { Resource.Id.infotext, 8 },
@@ -299,6 +302,8 @@ namespace keepass2android
       UpdateChildDbInfo();
       UpdateFingerprintInfo();
       UpdateAutofillInfo();
+      UpdatePasskeyProviderInfo();
+      UpdateChromeAutofillInfo();
       UpdateAndroid8NotificationInfo();
       UpdatePostNotificationsPermissionInfo();
       UpdateInfotexts();
@@ -577,6 +582,12 @@ namespace keepass2android
       {
         FindViewById(Resource.Id.enable_autofill).Click += (sender, args) =>
         {
+          // On Android 14+, selecting the preferred service in "Passwords, passkeys & accounts" enables both the
+          // autofill service and the credential provider (passkeys). The autofill picker only sets the former.
+          if (CredentialProviderStatus.IsCredentialProviderEnabled(this) != null
+              && CredentialProviderStatus.TryOpenCredentialProviderSettings(this))
+            return;
+
           var intent = new Intent(Settings.ActionRequestSetAutofillService);
           intent.SetData(Android.Net.Uri.Parse("package:" + PackageName));
           try
@@ -632,6 +643,40 @@ namespace keepass2android
         {
           _prefs.Edit().PutBoolean(autofillservicewasenabled_prefskey, true).Commit();
           UpdateAutofillInfo();
+        };
+      }
+
+      if (FindViewById(Resource.Id.enable_passkey_provider) != null)
+      {
+        FindViewById(Resource.Id.enable_passkey_provider).Click += (sender, args) =>
+          CredentialProviderStatus.TryOpenCredentialProviderSettings(this);
+      }
+
+      if (FindViewById(Resource.Id.info_dont_show_passkey_provider_again) != null)
+      {
+        FindViewById(Resource.Id.info_dont_show_passkey_provider_again).Click += (sender, args) =>
+        {
+          _prefs.Edit().PutBoolean(passkeyproviderinfohidden_prefskey, true).Commit();
+          UpdatePasskeyProviderInfo();
+        };
+      }
+
+      if (FindViewById(Resource.Id.open_chrome_autofill_settings) != null)
+      {
+        FindViewById(Resource.Id.open_chrome_autofill_settings).Click += (sender, args) =>
+        {
+          var chromePackage = CredentialProviderStatus.GetChromePackagesWithoutThirdPartyAutofill(this).FirstOrDefault();
+          if (chromePackage == null || !CredentialProviderStatus.TryOpenChromeAutofillSettings(this, chromePackage))
+            UpdateChromeAutofillInfo();
+        };
+      }
+
+      if (FindViewById(Resource.Id.info_dont_show_chrome_autofill_again) != null)
+      {
+        FindViewById(Resource.Id.info_dont_show_chrome_autofill_again).Click += (sender, args) =>
+        {
+          _prefs.Edit().PutBoolean(chromeautofillinfohidden_prefskey, true).Commit();
+          UpdateChromeAutofillInfo();
         };
       }
 
@@ -832,6 +877,36 @@ namespace keepass2android
     const string childdb_ignore_prefskey = "childdb_ignore_prefskey";
     const string autofillservicewasenabled_prefskey = "AutofillServiceWasEnabled";
     const string fingerprintinfohidden_prefskey = "fingerprintinfohidden_prefskey";
+    const string passkeyproviderinfohidden_prefskey = "passkeyproviderinfohidden_prefskey";
+    const string chromeautofillinfohidden_prefskey = "chromeautofillinfohidden_prefskey";
+
+    /// <summary>
+    /// Shows a hint if Keepass2Android is the autofill service but not enabled as credential provider.
+    /// This is the typical state after updating from a version without passkey support.
+    /// </summary>
+    private void UpdatePasskeyProviderInfo()
+    {
+      bool canShow = !_prefs.GetBoolean(passkeyproviderinfohidden_prefskey, false)
+                     && CredentialProviderStatus.IsAutofillEnabledButCredentialProviderDisabled(this);
+      if (canShow)
+        RegisterInfoTextDisplay("PasskeyProviderSuggestion"); //this ensures that we don't show the general info texts too soon
+      UpdateBottomBarElementVisibility(Resource.Id.passkey_provider_infotext, canShow);
+    }
+
+    /// <summary>
+    /// Shows a hint if Keepass2Android is used for autofill or passkeys, but Chrome is set to use its built-in
+    /// password manager instead of third-party autofill services.
+    /// </summary>
+    private void UpdateChromeAutofillInfo()
+    {
+      bool canShow = !_prefs.GetBoolean(chromeautofillinfohidden_prefskey, false)
+                     && (CredentialProviderStatus.IsAutofillServiceEnabled(this)
+                         || CredentialProviderStatus.IsCredentialProviderEnabled(this) == true)
+                     && CredentialProviderStatus.GetChromePackagesWithoutThirdPartyAutofill(this).Any();
+      if (canShow)
+        RegisterInfoTextDisplay("ChromeAutofillSuggestion"); //this ensures that we don't show the general info texts too soon
+      UpdateBottomBarElementVisibility(Resource.Id.chrome_autofill_infotext, canShow);
+    }
 
     private void UpdateAutofillInfo()
     {

@@ -105,6 +105,7 @@
 	<string name="passkeys_force_user_verification_when_preferred_key">passkeys_force_user_verification_when_preferred_key</string>
 	<string name="passkeys_privileged_apps_key">passkeys_privileged_apps_key</string>
 	<string name="passkeys_enable_provider_key">passkeys_enable_provider_key</string>
+	<string name="passkeys_chrome_autofill_key">passkeys_chrome_autofill_key</string>
   <string name="DebugLog_key">DebugLog_key</string>
   <string name="FtpDebug_key">FtpDebug_key</string>
   <string name="DebugLog_prefs_key">DebugLog_prefs_key</string>
