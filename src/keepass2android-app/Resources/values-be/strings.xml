@@ -864,4 +864,10 @@
   <string name="AutofillWarning_FillDomainInUntrustedApp">Калі ёсць упэўненасць, што \"%2$s\" належыць \"%1$s\" або вы давяраеце \"%2$s\", не злоўжывайце ўліковымі данымі (напрыклад, гэта давераная праграма браўзера). Калі ўсё добра, можна працягнуць. Калі не, скасуйце.</string>
   <string name="AutofillWarning_trustAsBrowser">Заўсёды ўхваляць у \"%1$s\"</string>
   <string name="english_ime_settings">Налады клавіятуры Android</string>
+  <!-- Passkey Settings Screen -->
+  <!-- Passkey Backup Settings -->
+  <!-- Passkey User Verification -->
+  <!-- Passkey trusted (privileged) browsers -->
+  <string name="passkey_provider_enable">Адкрыць налады</string>
+  <string name="passkey_app_unverified_continue">Працягнуць</string>
 </resources>
