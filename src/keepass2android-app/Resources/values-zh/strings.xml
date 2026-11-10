@@ -1271,4 +1271,10 @@ Initial public release
   <string name="pref_enable_periodic_background_sync_summary">如启用，应用会定期同步解锁的数据库。这遵守上面的网络连接设置。</string>
   <string name="pref_periodic_background_sync_interval_title">定期后台同步间隔</string>
   <string name="pref_periodic_background_sync_interval_summary">设置分钟为单位的后台同步间隔</string>
+  <!-- Passkey Settings Screen -->
+  <!-- Passkey Backup Settings -->
+  <!-- Passkey User Verification -->
+  <!-- Passkey trusted (privileged) browsers -->
+  <string name="passkey_provider_enable">打开设置</string>
+  <string name="passkey_app_unverified_continue">继续</string>
 </resources>
