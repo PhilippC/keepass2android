@@ -239,4 +239,10 @@
   <string name="understand">എനിക്ക് മനസിലായി</string>
   <string name="dont_show_again">വീണ്ടും കാണിക്കരുത്</string>
   <string name="english_ime_settings">ആൻഡ്രോയിഡ് കീബോർഡ് ക്രമീകരണങ്ങൾ</string>
+  <!-- Passkey Settings Screen -->
+  <!-- Passkey Backup Settings -->
+  <!-- Passkey User Verification -->
+  <!-- Passkey trusted (privileged) browsers -->
+  <string name="passkey_provider_enable">ക്രമീകരണം തുറക്കുക</string>
+  <string name="passkey_app_unverified_continue">തുടരുക</string>
 </resources>
