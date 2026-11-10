@@ -543,6 +543,7 @@
   <string name="donate_missedbday_question">Ach, premeškali ste moje narodeniny, ktoré som mal 10. mája! Ak sa vám páči táto aplikácia, prečo mi nepošlete nejaký narodeninový pozdrav a malý darček? Ešte nie je neskoro na to, aby ste ma potešili! :-)</string>
   <string name="ok_donate">Povedzte mi viac!</string>
   <string name="no_thanks">Nie, nemám ho rád až natoľko</string>
+  <!-- %1$s (label) is not shown, only the price -->
   <string name="enter_http_login_title">Zadajte prihlas. údaje pre WebDav:</string>
   <string name="enter_smb_login_title">Zadajte prihlasovacie údaje pre Samba:</string>
   <string name="hint_http_url">URL priečinka alebo súboru (napr.: mycloud.me.com/webdav/)</string>
