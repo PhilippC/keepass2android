@@ -1238,7 +1238,7 @@ namespace keepass2android
       switch (item.ItemId)
       {
         case Resource.Id.menu_donate:
-          return Util.GotoDonateUrl(this);
+          return Util.StartDonation(this);
         case Resource.Id.menu_lock:
           App.Kp2a.Lock();
           Finish();

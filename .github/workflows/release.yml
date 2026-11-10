@@ -16,6 +16,17 @@ jobs:
       matrix:
         flavor: [Net, NoNet]
         target: [apk, apk_split]
+        # GitHub versions: donate option opens the donation web page
+        donation: [Web]
+        include:
+          # Google Play versions: one apk for all platforms, donate option uses Google Play Billing.
+          # Uploaded to the GitHub release as separate files (*-googleplay.apk).
+          - flavor: Net
+            target: apk
+            donation: Billing
+          - flavor: NoNet
+            target: apk
+            donation: Billing
 
     steps:
     
@@ -150,12 +161,12 @@ jobs:
         DropboxAppFolderAppKey: ${{ secrets.DROPBOX_APP_FOLDER_APP_KEY }}
         DropboxAppFolderAppSecret: ${{ secrets.DROPBOX_APP_FOLDER_APP_SECRET }}
       run: |
-        make ${{ matrix.target }} Configuration=Release Flavor=${{ matrix.flavor }} NoDonationMenu=true
+        make ${{ matrix.target }} Configuration=Release Flavor=${{ matrix.flavor }} DonationMode=${{ matrix.donation }}
 
     - name: Archive production artifacts
       uses: actions/upload-artifact@v4
       with:
-        name: keepass2android_${{ matrix.target }}_${{ matrix.flavor }}
+        name: keepass2android_${{ matrix.target }}_${{ matrix.flavor }}${{ matrix.donation == 'Billing' && '_GooglePlay' || '' }}
         # the first line is for "apk" target, the second line is for "apk_split" target
         path: |
           src/keepass2android-app/bin/Release/net9.0-android/publish/*.apk
@@ -173,6 +184,16 @@ jobs:
         done
       shell: bash
         
+    - name: Rename Google Play apk
+      # same file name as the GitHub version otherwise
+      if: matrix.donation == 'Billing'
+      run: |
+        for apk in src/keepass2android-app/bin/Release/net9.0-android/publish/*-Signed.apk; do
+          [ -e "$apk" ] || continue
+          mv "$apk" "${apk%.apk}-googleplay.apk"
+        done
+      shell: bash
+
     - name: Upload APK to GitHub Release
       uses: softprops/action-gh-release@v2
       with:

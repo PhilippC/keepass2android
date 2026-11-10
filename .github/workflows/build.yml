@@ -335,12 +335,31 @@ jobs:
         DropboxAppFolderAppKey: ${{ secrets.DROPBOX_APP_FOLDER_APP_KEY }}
         DropboxAppFolderAppSecret: ${{ secrets.DROPBOX_APP_FOLDER_APP_SECRET }}
       run: |
-        make apk Configuration=Release Flavor=Net NoDonationMenu=true
+        make apk Configuration=Release Flavor=Net DonationMode=Web
 
     - name: Archive production artifacts (net)
       uses: actions/upload-artifact@v4
       with:
         name: archive APK ('net' built on ${{ github.job }})
+        path: |
+          src/keepass2android-app/bin/Release/net9.0-android/publish/*.apk
+
+    # Google Play version: one apk for all platforms, donate option uses Google Play Billing
+    - name: Build APK (net, Google Play)
+      if: github.ref == 'refs/heads/main'
+      env:
+        DropboxAppKey: ${{ secrets.DROPBOX_APP_KEY }}
+        DropboxAppSecret: ${{ secrets.DROPBOX_APP_SECRET }}
+        DropboxAppFolderAppKey: ${{ secrets.DROPBOX_APP_FOLDER_APP_KEY }}
+        DropboxAppFolderAppSecret: ${{ secrets.DROPBOX_APP_FOLDER_APP_SECRET }}
+      run: |
+        make apk Configuration=Release Flavor=Net DonationMode=Billing
+
+    - name: Archive production artifacts (net, Google Play)
+      if: github.ref == 'refs/heads/main'
+      uses: actions/upload-artifact@v4
+      with:
+        name: archive APK ('net' Google Play built on ${{ github.job }})
         path: |
           src/keepass2android-app/bin/Release/net9.0-android/publish/*.apk
 
@@ -361,7 +380,7 @@ jobs:
 
     - name: Build APK (nonet)
       run: |
-        make apk Flavor=NoNet
+        make apk Flavor=NoNet DonationMode=Web
 
     - name: Archive production artifacts (nonet)
       uses: actions/upload-artifact@v4

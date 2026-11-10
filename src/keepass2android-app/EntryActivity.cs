@@ -1512,7 +1512,7 @@ namespace keepass2android
       switch (item.ItemId)
       {
         case Resource.Id.menu_donate:
-          return Util.GotoDonateUrl(this);
+          return Util.StartDonation(this);
         case Resource.Id.menu_move:
           var navMove = new NavigateToFolderAndLaunchMoveElementTask(App.Kp2a.CurrentDb, Entry.ParentGroup, new List<PwUuid>() { Entry.Uuid }, false);
           AppTask = navMove;

@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- In-app donation screen using Google Play Billing. Only used in builds with DonationMode=Billing. -->
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/donate_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?android:attr/colorBackground">
+
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="vertical"
+      android:gravity="center_horizontal"
+      android:paddingBottom="@dimen/activity_vertical_margin"
+      android:paddingLeft="@dimen/activity_horizontal_margin"
+      android:paddingRight="@dimen/activity_horizontal_margin"
+      android:paddingTop="@dimen/activity_vertical_margin">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        android:importantForAccessibility="no"
+        android:src="@drawable/oktoberfest" />
+
+    <ImageView
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/donate_author_name"
+        android:src="@drawable/donate_billing_philipp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:text="@string/donate_author_name" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:gravity="center_horizontal"
+        android:text="@string/donate_author_description" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:gravity="center_horizontal"
+        android:textSize="16sp"
+        android:text="@string/donate_open_source_info" />
+
+    <!-- choice between yearly (subscription) and one-time donations. Hidden if no yearly products are available. -->
+    <com.google.android.material.button.MaterialButtonToggleGroup
+        android:id="@+id/donate_frequency"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:visibility="gone"
+        app:singleSelection="true"
+        app:selectionRequired="true"
+        app:checkedButton="@+id/donate_frequency_yearly">
+
+      <Button
+          android:id="@+id/donate_frequency_yearly"
+          style="?attr/materialButtonOutlinedStyle"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="@string/donate_yearly" />
+
+      <Button
+          android:id="@+id/donate_frequency_one_time"
+          style="?attr/materialButtonOutlinedStyle"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="@string/donate_one_time" />
+    </com.google.android.material.button.MaterialButtonToggleGroup>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:gravity="center_horizontal"
+        android:textSize="18sp"
+        android:text="@string/donate_intro" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:adjustViewBounds="true"
+        android:importantForAccessibility="no"
+        android:src="@drawable/donate_billing_beer" />
+
+    <Button
+        android:id="@+id/donate_oktfestbeer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:icon="@drawable/donate_beer"
+        android:text="@string/donate_oktoberfest_beer" />
+
+    <Button
+        android:id="@+id/donate_smallbeer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:icon="@drawable/donate_beer"
+        android:text="@string/donate_small_beer" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="16dp"
+        android:gravity="center_horizontal"
+        android:textSize="18sp"
+        android:text="@string/donate_intro2" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:adjustViewBounds="true"
+        android:importantForAccessibility="no"
+        android:src="@drawable/donate_billing_coke" />
+
+    <Button
+        android:id="@+id/donate_coke"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:icon="@drawable/donate_beer"
+        android:text="@string/donate_coke" />
+
+    <TextView
+        android:id="@+id/donate_other_amount_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="8dp"
+        android:gravity="center_horizontal"
+        android:textSize="18sp"
+        android:visibility="gone"
+        android:text="@string/donate_other_amount" />
+
+    <!-- amount buttons. Texts (the prices) are set in code. Hidden if the product is not available. -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+      <Button
+          android:id="@+id/donate_amount_10"
+          style="?attr/materialButtonOutlinedStyle"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_weight="1"
+          android:layout_marginLeft="4dp"
+          android:layout_marginRight="4dp"
+          android:visibility="gone" />
+      <Button
+          android:id="@+id/donate_amount_20"
+          style="?attr/materialButtonOutlinedStyle"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_weight="1"
+          android:layout_marginLeft="4dp"
+          android:layout_marginRight="4dp"
+          android:visibility="gone" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+      <Button
+          android:id="@+id/donate_amount_50"
+          style="?attr/materialButtonOutlinedStyle"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_weight="1"
+          android:layout_marginLeft="4dp"
+          android:layout_marginRight="4dp"
+          android:visibility="gone" />
+      <Button
+          android:id="@+id/donate_amount_100"
+          style="?attr/materialButtonOutlinedStyle"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_weight="1"
+          android:layout_marginLeft="4dp"
+          android:layout_marginRight="4dp"
+          android:visibility="gone" />
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/donate_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:indeterminate="true" />
+
+    <TextView
+        android:id="@+id/donate_status"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center_horizontal"
+        android:visibility="gone" />
+  </LinearLayout>
+</ScrollView>
