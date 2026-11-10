@@ -418,6 +418,7 @@
   <string name="donate_missedbday_question">О ти пропусна моя рожден ден на 10 май! Ако ви харесва този ап, защо не да ми изпратите някои рожден ден поздравления и малко подарък? Все още не е твърде късно, за да ме направи щастлив! :-)</string>
   <string name="ok_donate">Кажи ми повече!</string>
   <string name="no_thanks">Не, не ми харесва толкова много</string>
+  <!-- %1$s (label) is not shown, only the price -->
   <string name="enter_http_login_title">Въведете WebDav логин данни:</string>
   <string name="hint_http_url">URL или папка или файл (например: mycloud.me.com/webdav/)</string>
   <string name="enter_owncloud_login_title">Въведете OwnCloud логин данни:</string>
