@@ -482,4 +482,9 @@
     <item>Custom Private key</item>
   </string-array>
   <string name="english_ime_settings">Настройки на клавиатурата на Keepass2Android</string>
+  <!-- Passkey Settings Screen -->
+  <!-- Passkey Backup Settings -->
+  <!-- Passkey User Verification -->
+  <!-- Passkey trusted (privileged) browsers -->
+  <string name="passkey_provider_enable">Отворете настройките</string>
 </resources>
