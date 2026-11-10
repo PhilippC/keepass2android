@@ -610,4 +610,10 @@
   </string-array>
   <string name="ClearClipboardWarning">Pastikan ini bekerja pada sistem anda dan pertimbangkan jika tidak untuk menggunakan built-in keyboard.</string>
   <string name="PluginDescription">Deskripsi disediakan oleh plugin:</string>
+  <!-- Passkey Settings Screen -->
+  <!-- Passkey Backup Settings -->
+  <!-- Passkey User Verification -->
+  <!-- Passkey trusted (privileged) browsers -->
+  <string name="passkey_provider_enable">Buka pengaturan</string>
+  <string name="passkey_app_unverified_continue">Terus</string>
 </resources>
