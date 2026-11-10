@@ -831,4 +831,10 @@
   <string name="kp2a_switch_on_sendgodone_summary">Comută înapoi după apăsarea trimitere/înainte/terminat</string>
   <string name="qr_scanning_error_no_google_play_services">Scanarea codului QR necesită servicii Google Play. Instalează sau actualizează serviciile Google Play de pe dispozitiv.</string>
   <string name="english_ime_settings">Setările tastaturii Keepass2Android</string>
+  <!-- Passkey Settings Screen -->
+  <!-- Passkey Backup Settings -->
+  <!-- Passkey User Verification -->
+  <!-- Passkey trusted (privileged) browsers -->
+  <string name="passkey_provider_enable">Deschide setările</string>
+  <string name="passkey_app_unverified_continue">Continuare</string>
 </resources>
