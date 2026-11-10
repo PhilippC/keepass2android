@@ -1265,4 +1265,10 @@ První veřejné vydání
   <string name="pref_enable_periodic_background_sync_summary">Pokud je tato funkce povolena, aplikace bude pravidelně synchronizovat odemčené databáze. Tato funkce respektuje nastavení síťového připojení uvedené výše.</string>
   <string name="pref_periodic_background_sync_interval_title">Interval pravidelné synchronizace na pozadí</string>
   <string name="pref_periodic_background_sync_interval_summary">Nastavení intervalu synchronizace na pozadí v minutách.</string>
+  <!-- Passkey Settings Screen -->
+  <!-- Passkey Backup Settings -->
+  <!-- Passkey User Verification -->
+  <!-- Passkey trusted (privileged) browsers -->
+  <string name="passkey_provider_enable">Otevřít nastavení</string>
+  <string name="passkey_app_unverified_continue">Pokračovat</string>
 </resources>
