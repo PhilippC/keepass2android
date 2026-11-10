@@ -704,4 +704,10 @@
   <string name="emergency_infotext_head">Er du forberedt på nødssituasjoner?</string>
   <string name="emergency_infotext_main">Har du noen gang vurdert hva som skjer dersom du ikke lenger har tilgang til passorddatabasen? Hva om du blir utsatt for en ulykke? Det er god praksis å overlate hovednøkkelen til en person du stoler helt på i tilfelle en nødssituasjon. Ellers vil ingen ha tilgang til dine passord.</string>
   <string name="english_ime_settings">Innstillinger for Keepass2Android tastatur</string>
+  <!-- Passkey Settings Screen -->
+  <!-- Passkey Backup Settings -->
+  <!-- Passkey User Verification -->
+  <!-- Passkey trusted (privileged) browsers -->
+  <string name="passkey_provider_enable">Åpne innstillinger</string>
+  <string name="passkey_app_unverified_continue">Fortsett</string>
 </resources>
