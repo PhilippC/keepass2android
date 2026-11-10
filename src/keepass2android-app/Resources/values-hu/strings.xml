@@ -519,6 +519,7 @@
   <string name="donate_missedbday_question">Ó, lecsúszta a születésnapomat május 10-én! Ha kedveli ezt az alkalmazást, miért nem küld valamiféle születésnapi üdvözletet, esetleg némi ajándékkel megtoldva?  Még nem késő, és igazán örülnék neki!  :-)</string>
   <string name="ok_donate">Mit kell tennem?</string>
   <string name="no_thanks">Köszönöm, annyira azért nem kedvelem</string>
+  <!-- %1$s (label) is not shown, only the price -->
   <string name="enter_http_login_title">WebDav bejelentkezési adatok:</string>
   <string name="hint_http_url">Fájl vagy mappa URL-je (például mycloud.me.com/webdav/)</string>
   <string name="enter_owncloud_login_title">Adja meg az OwnCloud bejelentkezési adatait:</string>
