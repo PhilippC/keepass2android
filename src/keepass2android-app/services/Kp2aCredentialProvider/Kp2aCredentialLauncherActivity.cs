@@ -346,6 +346,7 @@ namespace keepass2android.services.Kp2aCredentialProvider
             PendingIntentHandler.SetCreateCredentialResponse(result, credentialResponse);
 
             SetResult(Result.Ok, result);
+            WarnIfEntryNotSearchable(App.Kp2a.LastOpenedEntry?.Entry);
           }
           catch (Exception ex)
           {
@@ -389,6 +390,19 @@ namespace keepass2android.services.Kp2aCredentialProvider
       {
         Finish();
       }
+    }
+
+    /// <summary>
+    /// Passkeys are only offered for entries that are found by searching (see SearchForRelyingParty). If the entry
+    /// was saved in a group with searching disabled (e.g. the recycle bin), the user would never see the passkey.
+    /// </summary>
+    private void WarnIfEntryNotSearchable(PwEntry? entry)
+    {
+      if (entry == null || entry.GetSearchingEnabled())
+        return;
+      Kp2aLog.Log("Kp2aCredentialLauncherActivity: passkey saved in a group with searching disabled");
+      Toast.MakeText(this, GetString(Resource.String.passkey_group_not_searchable,
+        entry.ParentGroup?.Name ?? "", GetString(AppNames.AppNameResource)), ToastLength.Long)?.Show();
     }
 
     private CreatePublicKeyCredentialResponse CreatePasskeyResponse(JSONObject? passkeyData,
