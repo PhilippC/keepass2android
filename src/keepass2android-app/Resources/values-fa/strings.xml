@@ -523,6 +523,7 @@ JCraft ایجاد شده است. تحت مجوز BSD.</string>
   <string name="donate_missedbday_question">تولدم دهم ماه می بود، از دستش دادید! ولی اگر از این برنامه راضی هستید، هنوز هم می‌توانید تبریک خودتان را با هدیه‌ای برایم بفرستید. برای خوشحال‌کردنم دیر نشده! :)</string>
   <string name="ok_donate">بیشتر توضیح بده!</string>
   <string name="no_thanks">نه، خیلی خوشم نمی‌آید</string>
+  <!-- %1$s (label) is not shown, only the price -->
   <string name="enter_http_login_title">اطلاعات ورود به WebDav را وارد کنید:</string>
   <string name="hint_http_url">نشانی اینترنتی پوشه یا فایل ( مثال:
 mycloud.me.com/webdav/‎ )</string>
