@@ -1327,4 +1327,10 @@
   <string name="pref_enable_periodic_background_sync_summary">Ak je zapnuté, aplikácia pravidelne synchronizuje odomknuté databázy, s použitím nastavení pripojenia uvedených hore.</string>
   <string name="pref_periodic_background_sync_interval_title">Časový interval pravidelnej synchronizácie na pozadí</string>
   <string name="pref_periodic_background_sync_interval_summary">Nastavte interval (v minútach) synchronizácie na pozadí.</string>
+  <!-- Passkey Settings Screen -->
+  <!-- Passkey Backup Settings -->
+  <!-- Passkey User Verification -->
+  <!-- Passkey trusted (privileged) browsers -->
+  <string name="passkey_provider_enable">Otvoriť nastavenia</string>
+  <string name="passkey_app_unverified_continue">Pokračovať</string>
 </resources>
