@@ -774,4 +774,10 @@
   <string name="AutofillWarning_FillDomainInUntrustedApp">إذا كنت تثق في \"%2$s\" بالانتماء إلى \"%1$s\" أو كنت تثق في التطبيق \"%2$s\" لعدم إساءة استخدام بيانات الاعتماد (e. . لأنه تطبيق متصفح موثوق به)، من المفضل المتابعة. إذا لم يكن الأمر كذلك ، يرجى الإلغاء .</string>
   <string name="AutofillWarning_trustAsBrowser">قبول دائمًا في \"%1$s\"</string>
   <string name="english_ime_settings">إعدادات لوحة مفاتيح Keepass2Android</string>
+  <!-- Passkey Settings Screen -->
+  <!-- Passkey Backup Settings -->
+  <!-- Passkey User Verification -->
+  <!-- Passkey trusted (privileged) browsers -->
+  <string name="passkey_provider_enable">فتح الإعدادات</string>
+  <string name="passkey_app_unverified_continue">استمر</string>
 </resources>
