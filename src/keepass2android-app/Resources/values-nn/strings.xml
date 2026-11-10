@@ -144,6 +144,7 @@
   <string name="capture_size_small">Liten</string>
   <string name="capture_size_medium">Middels</string>
   <string name="AskOverwriteBinary_no">Gje nytt namn</string>
+  <!-- %1$s (label) is not shown, only the price -->
   <string name="TemplateField_IdCard_Name">Namn</string>
   <string-array name="clipboard_timeout_options">
     <item>30 sekund</item>
