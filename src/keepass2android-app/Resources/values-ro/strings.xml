@@ -527,6 +527,7 @@
   <string name="donate_missedbday_question">Oh, ai pierdut ziua mea de naștere pe 10 mai! Dacă îți place această aplicație, de ce să nu-mi trimiți niște felicitări împreună cu un mic cadou? Încă nu e prea târziu să fiu fericit! :-)</string>
   <string name="ok_donate">Spune-mi mai multe!</string>
   <string name="no_thanks">Nu, nu-mi place atât de mult</string>
+  <!-- %1$s (label) is not shown, only the price -->
   <string name="enter_http_login_title">Introdu datele de conectare WebDav:</string>
   <string name="enter_smb_login_title">Introdu datele de conectare Samba:</string>
   <string name="hint_http_url">URL-ul folder sau fişier (ex: mycloud.me.com/webdav/)</string>
