@@ -101,7 +101,7 @@ else
 endif
 
 #append DonationMode=None|Web|Billing to the 'make' call to select where the donate menu option leads to:
-#  None: hidden (default), Web: donation web page, Billing: in-app donation via Google Play Billing (Google Play build only)
+#  None: hidden, Web: donation web page (default), Billing: in-app donation via Google Play Billing (Google Play build only)
 ifneq ($(DonationMode),)
   DOTNET_PARAM += -p:DonationMode="$(DonationMode)"
 endif

@@ -19,7 +19,7 @@
            None:    donate menu option and changelog link are hidden
            Web:     they open the donation web page (for builds distributed outside of Google Play)
            Billing: they open the in-app donation screen using Google Play Billing (for the Google Play build)
-         Defaults to None, so it also applies to Visual Studio builds; pass e.g. -p:DonationMode=Web to change. -->
+         Defaults to Web, so it also applies to Visual Studio builds; pass e.g. -p:DonationMode=None to change. -->
     <DonationMode Condition="'$(DonationMode)'==''">Web</DonationMode>
     <DefineConstants Condition="'$(DonationMode)'=='Web'">$(DefineConstants);DONATION_WEB</DefineConstants>
     <DefineConstants Condition="'$(DonationMode)'=='Billing'">$(DefineConstants);DONATION_BILLING</DefineConstants>
