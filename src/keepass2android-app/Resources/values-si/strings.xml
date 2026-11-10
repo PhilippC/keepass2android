@@ -17,4 +17,8 @@
 -->
 <resources>
   <!-- %1$s (label) is not shown, only the price -->
+  <!-- Passkey Settings Screen -->
+  <!-- Passkey Backup Settings -->
+  <!-- Passkey User Verification -->
+  <!-- Passkey trusted (privileged) browsers -->
 </resources>
