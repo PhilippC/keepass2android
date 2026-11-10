@@ -500,7 +500,7 @@ namespace keepass2android
                         .SetCancelable(false)
                         .SetPositiveButton(Android.Resource.String.Ok, delegate (object o, DialogClickEventArgs eventArgs)
                         {
-                          Util.GotoDonateUrl(ctx);
+                          Util.StartDonation(ctx);
                           ((Dialog)o).Dismiss();
                         })
                         .SetMessage(Resource.String.NoDonateOption_question)
@@ -532,13 +532,16 @@ namespace keepass2android
 
 
         var displayPrefScreen = ((PreferenceScreen)FindPreference(GetString(Resource.String.display_prefs_key)));
-#if NO_DONATION_MENU
-        //the donate menu is always hidden, so the option to hide it is meaningless
-        var noDonateOptionPref = FindPreference(GetString(Resource.String.NoDonateOption_key));
-        displayPrefScreen.RemovePreference(noDonateOptionPref);
-#else
-        PrepareNoDonatePreference(Activity, FindPreference(GetString(Resource.String.NoDonateOption_key)));
-#endif
+        if (!Util.HasDonationOption)
+        {
+          //the donate menu is always hidden, so the option to hide it is meaningless
+          var noDonateOptionPref = FindPreference(GetString(Resource.String.NoDonateOption_key));
+          displayPrefScreen.RemovePreference(noDonateOptionPref);
+        }
+        else
+        {
+          PrepareNoDonatePreference(Activity, FindPreference(GetString(Resource.String.NoDonateOption_key)));
+        }
         PrepareNoDonationReminderPreference(Activity, displayPrefScreen, FindPreference(GetString(Resource.String.NoDonationReminder_key)));
 
         FindPreference(GetString(Resource.String.design_key)).PreferenceChange += (sender, args) =>

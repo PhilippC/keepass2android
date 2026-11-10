@@ -281,6 +281,12 @@ The scheme=file is still there for old OS devices. It's also queried by apps lik
   <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />
   <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" />
 
+  <!-- The offline version must never get network access, even if a library requests it
+       (e.g. Google Play Billing's logging dependency in builds with DonationMode=Billing;
+       billing itself talks to the Play Store app and does not need network access). -->
+  <uses-permission android:name="android.permission.INTERNET" tools:node="remove" />
+  <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" tools:node="remove" />
+
   <!-- Camera permission for in-app attachment photo capture (runtime permission on API 23+) -->
   <uses-permission android:name="android.permission.CAMERA" />
   <uses-feature android:name="android.hardware.camera" android:required="false" />
