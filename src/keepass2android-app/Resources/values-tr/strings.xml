@@ -526,6 +526,7 @@
   <string name="donate_missedbday_question">Oh, 10 Mayıs doğum günümü kaçırdın! Bu uygulamayı beğendiysen, neden bana bir doğum günü kutlaması ve hediyesi göndermiyorsun? Henüz beni mutlu etmek için çok geç değil! :-)</string>
   <string name="ok_donate">Daha fazla bilgi ver!</string>
   <string name="no_thanks">Hayır, çok hoşuma gitmiyor</string>
+  <!-- %1$s (label) is not shown, only the price -->
   <string name="enter_http_login_title">WebDav oturum açma verilerini girin:</string>
   <string name="enter_smb_login_title">Samba oturum açma verilerini girin:</string>
   <string name="hint_http_url">Klasör veya dosyanın URL (örn: mycloud.me.com/webdav/)</string>
