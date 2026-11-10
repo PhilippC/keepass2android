@@ -494,6 +494,7 @@
   <string name="donate_missedbday_question">O, propustili ste moj rođendan 10. svibnja! Ako vam se sviđa ova aplikacija, zašto mi ne biste poslali rođendanske čestitke i mali rođendanski poklon? Još nije prekasno da me usrećite! :-)</string>
   <string name="ok_donate">Reci mi više!</string>
   <string name="no_thanks">Ne, toliko mi se ne sviđa</string>
+  <!-- %1$s (label) is not shown, only the price -->
   <string name="enter_http_login_title">Unesite podatke za prijavu na WebDav:</string>
   <string name="hint_http_url">URL mape ili datoteke (npr: mycloud.me.com/webdav/)</string>
   <string name="enter_owncloud_login_title">Unesite podatke za prijavu OwnCloud:</string>
