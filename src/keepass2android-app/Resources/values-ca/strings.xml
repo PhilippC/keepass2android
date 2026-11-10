@@ -1340,4 +1340,10 @@ Si se selecciona, la sincronització en segon pla només comença quan estàs co
   <string name="pref_enable_periodic_background_sync_summary">Si està activat, l\'aplicació sincronitzarà periòdicament les bases de dades desbloquejades. Això respecta la configuració de connexió de xarxa anterior.</string>
   <string name="pref_periodic_background_sync_interval_title">Interval de temps de sincronització periòdica en segon pla</string>
   <string name="pref_periodic_background_sync_interval_summary">Estableix l\'interval de sincronització en segon pla en minuts.</string>
+  <!-- Passkey Settings Screen -->
+  <!-- Passkey Backup Settings -->
+  <!-- Passkey User Verification -->
+  <!-- Passkey trusted (privileged) browsers -->
+  <string name="passkey_provider_enable">Obrir la configuració</string>
+  <string name="passkey_app_unverified_continue">Continuar</string>
 </resources>
