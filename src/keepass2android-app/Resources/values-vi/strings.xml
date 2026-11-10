@@ -519,6 +519,7 @@
   <string name="donate_missedbday_question">Ồ, bạn đã bỏ lỡ ngày sinh nhật của tôi 10 tháng 5! Nếu bạn thích ứng dụng này, sao không gởi cho tôi vài lời chúc mừng và một món quà sinh nhật nhỏ? Chưa phải quá trễ để làm tôi hạnh phúc! :-)</string>
   <string name="ok_donate">Cho tôi biết thêm!</string>
   <string name="no_thanks">Không, tôi không thích nó lắm</string>
+  <!-- %1$s (label) is not shown, only the price -->
   <string name="enter_http_login_title">Nhập thông tin đăng nhập WebDav:</string>
   <string name="hint_http_url">URL của thư mục hoặc tập tin (ví dụ: mycloud.me.com/webdav/)</string>
   <string name="enter_owncloud_login_title">Nhập thông tin đăng nhập OwnCloud:</string>
