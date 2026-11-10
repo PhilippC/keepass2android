@@ -519,6 +519,7 @@
   <string name="donate_missedbday_question">Zamudili ste moj rojstni dan 10. maja! Če vam je ta program všeč, zakaj mi ne pošljete voščilnico za rojstni dan skupaj z majhnim darilom? Ni še prepozno, da me osrečite! :-)</string>
   <string name="ok_donate">Povejte mi več!</string>
   <string name="no_thanks">Ne, ni mi toliko všeč</string>
+  <!-- %1$s (label) is not shown, only the price -->
   <string name="enter_http_login_title">Vnesite podatke WebDav za prijavo:</string>
   <string name="hint_http_url">URL mape ali datoteke (npr.: mycloud.me.com/webdav/)</string>
   <string name="enter_owncloud_login_title">Vnesite podatke OwnCloud za prijavo:</string>
