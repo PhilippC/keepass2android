@@ -961,6 +961,11 @@ namespace keepass2android.services.Kp2aCredentialProvider
         // databases are unlocked; the user has consented by choosing Kp2a.
         if (HasExcludedCredential(_passkeyCreationOptions))
         {
+          Kp2aLog.Log("Kp2aCredentialLauncherActivity: refusing passkey creation: a passkey in excludeCredentials is " +
+                      $"already stored for '{_passkeyCreationOptions.RelyingPartyEntity.Id}'");
+          // Many websites only show a generic error for InvalidStateError, so tell the user why.
+          Toast.MakeText(this, GetString(Resource.String.passkey_already_registered, GetString(AppNames.AppNameResource)),
+            ToastLength.Long)?.Show();
           SetUpFailureResponseForCreateAndFinish(new AndroidX.Credentials.Exceptions.PublicKeyCredential.CreatePublicKeyCredentialDomException(
             new AndroidX.Credentials.Exceptions.DomErrors.InvalidStateError(), "A passkey for this account already exists."));
           return;

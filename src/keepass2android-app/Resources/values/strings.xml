@@ -1422,6 +1422,7 @@
   <string name="passkey_create_failed">The passkey could not be registered. The entry was saved to the database but will not work; you may delete it.</string>
   <string name="passkey_user_verification_unavailable">This website requires user verification. Set up a screen lock to use your passkey.</string>
   <string name="credential_provider_no_match_open_database">No matching passkey. Open another database</string>
+  <string name="passkey_already_registered">A passkey for this account is already saved in %1$s.</string>
   <string name="credential_provider_entry_not_found">The entry was not found. Unlock the database that contains it and try again.</string>
   <string name="passkey_app_not_linked">%1$s is not allowed to use passkeys for %2$s: the website does not list this app as one of its apps.</string>
   <string name="passkey_app_unverified_title">App could not be verified</string>
