@@ -183,6 +183,7 @@
   <string name="ErrorOcurred">ഒരു പിശക് സംഭവിച്ചു:</string>
   <string name="ok_donate">എന്നോട് കൂടുതൽ പറയുക!</string>
   <string name="no_thanks">ഇല്ല, എനിക്ക് അത് അത്ര ഇഷ്ടമല്ല</string>
+  <!-- %1$s (label) is not shown, only the price -->
   <string name="hint_sftp_port">പോർട്ട്</string>
   <string name="filestoragename_ftp">FTP</string>
   <string name="filestoragename_http">HTTP (WebDav)</string>
