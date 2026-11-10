@@ -1266,4 +1266,10 @@ Standortberechtigung wird benötigt, um die aktuelle Wi-Fi-SSID zu lesen. Dies i
   <string name="pref_enable_periodic_background_sync_summary">Wenn aktiviert, wird die App regelmäßig die geöffneten Datenbanken synchronisieren. Dies berücksichtigt die Netzwerkverbindungseinstellungen von oben.</string>
   <string name="pref_periodic_background_sync_interval_title">Zeitintervall für die periodische Hintergrundsynchronisation</string>
   <string name="pref_periodic_background_sync_interval_summary">Gib das Intervall für die Hintergrundsynchronisierung in Minuten ein.</string>
+  <!-- Passkey Settings Screen -->
+  <!-- Passkey Backup Settings -->
+  <!-- Passkey User Verification -->
+  <!-- Passkey trusted (privileged) browsers -->
+  <string name="passkey_provider_enable">Einstellungen öffnen</string>
+  <string name="passkey_app_unverified_continue">Fortfahren</string>
 </resources>
