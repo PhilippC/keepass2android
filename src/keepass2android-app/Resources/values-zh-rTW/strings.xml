@@ -513,6 +513,7 @@
   <string name="donate_missedbday_question">哦，你錯過了我的 5 月 10 日生日！如果你喜歡這款應用程式，為什麼不給我一些生日問候和一個小小的生日禮物？現在仍然不會太晚使我高興！:-)</string>
   <string name="ok_donate">告訴我更多!</string>
   <string name="no_thanks">不，我並沒有那麼喜歡</string>
+  <!-- %1$s (label) is not shown, only the price -->
   <string name="enter_http_login_title">輸入 WebDav 登入資訊：</string>
   <string name="hint_http_url">資料夾或檔案的連結（例：mycloud.me.com/webdav/）</string>
   <string name="enter_owncloud_login_title">輸入 OwnCloud 登入資訊︰</string>
