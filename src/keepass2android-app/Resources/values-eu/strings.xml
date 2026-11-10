@@ -311,6 +311,7 @@
   <string name="CannotMoveGroupHere">Ezin da taldea talde honetara ekarri.</string>
   <string name="ok_donate">Kontatu gehiago!</string>
   <string name="no_thanks">Ez, ez dut hain gustuko</string>
+  <!-- %1$s (label) is not shown, only the price -->
   <string name="enter_http_login_title">Idatzi WebDav saioaren datuak:</string>
   <string name="enter_owncloud_login_title">Idatzi OwnCloud saioaren datuak:</string>
   <string name="hint_sftp_host">ostalaria (adib. 192.168.0.1)</string>
