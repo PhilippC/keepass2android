@@ -307,6 +307,7 @@
   <string name="SaveAttachment_Failed">Није могуће сачувати датотеку у %1$s.</string>
   <string name="AddUrlToEntryDialog_title">Запамти текст претраге?</string>
   <string name="AskOverwriteBinary_no">Преименуј</string>
+  <!-- %1$s (label) is not shown, only the price -->
   <string name="TemplateField_IdCard_Name">Име</string>
   <string name="DbQuicklockedChannel_name">Брзо откључавање</string>
   <string-array name="clipboard_timeout_options">
