@@ -1284,4 +1284,10 @@
   <string name="enter_ssid_hint">SSID girin</string>
   <string name="add_ssid">Başka bir SSID ekleyin</string>
   <string name="remove_ssid_title">SSID\'yi kaldırın</string>
+  <!-- Passkey Settings Screen -->
+  <!-- Passkey Backup Settings -->
+  <!-- Passkey User Verification -->
+  <!-- Passkey trusted (privileged) browsers -->
+  <string name="passkey_provider_enable">Ayarları aç</string>
+  <string name="passkey_app_unverified_continue">Devam Et</string>
 </resources>
