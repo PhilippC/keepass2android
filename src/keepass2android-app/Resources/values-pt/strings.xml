@@ -519,6 +519,7 @@
   <string name="donate_missedbday_question">Ah, esqueceu-se do meu aniversário no dia 10 de maio! Se gosta desta aplicação, porque não enviar-me algumas saudações de aniversário e um pequeno presente de aniversário? Ainda não é tarde demais para me fazer feliz! :-)</string>
   <string name="ok_donate">Conte-me mais!</string>
   <string name="no_thanks">Não, não me agrada muito</string>
+  <!-- %1$s (label) is not shown, only the price -->
   <string name="enter_http_login_title">Introduza os dados de acesso do WebDav:</string>
   <string name="hint_http_url">URL do ficheiro ou pasta (ex: mycloud.me.com/webdav/)</string>
   <string name="enter_owncloud_login_title">Introduza os dados de acesso do OwnCloud:</string>
