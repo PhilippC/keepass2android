@@ -20,6 +20,7 @@ using System.Linq;
 using Android.App;
 using Android.BillingClient.Api;
 using Android.Content;
+using Android.OS;
 
 namespace keepass2android
 {
@@ -31,6 +32,8 @@ namespace keepass2android
   /// cancels them in Google Play.
   /// Purchases which could not be consumed/acknowledged immediately (e.g. app killed during the purchase, or a
   /// pending payment which completed later) are handled by <see cref="ProcessExistingPurchases"/>.
+  /// All billing callbacks are handled on the main thread (some are delivered on a background thread by the
+  /// billing library), so the state below needs no locking and LaunchBillingFlow is always called on the main thread.
   /// </summary>
   public class DonationBillingManager : Java.Lang.Object, IPurchasesUpdatedListener, IBillingClientStateListener
   {
@@ -71,7 +74,21 @@ namespace keepass2android
     // OnPurchasesUpdated and ProcessExistingPurchases (e.g. from OnResume after the purchase dialog) overlap.
     private readonly HashSet<string> _handledTokens = new HashSet<string>();
 
+    // tokens of new purchases (from OnPurchasesUpdated) which arrived while the same purchase was already being
+    // handled by ProcessExistingPurchases. The user is waiting for feedback on these, even if handling fails.
+    private readonly HashSet<string> _awaitingFeedbackTokens = new HashSet<string>();
+
     private readonly HashSet<string> _activeSubscriptions = new HashSet<string>();
+
+    private static readonly Handler MainHandler = new Handler(Looper.MainLooper!);
+
+    private static void RunOnMainThread(Action action)
+    {
+      if (Looper.MyLooper() == Looper.MainLooper)
+        action();
+      else
+        MainHandler.Post(action);
+    }
 
     public DonationBillingManager(Context context, IListener listener)
     {
@@ -96,6 +113,11 @@ namespace keepass2android
     }
 
     public void OnBillingSetupFinished(BillingResult result)
+    {
+      RunOnMainThread(() => HandleBillingSetupFinished(result));
+    }
+
+    private void HandleBillingSetupFinished(BillingResult result)
     {
       if (result.ResponseCode != BillingResponseCode.Ok)
       {
@@ -228,6 +250,11 @@ namespace keepass2android
 
     public void OnPurchasesUpdated(BillingResult result, IList<Purchase>? purchases)
     {
+      RunOnMainThread(() => HandlePurchasesUpdated(result, purchases));
+    }
+
+    private void HandlePurchasesUpdated(BillingResult result, IList<Purchase>? purchases)
+    {
       if (result.ResponseCode == BillingResponseCode.Ok)
       {
         _launchActivity = null;
@@ -283,12 +310,9 @@ namespace keepass2android
         if (productType == BillingClient.ProductType.Subs)
         {
           // only active subscriptions are returned, so this also drops subscriptions which expired meanwhile
-          lock (_activeSubscriptions)
-          {
-            _activeSubscriptions.Clear();
-            foreach (var purchase in purchased)
-              _activeSubscriptions.UnionWith(purchase.Products);
-          }
+          _activeSubscriptions.Clear();
+          foreach (var purchase in purchased)
+            _activeSubscriptions.UnionWith(purchase.Products);
           ReportActiveSubscriptions();
         }
         HandleSequentially(purchased, 0, onFinished);
@@ -297,9 +321,7 @@ namespace keepass2android
 
     private void ReportActiveSubscriptions()
     {
-      List<string> active;
-      lock (_activeSubscriptions)
-        active = _activeSubscriptions.ToList();
+      List<string> active = _activeSubscriptions.ToList();
       Kp2aLog.Log("Active yearly donations: " + (active.Count == 0 ? "none" : string.Join(",", active)));
       _listener.OnActiveSubscriptionsChanged(active);
     }
@@ -344,19 +366,14 @@ namespace keepass2android
 
     private void HandleSubscriptionPurchase(Purchase purchase, bool isNewPurchase, Action<bool>? onHandled)
     {
-      bool added;
-      lock (_activeSubscriptions)
-      {
-        int countBefore = _activeSubscriptions.Count;
-        _activeSubscriptions.UnionWith(purchase.Products);
-        added = _activeSubscriptions.Count != countBefore;
-      }
-      if (added)
+      int countBefore = _activeSubscriptions.Count;
+      _activeSubscriptions.UnionWith(purchase.Products);
+      if (_activeSubscriptions.Count != countBefore)
         ReportActiveSubscriptions();
 
       string token = purchase.PurchaseToken;
       // a renewal keeps the token of the original purchase, which is acknowledged already
-      if (purchase.IsAcknowledged || !_handledTokens.Add(token))
+      if (purchase.IsAcknowledged || !TryStartHandling(token, isNewPurchase))
       {
         onHandled?.Invoke(true);
         return;
@@ -365,6 +382,7 @@ namespace keepass2android
       var ackParams = AcknowledgePurchaseParams.NewBuilder().SetPurchaseToken(token).Build();
       _billingClient.AcknowledgePurchase(ackParams, new AcknowledgePurchaseResponseListener(result =>
       {
+        bool awaitingFeedback = FinishHandling(token, result.ResponseCode == BillingResponseCode.Ok, isNewPurchase);
         if (result.ResponseCode == BillingResponseCode.Ok)
         {
           Kp2aLog.Log("Acknowledged yearly donation " + string.Join(",", purchase.Products));
@@ -376,8 +394,7 @@ namespace keepass2android
           // the payment went through, but the purchase is not acknowledged yet. Acknowledging is retried by
           // ProcessExistingPurchases (next time the donation screen is shown).
           Kp2aLog.Log("Acknowledging yearly donation failed: " + result.ResponseCode + " " + result.DebugMessage);
-          _handledTokens.Remove(token);
-          if (isNewPurchase)
+          if (awaitingFeedback)
             _listener.OnDonationCompleted();
           onHandled?.Invoke(false);
         }
@@ -387,7 +404,7 @@ namespace keepass2android
     private void ConsumePurchase(Purchase purchase, bool isNewPurchase, Action<bool>? onHandled)
     {
       string token = purchase.PurchaseToken;
-      if (!_handledTokens.Add(token))
+      if (!TryStartHandling(token, isNewPurchase))
       {
         onHandled?.Invoke(true);
         return;
@@ -397,6 +414,7 @@ namespace keepass2android
       var consumeParams = ConsumeParams.NewBuilder().SetPurchaseToken(token).Build();
       _billingClient.Consume(consumeParams, new ConsumeResponseListener((result, _) =>
       {
+        bool awaitingFeedback = FinishHandling(token, result.ResponseCode == BillingResponseCode.Ok, isNewPurchase);
         if (result.ResponseCode == BillingResponseCode.Ok)
         {
           _listener.OnDonationCompleted();
@@ -407,40 +425,66 @@ namespace keepass2android
           // the payment went through, but the purchase remains unconsumed. Consuming is retried by
           // ProcessExistingPurchases (next time the donation screen is shown).
           Kp2aLog.Log("Consuming donation failed: " + result.ResponseCode + " " + result.DebugMessage);
-          _handledTokens.Remove(token);
-          if (isNewPurchase)
+          if (awaitingFeedback)
             _listener.OnDonationCompleted();
           onHandled?.Invoke(false);
         }
       }));
     }
 
+    /// <summary>
+    /// Marks the purchase token as being handled. Returns false if it is handled already (or currently being
+    /// handled). If a new purchase arrives while it is being handled, the user is still owed feedback, see
+    /// <see cref="FinishHandling"/>.
+    /// </summary>
+    private bool TryStartHandling(string token, bool isNewPurchase)
+    {
+      if (_handledTokens.Add(token))
+        return true;
+      if (isNewPurchase)
+        _awaitingFeedbackTokens.Add(token);
+      return false;
+    }
+
+    /// <summary>
+    /// Called when consuming/acknowledging finished. On failure, the token may be handled again later.
+    /// Returns true if the user is waiting for feedback on this purchase (on success, the caller thanks the user anyway).
+    /// </summary>
+    private bool FinishHandling(string token, bool success, bool isNewPurchase)
+    {
+      if (!success)
+        _handledTokens.Remove(token);
+      bool awaitingFeedback = _awaitingFeedbackTokens.Remove(token);
+      return isNewPurchase || awaitingFeedback;
+    }
+
+    // the response listeners forward the callbacks to the main thread, see class comment
     private class ProductDetailsResponseListener : Java.Lang.Object, IProductDetailsResponseListener
     {
       private readonly Action<BillingResult, QueryProductDetailsResult?> _callback;
       public ProductDetailsResponseListener(Action<BillingResult, QueryProductDetailsResult?> callback) { _callback = callback; }
-      public void OnProductDetailsResponse(BillingResult result, QueryProductDetailsResult details) { _callback(result, details); }
+      public void OnProductDetailsResponse(BillingResult result, QueryProductDetailsResult details) { RunOnMainThread(() => _callback(result, details)); }
     }
 
     private class PurchasesResponseListener : Java.Lang.Object, IPurchasesResponseListener
     {
       private readonly Action<BillingResult, IList<Purchase>?> _callback;
       public PurchasesResponseListener(Action<BillingResult, IList<Purchase>?> callback) { _callback = callback; }
-      public void OnQueryPurchasesResponse(BillingResult result, IList<Purchase> purchases) { _callback(result, purchases); }
+      public void OnQueryPurchasesResponse(BillingResult result, IList<Purchase> purchases) { RunOnMainThread(() => _callback(result, purchases)); }
     }
 
     private class ConsumeResponseListener : Java.Lang.Object, IConsumeResponseListener
     {
       private readonly Action<BillingResult, string> _callback;
       public ConsumeResponseListener(Action<BillingResult, string> callback) { _callback = callback; }
-      public void OnConsumeResponse(BillingResult result, string purchaseToken) { _callback(result, purchaseToken); }
+      public void OnConsumeResponse(BillingResult result, string purchaseToken) { RunOnMainThread(() => _callback(result, purchaseToken)); }
     }
 
     private class AcknowledgePurchaseResponseListener : Java.Lang.Object, IAcknowledgePurchaseResponseListener
     {
       private readonly Action<BillingResult> _callback;
       public AcknowledgePurchaseResponseListener(Action<BillingResult> callback) { _callback = callback; }
-      public void OnAcknowledgePurchaseResponse(BillingResult result) { _callback(result); }
+      public void OnAcknowledgePurchaseResponse(BillingResult result) { RunOnMainThread(() => _callback(result)); }
     }
   }
 }
