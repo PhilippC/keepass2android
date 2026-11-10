@@ -783,4 +783,10 @@
   <string name="disable_secure_screen_check">Poista tämä viesti käytöstä</string>
   <string name="switch_ime_reopen">Yritä uudelleen</string>
   <string name="english_ime_settings">Keepass2Android-näppäimistön asetukset</string>
+  <!-- Passkey Settings Screen -->
+  <!-- Passkey Backup Settings -->
+  <!-- Passkey User Verification -->
+  <!-- Passkey trusted (privileged) browsers -->
+  <string name="passkey_provider_enable">Avaa asetukset</string>
+  <string name="passkey_app_unverified_continue">Jatka</string>
 </resources>
