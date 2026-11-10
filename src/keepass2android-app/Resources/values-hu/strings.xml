@@ -844,4 +844,10 @@
   <string name="kp2a_switch_on_sendgodone_summary">Visszaváltás a Küldés/Ugrás/Kész gombok megnyomásakor</string>
   <string name="qr_scanning_error_no_google_play_services">A QR-kód beolvasásához szükséges a Google Play Service. Kérjük, telepítse vagy frissítse a szolgáltatást a készülékén.</string>
   <string name="english_ime_settings">Keepass2Android billentyűzetbeállítások</string>
+  <!-- Passkey Settings Screen -->
+  <!-- Passkey Backup Settings -->
+  <!-- Passkey User Verification -->
+  <!-- Passkey trusted (privileged) browsers -->
+  <string name="passkey_provider_enable">Beállítások megnyitása</string>
+  <string name="passkey_app_unverified_continue">Folytatás</string>
 </resources>
