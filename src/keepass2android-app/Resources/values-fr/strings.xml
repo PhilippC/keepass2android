@@ -1254,4 +1254,10 @@
   <string name="pref_enable_periodic_background_sync_summary">Si activé, l\'application synchronisera périodiquement les bases de données déverrouillées. Cela respecte les paramètres de connexion réseau ci-dessus.</string>
   <string name="pref_periodic_background_sync_interval_title">Intervalle de temps de synchronisation périodique en arrière-plan</string>
   <string name="pref_periodic_background_sync_interval_summary">Définir l\'intervalle pour la synchronisation en arrière-plan en minutes.</string>
+  <!-- Passkey Settings Screen -->
+  <!-- Passkey Backup Settings -->
+  <!-- Passkey User Verification -->
+  <!-- Passkey trusted (privileged) browsers -->
+  <string name="passkey_provider_enable">Ouvrir les paramètres</string>
+  <string name="passkey_app_unverified_continue">Suivant</string>
 </resources>
