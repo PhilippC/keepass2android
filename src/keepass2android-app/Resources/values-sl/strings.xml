@@ -1224,4 +1224,10 @@
   <string name="switch_keyboard_for_totp_enabled">Opomba: Omogočili ste Aplikacije - Dostop do gesla - Storitev samodejnega izpolnjevanja - Samodejno izpolnjevanje za vnose TOTP. To lahko povzroči, da se to okno prikaže, ko odprete vnos s TOTP.</string>
   <string name="switch_keyboard_inside_kp2a_enabled">Opomba: Omogočili ste Aplikacije - Varnost - Uporabi vgrajeno tipkovnico znotraj Keepass2Android. To lahko povzroči, da se to okno prikaže, ko odprete aplikacijo ali urejate vnos.</string>
   <string name="switch_keyboard_on_search_enabled">Opomba: Omogočili ste možnost Aplikacija - Varnost - Dostop z geslom - Preklop tipkovnice - Preklop tipkovnice. To lahko povzroči, da se to okno prikaže, ko iščete vnos v brskalniku.</string>
+  <!-- Passkey Settings Screen -->
+  <!-- Passkey Backup Settings -->
+  <!-- Passkey User Verification -->
+  <!-- Passkey trusted (privileged) browsers -->
+  <string name="passkey_provider_enable">Odpri nastavitve</string>
+  <string name="passkey_app_unverified_continue">Nadaljuj</string>
 </resources>
