@@ -522,6 +522,7 @@
   <string name="donate_missedbday_question">ああ、あなたは 5 月 10 日の私の誕生日を忘れていましたね！ このアプリを気に入ってくださったとしたら、お祝いのメッセージやプレゼントを贈っていただけませんか？ まだ遅くありませんよ！ :-)</string>
   <string name="ok_donate">さらに詳しく！</string>
   <string name="no_thanks">それほど気に入っていません</string>
+  <!-- %1$s (label) is not shown, only the price -->
   <string name="enter_http_login_title">WebDav のログイン情報を入力:</string>
   <string name="hint_http_url">フォルダーまたはファイルの URL (例: mycloud.me.com/webdav/)</string>
   <string name="enter_owncloud_login_title">OwnCloud のログイン情報を入力:</string>
