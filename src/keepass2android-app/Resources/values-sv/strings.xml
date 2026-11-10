@@ -520,6 +520,7 @@
   <string name="donate_missedbday_question">Åh, missade du min födelsedag den 10 maj! Om du gillar denna app, varför inte skicka några födelsedagshälsningar och en liten födelsedagspresent? Det är ännu inte för sent att göra mig glad! :-)</string>
   <string name="ok_donate">Berätta mer!</string>
   <string name="no_thanks">Nej, jag gillar den inte så mycket</string>
+  <!-- %1$s (label) is not shown, only the price -->
   <string name="enter_http_login_title">Ange WebDav inloggnings-data:</string>
   <string name="enter_smb_login_title">Ange Samba-inloggningsdata:</string>
   <string name="hint_http_url">Webbadressen till mapp eller fil (ex: mycloud.me.com/webdav/)</string>
