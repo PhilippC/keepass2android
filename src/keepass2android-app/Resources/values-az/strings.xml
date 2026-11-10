@@ -86,6 +86,7 @@
     <item>Passphrase + Password</item>
   </string-array>
   <string name="select_other_entry">Başqa qeyd seç</string>
+  <!-- %1$s (label) is not shown, only the price -->
   <string name="loading">Yüklənir…</string>
   <string name="TemplateField_IdCard_Name">Ad</string>
   <string name="DbQuicklockedChannel_name">Cəld Kilid Açma</string>
