@@ -775,4 +775,10 @@
   <string name="AutofillWarning_title">Upozorenje Sigurnosti: Nepoznata domena/veza aplikacije</string>
   <string name="AutofillWarning_trustAsBrowser">Prehvati uvijek u \"%1$s\"</string>
   <string name="english_ime_settings">Postavke tipkovnice za Keepass2Android</string>
+  <!-- Passkey Settings Screen -->
+  <!-- Passkey Backup Settings -->
+  <!-- Passkey User Verification -->
+  <!-- Passkey trusted (privileged) browsers -->
+  <string name="passkey_provider_enable">Otvori postavke</string>
+  <string name="passkey_app_unverified_continue">Nastavi</string>
 </resources>
