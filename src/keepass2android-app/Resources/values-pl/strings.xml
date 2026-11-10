@@ -1145,4 +1145,10 @@
   <string name="enter_ssid_hint">Wprowadź SSID</string>
   <string name="remove_ssid_message">Czy na pewno chcesz usunąć tę sieć Wi-Fi?</string>
   <string name="permission_needed">Wymagane uprawnienie</string>
+  <!-- Passkey Settings Screen -->
+  <!-- Passkey Backup Settings -->
+  <!-- Passkey User Verification -->
+  <!-- Passkey trusted (privileged) browsers -->
+  <string name="passkey_provider_enable">Otwórz ustawienia</string>
+  <string name="passkey_app_unverified_continue">Kontynuuj</string>
 </resources>
