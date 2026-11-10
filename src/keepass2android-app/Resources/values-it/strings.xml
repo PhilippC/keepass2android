@@ -1271,4 +1271,10 @@ Prima release pubblica
   <string name="pref_enable_periodic_background_sync_title">Sincronizzazione periodica in background</string>
   <string name="pref_periodic_background_sync_interval_title">Intervallo di sincronizzazione periodica in background</string>
   <string name="pref_periodic_background_sync_interval_summary">Imposta l\'intervallo per la sincronizzazione in background in minuti.</string>
+  <!-- Passkey Settings Screen -->
+  <!-- Passkey Backup Settings -->
+  <!-- Passkey User Verification -->
+  <!-- Passkey trusted (privileged) browsers -->
+  <string name="passkey_provider_enable">Apri le impostazioni</string>
+  <string name="passkey_app_unverified_continue">Continua</string>
 </resources>
