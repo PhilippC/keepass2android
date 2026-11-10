@@ -1319,4 +1319,10 @@
   <string name="pref_enable_periodic_background_sync_summary">Se ativado, o aplicativo sincronizará periodicamente os bancos de dados desbloqueados. Isso respeita as configurações de conexão de rede acima.</string>
   <string name="pref_periodic_background_sync_interval_title">Intervalo de tempo de sincronização periódica em segundo plano</string>
   <string name="pref_periodic_background_sync_interval_summary">Defina o intervalo para sincronização em segundo plano em minutos.</string>
+  <!-- Passkey Settings Screen -->
+  <!-- Passkey Backup Settings -->
+  <!-- Passkey User Verification -->
+  <!-- Passkey trusted (privileged) browsers -->
+  <string name="passkey_provider_enable">Abrir as configurações</string>
+  <string name="passkey_app_unverified_continue">Continuar</string>
 </resources>
