@@ -267,6 +267,7 @@
   <string name="AddUrlToEntryDialog_title">שמירת טקסט החיפוש?</string>
   <string name="AddUrlToEntryDialog_text">תרצו לשמור את הטקסט \"%1$s\" ברשומה הנבחרת על מנת למצוא את הרשומה אוטומטית בפעם הבאה?</string>
   <string name="AskOverwriteBinary_no">שינוי שם</string>
+  <!-- %1$s (label) is not shown, only the price -->
   <string name="loading">טוען...</string>
   <string name="TemplateField_IdCard_Name">שם</string>
   <string name="DbQuicklockedChannel_name">QuickUnlock פתיחה מהירה</string>
