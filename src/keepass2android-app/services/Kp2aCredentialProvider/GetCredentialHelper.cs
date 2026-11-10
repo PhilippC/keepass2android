@@ -126,13 +126,16 @@ namespace keepass2android.services.Kp2aCredentialProvider
           }
         }
 
-        // Filter by allowCredentials if specified
-        if (requestOptions.AllowCredentialsSpecified)
-        {
-          foundEntries = foundEntries
-            .Where(entry => requestOptions.IsCredentialAllowed(PasskeyStorage.RetrievePasskey(entry)?.CredentialId))
-            .ToList();
-        }
+        // Only entries with a usable passkey (the relying party field alone is not enough: the entry may lack the
+        // private key etc. and could not sign), and only the allowed ones if allowCredentials is specified.
+        foundEntries = foundEntries
+          .Where(entry =>
+          {
+            var passkey = PasskeyStorage.RetrievePasskey(entry);
+            return passkey != null
+                   && (!requestOptions.AllowCredentialsSpecified || requestOptions.IsCredentialAllowed(passkey.CredentialId));
+          })
+          .ToList();
 
         if (foundEntries.Count > 0)
         {
