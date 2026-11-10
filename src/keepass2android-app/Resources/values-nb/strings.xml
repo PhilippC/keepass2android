@@ -468,6 +468,7 @@
   <string name="donate_missedbday_question">Å nei, du glemte bursdagen min den 10. mai! Hvis du liker denne appen, hvorfor ikke sende meg bursdagsønsker med en liten bursdagsgave? Det er ikke for sent å gjøre meg veldig glad! :-)</string>
   <string name="ok_donate">Fortell meg mer!</string>
   <string name="no_thanks">Nei, jeg liker den ikke så mye</string>
+  <!-- %1$s (label) is not shown, only the price -->
   <string name="enter_http_login_title">Angi innloggingsinformasjon for WebDav:</string>
   <string name="enter_smb_login_title">Angi pålogging for Samba:</string>
   <string name="hint_http_url">URL til mappe eller fil (f.eks. mycloud.me.com/webdav/)</string>
