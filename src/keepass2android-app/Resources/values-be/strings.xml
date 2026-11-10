@@ -519,6 +519,7 @@
   <string name="donate_missedbday_question">Вы прапусцілі мой дзень нараджэння 10 траўня. Калі вам падабаецца гэтая праграма, то чаму б не павіншаваць мяне і не адправіць невялічкі падарунак?</string>
   <string name="ok_donate">Раскажыце мне яшчэ!</string>
   <string name="no_thanks">Не, дастаткова</string>
+  <!-- %1$s (label) is not shown, only the price -->
   <string name="enter_http_login_title">Увядзіце даныя для ўваходу на WebDav:</string>
   <string name="hint_http_url">URL-адрас файла або каталога (напрыклад: mycloud.me.com/webdav/)</string>
   <string name="enter_owncloud_login_title">Увядзіце даныя для ўваходу на OwnCloud:</string>
