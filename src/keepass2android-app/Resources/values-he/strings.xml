@@ -287,4 +287,8 @@
     <item>Custom Private key</item>
   </string-array>
   <string name="english_ime_settings">הגדרות של מקלדת אנדרואיד</string>
+  <!-- Passkey Settings Screen -->
+  <!-- Passkey Backup Settings -->
+  <!-- Passkey User Verification -->
+  <!-- Passkey trusted (privileged) browsers -->
 </resources>
