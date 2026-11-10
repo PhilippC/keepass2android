@@ -528,6 +528,7 @@
   <string name="donate_missedbday_question">Oh, il 10 maggio ti sei perso il mio compleanno! Se ti piace questa app, perché non mi mandi gli auguri di buon compleanno ed un piccolo regalo? Non è ancora troppo tardi per farmi felice! :-)</string>
   <string name="ok_donate">Dimmi di più!</string>
   <string name="no_thanks">No, non mi piace più di tanto</string>
+  <!-- %1$s (label) is not shown, only the price -->
   <string name="enter_http_login_title">Inserisci i dati di accesso WebDav:</string>
   <string name="enter_smb_login_title">Inserisci i dati di accesso Samba:</string>
   <string name="hint_http_url">URL della cartella o del file (es: mycloud.me.com/webdav/)</string>
