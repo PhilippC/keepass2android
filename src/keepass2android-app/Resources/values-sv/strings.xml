@@ -883,4 +883,10 @@
   <string name="AutofillWarning_trustAsBrowser">Acceptera alltid i \"%1$s\"</string>
   <string name="english_ime_settings">Inställningar för Keepass2Androids tangentbord</string>
   <string name="failed_to_access_database">Databasen används nu och kan inte nås.</string>
+  <!-- Passkey Settings Screen -->
+  <!-- Passkey Backup Settings -->
+  <!-- Passkey User Verification -->
+  <!-- Passkey trusted (privileged) browsers -->
+  <string name="passkey_provider_enable">Öppna inställningar</string>
+  <string name="passkey_app_unverified_continue">Fortsätt</string>
 </resources>
