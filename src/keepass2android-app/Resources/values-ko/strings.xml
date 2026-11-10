@@ -765,4 +765,10 @@ Keepass2Android는 오프라인에서도 데이터베이스 파일의 사용이 
   <string name="AutofillWarning_FillDomainInUntrustedApp">\"%1$s\"를 통해서 \"%2$s\"를 사용 하는 것에 대해 신뢰하시거나 \"%2$s\" 앱이 신용 정보를 남용하지 않을 것이라고 신뢰하신다면 (예: 검증된 브라우저 앱의 경우), 계속 하셔도 괜찮습니다. 그렇지 않다면 취소해 주십시오.</string>
   <string name="AutofillWarning_trustAsBrowser">항상 \"%1$s\" 앱을 쓰는 경우를 제외함</string>
   <string name="english_ime_settings">Keepass2Android 키보드 설정</string>
+  <!-- Passkey Settings Screen -->
+  <!-- Passkey Backup Settings -->
+  <!-- Passkey User Verification -->
+  <!-- Passkey trusted (privileged) browsers -->
+  <string name="passkey_provider_enable">설정 열기</string>
+  <string name="passkey_app_unverified_continue">계속</string>
 </resources>
