@@ -420,6 +420,7 @@
   <string name="donate_missedbday_question">Oh, anda melewatkan ulang tahun saya pada 10 Mei! Jika anda menyukai aplikasi ini, mengapa anda tidak mengirimi saya ucapan ulang tahun dan hadiah? Masih belum terlambat untuk membuat saya bahagia! :-)</string>
   <string name="ok_donate">Beri tahu lebih banyak!</string>
   <string name="no_thanks">Tidak, saya tidak terlalu menyukainya</string>
+  <!-- %1$s (label) is not shown, only the price -->
   <string name="enter_http_login_title">Masukkan data login WebDav:</string>
   <string name="hint_http_url">URL folder atau berkas (mis: mycloud.me.com/webdav/)</string>
   <string name="enter_owncloud_login_title">Masukkan data login OwnCloud:</string>
