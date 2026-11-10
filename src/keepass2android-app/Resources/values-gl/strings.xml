@@ -490,6 +490,7 @@
   <string name="donate_missedbday_question">Vaia oh, perdiches o meu aniversario, que foi o 10 de maio! Se che gusta esta app, porque non me das os parabéns e un pequeno regalo? Aínda non é tarde para alegrarme! :-)</string>
   <string name="ok_donate">Cóntame máis!</string>
   <string name="no_thanks">Non, non me gustou dabondo</string>
+  <!-- %1$s (label) is not shown, only the price -->
   <string name="enter_http_login_title">Introduce os datos de acceso a WebDav:</string>
   <string name="hint_http_url">URL do cartafol ou arquivo (ex: minhanube.me.com/webdav/)</string>
   <string name="enter_owncloud_login_title">Introduce os datos de acceso a OwnCloud:</string>
