@@ -532,6 +532,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="donate_missedbday_question">Oh, mein Geburtstag am 10. Mai wurde verpasst! Wenn diese App gefällt, warum nicht ein paar Geburtstagsgrüße zusammen mit einem kleinen Geburtstagsgeschenk an mich senden? Es ist noch nicht zu spät, um mir eine Freude zu machen! :-)</string>
   <string name="ok_donate">Warum nicht?</string>
   <string name="no_thanks">So gut gefällt\'s mir dann auch nicht</string>
+  <!-- %1$s (label) is not shown, only the price -->
   <string name="enter_http_login_title">WebDav-Zugangsdaten eingeben:</string>
   <string name="enter_smb_login_title">Samba-Logindaten eingeben:</string>
   <string name="hint_http_url">URL des Ordners oder der Datei (z. B. mycloud.me.com/webdav/)</string>
