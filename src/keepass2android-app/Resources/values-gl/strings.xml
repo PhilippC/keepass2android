@@ -701,4 +701,10 @@
   <string name="backup_infotext_note">Para crear unha copia de seguranza, vai a %1$s&gt;%2$s&gt;%3$s.</string>
   <string name="emergency_infotext_head">Estás preparado para unha emerxencia?</string>
   <string name="emergency_infotext_main">Pensaches no que sucedería se non puideses acceder máis á tua base de datos de contrasinais? E se tes un accidente? É recomendable darlle o teu contrasinal mestre a unha persoa de confianza para casos de emerxencia. De non o faceres, ninguén terá acceso aos contrasinais.</string>
+  <!-- Passkey Settings Screen -->
+  <!-- Passkey Backup Settings -->
+  <!-- Passkey User Verification -->
+  <!-- Passkey trusted (privileged) browsers -->
+  <string name="passkey_provider_enable">Abrir axustes</string>
+  <string name="passkey_app_unverified_continue">Continuar</string>
 </resources>
