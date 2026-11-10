@@ -166,4 +166,8 @@
     <item>KP2A Private/Public key</item>
     <item>Custom Private key</item>
   </string-array>
+  <!-- Passkey Settings Screen -->
+  <!-- Passkey Backup Settings -->
+  <!-- Passkey User Verification -->
+  <!-- Passkey trusted (privileged) browsers -->
 </resources>
