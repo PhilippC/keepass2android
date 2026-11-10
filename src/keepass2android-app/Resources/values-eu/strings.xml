@@ -455,4 +455,9 @@
     <item>Do not accept invalid certificates</item>
   </string-array>
   <string name="english_ime_settings">Android teklatuaren ezarpenak</string>
+  <!-- Passkey Settings Screen -->
+  <!-- Passkey Backup Settings -->
+  <!-- Passkey User Verification -->
+  <!-- Passkey trusted (privileged) browsers -->
+  <string name="passkey_app_unverified_continue">Jarraitu</string>
 </resources>
