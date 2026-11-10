@@ -917,4 +917,10 @@
   <string name="AutofillWarning_FillDomainInUntrustedApp">Nếu bạn tin tưởng \"%2$s\" thuộc về \"%1$s\" hoặc bạn tin tưởng ứng dụng \"%2$s\" không sử dụng sai thông tin xác thực (ví dụ: vì đây là ứng dụng trình duyệt đáng tin cậy), bạn có thể tiếp tục. Nếu không, xin vui lòng hủy bỏ.</string>
   <string name="AutofillWarning_trustAsBrowser">Luôn chấp nhận trong \"%1$s\"</string>
   <string name="english_ime_settings">Cài đặt bàn phím Keepass2Android</string>
+  <!-- Passkey Settings Screen -->
+  <!-- Passkey Backup Settings -->
+  <!-- Passkey User Verification -->
+  <!-- Passkey trusted (privileged) browsers -->
+  <string name="passkey_provider_enable">Open Settings</string>
+  <string name="passkey_app_unverified_continue">Tiếp tục</string>
 </resources>
