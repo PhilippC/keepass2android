@@ -260,6 +260,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="space">Leerzeichen</string>
   <string name="search_label">Suchen</string>
   <string name="show_password">Passwort anzeigen</string>
+  <string name="hide_password">Passwort ausblenden</string>
   <string name="sort_menu">Sortieren nach …</string>
   <string name="sort_name">Sortieren nach Name</string>
   <string name="sort_db">Sortieren nach Erstellung</string>
@@ -533,6 +534,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="ok_donate">Warum nicht?</string>
   <string name="no_thanks">So gut gefällt\'s mir dann auch nicht</string>
   <!-- %1$s (label) is not shown, only the price -->
+  <string name="donate_thank_you">Vielen Dank :-) Wusstest du, dass du die Spendenoption in den Anzeigeeinstellungen ausblenden kannst? Falls sie ausgegraut ist, nutze Keepass2Android bitte noch eine Weile, bis sie aktiviert wird.</string>
   <string name="enter_http_login_title">WebDav-Zugangsdaten eingeben:</string>
   <string name="enter_smb_login_title">Samba-Logindaten eingeben:</string>
   <string name="hint_http_url">URL des Ordners oder der Datei (z. B. mycloud.me.com/webdav/)</string>
@@ -639,6 +641,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="TrayTotp_SettingsField_title">Feldname für TOTP-Einstellungen</string>
   <string name="TrayTotp_SettingsField_summary">Feldnamen für TOTP-Einstellungen entsprechend den TrayTotp-Einstellungen eingeben.</string>
   <string name="TrayTotp_prefs">TrayTotp</string>
+  <string name="Passkey_prefs">Passkey-Einstellungen</string>
   <string name="DebugLog_prefs_prefs">Logdatei (für Debugging)</string>
   <string name="DebugLog_title">Logdatei verwenden</string>
   <string name="FtpDebug_title">FTP/SFTP Debug-Logging</string>
@@ -1266,10 +1269,18 @@ Standortberechtigung wird benötigt, um die aktuelle Wi-Fi-SSID zu lesen. Dies i
   <string name="pref_enable_periodic_background_sync_summary">Wenn aktiviert, wird die App regelmäßig die geöffneten Datenbanken synchronisieren. Dies berücksichtigt die Netzwerkverbindungseinstellungen von oben.</string>
   <string name="pref_periodic_background_sync_interval_title">Zeitintervall für die periodische Hintergrundsynchronisation</string>
   <string name="pref_periodic_background_sync_interval_summary">Gib das Intervall für die Hintergrundsynchronisierung in Minuten ein.</string>
+  <string name="credential_provider_service_subtitle">Passwörter und Passkeys</string>
+  <string name="credential_provider_passkey_creation_description">Passkey speichern</string>
+  <string name="passkey_entry_title">Passkey für %1$s</string>
   <!-- Passkey Settings Screen -->
   <!-- Passkey Backup Settings -->
   <!-- Passkey User Verification -->
   <!-- Passkey trusted (privileged) browsers -->
+  <string name="passkeys_enable_provider_title">Als Passkey-Anbieter verwenden</string>
+  <string name="passkey_provider_hint">Keepass2Android unterstützt jetzt Passkeys, ist aber noch nicht als Passkey-Anbieter aktiviert. Öffne die Android-Einstellungen und wähle Keepass2Android als bevorzugten Dienst. Wenn dieser bereits ausgewählt ist, wähle zuerst \"Keine App\" und dann erneut Keepass2Android.</string>
   <string name="passkey_provider_enable">Einstellungen öffnen</string>
+  <string name="chrome_autofill_hint_title">Keepass2Android in Chrome nutzen</string>
+  <string name="chrome_autofill_hint">Chrome ist so eingestellt, dass Passwörter mit dem Google-Passwortmanager ausgefüllt werden. Um Keepass2Android in Chrome zu nutzen, öffne die Chrome-Einstellungen und wähle „Autofill mit einem anderen Dienst“.</string>
+  <string name="chrome_autofill_open_settings">Chrome-Einstellungen öffnen</string>
   <string name="passkey_app_unverified_continue">Fortfahren</string>
 </resources>
