@@ -102,7 +102,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="SystemLanguage">Systemsprache</string>
   <string name="fingerprint_description">Bitte authentifizieren, um fortzufahren</string>
   <string name="fingerprint_fatal">Biometrisches Entsperren kann nicht eingerichtet werden:</string>
-  <string name="fingerprint_not_recognized">Biometrische Authentifizierung fehlgeschlagen. Versuche es erneut</string>
+  <string name="fingerprint_not_recognized">Biometrische Authentifizierung fehlgeschlagen. Erneut versuchen</string>
   <string name="fingerprint_success">Biometrische Authentifizierung erfolgreich</string>
   <string name="fingerprint_os_error">Biometrische Entsperrung erfordert Android 6.0 oder höher.</string>
   <string name="fingerprint_hardware_error">Keine biometrische Hardware erkannt.</string>
@@ -261,6 +261,10 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="search_label">Suchen</string>
   <string name="show_password">Passwort anzeigen</string>
   <string name="hide_password">Passwort ausblenden</string>
+  <string name="hidden_protected_field">Versteckt, %1$d Zeichen</string>
+  <string name="browse">Auswählen</string>
+  <string name="select_icon">Icon auswählen</string>
+  <string name="selected">Ausgewählt</string>
   <string name="sort_menu">Sortieren nach …</string>
   <string name="sort_name">Sortieren nach Name</string>
   <string name="sort_db">Sortieren nach Erstellung</string>
@@ -376,8 +380,15 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="field_value">Feldwert</string>
   <string name="protection">Geschütztes Feld</string>
   <string name="add_binary">Dateianhang hinzufügen …</string>
+  <string name="attach_browse_file">Datei auswählen…</string>
+  <string name="attach_take_photo">Foto aufnehmen…</string>
+  <string name="capture_photo_title">Foto aufnehmen</string>
+  <string name="capture_flip_camera">Kamera wechseln</string>
+  <string name="camera_permission_required">Zum Aufnehmen eines Fotos ist die Kameraberechtigung erforderlich.</string>
+  <string name="capture_attachment_size_warning">Fotogröße auswählen</string>
   <string name="capture_size_small">Klein</string>
   <string name="capture_size_medium">Mittel</string>
+  <string name="capture_size_original">Original</string>
   <string name="add_extra_string">Zusätzliches Feld hinzufügen</string>
   <string name="configure_totp">TOTP konfigurieren</string>
   <string name="totp_secret_key">Geheimer Schlüssel</string>
@@ -504,6 +515,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="UseOnlineMode">Zwischengespeicherte Kopie mit der Quelldatei synchronisieren</string>
   <string name="UseOfflineMode_Info">Datenbank wird vom internen Cache geladen. Änderungen werden nur im internen Cache gespeichert und nur synchronisiert, wenn eine Datenbanksynchronisierung manuell ausgewählt wird.</string>
   <string name="InOfflineMode">Nur internen Zwischenspeicher verwenden.</string>
+  <string name="ServerNotReachable">Der Server konnte nicht erreicht werden. Bitte überprüfe deine Internetverbindung und die Serveradresse.</string>
   <string name="SynchronizingCachedDatabase">Zwischengespeicherte Datenbank synchronisieren …</string>
   <string name="DownloadingRemoteFile">Quelldatei wird geladen …</string>
   <string name="UploadingFile">Datei speichern …</string>
@@ -533,8 +545,26 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="donate_missedbday_question">Oh, mein Geburtstag am 10. Mai wurde verpasst! Wenn diese App gefällt, warum nicht ein paar Geburtstagsgrüße zusammen mit einem kleinen Geburtstagsgeschenk an mich senden? Es ist noch nicht zu spät, um mir eine Freude zu machen! :-)</string>
   <string name="ok_donate">Warum nicht?</string>
   <string name="no_thanks">So gut gefällt\'s mir dann auch nicht</string>
+  <string name="donate_title">Spende für Keepass2Android</string>
+  <string name="donate_author_description">Karlsruhe, Deutschland\nHobby Entwickler</string>
+  <string name="donate_open_source_info">Keepass2Android ist frei und Open Source (GPLv3), ohne Werbung und ohne kostenpflichtige Funktionen. Ich entwickle es in meiner Freizeit – wenn du es nützlich findest, hilft mir eine Spende weiter. Vielen Dank!</string>
+  <string name="donate_intro">Wenn du mich auf der Straße treffen würdest, würdest du mich auf ein Bier einladen? Warum nicht auch virtuell?</string>
+  <string name="donate_intro2">Du findest, ich sollte nicht entwickeln und Bier trinken? Wie wäre es mit einer Cola und Pommes?</string>
+  <string name="donate_oktoberfest_beer">Oktoberfestbier</string>
+  <string name="donate_small_beer">Kölsch</string>
+  <string name="donate_coke">Cola und Pommes</string>
+  <string name="donate_product_with_price">%1$s (%2$s)</string>
+  <string name="donate_other_amount">Oder wähle einen Betrag (einmalig):</string>
   <!-- %1$s (label) is not shown, only the price -->
+  <string name="donate_amount_price">%2$s</string>
+  <string name="donate_yearly">Jährlich</string>
+  <string name="donate_one_time">Einmalig</string>
+  <string name="donate_product_yearly_with_price">%1$s pro Jahr (%2$s pro Jahr)</string>
+  <string name="donate_subscription_active">%1$s pro Jahr: aktiv, danke! Zum Verwalten antippen.</string>
   <string name="donate_thank_you">Vielen Dank :-) Wusstest du, dass du die Spendenoption in den Anzeigeeinstellungen ausblenden kannst? Falls sie ausgegraut ist, nutze Keepass2Android bitte noch eine Weile, bis sie aktiviert wird.</string>
+  <string name="donate_pending">Vielen Dank! Deine Spende wird abgeschlossen, sobald die Zahlung abgeschlossen wurde.</string>
+  <string name="donate_billing_unavailable">Spenden über Google Play sind derzeit nicht verfügbar: %1$s</string>
+  <string name="donate_failed">Die Spende konnte nicht abgeschlossen werden: %1$s</string>
   <string name="enter_http_login_title">WebDav-Zugangsdaten eingeben:</string>
   <string name="enter_smb_login_title">Samba-Logindaten eingeben:</string>
   <string name="hint_http_url">URL des Ordners oder der Datei (z. B. mycloud.me.com/webdav/)</string>
@@ -712,7 +742,7 @@ Der Android Robot wird genutzt und wurde modifiziert basierend auf Arbeiten, die
   <string name="PreviewWarning">Bitte beachten! Dies ist eine Vorab-Version, die einige Fehler enthalten könnte! Wenn du *irgendetwas* unerwartetes feststellen solltest, lass es mich bitte wissen (über die Google+ Beta-Tester-Community oder per E-Mail).</string>
   <string name="Continue">Fortfahren</string>
   <string name="NoFilenameWarning">Der eingegebene Pfad scheint kein gültiger Dateiname zu sein. Ist dies wirklich eine gültige Datei?</string>
-  <string name="FirstInvalidCompositeKeyError">Ungültiger zusammengesetzter Schlüssel! Bitte erneut probieren.</string>
+  <string name="FirstInvalidCompositeKeyError">Ungültiger zusammengesetzter Schlüssel! Bitte erneut versuchen.</string>
   <string name="RepeatedInvalidCompositeKeyHelp">Ungültiger zusammengesetzter Schlüssel! Bitte folgenden Schritte probieren, um die Datenbank zu entsperren:\n
   
     • Sicherstellen, dass das richtige Passwort eingegeben wurde. Das Augensymbol dafür nutzen, um das eingegebene Passwort anzuzeigen.\n
@@ -757,7 +787,7 @@ Anbei einige Tipps, die bei der Diagnose des Problems helfen können:\n
   <string name="BackgroundSyncChannel_name">Synchronisierungsaufgabe</string>
   <string name="BackgroundSyncChannel_desc">Benachrichtigung, um anzugeben, dass eine Synchronisation im Hintergrund durchgeführt wird.</string>
   <string name="CloseDbAfterFailedAttempts">Datenbank nach drei fehlgeschlagenen biometrischen Entsperrversuchen schließen.</string>
-  <string name="hint_smb_credentials">Wenn Sie auf Dateien von Ihrem persönlichen Windows-Computer aus zugreifen möchten, verwenden Sie den Computernamen oder die lokale IP-Adresse als Host-URL; geben Sie den Computernamen als Domäne und das Windows-Login (oft identisch mit Ihrem Microsoft-Konto) als Benutzername und Passwort ein.</string>
+  <string name="hint_smb_credentials">Wenn du auf Dateien von deinem persönlichen Windows-Computer aus zugreifen möchtest, verwende den Computernamen oder die lokale IP-Adresse als Host-URL; gib den Computernamen als Domäne und das Windows-Login (oft identisch mit deinem Microsoft-Konto) als Benutzername und Passwort ein.</string>
   <string name="WarnFingerprintInvalidated">Achtung! Die biometrische Authentifizierung kann von Android ungültig gemacht werden, z. B. nach dem Hinzufügen eines neuen Fingerabdrucks in den Geräteeinstellungen. Bitte sicherstellen, dass jederzeit klar ist, wie mit dem eigenen Hauptpasswort entsperrt werden kann!</string>
   <string name="webdav_chunked_upload_size_title">Chunk-Größe für den WebDav-Upload</string>
   <string name="webdav_chunked_upload_enabled_title">Aktiviere chunked Upload für WebDav</string>
@@ -765,6 +795,12 @@ Anbei einige Tipps, die bei der Diagnose des Problems helfen können:\n
   <string name="webdav_chunked_upload_size_summary">Größe der Chunks beim Hochladen auf WebDav-Server in Bytes.</string>
   <string name="cleartextTrafficPermitted_title">Klartext-Netzwerkverkehr in WebDav erlauben</string>
   <string name="cleartextTrafficPermitted_summary">HTTP-Verbindungen sind nicht sicher. Diese Option nur aktivieren, wenn weitere Sicherheitsmaßnahmen vorhanden sind.</string>
+  <string-array name="ChangeLog_1_16">
+    <item>Unterstützung für Passkeys (Android 14 und höher) wurde hinzugefügt 🎉. Um loszulegen, öffne Einstellungen – Anwendung – Passkey-Einstellungen.</item>
+    <item>Umstellung auf die Google Play-Abrechnung für Spenden (für auf Google Play veröffentlichte Varianten), wie von Google gefordert</item>
+    <item>Integrierte Fotoaufnahmefunktion hinzugefügt.</item>
+    <item>Verbesserte Kompatibilität mit TalkBack.</item>
+  </string-array>
   <string-array name="ChangeLog_1_15_net">
     <item>Aktualisierung auf Ziel-SDK-Version 36</item>
     <item>Verbesserungen im Umgang mit WebDav-URLs mit Nicht-ASCII-Zeichen</item>
@@ -787,7 +823,7 @@ Anbei einige Tipps, die bei der Diagnose des Problems helfen können:\n
   </string-array>
   <string-array name="ChangeLog_1_13">
     <item>Verbesserte Einschätzung der Passwortqualität, indem die beliebtesten Passwörter berücksichtigt werden.</item>
-    <item>Blockieren Sie das passwortbasierte QuickUnlock (aus Sicherheitsgründen) wenn das Gerät keine Bildschirmsperre aktiviert hat.</item>
+    <item>Blockiere passwortbasiertes QuickUnlock (aus Sicherheitsgründen) wenn das Gerät keine Bildschirmsperre aktiviert hat.</item>
     <item>Netzwerksicherheitskonfiguration aktualisieren, um die Klartext-Übertragung zu deaktivieren.</item>
   </string-array>
   <string-array name="ChangeLog_1_12">
@@ -956,8 +992,8 @@ Anbei einige Tipps, die bei der Diagnose des Problems helfen können:\n
 * Zeiten werden als lokale Zeiten dargestellt\n  </string>
   <string name="ChangeLog_1_01d">Version 1.01-d\n     
  * Fix beim Auflisten von Dateien mit OneDrive\n
- * Erlaube das Ignorieren von Zertifikatsfehlern, auch wenn Host-Name-Verification fehlschlägt (nicht für produktiven Einsatz empfohlen)\n
-* Fix: QuickUnlock schlug manchmal fehl trotz korrektem Entsperr-Code\n  </string>
+ * Erlaube das Ignorieren von Zertifikatsfehlern, auch wenn Host-Name-Verifizierung fehlschlägt (nicht für produktiven Einsatz empfohlen)\n
+* Fix: QuickUnlock schlug manchmal trotz korrektem Entsperr-Code fehl\n  </string>
   <string name="ChangeLog_0_9_8c">    Version 0.9.8c\n
     * Fix für SSL-Schwachstelle im Microsoft Live-SDK (wird benutzt beim Zugriff auf Dateien mit OneDrive)\n
     * Bugfix: Vorige Veröffentlichung enthielt zwei Eingabemethoden (eine funktionierte nicht)\n
@@ -1125,6 +1161,8 @@ Anbei einige Tipps, die bei der Diagnose des Problems helfen können:\n
 * Fehler beim Bearbeiten von Einträgen korrigiert\n 
 * vermutlich neue Fehler eingeführt :-)</string>
   <string name="ChangeLog_keptDonate">Erweiterte Möglichkeit, ein Bier oder etwas anderes zu spenden</string>
+  <string name="ChangeLog_tryInAppDonation">
+Teste die neue In-App-Spendenoption!</string>
   <string name="ChangeLog_0_7"><b>Version 0.7</b>\n
 * Erhöhte Ladegeschwindigkeit: Schlüsseltransformationen sind jetzt 10× schneller!\n
 * Neu: Keepass2Android-Software-Tastatur: Zu dieser Tastatur wechseln, um die Zugangsdaten einzugeben. Das schützt vor Zwischenablage-basierten Passwort-Sniffern! (die bisherigen Benachrichtigungen für das Kopieren in die Zwischenablage lassen sich in den Einstellungen deaktivieren)\n
@@ -1235,7 +1273,7 @@ Erstes öffentliches Release</string>
   <string name="switch_ime_reopen">Erneut versuchen</string>
   <string name="AutofillWarning_title">Sicherheitswarnung: Unbekannte Domain/App-Verknüpfung</string>
   <string name="AutofillWarning_Intro">Hiermit werden Anmeldeinformationen für die Domäne „%1$s“ in die Anwendung „%2$s“ eingefügt.</string>
-  <string name="AutofillWarning_FillDomainInUntrustedApp">Wenn darauf vertraut wird, dass „%2$s“ zu „%1$s“ gehört, oder wenn darauf vertraut wird, dass die App „%2$s“ die Anmeldeinformationen nicht missbraucht (z. B. weil es sich um eine vertrauenswürdige Browser-App handelt), kann fortgefahren werden. Falls nicht, bitte abbrechen.</string>
+  <string name="AutofillWarning_FillDomainInUntrustedApp">Wenn du \"%2$s\" vertraust, dass  es zu \"%1$s\" gehört oder du der App \"%2$s\" vertraust, dass sie keine Anmeldedaten missbraucht (z.B. da es sich um eine vertrauenswürdige Browser-App handelt) ist es in Ordnung, fortzufahren. Falls nicht,  brich den Vorgang bitte ab.</string>
   <string name="AutofillWarning_trustAsBrowser">Für „%1$s“ immer akzeptieren</string>
   <string name="kp2a_switch_on_sendgodone">Tastatur zurückwechseln wenn fertig</string>
   <string name="kp2a_switch_on_sendgodone_summary">Beim Drücken von Senden/Los/Fertig zurückschalten</string>
@@ -1270,17 +1308,56 @@ Standortberechtigung wird benötigt, um die aktuelle Wi-Fi-SSID zu lesen. Dies i
   <string name="pref_periodic_background_sync_interval_title">Zeitintervall für die periodische Hintergrundsynchronisation</string>
   <string name="pref_periodic_background_sync_interval_summary">Gib das Intervall für die Hintergrundsynchronisierung in Minuten ein.</string>
   <string name="credential_provider_service_subtitle">Passwörter und Passkeys</string>
+  <string name="credential_provider_password_creation_description">Passwort in neuem Eintrag speichern</string>
+  <string name="credential_provider_locked_database_description">Datenbank ist gesperrt. Zum Entsperren tippen.</string>
   <string name="credential_provider_passkey_creation_description">Passkey speichern</string>
   <string name="passkey_entry_title">Passkey für %1$s</string>
+  <string name="passkey_unknown_username">Unbekannt</string>
+  <string name="open_app_name">Öffne %1$s</string>
+  <string name="manage_credentials">Zugangsdaten verwalten</string>
   <!-- Passkey Settings Screen -->
+  <string name="pref_passkeys_screen_summary">Synchronisierung, Benutzerüberprüfung und vertrauenswürdige Browser</string>
+  <string name="pref_passkeys_backup_category_title">Synchronisieren &amp; Sichern</string>
+  <string name="pref_passkeys_uv_category_title">Benutzerüberprüfung</string>
+  <string name="passkeys_uv_setting_change_subtitle">Bestätige deine Identität, um diese Einstellung zu ändern.</string>
   <!-- Passkey Backup Settings -->
+  <string name="passkeys_backup_eligibility_title">Synchronisierung von Passkeys erlauben</string>
+  <string name="passkeys_backup_eligibility_summary">Teilt Websites mit, dass Passkeys auf andere Geräte kopiert werden können, z. B. durch die Synchronisierung der Datenbank. Einige Websites behandeln solche Passkeys anders.</string>
+  <string name="passkeys_backup_state_title">Passwörter als synchronisiert melden</string>
+  <string name="passkeys_backup_state_summary">Teilt Websites mit, dass Passkeys gesichert oder mit anderen Geräten synchronisiert werden. Aktivieren, wenn die Datenbank synchronisiert oder gesichert wird.</string>
   <!-- Passkey User Verification -->
+  <string name="passkeys_force_user_verification_when_preferred_title">Benutzerüberprüfung erzwingen, wenn bevorzugt</string>
+  <string name="passkeys_force_user_verification_when_preferred_summary">Wenn eine Website eine „bevorzugte“ Benutzerüberprüfung anfordert, trotzdem biometrische Authentifizierung oder Gerätesperre vor Verwendung eines Passkeys verlangen.</string>
+  <string name="passkeys_force_uv_not_available">Diese Option erfordert eine Bildschirmsperre (PIN, Muster oder Passwort) oder eine sichere biometrische Authentifizierung auf diesem Gerät. Sonst können Passkeys nicht mehr verwendet werden. Bitte richte zuerst eine Bildschirmsperre ein.</string>
+  <string name="passkey_user_verification_required_title">Benutzerüberprüfung erforderlich</string>
+  <string name="passkey_user_verification_required_description">Bestätige deine Identität, um diesen Passkey zu nutzen.</string>
   <!-- Passkey trusted (privileged) browsers -->
+  <string name="pref_passkeys_browsers_category_title">Browser</string>
   <string name="passkeys_enable_provider_title">Als Passkey-Anbieter verwenden</string>
+  <string name="passkeys_enable_provider_summary">Öffnet die Android-Einstellungen für Passwörter und Passkeys, in denen du Keepass2Android aktivieren kannst.</string>
+  <string name="passkeys_provider_enabled_summary">Keepass2Android ist für Passwörter und Passkeys aktiviert. Tippe, um die Android-Einstellungen zu öffnen.</string>
+  <string name="passkeys_provider_not_enabled_summary">Nicht aktiviert. Tippe hier, um die Android-Einstellungen für Passwörter und Passkeys zu öffnen, und wähle Keepass2Android als bevorzugten Dienst aus. Falls dieser bereits ausgewählt ist, wähle zunächst \"Keine App\" und anschließend erneut \"Keepass2Android\".</string>
   <string name="passkey_provider_hint">Keepass2Android unterstützt jetzt Passkeys, ist aber noch nicht als Passkey-Anbieter aktiviert. Öffne die Android-Einstellungen und wähle Keepass2Android als bevorzugten Dienst. Wenn dieser bereits ausgewählt ist, wähle zuerst \"Keine App\" und dann erneut Keepass2Android.</string>
   <string name="passkey_provider_enable">Einstellungen öffnen</string>
   <string name="chrome_autofill_hint_title">Keepass2Android in Chrome nutzen</string>
   <string name="chrome_autofill_hint">Chrome ist so eingestellt, dass Passwörter mit dem Google-Passwortmanager ausgefüllt werden. Um Keepass2Android in Chrome zu nutzen, öffne die Chrome-Einstellungen und wähle „Autofill mit einem anderen Dienst“.</string>
   <string name="chrome_autofill_open_settings">Chrome-Einstellungen öffnen</string>
+  <string name="passkeys_privileged_apps_title">Vertrauenswürdige Browser</string>
+  <string name="passkeys_privileged_apps_summary">Browser, die Passkeys für Websites verwenden dürfen, zusätzlich zu der integrierten Liste bekannter Browser. Wähle nur Browser, denen du vertraust: Ein vertrauenswürdiger Browser kann Passkeys für jede beliebige Website verwenden.</string>
+  <string name="passkeys_privileged_apps_none">Es sind keine Browser installiert, die nicht bereits in der integrierten Liste sind.</string>
+  <string name="passkeys_privileged_apps_not_installed">%1$s (nicht installiert)</string>
+  <string name="passkey_unknown_browser_title">Unbekannter Browser</string>
+  <string name="passkey_unknown_browser_message">%1$s (%2$s) möchte einen Passkey für eine Website verwenden, ist aber nicht in der Liste der bekannten Browser. Vertrau diesem Browser nur, wenn du sicher bist, dass er legitim ist: Ein vertrauenswürdiger Browser kann deine Passkeys für jede beliebige Website verwenden.\n\nSignaturzertifikat (SHA-256):\n%3$s</string>
+  <string name="passkey_unknown_browser_add">Browser vertrauen</string>
+  <string name="passkey_request_interrupted">Die Anfrage wurde unterbrochen. Bitte erneut versuchen.</string>
+  <string name="passkey_create_failed">Der Passkey konnte nicht registriert werden. Der Eintrag wurde in der Datenbank gespeichert, funktioniert aber nicht; du kannst ihn löschen.</string>
+  <string name="passkey_user_verification_unavailable">Diese Website erfordert eine Benutzerüberprüfung. Richte eine Bildschirmsperre ein, um den Passkey zu verwenden.</string>
+  <string name="credential_provider_no_match_open_database">Kein passender Passkey. Öffne eine andere Datenbank</string>
+  <string name="passkey_group_not_searchable">Der Passkey wurde in der Gruppe „%1$s“ gespeichert, in der Suchen deaktiviert ist. %2$s wird ihn erst zur Anmeldung anbieten, wenn er in eine andere Gruppe verschoben wird.</string>
+  <string name="passkey_already_registered">Ein Passkey für dieses Konto ist bereits in %1$s gespeichert.</string>
+  <string name="credential_provider_entry_not_found">Der Eintrag wurde nicht gefunden. Entsperre die Datenbank, die ihn enthält und versuche es erneut.</string>
+  <string name="passkey_app_not_linked">%1$s darf keine Passkeys für %2$s verwenden: Die Website listet diese App nicht als ihre App auf.</string>
+  <string name="passkey_app_unverified_title">App konnte nicht verifiziert werden</string>
+  <string name="passkey_app_unverified_message">Keepass2Android konnte nicht überprüfen, ob %1$s (%2$s) Passkeys für %3$s nutzen darf, weil die App-Liste der Website nicht geladen werden konnte.\n\Nur fortfahren, wenn du dieser App vertraust. Beim nächsten Mal wird dies erneut überprüft.</string>
   <string name="passkey_app_unverified_continue">Fortfahren</string>
 </resources>
