@@ -543,7 +543,26 @@
   <string name="donate_missedbday_question">Ach, premeškali ste moje narodeniny, ktoré som mal 10. mája! Ak sa vám páči táto aplikácia, prečo mi nepošlete nejaký narodeninový pozdrav a malý darček? Ešte nie je neskoro na to, aby ste ma potešili! :-)</string>
   <string name="ok_donate">Povedzte mi viac!</string>
   <string name="no_thanks">Nie, nemám ho rád až natoľko</string>
+  <string name="donate_title">Podpora pre Keepass2Android</string>
+  <string name="donate_author_description">Karlsruhe, Germany\nHobby vývojár</string>
+  <string name="donate_open_source_info">Keepass2Android je voľne dostupný, s otvoreným zdrojovým kódom (GPLv3), bez reklám a platených funkcií. Vyvíjam ho vo svojom voľnom čase – ak bude pre vás užitočný, príspevok mi pomôže pokračovať v jeho ďalšom vývoji. Ďakujem!</string>
+  <string name="donate_intro">Keby ste ma stretli na ulici, pozvali by ste ma na pivo? A prečo to neurobiť virtuálne?</string>
+  <string name="donate_intro2">Myslíte, že by som nemal vyvíjať a piť pivo? A čo poviete na kolu a hranolky?</string>
+  <string name="donate_oktoberfest_beer">Pivo na Oktoberfeste</string>
+  <string name="donate_small_beer">Malé pivo</string>
+  <string name="donate_coke">Kola a hranolky</string>
+  <string name="donate_product_with_price">%1$s (%2$s)</string>
+  <string name="donate_other_amount">Alebo vyberte sumu (jednorazovo):</string>
   <!-- %1$s (label) is not shown, only the price -->
+  <string name="donate_amount_price">%2$s</string>
+  <string name="donate_yearly">Ročne</string>
+  <string name="donate_one_time">Jedenkrát</string>
+  <string name="donate_product_yearly_with_price">%1$s každý rok (%2$s za rok)</string>
+  <string name="donate_subscription_active">%1$s každý rok: aktívne, ďakujem! Dotykom môžete upraviť.</string>
+  <string name="donate_thank_you">Veľmi pekne ďakujem. :-) Vedeli ste, že možnosť podpory môžete vypnúť v nastaveniach zobrazenia? Ak je sivá, prosím pokračuje chvíľu v používaní Keepass2Android, pokiaľ sa neaktivuje.</string>
+  <string name="donate_pending">Ďakujem! Vaša podpora bude skompletizovaná hneď ho spracovaní platby.</string>
+  <string name="donate_billing_unavailable">Podpora cez Google Play momentálne nie je dostupná: %1$s</string>
+  <string name="donate_failed">Podporu nebolo možné skompletizovať: %1$s</string>
   <string name="enter_http_login_title">Zadajte prihlas. údaje pre WebDav:</string>
   <string name="enter_smb_login_title">Zadajte prihlasovacie údaje pre Samba:</string>
   <string name="hint_http_url">URL priečinka alebo súboru (napr.: mycloud.me.com/webdav/)</string>
@@ -650,6 +669,7 @@
   <string name="TrayTotp_SettingsField_title">Názov poľa pre nastavenia TOTP</string>
   <string name="TrayTotp_SettingsField_summary">Sem zadajte názov poľa s nastaveniami pre TrayTotp.</string>
   <string name="TrayTotp_prefs">TrayTotp</string>
+  <string name="Passkey_prefs">Nastavenia prístupového kľúča</string>
   <string name="DebugLog_prefs_prefs">Súbor so záznamami pre ladenie</string>
   <string name="DebugLog_title">Použiť súbor so záznamami</string>
   <string name="FtpDebug_title">FTP/SFTP záznam pre ladenie</string>
@@ -781,6 +801,12 @@
   <string name="webdav_chunked_upload_size_summary">Veľkosť blokov pri odosielaní na servery WebDav v bajtoch.</string>
   <string name="cleartextTrafficPermitted_title">Povoliť sieťovú prevádzku vo WebDav v čistom texte</string>
   <string name="cleartextTrafficPermitted_summary">HTTP pripojenia nie sú bezpečné. Túto voľbu zapnite iba v prípade prijatia iných bezpečnostných opatrení.</string>
+  <string-array name="ChangeLog_1_16">
+    <item>Pridaná podpora pre prístupové kľúče (Android 14 a novšie) 🎉. Ak chcete začať, otvorte Nastavenia - Aplikácia - Nastavenia prístupového kľúča.</item>
+    <item>Switched to Google-Play billing for donations (for variants published on Google Play), as requested by Google</item>
+    <item>Pridaná zabudovaná funkcia pre zachytenie fotografie</item>
+    <item>Vylepšená kompatibilita s Talkback</item>
+  </string-array>
   <string-array name="ChangeLog_1_15_net">
     <item>Aktualizácia na cieľovú verziu SDK 36</item>
     <item>Vylepšenie spracovávania URL pre WebDav so znakmi mimo ASCII</item>
@@ -1179,6 +1205,7 @@
     * Možno vznikli nejaké nové chyby :-)
   </string>
   <string name="ChangeLog_keptDonate">Rozšírená možnosť kúpenia piva alebo niečoho iného</string>
+  <string name="ChangeLog_tryInAppDonation">Otestujte novú možnosť podpory v aplikácii!</string>
   <string name="ChangeLog_0_7">    <b>Verzia 0.7</b>\n
     * Zvýšená rýchlosť načítavania: transformácie kľúča sú teraz 10x rýchlejšie!\n
     * Pridaná softvérová klávesnica Keepass2Android: pri zadávaní prihlasovacích údajov prepnite na túto klávesnicu. Umožní vám zabrániť krádeži hesla sledovacími programami (v nastaveniach vypnite staršie notifikácie schránky)\n
@@ -1327,10 +1354,44 @@
   <string name="pref_enable_periodic_background_sync_summary">Ak je zapnuté, aplikácia pravidelne synchronizuje odomknuté databázy, s použitím nastavení pripojenia uvedených hore.</string>
   <string name="pref_periodic_background_sync_interval_title">Časový interval pravidelnej synchronizácie na pozadí</string>
   <string name="pref_periodic_background_sync_interval_summary">Nastavte interval (v minútach) synchronizácie na pozadí.</string>
+  <string name="credential_provider_service_subtitle">Heslá a prístupové kľúče</string>
+  <string name="credential_provider_password_creation_description">Uložiť heslo do nového záznamu</string>
+  <string name="credential_provider_locked_database_description">Databáza je uzamknutá. Odomknete ju dotykom.</string>
+  <string name="credential_provider_passkey_creation_description">Uložiť prístupový kľúč</string>
+  <string name="passkey_entry_title">Prístupový kľúč pre %1$s</string>
+  <string name="passkey_unknown_username">Neznáme</string>
+  <string name="open_app_name">Otvoriť %1$s</string>
+  <string name="manage_credentials">Spravovať prihlasovacie údaje</string>
   <!-- Passkey Settings Screen -->
+  <string name="pref_passkeys_screen_summary">Synchronizácia, overenie používateľa a dôveryhodné prehliadače</string>
+  <string name="pref_passkeys_backup_category_title">Synchonizácia &amp; záloha</string>
+  <string name="pref_passkeys_uv_category_title">Overenie používateľa</string>
+  <string name="passkeys_uv_setting_change_subtitle">Pre zmenu tohto nastavenia musíte potvrdiť svoju identitu.</string>
   <!-- Passkey Backup Settings -->
+  <string name="passkeys_backup_eligibility_title">Povoliť synchronizovanie prístupových kľúčov</string>
+  <string name="passkeys_backup_eligibility_summary">Informuje webové stránky, že prístupové kľúče možno skopírovať do iných zariadení, napríklad pri synchronizovaní databázy. Niektoré webové stránky pracujú s takými prístupovými kľúčmi odlišne.</string>
+  <string name="passkeys_backup_state_title">Oznámiť prístupové kľúče ako synchronizované</string>
+  <string name="passkeys_backup_state_summary">Informuje webové stránky, že prístupové kľúče sú zálohované alebo synchronizované s inými zariadeniami. Túto voľbu zapnite ak databázu synchronizujete alebo zálohujete.</string>
   <!-- Passkey User Verification -->
+  <string name="passkeys_force_user_verification_when_preferred_title">Vynútiť overenie používateľa, ak je preferované</string>
+  <string name="passkey_user_verification_required_title">Vyžaduje sa overenie používateľa</string>
+  <string name="passkey_user_verification_required_description">Pre použitie tohto prístupového kľúča potvrďte svoju identitu.</string>
   <!-- Passkey trusted (privileged) browsers -->
+  <string name="pref_passkeys_browsers_category_title">Prehliadače</string>
+  <string name="passkeys_enable_provider_title">Použiť ako poskytovateľa prístupového kľúča</string>
+  <string name="passkeys_enable_provider_summary">Otvorí nastavenia Androidu pre heslá a prístupové kľúče, kde môžete aktivovať Keepass2Android.</string>
+  <string name="passkeys_provider_enabled_summary">Keepass2Android je aktivovaný pre heslá a prístupové kľúče. Dotykom otvoríte nastavenia Androidu.</string>
+  <string name="passkeys_provider_not_enabled_summary">Neaktivované. Dotykom otvorte nastavenia Androidu pre heslá a prístupové kľúče. Vyberte Keepass2Android ako preferovanú službu. Ak už je vybratá, vyberte najskôr voľbu \"Žiadna\" a potom znovu Keepass2Android.</string>
   <string name="passkey_provider_enable">Otvoriť nastavenia</string>
+  <string name="passkey_unknown_browser_add">Dôverovať prehliadaču</string>
+  <string name="passkey_request_interrupted">Požiadavka bola prerušená. Skúste to ešte raz.</string>
+  <string name="passkey_create_failed">Prístupový kľúč sa nedal zaregistrovať. Záznam bol uložený do databázy, ale nebude funkčný, môžete ho vymazať.</string>
+  <string name="passkey_user_verification_unavailable">Táto webová stránka vyžaduje overenie používateľa. Nastavte zámok obrazovky, aby ste mohli použiť prístupový kľúč.</string>
+  <string name="credential_provider_no_match_open_database">Žiadny zhodný prístupový kľúč. Otvorte inú databázu</string>
+  <string name="passkey_group_not_searchable">Prístupový kľúč bol uložený do skupiny \"%1$s\", kde je vypnuté vyhľadávanie. %2$s ho neponúkne pri prihlasovaní, pokiaľ ho nepresuniete do inej skupiny.</string>
+  <string name="passkey_already_registered">Prístupový kľúč pre toto konto je už uložený v %1$s.</string>
+  <string name="passkey_app_not_linked">%1$s nemôže používať prístupové kľúče pre %2$s: webová stránka neuvádza túto aplikáciu ako jednu zo svojich aplikácií.</string>
+  <string name="passkey_app_unverified_title">Aplikáciu nebolo možné overiť</string>
+  <string name="passkey_app_unverified_message">Keepass2Android nemohol overiť, či %1$s (%2$s) môže používať prístupové kľúče pre %3$s, pretože sa nepodarilo načítať zoznam aplikácii webovej stránky.\n\nPokračujte len ak tejto aplikácii dôverujete. Nabudúce prebehne opätovná kontrola.</string>
   <string name="passkey_app_unverified_continue">Pokračovať</string>
 </resources>
