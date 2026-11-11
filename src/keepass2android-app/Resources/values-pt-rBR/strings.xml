@@ -1362,8 +1362,41 @@
   <!-- Passkey Backup Settings -->
   <string name="passkeys_backup_eligibility_title">Permitir a sincronização de chaves de acesso</string>
   <string name="passkeys_backup_eligibility_summary">Informa aos sites que as chaves de acesso podem ser copiadas para outros dispositivos, por exemplo, sincronizando seu banco de dados. Alguns sites tratam essas chaves de acesso de forma diferente.</string>
+  <string name="passkeys_backup_state_title">Relatar chaves de acesso como sincronizadas</string>
+  <string name="passkeys_backup_state_summary">Informa aos sites que as chaves de acesso estão salvas ou sincronizadas em outros dispositivos. Ative se você sincronizar ou fazer backup do seu banco de dados.</string>
   <!-- Passkey User Verification -->
+  <string name="passkeys_force_user_verification_when_preferred_title">Forçar verificação de usuário quando preferido</string>
+  <string name="passkeys_force_user_verification_when_preferred_summary">Quando um site solicita a verificação de usuário \"preferida\", ainda exige biometria ou bloqueio do dispositivo antes de usar uma chave de acesso.</string>
+  <string name="passkeys_force_uv_not_available">Esta opção requer um bloqueio de tela (PIN, padrão ou senha) ou uma biometria forte neste dispositivo. Sem isso, as chaves de acesso não poderiam mais ser usadas. Por favor, configure um bloqueio de tela primeiro.</string>
+  <string name="passkey_user_verification_required_title">Verificação do usuário necessária</string>
+  <string name="passkey_user_verification_required_description">Confirme sua identidade para usar esta chave de acesso.</string>
   <!-- Passkey trusted (privileged) browsers -->
+  <string name="pref_passkeys_browsers_category_title">Navegadores</string>
+  <string name="passkeys_enable_provider_title">Usar como provedor de chave de acesso</string>
+  <string name="passkeys_enable_provider_summary">Abra as configurações do Android para senhas e chaves de acesso, onde você pode habilitar o Keepass2Android.</string>
+  <string name="passkeys_provider_enabled_summary">Keepass2Android está ativado para senhas e chaves de acesso. Toque para abrir as configurações do Android.</string>
+  <string name="passkeys_provider_not_enabled_summary">Não habilitado. Toque para abrir as configurações do Android para senhas e chaves de acesso e selecione Keepass2Android como serviço preferido. Se já estiver selecionado, selecione \"Nenhum\" primeiro e depois Keepass2Android novamente.</string>
+  <string name="passkey_provider_hint">Keepass2Android agora suporta chaves de acesso, mas ainda não está habilitado como provedor de chave de acesso. Abra as configurações do Android e selecione o Keepass2Android como serviço preferido. Se já estiver selecionado, selecione \"Nenhum\" primeiro e depois Keepass2Android novamente.</string>
   <string name="passkey_provider_enable">Abrir as configurações</string>
+  <string name="chrome_autofill_hint_title">Use Keepass2Android no Chrome</string>
+  <string name="chrome_autofill_hint">O Chrome está configurado para preencher senhas com o Gerenciador de Senhas do Google. Para usar o Keepass2Android no Chrome, abra as configurações do Chrome e selecione \"Preenchimento automático usando outro serviço\".</string>
+  <string name="chrome_autofill_open_settings">Abrir configurações do Chrome</string>
+  <string name="passkeys_privileged_apps_title">Navegadores confiáveis</string>
+  <string name="passkeys_privileged_apps_summary">Navegadores que podem usar chaves de acesso para sites, além da lista interna de navegadores conhecidos. Selecione apenas navegadores em que você confia: um navegador confiável pode usar suas senhas de acesso para qualquer site.</string>
+  <string name="passkeys_privileged_apps_none">Não há navegadores instalados que não estejam já na lista incorporada.</string>
+  <string name="passkeys_privileged_apps_not_installed">%1$s (não instalado)</string>
+  <string name="passkey_unknown_browser_title">Navegador desconhecido</string>
+  <string name="passkey_unknown_browser_message">%1$s (%2$s) quer usar uma chave de acesso para um site, mas ela não está na lista de navegadores conhecidos.\n\nConfie neste navegador apenas se tiver certeza de que ele é legítimo: um navegador confiável pode usar suas chaves de acesso para qualquer site.\n\nCertificado de assinatura (SHA-256):\n%3$s</string>
+  <string name="passkey_unknown_browser_add">Confiar no navegador</string>
+  <string name="passkey_request_interrupted">A solicitação foi interrompida. Por favor, tente novamente.</string>
+  <string name="passkey_create_failed">A chave de acesso não pôde ser registrada. A entrada foi salva no banco de dados, mas não funcionará; você pode excluí-la.</string>
+  <string name="passkey_user_verification_unavailable">Este site requer verificação do usuário. Configure um bloqueio de tela para usar sua chave de acesso.</string>
+  <string name="credential_provider_no_match_open_database">Nenhuma chave de acesso correspondente. Abra outro banco de dados</string>
+  <string name="passkey_group_not_searchable">A chave de acesso foi salva no grupo \"%1$s\", onde a pesquisa está desativada. %2$s não a oferecerá para login até que você a mova para outro grupo.</string>
+  <string name="passkey_already_registered">Uma chave de acesso para esta conta já está salva em %1$s.</string>
+  <string name="credential_provider_entry_not_found">A entrada não foi encontrada. Desbloqueie o banco de dados que a contém e tente novamente.</string>
+  <string name="passkey_app_not_linked">%1$s não tem permissão para usar chaves de acesso para %2$s: o site não lista este aplicativo como um de seus aplicativos.</string>
+  <string name="passkey_app_unverified_title">O aplicativo não pôde ser verificado</string>
+  <string name="passkey_app_unverified_message">Keepass2Android não pôde verificar se %1$s (%2$s) está autorizado a usar chaves de acesso para %3$s, porque a lista de aplicativos do site não pôde ser carregada.\n\nContinue apenas se você confiar neste aplicativo. Ele será verificado novamente na próxima vez.</string>
   <string name="passkey_app_unverified_continue">Continuar</string>
 </resources>
