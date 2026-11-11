@@ -545,7 +545,26 @@
   <string name="donate_missedbday_question">Ah, você esqueceu do meu aniversário no dia 10 de maio! Se você gosta deste app, porque não enviar-me algumas saudações de aniversário e um pequeno presente de aniversário? Ainda não é tarde demais para me fazer feliz! :-)</string>
   <string name="ok_donate">Conte-me mais!</string>
   <string name="no_thanks">Não, não me agrada muito</string>
+  <string name="donate_title">Doe para o Keepass2Android</string>
+  <string name="donate_author_description">Karlsruhe, Alemanha\nDesenvolvedor por hobby</string>
+  <string name="donate_open_source_info">Keepass2Android é gratuito e de código aberto (GPLv3), sem anúncios e sem recursos pagos. Eu o desenvolvo no meu tempo livre – se você o achar útil, uma doação me ajuda a mantê-lo. Obrigado!</string>
+  <string name="donate_intro">Se você me encontrasse na rua, me convidaria para uma cerveja? Por que não fazer isso virtualmente?</string>
+  <string name="donate_intro2">Você acha que eu não deveria tomar e beber uma cerveja? Que tal um refrigerante e algumas batatas fritas?</string>
+  <string name="donate_oktoberfest_beer">Cerveja Oktoberfest</string>
+  <string name="donate_small_beer">Cerveja pequena</string>
+  <string name="donate_coke">Coca e batatas fritas</string>
+  <string name="donate_product_with_price">%1$s (%2$s)</string>
+  <string name="donate_other_amount">Ou escolha um valor (único):</string>
   <!-- %1$s (label) is not shown, only the price -->
+  <string name="donate_amount_price">%2$s</string>
+  <string name="donate_yearly">Anualmente</string>
+  <string name="donate_one_time">Uma Única Vez</string>
+  <string name="donate_product_yearly_with_price">%1$s a cada ano (%2$s por ano)</string>
+  <string name="donate_subscription_active">%1$s todo ano: ativo, obrigado! Toque para gerenciar.</string>
+  <string name="donate_thank_you">Muito obrigado :-) Você sabia que é possível ocultar a opção de doação nas configurações de exibição? Se estiver desativada, por favor continue usando o Keepass2Android por um tempo até que seja habilitada.</string>
+  <string name="donate_pending">Obrigado! Sua doação será concluída assim que o pagamento for processado.</string>
+  <string name="donate_billing_unavailable">Doações pelo Google Play não estão disponíveis no momento: %1$s</string>
+  <string name="donate_failed">A doação não pôde ser concluída: %1$s</string>
   <string name="enter_http_login_title">Insira os dados de login WebDav:</string>
   <string name="enter_smb_login_title">Insira os dados de login do Samba:</string>
   <string name="hint_http_url">URL do arquivo ou pasta (ex: mycloud.me.com/webdav/)</string>
@@ -652,6 +671,7 @@
   <string name="TrayTotp_SettingsField_title">TOTP configurações nome do campo</string>
   <string name="TrayTotp_SettingsField_summary">Digite o nome do campo do campo de configurações para TrayTotp aqui.</string>
   <string name="TrayTotp_prefs">TrayTotp</string>
+  <string name="Passkey_prefs">Configurações de Chave de Acesso</string>
   <string name="DebugLog_prefs_prefs">Arquivo de Log para Depuração</string>
   <string name="DebugLog_title">Usar arquivo de log</string>
   <string name="FtpDebug_title">Registro de depuração FTP/SFTP</string>
@@ -779,6 +799,12 @@
   <string name="webdav_chunked_upload_size_summary">Tamanho dos blocos quando enviando para servidores WebDav, em bytes.</string>
   <string name="cleartextTrafficPermitted_title">Permitir tráfego de rede de texto não criptografado no WebDav</string>
   <string name="cleartextTrafficPermitted_summary">As conexões HTTP não são seguras. Habilite isso apenas se você tiver outras medidas de segurança em vigor.</string>
+  <string-array name="ChangeLog_1_16">
+    <item>Adicionado suporte para passkeys (Android 14 e posteriores) 🎉. Para começar, abra Configurações - Aplicativo - Configurações de de Chave de Acesso.</item>
+    <item>Mudou para cobrança do Google Play para doações (para variantes publicadas no Google Play), conforme solicitado pelo Google</item>
+    <item>Recurso de captura de fotos incorporado adicionado</item>
+    <item>Compatibilidade aprimorada com o Talkback</item>
+  </string-array>
   <string-array name="ChangeLog_1_15_net">
     <item>Atualização para o Target SDK versão 36</item>
     <item>Melhorias no tratamento de URL para WebDav com caracteres não ASCII</item>
@@ -1172,6 +1198,7 @@
     * provavelmente introduziu novos bugs :-)
   </string>
   <string name="ChangeLog_keptDonate">Estendida a possibilidade de doar uma cerveja ou outra coisa</string>
+  <string name="ChangeLog_tryInAppDonation">Teste a nova opção de doação no aplicativo!</string>
   <string name="ChangeLog_0_7">    <b>Versão 0.7</b>\n
     * Maior velocidade de carregamento: transformações principais agora 10 vezes mais rápidas!\n
     * Adicionado teclado virtual Keepass2Android: mude para este teclado para inserir credenciais. Protege você contra detectores de senha baseados na área de transferência (desative as notificações antigas da área de transferência nas opções)\n
@@ -1319,8 +1346,22 @@
   <string name="pref_enable_periodic_background_sync_summary">Se ativado, o aplicativo sincronizará periodicamente os bancos de dados desbloqueados. Isso respeita as configurações de conexão de rede acima.</string>
   <string name="pref_periodic_background_sync_interval_title">Intervalo de tempo de sincronização periódica em segundo plano</string>
   <string name="pref_periodic_background_sync_interval_summary">Defina o intervalo para sincronização em segundo plano em minutos.</string>
+  <string name="credential_provider_service_subtitle">Senhas e chaves de acesso</string>
+  <string name="credential_provider_password_creation_description">Salvar senha em nova entrada</string>
+  <string name="credential_provider_locked_database_description">Banco de dados está bloqueado. Toque para desbloquear.</string>
+  <string name="credential_provider_passkey_creation_description">Salvar chave de acesso</string>
+  <string name="passkey_entry_title">Chave de acesso para %1$s</string>
+  <string name="passkey_unknown_username">Desconhecido</string>
+  <string name="open_app_name">Abrir %1$s</string>
+  <string name="manage_credentials">Gerenciar credenciais</string>
   <!-- Passkey Settings Screen -->
+  <string name="pref_passkeys_screen_summary">Sincronização, verificação de usuário e navegadores confiáveis</string>
+  <string name="pref_passkeys_backup_category_title">Sincronizar &amp; e fazer backup</string>
+  <string name="pref_passkeys_uv_category_title">Verificação do usuário</string>
+  <string name="passkeys_uv_setting_change_subtitle">Confirme sua identidade para alterar esta configuração.</string>
   <!-- Passkey Backup Settings -->
+  <string name="passkeys_backup_eligibility_title">Permitir a sincronização de chaves de acesso</string>
+  <string name="passkeys_backup_eligibility_summary">Informa aos sites que as chaves de acesso podem ser copiadas para outros dispositivos, por exemplo, sincronizando seu banco de dados. Alguns sites tratam essas chaves de acesso de forma diferente.</string>
   <!-- Passkey User Verification -->
   <!-- Passkey trusted (privileged) browsers -->
   <string name="passkey_provider_enable">Abrir as configurações</string>
