@@ -803,7 +803,7 @@
   <string name="cleartextTrafficPermitted_summary">HTTP pripojenia nie sú bezpečné. Túto voľbu zapnite iba v prípade prijatia iných bezpečnostných opatrení.</string>
   <string-array name="ChangeLog_1_16">
     <item>Pridaná podpora pre prístupové kľúče (Android 14 a novšie) 🎉. Ak chcete začať, otvorte Nastavenia - Aplikácia - Nastavenia prístupového kľúča.</item>
-    <item>Switched to Google-Play billing for donations (for variants published on Google Play), as requested by Google</item>
+    <item>Prepnutie na zúčtovanie príspevkov cez Google Play (pre varianty publikované na Google Play), ako to požaduje Google</item>
     <item>Pridaná zabudovaná funkcia pre zachytenie fotografie</item>
     <item>Vylepšená kompatibilita s Talkback</item>
   </string-array>
@@ -1374,6 +1374,8 @@
   <string name="passkeys_backup_state_summary">Informuje webové stránky, že prístupové kľúče sú zálohované alebo synchronizované s inými zariadeniami. Túto voľbu zapnite ak databázu synchronizujete alebo zálohujete.</string>
   <!-- Passkey User Verification -->
   <string name="passkeys_force_user_verification_when_preferred_title">Vynútiť overenie používateľa, ak je preferované</string>
+  <string name="passkeys_force_user_verification_when_preferred_summary">Ak stránka vyžaduje \"preferované\" overenie používateľa, stále sa vyžaduje biometrický zámok alebo zámok zariadenia pred použitím prístupového kľúča.</string>
+  <string name="passkeys_force_uv_not_available">Táto voľba vyžaduje zámok obrazovky (PIN, vzor či heslo) alebo silnú biometrickú ochranu na tomto zariadení. Bez toho by sa už nedali používať prístup. kľúče. Nastavte najskôr zámok obrazovky.</string>
   <string name="passkey_user_verification_required_title">Vyžaduje sa overenie používateľa</string>
   <string name="passkey_user_verification_required_description">Pre použitie tohto prístupového kľúča potvrďte svoju identitu.</string>
   <!-- Passkey trusted (privileged) browsers -->
