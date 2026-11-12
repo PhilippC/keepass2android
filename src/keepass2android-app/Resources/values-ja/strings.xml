@@ -258,6 +258,8 @@
   <string name="space">半角スペース</string>
   <string name="search_label">検索</string>
   <string name="show_password">パスワードを表示</string>
+  <string name="hide_password">パスワードを隠す</string>
+  <string name="select_icon">アイコンを選ぶ</string>
   <string name="sort_menu">並べ替え...</string>
   <string name="sort_name">タイトル</string>
   <string name="sort_db">作成日時</string>
@@ -369,6 +371,9 @@
   <string name="field_value">フィールド値</string>
   <string name="protection">保護されたフィールド</string>
   <string name="add_binary">添付ファイルを追加</string>
+  <string name="capture_flip_camera">カメラの切り替え</string>
+  <string name="camera_permission_required">写真を撮影するにはカメラの許可が必要です</string>
+  <string name="capture_attachment_size_warning">写真のサイズを選ぶ</string>
   <string name="capture_size_small">小</string>
   <string name="capture_size_medium">中</string>
   <string name="add_extra_string">補足文字列を追加</string>
@@ -493,6 +498,7 @@
   <string name="UseOnlineMode">キャッシュコピーをソースと同期</string>
   <string name="UseOfflineMode_Info">データベースは内部キャッシュから読み込まれます。変更は内部キャッシュのみに保存され、キャッシュコピーをソースと同期を選択した場合のみ同期されます。</string>
   <string name="InOfflineMode">内部キャッシュのみで動作中</string>
+  <string name="ServerNotReachable">サーバーに到達できませんでした。インターネット接続とサーバーのアドレスを確認してください。</string>
   <string name="SynchronizingCachedDatabase">キャッシュされたデータベースを同期しています…</string>
   <string name="DownloadingRemoteFile">ソースファイルを読み込んでいます…</string>
   <string name="UploadingFile">ファイルを保存しています…</string>
@@ -522,6 +528,11 @@
   <string name="donate_missedbday_question">ああ、あなたは 5 月 10 日の私の誕生日を忘れていましたね！ このアプリを気に入ってくださったとしたら、お祝いのメッセージやプレゼントを贈っていただけませんか？ まだ遅くありませんよ！ :-)</string>
   <string name="ok_donate">さらに詳しく！</string>
   <string name="no_thanks">それほど気に入っていません</string>
+  <string name="donate_title">Keepass2Android に寄付する</string>
+  <string name="donate_author_description">ドイツ、カールスルーエ\n趣味開発者</string>
+  <string name="donate_open_source_info">Keepass2Android は自由かつオープンソース (GPLv3) であり、私は空き時間に開発を行っています - もし便利だと思っていただけたなら、ご寄付をいただけると継続の助けになります。ありがとう!</string>
+  <string name="donate_intro">もし私とばったり出くわしたなら、飲みに行こうと誘っていただけますか? オンラインでそのようにするのはいかがでしょうか。</string>
+  <string name="donate_intro2">ビール片手に開発するのはけしからん、って? じゃあ、コーラとポテトならどうですか?</string>
   <!-- %1$s (label) is not shown, only the price -->
   <string name="enter_http_login_title">WebDav のログイン情報を入力:</string>
   <string name="hint_http_url">フォルダーまたはファイルの URL (例: mycloud.me.com/webdav/)</string>
@@ -623,6 +634,7 @@
   <string name="TrayTotp_SettingsField_title">TOTP 設定フィールド名</string>
   <string name="TrayTotp_SettingsField_summary">ここに TrayTotp の設定フィールドのフィールド名を入力してください。</string>
   <string name="TrayTotp_prefs">TrayTotp</string>
+  <string name="Passkey_prefs">パスキーの設定</string>
   <string name="DebugLog_prefs_prefs">デバッグ用のログファイル</string>
   <string name="DebugLog_title">ログファイルを使用</string>
   <string name="FtpDebug_title">FTP/SFTP デバッグログ</string>
@@ -740,6 +752,18 @@
   <string name="EntryChannel_desc">選択中のエントリーへ簡単にアクセスするための通知</string>
   <string name="CloseDbAfterFailedAttempts">生体認証ロック解除に 3 回失敗すると、データベースを閉じます。</string>
   <string name="WarnFingerprintInvalidated">警告！ 生体認証は、例えば、新たな指紋をデバイスに追加したときなどに Android によって無効にされる可能性があります。常にマスターパスワードによる解除方法を覚えておいてください！</string>
+  <string-array name="ChangeLog_1_16">
+    <item>パスキーをサポートするようになりました(Android 14とそれ以降)🎉。始めるには、設定から「アプリケーション」→「パスキーの設定」を開いてください。</item>
+    <item>Switched to Google-Play billing for donations (for variants published on Google Play), as requested by Google</item>
+    <item>Added built-in photo capture feature</item>
+    <item>Improved compatibility with Talkback</item>
+  </string-array>
+  <string-array name="ChangeLog_1_15_net">
+    <item>Update to Target SDK version 36</item>
+    <item>Improvements to URL handling for WebDav with non-ASCII characters</item>
+    <item>Improvements to OneDrive Authentication</item>
+    <item>軽微なバグ修正</item>
+  </string-array>
   <string-array name="ChangeLog_1_12">
     <item>Xamarin Android から .net 8 にアップグレード</item>
     <item>ターゲットを SDK 34 にアップグレード</item>
@@ -1183,6 +1207,11 @@
     <item>検証が失敗したときに警告</item>
     <item>無効な証明書を受け入れない</item>
   </string-array>
+  <string-array name="OneDriveBrokerMode_options">
+    <item>自動 (おすすめ)</item>
+    <item>Always use device sign-in</item>
+    <item>Never use device sign-in</item>
+  </string-array>
   <string name="ClearClipboardWarning">この機能がお使いのシステムで正しく動作していることを確認してください。動作しない場合は、内蔵キーボードの使用を検討してください</string>
   <string name="PluginDescription">プラグインから提供された説明:</string>
   <string name="autofill_hint">Keepass2Android は Android の自動入力機能に対応していますが、まだ有効にしていないようです</string>
@@ -1218,10 +1247,25 @@
   <string name="AutofillWarning_FillDomainInUntrustedApp">「%2$s」が信頼できて「%1$s」に属するか、アプリ「%2$s」を信頼していて、アカウント情報の誤用ではない場合 (信頼できるブラウザアプリなど) であれば続行しても問題ありません。そうでない場合はキャンセルしてください。</string>
   <string name="AutofillWarning_trustAsBrowser">常に「%1$s」に同意</string>
   <string name="english_ime_settings">Keepass2Android キーボードの設定</string>
+  <string name="credential_provider_service_subtitle">パスワードとパスキー</string>
+  <string name="credential_provider_password_creation_description">新しいエントリーにパスワードを保存する</string>
+  <string name="credential_provider_locked_database_description">データベースはロックされています。解除するにはタップしてください。</string>
+  <string name="credential_provider_passkey_creation_description">パスキーを保存する</string>
+  <string name="passkey_entry_title">%1$s のパスキー</string>
   <!-- Passkey Settings Screen -->
   <!-- Passkey Backup Settings -->
   <!-- Passkey User Verification -->
+  <string name="passkey_user_verification_required_description">このパスキーを使用するには本人確認をしてください。</string>
   <!-- Passkey trusted (privileged) browsers -->
+  <string name="pref_passkeys_browsers_category_title">ブラウザ</string>
   <string name="passkey_provider_enable">設定を開く</string>
+  <string name="passkeys_privileged_apps_title">信頼済みブラウザ</string>
+  <string name="passkey_unknown_browser_title">不明なブラウザ</string>
+  <string name="passkey_unknown_browser_add">ブラウザを信頼する</string>
+  <string name="passkey_request_interrupted">リクエストが中断されました。もう一度お試しください。</string>
+  <string name="passkey_create_failed">パスキーが登録できませんでした。エントリーはデータベースへ保存されましたが、機能しません。削除しても大丈夫です。</string>
+  <string name="passkey_user_verification_unavailable">このウェブサイトは本人確認が必要です。パスキーを使用するには画面ロックを有効にしてください。</string>
+  <string name="credential_provider_no_match_open_database">一致するパスキーが見つかりませんでした。別のデータベースを開いてください。</string>
+  <string name="passkey_already_registered">このアカウントのパスキーは既に%1$sに保存されています。</string>
   <string name="passkey_app_unverified_continue">続行</string>
 </resources>
