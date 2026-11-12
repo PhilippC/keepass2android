@@ -59,6 +59,44 @@ public class Kp2aControl {
 	
 	
 	/**
+	 * Creates and returns an intent to launch Keepass2Android for updating the entry whose field keyField is exactly
+	 * keyValue. The key is a field of the app's choice holding a value the app generated when it created the entry,
+	 * typically a random string, so the user may freely change the title, URL or anything else.
+	 * The entry opens in the editor with the new values filled in; nothing is changed until the user saves. Fields not
+	 * passed stay as they are; a field mapped to null is removed.
+	 * @param keyField Name of the field that identifies the entry, e.g. "MyApp id".
+	 * @param keyValue Exact value of that field.
+	 * @param fields Key/Value pairs of the field values. See KeepassDefs for standard keys.
+	 * @param protectedFields List of keys of the protected fields.
+	 * @param createIfMissing If true and no entry has the key, a new entry is created with the fields and the key field instead.
+	 * @return Intent to start Keepass2Android.
+	 */
+	public static Intent getUpdateEntryIntent(String keyField, String keyValue, HashMap<String, String> fields, ArrayList<String> protectedFields, boolean createIfMissing)
+	{
+		JSONObject data = new JSONObject();
+		try
+		{
+			for (java.util.Map.Entry<String, String> f : fields.entrySet())
+				data.put(f.getKey(), f.getValue() == null ? JSONObject.NULL : f.getValue());
+		}
+		catch (JSONException e)
+		{
+			throw new IllegalArgumentException(e);
+		}
+		Intent startKp2aIntent = new Intent(Strings.ACTION_START_WITH_TASK);
+		startKp2aIntent.addCategory(Intent.CATEGORY_DEFAULT);
+		startKp2aIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+		startKp2aIntent.putExtra("KP2A_APPTASK", "UpdateEntryThenCloseTask");
+		startKp2aIntent.putExtra("UpdateEntry_KeyField", keyField);
+		startKp2aIntent.putExtra("UpdateEntry_KeyValue", keyValue);
+		startKp2aIntent.putExtra("UpdateEntry_CreateIfMissing", String.valueOf(createIfMissing)); //KP2A expects a StringExtra
+		startKp2aIntent.putExtra(Strings.EXTRA_ENTRY_OUTPUT_DATA, data.toString());
+		if (protectedFields != null)
+			startKp2aIntent.putStringArrayListExtra(Strings.EXTRA_PROTECTED_FIELDS_LIST, protectedFields);
+		return startKp2aIntent;
+	}
+
+	/**
 	 * Creates an intent to open a Password Entry matching searchText
 	 * @param searchText queryString
 	 * @param showUserNotifications if true, the notifications (copy to clipboard, keyboard) are displayed
