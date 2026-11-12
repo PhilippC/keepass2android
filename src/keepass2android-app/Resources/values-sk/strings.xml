@@ -598,7 +598,7 @@
   <string name="sftp_shk_title">Algoritmus pre server. host. kľúč (voliteľne)</string>
   <string name="hint_sftp_shk">\"Mená oddeľované čiarkou/špec.</string>
   <string name="enter_ftp_login_title">Zadajte prihlas. údaje pre FTP:</string>
-  <string name="enter_mega_login_title">Zadajte svoje prihlasovacie údaje ku kontu MEGA:</string>
+  <string name="enter_mega_login_title">Zadajte svoje prihlasovacie údaje k účtu MEGA:</string>
   <string name="select_storage_type">Vyberte spôsob uloženia:</string>
   <string name="filestoragename_file">Lokálny súbor</string>
   <string name="filestoragename_androidget">Získať z inej aplikácie</string>
@@ -617,7 +617,7 @@
   <string name="filestoragename_gdriveKP2A">Google Drive (súbory KP2A)</string>
   <string name="filestoragehelp_gdriveKP2A">Ak nechcete poskytnúť KP2A prístup k celému úložisku Google Drive, môžete vybrať túto možnosť. Pamätajte na to, že najskôr musíte vytvoriť súbor s databázou, existujúce súbory aplikácia neuvidí. Buď vyberte takúto možnosť z obrazovky pre vytvorenie databázy, alebo už otvorenú databázu exportujte vybratím tejto možnosti.</string>
   <string name="filestoragename_pcloud">PCloud (priečinok KP2A)</string>
-  <string name="filestoragehelp_pcloud">Tento typ uloženia vyžaduje len prístup k priečinku pCloud \"Aplikácie/Keepass2Android\". Ak chcete použiť existujúcu databázu z konta pCloud, prosím uistite sa, že súbor je umiestnený v priečinku pCloud.</string>
+  <string name="filestoragehelp_pcloud">Tento typ uloženia vyžaduje len prístup k priečinku pCloud \"Aplikácie/Keepass2Android\". Ak chcete použiť existujúcu databázu z účtu pCloud, prosím uistite sa, že súbor je umiestnený v priečinku pCloud.</string>
   <string name="filestoragename_pcloudall">PCloud (úplný prístup)</string>
   <string name="filestoragename_onedrive">OneDrive</string>
   <string name="filestoragename_onedrive2">OneDrive</string>
@@ -626,7 +626,7 @@
   <string name="filestoragename_onedrive2_appfolder">Priečinok aplikácie Keepass2Android</string>
   <string name="filestoragename_sftp">SFTP (SSH File Transfer)</string>
   <string name="filestoragename_mega">MEGA</string>
-  <string name="filestoragehelp_mega">Pamätajte: pre správne fungovanie musí Keepass2Android stiahnuť zoznam všetkých súborov vo vašom konte Mega. Preto môže byť prístup ku kontám s mnohými súbormi pomalý.</string>
+  <string name="filestoragehelp_mega">Pamätajte: pre správne fungovanie musí Keepass2Android stiahnuť zoznam všetkých súborov vo vašom účte Mega. Preto môže byť prístup k účtom s mnohými súbormi pomalý.</string>
   <string name="filestoragename_content">Systémový prehliadač súborov</string>
   <string name="filestorage_setup_title">Inicializácia prístupu k súboru</string>
   <string name="database_location">Umiestnenie databázy</string>
@@ -937,7 +937,7 @@
     * Obnovenie pozície kurzora pri prepnutí viditeľnosti hesla (ďakujeme používateľovi DDoSolitary!)\n
     * Vylepšenia implementácie pCloud (opäť ďakujeme používateľovi gilbsgilbs!)\n
     * Pridanie podpory automatického dopĺňania pre viacero ďalších prehliadačov\n
-    * Nová implementácia pre OneDrive: zahŕňa podporu pre OneDrive for Business, zdieľané súbory, voliteľný rozsah prístupu, viaceré kontá a opravuje problémy s prístupom offline\n
+    * Nová implementácia pre OneDrive: zahŕňa podporu pre OneDrive for Business, zdieľané súbory, voliteľný rozsah prístupu, viaceré účty a opravuje problémy s prístupom offline\n
     * Opravy chýb
   </string>
   <string name="ChangeLog_1_07">    Verzia 1.07\n
@@ -1062,7 +1062,7 @@
     * Podpora frameworku Storage Access Framework (umožňuje zápis na kartu SD a jednotku Google Drive keď je KP2A offline)\n
     * Pokus o detekciu chybného používateľského vstupu pri zadávaní URL adries WebDAV (priečinok namiesto súboru)\n
     * Zmenené písmo pre heslá\n
-    * Umožnenie zmeny konta služby Dropbox\n
+    * Umožnenie zmeny účtu služby Dropbox\n
     * Opravená chyba: možnosť zapamätania hesla OTP\n
   </string>
   <string name="ChangeLog_0_9_7b">    Verzia 0.9.7b\n
@@ -1384,14 +1384,25 @@
   <string name="passkeys_enable_provider_summary">Otvorí nastavenia Androidu pre heslá a prístupové kľúče, kde môžete aktivovať Keepass2Android.</string>
   <string name="passkeys_provider_enabled_summary">Keepass2Android je aktivovaný pre heslá a prístupové kľúče. Dotykom otvoríte nastavenia Androidu.</string>
   <string name="passkeys_provider_not_enabled_summary">Neaktivované. Dotykom otvorte nastavenia Androidu pre heslá a prístupové kľúče. Vyberte Keepass2Android ako preferovanú službu. Ak už je vybratá, vyberte najskôr voľbu \"Žiadna\" a potom znovu Keepass2Android.</string>
+  <string name="passkey_provider_hint">Keepass2Android už podporuje prístupové kľúče, ale ešte nie je aktivovaný ako ich poskytovateľ. Otvorte nastavenia Androidu a vyberte Keepass2Android ako preferovanú službu. Ak už je vybraný, vyberte najskôr voľbu \"Žiadna\" a potom znovu Keepass2Android.</string>
   <string name="passkey_provider_enable">Otvoriť nastavenia</string>
+  <string name="chrome_autofill_hint_title">Používať Keepass2Android v Chrome</string>
+  <string name="chrome_autofill_hint">Chrome vypĺňa heslá pomocou Správcu hesiel Google. Ak chcete použiť Keepass2Android v Chrome, otvorte nastavenia Chrome a vyberte \"Automatické dopĺňanie pomocou inej služby\".</string>
+  <string name="chrome_autofill_open_settings">Otvoriť nastavenia Chrome</string>
+  <string name="passkeys_privileged_apps_title">Dôveryhodné prehliadače</string>
+  <string name="passkeys_privileged_apps_summary">Prehliadače, ktoré môžu používať prístupové kľúče pre webové stránky, okrem tých, ktoré sú už obsiahnuté v zozname známych prehliadačov. Vyberte len také, ktorým dôverujete: dôveryhodný prehliadač môže používať prístupové kľúče pre akúkoľvek webovú stránku.</string>
+  <string name="passkeys_privileged_apps_none">Nie sú nainštalované prehliadače, ktoré by už neboli v integrovanom zozname.</string>
+  <string name="passkeys_privileged_apps_not_installed">%1$s (nenainštalované)</string>
+  <string name="passkey_unknown_browser_title">Neznámy prehliadač</string>
+  <string name="passkey_unknown_browser_message">%1$s (%2$s) chce použiť prístupový kľúč pre webovú stránku, ale nie je uvedený v zozname známych prehliadačov.\n\nDôverujte mu iba ak ste si istí, že je legitímny: dôveryhodný prehliadač môže používať prístupové kľúče pre akýkoľvek web.\n\nPodpisový certifikát (SHA-256):\n%3$s</string>
   <string name="passkey_unknown_browser_add">Dôverovať prehliadaču</string>
   <string name="passkey_request_interrupted">Požiadavka bola prerušená. Skúste to ešte raz.</string>
   <string name="passkey_create_failed">Prístupový kľúč sa nedal zaregistrovať. Záznam bol uložený do databázy, ale nebude funkčný, môžete ho vymazať.</string>
   <string name="passkey_user_verification_unavailable">Táto webová stránka vyžaduje overenie používateľa. Nastavte zámok obrazovky, aby ste mohli použiť prístupový kľúč.</string>
   <string name="credential_provider_no_match_open_database">Žiadny zhodný prístupový kľúč. Otvorte inú databázu</string>
   <string name="passkey_group_not_searchable">Prístupový kľúč bol uložený do skupiny \"%1$s\", kde je vypnuté vyhľadávanie. %2$s ho neponúkne pri prihlasovaní, pokiaľ ho nepresuniete do inej skupiny.</string>
-  <string name="passkey_already_registered">Prístupový kľúč pre toto konto je už uložený v %1$s.</string>
+  <string name="passkey_already_registered">Prístupový kľúč pre tento účet je už uložený v %1$s.</string>
+  <string name="credential_provider_entry_not_found">Záznam sa nenašiel. Odomknite databázu, ktorá ho obsahuje a skúste to znovu.</string>
   <string name="passkey_app_not_linked">%1$s nemôže používať prístupové kľúče pre %2$s: webová stránka neuvádza túto aplikáciu ako jednu zo svojich aplikácií.</string>
   <string name="passkey_app_unverified_title">Aplikáciu nebolo možné overiť</string>
   <string name="passkey_app_unverified_message">Keepass2Android nemohol overiť, či %1$s (%2$s) môže používať prístupové kľúče pre %3$s, pretože sa nepodarilo načítať zoznam aplikácii webovej stránky.\n\nPokračujte len ak tejto aplikácii dôverujete. Nabudúce prebehne opätovná kontrola.</string>
