@@ -258,6 +258,11 @@
   <string name="space">Boşluk</string>
   <string name="search_label">Arama</string>
   <string name="show_password">Parolayı göster</string>
+  <string name="hide_password">Şifreyi gizle</string>
+  <string name="hidden_protected_field">Gizli, %1$d karakter</string>
+  <string name="browse">Göz At</string>
+  <string name="select_icon">İkon Seç</string>
+  <string name="selected">Seçili</string>
   <string name="sort_menu">Sırala...</string>
   <string name="sort_name">Ada göre sırala</string>
   <string name="sort_db">Oluşturma tarihine göre sırala</string>
@@ -372,8 +377,15 @@
   <string name="field_value">Alan değeri</string>
   <string name="protection">Korunmuş alan</string>
   <string name="add_binary">Ek dosya ekle...</string>
+  <string name="attach_browse_file">Dosyalara göz at…</string>
+  <string name="attach_take_photo">Fotoğraf çek…</string>
+  <string name="capture_photo_title">Fotoğraf çek</string>
+  <string name="capture_flip_camera">Kamerayı çevir</string>
+  <string name="camera_permission_required">Fotoğraf çekmek için kamera izni gerekli.</string>
+  <string name="capture_attachment_size_warning">Fotoğraf boyutunu seç</string>
   <string name="capture_size_small">Küçük</string>
   <string name="capture_size_medium">Orta</string>
+  <string name="capture_size_original">Orijinal</string>
   <string name="add_extra_string">Ek dize ekle</string>
   <string name="configure_totp">TOTP\'yi yapılandır</string>
   <string name="totp_secret_key">Gizli anahtar</string>
@@ -497,6 +509,7 @@
   <string name="UseOnlineMode">Önbellek kopyasını kaynakla eşitle</string>
   <string name="UseOfflineMode_Info">Veritabanı önbellekten yüklendi. Önbellek kopyasını kaynakla eşitle seçeneği seçilene kadar değişiklikler sadece önbellekteki dosyada uygulanacak.</string>
   <string name="InOfflineMode">Sadece önbellekteki dosya ile çalışıyor.</string>
+  <string name="ServerNotReachable">Sunucuya bağlanılamadı. Lütfen internet bağlantınızı ve sunucu adresini kontrol edin.</string>
   <string name="SynchronizingCachedDatabase">Önbelleğe alınan veritabanı eşleştiriliyor…</string>
   <string name="DownloadingRemoteFile">Kaynak dosya yükleniyor…</string>
   <string name="UploadingFile">Dosyayı kaydet…</string>
@@ -526,7 +539,24 @@
   <string name="donate_missedbday_question">Oh, 10 Mayıs doğum günümü kaçırdın! Bu uygulamayı beğendiysen, neden bana bir doğum günü kutlaması ve hediyesi göndermiyorsun? Henüz beni mutlu etmek için çok geç değil! :-)</string>
   <string name="ok_donate">Daha fazla bilgi ver!</string>
   <string name="no_thanks">Hayır, çok hoşuma gitmiyor</string>
+  <string name="donate_title">Keepass2Android için Bağışta Bulun</string>
+  <string name="donate_author_description">Karlsruhe, Almanya\nHobi geliştirici</string>
+  <string name="donate_open_source_info">Keepass2Android bedava ve açık kaynaklı (GPLv3), ayrıca reklamsız ve ücretli özellik yok. Boş zamanımda geliştiriyorum. Eğer kullanışlı bulduysan, bir bağış bu yolda devam etmeme yardım edecektir. Teşekkürler!</string>
+  <string name="donate_intro">Benimle sokakta tanışsan, beni bira içmeye çağırır mıydın? Bunu neden sanaldan yapmayasın?</string>
+  <string name="donate_intro2">Uygulama geliştirip bira içmemi istemiyor musun? Kola ve biraz patates kızartmasına ne dersin?</string>
+  <string name="donate_oktoberfest_beer">Oktoberfest birası</string>
+  <string name="donate_small_beer">Küçük bira</string>
+  <string name="donate_coke">Kola ve patates kızartması</string>
+  <string name="donate_product_with_price">%1$s (%2$s)</string>
+  <string name="donate_other_amount">Veya bir miktar seçin (bir seferlik):</string>
   <!-- %1$s (label) is not shown, only the price -->
+  <string name="donate_amount_price">%2$s</string>
+  <string name="donate_yearly">Yıllık</string>
+  <string name="donate_one_time">Bir seferlik</string>
+  <string name="donate_thank_you">Çok teşekkür ederim :-) Bağış opsiyonunu görünüm ayarlarında gizleyebileceğinizi biliyor muydunuz? Eğer düğme yoksa lütfen Keepass2Android\'i kullanmaya düğme açılana kadar bir süre devam edin.</string>
+  <string name="donate_pending">Teşekkürler! Bağışınız ödeme işlendikten sonr atamamlanacaktır.</string>
+  <string name="donate_billing_unavailable">Google Play üzerinden bağışlar şu anda kullanılamıyor: %1$s</string>
+  <string name="donate_failed">Bağış tamamlanamadı: %1$s</string>
   <string name="enter_http_login_title">WebDav oturum açma verilerini girin:</string>
   <string name="enter_smb_login_title">Samba oturum açma verilerini girin:</string>
   <string name="hint_http_url">Klasör veya dosyanın URL (örn: mycloud.me.com/webdav/)</string>
@@ -633,6 +663,7 @@
   <string name="TrayTotp_SettingsField_title">TOTP ayarları alan adı</string>
   <string name="TrayTotp_SettingsField_summary">TrayTotp için ayarlar alanının adını buraya girin.</string>
   <string name="TrayTotp_prefs">TrayTotp</string>
+  <string name="Passkey_prefs">Geçiş Anahtarı Ayarları</string>
   <string name="DebugLog_prefs_prefs">Hata ayıklama günlük dosyası</string>
   <string name="DebugLog_title">Günlük dosyası kullan</string>
   <string name="FtpDebug_title">FTP/SFTP hata ayıklama günlüğü</string>
@@ -758,6 +789,12 @@
   <string name="webdav_chunked_upload_size_summary">WebDav sunucularına yükleme yapılırken kullanılacak yığınların bayt cinsinden gösterimi</string>
   <string name="cleartextTrafficPermitted_title">WebDav\'da düz metin ağ trafiğine izin ver</string>
   <string name="cleartextTrafficPermitted_summary">HTTP bağlantıları güvenli değildir. Yalnızca başka güvenlik önlemleri uyguluyorsanız bunu etkinleştirin.</string>
+  <string-array name="ChangeLog_1_15_net">
+    <item>Update to Target SDK version 36</item>
+    <item>Improvements to URL handling for WebDav with non-ASCII characters</item>
+    <item>OneDrive Yetkilendirmesinde Geliştirmeler</item>
+    <item>Küçük hata düzeltmeleri</item>
+  </string-array>
   <string-array name="ChangeLog_1_14">
     <item>.net 9 ve Target SDK sürüm 35\'e güncelleyin. Bu, Android 15\'te şeffaf durum çubuğu ile birlikte gelir, çünkü uçtan uca artık varsayılan ayardır.</item>
     <item>Küçük UI iyileştirmeleri</item>
@@ -1235,6 +1272,11 @@
     <item>Doğrulama başarısız olduğunda uyar</item>
     <item>Geçersiz sertifikaları kabul etme</item>
   </string-array>
+  <string-array name="OneDriveBrokerMode_options">
+    <item>Otomatik (önerilen)</item>
+    <item>Her zaman cihaz girişini kullan</item>
+    <item>Asla cihaz girişini kullanma</item>
+  </string-array>
   <string name="ClearClipboardWarning">Bunun sisteminizde çalıştığından emin olun, eğer çalışmıyorsa yerleşik klavyeyi kullanın.</string>
   <string name="PluginDescription">Eklenti tarafından sağlanan açıklama:</string>
   <string name="autofill_hint">Keepass2Android, Android\'in Otomatik Doldurma özelliğini destekliyor ancak henüz etkinleştirilmemişe benziyor.</string>
@@ -1283,11 +1325,38 @@
   <string name="add_current_ssid">Geçerli SSID ekleyin</string>
   <string name="enter_ssid_hint">SSID girin</string>
   <string name="add_ssid">Başka bir SSID ekleyin</string>
+  <string name="no_ssids">Hiç SSID eklenmedi. Otomatik arkaplan senkronizasyonu herhangi bir Wi-Fi içerisinde uygulanacak.</string>
+  <string name="ssid_empty_or_exists">SSID boş veya zaten listede</string>
   <string name="remove_ssid_title">SSID\'yi kaldırın</string>
+  <string name="remove_ssid_message">Bu SSID\'yi silmek istediğinize emin misiniz?</string>
+  <string name="permission_needed">İzin Gerekli</string>
+  <string name="credential_provider_service_subtitle">Şifreler ve geçiş anahtarları</string>
+  <string name="credential_provider_locked_database_description">Veritabanı kilitli. Kilidi açmak için dokunun.</string>
+  <string name="credential_provider_passkey_creation_description">Geçiş anahtarını kaydet</string>
+  <string name="passkey_entry_title">%1$s için geçiş anahtarı</string>
+  <string name="passkey_unknown_username">Bilinmeyen</string>
+  <string name="open_app_name">%1$s Aç</string>
   <!-- Passkey Settings Screen -->
+  <string name="pref_passkeys_backup_category_title">Senkronizasyon &amp; yedekleme</string>
+  <string name="pref_passkeys_uv_category_title">Kullanıcı doğrulaması</string>
+  <string name="passkeys_uv_setting_change_subtitle">Bu ayarı değiştirmek için kimliğinizi doğrulayın.</string>
   <!-- Passkey Backup Settings -->
+  <string name="passkeys_backup_eligibility_title">Giriş anahtarları senkronizasyonuna izin ver</string>
+  <string name="passkeys_backup_state_title">Giriş anahtarlarını senkronize edilmiş olarak bildir</string>
   <!-- Passkey User Verification -->
+  <string name="passkeys_force_user_verification_when_preferred_title">Tercih edildiğinde kullanıcı doğrulamasını zorla</string>
+  <string name="passkey_user_verification_required_title">Kullanıcı doğrulaması gerekli</string>
+  <string name="passkey_user_verification_required_description">Bu geçiş anahtarını kullanmak için kimliğinizi doğrulayın.</string>
   <!-- Passkey trusted (privileged) browsers -->
+  <string name="pref_passkeys_browsers_category_title">Tarayıcılar</string>
+  <string name="passkeys_enable_provider_title">Geçiş anahtarı sağlayıcısı olarak kullan</string>
   <string name="passkey_provider_enable">Ayarları aç</string>
+  <string name="passkeys_privileged_apps_title">Güvenilir tarayıcılar</string>
+  <string name="passkey_unknown_browser_title">Bilinmeyen tarayıcı</string>
+  <string name="passkey_unknown_browser_add">Tarayıcıya güven</string>
+  <string name="passkey_request_interrupted">İstek kesildi. Lütfen tekrar deneyin.</string>
+  <string name="credential_provider_no_match_open_database">Eşleşen geçiş anahtarı yok. Başka bir veritabanı açın</string>
+  <string name="passkey_already_registered">Bu hesap için bir geçiş anahtarı zaten %1$s içerisinde kaydedilmiş.</string>
+  <string name="passkey_app_unverified_title">Uygulama doğrulanamadı</string>
   <string name="passkey_app_unverified_continue">Devam Et</string>
 </resources>
