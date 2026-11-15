@@ -257,6 +257,7 @@
   <string name="space">Spacja</string>
   <string name="search_label">Szukaj</string>
   <string name="show_password">Pokaż hasło</string>
+  <string name="hidden_protected_field">Ukryte, %1$d znaków</string>
   <string name="sort_menu">Sortuj według...</string>
   <string name="sort_name">Sortuj wg nazwy</string>
   <string name="sort_db">Sortuj wg daty utworzenia</string>
@@ -631,6 +632,7 @@
   <string name="TrayTotp_SettingsField_title">Nazwa pola ustawień TOTP</string>
   <string name="TrayTotp_SettingsField_summary">Wpisz tutaj nazwę pola dla pola ustawień TrayTotp.</string>
   <string name="TrayTotp_prefs">TrayTotp</string>
+  <string name="Passkey_prefs">Ustawienia kluczy dostępu</string>
   <string name="DebugLog_prefs_prefs">Plik dziennika do debugowania</string>
   <string name="DebugLog_title">Użyj pliku dziennika</string>
   <string name="FtpDebug_title">FTP/SFTP debug logging</string>
