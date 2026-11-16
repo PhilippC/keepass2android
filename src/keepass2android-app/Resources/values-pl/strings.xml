@@ -257,7 +257,11 @@
   <string name="space">Spacja</string>
   <string name="search_label">Szukaj</string>
   <string name="show_password">Pokaż hasło</string>
+  <string name="hide_password">Ukryj hasło</string>
   <string name="hidden_protected_field">Ukryte, %1$d znaków</string>
+  <string name="browse">Przeglądaj</string>
+  <string name="select_icon">Wybierz ikonę</string>
+  <string name="selected">Wybrane</string>
   <string name="sort_menu">Sortuj według...</string>
   <string name="sort_name">Sortuj wg nazwy</string>
   <string name="sort_db">Sortuj wg daty utworzenia</string>
@@ -370,8 +374,15 @@
   <string name="field_value">Wartość pola</string>
   <string name="protection">Pole zabezpieczone</string>
   <string name="add_binary">Dodaj załącznik...</string>
+  <string name="attach_browse_file">Wybierz plik...</string>
+  <string name="attach_take_photo">Zrób zdjęcie...</string>
+  <string name="capture_photo_title">Zrób zdjęcie</string>
+  <string name="capture_flip_camera">Obróć aparat</string>
+  <string name="camera_permission_required">Uprawnienie \"Aparat\" jest wymagane do zrobienia zdjęcia.</string>
+  <string name="capture_attachment_size_warning">Wybierz rozmiar zdjęcia</string>
   <string name="capture_size_small">Mała</string>
   <string name="capture_size_medium">Średnia</string>
+  <string name="capture_size_original">Oryginalny</string>
   <string name="add_extra_string">Dodaj dodatkowy ciąg znaków</string>
   <string name="configure_totp">Konfiguracja TOTP</string>
   <string name="totp_secret_key">Sekretny klucz</string>
@@ -495,6 +506,7 @@
   <string name="UseOnlineMode">Synchronizuj kopię z pamięci podręcznej z jej źródłem</string>
   <string name="UseOfflineMode_Info">Baza danych jest załadowana z wewnętrznej pamięci podręcznej. Zmiany są przechowywane wyłącznie w pamięci podręcznej i będą zsynchronizowane wyłącznie po wybraniu opcji \"Synchronizuj kopię z pamięci podręcznej z jej źródłem\".</string>
   <string name="InOfflineMode">Korzystanie wyłącznie z wewnętrznej pamięci podręcznej.</string>
+  <string name="ServerNotReachable">Nie udało się połączyć z serwerem. Sprawdź swoje połączenie z internetem i adres serwera.</string>
   <string name="SynchronizingCachedDatabase">Synchronizacji pamięć podręczną baz danych...</string>
   <string name="DownloadingRemoteFile">Ładowanie pliku źródłowego…</string>
   <string name="UploadingFile">Zapisz plik…</string>
@@ -525,6 +537,8 @@
   <string name="ok_donate">Wyślij mi wiadomość!</string>
   <string name="no_thanks">Nie, nie podoba mi się na tyle</string>
   <!-- %1$s (label) is not shown, only the price -->
+  <string name="donate_yearly">Co rok</string>
+  <string name="donate_one_time">Jednorazowo</string>
   <string name="enter_http_login_title">Wpisz dane do logowania WebDav:</string>
   <string name="enter_smb_login_title">Wprowadź dane logowania do Samba:</string>
   <string name="hint_http_url">Adres URL folderu lub pliku (np.: mycloud.me.com/webdav/)</string>
@@ -1147,10 +1161,55 @@
   <string name="enter_ssid_hint">Wprowadź SSID</string>
   <string name="remove_ssid_message">Czy na pewno chcesz usunąć tę sieć Wi-Fi?</string>
   <string name="permission_needed">Wymagane uprawnienie</string>
+  <string name="credential_provider_service_subtitle">Hasła i klucze dostępu</string>
+  <string name="credential_provider_password_creation_description">Zapisz hasło w nowym wpisie</string>
+  <string name="credential_provider_locked_database_description">Baza danych jest zablokowana. Dotknij, aby odblokować.</string>
+  <string name="credential_provider_passkey_creation_description">Zapisz klucz dostępu</string>
+  <string name="passkey_entry_title">Klucz dostępu do %1$s</string>
+  <string name="passkey_unknown_username">Nieznane</string>
+  <string name="open_app_name">Otwórz %1$s</string>
+  <string name="manage_credentials">Zarządzaj poświadczeniami</string>
   <!-- Passkey Settings Screen -->
+  <string name="pref_passkeys_screen_summary">Synchronizacja, weryfikacja użytkownika i zaufane przeglądarki</string>
+  <string name="pref_passkeys_backup_category_title">Synchronizacja i kopia zapasowa</string>
+  <string name="pref_passkeys_uv_category_title">Weryfikacja użytkownika</string>
+  <string name="passkeys_uv_setting_change_subtitle">Potwierdź swoją tożsamość, żeby zmienić to ustawienie</string>
   <!-- Passkey Backup Settings -->
+  <string name="passkeys_backup_eligibility_title">Zezwól na synchronizację kluczy dostępu</string>
+  <string name="passkeys_backup_eligibility_summary">Informuje strony, że klucze dostępu mogą być kopiowane na inne urządzenia, np. przez synchronizację bazy danych pomiędzy nimi. Takie klucze dostępu są inaczej traktowane przez niektóre strony.</string>
+  <string name="passkeys_backup_state_title">Zgłoś klucze dostępu jako zsynchronizowane</string>
+  <string name="passkeys_backup_state_summary">Informuje strony, że klucze dostępu posiadają kopię zapasową lub są zsynchronizowane z innym urządzeniem. Włącz, jeżeli synchronizujesz lub wykonujesz kopie zapasowe swojej bazy danych.</string>
   <!-- Passkey User Verification -->
+  <string name="passkeys_force_user_verification_when_preferred_title">Wymuś weryfikację użytkownika, gdy jest preferowana</string>
+  <string name="passkeys_force_user_verification_when_preferred_summary">Wymuś użycie biometrii lub blokady urządzenia, gdy strona preferuje użycie weryfikacji użytkownika.</string>
+  <string name="passkeys_force_uv_not_available">To ustawienie wymaga skonfigurowanej blokady ekranu (PIN, wzór lub hasło) lub biometrii na tym urządzeniu. W przeciwnym razie nie ma możliwości użycia kluczy dostępu. Najpierw skonfiguruj blokadę ekranu.</string>
+  <string name="passkey_user_verification_required_title">Wymagana weryfikacja użytkownika</string>
+  <string name="passkey_user_verification_required_description">Potwierdź swoją tożsamość, aby użyć tego klucza dostępu.</string>
   <!-- Passkey trusted (privileged) browsers -->
+  <string name="pref_passkeys_browsers_category_title">Przeglądarki</string>
+  <string name="passkeys_enable_provider_title">Użyj jako dostawcy kluczy dostępu</string>
+  <string name="passkeys_enable_provider_summary">Otwiera ustawienia haseł i kluczy dostępu Androida, gdzie możesz włączyć Keepass2Android.</string>
+  <string name="passkeys_provider_enabled_summary">Keepass2Android jest włączony dla haseł i kluczy dostępu. Dotknij, aby otworzyć ustawienia Androida.</string>
+  <string name="passkeys_provider_not_enabled_summary">Wyłączone. Dotknij, aby otworzyć ustawienia haseł i kluczy dostępu Androida, i ustaw Keepass2Android jako preferowaną usługę. Jeżeli jest już wybrana, ustaw najpierw na \"Brak\", a następnie ponownie wybierz \"Keepass2Android\".</string>
+  <string name="passkey_provider_hint">Keepass2Android obsługuje klucze dostępu, ale nie jest jeszcze skonfigurowany jako ich dostawca. Otwórz ustawienia Androida i ustaw Keepass2Android jako preferowaną usługę. Jeżeli jest już wybrana, ustaw najpierw na \"Brak\", a następnie ponownie wybierz \"Keepass2Android\".</string>
   <string name="passkey_provider_enable">Otwórz ustawienia</string>
+  <string name="chrome_autofill_hint_title">Używaj Keepass2Android w Chrome</string>
+  <string name="chrome_autofill_hint">Chrome jest skonfigurowany do wypełniania haseł z użyciem Menedżera Haseł Google. Aby używać Keepas2Android w Chrome, otwórz ustawienia Chrome — Usługi autouzupełniania i wybierz \"Autouzupełnianie przy użyciu innej usługi\".</string>
+  <string name="chrome_autofill_open_settings">Otwórz ustawienia Chrome</string>
+  <string name="passkeys_privileged_apps_title">Zaufane przeglądarki</string>
+  <string name="passkeys_privileged_apps_summary">Przeglądarki, które mogą użyć kluczy dostępu dla stron, spoza wbudowanej listy znanych przeglądarek. Wybierz tylko przeglądarki, którym ufasz — zaufana przeglądarka może używać kluczy dostępu do każdej strony.</string>
+  <string name="passkeys_privileged_apps_none">Brak przeglądarek, których nie ma na wbudowanej liście.</string>
+  <string name="passkeys_privileged_apps_not_installed">%1$s (niezainstalowane)</string>
+  <string name="passkey_unknown_browser_title">Nieznana przeglądarka</string>
+  <string name="passkey_unknown_browser_message">%1$s (%2$s) chce użyć klucza dostępu dla strony, ale nie jest na liście zaufanych przeglądarek.\n\nUpewnij się, że ufasz tej przeglądarce — zaufana przeglądarka może używać kluczy dostępu do każdej strony. Podpis cyfrowy (SHA-256):\n%3$s</string>
+  <string name="passkey_unknown_browser_add">Dodaj przeglądarkę jako zaufaną</string>
+  <string name="passkey_request_interrupted">Żądanie zostało przerwane. Spróbuj ponownie.</string>
+  <string name="passkey_create_failed">Nie udało się zarejestrować klucza dostępu. Wpis został zapisany w bazie danych, ale nie będzie działał; możesz go skasować.</string>
+  <string name="passkey_user_verification_unavailable">Ta strona wymaga weryfikacji użytkownika. Aby użyć tego klucza dostępu, skonfiguruj blokadę ekranu.</string>
+  <string name="credential_provider_no_match_open_database">Brak pasującego klucza dostępu. Otwórz inną bazę danych</string>
+  <string name="passkey_group_not_searchable">Klucz dostępu został zapisany w grupie \"%1$s\", w której wyszukiwanie jest wyłączone. %2$s nie użyje go do logowania, dopóki nie przeniesiesz go do innej grupy.</string>
+  <string name="passkey_already_registered">Klucz dostępu do tego konta jest już zapisany we wpisie: %1$s</string>
+  <string name="credential_provider_entry_not_found">Nie udało się odnaleźć wpisu. Odblokuj bazę danych, która zawiera ten wpis i spróbuj ponownie.</string>
+  <string name="passkey_app_unverified_title">Nie udało się zweryfikować aplikacji</string>
   <string name="passkey_app_unverified_continue">Kontynuuj</string>
 </resources>
