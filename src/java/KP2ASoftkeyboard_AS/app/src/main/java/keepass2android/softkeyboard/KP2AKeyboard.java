@@ -1087,7 +1087,14 @@ public class KP2AKeyboard extends InputMethodService
         int effectiveRight = windowAlreadyExcludesHorizontalNav ? 0 : nav.right;
         // Do not infer bottom-nav exclusion from decor height: IME windows are naturally
         // shorter than display height, so that heuristic wrongly drops bottom inset.
-        int effectiveBottom = nav.bottom;
+        android.graphics.Insets gestures =
+                metrics.getWindowInsets().getInsets(
+                        WindowInsets.Type.mandatorySystemGestures()
+                );
+        int effectiveBottom = Math.max(
+                nav.bottom,
+                gestures.bottom
+        );
 
         ViewGroup.LayoutParams lp = inputView.getLayoutParams();
         if (lp instanceof ViewGroup.MarginLayoutParams) {
