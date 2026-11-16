@@ -70,6 +70,11 @@ jobs:
       # If we want to also have nmake, use this instead
       #uses: ilammy/msvc-dev-cmd@v1
 
+    - name: Setup .NET SDK
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '9.0.x'
+
     - name: Switch to JDK-17
       uses: actions/setup-java@v4
       with:
