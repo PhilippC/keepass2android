@@ -62,6 +62,12 @@ namespace keepass2android
     private readonly string _schemeSeparator = "://";
     private bool _tryGetPermanentAccess;
 
+    //request code used when asking the user for access to the folder containing a selected document
+    public const int RequestCodeSelectContainingFolder = 28731;
+    //the document selected before launching the folder picker, used to check whether the granted folder covers it.
+    //static because the helper may be re-created while the system picker is active.
+    private static Android.Net.Uri _documentUriForPendingTreeAccess;
+
     private const int SftpModeSpinnerPasswd = 0;
     private const int SftpModeSpinnerPubKey = 1;
     private const int SftpModeSpinnerCustomKey = 2;
@@ -799,8 +805,84 @@ namespace keepass2android
 
     }
 
+    /** Android may revoke our access to a document when another app replaces the file, e.g. when
+     * a sync tool downloads a new version of it. A permission for a containing folder survives
+     * such replacements. Offer the user to grant such a folder permission once. */
+    private void TryOfferTreeAccessAfterDocumentSelection(Activity activity, Android.Net.Uri documentUri)
+    {
+      try
+      {
+        if ((int)Build.VERSION.SdkInt < 21)
+          return;
+        if ((documentUri == null) || (!"content".Equals(documentUri.Scheme)))
+          return;
+        //only for files on the local storage, where replacement by other apps is the relevant case:
+        if (!"com.android.externalstorage.documents".Equals(documentUri.Authority))
+          return;
+        if (TreeDocumentAccess.IsTreeUri(documentUri))
+          return; //document was selected through a folder already, no additional grant needed
+        if (TreeDocumentAccess.HasCoveringTreePermission(activity.ContentResolver, documentUri))
+          return; //we already have a suitable folder permission
+
+        ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(activity);
+        string declinedKey = activity.GetString(Resource.String.document_tree_access_declined_key);
+        if (prefs.GetBoolean(declinedKey, false))
+          return;
+
+        new MaterialAlertDialogBuilder(activity)
+          .SetTitle(Resource.String.DocumentTreeAccess_title)
+          .SetMessage(Resource.String.DocumentTreeAccess_message)
+          .SetPositiveButton(Resource.String.DocumentTreeAccess_grant, (sender, args) =>
+          {
+            _documentUriForPendingTreeAccess = documentUri;
+            Intent treeIntent = new Intent(Intent.ActionOpenDocumentTree);
+            treeIntent.AddFlags(ActivityFlags.GrantReadUriPermission | ActivityFlags.GrantWriteUriPermission);
+            activity.StartActivityForResult(treeIntent, RequestCodeSelectContainingFolder);
+          })
+          .SetNegativeButton(Resource.String.DocumentTreeAccess_not_now, (sender, args) =>
+          {
+            prefs.Edit().PutBoolean(declinedKey, true).Apply();
+          })
+          .Show();
+      }
+      catch (Exception e)
+      {
+        Kp2aLog.Log(e.ToString());
+      }
+    }
+
+    private void HandleSelectContainingFolderResult(Activity activity, Result resultCode, Intent data)
+    {
+      if (resultCode != Result.Ok)
+        return;
+      if ((data == null) || (data.Data == null))
+        return;
+      try
+      {
+        var takeFlags = ActivityFlags.GrantReadUriPermission | ActivityFlags.GrantWriteUriPermission;
+        activity.ContentResolver.TakePersistableUriPermission(data.Data, takeFlags);
+        Kp2aLog.Log("Took persistable permission for folder " + data.Data);
+        if ((_documentUriForPendingTreeAccess != null)
+            && (!TreeDocumentAccess.HasCoveringTreePermission(activity.ContentResolver, _documentUriForPendingTreeAccess)))
+        {
+          Toast.MakeText(activity, activity.GetString(Resource.String.DocumentTreeAccess_wrong_folder),
+              ToastLength.Long).Show();
+        }
+      }
+      catch (Exception e)
+      {
+        Kp2aLog.Log(e.ToString());
+      }
+    }
+
     public bool HandleActivityResult(Activity activity, int requestCode, Result resultCode, Intent data)
     {
+      if (requestCode == RequestCodeSelectContainingFolder)
+      {
+        HandleSelectContainingFolderResult(activity, resultCode, data);
+        return true;
+      }
+
       if (requestCode != _requestCode)
         return false;
 
@@ -843,6 +925,8 @@ namespace keepass2android
             }
 
           }
+
+          TryOfferTreeAccessAfterDocumentSelection(activity, data.Data);
         }
 
 

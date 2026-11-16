@@ -30,6 +30,134 @@ using Console = System.Console;
 
 namespace keepass2android.Io
 {
+  /** Helper for surviving revoked per-document access.
+   * When another app (e.g. a sync tool like Syncthing) replaces a document,
+   * Android revokes the persisted permission for the document uri and the uri
+   * becomes inaccessible. Permissions for a containing folder (tree) survive
+   * such replacements, so we try to resolve documents through an existing
+   * tree permission. */
+  public static class TreeDocumentAccess
+  {
+    private static bool IsLollipopOrLater
+    {
+      get { return (int)Build.VERSION.SdkInt >= 21; }
+    }
+
+    /** Exceptions of these types usually mean the document uri is no longer
+     * accessible: the document was removed or replaced by another app (which
+     * makes Android revoke our persisted permission for it), or the permission
+     * was revoked otherwise. */
+    public static bool IsAccessFailure(Exception e)
+    {
+      for (Exception ex = e; ex != null; ex = ex.InnerException)
+      {
+        if (ex is Java.Lang.SecurityException || ex is System.Security.SecurityException)
+          return true;
+        if (ex is Java.IO.FileNotFoundException || ex is System.IO.FileNotFoundException)
+          return true;
+        string message = ex.Message;
+        if ((message != null) && (message.Contains("requires that you obtain access using ACTION_OPEN_DOCUMENT")))
+          return true;
+      }
+      return false;
+    }
+
+    public static bool IsTreeUri(Android.Net.Uri uri)
+    {
+      if (!IsLollipopOrLater)
+        return false;
+      try
+      {
+        DocumentsContract.GetTreeDocumentId(uri);
+        return true;
+      }
+      catch (Exception)
+      {
+        return false;
+      }
+    }
+
+    public static bool HasCoveringTreePermission(ContentResolver contentResolver, Android.Net.Uri documentUri)
+    {
+      Android.Net.Uri treeUri;
+      string documentId;
+      return TryFindCoveringTreePermission(contentResolver, documentUri, out treeUri, out documentId);
+    }
+
+    /** Returns a uri for the same document but resolved through a persisted
+     * tree permission, or null if no covering tree permission is available. */
+    public static Android.Net.Uri TryResolveThroughTree(ContentResolver contentResolver, Android.Net.Uri documentUri)
+    {
+      Android.Net.Uri treeUri;
+      string documentId;
+      if (!TryFindCoveringTreePermission(contentResolver, documentUri, out treeUri, out documentId))
+        return null;
+      try
+      {
+        Android.Net.Uri resolved = DocumentsContract.BuildDocumentUriUsingTree(treeUri, documentId);
+        Kp2aLog.Log("Resolved " + documentUri + " through tree permission as " + resolved);
+        return resolved;
+      }
+      catch (Exception e)
+      {
+        Kp2aLog.Log("Failed to build tree-resolved uri for " + documentUri + ": " + e);
+        return null;
+      }
+    }
+
+    private static bool TryFindCoveringTreePermission(ContentResolver contentResolver, Android.Net.Uri documentUri,
+        out Android.Net.Uri treeUri, out string documentId)
+    {
+      treeUri = null;
+      documentId = null;
+      if (!IsLollipopOrLater)
+        return false;
+      try
+      {
+        documentId = DocumentsContract.GetDocumentId(documentUri);
+      }
+      catch (Exception e)
+      {
+        Kp2aLog.Log("Cannot get document id of " + documentUri + ": " + e);
+        return false;
+      }
+      if (string.IsNullOrEmpty(documentId))
+        return false;
+      var persistedPermissions = contentResolver.PersistedUriPermissions;
+      if (persistedPermissions == null)
+        return false;
+      foreach (UriPermission permission in persistedPermissions)
+      {
+        Android.Net.Uri persistedUri = permission.Uri;
+        if (persistedUri == null)
+          continue;
+        string treeDocumentId;
+        try
+        {
+          treeDocumentId = DocumentsContract.GetTreeDocumentId(persistedUri);
+        }
+        catch (Exception)
+        {
+          //not a tree permission
+          continue;
+        }
+        if (string.IsNullOrEmpty(treeDocumentId))
+          continue;
+        string documentAuthority = documentUri.Authority;
+        string treeAuthority = persistedUri.Authority;
+        if ((documentAuthority == null) || (!documentAuthority.Equals(treeAuthority, StringComparison.OrdinalIgnoreCase)))
+          continue;
+        if (documentId.Equals(treeDocumentId, StringComparison.Ordinal)
+            || documentId.StartsWith(treeDocumentId + "/", StringComparison.Ordinal))
+        {
+          treeUri = persistedUri;
+          return true;
+        }
+      }
+      return false;
+    }
+  }
+
   /** FileStorage to work with content URIs
    * Supports both "old" system where data is available only temporarily as
    * well as the SAF system. Assumes that persistable permissions are "taken" by
@@ -70,20 +198,40 @@ namespace keepass2android.Io
 
     public Stream OpenFileForRead(IOConnectionInfo ioc)
     {
+      Android.Net.Uri uri = Android.Net.Uri.Parse(ioc.Path);
       try
       {
-        return _ctx.ContentResolver.OpenInputStream(Android.Net.Uri.Parse(ioc.Path));
+        return _ctx.ContentResolver.OpenInputStream(uri);
       }
       catch (Exception e)
       {
-        if (e.Message.Contains("requires that you obtain access using ACTION_OPEN_DOCUMENT"))
+        if (TreeDocumentAccess.IsAccessFailure(e))
         {
-          //looks like permission was revoked.
-          throw new DocumentAccessRevokedException();
+          //looks like the permission was revoked, e.g. because the document was
+          //removed or replaced by another app. Try to resolve through a tree permission:
+          Stream recoveredStream = TryOpenResolvedThroughTree(uri);
+          if (recoveredStream != null)
+            return recoveredStream;
+          throw new DocumentAccessRevokedException(e.Message, e);
         }
         throw;
       }
+    }
 
+    private Stream TryOpenResolvedThroughTree(Android.Net.Uri uri)
+    {
+      Android.Net.Uri treeResolvedUri = TreeDocumentAccess.TryResolveThroughTree(_ctx.ContentResolver, uri);
+      if (treeResolvedUri == null)
+        return null;
+      try
+      {
+        return _ctx.ContentResolver.OpenInputStream(treeResolvedUri);
+      }
+      catch (Exception e)
+      {
+        Kp2aLog.Log("Failed to open " + treeResolvedUri + ": " + e);
+        return null;
+      }
     }
 
     public IWriteTransaction OpenWriteTransaction(IOConnectionInfo ioc, bool useFileTransaction)
@@ -183,6 +331,18 @@ namespace keepass2android.Io
     private bool TryGetDisplayName(IOConnectionInfo ioc, ref string displayName)
     {
       var uri = Android.Net.Uri.Parse(ioc.Path);
+      if (TryQueryDisplayName(uri, ref displayName))
+        return true;
+      //if the uri is not accessible, e.g. after the document was replaced by another
+      //app, try to resolve it through a tree permission:
+      Android.Net.Uri treeResolvedUri = TreeDocumentAccess.TryResolveThroughTree(_ctx.ContentResolver, uri);
+      if ((treeResolvedUri != null) && (!treeResolvedUri.ToString().Equals(uri.ToString())))
+        return TryQueryDisplayName(treeResolvedUri, ref displayName);
+      return false;
+    }
+
+    private bool TryQueryDisplayName(Android.Net.Uri uri, ref string displayName)
+    {
       try
       {
         var cursor = _ctx.ContentResolver.Query(uri, null, null, null, null, null);
@@ -213,9 +373,6 @@ namespace keepass2android.Io
 
         return false;
       }
-
-
-
     }
 
     public string CreateFilePath(string parent, string newFilename)
@@ -247,7 +404,12 @@ namespace keepass2android.Io
         return false;
 
       //try to get a persisted permission for the file
-      return _ctx.ContentResolver.PersistedUriPermissions.Any(p => p.Uri.ToString().Equals(ioc.Path));
+      if (_ctx.ContentResolver.PersistedUriPermissions.Any(p => (p.Uri != null) && p.Uri.ToString().Equals(ioc.Path)))
+        return true;
+
+      //a persisted tree permission for a containing folder also makes the location permanent.
+      //In contrast to a document permission, it survives replacement of the file by other apps.
+      return TreeDocumentAccess.HasCoveringTreePermission(_ctx.ContentResolver, Android.Net.Uri.Parse(ioc.Path));
     }
 
 
@@ -331,7 +493,28 @@ namespace keepass2android.Io
 
     public void CommitWrite()
     {
-      ParcelFileDescriptor fileDescriptor = _ctx.ContentResolver.OpenFileDescriptor(Android.Net.Uri.Parse(_path), "rwt");
+      Android.Net.Uri uri = Android.Net.Uri.Parse(_path);
+      try
+      {
+        WriteTo(uri);
+        return;
+      }
+      catch (Exception e)
+      {
+        if (!TreeDocumentAccess.IsAccessFailure(e))
+          throw;
+        //access to the document uri seems to be revoked, e.g. because another
+        //app replaced the file. Try to resolve through a tree permission:
+        Android.Net.Uri treeResolvedUri = TreeDocumentAccess.TryResolveThroughTree(_ctx.ContentResolver, uri);
+        if (treeResolvedUri == null)
+          throw new DocumentAccessRevokedException(e.Message, e);
+        WriteTo(treeResolvedUri);
+      }
+    }
+
+    private void WriteTo(Android.Net.Uri uri)
+    {
+      ParcelFileDescriptor fileDescriptor = _ctx.ContentResolver.OpenFileDescriptor(uri, "rwt");
 
       using (var outputStream = new FileOutputStream(fileDescriptor.FileDescriptor))
       {
@@ -341,8 +524,6 @@ namespace keepass2android.Io
         outputStream.Close();
       }
       fileDescriptor.Close();
-
-
     }
   }
 
