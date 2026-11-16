@@ -88,6 +88,9 @@ namespace keepass2android
     protected override void OnResume()
     {
       base.OnResume();
+
+      App.Kp2a.ActiveContext = this;
+
       App.Kp2a.PerformPendingActions(_instanceId);
 
       Kp2aLog.Log(ClassName + ".OnResume " + ID);

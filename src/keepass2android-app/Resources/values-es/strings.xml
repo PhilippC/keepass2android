@@ -497,6 +497,7 @@
   <string name="UseOnlineMode">Sincronizar la copia caché con la fuente</string>
   <string name="UseOfflineMode_Info">Se ha cargado la base de datos de la caché interna. Los cambios se almacenan en la caché interna sólo y sólamente se sincronizarán cuando seleccione Sincronizar copia caché con fuente.</string>
   <string name="InOfflineMode">Trabajando con la cache interna sólo.</string>
+  <string name="ServerNotReachable">No se ha podido conectar con el servidor. Compruebe su conexión a Internet y la dirección del servidor.</string>
   <string name="SynchronizingCachedDatabase">Sincronización de base de datos en caché…</string>
   <string name="DownloadingRemoteFile">Cargando fichero fuente…</string>
   <string name="UploadingFile">Guardar archivo…</string>

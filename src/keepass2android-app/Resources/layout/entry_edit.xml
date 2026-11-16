@@ -29,7 +29,7 @@
                 android:layout_margin="2dp"
                 android:scaleType="fitCenter"
                 android:layout_alignParentRight="true"
-                android:src="@drawable/ic00" />
+                android:src="@drawable/ic00" android:contentDescription="@string/select_icon"/>
             <!--
             <item name="android:layout_width">fill_parent</item>
             <item name="android:layout_height">wrap_content</item>
@@ -89,8 +89,7 @@
                             android:layout_height="wrap_content"
                             android:singleLine="true"
                             android:inputType="textPassword"
-                            android:hint="@string/hint_pass"
-                          android:importantForAccessibility="no"/>
+                            android:hint="@string/hint_pass" />
                     </com.google.android.material.textfield.TextInputLayout>
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -147,7 +146,7 @@
             style="@style/EntryEditSingleLine_container">
             <ImageView
                 style="@style/EntryEditSingleLine_ImageView"
-                android:src="@drawable/baseline_more_horiz_24" />
+                android:src="@drawable/baseline_more_horiz_24" android:importantForAccessibility="no"/>
           <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -186,7 +185,7 @@
             style="@style/EntryEditSingleLine_container">
             <ImageView
                 style="@style/EntryEditSingleLine_ImageView"
-                android:src="@drawable/baseline_attachment_24" />
+                android:src="@drawable/baseline_attachment_24" android:importantForAccessibility="no"/>
             <LinearLayout
                 android:layout_height="wrap_content"
                 android:layout_width="fill_parent"
@@ -242,7 +241,7 @@
             style="@style/EntryEditSingleLine_container">
             <ImageView
                 style="@style/EntryEditSingleLine_ImageView"
-                android:src="@drawable/baseline_explicit_24" />
+                android:src="@drawable/baseline_explicit_24" android:importantForAccessibility="no"/>
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -262,7 +261,7 @@
                         android:id="@+id/entry_expires_checkbox"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical" />
+                        android:layout_gravity="center_vertical" android:contentDescription="@string/entry_expires"/>
                     <EditText
                         android:id="@+id/entry_expires"
                         android:layout_marginLeft="-4dip"

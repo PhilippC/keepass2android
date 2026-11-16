@@ -1470,6 +1470,8 @@ namespace keepass2android
       SetPasswordTypeface(group.VisibleProtectedField);
 
       group.ProtectedField.InputType = InputTypes.ClassText | InputTypes.TextVariationPassword;
+      // masked text is not spoken by screen readers: announce the length instead of the content
+      group.ProtectedField.ContentDescription = GetString(Resource.String.hidden_protected_field, group.ProtectedField.Text?.Length ?? 0);
     }
 
     protected override void OnResume()
@@ -1510,7 +1512,7 @@ namespace keepass2android
       switch (item.ItemId)
       {
         case Resource.Id.menu_donate:
-          return Util.GotoDonateUrl(this);
+          return Util.StartDonation(this);
         case Resource.Id.menu_move:
           var navMove = new NavigateToFolderAndLaunchMoveElementTask(App.Kp2a.CurrentDb, Entry.ParentGroup, new List<PwUuid>() { Entry.Uuid }, false);
           AppTask = navMove;

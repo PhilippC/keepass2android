@@ -497,6 +497,7 @@
   <string name="UseOnlineMode">Synchroniser la copie en cache avec la source</string>
   <string name="UseOfflineMode_Info">La base de données est chargée depuis le cache interne. Les changements sont enregistrée dans le cache interne uniquement et ne seront synchronisés qu\'à partir de l\'usage de la fonction \"Synchroniser la copie en cache avec la source\".</string>
   <string name="InOfflineMode">Utilisation en cours du cache interne uniquement.</string>
+  <string name="ServerNotReachable">Le serveur est inaccessible. Veuillez vérifier votre connexion Internet et l’adresse du serveur.</string>
   <string name="SynchronizingCachedDatabase">Synchronisation de la base de données mise en cache…</string>
   <string name="DownloadingRemoteFile">Chargement du fichier source…</string>
   <string name="UploadingFile">Enregistrer le fichier…</string>

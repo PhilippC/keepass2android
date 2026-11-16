@@ -14,6 +14,15 @@
     <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <DefineConstants Condition="'$(Flavor)'=='NoNet'">NO_QR_SCANNER;EXCLUDE_JAVAFILESTORAGE;NoNet</DefineConstants>
+    <!-- DonationMode controls where the donate menu option and the donate link in the changelog lead to
+         (does not affect the fullscreen donate reminder):
+           None:    donate menu option and changelog link are hidden
+           Web:     they open the donation web page (for builds distributed outside of Google Play)
+           Billing: they open the in-app donation screen using Google Play Billing (for the Google Play build)
+         Defaults to Web, so it also applies to Visual Studio builds; pass e.g. -p:DonationMode=None to change. -->
+    <DonationMode Condition="'$(DonationMode)'==''">Web</DonationMode>
+    <DefineConstants Condition="'$(DonationMode)'=='Web'">$(DefineConstants);DONATION_WEB</DefineConstants>
+    <DefineConstants Condition="'$(DonationMode)'=='Billing'">$(DefineConstants);DONATION_BILLING</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Assets\fontawesome-webfont.ttf" />
@@ -743,21 +752,36 @@
     <AndroidNativeLibrary Include="..\java\argon2\libs\x86_64\libargon2.so" Link="x86_64\libargon2.so" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Xamarin.AndroidX.AppCompat" Version="1.7.0.5" />
-    <PackageReference Include="Xamarin.AndroidX.AppCompat.AppCompatResources" Version="1.7.0.5" />
+    <PackageReference Include="Xamarin.AndroidX.Camera.Camera2" Version="1.4.2.3" />
+    <PackageReference Include="Xamarin.AndroidX.Camera.Core" Version="1.4.2.3" />
+    <PackageReference Include="Xamarin.AndroidX.Camera.Lifecycle" Version="1.4.2.3" />
+    <PackageReference Include="Xamarin.AndroidX.Camera.View" Version="1.4.2.3" />
+    <!-- Pin lifecycle transitive dep required by CameraX 1.4.x -->
+    <PackageReference Include="Xamarin.AndroidX.Lifecycle.LiveData.Core.Ktx" Version="2.9.2.1" />
+    <!-- Pin SavedState.Ktx to match the SavedState 1.3.1.1 pulled in by CameraX 1.4.x (avoids duplicate ViewKt class in D8) -->
+    <PackageReference Include="Xamarin.AndroidX.SavedState.SavedState.Ktx" Version="1.3.1.1" />
+    <PackageReference Include="Xamarin.AndroidX.AppCompat" Version="1.7.1.1" />
+    <PackageReference Include="Xamarin.AndroidX.AppCompat.AppCompatResources" Version="1.7.1.1" />
     <PackageReference Include="Xamarin.AndroidX.AutoFill" Version="1.1.0.30" />
     <PackageReference Include="Xamarin.AndroidX.Biometric" Version="1.1.0.27" />
     <PackageReference Include="Xamarin.AndroidX.CoordinatorLayout" Version="1.3.0" />
-    <PackageReference Include="Xamarin.AndroidX.CursorAdapter" Version="1.0.0.31" />
-    <PackageReference Include="Xamarin.AndroidX.Lifecycle.Common" Version="2.8.7.2" />
-    <PackageReference Include="Xamarin.AndroidX.Lifecycle.Runtime" Version="2.8.7.2" />
+    <PackageReference Include="Xamarin.AndroidX.Credentials" Version="1.5.0" />
+    <PackageReference Include="Xamarin.AndroidX.CursorAdapter" Version="1.0.0.34" />
+    <PackageReference Include="Xamarin.AndroidX.Lifecycle.Common" Version="2.9.2.1" />
+    <PackageReference Include="Xamarin.AndroidX.Lifecycle.Runtime" Version="2.9.2.1" />
     <PackageReference Include="Xamarin.AndroidX.Preference" Version="1.2.1.12" />
     <PackageReference Include="Xamarin.Google.Android.Material" Version="1.12.0.2" />
     <PackageReference Include="Xamarin.Google.Guava" Version="33.4.0.1" />
     <PackageReference Include="Xamarin.GooglePlayServices.Auth" Version="121.3.0.1" Condition="'$(Flavor)'!='NoNet'" />
-    <PackageReference Include="Xamarin.GooglePlayServices.Base" Version="118.5.0.4" Condition="'$(Flavor)'!='NoNet'" />
+    <PackageReference Include="Xamarin.GooglePlayServices.Base" Version="118.5.0.4" Condition="'$(Flavor)'!='NoNet' And '$(DonationMode)'!='Billing'" />
+    <!-- BillingClient requires a newer Play Services Base; keep the old version for the other builds -->
+    <PackageReference Include="Xamarin.GooglePlayServices.Base" Version="118.7.1" Condition="'$(Flavor)'!='NoNet' And '$(DonationMode)'=='Billing'" />
     <PackageReference Include="Xamarin.GooglePlayServices.Code.Scanner" Version="116.1.0.10" Condition="'$(Flavor)'!='NoNet'" />
+    <PackageReference Include="Xamarin.Android.Google.BillingClient" Version="8.0.0" Condition="'$(DonationMode)'=='Billing'" />
   </ItemGroup>
+  <Target Name="ValidateDonationMode" BeforeTargets="BeforeBuild;CollectPackageReferences">
+    <Error Condition="'$(DonationMode)'!='None' And '$(DonationMode)'!='Web' And '$(DonationMode)'!='Billing'" Text="Invalid DonationMode '$(DonationMode)'. Allowed values: None, Web, Billing." />
+  </Target>
   <ItemGroup>
     <ProjectReference Include="..\AndroidFileChooserBinding\AndroidFileChooserBinding.csproj" />
     <ProjectReference Include="..\DropboxBinding\DropboxBinding.csproj" Condition="'$(Flavor)'!='NoNet'" />
@@ -771,6 +795,7 @@
     <ProjectReference Include="..\TwofishCipher\TwofishCipher.csproj" />
     <ProjectReference Include="..\KeePassLib2Android\KeePassLib2Android.csproj" />
     <ProjectReference Include="..\Kp2aBusinessLogic\Kp2aBusinessLogic.csproj" />
+    <ProjectReference Include="..\Kp2aPasskey.Core\Kp2aPasskey.Core.csproj" />
 
   </ItemGroup>
   <ItemGroup>

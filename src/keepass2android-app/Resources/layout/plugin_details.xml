@@ -99,7 +99,7 @@
 					android:layout_alignParentTop="true"
 					android:layout_marginRight="15dp"
 					android:layout_marginTop="5dp"
-					android:layout_marginBottom="5dp" />
+					android:layout_marginBottom="5dp" android:importantForAccessibility="no"/>
 				<TextView
 					android:id="@+id/txtLabel"
 					android:layout_width="fill_parent"

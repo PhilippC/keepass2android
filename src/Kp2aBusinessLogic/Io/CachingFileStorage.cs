@@ -1,4 +1,4 @@
-// This file is part of Keepass2Android, Copyright 2025 Philipp Crocoll.
+﻿// This file is part of Keepass2Android, Copyright 2025 Philipp Crocoll.
 //
 //   Keepass2Android is free software: you can redistribute it and/or modify
 //   it under the terms of the GNU General Public License as published by
@@ -178,12 +178,14 @@ namespace keepass2android.Io
     public Stream OpenFileForRead(IOConnectionInfo ioc)
     {
       string cachedFilePath = CachedFilePath(ioc);
+      CacheDiffersFromRemoteAfterLastRead = false;
       try
       {
         if (!IsCached(ioc)
             || GetLocalVersionHash(ioc) == GetBaseVersionHash(ioc))
         {
           Kp2aLog.Log("CFS: OpenWhenNoLocalChanges");
+          //reads the source file and updates the cache from it, so cache and source are in sync
           return OpenFileForReadWhenNoLocalChanges(ioc, cachedFilePath);
         }
         else
@@ -206,6 +208,8 @@ namespace keepass2android.Io
           _cacheSupervisor.CouldntOpenFromRemote(ioc, ex);
         }
 
+        //we're serving the cache without having seen the source file, so a sync is still pending
+        CacheDiffersFromRemoteAfterLastRead = true;
         return File.OpenRead(cachedFilePath);
       }
     }
@@ -227,13 +231,19 @@ namespace keepass2android.Io
             _cacheSupervisor.UpdatedRemoteFileOnLoad(ioc);
             Kp2aLog.Log("CFS: Updated remote file");
           }
+          else
+          {
+            //the local changes are still only in the cache, so a sync is still pending
+            CacheDiffersFromRemoteAfterLastRead = true;
+          }
           return File.OpenRead(cachedFilePath);
         }
       }
       else
       {
         Kp2aLog.Log("CFS: Files in conflict");
-        //conflict: both files changed.
+        //conflict: both files changed, merging them is up to a subsequent synchronization
+        CacheDiffersFromRemoteAfterLastRead = true;
         return OpenFileForReadWithConflict(ioc, cachedFilePath);
       }
 
@@ -345,7 +355,7 @@ namespace keepass2android.Io
         Kp2aLog.Log("couldn't save to remote " + GetDisplayName(ioc));
         Kp2aLog.Log(e.ToString());
         //notify the supervisor so it might display a warning or schedule a retry
-        if (TriggerWarningWhenFallingBackToCache)
+        if (WarnWhenSaveToRemoteFails)
         {
           _cacheSupervisor.CouldntSaveToRemote(ioc, e);
         }
@@ -655,6 +665,20 @@ namespace keepass2android.Io
     }
 
     public bool TriggerWarningWhenFallingBackToCache { get; set; }
+
+    //Default to true: a failed write to the source file means the user was told the database was
+    //saved while only the cache was updated, which they need to know about. Operations which
+    //deliberately postpone the upload (SaveDb/LoadDb with "sync in background") set this to false.
+    public bool WarnWhenSaveToRemoteFails { get; set; } = true;
+
+    /// <summary>
+    /// After the last OpenFileForRead call: true if the cache is not known to be identical to the
+    /// source file, because the source file couldn't be read, local changes couldn't be uploaded to
+    /// it, or both sides changed. Note that the returned stream always reads the cached file, also
+    /// when it was just updated from the source; this says whether the two are known to match.
+    /// It is up to the caller to decide what to do about it.
+    /// </summary>
+    public bool CacheDiffersFromRemoteAfterLastRead { get; private set; }
 
     public void OnRequestPermissionsResult(IFileStorageSetupActivity fileStorageSetupActivity, int requestCode,
         string[] permissions, Permission[] grantResults)

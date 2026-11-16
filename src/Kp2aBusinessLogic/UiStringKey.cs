@@ -79,6 +79,7 @@ namespace keepass2android
     AskDeletePermanentlyItemsNoRecycle,
     InOfflineMode,
     DocumentAccessRevoked,
+    ServerNotReachable,
     DuplicateTitle,
     TemplateTitle_IdCard,
     TemplateField_IdCard_Name,

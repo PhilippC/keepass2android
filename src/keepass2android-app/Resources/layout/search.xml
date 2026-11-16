@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:src="@drawable/baseline_search_24"
         android:layout_below="@id/search_label"
-        android:layout_alignParentRight="true" />
+        android:layout_alignParentRight="true" android:contentDescription="@string/menu_search"/>
     <EditText
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"

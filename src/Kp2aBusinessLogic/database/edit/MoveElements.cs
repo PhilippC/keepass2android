@@ -147,6 +147,7 @@ namespace keepass2android.database.edit
           return;
         }
         SaveDb saveDb = new SaveDb(_app, allDatabasesToSave[indexToSave], new ActionOnOperationFinished(_app, ContinueSave), false, null);
+        saveDb.SyncInBackground = _app.SyncInBackgroundPreference;
         saveDb.SetStatusLogger(StatusLogger);
         saveDb.ShowDatabaseIocInStatus = allDatabasesToSave.Count > 1;
         saveDb.Run();
@@ -154,6 +155,7 @@ namespace keepass2android.database.edit
 
 
       SaveDb save = new SaveDb(_app, allDatabasesToSave[0], new ActionOnOperationFinished(_app, ContinueSave), false, null);
+      save.SyncInBackground = _app.SyncInBackgroundPreference;
       save.SetStatusLogger(StatusLogger);
       save.ShowDatabaseIocInStatus = allDatabasesToSave.Count > 1;
       save.Run();

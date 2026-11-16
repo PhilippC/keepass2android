@@ -76,6 +76,7 @@ namespace keepass2android
 
       // Commit to disk
       SaveDb save = new SaveDb(_app, _app.CurrentDb, operationFinishedHandler, DontSave, null);
+      save.SyncInBackground = _app.SyncInBackgroundPreference;
       save.SetStatusLogger(StatusLogger);
       save.Run();
     }

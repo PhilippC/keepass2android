@@ -59,13 +59,13 @@ using GoogleDriveFileStorage = keepass2android.Io.GoogleDriveFileStorage;
 using GoogleDriveAppDataFileStorage = keepass2android.Io.GoogleDriveAppDataFileStorage;
 using PCloudFileStorage = keepass2android.Io.PCloudFileStorage;
 using static keepass2android.Util;
-using static Android.Provider.Telephony.MmsSms;
 #endif
 #endif
 
 using Java.Interop;
 using AndroidX.Lifecycle;
 using keepass2android.services;
+using Java.Util.Concurrent.Atomic;
 
 
 namespace keepass2android
@@ -125,8 +125,36 @@ namespace keepass2android
   /// </summary>
   public class Kp2aApp : IKp2aApp, ICacheSupervisor
   {
+    /// <summary>
+    /// Time (SystemClock.ElapsedRealtime, ms) of the last successful user verification, or null: a biometric
+    /// database unlock or a passkey user verification prompt (strong biometric or device credential).
+    /// Cleared when the database is locked.
+    /// </summary>
+    private long? _lastUserVerificationElapsedMs;
+
+    /// <summary>
+    /// Records a successful user verification (biometric unlock on the password or QuickUnlock screen, or the
+    /// user verification prompt).
+    /// </summary>
+    public void OnUserVerificationSucceeded()
+    {
+      _lastUserVerificationElapsedMs = SystemClock.ElapsedRealtime();
+    }
+
+    /// <summary>
+    /// True if the user was verified within <paramref name="maxAge"/> and the database has not been locked since.
+    /// </summary>
+    public bool WasUserVerifiedWithin(TimeSpan maxAge)
+    {
+      if (_lastUserVerificationElapsedMs == null)
+        return false;
+      var age = SystemClock.ElapsedRealtime() - _lastUserVerificationElapsedMs.Value;
+      return age >= 0 && age <= (long)maxAge.TotalMilliseconds;
+    }
+
     public void Lock(bool allowQuickUnlock = true, bool lockWasTriggeredByTimeout = false)
     {
+      _lastUserVerificationElapsedMs = null;
       if (OpenDatabases.Any())
       {
         if (QuickUnlockEnabled && allowQuickUnlock &&
@@ -1279,7 +1307,13 @@ namespace keepass2android
 
         if (DatabaseCacheEnabled)
         {
-          return new OtpAuxCachingFileStorage(innerFileStorage, LocaleManager.LocalizedAppContext, new OtpAuxCacheSupervisor(this));
+          //This storage is constructed directly and never passes through GetFileStorage, so set the
+          //warning behavior explicitly: keep the OTP aux file quiet as it always was. Problems with
+          //it are secondary to the database itself, which reports its own errors.
+          return new OtpAuxCachingFileStorage(innerFileStorage, LocaleManager.LocalizedAppContext, new OtpAuxCacheSupervisor(this))
+          {
+            WarnWhenSaveToRemoteFails = false
+          };
         }
         else
         {
@@ -1358,6 +1392,20 @@ namespace keepass2android
     /// When opening an activity after this time, we should close the database as it timed out.
     /// </summary>
     public DateTime TimeoutTime { get; set; }
+
+    /// <summary>
+    /// Locks the database right away if the app timeout has expired. The timeout alarm may fire late (it is inexact
+    /// and does not wake the device), so code that uses the database without a <see cref="LockingActivity"/>
+    /// (credential provider, autofill) must call this first. Returns true if the database was locked.
+    /// </summary>
+    public bool LockIfTimedOut()
+    {
+      if (!DatabaseIsUnlocked || DateTime.Now <= TimeoutTime)
+        return false;
+      Kp2aLog.Log("App timeout expired, locking database");
+      Lock(true, lockWasTriggeredByTimeout: true);
+      return true;
+    }
 
     public void OnScreenOff()
     {
@@ -1625,7 +1673,8 @@ namespace keepass2android
       {
         if (_pendingActionsForContextInstances.TryGetValue(instanceId, out var actions))
         {
-          foreach (var action in actions)
+          //Iterate a copy: an action may re-register itself for the same instance
+          foreach (var action in actions.ToList())
           {
             try
             {
@@ -1641,6 +1690,15 @@ namespace keepass2android
         }
       }
     }
+
+    private readonly AtomicInteger requestCodeForCredentialProvider = new();
+
+    /// <summary>
+    /// Returns a new request code for each PendingIntent of the credential provider, so that PendingIntents with
+    /// FLAG_UPDATE_CURRENT never replace each other.
+    /// </summary>
+    public int NextRequestCodeForCredentialProvider() => requestCodeForCredentialProvider.IncrementAndGet();
+
   }
 
 

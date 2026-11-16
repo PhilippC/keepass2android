@@ -100,8 +100,14 @@ else
   $(warning Configuration environment variable not set.)
 endif
 
-DELETE_MANIFEST_LINK := 
-CREATE_MANIFEST_LINK := 
+#append DonationMode=None|Web|Billing to the 'make' call to select where the donate menu option leads to:
+#  None: hidden, Web: donation web page (default), Billing: in-app donation via Google Play Billing (Google Play build only)
+ifneq ($(DonationMode),)
+  DOTNET_PARAM += -p:DonationMode="$(DonationMode)"
+endif
+
+DELETE_MANIFEST_LINK :=
+CREATE_MANIFEST_LINK :=
 
 MANIFEST_FILE := 
 ifneq ($(Flavor),)

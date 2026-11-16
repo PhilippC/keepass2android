@@ -491,6 +491,7 @@
   <string name="UseOnlineMode">Синхронизировать кэшированную копию с удалённым файлом</string>
   <string name="UseOfflineMode_Info">База данных загружена из внутреннего кэша. Изменения сохраняются только во внутреннем кэше и будут синхронизироваться только при выборе Синхронизация кэшированной копии с удалённым файлом.</string>
   <string name="InOfflineMode">Работа только с локальной копией базы.</string>
+  <string name="ServerNotReachable">Не удалось подключиться к серверу. Проверьте подключение к интернету и адрес сервера.</string>
   <string name="SynchronizingCachedDatabase">Синхронизация кэшированной базы данных…</string>
   <string name="DownloadingRemoteFile">Загружается удалённый файл…</string>
   <string name="UploadingFile">Сохранить файл…</string>

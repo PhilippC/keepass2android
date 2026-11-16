@@ -22,8 +22,7 @@
           android:layout_centerVertical="true"
           
           android:paddingBottom="4sp"
-          android:paddingTop="4sp"
-         />
+          android:paddingTop="4sp" android:importantForAccessibility="no"/>
 
       <TextView
           android:id="@+id/child_db_title"

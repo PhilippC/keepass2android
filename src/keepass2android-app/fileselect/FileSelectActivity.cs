@@ -529,7 +529,7 @@ namespace keepass2android
       switch (item.ItemId)
       {
         case Resource.Id.menu_donate:
-          return Util.GotoDonateUrl(this);
+          return Util.StartDonation(this);
         case Resource.Id.menu_about:
           AboutDialog dialog = new AboutDialog(this);
           dialog.Show();

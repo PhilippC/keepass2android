@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:src="@drawable/baseline_folder_24"
             android:layout_alignParentRight="true"
-            android:layout_below="@id/label_open_by_filename" />
+            android:layout_below="@id/label_open_by_filename" android:contentDescription="@string/browse"/>
         <EditText
             android:id="@+id/file_filename"
             android:layout_width="fill_parent"

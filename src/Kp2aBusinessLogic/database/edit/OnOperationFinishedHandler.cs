@@ -127,24 +127,35 @@ namespace keepass2android
       if (!String.IsNullOrEmpty(message))
       {
         Kp2aLog.Log("OnOperationFinishedHandler message: " + message);
-        if (makeDialog && ctx != null)
+
+        Looper mainLooper = Looper.MainLooper;
+        if (mainLooper == null)
         {
-          try
-          {
-            MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(ctx);
-
-            builder.SetMessage(message)
-                .SetPositiveButton(Android.Resource.String.Ok, (sender, args) => ((Dialog)sender).Dismiss())
-                .Show();
-
-          }
-          catch (Exception)
-          {
-            Toast.MakeText(ctx, message, ToastLength.Long).Show();
-          }
+          //can't show anything without the main looper, the message is in the log above
+          return;
         }
-        else
-          Toast.MakeText(ctx ?? Application.Context, message, ToastLength.Long).Show();
+
+        new Handler(mainLooper).Post(() =>
+        {
+          if (makeDialog && ctx != null)
+          {
+            try
+            {
+              MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(ctx);
+
+              builder.SetMessage(message)
+                  .SetPositiveButton(Android.Resource.String.Ok, (sender, args) => ((Dialog)sender).Dismiss())
+                  .Show();
+
+            }
+            catch (Exception)
+            {
+              Toast.MakeText(ctx, message, ToastLength.Long).Show();
+            }
+          }
+          else
+            Toast.MakeText(ctx ?? Application.Context, message, ToastLength.Long).Show();
+        });
       }
     }
   }

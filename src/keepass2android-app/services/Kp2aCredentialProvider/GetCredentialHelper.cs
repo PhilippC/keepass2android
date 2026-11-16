@@ -1,0 +1,219 @@
+// This file is part of Keepass2Android, Copyright 2026 Philipp Crocoll.
+//
+//   Keepass2Android is free software: you can redistribute it and/or modify
+//   it under the terms of the GNU General Public License as published by
+//   the Free Software Foundation, either version 3 of the License, or
+//   (at your option) any later version.
+//
+//   Keepass2Android is distributed in the hope that it will be useful,
+//   but WITHOUT ANY WARRANTY; without even the implied warranty of
+//   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//   GNU General Public License for more details.
+//
+//   You should have received a copy of the GNU General Public License
+//   along with Keepass2Android.  If not, see <http://www.gnu.org/licenses/>.
+
+using Android.Content;
+using Android.Util;
+using AndroidX.Core.App;
+using AndroidX.Credentials.Provider;
+using Java.Time;
+using Keepass2android.Pluginsdk;
+using KeePassLib;
+using Kp2aPasskey.Core;
+
+namespace keepass2android.services.Kp2aCredentialProvider
+{
+  /// <summary>
+  /// Shared helpers for building <see cref="BeginGetCredentialResponse"/> entries.
+  /// Used by both <see cref="Kp2aCredentialProviderService"/> (DB already unlocked) and
+  /// <see cref="Kp2aCredentialLauncherActivity"/> (after-unlock path via
+  /// <c>PendingOperation.UnlockForGetCredentials</c>).
+  /// </summary>
+  [System.Runtime.Versioning.SupportedOSPlatform("android34.0")]
+  internal static class GetCredentialHelper
+  {
+    /// <summary>
+    /// Searches the open databases for password entries matching <paramref name="callingPackage"/>
+    /// (or the website, for trusted browsers) and adds a <see cref="PasswordCredentialEntry"/> for each one to
+    /// <paramref name="responseBuilder"/>.
+    /// </summary>
+    public static void AddMatchingPasswordEntries(
+      Context context,
+      string callingPackage,
+      CallingAppInfo? callingAppInfo,
+      BeginGetPasswordOption option,
+      BeginGetCredentialResponse.Builder responseBuilder
+    )
+    {
+      // Trusted browsers: match the website, not the browser app.
+      var query = PasskeyOriginHelper.GetOriginFromPrivilegedCaller(context, callingAppInfo)
+                  ?? $"{KeePass.AndroidAppScheme}{callingPackage}";
+      var searchResults = ShareUrlResults.GetSearchResultsForUrl(query);
+      var foundEntries = searchResults?.Entries.ToList() ?? new List<PwEntry>();
+
+      var lastOpenedEntry = App.Kp2a.LastOpenedEntry;
+      if (lastOpenedEntry != null && lastOpenedEntry.SearchUrl == query)
+      {
+        foundEntries.Clear();
+        foundEntries.Add(lastOpenedEntry.Entry);
+      }
+
+      foreach (var entry in foundEntries)
+      {
+        var username = entry.Strings.ReadSafe(PwDefs.UserNameField);
+        if (string.IsNullOrEmpty(username)) continue;
+
+        responseBuilder.AddCredentialEntry(
+          new PasswordCredentialEntry.Builder(
+            context,
+            username,
+            PendingIntentCompat.GetActivity(
+              context,
+              App.Kp2a.NextRequestCodeForCredentialProvider(),
+              new Intent(context, typeof(Kp2aCredentialLauncherActivity))
+                .PutExtra(
+                  Kp2aCredentialLauncherActivity.CredentialRequestTypeKey,
+                  Kp2aCredentialLauncherActivity.CredentialRequestTypeGetPasswordForEntry
+                )
+                .PutExtra(Strings.ExtraEntryId, entry.Uuid.ToHexString()),
+              (int)PendingIntentFlags.UpdateCurrent,
+              true
+            )!,
+            option
+          )
+            .SetDisplayName(entry.Strings.ReadSafe(PwDefs.TitleField))
+            .SetAffiliatedDomain(entry.ParentGroup?.Name)
+            .SetLastUsedTime(
+              Instant.OfEpochMilli(
+                new DateTimeOffset(entry.LastAccessTime).ToUnixTimeMilliseconds()
+              )
+            )
+            .Build()
+        );
+      }
+    }
+
+    /// <summary>
+    /// Searches the open databases for passkey entries matching the relying party declared in
+    /// <paramref name="option"/> and adds a <see cref="PublicKeyCredentialEntry"/> for each one
+    /// to <paramref name="responseBuilder"/>. If <c>allowCredentials</c> is specified in the request,
+    /// only passkeys with matching credential IDs are returned. When no entries are found, a generic
+    /// "search all passkeys" entry is added instead.
+    /// </summary>
+    public static void AddMatchingPasskeyEntries(
+      Context context,
+      CallingAppInfo? callingAppInfo,
+      BeginGetPublicKeyCredentialOption option,
+      BeginGetCredentialResponse.Builder responseBuilder,
+      bool isAutoSelectAllowed = false
+    )
+    {
+      try
+      {
+        var requestOptions = new PublicKeyCredentialRequestOptions(option.RequestJson,
+          () => PasskeyOriginHelper.GetOriginFromPrivilegedCaller(context, callingAppInfo));
+        var relyingPartyId = requestOptions.RpId;
+
+        // Search directly by the KPEX_PASSKEY_RELYING_PARTY extra field — no pseudo-URL needed.
+        var foundEntries = new List<PwEntry>();
+        foreach (var db in App.Kp2a.OpenDatabases)
+        {
+          var results = db.SearchForRelyingParty(relyingPartyId);
+          if (results?.Entries != null)
+          {
+            foundEntries.AddRange(results.Entries);
+          }
+        }
+
+        // Only entries with a usable passkey (the relying party field alone is not enough: the entry may lack the
+        // private key etc. and could not sign), and only the allowed ones if allowCredentials is specified.
+        foundEntries = foundEntries
+          .Where(entry =>
+          {
+            var passkey = PasskeyStorage.RetrievePasskey(entry);
+            return passkey != null
+                   && (!requestOptions.AllowCredentialsSpecified || requestOptions.IsCredentialAllowed(passkey.CredentialId));
+          })
+          .ToList();
+
+        if (foundEntries.Count > 0)
+        {
+          foreach (var entry in foundEntries)
+          {
+            // NOTE: if multiple entries have the same username, they might not all be shown in the UI.
+            // This is an Android design decision which we respect (no pseudo-different usernames or so)
+
+            // The passkey username (account name at the RP) is shown as the primary label.
+            var passkeyUsername = PasskeyStorage.GetUsername(entry);
+            if (string.IsNullOrEmpty(passkeyUsername))
+              passkeyUsername = entry.Strings.ReadSafe(PwDefs.UserNameField);
+            if (string.IsNullOrEmpty(passkeyUsername)) passkeyUsername = context.GetString(Resource.String.passkey_unknown_username);
+
+            responseBuilder.AddCredentialEntry(
+              new PublicKeyCredentialEntry.Builder(
+                context,
+                passkeyUsername,
+                PendingIntentCompat.GetActivity(
+                  context,
+                  App.Kp2a.NextRequestCodeForCredentialProvider(),
+                  new Intent(context, typeof(Kp2aCredentialLauncherActivity))
+                    .PutExtra(
+                      Kp2aCredentialLauncherActivity.CredentialRequestTypeKey,
+                      Kp2aCredentialLauncherActivity.CredentialRequestTypeGetPasskeyForEntry
+                    )
+                    .PutExtra(Strings.ExtraEntryId, entry.Uuid.ToHexString()),
+                  (int)PendingIntentFlags.UpdateCurrent,
+                  true
+                )!,
+                option
+              )
+                .SetDisplayName(entry.Strings.ReadSafe(PwDefs.TitleField))
+                .SetLastUsedTime(
+                  Instant.OfEpochMilli(
+                    new DateTimeOffset(entry.LastAccessTime).ToUnixTimeMilliseconds()
+                  )
+                )
+                .SetAutoSelectAllowed(isAutoSelectAllowed)
+                .Build()
+            );
+          }
+        }
+        else
+        {
+          // No passkeys found for this RP — show a generic "search all passkeys" entry.
+          // This allows unlocking a closed database or manual entry selection.
+          responseBuilder.AddAuthenticationAction(CreateAuthenticationAction(context,
+            context.GetString(Resource.String.credential_provider_no_match_open_database)));
+        }
+      }
+      catch (Exception e)
+      {
+        Kp2aLog.Log($"Error handling passkey get request {e.Message}");
+      }
+    }
+
+
+    /// <param name="title">Shown on the action; defaults to the app name (used while the app is locked).</param>
+    public static AuthenticationAction CreateAuthenticationAction(Context context, string? title = null)
+    {
+      var action = new AuthenticationAction(
+        // Providers that require unlocking the credentials before returning any credentialEntries,
+        // must set up a pending intent that navigates the user to the app's unlock flow.
+        title ?? context.GetString(AppNames.AppNameResource),
+        PendingIntentCompat.GetActivity(
+          context,
+          App.Kp2a.NextRequestCodeForCredentialProvider(),
+          new Intent(context, typeof(Kp2aCredentialLauncherActivity)).PutExtra(
+            Kp2aCredentialLauncherActivity.CredentialRequestTypeKey,
+            Kp2aCredentialLauncherActivity.CredentialRequestTypeUnlockForGetCredentials
+          ),
+          (int)PendingIntentFlags.UpdateCurrent,
+          true
+        )!
+      );
+
+      return action;
+    }
+  }
+}
