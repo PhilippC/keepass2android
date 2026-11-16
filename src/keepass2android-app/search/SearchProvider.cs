@@ -360,7 +360,7 @@ namespace keepass2android.search
               break;
             default:
               //don't disclose protected strings:
-              if (CurrentEntry.Strings.Get(context.Key).IsProtected)
+              if (CurrentEntry.Strings.Get(context.Key)?.IsProtected == true)
                 return null;
               break;
           }

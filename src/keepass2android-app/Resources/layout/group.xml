@@ -87,6 +87,70 @@
       </LinearLayout>
 
       <LinearLayout
+        android:id="@+id/passkey_provider_infotext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:orientation="vertical">
+
+        <TextView android:id="@+id/myinfotext" android:text="@string/passkey_provider_hint"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:textSize="16sp"
+                  android:layout_margin="6dp"
+                  android:layout_marginBottom="2dp"
+        />
+
+        <Button
+          android:id="@+id/enable_passkey_provider"
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content"
+          android:paddingTop="4dp"
+          android:text="@string/passkey_provider_enable"
+          style="@style/BottomBarButton" />
+
+        <Button
+          android:id="@+id/info_dont_show_passkey_provider_again"
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content"
+          android:paddingTop="4dp"
+          android:text="@string/dont_show_again"
+          style="@style/BottomBarButton" />
+      </LinearLayout>
+
+      <LinearLayout
+        android:id="@+id/chrome_autofill_infotext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:orientation="vertical">
+
+        <TextView android:id="@+id/myinfotext" android:text="@string/chrome_autofill_hint"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:textSize="16sp"
+                  android:layout_margin="6dp"
+                  android:layout_marginBottom="2dp"
+        />
+
+        <Button
+          android:id="@+id/open_chrome_autofill_settings"
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content"
+          android:paddingTop="4dp"
+          android:text="@string/chrome_autofill_open_settings"
+          style="@style/BottomBarButton" />
+
+        <Button
+          android:id="@+id/info_dont_show_chrome_autofill_again"
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content"
+          android:paddingTop="4dp"
+          android:text="@string/dont_show_again"
+          style="@style/BottomBarButton" />
+      </LinearLayout>
+
+      <LinearLayout
         android:id="@+id/fingerprint_infotext"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

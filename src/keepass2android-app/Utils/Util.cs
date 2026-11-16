@@ -364,6 +364,20 @@ namespace keepass2android
       GotoUrl(context, context.GetString(Resource.String.MarketURL) + context.PackageName);
     }
 
+    /// <summary>
+    /// Opens the donation option configured by DonationMode (see csproj): the in-app donation screen
+    /// using Google Play Billing or the donation web page.
+    /// </summary>
+    public static bool StartDonation(Context context)
+    {
+#if DONATION_BILLING
+      context.StartActivity(new Intent(context, typeof(DonateActivity)));
+      return true;
+#else
+      return GotoDonateUrl(context);
+#endif
+    }
+
     public static bool GotoDonateUrl(Context context)
     {
       string donateUrl = context.GetString(Resource.String.donate_url,
@@ -720,19 +734,34 @@ namespace keepass2android
       activity.Finish();
     }
 
+    /// <summary>
+    /// True if the build has a donation option (DonationMode Web or Billing, see csproj).
+    /// </summary>
+    public static bool HasDonationOption
+    {
+      get
+      {
+#if DONATION_WEB || DONATION_BILLING
+        return true;
+#else
+        return false;
+#endif
+      }
+    }
+
+    public static bool ShowDonateOption(Context ctx)
+    {
+      return HasDonationOption
+             && !PreferenceManager.GetDefaultSharedPreferences(ctx)
+                 .GetBoolean(ctx.GetString(Resource.String.NoDonateOption_key), false);
+    }
+
     public static void PrepareDonateOptionMenu(IMenu menu, Context ctx)
     {
       var donateItem = menu.FindItem(Resource.Id.menu_donate);
       if (donateItem != null)
       {
-#if NO_DONATION_MENU
-        donateItem.SetVisible(false);
-#else
-        donateItem.SetVisible(
-            !PreferenceManager.GetDefaultSharedPreferences(ctx)
-                .GetBoolean(ctx.GetString(Resource.String.NoDonateOption_key), false)
-        );
-#endif
+        donateItem.SetVisible(ShowDonateOption(ctx));
       }
     }
 

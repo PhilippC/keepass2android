@@ -46,7 +46,7 @@ namespace keepass2android
       _app = app;
       _entry = entry;
 
-      _operationFinishedHandler = new AfterAdd(app.CurrentDb, entry, app, operationFinishedHandler);
+      _operationFinishedHandler = new AfterAdd(db, entry, app, operationFinishedHandler);
     }
 
 
@@ -67,7 +67,7 @@ namespace keepass2android
       _db.Elements.Add(_entry);
 
       // Commit to disk
-      SaveDb save = new SaveDb(_app, _app.CurrentDb, operationFinishedHandler);
+      SaveDb save = new SaveDb(_app, _db, operationFinishedHandler);
       save.SetStatusLogger(StatusLogger);
       save.Run();
     }

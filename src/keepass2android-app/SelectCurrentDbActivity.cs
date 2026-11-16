@@ -231,6 +231,7 @@ namespace keepass2android
     {
       MenuInflater inflater = MenuInflater;
       inflater.Inflate(Resource.Menu.menu_selectdb, menu);
+      Util.PrepareDonateOptionMenu(menu, this);
       return base.OnCreateOptionsMenu(menu);
     }
 
@@ -249,7 +250,7 @@ namespace keepass2android
           App.Kp2a.Lock();
           return true;
         case Resource.Id.menu_donate:
-          return Util.GotoDonateUrl(this);
+          return Util.StartDonation(this);
         case Resource.Id.menu_app_settings:
           DatabaseSettingsActivity.Launch(this);
           return true;
@@ -451,6 +452,12 @@ namespace keepass2android
       return true;
     }
 
+    protected override void OnSaveInstanceState(Bundle outState)
+    {
+      base.OnSaveInstanceState(outState);
+      AppTask?.ToBundle(outState);
+    }
+
     protected override void OnResume()
     {
       _isForeground = true;
@@ -491,7 +498,7 @@ namespace keepass2android
         }
 
         //database(s) unlocked
-        if ((App.Kp2a.OpenDatabases.Count() == 1) || (AppTask is SearchUrlTask))
+        if (((App.Kp2a.OpenDatabases.Count() == 1) || (AppTask is SearchUrlTask)) && (AppTask?.ExplicitlySelectDatabase != true))
         {
           LaunchingOther = true;
           AppTask.LaunchFirstGroupActivity(this);

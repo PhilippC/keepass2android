@@ -224,6 +224,15 @@ namespace keepass2android
 
     }
 
+    /// <summary>
+    /// Returns all entries whose <c>KPEX_PASSKEY_RELYING_PARTY</c> extra field
+    /// exactly matches <paramref name="relyingParty"/> (case-insensitive).
+    /// </summary>
+    public PwGroup SearchForRelyingParty(string relyingParty)
+    {
+      return SearchHelper.SearchForRelyingParty(this, relyingParty);
+    }
+
 
     public void SaveData(IFileStorage fileStorage)
     {

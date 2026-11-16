@@ -46,6 +46,7 @@ namespace keepass2android
       MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(ctx);
       builder.SetTitle(ctx.GetString(Resource.String.ChangeLog_title));
       List<string> changeLog = new List<string>{
+        BuildChangelogString(ctx, new List<int>{Resource.Array.ChangeLog_1_16}, "1.16"),
                 BuildChangelogString(ctx, new List<int>{Resource.Array.ChangeLog_1_15,
 #if !NoNet
                     Resource.Array.ChangeLog_1_15_net
@@ -148,6 +149,9 @@ namespace keepass2android
       builder.SetCancelable(false);
 
       WebView wv = new WebView(ctx);
+#if DONATION_BILLING
+      wv.SetWebViewClient(new DonateLinkWebViewClient(ctx));
+#endif
 
 
 
@@ -164,6 +168,55 @@ namespace keepass2android
 
       dialog.Show();
     }
+
+#if DONATION_BILLING
+    /// <summary>
+    /// Opens the in-app donation screen when the donate link is clicked. Other links are opened externally,
+    /// like the WebView does without a WebViewClient.
+    /// </summary>
+    private class DonateLinkWebViewClient : WebViewClient
+    {
+      public const string DonateLinkUrl = "https://keepass2android.invalid/donate";
+
+      private readonly Context _context;
+
+      public DonateLinkWebViewClient(Context context)
+      {
+        _context = context;
+      }
+
+      public override bool ShouldOverrideUrlLoading(WebView view, IWebResourceRequest request)
+      {
+        return HandleUrl(request.Url?.ToString());
+      }
+
+      public override bool ShouldOverrideUrlLoading(WebView view, string url)
+      {
+        //called instead of the overload above on Android < 7
+        return HandleUrl(url);
+      }
+
+      private bool HandleUrl(string? url)
+      {
+        if (url == DonateLinkUrl)
+        {
+          Util.StartDonation(_context);
+          return true;
+        }
+        if (url == null)
+          return false;
+        try
+        {
+          Util.GotoUrl(_context, url);
+        }
+        catch (ActivityNotFoundException)
+        {
+          App.Kp2a.ShowMessage(_context, Resource.String.error_failed_to_launch_link, MessageSeverity.Error);
+        }
+        return true;
+      }
+    }
+#endif
 
     private static string BuildChangelogString(Context ctx, int changeLogResId, string version)
     {
@@ -189,6 +242,25 @@ namespace keepass2android
 
       return result;
 
+    }
+
+    /// <summary>
+    /// Text of the donate link in the changelog. In 1.16 builds with in-app donations, it invites users to try them out.
+    /// </summary>
+    private static int GetDonateLinkTextId(Context ctx)
+    {
+#if DONATION_BILLING
+      try
+      {
+        string? version = ctx.PackageManager!.GetPackageInfo(ctx.PackageName!, 0)!.VersionName;
+        if (version != null && version.StartsWith("1.16"))
+          return Resource.String.ChangeLog_tryInAppDonation;
+      }
+      catch (PackageManager.NameNotFoundException)
+      {
+      }
+#endif
+      return Resource.String.ChangeLog_keptDonate;
     }
 
     private const string HtmlEnd = @"</body>
@@ -251,22 +323,25 @@ namespace keepass2android
 
           if (usageCount <= 5)
             showDonateOption = false;
-#if NO_DONATION_MENU
-          showDonateOption = false;
-#endif
+          if (!Util.HasDonationOption)
+            showDonateOption = false;
 
           if (showDonateOption)
           {
             if (versionLog2.EndsWith("\n") == false)
               versionLog2 += "\n";
+#if DONATION_BILLING
+            string donateUrl = DonateLinkWebViewClient.DonateLinkUrl;
+#else
             string donateUrl = ctx.GetString(Resource.String.donate_url,
                 new Java.Lang.Object[]{ctx.Resources.Configuration.Locale.Language,
                                 ctx.PackageName
                 });
+#endif
 
             versionLog2 += " * <a href=\"" + donateUrl
                            + "\">" +
-                           ctx.GetString(Resource.String.ChangeLog_keptDonate)
+                           ctx.GetString(GetDonateLinkTextId(ctx))
                            + "<a/>";
           }
           isFirst = false;
