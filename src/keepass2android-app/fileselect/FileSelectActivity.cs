@@ -422,7 +422,7 @@ namespace keepass2android
 
       if ((resultCode == Result.Ok) && (requestCode == RequestCodeEditIoc))
       {
-        string filename = Util.IntentToFilename(data, this);
+        string filename = Util.IntentToFilename(data, this) ?? data.DataString;
 
         LaunchPasswordActivityForIoc(IOConnectionInfo.FromPath(filename));
       }
