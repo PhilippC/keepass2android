@@ -428,6 +428,8 @@
   <string name="show_local_backups">Показать локальные резервные копии</string>
   <string name="AcceptAllServerCertificates_title">SSL-сертификаты</string>
   <string name="AcceptAllServerCertificates_summary">Определите поведение при сбое проверки сертификата. Примечание: Вы можете установить сертификаты на вашем устройстве, если проверка не пройдена!</string>
+  <string name="OneDriveBrokerMode_title">Вход в OneDrive на устройстве (через брокер)</string>
+  <string name="OneDriveBrokerMode_summary">Определяет, использует ли вход в OneDrive диспетчер учетных записей Microsoft (брокер) вашего устройства, который требуется на некоторых рабочих устройствах, управляемых Intune/Entra. Автоматически сначала пытается войти в систему через брокера и в случае неудачи возвращается к обычному входу. Выберите «Никогда», если на этом устройстве неоднократно происходит сбой входа в OneDrive.</string>
   <string name="ClearOfflineCache_title">Очистить кэш?</string>
   <string name="ClearOfflineCache_question">Это удалит все кэшированные копии баз данных. Любые несинхронизированные изменения, внесённые в автономном режиме, будут потеряны! Продолжить?</string>
   <string name="CheckForFileChangesOnSave_title">Проверить на наличие изменений</string>
@@ -541,7 +543,26 @@
   <string name="donate_missedbday_question">Ах, вы пропустили мой день рождения - 10 мая! Если вам нравится это приложение, то почему бы не отправить мне поздравления с днём рождения вместе с небольшим подарком? Ещё не слишком поздно порадовать меня! :-)</string>
   <string name="ok_donate">Расскажите мне ещё!</string>
   <string name="no_thanks">Спасибо, больше не нужно</string>
+  <string name="donate_title">Пожертвовать Keepass2Android</string>
+  <string name="donate_author_description">Karlsruhe, Германия\nразработчик любитель</string>
+  <string name="donate_open_source_info">KeePass2Android это бесплатная программа с открытым исходным кодом (лицензия GPLv3), в которой нет ни рекламы, ни платных функций. Я разрабатываю её в свободное время; если она оказалась для вас полезной, ваше пожертвование поможет мне продолжать работу над ней. Спасибо!</string>
+  <string name="donate_intro">Если вы встретите меня на улице, вы пригласите меня на пиво? Почему бы вам не сделать это виртуально?</string>
+  <string name="donate_intro2">Ты считаешь, что мне не стоит заниматься разработкой и пить пиво? А как насчёт колы и картошки фри?</string>
+  <string name="donate_oktoberfest_beer">Октоберфест пиво</string>
+  <string name="donate_small_beer">Маленькое пиво</string>
+  <string name="donate_coke">Кола и картошка фри</string>
+  <string name="donate_product_with_price">%1$s (%2$s)</string>
+  <string name="donate_other_amount">Или выберите сумму (разово):</string>
   <!-- %1$s (label) is not shown, only the price -->
+  <string name="donate_amount_price">%2$s</string>
+  <string name="donate_yearly">Ежегодно</string>
+  <string name="donate_one_time">Разово</string>
+  <string name="donate_product_yearly_with_price">%1$s каждый год (%2$s в год)</string>
+  <string name="donate_subscription_active">%1$s каждый год: активно, спасибо! Нажмите для управления.</string>
+  <string name="donate_thank_you">Большое спасибо :-) Знаете ли вы, что опцию внесения пожертвования можно скрыть в настройках отображения? Если этот пункт отображается серым цветом, пожалуйста, продолжайте пользоваться Keepass2Android еще некоторое время, пока он не станет доступным.</string>
+  <string name="donate_pending">Спасибо! Ваше пожертвование будет оформлено, как только платеж пройдет обработку.</string>
+  <string name="donate_billing_unavailable">Пожертвования через Google Play в настоящее время недоступны: %1$s</string>
+  <string name="donate_failed">Пожертвование не может быть оформлено: %1$s</string>
   <string name="enter_http_login_title">Введите данные входа WebDav:</string>
   <string name="enter_smb_login_title">Введите данные для входа в Samba:</string>
   <string name="hint_http_url">URL-адрес файла или папки (например: mycloud.me.com/webdav/)</string>
@@ -648,6 +669,7 @@
   <string name="TrayTotp_SettingsField_title">Имя поля параметров TOTP</string>
   <string name="TrayTotp_SettingsField_summary">Введите сюда имя поля параметров настроек TrayTotp.</string>
   <string name="TrayTotp_prefs">TrayTotp</string>
+  <string name="Passkey_prefs">Настройки ключа доступа</string>
   <string name="DebugLog_prefs_prefs">Лог-файл для отладки</string>
   <string name="DebugLog_title">Включить логирование</string>
   <string name="FtpDebug_title">FTP/SFTP журнал отладки</string>
@@ -776,6 +798,12 @@
   <string name="webdav_chunked_upload_size_summary">Размер части (чанков) при загрузке на серверы WebDav в байтах.</string>
   <string name="cleartextTrafficPermitted_title">Разрешить текстовый сетевой трафик в WebDav</string>
   <string name="cleartextTrafficPermitted_summary">HTTP-соединения небезопасны. Включите эту опцию, только если у вас есть другие меры безопасности.</string>
+  <string-array name="ChangeLog_1_16">
+    <item>Добавлена поддержка паролей (Android 14 и выше) 🎉. Чтобы начать, откройте Настройки - Приложение - Настройки ключа доступа.</item>
+    <item>Переключено на платеж Google Play для пожертвований (для вариантов опубликованных в Google Play), по запросу Google</item>
+    <item>Добавлена возможность захвата фото</item>
+    <item>Улучшена совместимость с Talkback</item>
+  </string-array>
   <string-array name="ChangeLog_1_15_net">
     <item>Обновить до целевой SDK версии 36</item>
     <item>Улучшение обработки URL для WebDav с не-ASCII символами</item>
@@ -901,6 +929,7 @@
     <item>Исправления ошибок</item>
   </string-array>
   <string name="ChangeLog_keptDonate">Расширенная возможность пожертвовать пиво или что-то другое</string>
+  <string name="ChangeLog_tryInAppDonation">Протестируйте новую опцию пожертвований в приложении!</string>
   <string-array name="clipboard_timeout_options">
     <item>30 сек.</item>
     <item>1 минута</item>
@@ -1025,10 +1054,36 @@
   <string name="pref_enable_periodic_background_sync_summary">Если этот параметр включен, приложение будет периодически синхронизировать разблокированные базы данных. Это будет учитывать настройки подключения выше.</string>
   <string name="pref_periodic_background_sync_interval_title">Интервал для фоновой синхронизации</string>
   <string name="pref_periodic_background_sync_interval_summary">Задать интервал для фоновой синхронизации в минутах.</string>
+  <string name="credential_provider_service_subtitle">Пароли и ключи доступа</string>
+  <string name="credential_provider_password_creation_description">Сохранить пароль в новой записи</string>
+  <string name="credential_provider_locked_database_description">База данных заблокирована. Нажмите, чтобы разблокировать.</string>
+  <string name="credential_provider_passkey_creation_description">Сохранить ключ доступа</string>
+  <string name="passkey_entry_title">Ключ доступа для %1$s</string>
+  <string name="passkey_unknown_username">Не определено</string>
+  <string name="open_app_name">Открыть %1$s</string>
+  <string name="manage_credentials">Управление учетными данными</string>
   <!-- Passkey Settings Screen -->
+  <string name="pref_passkeys_screen_summary">Синхронизация, верификация пользователей и доверенные браузеры</string>
+  <string name="pref_passkeys_backup_category_title">Синхронизация &amp; резервное копирование</string>
+  <string name="pref_passkeys_uv_category_title">Проверка пользователя</string>
+  <string name="passkeys_uv_setting_change_subtitle">Подтвердите вашу личность, чтобы изменить эту настройку.</string>
   <!-- Passkey Backup Settings -->
+  <string name="passkeys_backup_eligibility_title">Разрешить синхронизацию ключей доступа</string>
+  <string name="passkeys_backup_eligibility_summary">Сообщает веб-сайтам, что ключи доступа (passkeys) могут быть скопированы на другие устройства. Например, посредством синхронизации вашей базы данных. Некоторые веб-сайты могут по-разному обрабатывать такие ключи доступа.</string>
+  <string name="passkeys_backup_state_title">Отметить ключи доступа как синхронизированные</string>
+  <string name="passkeys_backup_state_summary">Сообщает веб-сайтам, что ключи доступа (passkeys) сохранены в резервной копии или синхронизированы с другими устройствами. Включите эту функцию, если вы выполняете синхронизацию или резервное копирование своей базы данных.</string>
   <!-- Passkey User Verification -->
+  <string name="passkeys_force_user_verification_when_preferred_title">Требовать подтверждения пользователя, если это предпочтительно</string>
+  <string name="passkeys_force_user_verification_when_preferred_summary">Если сайт запрашивает «предпочтительную» (preferred) проверку пользователя, всё равно требуйте прохождения биометрической аутентификации или разблокировки устройства перед использованием ключа доступа (passkey).</string>
+  <string name="passkeys_force_uv_not_available">Для использования этой функции на данном устройстве требуется настроить блокировку экрана (PIN-код, графический ключ или пароль) либо использовать надежный биометрический метод аутентификации. Без этого использование ключей доступа (passkeys) станет невозможным. Пожалуйста, сначала настройте блокировку экрана.</string>
+  <string name="passkey_user_verification_required_title">Требуется проверка пользователя</string>
+  <string name="passkey_user_verification_required_description">Подтвердите свою личность, чтобы использовать этот ключ доступа.</string>
   <!-- Passkey trusted (privileged) browsers -->
+  <string name="pref_passkeys_browsers_category_title">Браузеры</string>
+  <string name="passkeys_enable_provider_title">Использовать в качестве провайдера ключей доступа</string>
+  <string name="passkeys_enable_provider_summary">Открывает настройки Android для паролей и ключей доступа, где вы можете включить Keepass2Android.</string>
+  <string name="passkeys_provider_enabled_summary">Keepass2Android включен для паролей и ключей доступа. Нажмите, чтобы открыть настройки Android.</string>
+  <string name="passkeys_provider_not_enabled_summary">Не включено. Нажмите, чтобы открыть настройки Android для паролей и ключей доступа. Выберите Keepass2Android в качестве предпочтительного сервиса. Если он уже был выбран, сначала выберите \"Нет\", а затем выберите Keepass2Android снова.</string>
   <string name="passkey_provider_enable">Настройки</string>
   <string name="passkey_app_unverified_continue">Продолжить</string>
 </resources>
