@@ -259,6 +259,7 @@
   <string name="search_label">検索</string>
   <string name="show_password">パスワードを表示</string>
   <string name="hide_password">パスワードを隠す</string>
+  <string name="browse">探す</string>
   <string name="select_icon">アイコンを選ぶ</string>
   <string name="sort_menu">並べ替え...</string>
   <string name="sort_name">タイトル</string>
@@ -534,6 +535,7 @@
   <string name="donate_intro">もし私とばったり出くわしたなら、飲みに行こうと誘っていただけますか? オンラインでそのようにするのはいかがでしょうか。</string>
   <string name="donate_intro2">ビール片手に開発するのはけしからん、って? じゃあ、コーラとポテトならどうですか?</string>
   <!-- %1$s (label) is not shown, only the price -->
+  <string name="donate_thank_you"></string>
   <string name="enter_http_login_title">WebDav のログイン情報を入力:</string>
   <string name="hint_http_url">フォルダーまたはファイルの URL (例: mycloud.me.com/webdav/)</string>
   <string name="enter_owncloud_login_title">OwnCloud のログイン情報を入力:</string>
